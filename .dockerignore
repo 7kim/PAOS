@@ -1,0 +1,68 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# PAOS — Docker Build Context Exclusions
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Git
+.git/
+.gitignore
+
+# Node dependencies (rebuilt inside container)
+node_modules/
+dashboard/node_modules/
+mcp/*/node_modules/
+
+# Next.js build output (rebuilt inside container)
+dashboard/.next/
+dashboard/out/
+
+# Secrets — never send to Docker daemon
+config/secrets/.env
+docker/secrets.env
+
+# Claude Code runtime
+config/claude/projects/
+config/claude/sessions/
+config/claude/backups/
+config/claude/file-history/
+config/claude/session-env/
+config/claude/shell-snapshots/
+config/claude/cache/
+config/claude/history.jsonl
+config/claude/mcp-needs-auth-cache.json
+config/claude/ide/
+config/claude/tasks/
+config/claude/plans/
+
+# Codex runtime
+config/codex/sessions/
+config/codex/log/
+config/codex/*.sqlite
+config/codex/*.sqlite-wal
+config/codex/*.sqlite-shm
+config/codex/tmp/
+config/codex/shell_snapshots/
+
+# Obsidian (vault/knowledge are mounted as volumes at runtime)
+.obsidian/
+vault/.obsidian/
+vault/.trash/
+.trash/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Binaries not needed in container
+bin/Obsidian.AppImage
+bin/opencode
+
+# Logs/memory (mounted as volumes at runtime)
+logs/
+memory/
+vault/daily/
+vault/chats/
+
+# SQLite
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm

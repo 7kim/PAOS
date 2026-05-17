@@ -1,32 +1,34 @@
 # ─────────────────────────────────────────────────────────────────────────────
-# PAOS Hub — Docker Compose (legacy — run from docker/ subdirectory)
+# PAOS Hub — Docker Compose (root — run from repo root)
 #
-# Prefer the root docker-compose.yml:
-#   cd ~/AI_Workflow && docker compose up -d
+# Quick start:
+#   cp docker/secrets.env.template docker/secrets.env
+#   nano docker/secrets.env          # add your API keys
+#   docker compose up -d
 #
-# If running from this directory:
-#   cd docker
-#   cp secrets.env.template secrets.env && nano secrets.env
-#   docker compose -f docker-compose.yaml up -d
+# Dashboard → http://localhost:3333
 # ─────────────────────────────────────────────────────────────────────────────
 
 services:
   paos-hub:
     build:
-      context: ..
+      context: .
       dockerfile: docker/Dockerfile
     image: paos-hub:latest
     container_name: paos-hub
     ports:
       - "${PAOS_PORT:-3333}:3333"
     volumes:
-      - ../memory:/paos/memory
-      - ../logs:/paos/logs
-      - ../vault:/paos/vault
-      - ../knowledge:/paos/knowledge
-      - ../agents:/paos/agents
-      - ../skills:/paos/skills
-      - ./secrets.env:/paos/.env:ro
+      # Live-mount shared state — agents on the host write here and the
+      # container's dashboard/MCP server reads it in real time.
+      - ./memory:/paos/memory
+      - ./logs:/paos/logs
+      - ./vault:/paos/vault
+      - ./knowledge:/paos/knowledge
+      - ./agents:/paos/agents
+      - ./skills:/paos/skills
+      # Secrets (read-only inside container)
+      - ./docker/secrets.env:/paos/.env:ro
     environment:
       - NODE_ENV=production
       - PORT=3333

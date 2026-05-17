@@ -107,5 +107,8 @@ config/codex/shell_snapshots/
 vault/.obsidian/
 vault/.trash/
 
+# ─── Thunder Client (VS Code REST client) ────────────
+config/th-client/thunder-cache.json
+
 # ─── notes.md (scratch pad, not for tracking) ─────────
 notes.md
