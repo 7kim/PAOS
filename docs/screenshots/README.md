@@ -1,25 +1,28 @@
 # PAOS Screenshots
 
-Screenshots are captured from a live PAOS instance running at `localhost:3333`.
+Screenshots captured from a live PAOS instance at `localhost:3333`.
 
 ## Dashboard Views
 
 | File | View |
-|------|------|
-| `dashboard-overview.png` | Main overview — agent status, active tasks |
-| `dashboard-ledger.png` | Global audit ledger — all agent actions |
-| `dashboard-agents.png` | Agent roster with inbox counts |
-| `dashboard-tasks.png` | Task board with YAML status cards |
-| `dashboard-handoff.png` | HANDOFF.md — live cross-agent state |
-| `gitgraph-agents.png` | GitHub gitgraph showing per-agent commits |
+| --- | --- |
+| `dashboard-overview.png` | Main overview — ledger count, tasks, plans, inbox messages, recent activity feed |
+| `dashboard-ledger.png` | Global audit ledger — every agent action with timestamp, agent badge, and description |
+| `dashboard-agents.png` | Agent roster — all agents with inbox count and last activity snippet |
+| `dashboard-handoff.png` | HANDOFF.md viewer — live cross-agent state, last agent, what was done, active projects |
+| `dashboard-tasks.png` | Task board — YAML task cards with status badges (Done, In Progress, Unknown) |
+| `dashboard-plans.png` | Plans viewer — Implementation Plan with Plan / Tasks / Walkthrough tabs |
+| `dashboard-inbox.png` | Agent inbox — per-agent tabs, full message threading, Send Message button |
+| `gitgraph-agents.png` | GitHub gitgraph — per-agent commit colours (Claude, OpenCode, Codex, Gemini, etc.) |
 
-## Adding Screenshots
+## Adding / Updating Screenshots
 
 1. Start PAOS: `docker compose up -d` or `cd dashboard && npm run dev`
 2. Open `http://localhost:3333`
-3. Take a screenshot with your OS tool:
+3. Navigate to the page you want to capture
+4. Take a screenshot:
    - macOS: `Cmd+Shift+4`
-   - Ubuntu: `gnome-screenshot -a`
+   - Ubuntu: `gnome-screenshot -a` or PrtSc
    - Windows: `Win+Shift+S`
-4. Save to this directory with the filename from the table above
-5. They will be referenced automatically in `README.md`
+5. Save to this directory using the filename from the table above
+6. Run: `git add docs/screenshots/ && ~/AI_Workflow/bin/agent-commit.sh claude "Agent[claude]: update screenshots"`
