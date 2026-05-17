@@ -214,6 +214,7 @@
   },
   "active": "464321df44df6689",
   "lastOpenFiles": [
+    "memory/shared/HANDOFF.md.tmp.44705.5a7492675a44",
     "memory/gemini/events.md",
     "memory/gemini",
     "memory/inbox/gemini",
@@ -249,7 +250,6 @@
     "memory/claude/events.md",
     "memory/global_ledger.md",
     "chats/2026-05-17-ai-workflow-consolidation.md",
-    "memory/developer/events.md",
-    "memory/antigravity/events.md"
+    "memory/developer/events.md"
   ]
 }
