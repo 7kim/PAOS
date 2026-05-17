@@ -1,9 +1,0 @@
-{
-  "id": "1",
-  "subject": "Fix .gitignore — exclude vault plugins, codex sessions, obsidian workspace",
-  "description": "Add missing patterns: vault/.obsidian/, config/codex/sessions/, config/codex/log/, config/codex/history.jsonl, config/codex/version.json, config/codex/config.toml, config/openclaw/tui/, .obsidian/ root, vault/.trash/",
-  "activeForm": "Fixing .gitignore",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

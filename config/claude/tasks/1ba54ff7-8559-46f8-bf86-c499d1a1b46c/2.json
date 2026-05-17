@@ -1,9 +1,0 @@
-{
-  "id": "2",
-  "subject": "Rewrite config/claude/CLAUDE.md — MCP mandate + cross-agent continuity + skills",
-  "description": "Add: mandatory MCP tool calls at session start (read_ledger, read_context, read_inbox), cross-agent continuity (read last vault/chats/), skills registry with trigger conditions, tighter session protocol",
-  "activeForm": "Rewriting user-level CLAUDE.md",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

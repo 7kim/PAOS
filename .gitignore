@@ -21,6 +21,7 @@ config/secrets/*.env
 *.pem
 
 # ─── Claude Code session/runtime files ───────────────
+config/claude/tasks/
 config/claude/.claude.json
 config/claude/.credentials.json
 config/claude/backups/

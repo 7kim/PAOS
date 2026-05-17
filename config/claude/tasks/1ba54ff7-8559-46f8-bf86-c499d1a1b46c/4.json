@@ -1,9 +1,0 @@
-{
-  "id": "4",
-  "subject": "Update all agent soul.md files — cross-agent continuity protocol",
-  "description": "Add vault/chats/ reading + MCP inbox checking to: developer/soul.md, architect/soul.md, coordinator/soul.md, codex/soul.md, openclaw/soul.md",
-  "activeForm": "Updating agent soul files",
-  "status": "completed",
-  "blocks": [],
-  "blockedBy": []
-}

@@ -181,6 +181,7 @@
   },
   "active": "f479283ca44cc8aa",
   "lastOpenFiles": [
+    "config/gemini/antigravity/implicit/dc59003c-f7e0-4317-962a-0676128ec751.eae68201-d74d-4166-b28b-1eb02c171c8b.tmp",
     "vault/chats/2026-05-17-gap-closure-continuity.md",
     "vault/chats/2026-05-17-gap-closure-continuity.md.tmp.44705.fd0c4d06756a",
     "config/claude/tasks/1ba54ff7-8559-46f8-bf86-c499d1a1b46c/6.json.lock",
@@ -216,7 +217,6 @@
     "knowledge/templates/fullstack-monorepo/README.md",
     "knowledge/paos/constitution.md",
     "logs/codex/events.md",
-    "logs/claude/events.md",
     "config/antigravity/extensions/anthropic.claude-code-2.1.89-universal.12949bf6.vsctmp/resources/welcome-art-light.svg",
     "config/antigravity/extensions/anthropic.claude-code-2.1.89-universal.12949bf6.vsctmp/resources/welcome-art-dark.svg",
     "config/antigravity/extensions/anthropic.claude-code-2.1.89-universal.12949bf6.vsctmp/resources/clawd.svg",
