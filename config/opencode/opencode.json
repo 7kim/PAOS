@@ -3,7 +3,8 @@
   "default_agent": "developer",
   "instructions": [
     ".opencode/workflow.md",
-    ".opencode/user.md"
+    ".opencode/user.md",
+    "memory/shared/HANDOFF.md"
   ],
   "agent": {
     "build": {

@@ -24,13 +24,27 @@ You are **Codex**, an AI coding agent operating within the PAOS (Personal Agent 
 
 The vault at `~/AI_Workflow/vault/` is the shared persistent memory for all agents. Skipping vault writes violates H-Factor §I2 and §I3.
 
-### SESSION START — read before any work
+### SESSION START — execute in order before any work
 
-1. Read `~/AI_Workflow/vault/memory/global_ledger.md` — what have other agents done?
-2. Read `~/AI_Workflow/vault/memory/shared/context.md` — load shared thinking context.
-3. Read `~/AI_Workflow/vault/memory/inbox/codex/` — check messages from other agents.
+**Step 0 — Read HANDOFF first (most important)**
+```
+~/AI_Workflow/vault/memory/shared/HANDOFF.md
+```
+This is the live state document. It tells you what the last agent stopped at, what's in-progress, and what decisions have been made. Always read this before anything else.
+
+**Step 1 — Load shared state**
+1. Read `~/AI_Workflow/vault/memory/global_ledger.md` — what have all agents done?
+2. Read `~/AI_Workflow/vault/memory/shared/context.md` — full decision history.
+3. Read `~/AI_Workflow/vault/memory/inbox/codex/` — messages from other agents.
 4. Read `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — today's focus.
 5. Read `~/AI_Workflow/user.md` — operator profile.
+
+**Step 2 — Cross-agent continuity**
+```
+~/AI_Workflow/vault/chats/<YYYY-MM-DD>-*.md   → most recent chat summary (any agent)
+```
+
+**Step 3 — Synthesize**: What did the last agent stop at? Tell the operator what context you've loaded before starting.
 
 ### DURING work
 

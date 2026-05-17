@@ -32,3 +32,6 @@
 | 2026-05-17T13:43:21Z | claude | WRITE | config/claude/CLAUDE.md | Rewrote user-level CLAUDE.md v2.1.0 — mandatory MCP tools, skills registry, cross-agent continuity | - | - |
 | 2026-05-17T13:43:21Z | claude | WRITE | CLAUDE.md + all soul.md files | Added MCP mandate + cross-agent continuity to project CLAUDE.md and all 5 agent soul files | - | - |
 | 2026-05-17T13:43:21Z | claude | WRITE | bin/start-dashboard.sh | Created dashboard launcher script | - | - |
+| 2026-05-17T13:55:05Z | claude | WRITE | vault/memory/shared/HANDOFF.md | Created universal live context primer | - | - |
+| 2026-05-17T13:55:05Z | claude | WRITE | GEMINI.md + .github/copilot-instructions.md | Force continuity for Gemini and Antigravity/Copilot | - | - |
+| 2026-05-17T13:55:05Z | claude | WRITE | all agent configs | HANDOFF.md Step 0 + SESSION END rewrite mandate wired into every agent | - | - |

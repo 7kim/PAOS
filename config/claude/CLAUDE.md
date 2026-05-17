@@ -19,6 +19,13 @@ Vault writes are non-negotiable — skipping violates H-Factor §I2 and §I3.
 
 ### SESSION START — execute in order before any work
 
+**Step 0 — Read HANDOFF first (most important)**
+
+```
+~/AI_Workflow/vault/memory/shared/HANDOFF.md
+```
+This is the live state document. Always read this first — it tells you what the last agent stopped at, what's in-progress, and what decisions have been made. It is rewritten every session (not append-only).
+
 **Step 1 — MCP: load shared state (call these tools)**
 
 ```
@@ -60,7 +67,8 @@ For non-trivial tasks, use the Antigravity Review Loop:
 
 ### SESSION END — write before closing
 
-1. Call `shared-memory: write_context` — key decisions and handoff notes for next agent
+1. **Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet. This is the most critical step.
+2. Call `shared-memory: write_context` — key decisions and handoff notes for next agent
 2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows
 3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions
 4. Commit:

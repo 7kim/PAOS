@@ -15,3 +15,11 @@
 [2026-05-17T13:43:19Z] | WRITE | CLAUDE.md | Updated project CLAUDE.md — MCP mandate, skills table, continuity protocol
 [2026-05-17T13:43:19Z] | WRITE | agents/*/soul.md | Added cross-agent continuity protocol to developer, architect, coordinator, codex, openclaw soul files
 [2026-05-17T13:43:19Z] | WRITE | bin/start-dashboard.sh | Created dashboard start script
+[2026-05-17T13:55:05Z] | WRITE | vault/memory/shared/HANDOFF.md | Created universal live context primer — rewritten each session
+[2026-05-17T13:55:05Z] | WRITE | GEMINI.md | Created Gemini CLI vault continuity config with HANDOFF.md as Step 0
+[2026-05-17T13:55:05Z] | WRITE | .github/copilot-instructions.md | Created Antigravity+Copilot instructions with vault protocol
+[2026-05-17T13:55:05Z] | WRITE | config/codex/instructions.md | Added HANDOFF.md Step 0 + cross-agent continuity
+[2026-05-17T13:55:05Z] | WRITE | config/ollama/system-prompt.md | Created Ollama system prompt with vault protocol
+[2026-05-17T13:55:05Z] | WRITE | config/opencode/opencode.json | Added memory/shared/HANDOFF.md to instructions array
+[2026-05-17T13:55:05Z] | WRITE | config/claude/CLAUDE.md + CLAUDE.md + agents/*/soul.md | Added HANDOFF.md Step 0 + SESSION END rewrite mandate to all agents
+[2026-05-17T13:55:05Z] | WRITE | bin/agent-commit.sh | Added gemini agent identity

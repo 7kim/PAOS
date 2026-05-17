@@ -60,6 +60,9 @@ AGENT_EMAIL[openclaw]="openclaw@paos.nodealgo.com"
 AGENT_NAME[ollama]="Ollama [PAOS]"
 AGENT_EMAIL[ollama]="ollama@paos.nodealgo.com"
 
+AGENT_NAME[gemini]="Gemini [PAOS]"
+AGENT_EMAIL[gemini]="gemini@paos.nodealgo.com"
+
 # ── Validate agent ─────────────────────────────────────────────────────────────
 if [[ -z "${AGENT_NAME[$AGENT_ID]+_}" ]]; then
   echo "Unknown agent: $AGENT_ID" >&2

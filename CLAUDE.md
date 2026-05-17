@@ -79,6 +79,11 @@ Claude Code **must** follow these rules every session. Non-negotiable — H-Fact
 
 ### Session START — execute in order
 
+**Step 0 — Read HANDOFF first**
+```
+~/AI_Workflow/vault/memory/shared/HANDOFF.md   ← live state, always current
+```
+
 **Step 1 — MCP tools (call these first)**
 ```
 shared-memory: read_ledger        → last 20 rows of global_ledger.md
