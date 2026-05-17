@@ -18,6 +18,7 @@ const KNOWLEDGE_DIR = process.env.KNOWLEDGE_DIR || "/home/dev/AI_Workflow/knowle
 const REPO_ROOT = process.env.REPO_ROOT || "/home/dev/AI_Workflow";
 const INBOX_DIR = join(MEMORY_DIR, "inbox");
 const CONTEXT_FILE = join(MEMORY_DIR, "shared", "context.md");
+const HANDOFF_FILE = join(MEMORY_DIR, "shared", "HANDOFF.md");
 const LEDGER_FILE = join(MEMORY_DIR, "global_ledger.md");
 const TASKS_DIR = join(MEMORY_DIR, "tasks");
 
@@ -32,10 +33,11 @@ const KNOWN_AGENTS = [
   { id: "antigravity",          label: "Antigravity",          email: "antigravity@paos.nodealgo.com" },
   { id: "openclaw",             label: "OpenClaw",             email: "openclaw@paos.nodealgo.com" },
   { id: "ollama",               label: "Ollama",               email: "ollama@paos.nodealgo.com" },
+  { id: "gemini",               label: "Gemini",               email: "gemini@paos.nodealgo.com" },
 ];
 
 const server = new Server(
-  { name: "shared-memory-server", version: "1.0.0" },
+  { name: "shared-memory-server", version: "1.1.0" },
   { capabilities: { resources: {}, tools: {} } }
 );
 
@@ -227,6 +229,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         required: ["agent_id", "message"],
       },
     },
+    {
+      name: "write_handoff",
+      description: "Rewrite memory/shared/HANDOFF.md with the current session state. Call this whenever the active task changes and always at session end. Preserves the Active Projects and Key Decisions sections from the existing file.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          agent:        { type: "string", description: "Your agent ID (claude, codex, opencode-developer, ...)" },
+          active_task:  { type: "string", description: "One-line description of what is currently being worked on" },
+          what_done:    { type: "string", description: "Bullet lines (starting with -) of what was completed this session" },
+          what_pending: { type: "string", description: "Bullet lines (starting with -) of what is NOT done yet" },
+          session_note: { type: "string", description: "Optional one-line session label (e.g. 'MCP write_handoff implementation')" },
+        },
+        required: ["agent", "active_task", "what_done", "what_pending"],
+      },
+    },
   ],
 }));
 
@@ -357,6 +374,61 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     } catch (err) {
       return { content: [{ type: "text", text: `Commit failed: ${err.message}` }], isError: true };
     }
+  }
+
+  // ── write_handoff ──────────────────────────────────────────────────────────
+  if (name === "write_handoff") {
+    const { agent, active_task, what_done, what_pending, session_note = "" } = args;
+    const ts = new Date().toISOString();
+    const tool = KNOWN_AGENTS.find(a => a.id === agent)?.label ?? agent;
+
+    // Preserve stable sections from the existing file if present
+    let projectsSection = "";
+    let decisionsSection = "";
+    try {
+      const existing = await readFile(HANDOFF_FILE, "utf-8");
+      const projectsMatch = existing.match(/## Active Projects[\s\S]*?(?=\n## |\n---|\s*$)/);
+      const decisionsMatch = existing.match(/## Key Decisions[\s\S]*?(?=\n## |\n---|\s*$)/);
+      if (projectsMatch) projectsSection = projectsMatch[0].trim();
+      if (decisionsMatch) decisionsSection = decisionsMatch[0].trim();
+    } catch { /* first write — no existing file */ }
+
+    const content = [
+      "# HANDOFF — Current PAOS State",
+      "",
+      "> This file is **rewritten** (not appended) each session. It is the first thing every agent reads.",
+      "> Always current. Max 60 lines. For full history see: `shared/context.md` and `vault/chats/`.",
+      "",
+      "---",
+      "",
+      "## Last Agent",
+      `- **Agent**: ${agent}`,
+      `- **Tool**: ${tool}`,
+      `- **Timestamp**: ${ts}`,
+      ...(session_note ? [`- **Session**: ${session_note}`] : []),
+      "",
+      "## Active Task",
+      active_task,
+      "",
+      "## What Was Just Done",
+      what_done,
+      "",
+      "## What Is NOT Done Yet",
+      what_pending,
+      "",
+      ...(projectsSection ? [projectsSection, ""] : []),
+      ...(decisionsSection ? [decisionsSection, ""] : []),
+      "## How to Pick Up",
+      "1. Read this file (done)",
+      "2. Call `shared-memory: read_ledger` — last 20 rows",
+      "3. Read `vault/chats/` — most recent chat summary",
+      "4. Ask the operator: \"Continuing from HANDOFF — what's next?\"",
+      "",
+    ].join("\n");
+
+    await mkdir(join(MEMORY_DIR, "shared"), { recursive: true });
+    await writeFile(HANDOFF_FILE, content);
+    return { content: [{ type: "text", text: content }] };
   }
 
   throw new Error(`Unknown tool: ${name}`);

@@ -214,6 +214,8 @@
   },
   "active": "464321df44df6689",
   "lastOpenFiles": [
+    "memory/pm-logs/TASK-001-WALKTHROUGH.md",
+    "memory/pm-logs/TASK-001-WALKTHROUGH.md.tmp.44705.fe81dac41704",
     "memory/shared/HANDOFF.md.tmp.44705.5a7492675a44",
     "memory/gemini/events.md",
     "memory/gemini",
@@ -245,8 +247,6 @@
     "memory/claude/auto-memory/project_openclaw.md",
     "memory/claude/auto-memory/project_ai_workflow.md",
     "memory/claude/auto-memory/feedback_logging.md",
-    "memory/claude/auto-memory",
-    "memory/inbox/codex",
     "memory/claude/events.md",
     "memory/global_ledger.md",
     "chats/2026-05-17-ai-workflow-consolidation.md",

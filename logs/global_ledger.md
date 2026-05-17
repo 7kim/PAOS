@@ -35,3 +35,4 @@
 | 2026-05-17T13:55:05Z | claude | WRITE | vault/memory/shared/HANDOFF.md | Created universal live context primer | - | - |
 | 2026-05-17T13:55:05Z | claude | WRITE | GEMINI.md + .github/copilot-instructions.md | Force continuity for Gemini and Antigravity/Copilot | - | - |
 | 2026-05-17T13:55:05Z | claude | WRITE | all agent configs | HANDOFF.md Step 0 + SESSION END rewrite mandate wired into every agent | - | - |
+| 2026-05-17T14:01:41Z | claude | EXEC | mcp/shared-memory-server/index.js | TASK-001 complete: write_handoff tool added + smoke tested. Server v1.1.0 | TASK-001 | - |

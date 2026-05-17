@@ -8,27 +8,23 @@
 ## Last Agent
 - **Agent**: claude
 - **Tool**: Claude Code
-- **Timestamp**: 2026-05-17T19:30:00Z
-- **Session**: Universal continuity — all agents forced to read HANDOFF.md
+- **Timestamp**: 2026-05-17T14:01:09.221Z
+- **Session**: TASK-001: write_handoff MCP tool implementation
+
+## Active Task
+Pipeline test — adding write_handoff tool to shared-memory MCP server (TASK-001)
 
 ## What Was Just Done
-- `vault/memory/shared/HANDOFF.md` — this file — universal live context primer for ALL agents
-- `GEMINI.md` — Gemini CLI reads this automatically (like CLAUDE.md). Full vault protocol + HANDOFF Step 0.
-- `.github/copilot-instructions.md` — Antigravity + Copilot both read this. Vault protocol + operator profile.
-- `config/ollama/system-prompt.md` — Ollama system prompt with vault protocol
-- `config/opencode/opencode.json` — HANDOFF.md added to instructions array (auto-loaded every OpenCode session)
-- `config/codex/instructions.md` — HANDOFF Step 0 + vault/chats/ reading added
-- All agent soul files (developer, architect, coordinator, codex, openclaw) — HANDOFF Step 0 + SESSION END rewrite mandate
-- `bin/agent-commit.sh` — gemini identity added
-- `.gitignore` — fixed (vault plugins, codex sessions, claude tasks excluded)
-- `bin/start-dashboard.sh` — dashboard launcher created
-- GitHub: already pushed to github.com/7kim/AI_Workflow.git (completed last session)
+- Added write_handoff tool definition to ListToolsRequestSchema
+- Added write_handoff call handler with stable-section preservation
+- Added gemini to KNOWN_AGENTS roster
+- Bumped server version to 1.1.0
+- Added HANDOFF_FILE constant
 
 ## What Is NOT Done Yet
-- **Pipeline end-to-end test** — PM→Architect→Developer never run on a real task — THIS IS NEXT
-- OpenClaw channels — `openclaw onboard` not run (user chose to skip)
-- Docker deployment — Dockerfile built, never deployed
-- Gemini CLI not yet installed — GEMINI.md is ready for when it is
+- Smoke test verification
+- Commit and WALKTHROUGH.md
+- Pipeline end-to-end test still unrun on a real project
 
 ## Active Projects
 | Project | Path | Stack | Status |
@@ -45,5 +41,6 @@
 
 ## How to Pick Up
 1. Read this file (done)
-2. Read `vault/chats/2026-05-17-universal-continuity.md` for full session summary
-3. Next action: run first real task through PM→Architect→Developer pipeline
+2. Call `shared-memory: read_ledger` — last 20 rows
+3. Read `vault/chats/` — most recent chat summary
+4. Ask the operator: "Continuing from HANDOFF — what's next?"

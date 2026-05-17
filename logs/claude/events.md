@@ -23,3 +23,6 @@
 [2026-05-17T13:55:05Z] | WRITE | config/opencode/opencode.json | Added memory/shared/HANDOFF.md to instructions array
 [2026-05-17T13:55:05Z] | WRITE | config/claude/CLAUDE.md + CLAUDE.md + agents/*/soul.md | Added HANDOFF.md Step 0 + SESSION END rewrite mandate to all agents
 [2026-05-17T13:55:05Z] | WRITE | bin/agent-commit.sh | Added gemini agent identity
+[2026-05-17T14:01:41Z] | WRITE | mcp/shared-memory-server/index.js | Added write_handoff tool (11th), gemini to KNOWN_AGENTS, HANDOFF_FILE constant, version 1.1.0
+[2026-05-17T14:01:41Z] | EXEC | mcp/shared-memory-server/index.js | Smoke test PASSED — write_handoff rewrites HANDOFF.md, preserves stable sections
+[2026-05-17T14:01:41Z] | WRITE | vault/memory/pm-logs/TASK-001-WALKTHROUGH.md | Produced WALKTHROUGH for TASK-001
