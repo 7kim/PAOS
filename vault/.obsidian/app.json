@@ -1,8 +1,0 @@
-{
-  "alwaysUpdateLinks": true,
-  "attachmentFolderPath": "./attachments",
-  "newFileLocation": "folder",
-  "showUnsupportedFiles": true,
-  "useMarkdownLinks": true,
-  "promptDelete": false
-}

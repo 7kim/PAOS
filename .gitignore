@@ -37,6 +37,7 @@ config/claude/settings.local.json
 config/claude/.last-cleanup
 config/claude/plugins/
 config/claude/projects/
+config/claude/plans/
 
 # ─── Codex runtime files ─────────────────────────────
 config/codex/auth.json
@@ -99,11 +100,11 @@ config/codex/version.json
 config/codex/config.toml
 config/codex/shell_snapshots/
 
-# ─── Obsidian workspace + plugin binaries ─────────────
+# ─── Obsidian runtime (workspace state, plugin binaries, trash) ──────────────
 .obsidian/workspace.json
-vault/.obsidian/plugins/
-vault/.obsidian/themes/
-vault/.obsidian/types.json
+.obsidian/graph.json
+.trash/
+vault/.obsidian/
 vault/.trash/
 
 # ─── notes.md (scratch pad, not for tracking) ─────────
