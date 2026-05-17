@@ -161,6 +161,7 @@ Agents may be invoked directly:
 - `@architect design <request>` — Create a system design plan.
 - `@profiler` — Re-elicit identity.
 - `@openclaw <request>` — OpenClaw agent (reserved — install OpenClaw to activate; config at `~/AI_Workflow/config/openclaw/`).
+- `@gemini <request>` — Google Gemini AI coding agent (config: `~/AI_Workflow/config/gemini/`; soul: `agents/gemini/soul.md`).
 
 ### Section 6.3 — Pipeline Routing (Handoff Protocol)
 The standard multi-agent pipeline is:

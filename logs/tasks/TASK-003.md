@@ -1,7 +1,7 @@
 ---
 id: TASK-003
 title: "Create Gemini agent soul file"
-status: needs_planning
+status: done
 created: 2026-05-17T15:30:00Z
 created_by: claude
 priority: medium
