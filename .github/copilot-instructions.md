@@ -37,6 +37,14 @@ This is the live state document. It tells you what the last agent was doing, wha
 | Tradingview | `~/Documents/Dev/Tradingview/` | Python FastAPI + React + Vite + lightweight-charts |
 | project-gemini | `~/Documents/Dev/project-gemini/` | Next.js 16, FastAPI, PostgreSQL |
 
+## Project Start — When Opening a Project
+
+If working on a project directory, after loading context:
+1. Read `<project>/notes.md` — execute every pending item
+2. Read `<project>/user-questions.md` — answer every question fully
+3. Remove completed notes (archive to `notes-done.md` table) and answered questions (archive to `~/AI_Workflow/knowledge/questions/<project-name>.md`)
+4. Leave unanswerable questions with `<!-- TODO: needs investigation -->`
+
 ## H-Factor Rules
 
 1. **Never execute without an approved plan** for non-trivial (multi-file) work

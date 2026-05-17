@@ -100,6 +100,16 @@ user.md                           → operator profile
 
 **Step 3 — Synthesize** — what did the last agent stop at? Surface to user if relevant.
 
+### Project START — when opening a project
+
+After session start, if working inside a project:
+
+1. **Read `<project>/notes.md`** — execute each item, then call `process_notes` with completed items.
+   Items are removed from `notes.md` and archived in `notes-done.md`.
+2. **Read `<project>/user-questions.md`** — answer each question, then call `process_questions` with Q&A pairs.
+   Answered questions are removed from `user-questions.md` and archived in `knowledge/questions/<project-name>.md`.
+   Unanswerable questions stay with `<!-- TODO: needs investigation -->`.
+
 ### During work
 
 1. Call `shared-memory: append_ledger` after every significant action.

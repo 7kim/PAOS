@@ -103,6 +103,11 @@ vault/daily/<YYYY-MM-DD>.md       → today's focus
 
 **Step 3 — Synthesize**: What tasks are in-flight? Which agents need routing? What is blocked?
 
+**Step 4 — Project files (when working on a project)**
+- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
+- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
+- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
+
 Legacy file reads (if MCP unavailable):
 1. Read `vault/memory/global_ledger.md`
 2. Read `vault/memory/shared/context.md`

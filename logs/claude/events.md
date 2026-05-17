@@ -26,3 +26,13 @@
 [2026-05-17T14:01:41Z] | WRITE | mcp/shared-memory-server/index.js | Added write_handoff tool (11th), gemini to KNOWN_AGENTS, HANDOFF_FILE constant, version 1.1.0
 [2026-05-17T14:01:41Z] | EXEC | mcp/shared-memory-server/index.js | Smoke test PASSED — write_handoff rewrites HANDOFF.md, preserves stable sections
 [2026-05-17T14:01:41Z] | WRITE | vault/memory/pm-logs/TASK-001-WALKTHROUGH.md | Produced WALKTHROUGH for TASK-001
+[2026-05-17T14:31:44Z] | EDIT | agents/architect/soul.md | Added Step 4 project files protocol (notes.md + user-questions.md)
+[2026-05-17T14:31:44Z] | EDIT | agents/coordinator/soul.md | Added Step 4 project files protocol
+[2026-05-17T14:31:44Z] | EDIT | agents/codex/soul.md | Added Step 4 project files protocol
+[2026-05-17T14:31:44Z] | EDIT | agents/openclaw/soul.md | Added Step 4 project files protocol
+[2026-05-17T14:31:44Z] | EDIT | GEMINI.md | Added Step 4 project files protocol
+[2026-05-17T14:31:44Z] | EDIT | .github/copilot-instructions.md | Added Project Start section with notes/questions protocol
+[2026-05-17T14:31:44Z] | EDIT | config/codex/instructions.md | Added Step 4 project files protocol
+[2026-05-17T14:31:44Z] | TEST | /tmp/test-project | Smoke tested process_notes — PASS
+[2026-05-17T14:31:44Z] | TEST | /tmp/test-project | Smoke tested process_questions — PASS
+[2026-05-17T14:31:44Z] | WRITE | vault/memory/shared/HANDOFF.md | Rewrote HANDOFF for session end

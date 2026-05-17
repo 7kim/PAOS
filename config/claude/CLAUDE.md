@@ -47,6 +47,30 @@ user.md                           → operator profile
 
 Before responding to the user, synthesize: what did the last agent stop at? What is in-progress? What is blocked? Surface this to the user if relevant.
 
+### PROJECT START — when opening a project for the first time in a session
+
+After completing SESSION START steps, if working inside a project directory:
+
+1. **Read `<project>/notes.md`** — execute every item in order. After completing all items, call:
+   ```
+   shared-memory: process_notes
+     project_path: "<absolute path to project>"
+     agent: "claude"
+     completed: ["<item text>", ...]
+   ```
+   Completed items will be removed from `notes.md` and archived in `notes-done.md`.
+
+2. **Read `<project>/user-questions.md`** — answer every question fully. After answering, call:
+   ```
+   shared-memory: process_questions
+     project_path: "<absolute path to project>"
+     project_name: "<project name>"
+     agent: "claude"
+     qa_pairs: [{ question: "...", answer: "..." }, ...]
+   ```
+   Answered questions will be removed from `user-questions.md` and archived in `~/AI_Workflow/knowledge/questions/<project-name>.md`.
+   If a question cannot be answered without deeper investigation, leave it with `<!-- TODO: needs investigation -->`.
+
 ### DURING work — mandatory per-action logging
 
 **After every significant action**, call both MCP tools:

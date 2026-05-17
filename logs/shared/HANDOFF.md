@@ -8,23 +8,25 @@
 ## Last Agent
 - **Agent**: claude
 - **Tool**: Claude Code
-- **Timestamp**: 2026-05-17T14:01:09.221Z
-- **Session**: TASK-001: write_handoff MCP tool implementation
+- **Timestamp**: 2026-05-17T14:35:00Z
+- **Session**: T20+T21 — notes/questions protocol wired into all agents + smoke tested
 
 ## Active Task
-Pipeline test — adding write_handoff tool to shared-memory MCP server (TASK-001)
+All agents now wire Project Start protocol (notes.md + user-questions.md processing). MCP tools verified.
 
 ## What Was Just Done
-- Added write_handoff tool definition to ListToolsRequestSchema
-- Added write_handoff call handler with stable-section preservation
-- Added gemini to KNOWN_AGENTS roster
-- Bumped server version to 1.1.0
-- Added HANDOFF_FILE constant
+- Added Step 4 (project files protocol) to 4 remaining soul files: architect, coordinator, codex, openclaw
+- Added Step 4 to GEMINI.md, .github/copilot-instructions.md, config/codex/instructions.md
+- Confirmed opencode.json agents inherit via soul.md files (no change needed to agent descriptions)
+- Smoke tested process_notes: strips completed items, archives to notes-done.md — PASS
+- Smoke tested process_questions: removes answered Q, archives to knowledge/questions/<name>.md — PASS
+- MCP server version: 1.2.0 (process_notes + process_questions + write_handoff = 13 tools)
 
 ## What Is NOT Done Yet
-- Smoke test verification
-- Commit and WALKTHROUGH.md
-- Pipeline end-to-end test still unrun on a real project
+- Fix Claude MCP config: `config/claude/mcp.json` missing `REPO_ROOT` env var (agent_commit tool broken)
+- Fill knowledge gaps: skills/system-analysis-and-design references srs-template.md, elicitation-workflow.md — files don't exist
+- Wire real projects (claude-vps, vps-kit, tv-clone, downloader) to PAOS — zero wiring currently
+- Verify OpenCode vault writes in a real session (test @developer reads HANDOFF and writes ledger)
 
 ## Active Projects
 | Project | Path | Stack | Status |
@@ -35,8 +37,9 @@ Pipeline test — adding write_handoff tool to shared-memory MCP server (TASK-00
 
 ## Key Decisions (permanent)
 - `bin/agent-commit.sh` is the only way to commit — never plain `git commit`
-- MCP servers: `shared-memory` (10 tools) + `scaffold` (2 tools) — registered in Claude + OpenCode
-- Every agent reads HANDOFF.md before anything else — universal cold-start
+- MCP servers: `shared-memory` (13 tools) + `scaffold` (2 tools) — registered in Claude + OpenCode
+- Every agent reads HANDOFF.md as Step 0 — universal cold-start (all agents configured)
+- process_notes + process_questions called at PROJECT START — archives completed work automatically
 - HANDOFF.md is rewritten (not appended) — always current, max 60 lines
 
 ## How to Pick Up

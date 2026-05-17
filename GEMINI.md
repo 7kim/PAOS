@@ -34,6 +34,12 @@ This is the live context document. It tells you exactly what the last agent was 
 
 **Step 3 — Synthesize**: What did the last agent stop at? What decisions have already been made? Tell the operator what context you've loaded before starting work.
 
+**Step 4 — Project files (when working on a project)**
+- Read `<project>/notes.md` → execute all items → append completed items to `notes-done.md`
+- Read `<project>/user-questions.md` → answer all questions → archive Q&A to `~/AI_Workflow/knowledge/questions/<project-name>.md`
+- Remove completed items from notes.md and answered questions from user-questions.md
+- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
+
 ## DURING work — mandatory logging
 
 After every significant action, append to:

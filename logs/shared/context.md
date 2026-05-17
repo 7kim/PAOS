@@ -72,3 +72,15 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Scaffold server confirmed working (stdio MCP, list_templates returns fullstack-monorepo)
 
 **Handoff Notes**: All agents now have the continuity protocol. Next agent starting a session should follow the MCP-first SESSION START in their soul.md or CLAUDE.md. The pipeline (PM→Architect→Developer) is still unexercised on a real task — that is the next logical step. User's main projects are: Tradingview (Python FastAPI + React scalping bot), project-gemini (Next.js+FastAPI scaffold), project-gpt (GPT archive). Tradingview is the most active.
+
+---
+## 2026-05-17 — claude — T20+T21 complete
+
+**What changed**: All agents (9 configs) now have Step 4 — process notes.md + user-questions.md at project start. MCP tools process_notes and process_questions smoke tested and verified.
+
+**MCP server**: v1.2.0, 13 tools: read_ledger, read_context, read_inbox, list_agents, append_ledger, write_context, send_message, create_task, read_task, agent_commit, write_handoff, process_notes, process_questions.
+
+**Next priorities**:
+1. Fix config/claude/mcp.json — add REPO_ROOT env var so agent_commit works from Claude sessions
+2. Fill skill knowledge base (srs-template.md etc.)
+3. Wire Tradingview + project-gemini to PAOS

@@ -74,6 +74,11 @@ vault/daily/<YYYY-MM-DD>.md       → today's focus
 
 **Step 3 — Synthesize**: What was the last agent working on? What code is in-progress? What files were last touched?
 
+**Step 4 — Project files (when working on a project)**
+- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
+- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
+- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
+
 **DURING work:**
 
 - Append every action to `vault/memory/codex/events.md` — `[TIMESTAMP] | ACTION | file | description`

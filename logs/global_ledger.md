@@ -36,3 +36,7 @@
 | 2026-05-17T13:55:05Z | claude | WRITE | GEMINI.md + .github/copilot-instructions.md | Force continuity for Gemini and Antigravity/Copilot | - | - |
 | 2026-05-17T13:55:05Z | claude | WRITE | all agent configs | HANDOFF.md Step 0 + SESSION END rewrite mandate wired into every agent | - | - |
 | 2026-05-17T14:01:41Z | claude | EXEC | mcp/shared-memory-server/index.js | TASK-001 complete: write_handoff tool added + smoke tested. Server v1.1.0 | TASK-001 | - |
+| 2026-05-17T14:31:53Z | claude | EDIT | agents/*/soul.md | Added Step 4 (project files protocol) to architect, coordinator, codex, openclaw soul files | T20 | - |
+| 2026-05-17T14:31:53Z | claude | EDIT | GEMINI.md + copilot-instructions.md + codex/instructions.md | Added project start protocol (notes.md + user-questions.md) | T20 | - |
+| 2026-05-17T14:31:53Z | claude | TEST | process_notes + process_questions | Smoke test PASS — correct item removal, archival, notes-done.md creation | T21 | - |
+| 2026-05-17T14:31:53Z | claude | WRITE | vault/memory/shared/HANDOFF.md | Session end HANDOFF rewrite — T20+T21 complete | T21 | - |

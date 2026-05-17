@@ -64,6 +64,11 @@ vault/daily/<YYYY-MM-DD>.md       → today's focus
 
 **Step 3 — Synthesize**: Are there pending user requests from the channel? Results from agents waiting to be relayed back?
 
+**Step 4 — Project files (when working on a project)**
+- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
+- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
+- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
+
 **DURING work:**
 
 - Append every delegation to `vault/memory/openclaw/events.md` — `[TIMESTAMP] | ACTION | file | description`

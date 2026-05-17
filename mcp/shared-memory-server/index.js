@@ -37,7 +37,7 @@ const KNOWN_AGENTS = [
 ];
 
 const server = new Server(
-  { name: "shared-memory-server", version: "1.1.0" },
+  { name: "shared-memory-server", version: "1.2.0" },
   { capabilities: { resources: {}, tools: {} } }
 );
 
@@ -244,6 +244,44 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         required: ["agent", "active_task", "what_done", "what_pending"],
       },
     },
+    {
+      name: "process_notes",
+      description: "Mark notes as done: removes completed items from <project>/notes.md and appends them with timestamp to <project>/notes-done.md. Call this after executing items from notes.md.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          project_path: { type: "string", description: "Absolute path to the project root containing notes.md" },
+          agent:        { type: "string", description: "Your agent ID" },
+          completed:    { type: "array",  items: { type: "string" }, description: "Exact text of each completed note item (as it appears in notes.md, including any leading '- [ ]', '- [x]', or '- ')" },
+        },
+        required: ["project_path", "agent", "completed"],
+      },
+    },
+    {
+      name: "process_questions",
+      description: "Archive answered questions: removes answered questions from <project>/user-questions.md and appends Q&A pairs to ~/AI_Workflow/knowledge/questions/<project_name>.md.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          project_path: { type: "string", description: "Absolute path to the project root containing user-questions.md" },
+          project_name: { type: "string", description: "Project name used as the filename in knowledge/questions/ (e.g. 'Tradingview')" },
+          agent:        { type: "string", description: "Your agent ID" },
+          qa_pairs:     {
+            type: "array",
+            description: "Answered Q&A pairs",
+            items: {
+              type: "object",
+              properties: {
+                question: { type: "string", description: "Exact question text as it appears in user-questions.md" },
+                answer:   { type: "string", description: "Your full answer to the question" },
+              },
+              required: ["question", "answer"],
+            },
+          },
+        },
+        required: ["project_path", "project_name", "agent", "qa_pairs"],
+      },
+    },
   ],
 }));
 
@@ -429,6 +467,104 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     await mkdir(join(MEMORY_DIR, "shared"), { recursive: true });
     await writeFile(HANDOFF_FILE, content);
     return { content: [{ type: "text", text: content }] };
+  }
+
+  // ── process_notes ─────────────────────────────────────────────────────────
+  if (name === "process_notes") {
+    const { project_path, agent, completed } = args;
+    const notesFile = join(project_path, "notes.md");
+    const doneFile  = join(project_path, "notes-done.md");
+    const ts = new Date().toISOString();
+
+    // Read current notes.md
+    let notesRaw = await readFile(notesFile, "utf-8").catch(() => "");
+
+    // Remove completed items (strip leading checkbox variants for matching)
+    const normalize = (s) => s.replace(/^-\s*\[[ x]\]\s*/, "").replace(/^-\s*/, "").trim();
+    let lines = notesRaw.split("\n");
+    const removedLines = [];
+
+    for (const item of completed) {
+      const normItem = normalize(item);
+      const idx = lines.findIndex(l => normalize(l) === normItem);
+      if (idx !== -1) {
+        removedLines.push(lines[idx]);
+        lines.splice(idx, 1);
+      }
+    }
+
+    // Write cleaned notes.md
+    await writeFile(notesFile, lines.join("\n"));
+
+    // Append to notes-done.md
+    if (removedLines.length > 0) {
+      let doneRaw = await readFile(doneFile, "utf-8").catch(() =>
+        "# Notes — Done\n\nCompleted items from `notes.md`. Append-only.\n\n| Completed (UTC) | Agent | Item |\n|-----------------|-------|------|\n"
+      );
+      // Replace placeholder row if present
+      doneRaw = doneRaw.replace(/\|\s*_\(empty\)_\s*\|\s*—\s*\|\s*—\s*\|\n?/, "");
+      const newRows = removedLines
+        .map(l => `| ${ts} | ${agent} | ${normalize(l)} |`)
+        .join("\n");
+      await writeFile(doneFile, doneRaw.trimEnd() + "\n" + newRows + "\n");
+    }
+
+    return { content: [{ type: "text", text: JSON.stringify({ ok: true, moved: removedLines.length, items: removedLines.map(l => normalize(l)) }) }] };
+  }
+
+  // ── process_questions ──────────────────────────────────────────────────────
+  if (name === "process_questions") {
+    const { project_path, project_name, agent, qa_pairs } = args;
+    const questionsFile = join(project_path, "user-questions.md");
+    const archiveFile   = join(KNOWLEDGE_DIR, "questions", `${project_name}.md`);
+    const ts = new Date().toISOString();
+
+    // Read current user-questions.md
+    let qRaw = await readFile(questionsFile, "utf-8").catch(() => "");
+    let lines = qRaw.split("\n");
+
+    const normalize = (s) => s.replace(/^-\s*/, "").replace(/^\d+\.\s*/, "").trim();
+    const answered = [];
+
+    for (const { question } of qa_pairs) {
+      const normQ = normalize(question);
+      const idx = lines.findIndex(l => normalize(l) === normQ);
+      if (idx !== -1) {
+        answered.push(lines[idx]);
+        lines.splice(idx, 1);
+      }
+    }
+
+    // Write cleaned user-questions.md
+    await writeFile(questionsFile, lines.join("\n"));
+
+    // Append to knowledge/questions/<project_name>.md
+    await mkdir(join(KNOWLEDGE_DIR, "questions"), { recursive: true });
+    let archiveRaw = await readFile(archiveFile, "utf-8").catch(() =>
+      `# Questions — ${project_name}\n\nArchived Q&A from \`user-questions.md\`. Newest first.\n\n---\n`
+    );
+
+    const newEntries = qa_pairs.map(({ question, answer }) =>
+      `\n## Q: ${normalize(question)}\n**Answered**: ${ts}  \n**Agent**: ${agent}\n\n${answer}\n\n---`
+    ).join("\n");
+
+    await writeFile(archiveFile, archiveRaw.trimEnd() + "\n" + newEntries + "\n");
+
+    // Update knowledge/questions/index.md
+    const indexFile = join(KNOWLEDGE_DIR, "questions", "index.md");
+    let indexRaw = await readFile(indexFile, "utf-8").catch(() => "# Knowledge — Answered Questions\n\n| Project | File | Last Updated |\n|---------|------|-------------|\n");
+    const projectRow = `| ${project_name} | [${project_name}.md](${project_name}.md) | ${ts} |`;
+    if (!indexRaw.includes(`| ${project_name} |`)) {
+      // Add new row — replace placeholder if present
+      indexRaw = indexRaw.replace(/\|\s*_\(none yet\)_.*\n?/, "");
+      indexRaw = indexRaw.trimEnd() + "\n" + projectRow + "\n";
+    } else {
+      // Update existing row
+      indexRaw = indexRaw.replace(new RegExp(`\\| ${project_name} \\|.*`), projectRow);
+    }
+    await writeFile(indexFile, indexRaw);
+
+    return { content: [{ type: "text", text: JSON.stringify({ ok: true, archived: qa_pairs.length, file: archiveFile }) }] };
   }
 
   throw new Error(`Unknown tool: ${name}`);

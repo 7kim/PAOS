@@ -46,6 +46,11 @@ This is the live state document. It tells you what the last agent stopped at, wh
 
 **Step 3 — Synthesize**: What did the last agent stop at? Tell the operator what context you've loaded before starting.
 
+**Step 4 — Project files (when working on a project)**
+- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items (or manually archive to `notes-done.md`)
+- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs (or manually archive to `~/AI_Workflow/knowledge/questions/<project-name>.md`)
+- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
+
 ### DURING work
 
 1. Append every significant action to `~/AI_Workflow/vault/memory/codex/events.md`:
