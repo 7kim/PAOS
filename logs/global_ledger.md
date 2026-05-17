@@ -23,3 +23,4 @@
 | 2026-05-17T01:58:21Z | codex | PAOS_TEST | logs/codex/events.md | Agent commit identity test | - | - |
 | 2026-05-17T01:58:21Z | opencode-developer | PAOS_TEST | logs/opencode-developer/events.md | Agent commit identity test | - | - |
 | 2026-05-17T01:58:21Z | opencode-architect | PAOS_TEST | logs/opencode-architect/events.md | Agent commit identity test | - | - |
+| 2026-05-17T01:58:21Z | opencode-coordinator | PAOS_TEST | logs/opencode-coordinator/events.md | Agent commit identity test | - | - |
