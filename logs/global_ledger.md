@@ -21,3 +21,4 @@
 | 2026-05-17T01:22:12Z | ollama | PAOS_TEST | logs/ollama/events.md | Agent commit identity test | - | - |
 | 2026-05-17T01:58:21Z | claude | PAOS_TEST | logs/claude/events.md | Agent commit identity test | - | - |
 | 2026-05-17T01:58:21Z | codex | PAOS_TEST | logs/codex/events.md | Agent commit identity test | - | - |
+| 2026-05-17T01:58:21Z | opencode-developer | PAOS_TEST | logs/opencode-developer/events.md | Agent commit identity test | - | - |
