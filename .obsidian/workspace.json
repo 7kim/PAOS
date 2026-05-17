@@ -182,6 +182,8 @@
   },
   "active": "0f46d1dcfe62baf9",
   "lastOpenFiles": [
+    "vault/chats/2026-05-17-task003-coordinator-verification.md",
+    "logs/inbox/plan/1779035245993-opencode-coordinator.md",
     "logs/inbox/coordinator/TASK-003-verify-request.md",
     "logs/inbox/architect/TASK-003-review-request.md",
     "logs/prompts/TASK-003-handoff.md",
@@ -216,8 +218,6 @@
     "vault/chats/2026-05-17-gap-fixes.md",
     "knowledge/books/README.md",
     "dashboard/node_modules/next/dist/docs/01-app/02-guides/production-checklist.md",
-    "logs/coordinator/events.md",
-    "logs/architect/events.md",
     "config/antigravity/extensions/anthropic.claude-code-2.1.89-universal.12949bf6.vsctmp/resources/welcome-art-light.svg",
     "config/antigravity/extensions/anthropic.claude-code-2.1.89-universal.12949bf6.vsctmp/resources/welcome-art-dark.svg",
     "config/antigravity/extensions/anthropic.claude-code-2.1.89-universal.12949bf6.vsctmp/resources/clawd.svg",
