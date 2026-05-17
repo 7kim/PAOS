@@ -104,10 +104,10 @@ user.md                           → operator profile
 
 After session start, if working inside a project:
 
-1. **Read `<project>/notes.md`** — execute each item, then call `process_notes` with completed items.
-   Items are removed from `notes.md` and archived in `notes-done.md`.
-2. **Read `<project>/user-questions.md`** — answer each question, then call `process_questions` with Q&A pairs.
-   Answered questions are removed from `user-questions.md` and archived in `knowledge/questions/<project-name>.md`.
+1. **Read `knowledge/docs/notes.md`** — execute each item, then call `process_notes` with completed items.
+   Items are removed from `notes.md` and archived in `knowledge/docs/notes-done.md`.
+2. **Read `knowledge/docs/user-questions.md`** — answer each question, then call `process_questions` with Q&A pairs.
+   Answered questions are removed from `user-questions.md` and appended with full Q&A to `knowledge/docs/user-questions-answered.md`.
    Unanswerable questions stay with `<!-- TODO: needs investigation -->`.
 
 ### During work

@@ -51,16 +51,16 @@ Before responding to the user, synthesize: what did the last agent stop at? What
 
 After completing SESSION START steps, if working inside a project directory:
 
-1. **Read `<project>/notes.md`** — execute every item in order. After completing all items, call:
+1. **Read notes file** — for AI_Workflow hub: `knowledge/docs/notes.md`. For other projects: `<project>/notes.md`. Execute every item in order. After completing all items, call:
    ```
    shared-memory: process_notes
      project_path: "<absolute path to project>"
      agent: "claude"
      completed: ["<item text>", ...]
    ```
-   Completed items will be removed from `notes.md` and archived in `notes-done.md`.
+   Completed items are removed from `notes.md` and archived in `notes-done.md` (or `knowledge/docs/notes-done.md` for hub).
 
-2. **Read `<project>/user-questions.md`** — answer every question fully. After answering, call:
+2. **Read user-questions file** — for AI_Workflow hub: `knowledge/docs/user-questions.md`. For other projects: `<project>/user-questions.md`. Answer every question fully. After answering, call:
    ```
    shared-memory: process_questions
      project_path: "<absolute path to project>"
@@ -68,7 +68,7 @@ After completing SESSION START steps, if working inside a project directory:
      agent: "claude"
      qa_pairs: [{ question: "...", answer: "..." }, ...]
    ```
-   Answered questions will be removed from `user-questions.md` and archived in `~/AI_Workflow/knowledge/questions/<project-name>.md`.
+   Answered questions are removed from `user-questions.md` and appended with full Q&A to `user-questions-answered.md` (same directory).
    If a question cannot be answered without deeper investigation, leave it with `<!-- TODO: needs investigation -->`.
 
 ### DURING work — mandatory per-action logging
