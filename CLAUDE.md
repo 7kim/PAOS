@@ -77,26 +77,53 @@ Developer → @plan (PM) → @architect + @coordinator (parallel review) → PM 
 
 Claude Code **must** follow these rules every session. Non-negotiable — H-Factor §I2 (Audit Immutability) and §I3 (Identity First). Skipping vault writes is a protocol violation.
 
-### Session START — read before any work
+### Session START — execute in order
 
-1. Read `~/AI_Workflow/vault/memory/global_ledger.md` — see what other agents have done.
-2. Read `~/AI_Workflow/vault/memory/shared/context.md` — load ongoing shared thinking.
-3. Read `~/AI_Workflow/vault/memory/inbox/claude/` — check messages from other agents.
-4. Read `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — check today's focus.
-5. Read `~/AI_Workflow/user.md` — load operator profile.
+**Step 1 — MCP tools (call these first)**
+```
+shared-memory: read_ledger        → last 20 rows of global_ledger.md
+shared-memory: read_context       → full shared/context.md
+shared-memory: read_inbox         → agent="claude"
+```
+
+**Step 2 — Cross-agent continuity (read files)**
+```
+vault/chats/<YYYY-MM-DD>-*.md     → most recent chat summary (any agent)
+vault/daily/<YYYY-MM-DD>.md       → today's focus
+user.md                           → operator profile
+```
+
+**Step 3 — Synthesize** — what did the last agent stop at? Surface to user if relevant.
 
 ### During work
 
-1. Log every action to `~/AI_Workflow/vault/memory/claude/events.md` — format: `[TIMESTAMP] | ACTION | file | description`.
-2. Append to `~/AI_Workflow/vault/memory/global_ledger.md` after every significant action.
-3. Use Antigravity Review Loop for non-trivial tasks — produce `TASKS.md` + `IMPLEMENTATION_PLAN.md` → wait for review → execute → produce `WALKTHROUGH.md`.
+1. Call `shared-memory: append_ledger` after every significant action.
+2. Call `shared-memory: write_context` after every key decision.
+3. Write to `vault/memory/claude/events.md`: `[TIMESTAMP] | ACTION | file | description`
+4. Use Antigravity Review Loop for non-trivial tasks — TASKS.md + IMPLEMENTATION_PLAN.md → wait for review → execute → WALKTHROUGH.md.
 
-### Session END — write before closing
+### Session END
 
-1. Update `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — add activity rows for everything done.
-2. Write `~/AI_Workflow/vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files created/modified, open questions.
-3. Append to `~/AI_Workflow/vault/memory/shared/context.md` — key decisions and handoff notes for next agent.
-4. Git commit using agent identity: `~/AI_Workflow/bin/agent-commit.sh claude "Agent[claude]: <description>"`
+1. Call `shared-memory: write_context` — handoff notes for next agent.
+2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
+3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
+4. Commit: `~/AI_Workflow/bin/agent-commit.sh claude "Agent[claude]: <description>"`
+
+## MCP Servers
+
+| Server | Tools | Purpose |
+|--------|-------|---------|
+| `shared-memory` | read_ledger, read_context, read_inbox, append_ledger, write_context, send_message, create_task, read_task, list_agents, agent_commit | Shared state across all agents |
+| `scaffold` | list_templates, scaffold_project | Generate new projects from templates |
+
+## Skills Registry
+
+| Skill | Trigger | Path |
+|-------|---------|------|
+| Antigravity Review Loop | Any non-trivial task | `skills/antigravity-review-loop/SKILL.md` |
+| System Analysis & Design | "SRS", "system design", "architecture", `@architect design` | `skills/system-analysis-and-design/SKILL.md` |
+| Project Scaffolder | "scaffold", "new project", `@scaffold` | `skills/project-scaffolder/SKILL.md` |
+| Skill Creator | "create skill", "new skill" | `skills/skill-creator-elicitation/SKILL.md` |
 
 ## Git Identity (Per-Agent Commits)
 

@@ -42,12 +42,22 @@ When a user sends a message:
 
 Skipping vault writes violates H-Factor §I2 and §I3.
 
-**SESSION START** — read before any work:
+**SESSION START** — execute in order before any work:
 
-1. Read `vault/memory/global_ledger.md` — what have other agents done?
-2. Read `vault/memory/shared/context.md` — load shared thinking context.
-3. Read `vault/memory/inbox/openclaw/` — check messages from other agents.
-4. Read `vault/daily/<YYYY-MM-DD>.md` — today's focus.
+**Step 1 — MCP tools**
+```
+shared-memory: read_ledger        → last 20 rows of global_ledger.md
+shared-memory: read_context       → full shared/context.md
+shared-memory: read_inbox         → agent="openclaw"
+```
+
+**Step 2 — Cross-agent continuity**
+```
+vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
+vault/daily/<YYYY-MM-DD>.md       → today's focus
+```
+
+**Step 3 — Synthesize**: Are there pending user requests from the channel? Results from agents waiting to be relayed back?
 
 **DURING work:**
 

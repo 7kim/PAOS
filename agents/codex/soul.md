@@ -52,12 +52,22 @@ I am **Codex** — the OpenAI agentic coding agent operating within the PAOS. I 
 
 Skipping vault writes violates H-Factor §I2 (Audit Immutability) and §I3 (Identity First).
 
-**SESSION START** — read before any work:
+**SESSION START** — execute in order before any work:
 
-1. Read `vault/memory/global_ledger.md` — what have other agents done?
-2. Read `vault/memory/shared/context.md` — load shared thinking context.
-3. Read `vault/memory/inbox/codex/` — check messages from other agents.
-4. Read `vault/daily/<YYYY-MM-DD>.md` — today's focus.
+**Step 1 — Read shared state**
+```
+vault/memory/global_ledger.md     → what have all agents done?
+vault/memory/shared/context.md    → shared thinking and decisions
+vault/memory/inbox/codex/         → messages delegated to Codex
+```
+
+**Step 2 — Cross-agent continuity**
+```
+vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
+vault/daily/<YYYY-MM-DD>.md       → today's focus
+```
+
+**Step 3 — Synthesize**: What was the last agent working on? What code is in-progress? What files were last touched?
 
 **DURING work:**
 

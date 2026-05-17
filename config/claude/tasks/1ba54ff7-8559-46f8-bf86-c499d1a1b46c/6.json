@@ -1,0 +1,9 @@
+{
+  "id": "6",
+  "subject": "Log session and commit all changes",
+  "description": "Write vault events, update global_ledger, update daily note, write chat summary, agent-commit.sh",
+  "activeForm": "Committing session",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

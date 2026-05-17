@@ -58,3 +58,17 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - User must fill `config/secrets/.env` with OPENAI_API_KEY for Codex
 - User must run `cd config/openclaw/openclaw-src && npm install && npm run build && openclaw onboard` to activate OpenClaw channels
 - Dashboard Docker build needs `cd dashboard && npm run build` first
+
+## 2026-05-17 @claude — Session: Gap closure + cross-agent continuity wiring
+
+**Thinking**: The PAOS infrastructure was built but agents were not actually using MCP tools or reading each other's chat history. Added explicit MCP mandates and cross-agent continuity protocol to every agent's config. This means every agent now loads shared state via MCP at session start and reads vault/chats/ to pick up where the last agent left off — regardless of which tool the previous agent used.
+
+**Decisions**:
+- config/claude/CLAUDE.md v2.1.0: mandatory MCP tool calls (read_ledger, read_context, read_inbox) at session start; skills registry with trigger conditions; full agent roster
+- All 5 agent soul.md files updated with MCP calls + vault/chats/ reading + synthesis step
+- .gitignore fixed: vault/.obsidian/plugins, codex/sessions, codex/log, openclaw/tui now excluded
+- bin/start-dashboard.sh created for easy dashboard launch (built, ready at localhost:3333)
+- GitHub was already completed in the last session (push succeeded to github.com/7kim/AI_Workflow.git)
+- Scaffold server confirmed working (stdio MCP, list_templates returns fullstack-monorepo)
+
+**Handoff Notes**: All agents now have the continuity protocol. Next agent starting a session should follow the MCP-first SESSION START in their soul.md or CLAUDE.md. The pipeline (PM→Architect→Developer) is still unexercised on a real task — that is the next logical step. User's main projects are: Tradingview (Python FastAPI + React scalping bot), project-gemini (Next.js+FastAPI scaffold), project-gpt (GPT archive). Tradingview is the most active.

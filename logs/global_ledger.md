@@ -28,3 +28,7 @@
 | 2026-05-17T01:58:21Z | openclaw | PAOS_TEST | logs/openclaw/events.md | Agent commit identity test | - | - |
 | 2026-05-17T01:58:21Z | ollama | PAOS_TEST | logs/ollama/events.md | Agent commit identity test | - | - |
 | 2026-05-17T13:27:53Z | claude | WRITE | knowledge/references/books.md | Created curated books reading list for PAOS operator | - | - |
+| 2026-05-17T13:43:21Z | claude | WRITE | .gitignore | Fixed missing gitignore patterns — vault plugins, codex sessions, openclaw tui | - | - |
+| 2026-05-17T13:43:21Z | claude | WRITE | config/claude/CLAUDE.md | Rewrote user-level CLAUDE.md v2.1.0 — mandatory MCP tools, skills registry, cross-agent continuity | - | - |
+| 2026-05-17T13:43:21Z | claude | WRITE | CLAUDE.md + all soul.md files | Added MCP mandate + cross-agent continuity to project CLAUDE.md and all 5 agent soul files | - | - |
+| 2026-05-17T13:43:21Z | claude | WRITE | bin/start-dashboard.sh | Created dashboard launcher script | - | - |

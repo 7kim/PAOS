@@ -88,3 +88,22 @@ docker/secrets.env
 config/codex/.tmp/
 config/openclaw/plugins/
 config/openclaw/sessions/
+config/openclaw/tui/
+
+# ─── Codex runtime/session files ─────────────────────
+config/codex/sessions/
+config/codex/log/
+config/codex/history.jsonl
+config/codex/version.json
+config/codex/config.toml
+config/codex/shell_snapshots/
+
+# ─── Obsidian workspace + plugin binaries ─────────────
+.obsidian/workspace.json
+vault/.obsidian/plugins/
+vault/.obsidian/themes/
+vault/.obsidian/types.json
+vault/.trash/
+
+# ─── notes.md (scratch pad, not for tracking) ─────────
+notes.md

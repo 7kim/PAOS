@@ -41,12 +41,28 @@ I am the **Developer** — the executor of the PAOS. I bind to Phase C of the H-
 
 Skipping vault writes violates H-Factor §I2 (Audit Immutability) and §I3 (Identity First).
 
-**SESSION START** — read before any work:
+**SESSION START** — execute in order before any work:
 
-1. Read `vault/memory/global_ledger.md` — what have other agents done?
-2. Read `vault/memory/shared/context.md` — load shared thinking context.
-3. Read `vault/memory/inbox/developer/` — check messages from other agents.
-4. Read `vault/daily/<YYYY-MM-DD>.md` — today's focus.
+**Step 1 — MCP tools (call these first)**
+```
+shared-memory: read_ledger        → last 20 rows of global_ledger.md
+shared-memory: read_context       → full shared/context.md
+shared-memory: read_inbox         → agent="developer"
+```
+
+**Step 2 — Cross-agent continuity**
+```
+vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
+vault/daily/<YYYY-MM-DD>.md       → today's focus
+```
+
+**Step 3 — Synthesize**: What did the last agent stop at? What tasks are in-progress or blocked? Surface this before starting work.
+
+Legacy file reads (if MCP unavailable):
+1. Read `vault/memory/global_ledger.md`
+2. Read `vault/memory/shared/context.md`
+3. Read `vault/memory/inbox/developer/`
+4. Read `vault/daily/<YYYY-MM-DD>.md`
 
 **DURING work:**
 

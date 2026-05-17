@@ -20,5 +20,6 @@
       "/home/dev/AI_Workflow"
     ]
   },
-  "autoUpdaterStatus": "enabled"
+  "autoUpdaterStatus": "enabled",
+  "effortLevel": "medium"
 }

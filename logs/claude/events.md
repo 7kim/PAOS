@@ -10,3 +10,8 @@
 [2026-05-17T01:22:12Z] | PAOS_TEST | test-agents.sh | Agent commit test — identity verified
 [2026-05-17T01:58:21Z] | PAOS_TEST | test-agents.sh | Agent commit test — identity verified
 [2026-05-17T13:27:48Z] | WRITE | knowledge/references/books.md | Created curated books reading list — AI, architecture, TS/Node, PKM, product
+[2026-05-17T13:43:19Z] | WRITE | .gitignore | Fixed missing patterns: vault/.obsidian/plugins, codex/sessions, codex/log, openclaw/tui, notes.md
+[2026-05-17T13:43:19Z] | WRITE | config/claude/CLAUDE.md | Rewrote user-level CLAUDE.md v2.1.0 — MCP mandate, skills registry, cross-agent continuity
+[2026-05-17T13:43:19Z] | WRITE | CLAUDE.md | Updated project CLAUDE.md — MCP mandate, skills table, continuity protocol
+[2026-05-17T13:43:19Z] | WRITE | agents/*/soul.md | Added cross-agent continuity protocol to developer, architect, coordinator, codex, openclaw soul files
+[2026-05-17T13:43:19Z] | WRITE | bin/start-dashboard.sh | Created dashboard start script

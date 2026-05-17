@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "subject": "Add bin/start-dashboard.sh and verify scaffold server",
+  "description": "Create a one-liner dashboard start script. Document scaffold server is working (stdio MCP, responds to list_templates + scaffold_project).",
+  "activeForm": "Adding dashboard script",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}
