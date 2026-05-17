@@ -1,0 +1,220 @@
+{
+  "main": {
+    "id": "fa67a14eb6e55a6a",
+    "type": "split",
+    "children": [
+      {
+        "id": "5211d11025944459",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "84d577116775cec2",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e11cfcc830cfafe3",
+    "type": "split",
+    "children": [
+      {
+        "id": "01957957b3e0fca7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "774f831c2d35a7f8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "0f92c7bd23c8d3ac",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "170f231477d6b811",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "38354ec00e9b8595",
+    "type": "split",
+    "children": [
+      {
+        "id": "16ebee09de24f8b1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "99bcfc73346ffc4f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": true,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "56372945b522fdaa",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "32ec702b76e8d2a2",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "2671cbaee696ee0a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "8e43e1fe3f1b0b30",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Untitled.base",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Untitled"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "84d577116775cec2",
+  "lastOpenFiles": [
+    "memory/claude/auto-memory/user_profile.md",
+    "memory/claude/auto-memory/MEMORY.md",
+    "chats/2026-05-17-enterprise-upgrade.md",
+    "memory/openclaw/events.md",
+    "memory/opencode-coordinator/events.md",
+    "memory/opencode-coordinator",
+    "memory/opencode-architect/events.md",
+    "memory/opencode-architect",
+    "memory/opencode-developer/events.md",
+    "memory/opencode-developer",
+    "chats/2026-05-17-codex-vault-enforcement.md",
+    "daily/2026-05-17.md",
+    "memory/codex/events.md",
+    "memory/claude/auto-memory/project_openclaw.md",
+    "memory/claude/auto-memory/project_ai_workflow.md",
+    "memory/claude/auto-memory/feedback_logging.md",
+    "memory/claude/auto-memory",
+    "memory/inbox/codex",
+    "memory/codex",
+    "memory/claude/events.md",
+    "memory/shared/context.md",
+    "memory/global_ledger.md",
+    "chats/2026-05-17-ai-workflow-consolidation.md",
+    "memory/developer/events.md",
+    "memory/antigravity/events.md",
+    "memory/prompts/index.md",
+    "memory/prompts/_template.md",
+    "projects/project-gemini.md",
+    "projects/project-gpt.md",
+    "projects/projects.md",
+    "projects/Tradingview.md",
+    "dashboard.md",
+    "memory/openclaw",
+    "memory/inbox/openclaw",
+    "chats",
+    "memory/projects/project-gpt"
+  ]
+}

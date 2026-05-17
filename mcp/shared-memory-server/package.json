@@ -1,0 +1,14 @@
+{
+  "name": "shared-memory-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MCP server exposing shared AI agent memory and knowledge base",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

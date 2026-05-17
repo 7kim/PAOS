@@ -1,0 +1,13 @@
+{
+  "recent": [
+    {
+      "providerID": "opencode",
+      "modelID": "deepseek-v4-flash-free"
+    }
+  ],
+  "favorite": [],
+  "variant": {
+    "opencode/big-pickle": "default",
+    "opencode/deepseek-v4-flash-free": "max"
+  }
+}

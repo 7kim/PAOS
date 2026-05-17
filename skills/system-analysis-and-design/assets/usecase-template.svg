@@ -1,0 +1,79 @@
+<!--
+USE CASE DIAGRAM SVG TEMPLATE
+
+This template produces a proper UML use case diagram that fits on one page of a PDF.
+Use it instead of Mermaid for use-case diagrams — Mermaid's `((circle))` nodes produce
+page-spanning output that cannot be made to fit.
+
+USAGE:
+1. Copy this file to your diagrams folder.
+2. Edit the actor names (stick-figure groups), system name, and use-case labels (ellipses).
+3. Adjust the coordinates to lay them out appropriately for your number of use cases.
+4. Render to PNG:
+     python3 -c "import cairosvg; cairosvg.svg2png(url='usecase.svg', write_to='usecase.png', output_width=1600)"
+5. Drop the PNG into your diagrams folder in the position that corresponds to your
+   use-case block in the source Markdown.
+
+LAYOUT GUIDELINES:
+- Single actor: place at left-center (x=80, y=250)
+- Multiple actors: distribute vertically on left
+- Use cases: 3-column grid is readable; rows every 100px
+- System boundary: rectangle containing all use cases, labeled at top
+- Associations: simple lines from actor to each associated use case
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <style>
+      .box { fill: #fff; stroke: #333; stroke-width: 1.5; }
+      .uc { fill: #e8e4ff; stroke: #6b5bc9; stroke-width: 1.5; }
+      .actor-line { stroke: #333; stroke-width: 1.5; fill: none; }
+      .link { stroke: #555; stroke-width: 1; fill: none; }
+      text { text-anchor: middle; dominant-baseline: middle; }
+      .title { font-weight: bold; font-size: 13px; fill: #444; }
+    </style>
+  </defs>
+
+  <!-- System boundary — adjust width/height for your use-case grid -->
+  <rect x="220" y="20" width="620" height="480" class="box" rx="6" />
+  <text x="530" y="40" class="title">SYSTEM NAME</text>
+
+  <!-- Actor stick figure — translate() positions the whole actor group -->
+  <g transform="translate(80,250)">
+    <circle cx="0" cy="-50" r="14" fill="#fff" stroke="#333" stroke-width="2"/>
+    <line x1="0" y1="-36" x2="0" y2="10" class="actor-line"/>
+    <line x1="-20" y1="-20" x2="20" y2="-20" class="actor-line"/>
+    <line x1="0" y1="10" x2="-18" y2="40" class="actor-line"/>
+    <line x1="0" y1="10" x2="18" y2="40" class="actor-line"/>
+    <text x="0" y="62" font-size="13">Actor Name</text>
+  </g>
+
+  <!-- Use cases — each ellipse + label pair.
+       Pattern: <ellipse cx="X" cy="Y" rx="90" ry="28" class="uc"/><text x="X" y="Y">Label</text> -->
+  <g>
+    <ellipse cx="350" cy="90"  rx="90" ry="28" class="uc"/><text x="350" y="90">Use Case 1</text>
+    <ellipse cx="530" cy="90"  rx="90" ry="28" class="uc"/><text x="530" y="90">Use Case 2</text>
+    <ellipse cx="710" cy="90"  rx="90" ry="28" class="uc"/><text x="710" y="90">Use Case 3</text>
+
+    <ellipse cx="350" cy="190" rx="90" ry="28" class="uc"/><text x="350" y="190">Use Case 4</text>
+    <ellipse cx="530" cy="190" rx="90" ry="28" class="uc"/><text x="530" y="190">Use Case 5</text>
+    <ellipse cx="710" cy="190" rx="90" ry="28" class="uc"/><text x="710" y="190">Use Case 6</text>
+
+    <ellipse cx="350" cy="290" rx="90" ry="28" class="uc"/><text x="350" y="290">Use Case 7</text>
+    <ellipse cx="530" cy="290" rx="90" ry="28" class="uc"/><text x="530" y="290">Use Case 8</text>
+    <ellipse cx="710" cy="290" rx="90" ry="28" class="uc"/><text x="710" y="290">Use Case 9</text>
+  </g>
+
+  <!-- Association lines from actor to each use case.
+       x1/y1 = actor anchor point, x2/y2 = left edge of target ellipse (cx - rx) -->
+  <g>
+    <line x1="100" y1="235" x2="260" y2="90"  class="link"/>
+    <line x1="100" y1="235" x2="440" y2="90"  class="link"/>
+    <line x1="100" y1="235" x2="620" y2="90"  class="link"/>
+    <line x1="100" y1="245" x2="260" y2="190" class="link"/>
+    <line x1="100" y1="245" x2="440" y2="190" class="link"/>
+    <line x1="100" y1="245" x2="620" y2="190" class="link"/>
+    <line x1="100" y1="255" x2="260" y2="290" class="link"/>
+    <line x1="100" y1="255" x2="440" y2="290" class="link"/>
+    <line x1="100" y1="255" x2="620" y2="290" class="link"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "shared-memory": {
+      "command": "node",
+      "args": ["/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"],
+      "env": {
+        "MEMORY_DIR": "/home/dev/AI_Workflow/memory",
+        "KNOWLEDGE_DIR": "/home/dev/AI_Workflow/knowledge"
+      }
+    },
+    "scaffold": {
+      "command": "node",
+      "args": ["/home/dev/AI_Workflow/mcp/scaffold-server/index.js"],
+      "env": {
+        "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
+      }
+    }
+  }
+}

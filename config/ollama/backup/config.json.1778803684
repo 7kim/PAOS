@@ -1,0 +1,16 @@
+{
+  "integrations": {
+    "claude": {
+      "models": [
+        "qwen3.6"
+      ]
+    },
+    "opencode": {
+      "models": [
+        "qwen3.6"
+      ]
+    }
+  },
+  "last_model": "qwen3.6",
+  "last_selection": "run"
+}

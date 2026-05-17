@@ -1,0 +1,14 @@
+{
+  "name": "scaffold-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MCP server for scaffolding new projects from templates",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+# Codex CLI Configuration — PAOS Agent
+# ~/.codex/config.yaml (symlinked from AI_Workflow/config/codex/)
+
+# Model settings
+model: o4-mini
+approval-mode: suggest     # suggest | auto-edit | full-auto
+
+# Instructions file (PAOS system prompt / soul)
+# Codex reads instructions.md from this directory automatically
+
+# Disable telemetry
+disable-telemetry: true
+
+# Project memory — Codex will look here for context
+# PAOS vault provides cross-agent shared context

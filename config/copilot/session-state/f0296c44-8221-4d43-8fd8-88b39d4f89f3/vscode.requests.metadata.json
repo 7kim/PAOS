@@ -1,0 +1,16 @@
+[
+  {
+    "vscodeRequestId": "request_08fd0f9b-13f2-46a0-a22b-b50e4aff0ba6",
+    "copilotRequestId": "0fcf2b6b-b3ae-45d0-88a0-4f213895958c",
+    "toolIdEditMap": {}
+  },
+  {
+    "vscodeRequestId": "request_7e6a000e-e541-479b-955b-a82d152d8de2",
+    "copilotRequestId": "b880e3bb-949e-48c8-8c72-8611d2133bbd",
+    "toolIdEditMap": {
+      "toolu_vrtx_016xay2JxFQfpTLHKPTcBSWA": "9e6c7856-13ef-40d1-a115-aeb97fa8280b",
+      "toolu_vrtx_01XaSrEugdMn4UYJpkCEZC14": "2024f2f8-a367-4427-b63e-c076b1410cec",
+      "toolu_vrtx_01SQkBsV8MFPAhyov8Cqbcx7": "4d57a299-7d8a-41c1-8202-355631213255"
+    }
+  }
+]

@@ -1,0 +1,90 @@
+# ─────────────────────────────────────────────────────
+# PAOS — AI_Workflow .gitignore
+# ─────────────────────────────────────────────────────
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Build outputs
+.next/
+dist/
+out/
+
+# ─── SECRETS (never track) ───────────────────────────
+config/secrets/.env
+config/secrets/*.env
+.env
+.env.*
+!.env.template
+*.key
+*.pem
+
+# ─── Claude Code session/runtime files ───────────────
+config/claude/.claude.json
+config/claude/.credentials.json
+config/claude/backups/
+config/claude/file-history/
+config/claude/sessions/
+config/claude/ide/
+config/claude/cache/
+config/claude/session-env/
+config/claude/shell-snapshots/
+config/claude/mcp-needs-auth-cache.json
+config/claude/history.jsonl
+config/claude/settings.local.json
+config/claude/.last-cleanup
+config/claude/plugins/
+config/claude/projects/
+
+# ─── Codex runtime files ─────────────────────────────
+config/codex/auth.json
+config/codex/installation_id
+config/codex/models_cache.json
+config/codex/*.sqlite
+config/codex/*.sqlite-wal
+config/codex/*.sqlite-shm
+config/codex/tmp/
+config/codex/.personality_migration
+config/codex/skills/.system/
+
+# ─── Antigravity — extension binaries (huge, managed separately) ─────
+config/antigravity/extensions/
+config/antigravity/argv.json
+
+# ─── Gemini runtime ──────────────────────────────────
+config/gemini/
+
+# ─── Ollama models (large binaries) ──────────────────
+config/ollama/models/
+
+# ─── Lock files & runtime ────────────────────────────
+logs/**/*.lock
+
+# ─── SQLite databases ────────────────────────────────
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# ─── Large binaries in bin/ (re-download from source) ────────────────────────
+bin/Obsidian.AppImage
+bin/opencode
+
+# ─── OS / Editor ─────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ─── Dashboard runtime ───────────────────────────────
+dashboard/.next/
+dashboard/node_modules/
+
+# ─── MCP server runtime ──────────────────────────────
+mcp/*/node_modules/
+
+# ─── Docker secrets ──────────────────────────────────
+docker/secrets.env
+config/codex/.tmp/
+config/openclaw/plugins/
+config/openclaw/sessions/
