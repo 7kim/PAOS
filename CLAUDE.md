@@ -114,7 +114,13 @@ After session start, if working inside a project:
 
 1. Call `shared-memory: append_ledger` after every significant action.
 2. Call `shared-memory: write_context` after every key decision.
-3. Write to `vault/memory/claude/events.md`: `[TIMESTAMP] | ACTION | file | description`
+3. Write to `vault/memory/claude/events.md` using structured format (Article III §3.1):
+   ```
+   [TIMESTAMP] | AGENT: claude | ACTION: <Read|Write|Exec|Edit|Test>
+   THINKING: "<why this approach>"
+   EXECUTION: "<what was done>"
+   IMPACT: "<what changed, which files>"
+   ```
 4. Use Antigravity Review Loop for non-trivial tasks — TASKS.md + IMPLEMENTATION_PLAN.md → wait for review → execute → WALKTHROUGH.md.
 
 ### Session END

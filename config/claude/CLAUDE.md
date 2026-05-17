@@ -80,9 +80,12 @@ shared-memory: append_ledger   → log the action
 shared-memory: write_context   → update shared thinking if a decision was made
 ```
 
-Also write directly to `~/AI_Workflow/vault/memory/claude/events.md`:
+Also write directly to `~/AI_Workflow/vault/memory/claude/events.md` using the structured format (Article III §3.1):
 ```
-[TIMESTAMP] | ACTION | file | description
+[TIMESTAMP] | AGENT: claude | ACTION: <Read|Write|Exec|Edit|Test>
+THINKING: "<why this approach>"
+EXECUTION: "<what was done>"
+IMPACT: "<what changed, which files>"
 ```
 
 For non-trivial tasks, use the Antigravity Review Loop:

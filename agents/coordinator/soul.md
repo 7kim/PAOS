@@ -116,7 +116,13 @@ Legacy file reads (if MCP unavailable):
 
 **DURING work:**
 
-- Append every delegation/verification to `vault/memory/coordinator/events.md` — `[TIMESTAMP] | ACTION | file | description`
+- Append every delegation/verification to `vault/memory/coordinator/events.md` using structured format (Article III §3.1):
+  ```
+  [TIMESTAMP] | AGENT: coordinator | ACTION: <Delegate|Verify|Route|Block>
+  THINKING: "<routing decision reasoning>"
+  EXECUTION: "<what was delegated or verified>"
+  IMPACT: "<pipeline state change>"
+  ```
 - Append summary row to `vault/memory/global_ledger.md` after each significant action
 
 **SESSION END** — write before closing:

@@ -123,7 +123,13 @@ Legacy file reads (if MCP unavailable):
 
 **DURING work:**
 
-- Append every review action to `vault/memory/architect/events.md` — `[TIMESTAMP] | ACTION | file | description`
+- Append every review action to `vault/memory/architect/events.md` using structured format (Article III §3.1):
+  ```
+  [TIMESTAMP] | AGENT: architect | ACTION: <Review|Approve|Reject|Design>
+  THINKING: "<reasoning and concerns>"
+  EXECUTION: "<what was reviewed or designed>"
+  IMPACT: "<decisions made, files changed>"
+  ```
 - Append summary row to `vault/memory/global_ledger.md` after each significant action
 
 **SESSION END** — write before closing:

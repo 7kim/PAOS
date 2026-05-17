@@ -46,9 +46,8 @@
     "shared-memory": {
       "type": "local",
       "enabled": true,
-      "command": "node",
-      "args": ["/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"],
-      "env": {
+      "command": ["node", "/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"],
+      "environment": {
         "MEMORY_DIR": "/home/dev/AI_Workflow/memory",
         "KNOWLEDGE_DIR": "/home/dev/AI_Workflow/knowledge",
         "REPO_ROOT": "/home/dev/AI_Workflow"
@@ -57,9 +56,8 @@
     "scaffold": {
       "type": "local",
       "enabled": true,
-      "command": "node",
-      "args": ["/home/dev/AI_Workflow/mcp/scaffold-server/index.js"],
-      "env": {
+      "command": ["node", "/home/dev/AI_Workflow/mcp/scaffold-server/index.js"],
+      "environment": {
         "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
       }
     }

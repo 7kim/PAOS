@@ -9,10 +9,12 @@ import {
   FileText,
   Inbox,
   Zap,
+  HandMetal,
 } from "lucide-react";
 
 const nav = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
+  { href: "/handoff", label: "Handoff", icon: HandMetal },
   { href: "/ledger", label: "Audit Ledger", icon: ScrollText },
   { href: "/agents", label: "Agents", icon: Bot },
   { href: "/tasks", label: "Tasks", icon: ListTodo },
@@ -23,6 +25,8 @@ const nav = [
 const agents = [
   { id: "claude", label: "Claude Code", color: "#f97316" },
   { id: "opencode-developer", label: "OpenCode", color: "#3b82f6" },
+  { id: "codex", label: "Codex", color: "#10b981" },
+  { id: "gemini", label: "Gemini", color: "#4285f4" },
   { id: "openclaw", label: "OpenClaw", color: "#8b5cf6" },
   { id: "ollama", label: "Ollama", color: "#22c55e" },
   { id: "antigravity", label: "Antigravity", color: "#ec4899" },

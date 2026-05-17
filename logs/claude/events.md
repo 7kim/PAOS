@@ -36,3 +36,6 @@
 [2026-05-17T14:31:44Z] | TEST | /tmp/test-project | Smoke tested process_notes — PASS
 [2026-05-17T14:31:44Z] | TEST | /tmp/test-project | Smoke tested process_questions — PASS
 [2026-05-17T14:31:44Z] | WRITE | vault/memory/shared/HANDOFF.md | Rewrote HANDOFF for session end
+
+[2026-05-17T15:09:34Z] | FIX | config/opencode/opencode.json | Gap 2 resolved — OpenCode MCP schema requires command as array ["node","path"] and key "environment" not "env". Fetched schema from https://opencode.ai/config.json. Both MCP servers now recognized: shared-memory (13 tools) + scaffold (2 tools).
+[2026-05-17T15:09:34Z] | WRITE | vault/memory/shared/HANDOFF.md | Session end HANDOFF rewrite — gaps 2-7 fixed, Gap 1 unblocked, Gap 8 deferred.

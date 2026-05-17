@@ -13,6 +13,7 @@ const KNOWN_AGENTS = [
   { id: "openclaw", label: "OpenClaw", color: "#8b5cf6" },
   { id: "ollama", label: "Ollama", color: "#22c55e" },
   { id: "antigravity", label: "Antigravity", color: "#ec4899" },
+  { id: "gemini", label: "Gemini", color: "#4285f4" },
 ];
 
 async function getLastActivity(agentId: string): Promise<string | null> {

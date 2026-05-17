@@ -81,7 +81,13 @@ vault/daily/<YYYY-MM-DD>.md       → today's focus
 
 **DURING work:**
 
-- Append every action to `vault/memory/codex/events.md` — `[TIMESTAMP] | ACTION | file | description`
+- Append every action to `vault/memory/codex/events.md` using structured format (Article III §3.1):
+  ```
+  [TIMESTAMP] | AGENT: codex | ACTION: <Read|Write|Exec|Edit|Test>
+  THINKING: "<why this approach>"
+  EXECUTION: "<what was done>"
+  IMPACT: "<what changed, which files>"
+  ```
 - Append summary row to `vault/memory/global_ledger.md` after each significant step
 
 **SESSION END** — write before closing:

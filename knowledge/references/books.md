@@ -1,6 +1,7 @@
-# Books — Learning Library
+# Books — Reading Library
 
-Curated reading list for the PAOS operator. Organized by domain. Add notes and status as you read.
+Index of all books. Each book has its own file in `knowledge/books/`.
+Drop a PDF into `knowledge/books/pdfs/` and ask Claude to convert it.
 
 **Status legend**: `unread` · `reading` · `done` · `reference`
 
@@ -8,66 +9,41 @@ Curated reading list for the PAOS operator. Organized by domain. Add notes and s
 
 ## AI & Agent Systems
 
-| Title | Author | Status | Notes |
-|:------|:-------|:-------|:------|
-| *Artificial Intelligence: A Modern Approach* | Russell & Norvig | unread | The textbook — search, planning, agents |
-| *Designing Machine Learning Systems* | Chip Huyen | unread | ML in production — data, monitoring, pipelines |
-| *Building LLM-Powered Applications* | Valentina Alto | unread | Practical LLM app patterns |
-| *Prompt Engineering for LLMs* | Berryman & Britton | unread | Systematic prompting techniques |
-| *The Alignment Problem* | Brian Christian | unread | AI safety, values, real-world failures |
-
----
+1. [[ai-modern-approach]] — *Artificial Intelligence: A Modern Approach* — Russell & Norvig · `unread`
+2. [[designing-ml-systems]] — *Designing Machine Learning Systems* — Chip Huyen · `unread`
+3. [[building-llm-apps]] — *Building LLM-Powered Applications* — Valentina Alto · `unread`
+4. [[prompt-engineering-for-llms]] — *Prompt Engineering for LLMs* — Berryman & Britton · `unread`
+5. [[alignment-problem]] — *The Alignment Problem* — Brian Christian · `unread`
 
 ## Software Architecture & Systems
 
-| Title | Author | Status | Notes |
-|:------|:-------|:-------|:------|
-| *Designing Data-Intensive Applications* | Martin Kleppmann | unread | Distributed systems bible |
-| *Clean Architecture* | Robert C. Martin | unread | Component design, dependency rules |
-| *A Philosophy of Software Design* | John Ousterhout | unread | Complexity, deep vs. shallow modules |
-| *Software Engineering at Google* | Winters, Manshreck, Wright | unread | Scale, testing, culture |
-| *The Pragmatic Programmer* | Hunt & Thomas | unread | Timeless craft fundamentals |
-
----
+6. [[ddia]] — *Designing Data-Intensive Applications* — Martin Kleppmann · `unread`
+7. [[clean-architecture]] — *Clean Architecture* — Robert C. Martin · `unread`
+8. [[philosophy-software-design]] — *A Philosophy of Software Design* — John Ousterhout · `unread`
+9. [[software-engineering-at-google]] — *Software Engineering at Google* — Winters et al. · `unread`
+10. [[pragmatic-programmer]] — *The Pragmatic Programmer* — Hunt & Thomas · `unread`
 
 ## TypeScript / Node.js / Web
 
-| Title | Author | Status | Notes |
-|:------|:-------|:-------|:------|
-| *Programming TypeScript* | Boris Cherny | unread | Deep TypeScript — type system, patterns |
-| *Node.js Design Patterns* | Casciaro & Mammino | unread | Async, streams, structural patterns |
-| *Learning React* | Alex Banks & Eve Porcello | unread | React fundamentals and hooks |
-| *Fullstack React with TypeScript* | Charly Poly | unread | React + TS in production |
-
----
+11. [[programming-typescript]] — *Programming TypeScript* — Boris Cherny · `unread`
+12. [[nodejs-design-patterns]] — *Node.js Design Patterns* — Casciaro & Mammino · `unread`
+13. [[learning-react]] — *Learning React* — Banks & Porcello · `unread`
+14. [[fullstack-react-ts]] — *Fullstack React with TypeScript* — Charly Poly · `unread`
 
 ## Productivity & Systems Thinking
 
-| Title | Author | Status | Notes |
-|:------|:-------|:-------|:------|
-| *Building a Second Brain* | Tiago Forte | unread | PKM, Obsidian workflows — directly relevant to PAOS vault |
-| *How to Take Smart Notes* | Sönke Ahrens | unread | Zettelkasten — note-linking and knowledge accumulation |
-| *Thinking in Systems* | Donella Meadows | unread | Mental model for understanding feedback loops |
-| *The Goal* | Eliyahu Goldratt | unread | Theory of Constraints — relevant to agent pipeline bottlenecks |
-
----
+15. [[building-second-brain]] — *Building a Second Brain* — Tiago Forte · `unread`
+16. [[how-to-take-smart-notes]] — *How to Take Smart Notes* — Sönke Ahrens · `unread`
+17. [[thinking-in-systems]] — *Thinking in Systems* — Donella Meadows · `unread`
+18. [[the-goal]] — *The Goal* — Eliyahu Goldratt · `unread`
 
 ## Entrepreneurship & Product
 
-| Title | Author | Status | Notes |
-|:------|:-------|:-------|:------|
-| *The Lean Startup* | Eric Ries | unread | Build-measure-learn — applies to PAOS iteration |
-| *Shape Up* | Ryan Singer (Basecamp) | unread | Scoping and shipping cycles — maps well to Antigravity review loop |
-| *Zero to One* | Peter Thiel | unread | Startup strategy, unique value |
+19. [[lean-startup]] — *The Lean Startup* — Eric Ries · `unread`
+20. [[shape-up]] — *Shape Up* — Ryan Singer · `unread`
+21. [[zero-to-one]] — *Zero to One* — Peter Thiel · `unread`
 
 ---
 
-## To Add
-
-_Drop titles here to triage later._
-
-- 
-
----
-
+*To add a PDF book: copy PDF to `knowledge/books/pdfs/<slug>.pdf` then ask Claude: "convert <slug> to a book note".*
 *Last updated: 2026-05-17 by claude*

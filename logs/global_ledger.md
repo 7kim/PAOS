@@ -40,3 +40,5 @@
 | 2026-05-17T14:31:53Z | claude | EDIT | GEMINI.md + copilot-instructions.md + codex/instructions.md | Added project start protocol (notes.md + user-questions.md) | T20 | - |
 | 2026-05-17T14:31:53Z | claude | TEST | process_notes + process_questions | Smoke test PASS — correct item removal, archival, notes-done.md creation | T21 | - |
 | 2026-05-17T14:31:53Z | claude | WRITE | vault/memory/shared/HANDOFF.md | Session end HANDOFF rewrite — T20+T21 complete | T21 | - |
+| 2026-05-17T15:09:34Z | claude | FIX | config/opencode/opencode.json + opencode.json | Gap 2: Fixed OpenCode MCP config — command must be array, env key is "environment" not "env". Both servers now connect (shared-memory 13 tools, scaffold 2 tools). | #GAP-002 | - |
+| 2026-05-17T15:09:34Z | claude | WRITE | vault/memory/shared/HANDOFF.md | Session end — rewrote HANDOFF with full gap resolution status | - | - |

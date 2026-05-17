@@ -1,24 +1,23 @@
 # Active Project Registry
 
-| Project | Type | Status | Location | Last Activity |
-|---------|------|--------|----------|---------------|
-| claude-vps | Node.js CLI | Active | `/run/media/dev/8C7477007476EC78/files/Code/claude-vps/` | 2026-05-15 |
-| vps-kit | TS Monorepo | Active | `/run/media/dev/8C7477007476EC78/files/Code/vps-kit/` | 2026-05-12 |
-| tv-clone | Next.js 16 + Python | Active | `/run/media/dev/8C7477007476EC78/files/Code/tv-clone/` | 2026-05-15 |
-| downloader | Express + Playwright | Active | `/run/media/dev/8C7477007476EC78/files/Code/downloader/` | 2026-05-15 |
-| openclaw-vps | Python | Active | `/run/media/dev/8C7477007476EC78/files/Code/openclaw-vps/` | 2026-05-15 |
-| system-analysis.skill | Custom Skill | Active | `/run/media/dev/8C7477007476EC78/files/Code/system-analysis-and-design.skill/` | 2026-05-15 |
-| project-scaffolder | PAOS Skill | Active | `/home/dev/.opencode/skills/project-scaffolder/` | 2026-05-17 |
+> Projects are in `~/Documents/Dev/`. Maintained by claude. Updated 2026-05-17.
 
-## Project Goals (brief)
-- **claude-vps**: Production-ready CLI for VPS management with Claude AI
-- **vps-kit**: Cross-platform CLI + VS Code Extension + MCP server for VPS fleet management
-- **tv-clone**: Local TradingView clone with real-time mock data
-- **downloader**: Local video downloader with SSE progress
-- **openclaw-vps**: VPS application management layer
-- **system-analysis.skill**: Academic-grade SRS generation with UML diagrams
-- **project-scaffolder**: 6-phase AI-optimized project initialization skill — survey, scaffold, validate, govern, handoff
+| Project | Stack | Status | Path | Notes |
+|---------|-------|--------|------|-------|
+| **Tradingview** | Python FastAPI + React + Vite + lightweight-charts | Active | `~/Documents/Dev/Tradingview/` | Scalping bot + real-time dashboard. Has CLAUDE.md, SRS.md, SETUP.md |
+| **project-gemini** | Next.js 16, FastAPI, PostgreSQL | Active | `~/Documents/Dev/project-gemini/` | Full-stack scaffold. Has tasks.md, docker-compose.yml |
+| **project-gpt** | Markdown | Archive | `~/Documents/Dev/project-gpt/` | GPT session archive. Single file. |
+
+## Previous Projects (Historical — on external drive)
+
+| Project | Stack | Location |
+|---------|-------|----------|
+| claude-vps | Node.js CLI | `/run/media/dev/.../claude-vps/` |
+| vps-kit | TS Monorepo (CLI + VSCode ext + MCP) | `/run/media/dev/.../vps-kit/` |
+| tv-clone | Next.js 16 + Python | `/run/media/dev/.../tv-clone/` |
+| downloader | Express + Playwright | `/run/media/dev/.../downloader/` |
+| openclaw-vps | Python | `/run/media/dev/.../openclaw-vps/` |
 
 ---
 
-*Maintained by @profiler. Updated on identity elicitation.*
+*PAOS agents work on `~/Documents/Dev/` projects only. External drive projects are historical reference.*

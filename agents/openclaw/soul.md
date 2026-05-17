@@ -71,7 +71,13 @@ vault/daily/<YYYY-MM-DD>.md       → today's focus
 
 **DURING work:**
 
-- Append every delegation to `vault/memory/openclaw/events.md` — `[TIMESTAMP] | ACTION | file | description`
+- Append every delegation to `vault/memory/openclaw/events.md` using structured format (Article III §3.1):
+  ```
+  [TIMESTAMP] | AGENT: openclaw | ACTION: <Receive|Route|Relay|Notify>
+  THINKING: "<routing decision reasoning>"
+  EXECUTION: "<message handled or task created>"
+  IMPACT: "<which agent notified, what task created>"
+  ```
 - Append summary row to `vault/memory/global_ledger.md` after each significant action
 
 **SESSION END** — write before closing:
