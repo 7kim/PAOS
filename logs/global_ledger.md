@@ -27,3 +27,4 @@
 | 2026-05-17T01:58:21Z | antigravity | PAOS_TEST | logs/antigravity/events.md | Agent commit identity test | - | - |
 | 2026-05-17T01:58:21Z | openclaw | PAOS_TEST | logs/openclaw/events.md | Agent commit identity test | - | - |
 | 2026-05-17T01:58:21Z | ollama | PAOS_TEST | logs/ollama/events.md | Agent commit identity test | - | - |
+| 2026-05-17T13:27:53Z | claude | WRITE | knowledge/references/books.md | Created curated books reading list for PAOS operator | - | - |

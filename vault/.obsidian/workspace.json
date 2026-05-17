@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "5211d11025944459",
+        "id": "9c88e53476a1c867",
         "type": "tabs",
         "children": [
           {
-            "id": "84d577116775cec2",
+            "id": "d312f1c14ffb1806",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "type": "markdown",
+              "state": {
+                "file": "memory/inbox/architect/1778975441210-opencode-developer.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "1778975441210-opencode-developer"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "dashboard.md",
                 "collapseAll": false,
                 "extraContext": true,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for dashboard"
             }
           },
           {
@@ -108,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "dashboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from dashboard"
             }
           },
           {
@@ -150,36 +156,74 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.base",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Untitled"
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "ec2cc844344e43c7",
+            "type": "leaf",
+            "state": {
+              "type": "planner-timeline",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Timeline"
+            }
+          },
+          {
+            "id": "b949943935722bea",
+            "type": "leaf",
+            "state": {
+              "type": "planner-time-tracker",
+              "state": {},
+              "icon": "timer",
+              "title": "Time Tracker"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 200,
+    "width": 609.5,
     "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
+      "markdown-importer:Open format converter": false,
+      "audio-recorder:Start/stop recording": false,
+      "workspaces:Manage workspace layouts": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-kanban:Create new board": false,
+      "omnisearch:Omnisearch": false,
+      "obsidian-importer:Open Importer": false,
+      "obsidian-day-planner:Open Timeline": false,
+      "obsidian-day-planner:Open Multi-Day View": false,
+      "pdf-plus:PDF++: Toggle auto-copy": false,
+      "pdf-plus:PDF++: Toggle auto-focus": false,
+      "pdf-plus:PDF++: Toggle auto-paste": false
     }
   },
-  "active": "84d577116775cec2",
+  "active": "d312f1c14ffb1806",
   "lastOpenFiles": [
+    "memory/inbox/developer/1778975411793-claude.md",
+    "memory/inbox/claude.md",
+    "memory/shared/context.md",
+    "dashboard.md",
+    "Untitled.base",
+    "Untitled.canvas",
     "memory/claude/auto-memory/user_profile.md",
     "memory/claude/auto-memory/MEMORY.md",
     "chats/2026-05-17-enterprise-upgrade.md",
@@ -200,7 +244,6 @@
     "memory/inbox/codex",
     "memory/codex",
     "memory/claude/events.md",
-    "memory/shared/context.md",
     "memory/global_ledger.md",
     "chats/2026-05-17-ai-workflow-consolidation.md",
     "memory/developer/events.md",
@@ -209,12 +252,8 @@
     "memory/prompts/_template.md",
     "projects/project-gemini.md",
     "projects/project-gpt.md",
-    "projects/projects.md",
-    "projects/Tradingview.md",
-    "dashboard.md",
     "memory/openclaw",
     "memory/inbox/openclaw",
-    "chats",
-    "memory/projects/project-gpt"
+    "chats"
   ]
 }

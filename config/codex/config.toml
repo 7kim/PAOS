@@ -1,0 +1,14 @@
+[projects."/tmp/openclaw-crestodian-planner-M8rMvO"]
+trust_level = "trusted"
+
+[projects."/tmp/openclaw-crestodian-planner-uNjBnQ"]
+trust_level = "trusted"
+
+[projects."/tmp/openclaw-crestodian-planner-21n3dU"]
+trust_level = "trusted"
+
+[projects."/home/dev"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 1
