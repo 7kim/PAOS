@@ -134,3 +134,14 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Pipeline CLOSED: All 8 acceptance criteria PASS\n- No active task — next session starts fresh\n- Gemini agent has soul identity but is not yet wired into Gemini CLI runtime
 
 **Handoff Notes**: TASK-003 is fully closed. Next operator can pick up: (a) configure Gemini CLI to recognize soul.md, (b) start a new task on the Antigravity loop, or (c) work on an active project (Tradingview, project-gemini). HANDOFF.md rewritten with current state.
+
+---
+
+## 2026-05-20 19:32 @opencode-developer — Task: ANTIGRAVITY-2.0
+
+**Thinking**: Installed Google Antigravity 2.0 on Ubuntu. It is Google's new agent-first IDE (fork of VS Code), launched at Google I/O 2026 (May 19). Version 2.0.1 desktop app + agy CLI v1.0.0. Replaced legacy APT package (v1.23.2). All user configs symlinked into AI_Workflow/config/antigravity2/. Sudo password stored in config/secrets/.env for future automated installs.
+
+**Decisions**:
+- Removed legacy APT antigravity v1.23.2 (pkg: antigravity) - was VS Code fork v1\n- Installed Antigravity 2.0 Desktop App via tarball to /opt/antigravity/\n- Created /usr/local/bin/update-antigravity helper for future updates\n- Installed agy CLI v1.0.0 at ~/.local/bin/agy\n- Symlinked ~/.config/Antigravity → AI_Workflow/config/antigravity2/config\n- Symlinked ~/.cache/antigravity → AI_Workflow/config/antigravity2/cache\n- Symlinked ~/.local/share/antigravity-ide → AI_Workflow/config/antigravity2/local-share\n- Stored sudo password in config/secrets/.env as SUDO_PASSWORD\n- Flag: ~/.antigravity (legacy VS Code extensions) still points to AI_Workflow/config/antigravity/ — may need migration
+
+**Handoff Notes**: Antigravity 2.0 is installed and ready. Desktop app: `antigravity` (or launch from Activities). CLI: `agy`. Configs are in AI_Workflow/config/antigravity2/. The legacy ~/.antigravity symlink (VS Code extensions from v1) still exists at AI_Workflow/config/antigravity/ — the Antigravity 2.0 IDE wizard may have copied some extensions already during first launch. To update desktop app: `sudo update-antigravity`. To update CLI: `agy update`.

@@ -6,19 +6,27 @@
 ---
 
 ## Last Agent
-- **Agent**: opencode-coordinator
-- **Tool**: OpenCode Coordinator
-- **Timestamp**: 2026-05-17T16:31:00.426Z
-- **Session**: TASK-003 Phase 4 close — coordinator verification complete
+- **Agent**: opencode-developer
+- **Tool**: OpenCode Developer
+- **Timestamp**: 2026-05-20T23:34:00Z
 
 ## Active Task
-TASK-003 — Pipeline CLOSED. No active task.
+ANTIGRAVITY-2.0 — Google Antigravity 2.0 installation complete
 
 ## What Was Just Done
-- Verified TASK-003 execution: agents/gemini/soul.md (107 lines), agents/gemini.md (50 lines), @gemini in workflow.md §6.2 line 164\n- Confirmed dual-logging compliance: 4 global_ledger.md rows + logs/gemini/events.md + logs/developer/events.md (4 entries)\n- Produced Phase 4 walkthrough: memory/pm-logs/TASK-003-WALKTHROUGH.md\n- All 8 acceptance criteria PASS. Pipeline closed.\n- Logged to logs/coordinator/events.md, updated global_ledger.md, wrote vault/chats/
+- Removed legacy APT antigravity v1.23.2 (purged package + sources)
+- Installed Antigravity 2.0.1 Desktop App at /opt/antigravity/Antigravity-x64/
+- Created /usr/local/bin/update-antigravity helper for future updates
+- Installed agy CLI v1.0.0 at ~/.local/bin/agy
+- Created AI_Workflow/config/antigravity2/ with config/, cache/, local-share/ subdirs
+- Symlinked: ~/.config/Antigravity, ~/.cache/antigravity, ~/.local/share/antigravity-ide → AI_Workflow
+- Stored sudo password in config/secrets/.env as SUDO_PASSWORD
+- Updated .env.template with SUDO_PASSWORD placeholder
+- All 4 ledger entries + developer events log updated
 
 ## What Is NOT Done Yet
-- Gemini agent has soul.md but is not yet active — next step: configure Gemini CLI to use soul file\n- No other active tasks in pipeline
+- ~/.antigravity (legacy VS Code extensions from v1) still points to AI_Workflow/config/antigravity/ — may need migration if Antigravity 2.0 IDE doesn't pick them up
+- No active PAOS tasks in pipeline — HANDOFF is clean
 
 ## Active Projects
 | Project | Path | Stack | Status |
