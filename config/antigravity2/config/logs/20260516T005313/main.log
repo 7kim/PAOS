@@ -1,0 +1,12 @@
+2026-05-16 00:53:13.275 [info] [BrowserOnboardingClientMainService] Starting browser onboarding server
+2026-05-16 00:53:13.275 [info] [BrowserOnboardingClientServer] Browser onboarding server started on http://localhost:43025
+2026-05-16 00:53:13.390 [info] update#setState idle
+2026-05-16 00:53:43.390 [info] update#setState checking for updates
+2026-05-16 00:53:43.622 [info] update#setState idle
+2026-05-16 00:54:22.634 [warning] [perf] profiling STARTED e3e59f97-4eae-4ce4-9f48-69468a1f2439
+2026-05-16 00:54:27.674 [warning] [perf] profiling DONE e3e59f97-4eae-4ce4-9f48-69468a1f2439
+2026-05-16 00:54:43.063 [warning] [perf] profiling STARTED e3e59f97-4eae-4ce4-9f48-69468a1f2439
+2026-05-16 00:54:48.103 [warning] [perf] profiling DONE e3e59f97-4eae-4ce4-9f48-69468a1f2439
+2026-05-16 00:55:03.439 [warning] [perf] profiling STARTED e3e59f97-4eae-4ce4-9f48-69468a1f2439
+2026-05-16 00:55:08.486 [warning] [perf] profiling DONE e3e59f97-4eae-4ce4-9f48-69468a1f2439
+2026-05-16 01:26:44.500 [info] Extension host with pid 26797 exited with code: 0, signal: unknown.

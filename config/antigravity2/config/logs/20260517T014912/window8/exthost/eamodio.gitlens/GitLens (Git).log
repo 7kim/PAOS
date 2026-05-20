@@ -1,0 +1,630 @@
+2026-05-17 04:20:45.349 [info] [         23ms] [/home/dev/AI_Workflow] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 04:20:45.520 [info] [         23ms] [/home/dev/AI_Workflow] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 04:20:45.544 [info] [          8ms] [/home/dev/AI_Workflow] git remote -v • completed
+2026-05-17 04:20:45.551 [info] [          5ms] [/home/dev/AI_Workflow] git config --get-regex ^branch\..*\.gk- • completed
+2026-05-17 04:20:45.571 [info] [         20ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config gk.defaultRemote • completed
+2026-05-17 04:21:20.441 [info] [         21ms] [/home/dev/AI_Workflow] git rev-list --max-parents=0 HEAD -- • completed
+2026-05-17 04:21:20.442 [info] [         21ms] [/home/dev/AI_Workflow] git shortlog -s --all --no-min-parents --since=1.year.ago • completed
+2026-05-17 04:22:39.266 [info] [         14ms] [/home/dev/AI_Workflow] git ls-files -- workflow.md • completed
+2026-05-17 04:22:39.282 [info] [         13ms] [/home/dev/AI_Workflow] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-17 04:22:39.293 [info] [         11ms] [/home/dev/AI_Workflow] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-17 04:22:39.305 [info] [→1           ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflow.md • starting...
+2026-05-17 04:22:39.312 [info] [←1       17ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflow.md • completed
+2026-05-17 04:22:39.387 [info] [         53ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71^ -- workflow.md • completed
+2026-05-17 04:22:39.388 [info] [         73ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./workflow.md -- • completed
+2026-05-17 04:22:41.754 [info] [*      2408ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71 -- (slow) • completed
+2026-05-17 04:22:50.990 [info] [         27ms] [/home/dev/AI_Workflow] git ls-files -- walkthrough.md • completed
+2026-05-17 04:22:51.002 [info] [→2           ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- walkthrough.md • starting...
+2026-05-17 04:22:51.008 [info] [←2       16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- walkthrough.md • completed
+2026-05-17 04:22:51.048 [info] [         27ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71^ -- walkthrough.md • completed
+2026-05-17 04:22:51.048 [info] [         40ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./walkthrough.md -- • completed
+2026-05-17 04:22:52.998 [info] [       1966ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71 -- • completed
+2026-05-17 04:22:59.767 [info] [         28ms] [/home/dev/AI_Workflow] git ls-files -- user.md • completed
+2026-05-17 04:22:59.780 [info] [→3           ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- user.md • starting...
+2026-05-17 04:22:59.798 [info] [←3       28ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- user.md • completed
+2026-05-17 04:22:59.844 [info] [         29ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71^ -- user.md • completed
+2026-05-17 04:22:59.844 [info] [         44ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./user.md -- • completed
+2026-05-17 04:23:01.922 [info] [*      2093ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71 -- (slow) • completed
+2026-05-17 04:23:15.382 [info] [         23ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-17 04:23:15.383 [info] [         12ms] [/home/dev/AI_Workflow] git config --get-regex -f /home/dev/AI_Workflow/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-17 04:23:15.399 [info] [         13ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 04:23:15.412 [info] [         11ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed 2026-05-17T00:23:15.385Z • completed
+2026-05-17 04:24:23.413 [info] [         15ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(refname)%1D%(objectname)%1D%(*objectname)%1D%(creatordate:iso8601)%1D%(authordate:iso8601)%1D%(subject)%1D refs/tags/ • completed
+2026-05-17 04:53:16.614 [info] [         29ms] [/home/dev/AI_Workflow] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 05:12:30.989 [info] [         37ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-17 05:12:30.992 [info] [         19ms] [/home/dev/AI_Workflow] git config --get-regex -f /home/dev/AI_Workflow/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-17 05:12:55.032 [info] [         17ms] [/home/dev/AI_Workflow] git ls-files -- workflow.md • completed
+2026-05-17 05:12:55.067 [info] [→4           ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflow.md • starting...
+2026-05-17 05:12:55.080 [info] [←4       27ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflow.md • completed
+2026-05-17 05:12:55.126 [info] [→5           ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 HEAD -- workflow.md • starting...
+2026-05-17 05:12:55.126 [info] [         31ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71^ -- workflow.md • completed
+2026-05-17 05:12:55.127 [info] [         45ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./workflow.md -- • completed
+2026-05-17 05:12:55.129 [info] [←5       12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 HEAD -- workflow.md • completed
+2026-05-17 05:12:57.249 [info] [*      2143ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71 -- (slow) • completed
+2026-05-17 05:13:58.174 [info] [         39ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:13:58.329 [info] [         21ms] [/home/dev/AI_Workflow] git config --get core.excludesFile • completed
+2026-05-17 05:13:58.354 [info] [         33ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:03.574 [info] [         16ms] [/home/dev/AI_Workflow] git worktree list --porcelain • completed
+2026-05-17 05:14:19.181 [info] [         36ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:19.677 [info] [         38ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:25.495 [info] [         30ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:14:25.534 [info] [         37ms] [/home/dev/AI_Workflow] git stash list --format=%x1E%H%x1D%at%x1D%ct%x1D%P%x1D%gd%x1D%gs%x1D --numstat --raw -M • completed
+2026-05-17 05:14:25.546 [info] [→6           ] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • starting...
+2026-05-17 05:14:25.547 [info] [         25ms] [/home/dev/AI_Workflow] git log -n1 --format=%ct -- • completed
+2026-05-17 05:14:25.551 [info] [←6       15ms] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • completed
+2026-05-17 05:14:25.576 [info] [         66ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:26.155 [info] [         41ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:26.343 [info] [         39ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:28.082 [info] [*      2530ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --shortstat -n13 --date-order --all -- (slow) • completed
+2026-05-17 05:14:38.410 [info] [         16ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 6c14ac7fbda3d9b9795393d2a9aa7955f111855f -- • completed
+2026-05-17 05:14:38.425 [info] [         13ms] [/home/dev/AI_Workflow] git cat-file commit 6c14ac7fbda3d9b9795393d2a9aa7955f111855f • completed
+2026-05-17 05:14:41.101 [info] [         27ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:14:41.140 [info] [         38ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:41.626 [info] [         42ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:44.327 [info] [         41ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:45.026 [info] [         16ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3682c4c46bf027e219a321f61960964f3148c238 -- • completed
+2026-05-17 05:14:45.042 [info] [         15ms] [/home/dev/AI_Workflow] git cat-file commit 3682c4c46bf027e219a321f61960964f3148c238 • completed
+2026-05-17 05:14:47.483 [info] [         18ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 a1848e8f5f4b4293aef7b7d59977fce7a656fb5b -- • completed
+2026-05-17 05:14:47.497 [info] [         14ms] [/home/dev/AI_Workflow] git cat-file commit a1848e8f5f4b4293aef7b7d59977fce7a656fb5b • completed
+2026-05-17 05:14:50.277 [info] [         43ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:14:52.258 [info] [       1941ms] [/home/dev/AI_Workflow] git diff --shortstat --no-ext-diff HEAD -- • completed
+2026-05-17 05:15:22.446 [info] [         26ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:15:22.483 [info] [         36ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:15:22.971 [info] [         41ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:15:24.059 [info] [         26ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:15:24.098 [info] [         38ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:15:32.807 [info] [         30ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:15:32.849 [info] [         40ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:15:40.530 [info] [         24ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:15:40.567 [info] [         36ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:15:52.599 [info] [         24ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:15:52.635 [info] [         36ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:16:09.244 [info] [         25ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:16:09.283 [info] [         38ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:16:25.764 [info] [         35ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:16:25.819 [info] [         54ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:16:26.871 [info] [         24ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:16:26.907 [info] [         35ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:18:56.863 [info] [         13ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 05:18:56.875 [info] [         11ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 05:22:33.193 [info] [         30ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:22:33.234 [info] [         29ms] [/home/dev/AI_Workflow] git worktree list --porcelain • completed
+2026-05-17 05:22:33.234 [info] [         39ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-17 05:22:33.234 [info] [         10ms] [/home/dev/AI_Workflow] git config --get-regex -f /home/dev/AI_Workflow/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-17 05:22:33.246 [info] [→7           ] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • starting...
+2026-05-17 05:22:33.249 [info] [←7       13ms] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • completed
+2026-05-17 05:22:33.266 [info] [         71ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:22:33.944 [info] [         30ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:22:34.008 [info] [         64ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:22:36.057 [info] [         15ms] [/home/dev/AI_Workflow] git ls-files -- logs/openclaw/events.md • completed
+2026-05-17 05:22:36.084 [info] [→8           ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 3c4edf9d1c37eaf118c359412ee118d5fa8f1116 -- logs/openclaw/events.md • starting...
+2026-05-17 05:22:36.088 [info] [←8       15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 3c4edf9d1c37eaf118c359412ee118d5fa8f1116 -- logs/openclaw/events.md • completed
+2026-05-17 05:22:36.122 [info] [         17ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3c4edf9d1c37eaf118c359412ee118d5fa8f1116 -- • completed
+2026-05-17 05:22:36.122 [info] [         30ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3c4edf9d1c37eaf118c359412ee118d5fa8f1116^ -- logs/openclaw/events.md • completed
+2026-05-17 05:22:37.298 [info] [         15ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 439e38308acb49ac4008184384b290d3f25990a1 -- • completed
+2026-05-17 05:22:37.314 [info] [         15ms] [/home/dev/AI_Workflow] git cat-file commit 439e38308acb49ac4008184384b290d3f25990a1 • completed
+2026-05-17 05:22:37.813 [info] [         17ms] [/home/dev/AI_Workflow] git cat-file commit 3c4edf9d1c37eaf118c359412ee118d5fa8f1116 • completed
+2026-05-17 05:22:37.817 [info] [*      4567ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --shortstat -n21 --date-order --all -- (slow) • completed
+2026-05-17 05:22:45.756 [info] [         14ms] [/home/dev/AI_Workflow] git config --get core.excludesFile • completed
+2026-05-17 05:22:47.884 [info] [         27ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:22:47.927 [info] [         42ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:23:38.375 [info] [         47ms] [/home/dev/AI_Workflow] git ls-files -- logs/global_ledger.md • completed
+2026-05-17 05:23:38.389 [info] [→9           ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 3c4edf9d1c37eaf118c359412ee118d5fa8f1116 -- logs/global_ledger.md • starting...
+2026-05-17 05:23:38.394 [info] [←9       16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 3c4edf9d1c37eaf118c359412ee118d5fa8f1116 -- logs/global_ledger.md • completed
+2026-05-17 05:23:38.413 [info] [         16ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 7eb646b829ed1b4ffa79186d5fb7d7eda95d8c04 -- • completed
+2026-05-17 05:23:38.516 [info] [         18ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3c4edf9d1c37eaf118c359412ee118d5fa8f1116 -- • completed
+2026-05-17 05:23:39.144 [info] [         18ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:23:39.161 [info] [         16ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:23:41.343 [info] [         14ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:23:41.358 [info] [         15ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:23:42.424 [info] [         16ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:23:42.440 [info] [         15ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:23:50.469 [info] [         16ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:23:50.481 [info] [→10          ] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • starting...
+2026-05-17 05:23:50.484 [info] [←10      14ms] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • completed
+2026-05-17 05:23:50.513 [info] [         27ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-17 05:23:50.513 [info] [         14ms] [/home/dev/AI_Workflow] git worktree list --porcelain • completed
+2026-05-17 05:23:50.526 [info] [→11          ] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • starting...
+2026-05-17 05:23:50.530 [info] [←11      16ms] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • completed
+2026-05-17 05:23:51.220 [info] [         16ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:23:51.232 [info] [→12          ] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • starting...
+2026-05-17 05:23:51.235 [info] [←12      15ms] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • completed
+2026-05-17 05:23:55.153 [info] [*      4622ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --shortstat -n22 --date-order --all -- (slow) • completed
+2026-05-17 05:26:03.437 [info] [         27ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:26:03.449 [info] [→13          ] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • starting...
+2026-05-17 05:26:03.463 [info] [←13      25ms] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • completed
+2026-05-17 05:26:34.412 [info] [         14ms] [/home/dev/AI_Workflow] git ls-files -- memory/antigravity/events.md • completed
+2026-05-17 05:26:34.446 [info] [         33ms] [/home/dev/AI_Workflow/memory/antigravity] git ls-files -- events.md • completed
+2026-05-17 05:26:34.565 [info] [         28ms] [/home/dev/AI_Workflow/memory/antigravity] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 05:26:34.582 [info] [→14          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • starting...
+2026-05-17 05:26:34.585 [error] [←14      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • FAILED
+Error: fatal: no such path 'memory/antigravity/events.md' in HEAD
+2026-05-17 05:26:34.657 [info] [→15          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • starting...
+2026-05-17 05:26:34.659 [error] [←15      11ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • FAILED
+Error: fatal: no such path 'memory/antigravity/events.md' in HEAD
+2026-05-17 05:26:44.600 [info] [         24ms] [/home/dev/AI_Workflow] git ls-files -- mcp/shared-memory-server/index.js • completed
+2026-05-17 05:26:44.612 [info] [→16          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/index.js • starting...
+2026-05-17 05:26:44.617 [info] [←16      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/index.js • completed
+2026-05-17 05:26:44.655 [info] [         24ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71^ -- mcp/shared-memory-server/index.js • completed
+2026-05-17 05:26:44.655 [info] [         37ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./mcp/shared-memory-server/index.js -- • completed
+2026-05-17 05:26:46.805 [info] [*      2163ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71 -- (slow) • completed
+2026-05-17 05:26:49.289 [info] [         15ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:26:49.301 [info] [→17          ] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • starting...
+2026-05-17 05:26:49.303 [info] [←17      14ms] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • completed
+2026-05-17 05:26:50.768 [info] [         28ms] [/home/dev/AI_Workflow] git ls-files -- docker/docker-compose.yaml • completed
+2026-05-17 05:26:50.783 [info] [→18          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/docker-compose.yaml • starting...
+2026-05-17 05:26:51.206 [info] [←18     435ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/docker-compose.yaml • completed
+2026-05-17 05:26:51.483 [info] [        262ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 0d597102352da45e645552f2f03fffc71b508622^ -- docker/docker-compose.yaml • completed
+2026-05-17 05:26:51.483 [info] [        276ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./docker/docker-compose.yaml -- • completed
+2026-05-17 05:26:52.269 [info] [         36ms] [/home/dev/AI_Workflow] git ls-files -- docker/Dockerfile • completed
+2026-05-17 05:26:52.286 [info] [→19          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/Dockerfile • starting...
+2026-05-17 05:26:52.566 [info] [←19     293ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/Dockerfile • completed
+2026-05-17 05:26:52.593 [info] [         14ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 0d597102352da45e645552f2f03fffc71b508622^ -- docker/Dockerfile • completed
+2026-05-17 05:26:52.593 [info] [         26ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./docker/Dockerfile -- • completed
+2026-05-17 05:26:52.991 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- docker/entrypoint.sh • completed
+2026-05-17 05:26:53.009 [info] [→20          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/entrypoint.sh • starting...
+2026-05-17 05:26:53.286 [info] [←20     293ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/entrypoint.sh • completed
+2026-05-17 05:26:53.327 [info] [         26ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 0d597102352da45e645552f2f03fffc71b508622^ -- docker/entrypoint.sh • completed
+2026-05-17 05:26:53.327 [info] [         41ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./docker/entrypoint.sh -- • completed
+2026-05-17 05:26:53.960 [info] [         36ms] [/home/dev/AI_Workflow] git ls-files -- docker/README.md • completed
+2026-05-17 05:26:53.975 [info] [→21          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/README.md • starting...
+2026-05-17 05:26:54.246 [info] [←21     284ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/README.md • completed
+2026-05-17 05:26:54.273 [info] [         14ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 0d597102352da45e645552f2f03fffc71b508622^ -- docker/README.md • completed
+2026-05-17 05:26:54.273 [info] [         26ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./docker/README.md -- • completed
+2026-05-17 05:26:54.408 [info] [*      3177ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 0d597102352da45e645552f2f03fffc71b508622 -- (slow) • completed
+2026-05-17 05:26:54.408 [info] [       1819ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 0d597102352da45e645552f2f03fffc71b508622 -- (waiting) • completed
+2026-05-17 05:26:54.408 [info] [       1095ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 0d597102352da45e645552f2f03fffc71b508622 -- (waiting) • completed
+2026-05-17 05:26:54.408 [info] [        140ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 0d597102352da45e645552f2f03fffc71b508622 -- (waiting) • completed
+2026-05-17 05:26:55.108 [info] [         32ms] [/home/dev/AI_Workflow] git ls-files -- docker/secrets.env.template • completed
+2026-05-17 05:26:55.123 [info] [→22          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/secrets.env.template • starting...
+2026-05-17 05:26:55.396 [info] [←22     286ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- docker/secrets.env.template • completed
+2026-05-17 05:26:55.430 [info] [         22ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 0d597102352da45e645552f2f03fffc71b508622^ -- docker/secrets.env.template • completed
+2026-05-17 05:26:55.431 [info] [         34ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./docker/secrets.env.template -- • completed
+2026-05-17 05:26:58.501 [info] [*      3083ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 0d597102352da45e645552f2f03fffc71b508622 -- (slow) • completed
+2026-05-17 05:29:19.290 [info] [         14ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 05:29:19.304 [info] [         13ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 05:29:21.744 [info] [         16ms] [/home/dev/AI_Workflow] git diff --quiet HEAD • completed
+2026-05-17 05:29:21.757 [info] [→23          ] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • starting...
+2026-05-17 05:29:21.759 [info] [←23      15ms] (spawn) [/home/dev/AI_Workflow] git ls-files --others --exclude-standard • completed
+2026-05-17 05:29:21.775 [info] [         14ms] [/home/dev/AI_Workflow] git log -z --format=%H -n1 HEAD -- • completed
+2026-05-17 05:29:21.789 [info] [→24          ] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • starting...
+2026-05-17 05:29:21.792 [info] [←24      16ms] (spawn) [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --date-order --all -- • completed
+2026-05-17 05:29:26.407 [info] [*      4614ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --shortstat -n22 --date-order --all -- (slow) • completed
+2026-05-17 05:32:19.285 [info] [         15ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed 2026-05-17T01:32:19.269Z • completed
+2026-05-17 05:32:19.300 [info] [         14ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified 2026-05-17T01:32:19.269Z • completed
+2026-05-17 05:40:12.553 [info] [         17ms] [/home/dev/AI_Workflow] git ls-files -- dashboard/app/api/tasks/route.ts • completed
+2026-05-17 05:40:12.581 [info] [→25          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- dashboard/app/api/tasks/route.ts • starting...
+2026-05-17 05:40:12.698 [info] [←25     127ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- dashboard/app/api/tasks/route.ts • completed
+2026-05-17 05:40:12.745 [info] [         32ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 0d597102352da45e645552f2f03fffc71b508622^ -- dashboard/app/api/tasks/route.ts • completed
+2026-05-17 05:40:12.746 [info] [         47ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./dashboard/app/api/tasks/route.ts -- • completed
+2026-05-17 05:40:15.828 [info] [*      3098ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 0d597102352da45e645552f2f03fffc71b508622 -- (slow) • completed
+2026-05-17 05:40:22.355 [info] [         22ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/plugins/marketplaces/claude-plugins-official/.claude-plugin/marketplace.json • completed
+2026-05-17 05:40:22.386 [info] [→26          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/plugins/marketplaces/claude-plugins-official/.claude-plugin/marketplace.json • starting...
+2026-05-17 05:40:22.411 [info] [←26      39ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/plugins/marketplaces/claude-plugins-official/.claude-plugin/marketplace.json • completed
+2026-05-17 05:40:22.460 [info] [         28ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71^ -- config/claude/plugins/marketplaces/claude-plugins-official/.claude-plugin/marketplace.json • completed
+2026-05-17 05:40:22.461 [info] [         45ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/claude/plugins/marketplaces/claude-plugins-official/.claude-plugin/marketplace.json -- • completed
+2026-05-17 05:40:24.560 [info] [*      2115ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 52865f4a592ba1a47d6ac16befa4bdddd046ec71 -- (slow) • completed
+2026-05-17 05:42:10.946 [info] [         15ms] [/home/dev/AI_Workflow] git config --get core.excludesFile • completed
+2026-05-17 05:42:32.021 [info] [         14ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 05:42:32.035 [info] [         13ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed 2026-05-17T01:42:32.006Z • completed
+2026-05-17 05:42:32.050 [info] [         14ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 05:42:32.067 [info] [         15ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified 2026-05-17T01:42:32.006Z • completed
+2026-05-17 05:44:03.672 [info] [         28ms] [/home/dev/AI_Workflow] git ls-files -- config/secrets/.env • completed
+2026-05-17 05:44:03.688 [info] [         15ms] [/home/dev/AI_Workflow/config/secrets] git ls-files -- .env • completed
+2026-05-17 05:44:03.751 [info] [         31ms] [/home/dev/AI_Workflow/config/secrets] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 05:44:25.918 [info] [         28ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-17 05:44:25.918 [info] [         14ms] [/home/dev/AI_Workflow] git config --get-regex -f /home/dev/AI_Workflow/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-17 05:46:30.952 [info] [         15ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 05:46:30.966 [info] [         13ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 05:49:39.951 [info] [         15ms] [/home/dev/AI_Workflow] git config --get core.excludesFile • completed
+2026-05-17 05:53:35.998 [info] [         53ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/settings.json • completed
+2026-05-17 05:53:36.014 [info] [         15ms] [/home/dev/AI_Workflow] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-17 05:53:36.032 [info] [         17ms] [/home/dev/AI_Workflow] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-17 05:53:36.045 [info] [→27          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/settings.json • starting...
+2026-05-17 05:53:36.048 [info] [←27      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/settings.json • completed
+2026-05-17 05:53:36.075 [info] [→28          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 HEAD -- config/claude/settings.json • starting...
+2026-05-17 05:53:36.077 [info] [         28ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/claude/settings.json -- • completed
+2026-05-17 05:53:36.078 [info] [←28      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 HEAD -- config/claude/settings.json • completed
+2026-05-17 05:53:36.168 [info] [         27ms] [/home/dev/AI_Workflow] git remote -v • completed
+2026-05-17 05:53:36.195 [info] [         26ms] [/home/dev/AI_Workflow] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 05:53:36.209 [info] [         13ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config gk.defaultRemote • completed
+2026-05-17 05:53:36.230 [info] [         16ms] [/home/dev/AI_Workflow] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-17 05:53:36.248 [info] [         17ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D -n2 -L15,15:config/claude/settings.json • completed
+2026-05-17 05:53:36.262 [info] [         12ms] [/home/dev/AI_Workflow] git rev-parse --verify --end-of-options 3df875d846cba0fa24b893d69435df3f1ff41535^^{commit} • completed
+2026-05-17 05:55:49.873 [info] [         26ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-17 05:55:49.873 [info] [         13ms] [/home/dev/AI_Workflow] git config --get-regex -f /home/dev/AI_Workflow/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-17 05:55:49.888 [info] [         12ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 05:55:50.610 [info] [         13ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 06:05:04.960 [info] [         45ms] [/home/dev/AI_Workflow] git ls-files -- workflow.md • completed
+2026-05-17 06:05:04.975 [info] [→29          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflow.md • starting...
+2026-05-17 06:05:04.978 [info] [←29      16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflow.md • completed
+2026-05-17 06:05:05.031 [info] [         34ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- workflow.md • completed
+2026-05-17 06:05:05.031 [info] [         51ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./workflow.md -- • completed
+2026-05-17 06:05:05.070 [info] [         60ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:05:07.465 [info] [         42ms] [/home/dev/AI_Workflow] git ls-files -- README.md • completed
+2026-05-17 06:05:07.478 [info] [→30          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- README.md • starting...
+2026-05-17 06:05:07.483 [info] [←30      16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- README.md • completed
+2026-05-17 06:05:07.538 [info] [         33ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 ab5e64c664a41fe109862c4922967b2d858a6453 -- • completed
+2026-05-17 06:05:07.538 [info] [         41ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 ab5e64c664a41fe109862c4922967b2d858a6453^ -- README.md • completed
+2026-05-17 06:05:07.539 [info] [         55ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./README.md -- • completed
+2026-05-17 06:05:18.633 [info] [         34ms] [/home/dev/AI_Workflow] git ls-files -- memory/shared/context.md • completed
+2026-05-17 06:05:18.649 [info] [         16ms] [/home/dev/AI_Workflow/memory/shared] git ls-files -- context.md • completed
+2026-05-17 06:05:18.714 [info] [         32ms] [/home/dev/AI_Workflow/memory/shared] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:05:18.726 [info] [→31          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/shared/context.md • starting...
+2026-05-17 06:05:18.728 [error] [←31      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/shared/context.md • FAILED
+Error: fatal: no such path 'memory/shared/context.md' in HEAD
+2026-05-17 06:05:18.861 [info] [→32          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/shared/context.md • starting...
+2026-05-17 06:05:18.863 [error] [←32      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/shared/context.md • FAILED
+Error: fatal: no such path 'memory/shared/context.md' in HEAD
+2026-05-17 06:07:32.617 [info] [         26ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-17 06:07:32.618 [info] [         13ms] [/home/dev/AI_Workflow] git config --get-regex -f /home/dev/AI_Workflow/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-17 06:07:32.632 [info] [         12ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 06:07:32.646 [info] [         13ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed 2026-05-17T02:07:32.619Z • completed
+2026-05-17 06:07:32.659 [info] [         12ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 06:07:32.672 [info] [         12ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified 2026-05-17T02:07:32.619Z • completed
+2026-05-17 06:15:23.589 [info] [         35ms] [/home/dev/AI_Workflow] git ls-files -- memory/prompts/_template.md • completed
+2026-05-17 06:15:23.603 [info] [         13ms] [/home/dev/AI_Workflow/memory/prompts] git ls-files -- _template.md • completed
+2026-05-17 06:15:23.689 [info] [         27ms] [/home/dev/AI_Workflow/memory/prompts] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:23.700 [info] [→33          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:15:23.703 [error] [←33      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:15:23.817 [info] [→34          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:15:23.818 [error] [←34      11ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:15:25.370 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- memory/prompts/index.md • completed
+2026-05-17 06:15:25.403 [info] [         32ms] [/home/dev/AI_Workflow/memory/prompts] git ls-files -- index.md • completed
+2026-05-17 06:15:25.432 [info] [→35          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • starting...
+2026-05-17 06:15:25.434 [error] [←35      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • FAILED
+Error: fatal: no such path 'memory/prompts/index.md' in HEAD
+2026-05-17 06:15:25.598 [info] [→36          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • starting...
+2026-05-17 06:15:25.600 [error] [←36      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • FAILED
+Error: fatal: no such path 'memory/prompts/index.md' in HEAD
+2026-05-17 06:15:27.010 [info] [→37          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:15:27.015 [error] [←37      17ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:15:27.242 [info] [→38          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:15:27.244 [error] [←38      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:15:31.274 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- memory/projects/project-gemini/ledger.md • completed
+2026-05-17 06:15:31.292 [info] [         17ms] [/home/dev/AI_Workflow/memory/projects/project-gemini] git ls-files -- ledger.md • completed
+2026-05-17 06:15:31.353 [info] [         28ms] [/home/dev/AI_Workflow/memory/projects/project-gemini] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:31.365 [info] [→39          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gemini/ledger.md • starting...
+2026-05-17 06:15:31.367 [error] [←39      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gemini/ledger.md • FAILED
+Error: fatal: no such path 'memory/projects/project-gemini/ledger.md' in HEAD
+2026-05-17 06:15:31.506 [info] [→40          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gemini/ledger.md • starting...
+2026-05-17 06:15:31.507 [error] [←40      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gemini/ledger.md • FAILED
+Error: fatal: no such path 'memory/projects/project-gemini/ledger.md' in HEAD
+2026-05-17 06:15:33.256 [info] [         30ms] [/home/dev/AI_Workflow] git ls-files -- memory/projects/project-gpt/ledger.md • completed
+2026-05-17 06:15:33.273 [info] [         16ms] [/home/dev/AI_Workflow/memory/projects/project-gpt] git ls-files -- ledger.md • completed
+2026-05-17 06:15:33.344 [info] [         28ms] [/home/dev/AI_Workflow/memory/projects/project-gpt] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:33.354 [info] [→41          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gpt/ledger.md • starting...
+2026-05-17 06:15:33.357 [error] [←41      11ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gpt/ledger.md • FAILED
+Error: fatal: no such path 'memory/projects/project-gpt/ledger.md' in HEAD
+2026-05-17 06:15:33.489 [info] [→42          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gpt/ledger.md • starting...
+2026-05-17 06:15:33.491 [error] [←42      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/project-gpt/ledger.md • FAILED
+Error: fatal: no such path 'memory/projects/project-gpt/ledger.md' in HEAD
+2026-05-17 06:15:34.760 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- memory/projects/Tradingview/ledger.md • completed
+2026-05-17 06:15:34.776 [info] [         15ms] [/home/dev/AI_Workflow/memory/projects/Tradingview] git ls-files -- ledger.md • completed
+2026-05-17 06:15:34.838 [info] [         31ms] [/home/dev/AI_Workflow/memory/projects/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:34.851 [info] [→43          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/Tradingview/ledger.md • starting...
+2026-05-17 06:15:34.855 [error] [←43      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/Tradingview/ledger.md • FAILED
+Error: fatal: no such path 'memory/projects/Tradingview/ledger.md' in HEAD
+2026-05-17 06:15:34.989 [info] [→44          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/Tradingview/ledger.md • starting...
+2026-05-17 06:15:34.991 [error] [←44      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/Tradingview/ledger.md • FAILED
+Error: fatal: no such path 'memory/projects/Tradingview/ledger.md' in HEAD
+2026-05-17 06:15:36.138 [info] [         48ms] [/home/dev/AI_Workflow] git ls-files -- memory/projects/_template.md • completed
+2026-05-17 06:15:36.182 [info] [         44ms] [/home/dev/AI_Workflow/memory/projects] git ls-files -- _template.md • completed
+2026-05-17 06:15:36.196 [info] [→45          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/_template.md • starting...
+2026-05-17 06:15:36.198 [error] [←45      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/_template.md • FAILED
+Error: fatal: no such path 'memory/projects/_template.md' in HEAD
+2026-05-17 06:15:36.350 [info] [→46          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/_template.md • starting...
+2026-05-17 06:15:36.353 [error] [←46      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/_template.md • FAILED
+Error: fatal: no such path 'memory/projects/_template.md' in HEAD
+2026-05-17 06:15:36.862 [info] [         30ms] [/home/dev/AI_Workflow] git ls-files -- memory/projects/index.md • completed
+2026-05-17 06:15:36.881 [info] [         18ms] [/home/dev/AI_Workflow/memory/projects] git ls-files -- index.md • completed
+2026-05-17 06:15:36.926 [info] [→47          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/index.md • starting...
+2026-05-17 06:15:36.928 [error] [←47      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/index.md • FAILED
+Error: fatal: no such path 'memory/projects/index.md' in HEAD
+2026-05-17 06:15:37.092 [info] [→48          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/index.md • starting...
+2026-05-17 06:15:37.094 [error] [←48      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/projects/index.md • FAILED
+Error: fatal: no such path 'memory/projects/index.md' in HEAD
+2026-05-17 06:15:43.679 [info] [         32ms] [/home/dev/AI_Workflow] git ls-files -- memory/opencode-developer/events.md • completed
+2026-05-17 06:15:43.710 [info] [         30ms] [/home/dev/AI_Workflow/memory/opencode-developer] git ls-files -- events.md • completed
+2026-05-17 06:15:43.756 [info] [         29ms] [/home/dev/AI_Workflow/memory/opencode-developer] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:43.765 [info] [→49          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode-developer/events.md • starting...
+2026-05-17 06:15:43.767 [error] [←49      10ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode-developer/events.md • FAILED
+Error: fatal: no such path 'memory/opencode-developer/events.md' in HEAD
+2026-05-17 06:15:43.913 [info] [→50          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode-developer/events.md • starting...
+2026-05-17 06:15:43.915 [error] [←50      18ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode-developer/events.md • FAILED
+Error: fatal: no such path 'memory/opencode-developer/events.md' in HEAD
+2026-05-17 06:15:50.228 [info] [         32ms] [/home/dev/AI_Workflow] git ls-files -- memory/opencode/events.md • completed
+2026-05-17 06:15:50.260 [info] [         31ms] [/home/dev/AI_Workflow/memory/opencode] git ls-files -- events.md • completed
+2026-05-17 06:15:50.308 [info] [         29ms] [/home/dev/AI_Workflow/memory/opencode] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:50.319 [info] [→51          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode/events.md • starting...
+2026-05-17 06:15:50.321 [error] [←51      11ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode/events.md • FAILED
+Error: fatal: no such path 'memory/opencode/events.md' in HEAD
+2026-05-17 06:15:50.461 [info] [→52          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode/events.md • starting...
+2026-05-17 06:15:50.463 [error] [←52      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/opencode/events.md • FAILED
+Error: fatal: no such path 'memory/opencode/events.md' in HEAD
+2026-05-17 06:15:55.663 [info] [         30ms] [/home/dev/AI_Workflow] git ls-files -- memory/openclaw/events.md • completed
+2026-05-17 06:15:55.698 [info] [         34ms] [/home/dev/AI_Workflow/memory/openclaw] git ls-files -- events.md • completed
+2026-05-17 06:15:55.729 [info] [         28ms] [/home/dev/AI_Workflow/memory/openclaw] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:55.739 [info] [→53          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/openclaw/events.md • starting...
+2026-05-17 06:15:55.740 [error] [←53      10ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/openclaw/events.md • FAILED
+Error: fatal: no such path 'memory/openclaw/events.md' in HEAD
+2026-05-17 06:15:55.890 [info] [→54          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/openclaw/events.md • starting...
+2026-05-17 06:15:55.891 [error] [←54      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/openclaw/events.md • FAILED
+Error: fatal: no such path 'memory/openclaw/events.md' in HEAD
+2026-05-17 06:15:58.136 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- memory/ollama/events.md • completed
+2026-05-17 06:15:58.169 [info] [         32ms] [/home/dev/AI_Workflow/memory/ollama] git ls-files -- events.md • completed
+2026-05-17 06:15:58.211 [info] [         26ms] [/home/dev/AI_Workflow/memory/ollama] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:15:58.221 [info] [→55          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/ollama/events.md • starting...
+2026-05-17 06:15:58.223 [error] [←55      10ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/ollama/events.md • FAILED
+Error: fatal: no such path 'memory/ollama/events.md' in HEAD
+2026-05-17 06:15:58.364 [info] [→56          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/ollama/events.md • starting...
+2026-05-17 06:15:58.366 [error] [←56      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/ollama/events.md • FAILED
+Error: fatal: no such path 'memory/ollama/events.md' in HEAD
+2026-05-17 06:16:01.195 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- memory/inbox/claude.md • completed
+2026-05-17 06:16:01.226 [info] [         31ms] [/home/dev/AI_Workflow/memory/inbox] git ls-files -- claude.md • completed
+2026-05-17 06:16:01.274 [info] [         30ms] [/home/dev/AI_Workflow/memory/inbox] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:16:01.287 [info] [→57          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/claude.md • starting...
+2026-05-17 06:16:01.289 [error] [←57      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/claude.md • FAILED
+Error: fatal: no such path 'memory/inbox/claude.md' in HEAD
+2026-05-17 06:16:01.423 [info] [→58          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/claude.md • starting...
+2026-05-17 06:16:01.425 [error] [←58      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/claude.md • FAILED
+Error: fatal: no such path 'memory/inbox/claude.md' in HEAD
+2026-05-17 06:16:06.129 [info] [         30ms] [/home/dev/AI_Workflow] git ls-files -- memory/inbox/developer/1778975411793-claude.md • completed
+2026-05-17 06:16:06.157 [info] [         27ms] [/home/dev/AI_Workflow/memory/inbox/developer] git ls-files -- 1778975411793-claude.md • completed
+2026-05-17 06:16:06.199 [info] [         29ms] [/home/dev/AI_Workflow/memory/inbox/developer] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:16:06.209 [info] [→59          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/developer/1778975411793-claude.md • starting...
+2026-05-17 06:16:06.210 [error] [←59      10ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/developer/1778975411793-claude.md • FAILED
+Error: fatal: no such path 'memory/inbox/developer/1778975411793-claude.md' in HEAD
+2026-05-17 06:16:06.363 [info] [→60          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/developer/1778975411793-claude.md • starting...
+2026-05-17 06:16:06.364 [error] [←60      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/developer/1778975411793-claude.md • FAILED
+Error: fatal: no such path 'memory/inbox/developer/1778975411793-claude.md' in HEAD
+2026-05-17 06:16:26.640 [info] [         34ms] [/home/dev/AI_Workflow] git ls-files -- memory/inbox/architect/1778975441210-opencode-developer.md • completed
+2026-05-17 06:16:26.656 [info] [         15ms] [/home/dev/AI_Workflow/memory/inbox/architect] git ls-files -- 1778975441210-opencode-developer.md • completed
+2026-05-17 06:16:26.721 [info] [         33ms] [/home/dev/AI_Workflow/memory/inbox/architect] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:16:26.735 [info] [→61          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/architect/1778975441210-opencode-developer.md • starting...
+2026-05-17 06:16:26.737 [error] [←61      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/architect/1778975441210-opencode-developer.md • FAILED
+Error: fatal: no such path 'memory/inbox/architect/1778975441210-opencode-developer.md' in HEAD
+2026-05-17 06:16:26.872 [info] [→62          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/architect/1778975441210-opencode-developer.md • starting...
+2026-05-17 06:16:26.874 [error] [←62      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/inbox/architect/1778975441210-opencode-developer.md • FAILED
+Error: fatal: no such path 'memory/inbox/architect/1778975441210-opencode-developer.md' in HEAD
+2026-05-17 06:16:30.893 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- memory/developer/events.md • completed
+2026-05-17 06:16:30.910 [info] [         17ms] [/home/dev/AI_Workflow/memory/developer] git ls-files -- events.md • completed
+2026-05-17 06:16:30.979 [info] [         33ms] [/home/dev/AI_Workflow/memory/developer] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:16:30.994 [info] [→63          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/developer/events.md • starting...
+2026-05-17 06:16:30.997 [error] [←63      16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/developer/events.md • FAILED
+Error: fatal: no such path 'memory/developer/events.md' in HEAD
+2026-05-17 06:16:31.126 [info] [→64          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/developer/events.md • starting...
+2026-05-17 06:16:31.128 [error] [←64      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/developer/events.md • FAILED
+Error: fatal: no such path 'memory/developer/events.md' in HEAD
+2026-05-17 06:16:32.477 [info] [         15ms] [/home/dev/AI_Workflow] git ls-files -- memory/codex/events.md • completed
+2026-05-17 06:16:32.508 [info] [         30ms] [/home/dev/AI_Workflow/memory/codex] git ls-files -- events.md • completed
+2026-05-17 06:16:32.572 [info] [         31ms] [/home/dev/AI_Workflow/memory/codex] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:16:32.585 [info] [→65          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/codex/events.md • starting...
+2026-05-17 06:16:32.588 [error] [←65      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/codex/events.md • FAILED
+Error: fatal: no such path 'memory/codex/events.md' in HEAD
+2026-05-17 06:16:32.722 [info] [→66          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/codex/events.md • starting...
+2026-05-17 06:16:32.724 [error] [←66      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/codex/events.md • FAILED
+Error: fatal: no such path 'memory/codex/events.md' in HEAD
+2026-05-17 06:16:35.136 [info] [         34ms] [/home/dev/AI_Workflow] git ls-files -- memory/claude/auto-memory/MEMORY.md • completed
+2026-05-17 06:16:35.153 [info] [         17ms] [/home/dev/AI_Workflow/memory/claude/auto-memory] git ls-files -- MEMORY.md • completed
+2026-05-17 06:16:35.219 [info] [         32ms] [/home/dev/AI_Workflow/memory/claude/auto-memory] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:16:39.855 [info] [         35ms] [/home/dev/AI_Workflow] git ls-files -- memory/claude/auto-memory/feedback_logging.md • completed
+2026-05-17 06:16:39.872 [info] [         17ms] [/home/dev/AI_Workflow/memory/claude/auto-memory] git ls-files -- feedback_logging.md • completed
+2026-05-17 06:16:43.616 [info] [         32ms] [/home/dev/AI_Workflow] git ls-files -- memory/claude/auto-memory/project_ai_workflow.md • completed
+2026-05-17 06:16:43.634 [info] [         17ms] [/home/dev/AI_Workflow/memory/claude/auto-memory] git ls-files -- project_ai_workflow.md • completed
+2026-05-17 06:16:44.632 [info] [         32ms] [/home/dev/AI_Workflow] git ls-files -- memory/claude/auto-memory/project_openclaw.md • completed
+2026-05-17 06:16:44.668 [info] [         35ms] [/home/dev/AI_Workflow/memory/claude/auto-memory] git ls-files -- project_openclaw.md • completed
+2026-05-17 06:16:45.288 [info] [         14ms] [/home/dev/AI_Workflow] git ls-files -- memory/claude/auto-memory/user_profile.md • completed
+2026-05-17 06:16:45.318 [info] [         29ms] [/home/dev/AI_Workflow/memory/claude/auto-memory] git ls-files -- user_profile.md • completed
+2026-05-17 06:16:58.039 [info] [         32ms] [/home/dev/AI_Workflow] git ls-files -- memory/antigravity/events.md • completed
+2026-05-17 06:16:58.054 [info] [         14ms] [/home/dev/AI_Workflow/memory/antigravity] git ls-files -- events.md • completed
+2026-05-17 06:16:58.081 [info] [→67          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • starting...
+2026-05-17 06:16:58.086 [error] [←67      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • FAILED
+Error: fatal: no such path 'memory/antigravity/events.md' in HEAD
+2026-05-17 06:16:58.270 [info] [→68          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • starting...
+2026-05-17 06:16:58.272 [error] [←68      16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/antigravity/events.md • FAILED
+Error: fatal: no such path 'memory/antigravity/events.md' in HEAD
+2026-05-17 06:17:32.284 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- mcp/mcp-config.json • completed
+2026-05-17 06:17:32.306 [info] [→69          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/mcp-config.json • starting...
+2026-05-17 06:17:32.332 [info] [←69      34ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/mcp-config.json • completed
+2026-05-17 06:17:32.366 [info] [         21ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- mcp/mcp-config.json • completed
+2026-05-17 06:17:32.366 [info] [         34ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./mcp/mcp-config.json -- • completed
+2026-05-17 06:17:32.409 [info] [         54ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:17:43.129 [info] [         40ms] [/home/dev/AI_Workflow] git ls-files -- mcp/shared-memory-server/package.json • completed
+2026-05-17 06:17:43.184 [info] [→70          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/package.json • starting...
+2026-05-17 06:17:43.189 [info] [←70      19ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/package.json • completed
+2026-05-17 06:17:43.233 [info] [         29ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- mcp/shared-memory-server/package.json • completed
+2026-05-17 06:17:43.233 [info] [         43ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./mcp/shared-memory-server/package.json -- • completed
+2026-05-17 06:17:43.270 [info] [         57ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:17:46.076 [info] [         28ms] [/home/dev/AI_Workflow] git ls-files -- mcp/shared-memory-server/package-lock.json • completed
+2026-05-17 06:17:46.087 [info] [→71          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/package-lock.json • starting...
+2026-05-17 06:17:46.093 [info] [←71      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/package-lock.json • completed
+2026-05-17 06:17:46.127 [info] [         22ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- mcp/shared-memory-server/package-lock.json • completed
+2026-05-17 06:17:46.127 [info] [         33ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./mcp/shared-memory-server/package-lock.json -- • completed
+2026-05-17 06:17:46.175 [info] [         61ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:17:47.636 [info] [         44ms] [/home/dev/AI_Workflow] git ls-files -- mcp/shared-memory-server/index.js • completed
+2026-05-17 06:17:47.649 [info] [→72          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/index.js • starting...
+2026-05-17 06:17:47.652 [info] [←72      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/shared-memory-server/index.js • completed
+2026-05-17 06:17:47.693 [info] [         27ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- mcp/shared-memory-server/index.js • completed
+2026-05-17 06:17:47.693 [info] [         40ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./mcp/shared-memory-server/index.js -- • completed
+2026-05-17 06:17:47.737 [info] [         59ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:17:51.911 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- mcp/scaffold-server/package.json • completed
+2026-05-17 06:17:51.926 [info] [→73          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/scaffold-server/package.json • starting...
+2026-05-17 06:17:51.929 [info] [←73      17ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/scaffold-server/package.json • completed
+2026-05-17 06:17:52.006 [info] [         61ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- mcp/scaffold-server/package.json • completed
+2026-05-17 06:17:52.006 [info] [         76ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./mcp/scaffold-server/package.json -- • completed
+2026-05-17 06:17:52.017 [info] [         59ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:17:54.995 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- mcp/scaffold-server/package-lock.json • completed
+2026-05-17 06:17:55.009 [info] [→74          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/scaffold-server/package-lock.json • starting...
+2026-05-17 06:17:55.020 [info] [←74      23ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- mcp/scaffold-server/package-lock.json • completed
+2026-05-17 06:17:55.065 [info] [         27ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- mcp/scaffold-server/package-lock.json • completed
+2026-05-17 06:17:55.065 [info] [         43ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./mcp/scaffold-server/package-lock.json -- • completed
+2026-05-17 06:17:55.116 [info] [         65ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:17:59.731 [info] [         29ms] [/home/dev/AI_Workflow] git ls-files -- logs/index.md • completed
+2026-05-17 06:17:59.744 [info] [→75          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- logs/index.md • starting...
+2026-05-17 06:17:59.748 [info] [←75      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- logs/index.md • completed
+2026-05-17 06:17:59.783 [info] [         22ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- logs/index.md • completed
+2026-05-17 06:17:59.783 [info] [         35ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./logs/index.md -- • completed
+2026-05-17 06:17:59.829 [info] [         57ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:18:01.581 [info] [         39ms] [/home/dev/AI_Workflow] git ls-files -- logs/global_ledger.md • completed
+2026-05-17 06:18:01.597 [info] [→76          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- logs/global_ledger.md • starting...
+2026-05-17 06:18:01.616 [info] [←76      32ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- logs/global_ledger.md • completed
+2026-05-17 06:18:01.655 [info] [         25ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- logs/global_ledger.md • completed
+2026-05-17 06:18:01.655 [info] [         38ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./logs/global_ledger.md -- • completed
+2026-05-17 06:18:01.709 [info] [         69ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:18:56.552 [info] [         41ms] [/home/dev/AI_Workflow] git ls-files -- logs/global_ledger.md • completed
+2026-05-17 06:18:56.565 [info] [→77          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 c8fc7d8d7ed64b88366e1d710903a43468662472 -- logs/global_ledger.md • starting...
+2026-05-17 06:18:56.570 [info] [←77      16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 c8fc7d8d7ed64b88366e1d710903a43468662472 -- logs/global_ledger.md • completed
+2026-05-17 06:18:56.629 [info] [         57ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:18:56.724 [info] [         19ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 c8fc7d8d7ed64b88366e1d710903a43468662472 -- • completed
+2026-05-17 06:19:00.489 [info] [         48ms] [/home/dev/AI_Workflow] git ls-files -- logs/ollama/events.md • completed
+2026-05-17 06:19:00.518 [info] [→78          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 c8fc7d8d7ed64b88366e1d710903a43468662472 -- logs/ollama/events.md • starting...
+2026-05-17 06:19:00.524 [info] [←78      18ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 c8fc7d8d7ed64b88366e1d710903a43468662472 -- logs/ollama/events.md • completed
+2026-05-17 06:19:00.543 [info] [         15ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 c8fc7d8d7ed64b88366e1d710903a43468662472 -- • completed
+2026-05-17 06:19:08.726 [info] [         50ms] [/home/dev/AI_Workflow] git ls-files -- logs/openclaw/events.md • completed
+2026-05-17 06:19:08.751 [info] [→79          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 10edbb817d2c1ca7f44fa7676525dcbd883b2a2b -- logs/openclaw/events.md • starting...
+2026-05-17 06:19:08.753 [info] [←79      13ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 10edbb817d2c1ca7f44fa7676525dcbd883b2a2b -- logs/openclaw/events.md • completed
+2026-05-17 06:19:08.770 [info] [         13ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 10edbb817d2c1ca7f44fa7676525dcbd883b2a2b -- • completed
+2026-05-17 06:19:16.889 [info] [         23ms] [/home/dev/AI_Workflow] git ls-files -- config/codex/cache/codex_app_directory/3d2d429312c6ce34fde2cb45368ebc0fc76f4770.json • completed
+2026-05-17 06:19:16.902 [info] [→80          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/codex/cache/codex_app_directory/3d2d429312c6ce34fde2cb45368ebc0fc76f4770.json • starting...
+2026-05-17 06:19:16.970 [info] [←80      79ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/codex/cache/codex_app_directory/3d2d429312c6ce34fde2cb45368ebc0fc76f4770.json • completed
+2026-05-17 06:19:17.075 [info] [→81          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 HEAD -- config/codex/cache/codex_app_directory/3d2d429312c6ce34fde2cb45368ebc0fc76f4770.json • starting...
+2026-05-17 06:19:17.076 [info] [         35ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/codex/cache/codex_app_directory/3d2d429312c6ce34fde2cb45368ebc0fc76f4770.json • completed
+2026-05-17 06:19:17.110 [info] [←81      45ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 HEAD -- config/codex/cache/codex_app_directory/3d2d429312c6ce34fde2cb45368ebc0fc76f4770.json • completed
+2026-05-17 06:19:17.120 [info] [         67ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:19:17.165 [info] [        158ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/codex/cache/codex_app_directory/3d2d429312c6ce34fde2cb45368ebc0fc76f4770.json -- • completed
+2026-05-17 06:19:22.037 [info] [         16ms] [/home/dev/AI_Workflow] git cat-file commit 3df875d846cba0fa24b893d69435df3f1ff41535 • completed
+2026-05-17 06:19:35.026 [info] [         38ms] [/home/dev/AI_Workflow] git ls-files -- .claude.md • completed
+2026-05-17 06:19:35.040 [info] [→82          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- .claude.md • starting...
+2026-05-17 06:19:35.045 [info] [←82      18ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- .claude.md • completed
+2026-05-17 06:19:35.088 [info] [         27ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- .claude.md • completed
+2026-05-17 06:19:35.088 [info] [         42ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./.claude.md -- • completed
+2026-05-17 06:19:35.138 [info] [         64ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:20:21.244 [info] [         29ms] [/home/dev/AI_Workflow] git ls-files -- notes.md • completed
+2026-05-17 06:21:51.012 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- memory/tasks/index.md • completed
+2026-05-17 06:21:51.030 [info] [         18ms] [/home/dev/AI_Workflow/memory/tasks] git ls-files -- index.md • completed
+2026-05-17 06:21:51.106 [info] [         36ms] [/home/dev/AI_Workflow/memory/tasks] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:21:51.122 [info] [→83          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/index.md • starting...
+2026-05-17 06:21:51.124 [error] [←83      17ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/index.md • FAILED
+Error: fatal: no such path 'memory/tasks/index.md' in HEAD
+2026-05-17 06:21:51.244 [info] [→84          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/index.md • starting...
+2026-05-17 06:21:51.246 [error] [←84      12ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/index.md • FAILED
+Error: fatal: no such path 'memory/tasks/index.md' in HEAD
+2026-05-17 06:21:52.320 [info] [         30ms] [/home/dev/AI_Workflow] git ls-files -- memory/tasks/_template.md • completed
+2026-05-17 06:21:52.336 [info] [         15ms] [/home/dev/AI_Workflow/memory/tasks] git ls-files -- _template.md • completed
+2026-05-17 06:21:52.381 [info] [→85          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/_template.md • starting...
+2026-05-17 06:21:52.384 [error] [←85      16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/_template.md • FAILED
+Error: fatal: no such path 'memory/tasks/_template.md' in HEAD
+2026-05-17 06:21:52.551 [info] [→86          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/_template.md • starting...
+2026-05-17 06:21:52.552 [error] [←86      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/tasks/_template.md • FAILED
+Error: fatal: no such path 'memory/tasks/_template.md' in HEAD
+2026-05-17 06:22:00.148 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- notes.md • completed
+2026-05-17 06:22:20.356 [info] [         37ms] [/home/dev/AI_Workflow] git ls-files -- .claude.md • completed
+2026-05-17 06:22:20.378 [info] [         21ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./.claude.md -- • completed
+2026-05-17 06:22:37.900 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- memory/prompts/index.md • completed
+2026-05-17 06:22:37.917 [info] [         16ms] [/home/dev/AI_Workflow/memory/prompts] git ls-files -- index.md • completed
+2026-05-17 06:22:37.953 [info] [→87          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • starting...
+2026-05-17 06:22:37.956 [error] [←87      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • FAILED
+Error: fatal: no such path 'memory/prompts/index.md' in HEAD
+2026-05-17 06:22:38.123 [info] [→88          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • starting...
+2026-05-17 06:22:38.125 [error] [←88      10ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • FAILED
+Error: fatal: no such path 'memory/prompts/index.md' in HEAD
+2026-05-17 06:22:39.443 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- memory/prompts/_template.md • completed
+2026-05-17 06:22:39.461 [info] [         18ms] [/home/dev/AI_Workflow/memory/prompts] git ls-files -- _template.md • completed
+2026-05-17 06:22:39.493 [info] [→89          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:22:39.496 [error] [←89      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:22:39.673 [info] [→90          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:22:39.675 [error] [←90      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:22:42.614 [info] [→91          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • starting...
+2026-05-17 06:22:42.619 [error] [←91      17ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • FAILED
+Error: fatal: no such path 'memory/prompts/index.md' in HEAD
+2026-05-17 06:22:42.845 [info] [→92          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • starting...
+2026-05-17 06:22:42.847 [error] [←92      14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/index.md • FAILED
+Error: fatal: no such path 'memory/prompts/index.md' in HEAD
+2026-05-17 06:22:46.341 [info] [→93          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:22:46.346 [error] [←93      18ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:22:46.573 [info] [→94          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • starting...
+2026-05-17 06:22:46.575 [error] [←94      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- memory/prompts/_template.md • FAILED
+Error: fatal: no such path 'memory/prompts/_template.md' in HEAD
+2026-05-17 06:23:28.869 [info] [         14ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 06:23:28.882 [info] [         12ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed 2026-05-17T02:23:28.854Z • completed
+2026-05-17 06:23:28.895 [info] [         12ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 06:23:28.911 [info] [         13ms] [/home/dev/AI_Workflow] git config -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified 2026-05-17T02:23:28.854Z • completed
+2026-05-17 06:23:44.075 [info] [         34ms] [/home/dev/AI_Workflow] git ls-files -- workflows/workflow.md • completed
+2026-05-17 06:23:44.091 [info] [→95          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflows/workflow.md • starting...
+2026-05-17 06:23:44.113 [info] [←95      36ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- workflows/workflow.md • completed
+2026-05-17 06:23:44.178 [info] [         50ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- workflows/workflow.md • completed
+2026-05-17 06:23:44.178 [info] [         64ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./workflows/workflow.md -- • completed
+2026-05-17 06:23:44.195 [info] [         56ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:25:32.183 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/settings.json • completed
+2026-05-17 06:25:32.195 [info] [→96          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/settings.json • starting...
+2026-05-17 06:25:32.199 [info] [←96      15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/settings.json • completed
+2026-05-17 06:25:32.260 [info] [         45ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/claude/settings.json • completed
+2026-05-17 06:25:32.260 [info] [         60ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/claude/settings.json -- • completed
+2026-05-17 06:25:32.285 [info] [         58ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:25:39.818 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/mcp.json • completed
+2026-05-17 06:25:39.834 [info] [→97          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/mcp.json • starting...
+2026-05-17 06:25:39.836 [info] [←97      16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/mcp.json • completed
+2026-05-17 06:25:39.910 [info] [         58ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/claude/mcp.json • completed
+2026-05-17 06:25:39.910 [info] [         73ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/claude/mcp.json -- • completed
+2026-05-17 06:25:39.927 [info] [         62ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:25:43.326 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/mcp-needs-auth-cache.json • completed
+2026-05-17 06:25:43.361 [info] [         35ms] [/home/dev/AI_Workflow/config/claude] git ls-files -- mcp-needs-auth-cache.json • completed
+2026-05-17 06:25:43.424 [info] [         45ms] [/home/dev/AI_Workflow/config/claude] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:25:45.848 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/history.jsonl • completed
+2026-05-17 06:25:45.892 [info] [         43ms] [/home/dev/AI_Workflow/config/claude] git ls-files -- history.jsonl • completed
+2026-05-17 06:25:52.481 [info] [         37ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/CLAUDE.md • completed
+2026-05-17 06:25:52.495 [info] [→98          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/CLAUDE.md • starting...
+2026-05-17 06:25:52.500 [info] [←98      17ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/CLAUDE.md • completed
+2026-05-17 06:25:52.556 [info] [         39ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/claude/CLAUDE.md • completed
+2026-05-17 06:25:52.556 [info] [         55ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/claude/CLAUDE.md -- • completed
+2026-05-17 06:25:52.591 [info] [         64ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:25:59.053 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/.credentials.json • completed
+2026-05-17 06:25:59.086 [info] [         32ms] [/home/dev/AI_Workflow/config/claude] git ls-files -- .credentials.json • completed
+2026-05-17 06:26:01.127 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/.claude.json • completed
+2026-05-17 06:26:01.149 [info] [         21ms] [/home/dev/AI_Workflow/config/claude] git ls-files -- .claude.json • completed
+2026-05-17 06:26:29.690 [info] [         14ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-accessed • completed
+2026-05-17 06:26:29.703 [info] [         13ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config branch.master.gk-last-modified • completed
+2026-05-17 06:27:00.617 [info] [         34ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/projects/-home-dev/memory/feedback_logging.md • completed
+2026-05-17 06:27:00.669 [info] [         51ms] [/home/dev/AI_Workflow/config/claude/projects/-home-dev/memory] git ls-files -- feedback_logging.md • completed
+2026-05-17 06:27:00.702 [info] [         29ms] [/home/dev/AI_Workflow/config/claude/projects/-home-dev/memory] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-17 06:27:07.989 [info] [         39ms] [/home/dev/AI_Workflow] git ls-files -- config/claude/plans/melodic-tickling-ripple.md • completed
+2026-05-17 06:27:08.007 [info] [→99          ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/plans/melodic-tickling-ripple.md • starting...
+2026-05-17 06:27:08.031 [info] [←99      38ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/claude/plans/melodic-tickling-ripple.md • completed
+2026-05-17 06:27:08.087 [info] [         41ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/claude/plans/melodic-tickling-ripple.md • completed
+2026-05-17 06:27:08.088 [info] [         56ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/claude/plans/melodic-tickling-ripple.md -- • completed
+2026-05-17 06:27:08.129 [info] [         70ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:27:47.007 [info] [         31ms] [/home/dev/AI_Workflow] git ls-files -- config/codex/config.yaml • completed
+2026-05-17 06:27:47.021 [info] [→100         ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/codex/config.yaml • starting...
+2026-05-17 06:27:47.024 [info] [←100     16ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/codex/config.yaml • completed
+2026-05-17 06:27:47.088 [info] [         46ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/codex/config.yaml • completed
+2026-05-17 06:27:47.088 [info] [         63ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/codex/config.yaml -- • completed
+2026-05-17 06:27:47.117 [info] [         62ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:27:53.505 [info] [         38ms] [/home/dev/AI_Workflow] git ls-files -- config/codex/instructions.md • completed
+2026-05-17 06:27:53.520 [info] [→101         ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/codex/instructions.md • starting...
+2026-05-17 06:27:53.525 [info] [←101     19ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/codex/instructions.md • completed
+2026-05-17 06:27:53.584 [info] [         41ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/codex/instructions.md • completed
+2026-05-17 06:27:53.585 [info] [         58ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/codex/instructions.md -- • completed
+2026-05-17 06:27:53.613 [info] [         57ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:28:15.146 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- config/ollama/config.json • completed
+2026-05-17 06:28:15.162 [info] [→102         ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/ollama/config.json • starting...
+2026-05-17 06:28:15.166 [info] [←102     18ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/ollama/config.json • completed
+2026-05-17 06:28:15.251 [info] [         65ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/ollama/config.json • completed
+2026-05-17 06:28:15.251 [info] [         84ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/ollama/config.json -- • completed
+2026-05-17 06:28:15.262 [info] [         61ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:28:22.990 [info] [         33ms] [/home/dev/AI_Workflow] git ls-files -- config/openclaw/README.md • completed
+2026-05-17 06:28:23.004 [info] [→103         ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/openclaw/README.md • starting...
+2026-05-17 06:28:23.009 [info] [←103     17ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 -- config/openclaw/README.md • completed
+2026-05-17 06:28:23.052 [info] [         27ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D --summary -n1 3df875d846cba0fa24b893d69435df3f1ff41535^ -- config/openclaw/README.md • completed
+2026-05-17 06:28:23.052 [info] [         43ms] [/home/dev/AI_Workflow] git show --textconv HEAD:./config/openclaw/README.md -- • completed
+2026-05-17 06:28:23.102 [info] [         65ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 3df875d846cba0fa24b893d69435df3f1ff41535 -- • completed
+2026-05-17 06:28:33.928 [info] [         32ms] [/home/dev/AI_Workflow] git ls-files -- config/secrets/.env • completed
+2026-05-17 06:28:33.944 [info] [         16ms] [/home/dev/AI_Workflow/config/secrets] git ls-files -- .env • completed
+2026-05-17 06:28:49.250 [info] [         16ms] [/home/dev/AI_Workflow] git ls-files -- notes.md • completed

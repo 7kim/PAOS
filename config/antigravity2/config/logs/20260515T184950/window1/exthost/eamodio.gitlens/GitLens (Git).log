@@ -1,0 +1,821 @@
+2026-05-15 18:50:10.060 [info] [        105ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 18:50:10.854 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 18:50:12.411 [info] [         93ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 18:50:12.449 [info] [         30ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 18:50:18.427 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- api_server.py • completed
+2026-05-15 18:50:45.096 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git rev-list --max-parents=0 HEAD -- • completed
+2026-05-15 18:50:45.097 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git shortlog -s --all --no-min-parents --since=1.year.ago • completed
+2026-05-15 18:50:58.663 [info] [         24ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .git/COMMIT_EDITMSG • completed
+2026-05-15 18:50:58.675 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview/.git] git ls-files -- COMMIT_EDITMSG • completed
+2026-05-15 18:50:58.770 [error] [         21ms] [/home/dev/Documents/Dev/Tradingview/.git] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • FAILED
+Error: fatal: this operation must be run in a work tree
+2026-05-15 18:50:58.786 [info] [         15ms] [/home/dev/Documents/Dev/Tradingview/.git] git rev-parse --is-bare-repository • completed
+2026-05-15 18:50:58.809 [info] [         21ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 18:52:40.088 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 18:52:40.098 [info] [         32ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 18:52:40.110 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 18:52:40.124 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed • completed
+2026-05-15 18:52:40.136 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed 2026-05-15T14:52:40.112Z • completed
+2026-05-15 18:54:11.378 [info] [         24ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .gitignore • completed
+2026-05-15 18:54:20.794 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- bot_v2.py • completed
+2026-05-15 18:54:20.808 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-15 18:54:20.818 [info] [          9ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-15 18:54:20.829 [info] [→1           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- bot_v2.py • starting...
+2026-05-15 18:54:20.836 [info] [←1       16ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- bot_v2.py • completed
+2026-05-15 18:54:20.855 [info] [         17ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./bot_v2.py -- • completed
+2026-05-15 18:54:20.996 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 18:54:21.010 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 18:54:21.041 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- bot_v2.py • completed
+2026-05-15 18:54:21.432 [info] [        403ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 18:54:59.384 [info] [         22ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 18:54:59.385 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 18:54:59.396 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed • completed
+2026-05-15 18:54:59.407 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-modified • completed
+2026-05-15 18:54:59.419 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-modified 2026-05-15T14:54:59.385Z • completed
+2026-05-15 18:56:02.582 [info] [         31ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- bot_config.json • completed
+2026-05-15 18:56:02.594 [info] [→2           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- bot_config.json • starting...
+2026-05-15 18:56:02.599 [info] [←2       15ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- bot_config.json • completed
+2026-05-15 18:56:02.640 [info] [         26ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- bot_config.json • completed
+2026-05-15 18:56:02.640 [info] [         40ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./bot_config.json -- • completed
+2026-05-15 18:56:03.096 [info] [        471ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 18:56:08.594 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .env.example • completed
+2026-05-15 18:56:12.291 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .env • completed
+2026-05-15 18:56:30.600 [info] [         29ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- bot_v2.py • completed
+2026-05-15 18:56:30.623 [info] [         20ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./bot_v2.py -- • completed
+2026-05-15 18:57:00.974 [info] [         28ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- api_server.py • completed
+2026-05-15 18:57:00.987 [info] [→3           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- api_server.py • starting...
+2026-05-15 18:57:00.992 [info] [←3       16ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- api_server.py • completed
+2026-05-15 18:57:01.053 [info] [→4           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- api_server.py • starting...
+2026-05-15 18:57:01.054 [info] [         42ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- api_server.py • completed
+2026-05-15 18:57:01.054 [info] [         60ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./api_server.py -- • completed
+2026-05-15 18:57:01.056 [info] [←4       16ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- api_server.py • completed
+2026-05-15 18:57:01.447 [info] [        421ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 18:57:20.629 [info] [         29ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- backtester.py • completed
+2026-05-15 18:57:20.641 [info] [→5           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- backtester.py • starting...
+2026-05-15 18:57:20.646 [info] [←5       16ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- backtester.py • completed
+2026-05-15 18:57:20.690 [info] [→6           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- backtester.py • starting...
+2026-05-15 18:57:20.691 [info] [         31ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- backtester.py • completed
+2026-05-15 18:57:20.691 [info] [         43ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./backtester.py -- • completed
+2026-05-15 18:57:20.692 [info] [←6       13ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- backtester.py • completed
+2026-05-15 18:57:21.084 [info] [        415ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 18:57:25.191 [info] [         35ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- SETUP.md • completed
+2026-05-15 18:57:25.202 [info] [→7           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md • starting...
+2026-05-15 18:57:25.343 [info] [←7      151ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md • completed
+2026-05-15 18:57:25.378 [info] [→8           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- SETUP.md • starting...
+2026-05-15 18:57:25.383 [info] [         37ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./SETUP.md -- • completed
+2026-05-15 18:57:25.397 [info] [←8       28ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- SETUP.md • completed
+2026-05-15 18:57:28.799 [info] [         34ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- SRS.md • completed
+2026-05-15 18:57:28.814 [info] [→9           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SRS.md • starting...
+2026-05-15 18:57:28.841 [info] [←9       39ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SRS.md • completed
+2026-05-15 18:57:28.892 [info] [→10          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- SRS.md • starting...
+2026-05-15 18:57:28.898 [info] [         43ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- SRS.md • completed
+2026-05-15 18:57:28.898 [info] [         57ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./SRS.md -- • completed
+2026-05-15 18:57:28.911 [info] [←10      31ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- SRS.md • completed
+2026-05-15 18:57:29.373 [info] [        508ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 18:57:32.245 [info] [         35ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- bot_config.json • completed
+2026-05-15 18:57:32.263 [info] [         17ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./bot_config.json -- • completed
+2026-05-15 18:57:43.422 [info] [         28ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .gitignore • completed
+2026-05-15 18:58:00.396 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- requirements.txt • completed
+2026-05-15 18:58:00.408 [info] [→11          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- requirements.txt • starting...
+2026-05-15 18:58:00.412 [info] [←11      15ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- requirements.txt • completed
+2026-05-15 18:58:00.448 [info] [→12          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- requirements.txt • starting...
+2026-05-15 18:58:00.449 [error] [         36ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./requirements.txt -- • FAILED
+Error: fatal: bad revision 'HEAD:./requirements.txt'
+2026-05-15 18:58:00.463 [error] [←12      25ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- requirements.txt • FAILED
+Error: fatal: no such path requirements.txt in HEAD
+2026-05-15 18:58:00.466 [info] [         40ms] [/home/dev/Documents/Dev/Tradingview] git status --porcelain=v2 --branch -u --find-renames -- • completed
+2026-05-15 18:58:00.496 [error] [         25ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D -n2 -L1,1:requirements.txt • FAILED
+Error: fatal: There is no path requirements.txt in the commit
+2026-05-15 19:01:01.547 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:01:01.558 [info] [         35ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:01:01.569 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 19:01:01.583 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(refname)%1D%(objectname)%1D%(*objectname)%1D%(creatordate:iso8601)%1D%(authordate:iso8601)%1D%(subject)%1D refs/tags/ • completed
+2026-05-15 19:01:13.165 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed • completed
+2026-05-15 19:01:13.178 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed 2026-05-15T15:01:13.152Z • completed
+2026-05-15 19:01:13.190 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-modified • completed
+2026-05-15 19:01:13.201 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-modified 2026-05-15T15:01:13.152Z • completed
+2026-05-15 19:01:59.581 [info] [         26ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .gitignore • completed
+2026-05-15 19:01:59.593 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-15 19:01:59.604 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-15 19:01:59.615 [info] [→13          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- .gitignore • starting...
+2026-05-15 19:01:59.671 [info] [←13      66ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- .gitignore • completed
+2026-05-15 19:01:59.683 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:01:59.694 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:01:59.716 [info] [         19ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19^ -- .gitignore • completed
+2026-05-15 19:02:00.405 [info] [        698ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- • completed
+2026-05-15 19:04:52.275 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:04:52.285 [info] [         33ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:04:52.299 [info] [         14ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 19:04:55.755 [info] [         17ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --quiet --verify REBASE_HEAD • completed
+2026-05-15 19:04:55.793 [info] [         35ms] [/home/dev/Documents/Dev/Tradingview] git branch -a --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:04:55.794 [error] [         36ms] [/home/dev/Documents/Dev/Tradingview] git merge-base 9e3e3f5c89cb53c22984d91996393edc6afdd087 HEAD • FAILED
+Error: Command failed with exit code 1
+2026-05-15 19:04:55.794 [info] [         37ms] [/home/dev/Documents/Dev/Tradingview] git tag --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:04:55.875 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:04:55.891 [error] [         14ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --abbrev-ref --symbolic-full-name @ @{u} -- • FAILED
+CancellationError: Operation cancelled; command=/usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --abbrev-ref --symbolic-full-name @ @{u} --
+2026-05-15 19:04:56.112 [error] [         15ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --abbrev-ref --symbolic-full-name @ @{u} -- • FAILED
+Error: fatal: HEAD does not point to a branch
+2026-05-15 19:04:56.126 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git log -n1 --format=%H -- • completed
+2026-05-15 19:04:56.139 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git log -n1 --format=%ct -- • completed
+2026-05-15 19:04:56.356 [info] [          9ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -z --unmerged • completed
+2026-05-15 19:04:56.454 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-15 19:04:56.465 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-15 19:04:56.477 [info] [→14          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap --no-walk --stdin -- • starting...
+2026-05-15 19:04:58.246 [info] [←14    1779ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap --no-walk --stdin -- • completed
+2026-05-15 19:05:20.592 [info] [         15ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --verify --end-of-options 9e3e3f5c89cb53c22984d91996393edc6afdd087^{commit} • completed
+2026-05-15 19:05:21.020 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --verify --end-of-options ed25519^{commit} • completed
+2026-05-15 19:05:21.992 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --verify --end-of-options ed25519^{commit} • completed
+2026-05-15 19:07:06.877 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -z --unmerged • completed
+2026-05-15 19:07:14.480 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:07:14.489 [info] [         32ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:07:14.501 [error] [         11ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --abbrev-ref --symbolic-full-name @ @{u} -- • FAILED
+Error: fatal: HEAD does not point to a branch
+2026-05-15 19:07:14.513 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git log -n1 --format=%H -- • completed
+2026-05-15 19:07:14.526 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git log -n1 --format=%ct -- • completed
+2026-05-15 19:07:14.538 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --verify --end-of-options ed25519^{commit} • completed
+2026-05-15 19:07:15.191 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --verify --end-of-options ed25519^{commit} • completed
+2026-05-15 19:07:19.438 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:07:19.451 [error] [         12ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --abbrev-ref --symbolic-full-name @ @{u} -- • FAILED
+Error: fatal: HEAD does not point to a branch
+2026-05-15 19:07:19.462 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git log -n1 --format=%H -- • completed
+2026-05-15 19:07:19.475 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git log -n1 --format=%ct -- • completed
+2026-05-15 19:07:25.749 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed • completed
+2026-05-15 19:07:25.761 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed 2026-05-15T15:07:25.737Z • completed
+2026-05-15 19:07:37.364 [error] [         45ms] [/home/dev/Documents/Dev/Tradingview] git rebase --continue • FAILED
+Error: Rebasing (2/3)error: The following untracked working tree files would be overwritten by merge:
+	dashboard/node_modules/.bin/baseline-browser-mapping
+	dashboard/node_modules/.bin/browserslist
+	dashboard/node_modules/.bin/crc32
+	dashboard/node_modules/.bin/esbuild
+	dashboard/node_modules/.bin/jsesc
+	dashboard/node_modules/.bin/json5
+	dashboard/node_modules/.bin/loose-envify
+	dashboard/node_modules/.bin/nanoid
+	dashboard/node_modules/.bin/parser
+	dashboard/node_modules/.bin/rollup
+	dashboard/node_modules/.bin/semver
+	dashboard/node_modules/.bin/update-browserslist-db
+	dashboard/node_modules/.bin/vite
+	dashboard/node_modules/.bin/xlsx
+	dashboard/node_modules/.package-lock.json
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js.map
+	dashboard/node_modules/.vite/deps/_metadata.json
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js.map
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js.map
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js.map
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js.map
+	dashboard/node_modules/.vite/deps/date-fns.js
+	dashboard/node_modules/.vite/deps/date-fns.js.map
+	dashboard/node_modules/.vite/deps/lightweight-charts.js
+	dashboard/node_modules/.vite/deps/lightweight-charts.js.map
+	dashboard/node_modules/.vite/deps/package.json
+	dashboard/node_modules/.vite/deps/papaparse.js
+	dashboard/node_modules/.vite/deps/papaparse.js.map
+	dashboard/node_modules/.vite/deps/react-dom.js
+	dashboard/node_modules/.vite/deps/react-dom.js.map
+	dashboard/node_modules/.vite/deps/react-dom_client.js
+	dashboard/node_modules/.vite/deps/react-dom_client.js.map
+	dashboard/node_modules/.vite/deps/react-router-dom.js
+	dashboard/node_modules/.vite/deps/react-router-dom.js.map
+	dashboard/node_modules/.vite/deps/react.js
+	dashboard/node_modules/.vite/deps/react.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js.map
+	dashboard/node_modules/.vite/deps/recharts.js
+	dashboard/node_modules/.vite/deps/recharts.js.map
+	dashboard/node_modules/.vite/deps/zustand.js
+	dashboard/node_modules/.vite/deps/zustand.js.map
+	dashboard/node_modules/@babel/code-frame/LICENSE
+	dashboard/node_modules/@babel/code-frame/README.md
+	dashboard/node_modules/@babel/code-frame/lib/index.js
+	dashboard/node_modules/@babel/code-frame/lib/index.js.map
+	dashboard/node_modules/@babel/code-frame/package.json
+	dashboard/node_modules/@babel/compat-data/LICENSE
+	dashboard/node_modules/@babel/compat-data/README.md
+	dashboard/node_modules/@babel/compat-data/corejs2-built-ins.js
+	dashboard/node_modules/@babel/compat-data/corejs3-shipped-proposals.js
+	dashboard/node_modules/@babel/compat-data/data/corejs2-built-ins.json
+	dashboard/node_modules/@babel/compat-data/data/corejs3-shipped-proposals.json
+	dashboard/node_modules/@babel/compat-data/data/native-modules.json
+	dashboard/node_modules/@babel/compat-data/data/overlapping-plugins.json
+	dashboard/node_modules/@babel/compat-data/data/plugin-bugfixes.json
+	dashboard/node_modules/@babel/compat-data/data/plugins.json
+	dashboard/node_modules/@babel/compat-data/native-modules.js
+	dashboard/node_modules/@babel/compat-data/overlapping-plugins.js
+	dashboard/node_modules/@babel/compat-data/package.json
+	dashboard/node_modules/@babel/compat-data/plugin-bugfixes.js
+	dashboard/node_modules/@babel/compat-data/plugins.js
+	dashboard/node_modules/@babel/core/LICENSE
+	dashboard/node_modules/@babel/core/README.md
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js.map
+	dashboard/node_modules/@babel/core/lib/config/caching.js
+	dashboard/node_modules/@babel/core/lib/config/caching.js.map
+	dashboard/node_modu
+Aborting
+hint: Could not execute the todo command
+hint:
+hint:     pick 9e3e3f5c89cb53c22984d91996393edc6afdd087 # First changes
+hint:
+hint: It has been rescheduled; To edit the command before continuing, please
+hint: edit the todo list first:
+hint:
+hint:     git rebase --edit-todo
+hint:     git rebase --continue
+2026-05-15 19:07:37.755 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --quiet --verify REBASE_HEAD • completed
+2026-05-15 19:07:37.789 [info] [         33ms] [/home/dev/Documents/Dev/Tradingview] git branch -a --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:37.790 [error] [         34ms] [/home/dev/Documents/Dev/Tradingview] git merge-base 9e3e3f5c89cb53c22984d91996393edc6afdd087 HEAD • FAILED
+Error: Command failed with exit code 1
+2026-05-15 19:07:37.791 [info] [         35ms] [/home/dev/Documents/Dev/Tradingview] git tag --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:38.005 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -z --unmerged • completed
+2026-05-15 19:07:41.960 [error] [         44ms] [/home/dev/Documents/Dev/Tradingview] git rebase --skip • FAILED
+Error: Rebasing (3/4)error: The following untracked working tree files would be overwritten by merge:
+	dashboard/node_modules/.bin/baseline-browser-mapping
+	dashboard/node_modules/.bin/browserslist
+	dashboard/node_modules/.bin/crc32
+	dashboard/node_modules/.bin/esbuild
+	dashboard/node_modules/.bin/jsesc
+	dashboard/node_modules/.bin/json5
+	dashboard/node_modules/.bin/loose-envify
+	dashboard/node_modules/.bin/nanoid
+	dashboard/node_modules/.bin/parser
+	dashboard/node_modules/.bin/rollup
+	dashboard/node_modules/.bin/semver
+	dashboard/node_modules/.bin/update-browserslist-db
+	dashboard/node_modules/.bin/vite
+	dashboard/node_modules/.bin/xlsx
+	dashboard/node_modules/.package-lock.json
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js.map
+	dashboard/node_modules/.vite/deps/_metadata.json
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js.map
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js.map
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js.map
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js.map
+	dashboard/node_modules/.vite/deps/date-fns.js
+	dashboard/node_modules/.vite/deps/date-fns.js.map
+	dashboard/node_modules/.vite/deps/lightweight-charts.js
+	dashboard/node_modules/.vite/deps/lightweight-charts.js.map
+	dashboard/node_modules/.vite/deps/package.json
+	dashboard/node_modules/.vite/deps/papaparse.js
+	dashboard/node_modules/.vite/deps/papaparse.js.map
+	dashboard/node_modules/.vite/deps/react-dom.js
+	dashboard/node_modules/.vite/deps/react-dom.js.map
+	dashboard/node_modules/.vite/deps/react-dom_client.js
+	dashboard/node_modules/.vite/deps/react-dom_client.js.map
+	dashboard/node_modules/.vite/deps/react-router-dom.js
+	dashboard/node_modules/.vite/deps/react-router-dom.js.map
+	dashboard/node_modules/.vite/deps/react.js
+	dashboard/node_modules/.vite/deps/react.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js.map
+	dashboard/node_modules/.vite/deps/recharts.js
+	dashboard/node_modules/.vite/deps/recharts.js.map
+	dashboard/node_modules/.vite/deps/zustand.js
+	dashboard/node_modules/.vite/deps/zustand.js.map
+	dashboard/node_modules/@babel/code-frame/LICENSE
+	dashboard/node_modules/@babel/code-frame/README.md
+	dashboard/node_modules/@babel/code-frame/lib/index.js
+	dashboard/node_modules/@babel/code-frame/lib/index.js.map
+	dashboard/node_modules/@babel/code-frame/package.json
+	dashboard/node_modules/@babel/compat-data/LICENSE
+	dashboard/node_modules/@babel/compat-data/README.md
+	dashboard/node_modules/@babel/compat-data/corejs2-built-ins.js
+	dashboard/node_modules/@babel/compat-data/corejs3-shipped-proposals.js
+	dashboard/node_modules/@babel/compat-data/data/corejs2-built-ins.json
+	dashboard/node_modules/@babel/compat-data/data/corejs3-shipped-proposals.json
+	dashboard/node_modules/@babel/compat-data/data/native-modules.json
+	dashboard/node_modules/@babel/compat-data/data/overlapping-plugins.json
+	dashboard/node_modules/@babel/compat-data/data/plugin-bugfixes.json
+	dashboard/node_modules/@babel/compat-data/data/plugins.json
+	dashboard/node_modules/@babel/compat-data/native-modules.js
+	dashboard/node_modules/@babel/compat-data/overlapping-plugins.js
+	dashboard/node_modules/@babel/compat-data/package.json
+	dashboard/node_modules/@babel/compat-data/plugin-bugfixes.js
+	dashboard/node_modules/@babel/compat-data/plugins.js
+	dashboard/node_modules/@babel/core/LICENSE
+	dashboard/node_modules/@babel/core/README.md
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js.map
+	dashboard/node_modules/@babel/core/lib/config/caching.js
+	dashboard/node_modules/@babel/core/lib/config/caching.js.map
+	dashboard/node_modu
+Aborting
+hint: Could not execute the todo command
+hint:
+hint:     pick 9e3e3f5c89cb53c22984d91996393edc6afdd087 # First changes
+hint:
+hint: It has been rescheduled; To edit the command before continuing, please
+hint: edit the todo list first:
+hint:
+hint:     git rebase --edit-todo
+hint:     git rebase --continue
+2026-05-15 19:07:42.352 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --quiet --verify REBASE_HEAD • completed
+2026-05-15 19:07:42.385 [info] [         32ms] [/home/dev/Documents/Dev/Tradingview] git branch -a --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:42.385 [error] [         33ms] [/home/dev/Documents/Dev/Tradingview] git merge-base 9e3e3f5c89cb53c22984d91996393edc6afdd087 HEAD • FAILED
+Error: Command failed with exit code 1
+2026-05-15 19:07:42.386 [info] [         33ms] [/home/dev/Documents/Dev/Tradingview] git tag --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:42.609 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -z --unmerged • completed
+2026-05-15 19:07:42.762 [error] [         42ms] [/home/dev/Documents/Dev/Tradingview] git rebase --skip • FAILED
+Error: Rebasing (4/5)error: The following untracked working tree files would be overwritten by merge:
+	dashboard/node_modules/.bin/baseline-browser-mapping
+	dashboard/node_modules/.bin/browserslist
+	dashboard/node_modules/.bin/crc32
+	dashboard/node_modules/.bin/esbuild
+	dashboard/node_modules/.bin/jsesc
+	dashboard/node_modules/.bin/json5
+	dashboard/node_modules/.bin/loose-envify
+	dashboard/node_modules/.bin/nanoid
+	dashboard/node_modules/.bin/parser
+	dashboard/node_modules/.bin/rollup
+	dashboard/node_modules/.bin/semver
+	dashboard/node_modules/.bin/update-browserslist-db
+	dashboard/node_modules/.bin/vite
+	dashboard/node_modules/.bin/xlsx
+	dashboard/node_modules/.package-lock.json
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js.map
+	dashboard/node_modules/.vite/deps/_metadata.json
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js.map
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js.map
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js.map
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js.map
+	dashboard/node_modules/.vite/deps/date-fns.js
+	dashboard/node_modules/.vite/deps/date-fns.js.map
+	dashboard/node_modules/.vite/deps/lightweight-charts.js
+	dashboard/node_modules/.vite/deps/lightweight-charts.js.map
+	dashboard/node_modules/.vite/deps/package.json
+	dashboard/node_modules/.vite/deps/papaparse.js
+	dashboard/node_modules/.vite/deps/papaparse.js.map
+	dashboard/node_modules/.vite/deps/react-dom.js
+	dashboard/node_modules/.vite/deps/react-dom.js.map
+	dashboard/node_modules/.vite/deps/react-dom_client.js
+	dashboard/node_modules/.vite/deps/react-dom_client.js.map
+	dashboard/node_modules/.vite/deps/react-router-dom.js
+	dashboard/node_modules/.vite/deps/react-router-dom.js.map
+	dashboard/node_modules/.vite/deps/react.js
+	dashboard/node_modules/.vite/deps/react.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js.map
+	dashboard/node_modules/.vite/deps/recharts.js
+	dashboard/node_modules/.vite/deps/recharts.js.map
+	dashboard/node_modules/.vite/deps/zustand.js
+	dashboard/node_modules/.vite/deps/zustand.js.map
+	dashboard/node_modules/@babel/code-frame/LICENSE
+	dashboard/node_modules/@babel/code-frame/README.md
+	dashboard/node_modules/@babel/code-frame/lib/index.js
+	dashboard/node_modules/@babel/code-frame/lib/index.js.map
+	dashboard/node_modules/@babel/code-frame/package.json
+	dashboard/node_modules/@babel/compat-data/LICENSE
+	dashboard/node_modules/@babel/compat-data/README.md
+	dashboard/node_modules/@babel/compat-data/corejs2-built-ins.js
+	dashboard/node_modules/@babel/compat-data/corejs3-shipped-proposals.js
+	dashboard/node_modules/@babel/compat-data/data/corejs2-built-ins.json
+	dashboard/node_modules/@babel/compat-data/data/corejs3-shipped-proposals.json
+	dashboard/node_modules/@babel/compat-data/data/native-modules.json
+	dashboard/node_modules/@babel/compat-data/data/overlapping-plugins.json
+	dashboard/node_modules/@babel/compat-data/data/plugin-bugfixes.json
+	dashboard/node_modules/@babel/compat-data/data/plugins.json
+	dashboard/node_modules/@babel/compat-data/native-modules.js
+	dashboard/node_modules/@babel/compat-data/overlapping-plugins.js
+	dashboard/node_modules/@babel/compat-data/package.json
+	dashboard/node_modules/@babel/compat-data/plugin-bugfixes.js
+	dashboard/node_modules/@babel/compat-data/plugins.js
+	dashboard/node_modules/@babel/core/LICENSE
+	dashboard/node_modules/@babel/core/README.md
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js.map
+	dashboard/node_modules/@babel/core/lib/config/caching.js
+	dashboard/node_modules/@babel/core/lib/config/caching.js.map
+	dashboard/node_modu
+Aborting
+hint: Could not execute the todo command
+hint:
+hint:     pick 9e3e3f5c89cb53c22984d91996393edc6afdd087 # First changes
+hint:
+hint: It has been rescheduled; To edit the command before continuing, please
+hint: edit the todo list first:
+hint:
+hint:     git rebase --edit-todo
+hint:     git rebase --continue
+2026-05-15 19:07:43.153 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --quiet --verify REBASE_HEAD • completed
+2026-05-15 19:07:43.186 [info] [         32ms] [/home/dev/Documents/Dev/Tradingview] git branch -a --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:43.187 [error] [         33ms] [/home/dev/Documents/Dev/Tradingview] git merge-base 9e3e3f5c89cb53c22984d91996393edc6afdd087 HEAD • FAILED
+Error: Command failed with exit code 1
+2026-05-15 19:07:43.187 [info] [         33ms] [/home/dev/Documents/Dev/Tradingview] git tag --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:43.273 [error] [         41ms] [/home/dev/Documents/Dev/Tradingview] git rebase --skip • FAILED
+Error: Rebasing (5/6)error: The following untracked working tree files would be overwritten by merge:
+	dashboard/node_modules/.bin/baseline-browser-mapping
+	dashboard/node_modules/.bin/browserslist
+	dashboard/node_modules/.bin/crc32
+	dashboard/node_modules/.bin/esbuild
+	dashboard/node_modules/.bin/jsesc
+	dashboard/node_modules/.bin/json5
+	dashboard/node_modules/.bin/loose-envify
+	dashboard/node_modules/.bin/nanoid
+	dashboard/node_modules/.bin/parser
+	dashboard/node_modules/.bin/rollup
+	dashboard/node_modules/.bin/semver
+	dashboard/node_modules/.bin/update-browserslist-db
+	dashboard/node_modules/.bin/vite
+	dashboard/node_modules/.bin/xlsx
+	dashboard/node_modules/.package-lock.json
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js.map
+	dashboard/node_modules/.vite/deps/_metadata.json
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js.map
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js.map
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js.map
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js.map
+	dashboard/node_modules/.vite/deps/date-fns.js
+	dashboard/node_modules/.vite/deps/date-fns.js.map
+	dashboard/node_modules/.vite/deps/lightweight-charts.js
+	dashboard/node_modules/.vite/deps/lightweight-charts.js.map
+	dashboard/node_modules/.vite/deps/package.json
+	dashboard/node_modules/.vite/deps/papaparse.js
+	dashboard/node_modules/.vite/deps/papaparse.js.map
+	dashboard/node_modules/.vite/deps/react-dom.js
+	dashboard/node_modules/.vite/deps/react-dom.js.map
+	dashboard/node_modules/.vite/deps/react-dom_client.js
+	dashboard/node_modules/.vite/deps/react-dom_client.js.map
+	dashboard/node_modules/.vite/deps/react-router-dom.js
+	dashboard/node_modules/.vite/deps/react-router-dom.js.map
+	dashboard/node_modules/.vite/deps/react.js
+	dashboard/node_modules/.vite/deps/react.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js.map
+	dashboard/node_modules/.vite/deps/recharts.js
+	dashboard/node_modules/.vite/deps/recharts.js.map
+	dashboard/node_modules/.vite/deps/zustand.js
+	dashboard/node_modules/.vite/deps/zustand.js.map
+	dashboard/node_modules/@babel/code-frame/LICENSE
+	dashboard/node_modules/@babel/code-frame/README.md
+	dashboard/node_modules/@babel/code-frame/lib/index.js
+	dashboard/node_modules/@babel/code-frame/lib/index.js.map
+	dashboard/node_modules/@babel/code-frame/package.json
+	dashboard/node_modules/@babel/compat-data/LICENSE
+	dashboard/node_modules/@babel/compat-data/README.md
+	dashboard/node_modules/@babel/compat-data/corejs2-built-ins.js
+	dashboard/node_modules/@babel/compat-data/corejs3-shipped-proposals.js
+	dashboard/node_modules/@babel/compat-data/data/corejs2-built-ins.json
+	dashboard/node_modules/@babel/compat-data/data/corejs3-shipped-proposals.json
+	dashboard/node_modules/@babel/compat-data/data/native-modules.json
+	dashboard/node_modules/@babel/compat-data/data/overlapping-plugins.json
+	dashboard/node_modules/@babel/compat-data/data/plugin-bugfixes.json
+	dashboard/node_modules/@babel/compat-data/data/plugins.json
+	dashboard/node_modules/@babel/compat-data/native-modules.js
+	dashboard/node_modules/@babel/compat-data/overlapping-plugins.js
+	dashboard/node_modules/@babel/compat-data/package.json
+	dashboard/node_modules/@babel/compat-data/plugin-bugfixes.js
+	dashboard/node_modules/@babel/compat-data/plugins.js
+	dashboard/node_modules/@babel/core/LICENSE
+	dashboard/node_modules/@babel/core/README.md
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js.map
+	dashboard/node_modules/@babel/core/lib/config/caching.js
+	dashboard/node_modules/@babel/core/lib/config/caching.js.map
+	dashboard/node_modu
+Aborting
+hint: Could not execute the todo command
+hint:
+hint:     pick 9e3e3f5c89cb53c22984d91996393edc6afdd087 # First changes
+hint:
+hint: It has been rescheduled; To edit the command before continuing, please
+hint: edit the todo list first:
+hint:
+hint:     git rebase --edit-todo
+hint:     git rebase --continue
+2026-05-15 19:07:43.404 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -z --unmerged • completed
+2026-05-15 19:07:43.622 [error] [         42ms] [/home/dev/Documents/Dev/Tradingview] git rebase --skip • FAILED
+Error: Rebasing (6/7)error: The following untracked working tree files would be overwritten by merge:
+	dashboard/node_modules/.bin/baseline-browser-mapping
+	dashboard/node_modules/.bin/browserslist
+	dashboard/node_modules/.bin/crc32
+	dashboard/node_modules/.bin/esbuild
+	dashboard/node_modules/.bin/jsesc
+	dashboard/node_modules/.bin/json5
+	dashboard/node_modules/.bin/loose-envify
+	dashboard/node_modules/.bin/nanoid
+	dashboard/node_modules/.bin/parser
+	dashboard/node_modules/.bin/rollup
+	dashboard/node_modules/.bin/semver
+	dashboard/node_modules/.bin/update-browserslist-db
+	dashboard/node_modules/.bin/vite
+	dashboard/node_modules/.bin/xlsx
+	dashboard/node_modules/.package-lock.json
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js.map
+	dashboard/node_modules/.vite/deps/_metadata.json
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js.map
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js.map
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js.map
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js.map
+	dashboard/node_modules/.vite/deps/date-fns.js
+	dashboard/node_modules/.vite/deps/date-fns.js.map
+	dashboard/node_modules/.vite/deps/lightweight-charts.js
+	dashboard/node_modules/.vite/deps/lightweight-charts.js.map
+	dashboard/node_modules/.vite/deps/package.json
+	dashboard/node_modules/.vite/deps/papaparse.js
+	dashboard/node_modules/.vite/deps/papaparse.js.map
+	dashboard/node_modules/.vite/deps/react-dom.js
+	dashboard/node_modules/.vite/deps/react-dom.js.map
+	dashboard/node_modules/.vite/deps/react-dom_client.js
+	dashboard/node_modules/.vite/deps/react-dom_client.js.map
+	dashboard/node_modules/.vite/deps/react-router-dom.js
+	dashboard/node_modules/.vite/deps/react-router-dom.js.map
+	dashboard/node_modules/.vite/deps/react.js
+	dashboard/node_modules/.vite/deps/react.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js.map
+	dashboard/node_modules/.vite/deps/recharts.js
+	dashboard/node_modules/.vite/deps/recharts.js.map
+	dashboard/node_modules/.vite/deps/zustand.js
+	dashboard/node_modules/.vite/deps/zustand.js.map
+	dashboard/node_modules/@babel/code-frame/LICENSE
+	dashboard/node_modules/@babel/code-frame/README.md
+	dashboard/node_modules/@babel/code-frame/lib/index.js
+	dashboard/node_modules/@babel/code-frame/lib/index.js.map
+	dashboard/node_modules/@babel/code-frame/package.json
+	dashboard/node_modules/@babel/compat-data/LICENSE
+	dashboard/node_modules/@babel/compat-data/README.md
+	dashboard/node_modules/@babel/compat-data/corejs2-built-ins.js
+	dashboard/node_modules/@babel/compat-data/corejs3-shipped-proposals.js
+	dashboard/node_modules/@babel/compat-data/data/corejs2-built-ins.json
+	dashboard/node_modules/@babel/compat-data/data/corejs3-shipped-proposals.json
+	dashboard/node_modules/@babel/compat-data/data/native-modules.json
+	dashboard/node_modules/@babel/compat-data/data/overlapping-plugins.json
+	dashboard/node_modules/@babel/compat-data/data/plugin-bugfixes.json
+	dashboard/node_modules/@babel/compat-data/data/plugins.json
+	dashboard/node_modules/@babel/compat-data/native-modules.js
+	dashboard/node_modules/@babel/compat-data/overlapping-plugins.js
+	dashboard/node_modules/@babel/compat-data/package.json
+	dashboard/node_modules/@babel/compat-data/plugin-bugfixes.js
+	dashboard/node_modules/@babel/compat-data/plugins.js
+	dashboard/node_modules/@babel/core/LICENSE
+	dashboard/node_modules/@babel/core/README.md
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js.map
+	dashboard/node_modules/@babel/core/lib/config/caching.js
+	dashboard/node_modules/@babel/core/lib/config/caching.js.map
+	dashboard/node_modu
+Aborting
+hint: Could not execute the todo command
+hint:
+hint:     pick 9e3e3f5c89cb53c22984d91996393edc6afdd087 # First changes
+hint:
+hint: It has been rescheduled; To edit the command before continuing, please
+hint: edit the todo list first:
+hint:
+hint:     git rebase --edit-todo
+hint:     git rebase --continue
+2026-05-15 19:07:43.670 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --quiet --verify REBASE_HEAD • completed
+2026-05-15 19:07:43.703 [info] [         32ms] [/home/dev/Documents/Dev/Tradingview] git branch -a --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:43.704 [error] [         33ms] [/home/dev/Documents/Dev/Tradingview] git merge-base 9e3e3f5c89cb53c22984d91996393edc6afdd087 HEAD • FAILED
+Error: Command failed with exit code 1
+2026-05-15 19:07:43.704 [info] [         33ms] [/home/dev/Documents/Dev/Tradingview] git tag --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:43.873 [error] [         43ms] [/home/dev/Documents/Dev/Tradingview] git rebase --skip • FAILED
+Error: Rebasing (7/8)error: The following untracked working tree files would be overwritten by merge:
+	dashboard/node_modules/.bin/baseline-browser-mapping
+	dashboard/node_modules/.bin/browserslist
+	dashboard/node_modules/.bin/crc32
+	dashboard/node_modules/.bin/esbuild
+	dashboard/node_modules/.bin/jsesc
+	dashboard/node_modules/.bin/json5
+	dashboard/node_modules/.bin/loose-envify
+	dashboard/node_modules/.bin/nanoid
+	dashboard/node_modules/.bin/parser
+	dashboard/node_modules/.bin/rollup
+	dashboard/node_modules/.bin/semver
+	dashboard/node_modules/.bin/update-browserslist-db
+	dashboard/node_modules/.bin/vite
+	dashboard/node_modules/.bin/xlsx
+	dashboard/node_modules/.package-lock.json
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js
+	dashboard/node_modules/.vite/deps/@tanstack_react-query.js.map
+	dashboard/node_modules/.vite/deps/_metadata.json
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js
+	dashboard/node_modules/.vite/deps/chunk-KBTYAULA.js.map
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js
+	dashboard/node_modules/.vite/deps/chunk-QCHXOAYK.js.map
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js
+	dashboard/node_modules/.vite/deps/chunk-RPCDYKBN.js.map
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js
+	dashboard/node_modules/.vite/deps/chunk-WOOG5QLI.js.map
+	dashboard/node_modules/.vite/deps/date-fns.js
+	dashboard/node_modules/.vite/deps/date-fns.js.map
+	dashboard/node_modules/.vite/deps/lightweight-charts.js
+	dashboard/node_modules/.vite/deps/lightweight-charts.js.map
+	dashboard/node_modules/.vite/deps/package.json
+	dashboard/node_modules/.vite/deps/papaparse.js
+	dashboard/node_modules/.vite/deps/papaparse.js.map
+	dashboard/node_modules/.vite/deps/react-dom.js
+	dashboard/node_modules/.vite/deps/react-dom.js.map
+	dashboard/node_modules/.vite/deps/react-dom_client.js
+	dashboard/node_modules/.vite/deps/react-dom_client.js.map
+	dashboard/node_modules/.vite/deps/react-router-dom.js
+	dashboard/node_modules/.vite/deps/react-router-dom.js.map
+	dashboard/node_modules/.vite/deps/react.js
+	dashboard/node_modules/.vite/deps/react.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-dev-runtime.js.map
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js
+	dashboard/node_modules/.vite/deps/react_jsx-runtime.js.map
+	dashboard/node_modules/.vite/deps/recharts.js
+	dashboard/node_modules/.vite/deps/recharts.js.map
+	dashboard/node_modules/.vite/deps/zustand.js
+	dashboard/node_modules/.vite/deps/zustand.js.map
+	dashboard/node_modules/@babel/code-frame/LICENSE
+	dashboard/node_modules/@babel/code-frame/README.md
+	dashboard/node_modules/@babel/code-frame/lib/index.js
+	dashboard/node_modules/@babel/code-frame/lib/index.js.map
+	dashboard/node_modules/@babel/code-frame/package.json
+	dashboard/node_modules/@babel/compat-data/LICENSE
+	dashboard/node_modules/@babel/compat-data/README.md
+	dashboard/node_modules/@babel/compat-data/corejs2-built-ins.js
+	dashboard/node_modules/@babel/compat-data/corejs3-shipped-proposals.js
+	dashboard/node_modules/@babel/compat-data/data/corejs2-built-ins.json
+	dashboard/node_modules/@babel/compat-data/data/corejs3-shipped-proposals.json
+	dashboard/node_modules/@babel/compat-data/data/native-modules.json
+	dashboard/node_modules/@babel/compat-data/data/overlapping-plugins.json
+	dashboard/node_modules/@babel/compat-data/data/plugin-bugfixes.json
+	dashboard/node_modules/@babel/compat-data/data/plugins.json
+	dashboard/node_modules/@babel/compat-data/native-modules.js
+	dashboard/node_modules/@babel/compat-data/overlapping-plugins.js
+	dashboard/node_modules/@babel/compat-data/package.json
+	dashboard/node_modules/@babel/compat-data/plugin-bugfixes.js
+	dashboard/node_modules/@babel/compat-data/plugins.js
+	dashboard/node_modules/@babel/core/LICENSE
+	dashboard/node_modules/@babel/core/README.md
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js
+	dashboard/node_modules/@babel/core/lib/config/cache-contexts.js.map
+	dashboard/node_modules/@babel/core/lib/config/caching.js
+	dashboard/node_modules/@babel/core/lib/config/caching.js.map
+	dashboard/node_modu
+Aborting
+hint: Could not execute the todo command
+hint:
+hint:     pick 9e3e3f5c89cb53c22984d91996393edc6afdd087 # First changes
+hint:
+hint: It has been rescheduled; To edit the command before continuing, please
+hint: edit the todo list first:
+hint:
+hint:     git rebase --edit-todo
+hint:     git rebase --continue
+2026-05-15 19:07:43.939 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -z --unmerged • completed
+2026-05-15 19:07:44.263 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --quiet --verify REBASE_HEAD • completed
+2026-05-15 19:07:44.296 [info] [         32ms] [/home/dev/Documents/Dev/Tradingview] git branch -a --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:44.296 [error] [         32ms] [/home/dev/Documents/Dev/Tradingview] git merge-base 9e3e3f5c89cb53c22984d91996393edc6afdd087 HEAD • FAILED
+Error: Command failed with exit code 1
+2026-05-15 19:07:44.297 [info] [         33ms] [/home/dev/Documents/Dev/Tradingview] git tag --format=%(refname:short) --points-at=7f518f181c068d109eba374b3d69149d1bb6aef1 • completed
+2026-05-15 19:07:44.514 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -z --unmerged • completed
+2026-05-15 19:07:45.057 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .gitignore • completed
+2026-05-15 19:07:45.067 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-15 19:07:45.076 [info] [          8ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-15 19:07:45.086 [info] [→15          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- .gitignore • starting...
+2026-05-15 19:07:45.142 [info] [←15      65ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- .gitignore • completed
+2026-05-15 19:07:45.157 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:07:45.169 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:07:45.194 [info] [         22ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19^ -- .gitignore • completed
+2026-05-15 19:07:45.870 [info] [        688ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- • completed
+2026-05-15 19:07:47.405 [info] [         22ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:07:47.406 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 19:07:58.638 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:07:58.649 [info] [         34ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:10:15.028 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:10:15.042 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed • completed
+2026-05-15 19:10:15.053 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-modified • completed
+2026-05-15 19:10:15.068 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-modified 2026-05-15T15:10:15.029Z • completed
+2026-05-15 19:12:04.451 [info] [         29ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- trades.log • completed
+2026-05-15 19:12:05.429 [info] [         16ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- trades.json • completed
+2026-05-15 19:12:08.733 [info] [         27ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- requirements.txt • completed
+2026-05-15 19:12:08.746 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-15 19:12:08.771 [info] [         24ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-15 19:12:08.783 [info] [→16          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- requirements.txt • starting...
+2026-05-15 19:12:08.838 [info] [←16      66ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- requirements.txt • completed
+2026-05-15 19:12:08.854 [info] [         15ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./requirements.txt -- • completed
+2026-05-15 19:12:08.876 [info] [         14ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:12:08.890 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:12:08.918 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19^ -- requirements.txt • completed
+2026-05-15 19:12:09.655 [info] [        750ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- • completed
+2026-05-15 19:12:11.439 [info] [         14ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- SETUP.md • completed
+2026-05-15 19:12:11.468 [info] [→17          ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md • starting...
+2026-05-15 19:12:11.487 [info] [←17      30ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md • completed
+2026-05-15 19:12:11.540 [info] [         40ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- SETUP.md • completed
+2026-05-15 19:12:11.541 [info] [         53ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./SETUP.md -- • completed
+2026-05-15 19:12:11.912 [info] [        401ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 19:17:31.028 [info] [         30ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- trades.log • completed
+2026-05-15 19:26:28.567 [info] [         16ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- .git/COMMIT_EDITMSG • completed
+2026-05-15 19:26:28.582 [info] [         14ms] [/home/dev/Documents/Dev/Tradingview/.git] git ls-files -- COMMIT_EDITMSG • completed
+2026-05-15 19:27:45.661 [info] [         39ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:27:46.052 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:27:46.097 [info] [         31ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:28:26.995 [error] [          9ms] [/home/dev/Documents/Dev/Tradingview/.git] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • FAILED
+Error: fatal: this operation must be run in a work tree
+2026-05-15 19:28:26.995 [info] [          7ms] [/home/dev/Documents/Dev/Tradingview/.git] git rev-parse --is-bare-repository • completed
+2026-05-15 19:28:27.007 [info] [         18ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:28:27.512 [info] [         41ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:28:27.527 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:28:37.137 [info] [         43ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:28:37.249 [info] [         21ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:28:37.300 [info] [          8ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:28:37.314 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:28:45.639 [info] [         36ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:28:45.877 [info] [         23ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:28:45.888 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:29:20.842 [info] [         24ms] [/home/dev/Documents/Dev/Tradingview] git rev-list --max-parents=0 HEAD -- • completed
+2026-05-15 19:29:20.844 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git shortlog -s --all --no-min-parents --since=1.year.ago • completed
+2026-05-15 19:31:15.674 [info] [         21ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:31:15.674 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 19:31:15.687 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed • completed
+2026-05-15 19:31:15.699 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.main.gk-last-accessed 2026-05-15T15:31:15.677Z • completed
+2026-05-15 19:34:08.937 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- README.md • completed
+2026-05-15 19:34:19.800 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:34:19.811 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:35:46.501 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:36:47.327 [info] [         21ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:36:47.339 [info] [         33ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:36:47.351 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 19:36:47.363 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-accessed • completed
+2026-05-15 19:36:47.375 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-accessed 2026-05-15T15:36:47.352Z • completed
+2026-05-15 19:36:47.386 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-modified • completed
+2026-05-15 19:36:47.398 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-modified 2026-05-15T15:36:47.352Z • completed
+2026-05-15 19:37:20.057 [info] [         16ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- dashboard/src/pages/AnalysisChart.jsx • completed
+2026-05-15 19:37:20.087 [info] [         27ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-15 19:37:20.101 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-15 19:37:20.113 [info] [→1           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- dashboard/src/pages/AnalysisChart.jsx • starting...
+2026-05-15 19:37:20.198 [info] [←1       95ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- dashboard/src/pages/AnalysisChart.jsx • completed
+2026-05-15 19:37:20.292 [info] [→2           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- dashboard/src/pages/AnalysisChart.jsx • starting...
+2026-05-15 19:37:20.293 [info] [         68ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19^ -- dashboard/src/pages/AnalysisChart.jsx • completed
+2026-05-15 19:37:20.294 [info] [         94ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./dashboard/src/pages/AnalysisChart.jsx -- • completed
+2026-05-15 19:37:20.374 [info] [←2       92ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- dashboard/src/pages/AnalysisChart.jsx • completed
+2026-05-15 19:37:21.017 [info] [        780ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- • completed
+2026-05-15 19:37:23.800 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- dashboard/src/pages/Trades.jsx • completed
+2026-05-15 19:37:23.828 [info] [→3           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- dashboard/src/pages/Trades.jsx • starting...
+2026-05-15 19:37:23.922 [info] [←3      104ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- dashboard/src/pages/Trades.jsx • completed
+2026-05-15 19:37:23.979 [info] [→4           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- dashboard/src/pages/Trades.jsx • starting...
+2026-05-15 19:37:23.981 [info] [         42ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19^ -- dashboard/src/pages/Trades.jsx • completed
+2026-05-15 19:37:23.981 [info] [         58ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./dashboard/src/pages/Trades.jsx -- • completed
+2026-05-15 19:37:24.063 [info] [←4       95ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- dashboard/src/pages/Trades.jsx • completed
+2026-05-15 19:37:24.695 [info] [        745ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- • completed
+2026-05-15 19:37:28.134 [info] [         27ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- dashboard/src/components/LWChart.jsx • completed
+2026-05-15 19:37:28.153 [info] [         18ms] [/home/dev/Documents/Dev/Tradingview/dashboard/src/components] git ls-files -- LWChart.jsx • completed
+2026-05-15 19:37:28.270 [info] [         22ms] [/home/dev/Documents/Dev/Tradingview/dashboard/src/components] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:37:55.499 [info] [         21ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- dashboard/index.html • completed
+2026-05-15 19:37:55.509 [info] [→5           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- dashboard/index.html • starting...
+2026-05-15 19:37:55.544 [info] [←5       43ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- dashboard/index.html • completed
+2026-05-15 19:37:55.620 [info] [→6           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- dashboard/index.html • starting...
+2026-05-15 19:37:55.622 [info] [         65ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- dashboard/index.html • completed
+2026-05-15 19:37:55.622 [info] [         77ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./dashboard/index.html -- • completed
+2026-05-15 19:37:55.624 [info] [←6       14ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 HEAD -- dashboard/index.html • completed
+2026-05-15 19:37:56.025 [info] [        456ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 19:38:14.108 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:38:14.130 [info] [         21ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:38:14.141 [info] [         10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed
+2026-05-15 19:38:15.298 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ • completed
+2026-05-15 19:38:15.298 [info] [         24ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed
+2026-05-15 19:38:15.311 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-accessed • completed
+2026-05-15 19:40:42.812 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-modified • completed
+2026-05-15 19:43:11.219 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(refname)%1D%(objectname)%1D%(*objectname)%1D%(creatordate:iso8601)%1D%(authordate:iso8601)%1D%(subject)%1D refs/tags/ • completed
+2026-05-15 19:46:02.850 [info] [         15ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- SETUP.md • completed
+2026-05-15 19:46:02.901 [info] [         49ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ • completed
+2026-05-15 19:46:02.933 [info] [         31ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> • completed
+2026-05-15 19:46:02.944 [info] [→7           ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md • starting...
+2026-05-15 19:46:02.958 [info] [←7       24ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md • completed
+2026-05-15 19:46:02.997 [info] [         25ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D --summary -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087^ -- SETUP.md • completed
+2026-05-15 19:46:02.998 [info] [         39ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./SETUP.md -- • completed
+2026-05-15 19:46:03.385 [info] [        403ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9e3e3f5c89cb53c22984d91996393edc6afdd087 -- • completed
+2026-05-15 19:46:17.823 [info] [        806ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- • completed
+2026-05-15 19:46:28.946 [info] [         12ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:46:36.144 [info] [         13ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ • completed

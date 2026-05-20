@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src {{CSP_SOURCE}} 'unsafe-inline'; script-src 'nonce-{{NONCE}}'; img-src {{CSP_SOURCE}};">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureCoder Onboarding</title>
+  <link href="{{ONBOARDING_CSS_URI}}" rel="stylesheet" />
+</head>
+<body>
+  <div class="shell">
+
+
+    <!-- Slide track -->
+    <div class="slides">
+      <div class="slide-track" id="track">
+
+        <!-- -- SLIDE 0: Welcome -- -->
+        <div class="slide">
+          <div class="hero-icon">&#x1F6E1;&#xFE0F;</div>
+          <h1>Welcome to SecureCoder</h1>
+          <p class="tagline">Your AI security companion - finds vulnerabilities as you code and fixes them with your AI agent.</p>
+
+          <div class="feature-grid">
+            <div class="feature-card">
+              <span class="feature-icon">&#x1F50D;</span>
+              <div class="feature-title">Continuous Scanning</div>
+              <div class="feature-desc">Scans your files in real time as you type and save, surfacing issues the moment they appear.</div>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">&#x26A0;&#xFE0F;</span>
+              <div class="feature-title">Inline Warnings</div>
+              <div class="feature-desc">Findings appear as red squiggles, CodeLens links, and hover tooltips - right in the editor.</div>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">&#x2728;</span>
+              <div class="feature-title">AI-Powered Fixes</div>
+              <div class="feature-desc">Send any finding to your agent to generate and apply a secure patch automatically.</div>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">&#x1F4CA;</span>
+              <div class="feature-title">Security Dashboard</div>
+              <div class="feature-desc">A sidebar view groups all findings by severity across your entire workspace or the active file.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- -- SLIDE 1: How it works -- -->
+        <div class="slide">
+          <div class="hero-icon">&#x2699;&#xFE0F;</div>
+          <h1>How It Works</h1>
+          <p class="tagline">SecureCoder integrates seamlessly into your editor workflow - nothing changes about how you write code.</p>
+
+          <div class="how-list">
+            <div class="how-item">
+              <div class="how-number">1</div>
+              <div class="how-content">
+                <div class="how-title">Scan as you code</div>
+                <div class="how-desc">Every time you edit or save a file, SecureCoder runs a security scan in the background and highlights any issues it finds.</div>
+              </div>
+            </div>
+            <div class="how-item">
+              <div class="how-number">2</div>
+              <div class="how-content">
+                <div class="how-title">Understand the finding</div>
+                <div class="how-desc">Click a warning to open a detail panel with the vulnerability description, severity, and relevant Common Weakness Enumeration (CWE) references.</div>
+              </div>
+            </div>
+            <div class="how-item">
+              <div class="how-number">3</div>
+              <div class="how-content">
+                <div class="how-title">Fix with your agent</div>
+                <div class="how-desc">Use <strong>Fix with SecureCoder</strong> on a single finding, or <strong>Fix N Issues</strong> from the dashboard to send a batch to your AI agent for remediation.</div>
+              </div>
+            </div>
+            <div class="how-item">
+              <div class="how-number">4</div>
+              <div class="how-content">
+                <div class="how-title">Dismiss irrelevant findings</div>
+                <div class="how-desc">Use <strong>Ignore</strong> on any finding to suppress it. Review and restore ignored findings at any time from the dashboard.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- -- SLIDE 2: Scanner setup -- -->
+        <div class="slide">
+          <div class="hero-icon">&#x1F527;</div>
+          <h1>{{SCANNER_SLIDE_TITLE}}</h1>
+          <p class="tagline">{{SCANNER_SLIDE_SUBTITLE}}</p>
+
+          <div class="scanner-options">
+            <div class="scanner-card" id="card-semgrep" data-scanner="semgrep">
+              <div class="scanner-logo">&#x1F50E;</div>
+              <div class="scanner-info">
+                <div class="scanner-name">Built-in Scanner</div>
+                <div class="scanner-desc">Works out of the box with no additional setup. Ideal for individual developers and teams not using Wiz.</div>
+              </div>
+              <div class="scanner-badge">Selected</div>
+            </div>
+
+            <div class="scanner-card" id="card-wiz" data-scanner="wiz">
+              <div class="scanner-logo wiz-logo-bg">
+                <img src="{{WIZ_LOGO_URI}}" alt="Wiz">
+              </div>
+              <div class="scanner-info">
+                <div class="scanner-name">Wiz Code</div>
+                <div class="scanner-desc">Recommended if your org uses Wiz. Leverages your existing Wiz cloud security policies for consistent coverage.</div>
+              </div>
+              <div class="scanner-badge">Selected</div>
+            </div>
+          </div>
+
+          <!-- Data-sharing notice for Wiz -->
+          <div class="data-notice data-notice-wiz hidden" id="notice-wiz">
+            <div class="data-notice-title"><span class="notice-icon">&#x26A0;&#xFE0F;</span> Data Sharing Notice</div>
+            <div class="data-notice-body">
+              Wiz Code collects host information, scanned filenames and paths, limited code samples, and dependency manifests. Scan results are returned to and stored with Wiz. If you authenticate with a Wiz account, your name and email are also shared.
+            </div>
+            <div class="acknowledge-row">
+              <input type="checkbox" id="wiz-acknowledge" />
+              <label for="wiz-acknowledge">I understand and agree that my code will be shared with Wiz</label>
+            </div>
+          </div>
+
+          <!-- Reassurance notice for built-in scanner -->
+          <div class="data-notice data-notice-builtin hidden" id="notice-builtin">
+            <div class="data-notice-title"><span class="notice-icon">&#x2705;</span> No Additional Data Sharing</div>
+            <div class="data-notice-body">
+              The built-in scanner runs entirely on your local machine. No code or data is sent to any third-party service.
+            </div>
+          </div>
+        </div>
+
+        <!-- -- SLIDE 3: Configure Files to Ignore -- -->
+        <div class="slide">
+          <img class="hero-shield" src="{{SHIELD_URI}}" alt="SecureCoder">
+          <h1>Exclude Files from Scanning</h1>
+          <p class="tagline">Edit the patterns below to tell SecureCoder which files to skip. Each line is a glob pattern, just like <code>.gitignore</code>. Your changes are saved automatically when you finish setup.</p>
+
+          <div class="editor-sim">
+            <div class="editor-header">
+              <div class="editor-tab">
+                <span>.securecoderignore</span>
+                <span class="close-icon editor-close-icon">&#10006;</span>
+              </div>
+            </div>
+            <div class="editor-body">
+              <div class="line-numbers" id="line-numbers">
+                1<br>2<br>3<br>4<br>5<br>6
+              </div>
+              <textarea class="ignore-textarea editor-textarea" id="ignore-patterns-textarea" spellcheck="false">{{IGNORE_PATTERNS}}</textarea>
+            </div>
+          </div>
+          <div class="ignore-hints">
+            <span>- Each line is a glob matched against the full file path</span>
+            <span>- Lines starting with <code>#</code> are comments and are ignored</span>
+            <span>- You can edit this later via the &#9881;&#65039; button in the dashboard</span>
+          </div>
+        </div>
+
+      </div><!-- /slide-track -->
+    </div><!-- /slides -->
+
+    <!-- Navigation -->
+    <div class="nav" id="nav">
+      <!-- Step indicator -->
+      <div class="step-dots" id="dots">
+        <div class="dot active" id="dot-0"></div>
+        <div class="dot" id="dot-1"></div>
+        <div class="dot" id="dot-2"></div>
+        <div class="dot" id="dot-3"></div>
+      </div>
+      <button class="btn btn-skip" id="btn-skip">Skip Onboarding</button>
+      <button class="btn btn-back" id="btn-back" disabled>Back</button>
+      <button class="btn btn-next" id="btn-next">Next</button>
+    </div>
+
+  </div><!-- /shell -->
+
+  <script nonce="{{NONCE}}">
+    const vscode = acquireVsCodeApi();
+
+    const isChangeScanner = {{IS_CHANGE_SCANNER}};
+    const TOTAL_SLIDES = isChangeScanner ? 3 : 4;
+    let currentSlide = 0;
+
+    if (isChangeScanner) {
+      const dots = document.getElementById('dots');
+      if (dots) dots.style.display = 'none';
+      const btnSkip = document.getElementById('btn-skip');
+      if (btnSkip) btnSkip.style.display = 'none';
+    }
+    let selectedScanner = '{{CURRENT_SCANNER}}'; // Pre-select the currently configured scanner
+    let wizAcknowledged = (selectedScanner === 'wiz');
+    const ignoreTextarea = document.getElementById('ignore-patterns-textarea');
+    const lineNumbers = document.getElementById('line-numbers');
+
+    // Sync scroll position of line-numbers gutter to textarea
+    function syncScroll() {
+      if (!ignoreTextarea || !lineNumbers) return;
+      lineNumbers.scrollTop = ignoreTextarea.scrollTop;
+    }
+
+    function updateLineNumbers() {
+      if (!ignoreTextarea || !lineNumbers) return;
+      const lineCount = ignoreTextarea.value.split('\n').length;
+      let html = '';
+      for (let i = 1; i <= lineCount; i++) {
+        html += i + '<br>';
+      }
+      lineNumbers.innerHTML = html;
+      syncScroll();
+    }
+
+    if (ignoreTextarea) {
+      ignoreTextarea.addEventListener('input', updateLineNumbers);
+      ignoreTextarea.addEventListener('scroll', syncScroll);
+      updateLineNumbers(); // Initialise immediately from pre-filled content
+    }
+
+    const track = document.getElementById('track');
+    const btnBack = document.getElementById('btn-back');
+    const btnNext = document.getElementById('btn-next');
+    const btnSkip = document.getElementById('btn-skip');
+    const noticeWiz = document.getElementById('notice-wiz');
+    const noticeBuiltin = document.getElementById('notice-builtin');
+    const wizCheckbox = document.getElementById('wiz-acknowledge');
+
+    // -- Scanner card selection ----------------------------------------------
+    document.querySelectorAll('.scanner-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const newScanner = card.getAttribute('data-scanner');
+        if (newScanner === selectedScanner) return;
+
+        document.querySelectorAll('.scanner-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedScanner = newScanner;
+        syncDataNotices();
+        syncNav();
+      });
+    });
+
+    // -- Wiz acknowledgement checkbox ----------------------------------------
+    wizCheckbox.addEventListener('change', () => {
+      wizAcknowledged = wizCheckbox.checked;
+      syncNav();
+    });
+
+    // -- Data-sharing notices ------------------------------------------------
+    function syncDataNotices(isInit = false) {
+      if (selectedScanner === 'wiz') {
+        noticeWiz.classList.remove('hidden');
+        noticeBuiltin.classList.add('hidden');
+        if (!isInit) {
+          // Reset acknowledgement when switching to Wiz
+          wizAcknowledged = false;
+          wizCheckbox.checked = false;
+        } else {
+          wizCheckbox.checked = wizAcknowledged;
+        }
+      } else if (selectedScanner === 'semgrep') {
+        noticeWiz.classList.add('hidden');
+        noticeBuiltin.classList.remove('hidden');
+        wizAcknowledged = false;
+        wizCheckbox.checked = false;
+      } else {
+        noticeWiz.classList.add('hidden');
+        noticeBuiltin.classList.add('hidden');
+      }
+    }
+
+    // -- Dot rendering -------------------------------------------------------
+    function syncDots() {
+      for (let i = 0; i < TOTAL_SLIDES; i++) {
+        const d = document.getElementById('dot-' + i);
+        if (!d) continue;
+        d.className = 'dot' + (i < currentSlide ? ' done' : i === currentSlide ? ' active' : '');
+      }
+    }
+
+    // -- Nav state -----------------------------------------------------------
+    function syncNav() {
+      const isLast = currentSlide === TOTAL_SLIDES - 1;
+
+      // Back
+      btnBack.disabled = currentSlide === 0;
+
+      // Next / Get started
+      if (isLast) {
+        btnNext.textContent = '{{FINAL_BTN_LABEL}}';
+        if (selectedScanner === null) {
+          btnNext.disabled = true;
+        } else if (selectedScanner === 'wiz') {
+          // Wiz requires explicit acknowledgement of data sharing
+          btnNext.disabled = !wizAcknowledged;
+        } else {
+          // Built-in scanner: no acknowledgement needed
+          btnNext.disabled = false;
+        }
+      } else {
+        btnNext.textContent = 'Next';
+        btnNext.disabled = false;
+      }
+
+      // Skip: hide on last slide
+      btnSkip.style.display = isLast ? 'none' : '';
+    }
+
+    // -- Navigation ----------------------------------------------------------
+    function goTo(index) {
+      currentSlide = Math.max(0, Math.min(TOTAL_SLIDES - 1, index));
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      syncDots();
+      syncNav();
+    }
+
+    btnNext.addEventListener('click', () => {
+      if (currentSlide < TOTAL_SLIDES - 1) {
+        goTo(currentSlide + 1);
+      } else {
+        // Final step - dispatch scanner selection and ignore patterns
+        const patterns = ignoreTextarea ? ignoreTextarea.value : '';
+        vscode.postMessage({ type: 'selectScanner', scanner: selectedScanner });
+        vscode.postMessage({ type: 'saveIgnorePatterns', patterns });
+      }
+    });
+
+    btnBack.addEventListener('click', () => {
+      goTo(currentSlide - 1);
+    });
+
+    btnSkip.addEventListener('click', () => {
+      // Jump straight to the scanner selection slide
+      goTo(TOTAL_SLIDES - 1);
+    });
+
+    // -- Init -----------------------------------------------------------------
+    // Apply the pre-selected scanner card (mirrors the currently configured backend).
+    const preselectedCard = document.getElementById('card-' + selectedScanner);
+    if (preselectedCard) {
+      document.querySelectorAll('.scanner-card').forEach(c => c.classList.remove('selected'));
+      preselectedCard.classList.add('selected');
+    }
+    syncDataNotices(true); // Ensure the correct data-sharing notice is shown on load
+    goTo({{INITIAL_SLIDE}});
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+2026-05-15 17:08:34.031 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-15 17:08:34.031 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|daf532c9-a12e-4d1b-9290-36f5ef9c0aa51778850510537)
+2026-05-15 17:08:34.031 [info]    [            1] GitLens v17.12.2 activated [88ms]
+2026-05-15 17:08:34.031 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [52ms]
+2026-05-15 17:08:34.031 [info]    [   6e →    94] GlCliGitProvider.repositorySearch(/home/dev/.opencode) searching (depth=1)...
+2026-05-15 17:08:34.031 [info]    [GIT      34ms] [/home/dev/.opencode] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [34ms]
+2026-05-15 17:08:34.031 [info]    [   6e →    94] GlCliGitProvider.repositorySearch(/home/dev/.opencode) found root repository in '/home/dev'
+2026-05-15 17:08:34.039 [info]    [IPC          ] Server started on http://127.0.0.1:37965
+2026-05-15 17:08:34.112 [info]    [GIT      29ms] [/home/dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [29ms]
+2026-05-15 17:08:34.137 [info]    [GIT       7ms] [/home/dev] git remote -v [7ms]
+2026-05-15 17:08:34.145 [info]    [GIT       7ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote [7ms]
+2026-05-15 17:08:56.289 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-15 17:08:56.289 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|9a8b5bf5-03f7-4b81-b13a-b4509a3d66c51778850534503)
+2026-05-15 17:08:56.289 [info]    [            1] GitLens v17.12.2 activated [86ms]
+2026-05-15 17:08:56.289 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [49ms]
+2026-05-15 17:08:56.289 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) searching (depth=1)...
+2026-05-15 17:08:56.289 [info]    [GIT      41ms] [/home/dev/Documents/Dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [41ms]
+2026-05-15 17:08:56.289 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) found root repository in '/home/dev'
+2026-05-15 17:08:56.342 [info]    [IPC          ] Server started on http://127.0.0.1:34833
+2026-05-15 17:08:56.936 [info]    [GIT      17ms] [/home/dev] git remote -v [17ms]
+2026-05-15 17:08:57.003 [info]    [GIT      41ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote [41ms]
+2026-05-15 17:09:31.326 [info]    [GIT      21ms] [/home/dev] git rev-list --max-parents=0 HEAD -- [21ms]
+2026-05-15 17:09:31.327 [info]    [GIT      21ms] [/home/dev] git shortlog -s --all --no-min-parents --since=1.year.ago [21ms]

@@ -1,0 +1,28 @@
+2026-05-17 16:51:59.741 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 16:51:59.741 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|04eb6852-d15d-4ae9-ba96-ca381ac477dc1779022316624)
+2026-05-17 16:51:59.741 [info]    [            1] GitLens v17.12.2 activated [107ms]
+2026-05-17 16:51:59.741 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [133ms]
+2026-05-17 16:51:59.741 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/AI_Workflow) searching (depth=1)...
+2026-05-17 16:51:59.741 [info]    [GIT     103ms] [/home/dev/AI_Workflow] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [103ms]
+2026-05-17 16:51:59.741 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/AI_Workflow) found root repository in '/home/dev/AI_Workflow'
+2026-05-17 16:51:59.756 [info]    [IPC          ] Server started on http://127.0.0.1:35853
+2026-05-17 16:52:00.281 [warning] [    c →     d] ServerConnection.fetch(url=https://configs.gitkraken.dev/gitlens/product.json, options=undefined) completed [*1650ms] (slow)
+2026-05-17 16:52:00.281 [warning] [    b →     c] ServerConnection.fetchGkConfig(path=product.json, options=undefined) completed [*1651ms] (slow)
+2026-05-17 16:52:00.288 [info]    [GIT      44ms] [/home/dev/AI_Workflow] git remote -v [44ms]
+2026-05-17 16:52:00.314 [info]    [GIT      22ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config gk.defaultRemote [22ms]
+2026-05-17 16:52:12.667 [info]    [GIT      16ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ [16ms]
+2026-05-17 16:52:12.668 [info]    [GIT       8ms] [/home/dev/AI_Workflow] git config --get-regex -f /home/dev/AI_Workflow/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ [8ms]
+2026-05-17 16:52:12.677 [info]    [GIT       8ms] [/home/dev/AI_Workflow] git for-each-ref --format=%1E%(refname)%1D%(objectname)%1D%(*objectname)%1D%(creatordate:iso8601)%1D%(authordate:iso8601)%1D%(subject)%1D refs/tags/ [8ms]
+2026-05-17 16:52:34.811 [info]    [GIT      21ms] [/home/dev/AI_Workflow] git rev-list --max-parents=0 HEAD -- [21ms]
+2026-05-17 16:52:34.812 [info]    [GIT      21ms] [/home/dev/AI_Workflow] git shortlog -s --all --no-min-parents --since=1.year.ago [21ms]
+2026-05-17 16:52:34.814 [info]    [  11f →   120] LocalSharedGkStorageLocationProvider.load Using shared GK path: /home/dev/.local/share/gk
+2026-05-17 16:53:20.491 [info]    [GIT      27ms] [/home/dev/AI_Workflow] git ls-files -- logs/codex/events.md [27ms]
+2026-05-17 16:53:20.516 [info]    [GIT      22ms] [/home/dev/AI_Workflow] git config --get-regex ^user\.(name|email)$ [22ms]
+2026-05-17 16:53:20.703 [info]    [GIT     186ms] [/home/dev/AI_Workflow] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> [186ms]
+2026-05-17 16:53:20.719 [info]    [GIT:→1       ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 698dcd3246f1a2ab7e7568058555ba29179870c8 -- logs/codex/events.md · starting...
+2026-05-17 16:53:20.723 [info]    [GIT:←1   14ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 698dcd3246f1a2ab7e7568058555ba29179870c8 -- logs/codex/events.md [14ms]
+2026-05-17 16:53:20.765 [info]    [GIT      33ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 698dcd3246f1a2ab7e7568058555ba29179870c8 -- [33ms]
+2026-05-17 16:53:28.062 [info]    [GIT      38ms] [/home/dev/AI_Workflow] git ls-files -- logs/opencode-developer/events.md [38ms]
+2026-05-17 16:53:28.087 [info]    [GIT:→2       ] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 f38808c6ec3b766fd473695fd98d1b4d8072d4f4 -- logs/opencode-developer/events.md · starting...
+2026-05-17 16:53:28.092 [info]    [GIT:←2   15ms] (spawn) [/home/dev/AI_Workflow] git blame --root --incremental --encoding=utf-8 f38808c6ec3b766fd473695fd98d1b4d8072d4f4 -- logs/opencode-developer/events.md [15ms]
+2026-05-17 16:53:28.109 [info]    [GIT      13ms] [/home/dev/AI_Workflow] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 f38808c6ec3b766fd473695fd98d1b4d8072d4f4 -- [13ms]

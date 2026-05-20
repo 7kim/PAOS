@@ -1,0 +1,16 @@
+2026-05-17 17:21:19.015 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 17:21:19.016 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|8bbdb9ed-3146-436f-96ef-285b59fddc0d1779024076392)
+2026-05-17 17:21:19.016 [info]    [            1] GitLens v17.12.2 activated [85ms]
+2026-05-17 17:21:19.016 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [52ms]
+2026-05-17 17:21:19.016 [info]    [   6e →    97] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) searching (depth=1)...
+2026-05-17 17:21:19.016 [info]    [GIT      44ms] [/home/dev/Documents/Dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [44ms]
+2026-05-17 17:21:19.016 [info]    [   6e →    97] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) found root repository in '/home/dev'
+2026-05-17 17:21:19.079 [info]    [GIT      19ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [19ms]
+2026-05-17 17:21:19.081 [info]    [IPC          ] Server started on http://127.0.0.1:40173
+2026-05-17 17:21:19.094 [info]    [   6e →    97] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) found repository in '/home/dev/Documents/Dev/Tradingview'
+2026-05-17 17:21:19.152 [info]    [GIT      20ms] [/home/dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [20ms]
+2026-05-17 17:21:19.152 [info]    [GIT      27ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [27ms]
+2026-05-17 17:21:19.165 [info]    [GIT       9ms] [/home/dev] git remote -v [9ms]
+2026-05-17 17:21:19.179 [info]    [GIT      12ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote [12ms]
+2026-05-17 17:21:19.179 [info]    [GIT       6ms] [/home/dev/Documents/Dev/Tradingview] git remote -v [6ms]
+2026-05-17 17:21:19.186 [info]    [GIT       5ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote [5ms]

@@ -1,0 +1,171 @@
+2026-05-17 17:14:17.018 [info] [main] Log level: Info
+2026-05-17 17:14:17.018 [info] [main] Validating found git in: "git"
+2026-05-17 17:14:17.018 [info] [main] Using git "2.53.0" from "git"
+2026-05-17 17:14:17.018 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-17 17:14:17.018 [info] > git rev-parse --show-toplevel [7ms]
+2026-05-17 17:14:17.439 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [442ms]
+2026-05-17 17:14:17.454 [info] [Model][openRepository] Opened repository (path): /home/dev
+2026-05-17 17:14:17.454 [info] [Model][openRepository] Opened repository (real path): /home/dev
+2026-05-17 17:14:17.454 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-17 17:14:17.472 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 17:14:17.472 [info] > git config --get commit.template [7ms]
+2026-05-17 17:14:17.473 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [2ms]
+2026-05-17 17:14:17.494 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [8ms]
+2026-05-17 17:14:17.517 [info] > git rev-parse --show-toplevel [2ms]
+2026-05-17 17:14:17.529 [info] > git fetch [75ms]
+2026-05-17 17:14:17.536 [info] > git rev-parse --show-toplevel [14ms]
+2026-05-17 17:14:17.553 [info] > git status -z -uall [75ms] (cancelled)
+2026-05-17 17:14:17.553 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [18ms]
+2026-05-17 17:14:17.559 [info] > git config --get --local branch.feat/h-factor-os.vscode-merge-base [1ms]
+2026-05-17 17:14:17.560 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-17 17:14:17.565 [info] > git rev-parse --show-toplevel [13ms]
+2026-05-17 17:14:17.565 [info] > git config --get commit.template [17ms]
+2026-05-17 17:14:17.565 [info] > git config --get commit.template [22ms]
+2026-05-17 17:14:17.990 [info] > git reflog feat/h-factor-os --grep-reflog=branch: Created from *. [425ms]
+2026-05-17 17:14:18.021 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 17:14:18.036 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 17:14:18.046 [info] > git reflog HEAD --grep-reflog=checkout: moving from .* to feat/h-factor-os [52ms]
+2026-05-17 17:14:18.052 [info] > git rev-parse --show-toplevel [63ms]
+2026-05-17 17:14:18.212 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [160ms]
+2026-05-17 17:14:18.213 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [177ms]
+2026-05-17 17:14:18.223 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [194ms]
+2026-05-17 17:14:18.651 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [427ms]
+2026-05-17 17:14:18.651 [info] > git rev-parse --show-toplevel [440ms]
+2026-05-17 17:14:18.835 [info] > git rev-parse --show-toplevel [30ms]
+2026-05-17 17:14:19.056 [info] > git rev-parse --show-toplevel [39ms]
+2026-05-17 17:14:19.075 [info] > git rev-parse --show-toplevel [10ms]
+2026-05-17 17:14:19.085 [info] > git rev-parse --show-toplevel [3ms]
+2026-05-17 17:14:19.096 [info] > git rev-parse --show-toplevel [3ms]
+2026-05-17 17:14:19.104 [info] > git rev-parse --show-toplevel [2ms]
+2026-05-17 17:14:19.113 [info] > git rev-parse --show-toplevel [1ms]
+2026-05-17 17:14:19.123 [info] > git rev-parse --show-toplevel [1ms]
+2026-05-17 17:14:19.130 [info] > git rev-parse --show-toplevel [1ms]
+2026-05-17 17:14:19.157 [info] > git rev-parse --show-toplevel [21ms]
+2026-05-17 17:14:19.181 [info] > git check-ignore -v -z --stdin [25ms]
+2026-05-17 17:14:19.183 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [20ms]
+2026-05-17 17:14:19.192 [info] [Model][openRepository] Opened repository (path): /home/dev/AI_Workflow
+2026-05-17 17:14:19.192 [info] [Model][openRepository] Opened repository (real path): /home/dev/AI_Workflow
+2026-05-17 17:14:19.192 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-17 17:14:19.209 [info] > git rev-parse --show-toplevel [2ms]
+2026-05-17 17:14:19.209 [info] > git config --get commit.template [10ms]
+2026-05-17 17:14:19.226 [info] > git rev-parse --show-toplevel [7ms]
+2026-05-17 17:14:19.252 [info] > git rev-parse --show-toplevel [19ms]
+2026-05-17 17:14:19.252 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [26ms]
+2026-05-17 17:14:19.266 [info] > git rev-parse --show-toplevel [7ms]
+2026-05-17 17:14:19.285 [info] > git rev-parse --show-toplevel [14ms]
+2026-05-17 17:14:19.304 [info] > git status -z -uall [26ms]
+2026-05-17 17:14:19.305 [info] > git rev-parse --show-toplevel [8ms]
+2026-05-17 17:14:19.305 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [22ms]
+2026-05-17 17:14:19.336 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [21ms]
+2026-05-17 17:14:19.344 [info] > git config --get --local branch.master.vscode-merge-base [2ms]
+2026-05-17 17:14:19.358 [info] > git config --get commit.template [27ms]
+2026-05-17 17:14:19.358 [info] > git rev-parse --show-toplevel [33ms]
+2026-05-17 17:14:19.364 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/origin/master refs/remotes/origin/master [14ms]
+2026-05-17 17:14:19.377 [info] > git rev-parse --show-toplevel [13ms]
+2026-05-17 17:14:19.389 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [15ms]
+2026-05-17 17:14:19.389 [info] > git merge-base refs/heads/master refs/remotes/origin/master [19ms]
+2026-05-17 17:14:19.396 [info] > git rev-parse --show-toplevel [7ms]
+2026-05-17 17:14:19.403 [info] > git diff --name-status -z --diff-filter=ADMR --find-renames=50% c8fc7d8d7ed64b88366e1d710903a43468662472...refs/remotes/origin/master -- [7ms]
+2026-05-17 17:14:19.424 [info] > git status -z -uall [15ms]
+2026-05-17 17:14:19.424 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [9ms]
+2026-05-17 17:14:19.426 [info] > git rev-parse --show-toplevel [24ms]
+2026-05-17 17:14:19.427 [info] [Model][doInitialScan] Initial repository scan completed - repositories (2), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-17 17:14:19.739 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-17 17:14:20.417 [info] > git fetch [1225ms]
+2026-05-17 17:14:20.431 [info] > git config --get commit.template [5ms]
+2026-05-17 17:14:20.440 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [1ms]
+2026-05-17 17:14:20.456 [info] > git status -z -uall [8ms]
+2026-05-17 17:14:20.456 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [1ms]
+2026-05-17 17:14:22.089 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-17 17:14:26.649 [info] > git status -z -uall [8432ms] (cancelled)
+2026-05-17 17:14:26.661 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-17 17:14:34.188 [info] [main] Log level: Info
+2026-05-17 17:14:34.188 [info] [main] Validating found git in: "git"
+2026-05-17 17:14:34.188 [info] [main] Using git "2.53.0" from "git"
+2026-05-17 17:14:34.188 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-17 17:14:34.188 [info] > git rev-parse --show-toplevel [2ms]
+2026-05-17 17:14:34.188 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [3ms]
+2026-05-17 17:14:34.188 [info] [Model][openRepository] Opened repository (path): /home/dev
+2026-05-17 17:14:34.188 [info] [Model][openRepository] Opened repository (real path): /home/dev
+2026-05-17 17:14:34.188 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-17 17:14:34.188 [info] > git config --get commit.template [7ms]
+2026-05-17 17:14:34.188 [info] > git fetch [16ms]
+2026-05-17 17:14:34.188 [info] > git rev-parse --show-toplevel [25ms]
+2026-05-17 17:14:34.188 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 17:14:34.188 [info] > git config --get commit.template [28ms]
+2026-05-17 17:14:34.188 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [5ms]
+2026-05-17 17:14:34.188 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 17:14:34.193 [info] > git rev-parse --show-toplevel [18ms]
+2026-05-17 17:14:34.198 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [11ms]
+2026-05-17 17:14:34.199 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [17ms]
+2026-05-17 17:14:34.206 [info] > git rev-parse --show-toplevel [8ms]
+2026-05-17 17:14:34.206 [info] > git config --get commit.template [13ms]
+2026-05-17 17:14:34.211 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 17:14:34.216 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [5ms]
+2026-05-17 17:14:34.226 [info] > git config --get --local branch.feat/h-factor-os.vscode-merge-base [20ms]
+2026-05-17 17:14:34.226 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-17 17:14:34.233 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [7ms]
+2026-05-17 17:14:34.234 [info] > git rev-parse --show-toplevel [19ms]
+2026-05-17 17:14:34.244 [info] > git reflog feat/h-factor-os --grep-reflog=branch: Created from *. [13ms]
+2026-05-17 17:14:34.532 [info] > git reflog HEAD --grep-reflog=checkout: moving from .* to feat/h-factor-os [284ms]
+2026-05-17 17:14:34.539 [info] > git rev-parse --show-toplevel [296ms]
+2026-05-17 17:14:34.777 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [238ms]
+2026-05-17 17:14:35.000 [info] > git rev-parse --show-toplevel [224ms]
+2026-05-17 17:14:35.030 [info] > git rev-parse --show-toplevel [4ms]
+2026-05-17 17:14:35.291 [info] > git rev-parse --show-toplevel [101ms]
+2026-05-17 17:14:35.293 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-17 17:14:35.301 [info] > git check-ignore -v -z --stdin [104ms]
+2026-05-17 17:14:35.375 [info] > git status -z -uall [1154ms] (cancelled)
+2026-05-17 17:14:35.382 [info] > git check-ignore -v -z --stdin [20ms]
+2026-05-17 17:14:37.213 [info] > git show --textconv :Documents/Dev/project-gemini/README.md [25ms]
+2026-05-17 17:14:37.214 [info] > git ls-files --stage -- Documents/Dev/project-gemini/README.md [19ms]
+2026-05-17 17:14:37.244 [info] > git hash-object -t tree /dev/null [24ms]
+2026-05-17 17:14:37.244 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gemini/README.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2FREADME.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:37.272 [info] > git hash-object -t tree /dev/null [45ms]
+2026-05-17 17:14:37.272 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gemini/README.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2FREADME.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:38.310 [info] > git check-ignore -v -z --stdin [185ms]
+2026-05-17 17:14:38.460 [info] > git show --textconv :Documents/Dev/project-gemini/mcp-config.json [33ms]
+2026-05-17 17:14:38.473 [info] > git ls-files --stage -- Documents/Dev/project-gemini/mcp-config.json [34ms]
+2026-05-17 17:14:38.474 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gemini/mcp-config.json.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fmcp-config.json%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:38.474 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gemini/mcp-config.json.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fmcp-config.json%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:38.531 [info] > git check-ignore -v -z --stdin [26ms]
+2026-05-17 17:14:38.532 [info] > git check-ignore -v -z --stdin [17ms]
+2026-05-17 17:14:38.538 [info] > git check-ignore -v -z --stdin [14ms]
+2026-05-17 17:14:38.840 [info] > git check-ignore -v -z --stdin [62ms]
+2026-05-17 17:14:39.123 [info] > git check-ignore -v -z --stdin [40ms]
+2026-05-17 17:14:39.297 [info] > git show --textconv :Documents/Dev/project-gemini/docker-compose.yml [12ms]
+2026-05-17 17:14:39.301 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gemini/docker-compose.yml.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fdocker-compose.yml%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:39.309 [info] > git ls-files --stage -- Documents/Dev/project-gemini/docker-compose.yml [14ms]
+2026-05-17 17:14:39.309 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gemini/docker-compose.yml.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fdocker-compose.yml%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:39.438 [info] > git check-ignore -v -z --stdin [16ms]
+2026-05-17 17:14:39.661 [info] > git check-ignore -v -z --stdin [35ms]
+2026-05-17 17:14:40.450 [info] > git show --textconv :Documents/Dev/project-gemini/chat.md [16ms]
+2026-05-17 17:14:40.498 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gemini/chat.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fchat.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:40.551 [info] > git ls-files --stage -- Documents/Dev/project-gemini/chat.md [102ms]
+2026-05-17 17:14:40.552 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gemini/chat.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fchat.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:40.917 [info] > git blame --root --incremental 486b66517c3d2a56ca066da1f683e04cbc82727a -- Documents/Dev/project-gemini/chat.md [7ms]
+2026-05-17 17:14:40.917 [info] fatal: no such path Documents/Dev/project-gemini/chat.md in 486b66517c3d2a56ca066da1f683e04cbc82727a
+2026-05-17 17:14:47.143 [info] > git check-ignore -v -z --stdin [55ms]
+2026-05-17 17:14:47.146 [info] > git check-ignore -v -z --stdin [19ms]
+2026-05-17 17:14:47.294 [info] > git show --textconv :Documents/Dev/project-gemini/.gitignore [16ms]
+2026-05-17 17:14:47.294 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gemini/.gitignore.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2F.gitignore%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:47.304 [info] > git ls-files --stage -- Documents/Dev/project-gemini/.gitignore [11ms]
+2026-05-17 17:14:47.304 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gemini/.gitignore.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2F.gitignore%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:50.077 [info] > git check-ignore -v -z --stdin [16ms]
+2026-05-17 17:14:51.336 [info] > git check-ignore -v -z --stdin [16ms]
+2026-05-17 17:14:51.713 [info] > git check-ignore -v -z --stdin [31ms]
+2026-05-17 17:14:51.754 [info] > git check-ignore -v -z --stdin [24ms]
+2026-05-17 17:14:51.890 [info] > git show --textconv :Documents/Dev/project-gemini/docs/implementation_plan.md [14ms]
+2026-05-17 17:14:51.891 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gemini/docs/implementation_plan.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fdocs%2Fimplementation_plan.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:51.901 [info] > git ls-files --stage -- Documents/Dev/project-gemini/docs/implementation_plan.md [13ms]
+2026-05-17 17:14:51.901 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gemini/docs/implementation_plan.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fdocs%2Fimplementation_plan.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:53.808 [info] > git check-ignore -v -z --stdin [46ms]
+2026-05-17 17:14:53.810 [info] > git check-ignore -v -z --stdin [17ms]
+2026-05-17 17:14:53.947 [info] > git show --textconv :Documents/Dev/project-gemini/docs/instructions.md [16ms]
+2026-05-17 17:14:53.948 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gemini/docs/instructions.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fdocs%2Finstructions.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:53.953 [info] > git ls-files --stage -- Documents/Dev/project-gemini/docs/instructions.md [10ms]
+2026-05-17 17:14:53.953 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gemini/docs/instructions.md.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gemini%2Fdocs%2Finstructions.md%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 17:14:58.723 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-17 17:14:59.380 [info] > git check-ignore -v -z --stdin [14ms]
+2026-05-17 17:15:00.488 [info] > git check-ignore -v -z --stdin [18ms]
+2026-05-17 17:15:01.310 [info] > git check-ignore -v -z --stdin [12ms]

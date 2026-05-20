@@ -1,0 +1,6 @@
+2026-05-17 17:14:37.275 [warning] Dir "/home/dev/Documents/Dev/project-gemini/.pixi/envs" is not watchable (directory does not exist)
+2026-05-17 17:14:37.275 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
+2026-05-17 17:14:37.275 [info] Python interpreter path: /bin/python3
+2026-05-17 17:14:37.387 [info] > pyenv which python
+2026-05-17 17:14:37.387 [info] cwd: .
+2026-05-17 17:14:37.400 [info] Editor support is inactive since language server is set to None.

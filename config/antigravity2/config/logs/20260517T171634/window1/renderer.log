@@ -1,0 +1,122 @@
+2026-05-17 17:16:35.532 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vscode.vscode-selfhost-test-provider' wants API proposal 'attributableCoverage' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.532 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vsliveshare.vsliveshare' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.533 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.python' wants API proposal 'contribIssueReporter' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.533 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.vscode-pull-request-github' wants API proposal 'fileComments' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.533 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.copilot-chat' wants API proposal 'chatVariableResolver' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.534 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.copilot-chat' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.534 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.gather' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.534 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.vscode-pylance' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.534 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.debugpy' wants API proposal 'contribIssueReporter' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.535 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-toolsai.jupyter' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.535 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'dbaeumer.vscode-eslint' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.535 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-azuretools.vscode-azure-github-copilot' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.535 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vscode.cpptools' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.536 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'redhat.java' wants API proposal 'documentPaste' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:35.536 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'vscjava.vscode-java-pack' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:36.006 [info] Started local extension host with pid 38094.
+2026-05-17 17:16:36.245 [error] Extension 'mermaidchart.vscode-mermaid-chart' wants API proposal 'languageModelToolsForAgent' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 17:16:36.245 [error] Extension 'ms-python.python' appears in product.json but enables LESS API proposals than the extension wants.
+package.json (LOSES): contribEditorContentMenu, quickPickSortByLabel, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, codeActionAI, notebookReplDocument, notebookVariableProvider
+product.json (WINS): contribEditorContentMenu, quickPickSortByLabel, portsAttributes, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, notebookReplDocument
+2026-05-17 17:16:36.245 [error] Extension 'ms-python.vscode-python-envs CANNOT USE these API proposals 'terminalShellEnv, terminalDataWriteEvent'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2026-05-17 17:16:36.245 [error] Extension 'openai.chatgpt CANNOT USE these API proposals 'chatSessionsProvider, languageModelProxy'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2026-05-17 17:16:36.263 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 17:16:36.264 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 17:16:36.269 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravitySettings` which is not defined in the 'commands' section.
+2026-05-17 17:16:36.269 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravityExtensions` which is not defined in the 'commands' section.
+2026-05-17 17:16:36.269 [error] [google.antigravity]: Menu item references a command `antigravity.prioritized.chat.open` which is not defined in the 'commands' section.
+2026-05-17 17:16:36.287 [error] [openai.chatgpt]: chatSessions/newSession is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["chatSessionsProvider"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api openai.chatgpt
+2026-05-17 17:16:38.214 [warning] Authentication provider mermaidchart was not declared in the Extension Manifest.
+2026-05-17 17:16:38.620 [error] [Extension Host] Failed to get status: LR: Language server has not been started!
+	at get client (/usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:1989124)
+	at /usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:1992352
+	at fS (/usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:1992657)
+	at async /usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:2128838
+	at async sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:44675)
+2026-05-17 17:16:38.621 [error] [Extension Host] Failed to get status: LR: Language server has not been started!
+	at get client (/usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:1989124)
+	at /usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:1992352
+	at fS (/usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:1992657)
+	at async Hf.value (/usr/share/antigravity/resources/app/extensions/antigravity/dist/extension.js:2:2128913)
+2026-05-17 17:16:40.140 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:40.140 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:40.143 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:40.143 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:40.144 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:40.144 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:40.145 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:40.145 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 17:16:41.003 [error] [File Watcher ('parcel')] Unexpected error: inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0FpJ9Ij' failed: No such file or directory (EUNKNOWN) (path: /home/dev/AI_Workflow)
+2026-05-17 17:16:41.013 [error] [File Watcher (universal)] inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0FpJ9Ij' failed: No such file or directory
+2026-05-17 17:16:41.022 [error] [File Watcher ('parcel')] Unexpected error: inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0FpJ9Ij' failed: No such file or directory (EUNKNOWN) (path: /home/dev/AI_Workflow)
+2026-05-17 17:16:41.030 [error] [File Watcher (universal)] inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0FpJ9Ij' failed: No such file or directory
+2026-05-17 17:16:41.831 [error] [File Watcher ('parcel')] Unexpected error: inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0FpJ9Ij' failed: No such file or directory (EUNKNOWN) (path: /home/dev/AI_Workflow)
+2026-05-17 17:16:41.831 [error] [File Watcher (universal)] inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0FpJ9Ij' failed: No such file or directory
+2026-05-17 17:16:42.014 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 17:16:42.749 [error] [Extension Host] (node:38094) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-17 17:17:48.417 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 17:20:12.970 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 17:21:08.529 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 17:21:42.120 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 17:21:55.274 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)

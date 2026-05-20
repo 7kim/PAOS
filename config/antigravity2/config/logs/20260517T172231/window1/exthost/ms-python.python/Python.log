@@ -1,0 +1,7 @@
+2026-05-17 17:22:39.673 [warning] Dir "/home/dev/AI_Workflow/.pixi/envs" is not watchable (directory does not exist)
+2026-05-17 17:22:39.710 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
+2026-05-17 17:22:39.710 [info] Python interpreter path: /bin/python3
+2026-05-17 17:22:39.746 [info] > pyenv which python
+2026-05-17 17:22:39.746 [info] cwd: .
+2026-05-17 17:22:39.785 [info] Editor support is inactive since language server is set to None.
+2026-05-17 20:50:02.788 [error] Unable to find workspace for given file

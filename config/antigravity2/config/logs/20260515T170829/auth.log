@@ -1,0 +1,6 @@
+2026-05-15 17:08:29.527 [info] [Auth] Auth state changed to: uninitialized
+2026-05-15 17:08:29.572 [info] [Auth] Auth state changed to: validatingLogin
+2026-05-15 17:08:29.574 [info] [Auth] Auth state changed to: validatingLogin
+2026-05-15 17:08:33.149 [info] [Auth] Auth state changed to: signedIn
+2026-05-15 17:08:33.150 [info] [Auth] Auth state changed to: signedIn
+2026-05-15 17:08:33.150 [info] [Auth] AntigravityAuthMainService initialized

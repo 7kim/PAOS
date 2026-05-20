@@ -1,0 +1,7 @@
+2026-05-15 18:47:34.234 [info] [         60ms] [/home/dev/Documents/Dev/scalping_bot_v2] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 18:47:35.150 [info] [         41ms] [/home/dev/Documents/Dev/scalping_bot_v2] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 18:47:36.140 [info] [         14ms] [/home/dev/Documents/Dev/scalping_bot_v2] git remote -v • completed
+2026-05-15 18:47:36.152 [info] [         10ms] [/home/dev/Documents/Dev/scalping_bot_v2] git config --get -f /home/dev/Documents/Dev/scalping_bot_v2/.git/gk/config gk.defaultRemote • completed
+2026-05-15 18:48:09.370 [info] [         25ms] [/home/dev/Documents/Dev/scalping_bot_v2] git rev-list --max-parents=0 HEAD -- • completed
+2026-05-15 18:48:11.371 [error] [*      2025ms] [/home/dev/Documents/Dev/scalping_bot_v2] git shortlog -s --all --no-min-parents --since=1.year.ago (slow) • FAILED
+CancellationError: Operation cancelled; command=/usr/bin/git -c core.quotepath=false -c color.ui=false shortlog -s --all --no-min-parents --since=1.year.ago

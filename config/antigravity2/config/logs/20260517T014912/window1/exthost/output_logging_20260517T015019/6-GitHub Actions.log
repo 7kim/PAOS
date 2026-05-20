@@ -1,0 +1,20 @@
+Activating GitHub Actions extension...
+
+Cannot fetch github context
+Error: Cannot fetch github context
+	at De (/home/dev/.antigravity/extensions/github.vscode-github-actions-0.31.5-universal/dist/extension-node.js:1:1153736)
+	at async /home/dev/.antigravity/extensions/github.vscode-github-actions-0.31.5-universal/dist/extension-node.js:1:1345057
+	at async ps (/home/dev/.antigravity/extensions/github.vscode-github-actions-0.31.5-universal/dist/extension-node.js:1:1344129)
+	at async QS.n (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:14144)
+	at async QS.m (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:14107)
+	at async QS.l (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:13563)
+
+Cannot fetch github context
+Error: Cannot fetch github context
+	at De (/home/dev/.antigravity/extensions/github.vscode-github-actions-0.31.5-universal/dist/extension-node.js:1:1153736)
+	at async Ne (/home/dev/.antigravity/extensions/github.vscode-github-actions-0.31.5-universal/dist/extension-node.js:1:1154102)
+	at async ps (/home/dev/.antigravity/extensions/github.vscode-github-actions-0.31.5-universal/dist/extension-node.js:1:1355825)
+	at async QS.n (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:14144)
+	at async QS.m (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:14107)
+	at async QS.l (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:13563)
+...initialized

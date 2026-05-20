@@ -1,0 +1,210 @@
+Error loading "hint" package from "/home/dev/Documents/Dev/project-gemini"
+Trying to load shared version
+Found hint at /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/hint/dist/src/lib/index.js
+Checking if shared version of "hint" needs updated
+npm verb cli /usr/bin/node /usr/bin/npm
+npm info using npm@9.2.0
+npm info using node@v22.22.1
+npm verb title npm install @hint/configuration-development@latest hint@latest typescript@latest
+npm verb argv "install" "@hint/configuration-development@latest" "hint@latest" "typescript@latest" "--save-dev" "--loglevel" "verbose"
+npm verb logfile logs-max:10 dir:/home/dev/.npm/_logs/2026-05-16T21_53_21_433Z-
+npm verb logfile /home/dev/.npm/_logs/2026-05-16T21_53_21_433Z-debug-0.log
+npm http fetch GET 200 https://registry.npmjs.org/typescript 340ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/hint 574ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fconfiguration-development 968ms (cache revalidated)
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/fsevents
+npm WARN deprecated npmlog@5.0.1: This package is no longer supported.
+npm WARN deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+npm WARN deprecated gauge@3.0.2: This package is no longer supported.
+npm info run canvas@2.11.2 install node_modules/canvas node-pre-gyp install --fallback-to-build --update-binary
+npm http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 295ms
+npm http fetch GET 200 https://registry.npmjs.org/file-type 43ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@tootallnate%2fonce 53ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/got 63ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/ws 68ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/tar 74ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/tar-fs 315ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/fast-xml-parser 353ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/http-proxy-agent 36ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/is-svg 284ms (cache revalidated)
+npm info run canvas@2.11.2 install { code: 1, signal: null }
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/canvas
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@mapbox/node-pre-gyp
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/nan
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/simple-get
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/detect-libc
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/nopt
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/npmlog
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/simple-get/node_modules/decompress-response
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/simple-concat
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/abbrev
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/are-we-there-yet
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/console-control-strings
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/gauge
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/set-blocking
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/simple-get/node_modules/mimic-response
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/delegates
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/aproba
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/color-support
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/has-unicode
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/object-assign
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/gauge/node_modules/string-width
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/wide-align
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/gauge/node_modules/emoji-regex
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/wide-align/node_modules/string-width
+npm verb reify failed optional dependency /home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/wide-align/node_modules/emoji-regex
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2futils 695ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/package-json 269ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/puppeteer-core 23ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/cacache 21ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/jsdom 26ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/make-fetch-happen 35ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-typescript-config 238ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-html-checker 482ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-javascript 651ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fconnector-jsdom 698ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fformatter-stylish 702ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-http-compression 722ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fconnector-puppeteer 735ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fconnector-local 748ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fformatter-html 753ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-content-type 767ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-vulnerable-javascript-libraries 767ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fformatter-json 785ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fformatter-summary 787ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-image-optimization-cloudinary 813ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-bom 823ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-ssllabs 864ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2futils-network 1116ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-webpack-config 1187ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2futils-connector-tools 1394ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/latest-version 28ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/npm-registry-fetch 23ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-compat-api 589ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-create-element-svg 615ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fconfiguration-web-recommended 810ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-http-cache 812ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-babel-config 845ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fconfiguration-progressive-web-apps 848ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-manifest-app-name 844ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-detect-css-reflows 848ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-button-type 851ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-axe 882ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-disown-opener 881ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-css-prefix-order 884ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-leading-dot-classlist 889ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-highest-available-document-mode 896ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-manifest-file-extension 1002ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-scoped-svg-styles 1036ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-manifest-exists 1338ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fconfiguration-accessibility 1399ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-html-only-headers 1505ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-friendly-error-pages 1517ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-manifest-is-valid 1535ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-inline-styles 1536ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-meta-viewport 1565ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-protocol-relative-urls 1567ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-sri 1572ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-x-content-type-options 1575ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-apple-touch-icons 1592ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-validate-set-cookie-header 1588ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-http-redirects 1596ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-stylesheet-limits 1700ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-babel-config 1768ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-typescript 1962ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-webpack-config 2036ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-jsx 2080ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-strict-transport-security 2134ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-css 2221ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-no-disallowed-headers 2242ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fhint-meta-charset-utf-8 2248ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-typescript-config 2242ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-less 2246ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-sass 2249ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-manifest 2292ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2fparser-html 2466ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@hint%2futils-json 528ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/update-notifier 24ms (cache revalidated)
+
+up to date, audited 554 packages in 8s
+
+97 packages are looking for funding
+  run `npm fund` for details
+
+83 vulnerabilities (4 low, 72 moderate, 7 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+npm verb exit 0
+npm info ok 
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16850:49)
+    at Object.get (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:11079:23)
+    at _isIconLigature (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16849:41)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27703:54)
+    at Array.some (<anonymous>)
+    at hasRealTextChildren (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27702:35)
+    at Rule.colorContrastMatches [as matches] (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27664:12) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16850:49)
+    at Object.get (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:11079:23)
+    at _isIconLigature (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16849:41)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27703:54)
+    at Array.some (<anonymous>)
+    at hasRealTextChildren (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27702:35)
+    at Rule.colorContrastMatches [as matches] (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27664:12) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16850:49)
+    at Object.get (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:11079:23)
+    at _isIconLigature (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16849:41)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27703:54)
+    at Array.some (<anonymous>)
+    at hasRealTextChildren (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27702:35)
+    at Rule.colorContrastMatches [as matches] (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27664:12) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16850:49)
+    at Object.get (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:11079:23)
+    at _isIconLigature (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16849:41)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27703:54)
+    at Array.some (<anonymous>)
+    at hasRealTextChildren (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27702:35)
+    at Rule.colorContrastMatches [as matches] (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27664:12) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16850:49)
+    at Object.get (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:11079:23)
+    at _isIconLigature (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16849:41)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27703:54)
+    at Array.some (<anonymous>)
+    at hasRealTextChildren (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27702:35)
+    at Rule.colorContrastMatches [as matches] (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27664:12) undefined
+Error: Not implemented: HTMLCanvasElement.prototype.getContext (without installing the canvas npm package)
+    at module.exports (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+    at HTMLCanvasElementImpl.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/nodes/HTMLCanvasElement-impl.js:42:5)
+    at HTMLCanvasElement.getContext (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/jsdom/lib/jsdom/living/generated/HTMLCanvasElement.js:131:58)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16850:49)
+    at Object.get (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:11079:23)
+    at _isIconLigature (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:16849:41)
+    at eval (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27703:54)
+    at Array.some (<anonymous>)
+    at hasRealTextChildren (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27702:35)
+    at Rule.colorContrastMatches [as matches] (eval at evaluate (/home/dev/.config/Antigravity/User/globalStorage/ms-edgedevtools.vscode-edge-devtools/node_modules/@hint/connector-local/dist/src/connector.js:244:38), <anonymous>:27664:12) undefined

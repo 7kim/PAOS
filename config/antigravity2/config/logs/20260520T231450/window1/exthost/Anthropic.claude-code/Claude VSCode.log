@@ -1,0 +1,1278 @@
+2026-05-20 23:14:57.462 [info] AuthManager initialized
+2026-05-20 23:14:57.462 [info] Claude code extension is now active?
+2026-05-20 23:14:57.462 [info] MCP Server running on port 41127 (localhost only)
+2026-05-20 23:14:57.462 [info] Getting authentication status
+2026-05-20 23:14:57.462 [info] OAuth tokens found in secure storage
+2026-05-20 23:14:57.462 [info] AuthManager initialized
+2026-05-20 23:14:57.462 [info] Received message from webview: {"type":"request","requestId":"hrukoaezdx8","request":{"type":"init"}}
+2026-05-20 23:14:57.462 [info] resolveShellPath: /usr/bin/bash -> 23 entries
+2026-05-20 23:14:57.462 [info] Getting authentication status
+2026-05-20 23:14:57.462 [info] OAuth tokens found in secure storage
+2026-05-20 23:14:57.462 [info] Getting authentication status
+2026-05-20 23:14:57.462 [info] OAuth tokens found in secure storage
+2026-05-20 23:14:57.462 [info] Getting authentication status
+2026-05-20 23:14:57.462 [info] OAuth tokens found in secure storage
+2026-05-20 23:14:57.980 [info] Received message from webview: {"type":"request","requestId":"bmxu1ipnmhp","request":{"type":"get_claude_state"}}
+2026-05-20 23:14:57.981 [info] Received message from webview: {"type":"request","requestId":"gx9d8m6whto","request":{"type":"get_current_selection"}}
+2026-05-20 23:14:57.981 [info] Received message from webview: {"type":"request","requestId":"22yveu9kfpc","request":{"type":"get_asset_uris"}}
+2026-05-20 23:14:57.982 [info] Received message from webview: {"type":"request","requestId":"wcsqbxfiojf","request":{"type":"list_sessions_request"}}
+2026-05-20 23:14:58.579 [info] Loading config cache by launching Claude (no channel)...
+2026-05-20 23:14:58.993 [info] Received message from webview: {"type":"request","requestId":"abgnaxd7su","request":{"type":"rename_tab","title":"Continue previous AI wor…","hasPendingPermissions":false,"hasUnseenCompletion":false}}
+2026-05-20 23:14:58.993 [info] Received message from webview: {"type":"request","requestId":"bj8gk46uqtb","request":{"type":"update_session_state","sessionId":"1ba54ff7-8559-46f8-bf86-c499d1a1b46c","state":"idle","title":"Continue previous AI workflow session"}}
+2026-05-20 23:14:58.993 [info] Received message from webview: {"type":"request","requestId":"pu2eu948w7c","request":{"type":"rename_tab","title":"Continue previous AI wor…","hasPendingPermissions":false,"hasUnseenCompletion":false}}
+2026-05-20 23:14:58.993 [info] Received message from webview: {"type":"request","requestId":"kmdd1dbmbiq","request":{"type":"update_session_state","sessionId":"1ba54ff7-8559-46f8-bf86-c499d1a1b46c","state":"idle","title":"Continue previous AI workflow session"}}
+2026-05-20 23:14:58.994 [info] Received message from webview: {"type":"request","requestId":"wf7t3uk1br","request":{"type":"get_session_request","sessionId":"1ba54ff7-8559-46f8-bf86-c499d1a1b46c"}}
+2026-05-20 23:14:59.113 [info] Python env: PATH=/usr/bin:/home/dev/.local/bin:/home/dev/AI_Workflow/bin:/home/dev/.local/bin:/usr/bin:/home/dev/.npm-global/bin:/home/dev/.local/bin:/home/dev/AI_Workflow/bin:/home/dev/.local/bin:/usr/bin:/home/dev/.npm-global/bin:/home/dev/.local/bin:/usr/bin:/home/dev/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+2026-05-20 23:14:59.113 [info] Python env: VIRTUAL_ENV=/usr
+2026-05-20 23:14:59.113 [info] Spawning Claude with SDK query function - cwd: /home/dev/AI_Workflow, permission mode: default, version: 2.1.143, /home/dev/.antigravity/extensions/anthropic.claude-code-2.1.143-linux-x64/resources/native-binary/claude, resume: undefined
+2026-05-20 23:14:59.582 [info] Received message from webview: {"type":"launch_claude","channelId":"1aeu8ya0j7t","cwd":"/home/dev/AI_Workflow","resume":"1ba54ff7-8559-46f8-bf86-c499d1a1b46c","permissionMode":"acceptEdits","thinkingLevel":"default_on"}
+2026-05-20 23:14:59.609 [info] Launching Claude on channel: 1aeu8ya0j7t
+2026-05-20 23:14:59.618 [info] Python env: PATH=/usr/bin:/home/dev/.local/bin:/home/dev/AI_Workflow/bin:/home/dev/.local/bin:/usr/bin:/home/dev/.npm-global/bin:/home/dev/.local/bin:/home/dev/AI_Workflow/bin:/home/dev/.local/bin:/usr/bin:/home/dev/.npm-global/bin:/home/dev/.local/bin:/usr/bin:/home/dev/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+2026-05-20 23:14:59.618 [info] Python env: VIRTUAL_ENV=/usr
+2026-05-20 23:14:59.618 [info] Spawning Claude with SDK query function - cwd: /home/dev/AI_Workflow, permission mode: acceptEdits, version: 2.1.143, /home/dev/.antigravity/extensions/anthropic.claude-code-2.1.143-linux-x64/resources/native-binary/claude, resume: 1ba54ff7-8559-46f8-bf86-c499d1a1b46c
+2026-05-20 23:15:01.514 [info] From claude: 2026-05-20T19:15:01.513Z [DEBUG] MDM settings load completed in 2ms
+
+2026-05-20 23:15:01.514 [info] From claude: 2026-05-20T19:15:01.513Z [DEBUG] MDM settings load completed in 1ms
+
+2026-05-20 23:15:01.544 [info] From claude: 2026-05-20T19:15:01.543Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /home/dev/AI_Workflow/.claude/settings.json
+
+2026-05-20 23:15:01.544 [info] From claude: 2026-05-20T19:15:01.543Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /home/dev/AI_Workflow/.claude/settings.json
+
+2026-05-20 23:15:01.549 [info] From claude: 2026-05-20T19:15:01.549Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /etc/claude-code/managed-settings.json
+
+2026-05-20 23:15:01.549 [info] From claude: 2026-05-20T19:15:01.549Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /etc/claude-code/managed-settings.json
+
+2026-05-20 23:15:01.549 [info] From claude: 2026-05-20T19:15:01.549Z [DEBUG] CA certs: Config fallback - globalEnv keys: , settingsEnv keys: none
+
+2026-05-20 23:15:01.550 [info] From claude: 2026-05-20T19:15:01.549Z [DEBUG] CA certs: Config fallback - globalEnv keys: , settingsEnv keys: none
+
+2026-05-20 23:15:01.550 [info] From claude: 2026-05-20T19:15:01.550Z [DEBUG] [init] configureGlobalMTLS starting
+
+2026-05-20 23:15:01.550 [info] From claude: 2026-05-20T19:15:01.550Z [DEBUG] [init] configureGlobalMTLS complete
+2026-05-20T19:15:01.550Z [DEBUG] [init] configureGlobalAgents starting
+
+2026-05-20 23:15:01.550 [info] From claude: 2026-05-20T19:15:01.550Z [DEBUG] CA certs: stores=bundled,system, extraCertsPath=undefined
+
+2026-05-20 23:15:01.550 [info] From claude: 2026-05-20T19:15:01.550Z [DEBUG] [init] configureGlobalMTLS starting
+2026-05-20T19:15:01.550Z [DEBUG] [init] configureGlobalMTLS complete
+
+2026-05-20 23:15:01.550 [info] From claude: 2026-05-20T19:15:01.550Z [DEBUG] [init] configureGlobalAgents starting
+
+2026-05-20 23:15:01.550 [info] From claude: 2026-05-20T19:15:01.550Z [DEBUG] CA certs: stores=bundled,system, extraCertsPath=undefined
+
+2026-05-20 23:15:01.552 [info] From claude: 2026-05-20T19:15:01.552Z [DEBUG] CA certs: Loaded 145 bundled root certificates
+
+2026-05-20 23:15:01.552 [info] From claude: 2026-05-20T19:15:01.552Z [DEBUG] CA certs: Loaded 145 bundled root certificates
+
+2026-05-20 23:15:01.600 [info] From claude: 2026-05-20T19:15:01.600Z [DEBUG] CA certs: Loaded 290 system CA certificates
+
+2026-05-20 23:15:01.601 [info] From claude: 2026-05-20T19:15:01.601Z [DEBUG] mTLS: Creating HTTPS agent with custom certificates
+
+2026-05-20 23:15:01.601 [info] From claude: 2026-05-20T19:15:01.601Z [DEBUG] [init] configureGlobalAgents complete
+
+2026-05-20 23:15:01.605 [info] From claude: 2026-05-20T19:15:01.605Z [DEBUG] CA certs: Loaded 290 system CA certificates
+
+2026-05-20 23:15:01.606 [info] From claude: 2026-05-20T19:15:01.606Z [DEBUG] mTLS: Creating HTTPS agent with custom certificates
+
+2026-05-20 23:15:01.606 [info] From claude: 2026-05-20T19:15:01.606Z [DEBUG] [init] configureGlobalAgents complete
+
+2026-05-20 23:15:01.611 [info] From claude: 2026-05-20T19:15:01.610Z [DEBUG] Error log sink initialized
+
+2026-05-20 23:15:01.611 [info] From claude: 2026-05-20T19:15:01.611Z [DEBUG] Error log sink initialized
+
+2026-05-20 23:15:01.627 [info] From claude: 2026-05-20T19:15:01.627Z [DEBUG] Applying permission update: Adding 13 allow rule(s) to destination 'userSettings': ["Bash(git commit -m ':*)","Bash(git rm:*)","Bash(npm install:*)","Bash(openclaw --version)","Bash(/home/dev/.local/bin/openclaw --version)","Bash(node openclaw.mjs --version)","Bash(gh --version)","Bash(gh auth:*)","Bash(npm config:*)","Bash(gh repo:*)","Bash(git push:*)","Bash(git remote:*)","Bash(git branch:*)"]
+
+2026-05-20 23:15:01.627 [info] From claude: 2026-05-20T19:15:01.627Z [DEBUG] Applying permission update: Adding 8 allow rule(s) to destination 'localSettings': ["Bash(xargs ls -lah)","Bash(timeout 10 /home/dev/AI_Workflow/bin/opencode run --agent developer --print-logs \"say hi\")","Bash(kill %1)","Read(//tmp/**)","Bash(timeout 15 /home/dev/AI_Workflow/bin/opencode debug config)","Bash(python3 -c ' *)","Bash(timeout 15 /home/dev/AI_Workflow/bin/opencode mcp add shared-memory \"node /home/dev/AI_Workflow/mcp/shared-memory-server/index.js\")","Bash(echo \"exit: $?\")"]
+
+2026-05-20 23:15:01.628 [info] From claude: 2026-05-20T19:15:01.627Z [DEBUG] Applying permission update: Adding 13 allow rule(s) to destination 'userSettings': ["Bash(git commit -m ':*)","Bash(git rm:*)","Bash(npm install:*)","Bash(openclaw --version)","Bash(/home/dev/.local/bin/openclaw --version)","Bash(node openclaw.mjs --version)","Bash(gh --version)","Bash(gh auth:*)","Bash(npm config:*)","Bash(gh repo:*)","Bash(git push:*)","Bash(git remote:*)","Bash(git branch:*)"]
+
+2026-05-20 23:15:01.628 [info] From claude: 2026-05-20T19:15:01.628Z [DEBUG] Applying permission update: Adding 8 allow rule(s) to destination 'localSettings': ["Bash(xargs ls -lah)","Bash(timeout 10 /home/dev/AI_Workflow/bin/opencode run --agent developer --print-logs \"say hi\")","Bash(kill %1)","Read(//tmp/**)","Bash(timeout 15 /home/dev/AI_Workflow/bin/opencode debug config)","Bash(python3 -c ' *)","Bash(timeout 15 /home/dev/AI_Workflow/bin/opencode mcp add shared-memory \"node /home/dev/AI_Workflow/mcp/shared-memory-server/index.js\")","Bash(echo \"exit: $?\")"]
+
+2026-05-20 23:15:01.645 [info] From claude: 2026-05-20T19:15:01.644Z [DEBUG] [STARTUP] Loading MCP configs...
+
+2026-05-20 23:15:01.645 [info] From claude: 2026-05-20T19:15:01.645Z [DEBUG] [STARTUP] Loading MCP configs...
+
+2026-05-20 23:15:01.648 [info] From claude: 2026-05-20T19:15:01.647Z [DEBUG] [STARTUP] Running setup()...
+
+2026-05-20 23:15:01.648 [info] From claude: 2026-05-20T19:15:01.647Z [DEBUG] [STARTUP] Running setup()...
+
+2026-05-20 23:15:01.658 [info] From claude: 2026-05-20T19:15:01.658Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/dev/.claude/skills, project=[]
+
+2026-05-20 23:15:01.658 [info] From claude: 2026-05-20T19:15:01.658Z [DEBUG] Error log sink initialized
+
+2026-05-20 23:15:01.659 [info] From claude: 2026-05-20T19:15:01.659Z [DEBUG] Loading skills from: managed=/etc/claude-code/.claude/skills, user=/home/dev/.claude/skills, project=[]
+
+2026-05-20 23:15:01.659 [info] From claude: 2026-05-20T19:15:01.659Z [DEBUG] Error log sink initialized
+
+2026-05-20 23:15:01.662 [info] From claude: 2026-05-20T19:15:01.662Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/commands: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/commands'
+
+2026-05-20 23:15:01.662 [info] From claude: 2026-05-20T19:15:01.662Z [DEBUG] Failed to stat directory /home/dev/.claude/commands: ENOENT: no such file or directory, statx '/home/dev/.claude/commands'
+
+2026-05-20 23:15:01.662 [info] From claude: 2026-05-20T19:15:01.662Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+
+2026-05-20 23:15:01.662 [info] From claude: 2026-05-20T19:15:01.662Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/agents: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/agents'
+2026-05-20T19:15:01.662Z [DEBUG] Failed to stat directory /home/dev/.claude/agents: ENOENT: no such file or directory, statx '/home/dev/.claude/agents'
+
+2026-05-20 23:15:01.663 [info] From claude: 2026-05-20T19:15:01.662Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/commands: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/commands'
+2026-05-20T19:15:01.662Z [DEBUG] Failed to stat directory /home/dev/.claude/commands: ENOENT: no such file or directory, statx '/home/dev/.claude/commands'
+
+2026-05-20 23:15:01.663 [info] From claude: 2026-05-20T19:15:01.663Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-05-20T19:15:01.663Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/agents: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/agents'
+
+2026-05-20 23:15:01.663 [info] From claude: 2026-05-20T19:15:01.663Z [DEBUG] Failed to stat directory /home/dev/.claude/agents: ENOENT: no such file or directory, statx '/home/dev/.claude/agents'
+
+2026-05-20 23:15:01.678 [info] From claude: 2026-05-20T19:15:01.678Z [DEBUG] [STARTUP] setup() completed in 31ms
+2026-05-20T19:15:01.678Z [DEBUG] Cleared CA certificates cache
+2026-05-20T19:15:01.678Z [DEBUG] Cleared mTLS configuration cache
+2026-05-20T19:15:01.678Z [DEBUG] Cleared proxy agent cache
+
+2026-05-20 23:15:01.678 [info] From claude: 2026-05-20T19:15:01.678Z [DEBUG] CA certs: stores=bundled,system, extraCertsPath=undefined
+2026-05-20T19:15:01.678Z [DEBUG] CA certs: Loaded 145 bundled root certificates
+2026-05-20T19:15:01.678Z [DEBUG] CA certs: Loaded 290 system CA certificates
+
+2026-05-20 23:15:01.678 [info] From claude: 2026-05-20T19:15:01.678Z [DEBUG] mTLS: Creating HTTPS agent with custom certificates
+
+2026-05-20 23:15:01.678 [info] From claude: 2026-05-20T19:15:01.678Z [DEBUG] [STARTUP] setup() completed in 31ms
+
+2026-05-20 23:15:01.678 [info] From claude: 2026-05-20T19:15:01.678Z [DEBUG] Cleared CA certificates cache
+2026-05-20T19:15:01.678Z [DEBUG] Cleared mTLS configuration cache
+
+2026-05-20 23:15:01.679 [info] From claude: 2026-05-20T19:15:01.678Z [DEBUG] Cleared proxy agent cache
+2026-05-20T19:15:01.678Z [DEBUG] CA certs: stores=bundled,system, extraCertsPath=undefined
+
+2026-05-20 23:15:01.679 [info] From claude: 2026-05-20T19:15:01.679Z [DEBUG] [STARTUP] Loading commands and agents...
+
+2026-05-20 23:15:01.679 [info] From claude: 2026-05-20T19:15:01.679Z [DEBUG] CA certs: Loaded 145 bundled root certificates
+
+2026-05-20 23:15:01.679 [info] From claude: 2026-05-20T19:15:01.679Z [DEBUG] CA certs: Loaded 290 system CA certificates
+
+2026-05-20 23:15:01.679 [info] From claude: 2026-05-20T19:15:01.679Z [DEBUG] mTLS: Creating HTTPS agent with custom certificates
+
+2026-05-20 23:15:01.679 [info] From claude: 2026-05-20T19:15:01.679Z [DEBUG] [ToolSearch:optimistic] mode=tst, ENABLE_TOOL_SEARCH=undefined, result=true
+
+2026-05-20 23:15:01.680 [info] From claude: 2026-05-20T19:15:01.679Z [DEBUG] [STARTUP] Loading commands and agents...
+
+2026-05-20 23:15:01.680 [info] From claude: 2026-05-20T19:15:01.680Z [DEBUG] [ToolSearch:optimistic] mode=tst, ENABLE_TOOL_SEARCH=undefined, result=true
+
+2026-05-20 23:15:01.710 [info] From claude: 2026-05-20T19:15:01.710Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+
+2026-05-20 23:15:01.711 [info] From claude: 2026-05-20T19:15:01.711Z [DEBUG] Git remote URL: https://[REDACTED]@github.com/7kim/AI_Workflow.git
+
+2026-05-20 23:15:01.711 [info] From claude: 2026-05-20T19:15:01.711Z [DEBUG] Parsed repository: github.com/7kim/AI_Workflow from URL: https://[REDACTED]@github.com/7kim/AI_Workflow.git
+
+2026-05-20 23:15:01.711 [info] From claude: 2026-05-20T19:15:01.711Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+
+2026-05-20 23:15:01.712 [info] From claude: 2026-05-20T19:15:01.712Z [DEBUG] Git remote URL: https://[REDACTED]@github.com/7kim/AI_Workflow.git
+
+2026-05-20 23:15:01.712 [info] From claude: 2026-05-20T19:15:01.712Z [DEBUG] Parsed repository: github.com/7kim/AI_Workflow from URL: https://[REDACTED]@github.com/7kim/AI_Workflow.git
+
+2026-05-20 23:15:01.757 [info] From claude: 2026-05-20T19:15:01.756Z [DEBUG] Loaded hooks from standard location for plugin gitkraken-hooks: /home/dev/.claude/plugins/marketplaces/gitkraken/plugins/gitkraken-hooks/hooks/hooks.json
+
+2026-05-20 23:15:01.762 [info] From claude: 2026-05-20T19:15:01.762Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+
+2026-05-20 23:15:01.763 [info] From claude: 2026-05-20T19:15:01.762Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+
+2026-05-20 23:15:01.763 [info] From claude: 2026-05-20T19:15:01.763Z [DEBUG] Checking plugin gitkraken-hooks: skillsPath=none, skillsPaths=0 paths
+
+2026-05-20 23:15:01.763 [info] From claude: 2026-05-20T19:15:01.763Z [DEBUG] Loading hooks from plugin: gitkraken-hooks
+
+2026-05-20 23:15:01.763 [info] From claude: 2026-05-20T19:15:01.763Z [DEBUG] Registered 22 hooks from 1 plugins
+
+2026-05-20 23:15:01.763 [info] From claude: 2026-05-20T19:15:01.763Z [DEBUG] Total plugin skills loaded: 0
+
+2026-05-20 23:15:01.763 [info] From claude: 2026-05-20T19:15:01.763Z [DEBUG] Total plugin commands loaded: 0
+
+2026-05-20 23:15:01.763 [info] From claude: 2026-05-20T19:15:01.763Z [DEBUG] Total plugin agents loaded: 0
+
+2026-05-20 23:15:01.774 [info] From claude: 2026-05-20T19:15:01.773Z [DEBUG] Loaded hooks from standard location for plugin gitkraken-hooks: /home/dev/.claude/plugins/marketplaces/gitkraken/plugins/gitkraken-hooks/hooks/hooks.json
+
+2026-05-20 23:15:01.774 [info] From claude: 2026-05-20T19:15:01.774Z [DEBUG] Found 1 plugins (1 enabled, 0 disabled)
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] getPluginSkills: Processing 1 enabled plugins
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 11 bundled skills, 0 builtin plugin skills
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] Checking plugin gitkraken-hooks: skillsPath=none, skillsPaths=0 paths
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] Loading hooks from plugin: gitkraken-hooks
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] Registered 22 hooks from 1 plugins
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] Total plugin skills loaded: 0
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] Total plugin commands loaded: 0
+
+2026-05-20 23:15:01.775 [info] From claude: 2026-05-20T19:15:01.775Z [DEBUG] Total plugin agents loaded: 0
+
+2026-05-20 23:15:01.776 [info] From claude: 2026-05-20T19:15:01.776Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 11 bundled skills, 0 builtin plugin skills
+
+2026-05-20 23:15:01.777 [info] From claude: 2026-05-20T19:15:01.777Z [DEBUG] [STARTUP] Commands and agents loaded in 98ms
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-05-20T19:15:01.778Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] Starting background startup prefetches
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] [STARTUP] Commands and agents loaded in 99ms
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] [Bootstrap] Fetching
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-05-20T19:15:01.778Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+
+2026-05-20 23:15:01.778 [info] From claude: 2026-05-20T19:15:01.778Z [DEBUG] Starting background startup prefetches
+
+2026-05-20 23:15:01.779 [info] From claude: 2026-05-20T19:15:01.779Z [DEBUG] [Bootstrap] Fetching
+
+2026-05-20 23:15:01.782 [info] From claude: 2026-05-20T19:15:01.782Z [DEBUG] Passes: Cache stale, returning cached data and refreshing in background
+
+2026-05-20 23:15:01.783 [info] From claude: 2026-05-20T19:15:01.783Z [DEBUG] Passes: Cache stale, returning cached data and refreshing in background
+
+2026-05-20 23:15:01.804 [info] From claude: 2026-05-20T19:15:01.795Z [DEBUG] [STARTUP] MCP configs resolved in 150ms (awaited at +150ms)
+2026-05-20T19:15:01.798Z [DEBUG] Creating installed_plugins.json from settings.json files
+2026-05-20T19:15:01.798Z [DEBUG] Looking up plugin gitkraken-hooks@gitkraken in marketplace gitkraken
+2026-05-20T19:15:01.798Z [DEBUG] Cleared CA certificates cache
+2026-05-20T19:15:01.798Z [DEBUG] Cleared mTLS configuration cache
+2026-05-20T19:15:01.798Z [DEBUG] Cleared proxy agent cache
+2026-05-20T19:15:01.798Z [DEBUG] CA certs: stores=bundled,system, extraCertsPath=undefined
+2026-05-20T19:15:01.798Z [DEBUG] CA certs: Loaded 145 bundled root certificates
+2026-05-20T19:15:01.798Z [DEBUG] CA certs: Loaded 290 system CA certificates
+2026-05-20T19:15:01.798Z [DEBUG] mTLS: Creating HTTPS agent with custom certificates
+2026-05-20T19:15:01.801Z [DEBUG] [MCP] --mcp-config servers running fully async (nonblocking)
+2026-05-20T19:15:01.801Z [DEBUG] [MCP] claude.ai connectors running fully async (nonblocking)
+2026-05-20T19:15:01.802Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-05-20T19:15:01.802Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+
+2026-05-20 23:15:01.804 [info] From claude: 2026-05-20T19:15:01.797Z [DEBUG] [STARTUP] MCP configs resolved in 152ms (awaited at +152ms)
+2026-05-20T19:15:01.798Z [DEBUG] Creating installed_plugins.json from settings.json files
+2026-05-20T19:15:01.798Z [DEBUG] Looking up plugin gitkraken-hooks@gitkraken in marketplace gitkraken
+2026-05-20T19:15:01.798Z [DEBUG] Cleared CA certificates cache
+2026-05-20T19:15:01.798Z [DEBUG] Cleared mTLS configuration cache
+2026-05-20T19:15:01.798Z [DEBUG] Cleared proxy agent cache
+2026-05-20T19:15:01.798Z [DEBUG] CA certs: stores=bundled,system, extraCertsPath=undefined
+2026-05-20T19:15:01.799Z [DEBUG] CA certs: Loaded 145 bundled root certificates
+2026-05-20T19:15:01.799Z [DEBUG] CA certs: Loaded 290 system CA certificates
+2026-05-20T19:15:01.799Z [DEBUG] mTLS: Creating HTTPS agent with custom certificates
+2026-05-20T19:15:01.802Z [DEBUG] [MCP] --mcp-config servers running fully async (nonblocking)
+2026-05-20T19:15:01.802Z [DEBUG] [MCP] claude.ai connectors running fully async (nonblocking)
+2026-05-20T19:15:01.802Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-05-20T19:15:01.802Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+
+2026-05-20 23:15:01.807 [info] From claude: 2026-05-20T19:15:01.807Z [WARN] [3P telemetry] Event dropped (no event logger initialized): hook_execution_start
+
+2026-05-20 23:15:01.812 [info] From claude: 2026-05-20T19:15:01.812Z [DEBUG] Grove: Cache stale, returning cached data and refreshing in background
+
+2026-05-20 23:15:01.815 [info] From claude: 2026-05-20T19:15:01.814Z [DEBUG] Total LSP servers loaded: 0
+2026-05-20T19:15:01.814Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-05-20T19:15:01.814Z [DEBUG] LSP manager initialized with 0 servers
+
+2026-05-20 23:15:01.815 [info] From claude: 2026-05-20T19:15:01.815Z [DEBUG] LSP server manager initialized successfully
+
+2026-05-20 23:15:01.815 [info] From claude: 2026-05-20T19:15:01.815Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+
+2026-05-20 23:15:01.815 [info] From claude: 2026-05-20T19:15:01.815Z [DEBUG] Grove: Cache stale, returning cached data and refreshing in background
+
+2026-05-20 23:15:01.816 [info] From claude: 2026-05-20T19:15:01.816Z [WARN] [3P telemetry] Event dropped (no event logger initialized): plugin_loaded
+
+2026-05-20 23:15:01.819 [info] From claude: 2026-05-20T19:15:01.819Z [DEBUG] Total LSP servers loaded: 0
+2026-05-20T19:15:01.819Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-05-20T19:15:01.819Z [DEBUG] LSP manager initialized with 0 servers
+
+2026-05-20 23:15:01.819 [info] From claude: 2026-05-20T19:15:01.819Z [DEBUG] LSP server manager initialized successfully
+
+2026-05-20 23:15:01.819 [info] From claude: 2026-05-20T19:15:01.819Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+
+2026-05-20 23:15:01.835 [info] From claude: 2026-05-20T19:15:01.835Z [DEBUG] Added gitkraken-hooks@gitkraken with scope user
+
+2026-05-20 23:15:01.835 [info] From claude: 2026-05-20T19:15:01.835Z [DEBUG] Saved 1 installed plugins to /home/dev/.claude/plugins/installed_plugins.json
+2026-05-20T19:15:01.835Z [DEBUG] Sync completed: 1 added, 0 updated in installed_plugins.json
+
+2026-05-20 23:15:01.835 [info] From claude: 2026-05-20T19:15:01.835Z [DEBUG] Initialized versioned plugins system with 0 plugins
+
+2026-05-20 23:15:01.840 [info] From claude: 2026-05-20T19:15:01.840Z [DEBUG] Watching for changes in setting files /home/dev/.claude/settings.json, /home/dev/AI_Workflow/.claude/settings.json, /home/dev/AI_Workflow/.claude/settings.local.json...
+
+2026-05-20 23:15:01.841 [info] From claude: 2026-05-20T19:15:01.841Z [DEBUG] Added gitkraken-hooks@gitkraken with scope user
+
+2026-05-20 23:15:01.842 [info] From claude: 2026-05-20T19:15:01.841Z [DEBUG] Saved 1 installed plugins to /home/dev/.claude/plugins/installed_plugins.json
+2026-05-20T19:15:01.841Z [DEBUG] Sync completed: 1 added, 0 updated in installed_plugins.json
+
+2026-05-20 23:15:01.842 [info] From claude: 2026-05-20T19:15:01.841Z [DEBUG] Initialized versioned plugins system with 0 plugins
+
+2026-05-20 23:15:01.844 [info] From claude: 2026-05-20T19:15:01.844Z [DEBUG] Watching for changes in setting files /home/dev/.claude/settings.json, /home/dev/AI_Workflow/.claude/settings.json, /home/dev/AI_Workflow/.claude/settings.local.json...
+
+2026-05-20 23:15:01.866 [info] From claude: 2026-05-20T19:15:01.866Z [DEBUG] Ripgrep first use test: PASSED (mode=embedded, path=/home/dev/AI_Workflow/config/antigravity/extensions/anthropic.claude-code-2.1.143-linux-x64/resources/native-binary/claude)
+
+2026-05-20 23:15:01.866 [info] From claude: 2026-05-20T19:15:01.866Z [DEBUG] Ripgrep first use test: PASSED (mode=embedded, path=/home/dev/AI_Workflow/config/antigravity/extensions/anthropic.claude-code-2.1.143-linux-x64/resources/native-binary/claude)
+
+2026-05-20 23:15:01.896 [info] From claude: 2026-05-20T19:15:01.896Z [DEBUG] Writing through symlink: /home/dev/.claude.json -> /home/dev/AI_Workflow/config/claude/.claude.json
+2026-05-20T19:15:01.896Z [DEBUG] Preserving file permissions: 100600
+
+2026-05-20 23:15:01.896 [info] From claude: 2026-05-20T19:15:01.896Z [DEBUG] Writing to temp file: /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12610.7a15c028aff8
+
+2026-05-20 23:15:01.896 [info] From claude: 2026-05-20T19:15:01.896Z [DEBUG] Applied original permissions to temp file
+
+2026-05-20 23:15:01.915 [info] From claude: 2026-05-20T19:15:01.914Z [DEBUG] Temp file written successfully, size: 28104 bytes
+2026-05-20T19:15:01.914Z [DEBUG] Renaming /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12610.7a15c028aff8 to /home/dev/AI_Workflow/config/claude/.claude.json
+
+2026-05-20 23:15:01.915 [info] From claude: 2026-05-20T19:15:01.915Z [DEBUG] File /home/dev/AI_Workflow/config/claude/.claude.json written atomically
+
+2026-05-20 23:15:01.921 [info] From claude: 2026-05-20T19:15:01.921Z [DEBUG] [auto-mode] verifyAutoModeGateAccess: enabledState=disabled disabledBySettings=false model=claude-sonnet-4-6 modelSupported=true disableFastModeBreakerFires=false carouselAvailable=false canEnterAuto=false
+2026-05-20T19:15:01.921Z [WARN] auto mode disabled: tengu_auto_mode_config.enabled === "disabled" (circuit breaker)
+
+2026-05-20 23:15:01.922 [info] From claude: 2026-05-20T19:15:01.921Z [DEBUG] [auto-mode] kickOutOfAutoIfNeeded applying: ctx.mode=acceptEdits ctx.prePlanMode=undefined reason=circuit-breaker
+2026-05-20T19:15:01.921Z [DEBUG] [auto-mode] verifyAutoModeGateAccess setAvailable: true -> false
+
+2026-05-20 23:15:01.933 [info] From claude: 2026-05-20T19:15:01.933Z [DEBUG] Writing through symlink: /home/dev/.claude.json -> /home/dev/AI_Workflow/config/claude/.claude.json
+2026-05-20T19:15:01.933Z [DEBUG] Preserving file permissions: 100600
+2026-05-20T19:15:01.933Z [DEBUG] Writing to temp file: /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12538.e8d05dacaf67
+
+2026-05-20 23:15:01.933 [info] From claude: 2026-05-20T19:15:01.933Z [DEBUG] Applied original permissions to temp file
+
+2026-05-20 23:15:01.969 [info] From claude: 2026-05-20T19:15:01.969Z [DEBUG] Temp file written successfully, size: 28104 bytes
+2026-05-20T19:15:01.969Z [DEBUG] Renaming /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12538.e8d05dacaf67 to /home/dev/AI_Workflow/config/claude/.claude.json
+
+2026-05-20 23:15:01.969 [info] From claude: 2026-05-20T19:15:01.969Z [DEBUG] File /home/dev/AI_Workflow/config/claude/.claude.json written atomically
+
+2026-05-20 23:15:01.970 [info] From claude: 2026-05-20T19:15:01.970Z [DEBUG] [auto-mode] verifyAutoModeGateAccess: enabledState=disabled disabledBySettings=false model=claude-sonnet-4-6 modelSupported=true disableFastModeBreakerFires=false carouselAvailable=false canEnterAuto=false
+2026-05-20T19:15:01.970Z [WARN] auto mode disabled: tengu_auto_mode_config.enabled === "disabled" (circuit breaker)
+
+2026-05-20 23:15:01.970 [info] From claude: 2026-05-20T19:15:01.970Z [DEBUG] [auto-mode] kickOutOfAutoIfNeeded applying: ctx.mode=default ctx.prePlanMode=undefined reason=circuit-breaker
+2026-05-20T19:15:01.970Z [DEBUG] [auto-mode] verifyAutoModeGateAccess setAvailable: true -> false
+
+2026-05-20 23:15:02.049 [info] From claude: 2026-05-20T19:15:02.048Z [DEBUG] Writing through symlink: /home/dev/.claude.json -> /home/dev/AI_Workflow/config/claude/.claude.json
+2026-05-20T19:15:02.048Z [DEBUG] Preserving file permissions: 100600
+2026-05-20T19:15:02.049Z [DEBUG] Writing to temp file: /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12610.6eaccbb3c67a
+
+2026-05-20 23:15:02.049 [info] From claude: 2026-05-20T19:15:02.049Z [DEBUG] Applied original permissions to temp file
+
+2026-05-20 23:15:02.057 [info] From claude: 2026-05-20T19:15:02.057Z [DEBUG] Temp file written successfully, size: 28075 bytes
+2026-05-20T19:15:02.057Z [DEBUG] Renaming /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12610.6eaccbb3c67a to /home/dev/AI_Workflow/config/claude/.claude.json
+
+2026-05-20 23:15:02.057 [info] From claude: 2026-05-20T19:15:02.057Z [DEBUG] File /home/dev/AI_Workflow/config/claude/.claude.json written atomically
+
+2026-05-20 23:15:02.062 [info] From claude: 2026-05-20T19:15:02.062Z [DEBUG] LSP Diagnostics: Resetting all state (0 pending, 0 files tracked)
+
+2026-05-20 23:15:02.066 [info] From claude: 2026-05-20T19:15:02.065Z [DEBUG] Writing through symlink: /home/dev/.claude.json -> /home/dev/AI_Workflow/config/claude/.claude.json
+2026-05-20T19:15:02.065Z [DEBUG] Preserving file permissions: 100600
+2026-05-20T19:15:02.065Z [DEBUG] Writing to temp file: /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12538.8c280e2ec70b
+
+2026-05-20 23:15:02.066 [info] From claude: 2026-05-20T19:15:02.066Z [DEBUG] Applied original permissions to temp file
+
+2026-05-20 23:15:02.078 [info] From claude: 2026-05-20T19:15:02.077Z [DEBUG] Temp file written successfully, size: 28075 bytes
+2026-05-20T19:15:02.078Z [DEBUG] Renaming /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12538.8c280e2ec70b to /home/dev/AI_Workflow/config/claude/.claude.json
+
+2026-05-20 23:15:02.078 [info] From claude: 2026-05-20T19:15:02.078Z [DEBUG] File /home/dev/AI_Workflow/config/claude/.claude.json written atomically
+
+2026-05-20 23:15:02.104 [info] From claude: 2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup ec66cbaed4effeba@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 0ada4f8d8424e19c@v6 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 539f816c64543651@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 8161e4b78bd8dee4@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup a9147e3512f10199@v6 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.104 [info] From claude: 2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 857dc54ea4c57008@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup e196743f324f1832@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 08c8bfedef85bd65@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 8a4a44dbe99f4dc1@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 2252e1bb4b686e2f@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 0939b2085e1f736d@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 6bc51cfe82b26002@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup eb84de635dd6ff63@v6 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 27aa95a990241e0c@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup a06934140f8bd5b5@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup bfabd2fc19da7867@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 99c40ef8567ce55d@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 7b212a648699f262@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup d030bb7896c0b902@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.104 [info] From claude: 2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 88337cf87b4dcc9b@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 766c0ad24fedfb05@v5 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup aefeaef0a6e7439f@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 0cf5a09b5a618672@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 8ba2b5a9cbf0edb8@v5 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup ee564e1c458ee671@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 12b01e16846623c0@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.104 [info] From claude: 2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup ad3ecebf3421c7fc@v1 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 769090589f4cffdb@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup f278bd6fb9d9143c@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 4f0d05ebb6391e24@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.104 [info] From claude: 2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup a7af666c7999a1c8@v5 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 6bc51cfe82b26002@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup ad50f3e56f0f2b89@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup f21bcd0cb2c882ef@v1 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 39dfe22b2d7e828d@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup aaf5f4d6c1a19dd4@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.104 [info] From claude: 2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup caa3367bf3227b4e@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup a6305dea3d2f0f3b@v1 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup f2d017ea27f671e8@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup b7a1372b9fdd745c@v5 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 2b83dbc32667649a@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 2481adb400de86d7@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.104Z [DEBUG] FileHistory: Copied backup 85e851606802a16f@v1 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 2fcd3b572a86cd1e@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup a6305dea3d2f0f3b@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 6f763cf45e813dd4@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup c6a5a3571740d322@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup aa8b5b58d2416537@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 85e851606802a16f@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup ba4c6ecbc25ec0b4@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 1c51542e1f042b00@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup aeb5dfe33fa361c9@v5 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup ee9497d2821b5b3d@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup f21bcd0cb2c882ef@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup bab182ef64f50093@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup ad3ecebf3421c7fc@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup f0be6c7a64e660e0@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 66c8b10abb4f2bc1@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 6bc51cfe82b26002@v4 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup b76269072ce96ff1@v2 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 1c51542e1f042b00@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.105 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 1c51542e1f042b00@v4 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.106 [info] From claude: 2026-05-20T19:15:02.105Z [DEBUG] FileHistory: Copied backup 85e851606802a16f@v3 from session 1ba54ff7-8559-46f8-bf86-c499d1a1b46c to 76a9f115-6baa-4d9c-a0e3-bef445412d58
+
+2026-05-20 23:15:02.127 [info] From claude: 2026-05-20T19:15:02.126Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+
+2026-05-20 23:15:02.457 [info] From claude: 2026-05-20T19:15:02.456Z [DEBUG] Writing through symlink: /home/dev/.claude.json -> /home/dev/AI_Workflow/config/claude/.claude.json
+2026-05-20T19:15:02.456Z [DEBUG] Preserving file permissions: 100600
+2026-05-20T19:15:02.456Z [DEBUG] Writing to temp file: /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12538.76938b4dd924
+
+2026-05-20 23:15:02.457 [info] From claude: 2026-05-20T19:15:02.457Z [DEBUG] Applied original permissions to temp file
+
+2026-05-20 23:15:02.479 [info] From claude: 2026-05-20T19:15:02.471Z [DEBUG] Temp file written successfully, size: 28075 bytes
+2026-05-20T19:15:02.471Z [DEBUG] Renaming /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12538.76938b4dd924 to /home/dev/AI_Workflow/config/claude/.claude.json
+2026-05-20T19:15:02.471Z [DEBUG] File /home/dev/AI_Workflow/config/claude/.claude.json written atomically
+2026-05-20T19:15:02.472Z [DEBUG] Passes eligibility cached for org ef9b1753-40d3-43d3-acdd-1c401ab30f79: false
+
+2026-05-20 23:15:02.576 [info] From claude: 2026-05-20T19:15:02.560Z [DEBUG] [claudeai-mcp] Fetched 4 servers
+2026-05-20T19:15:02.566Z [DEBUG] MCP server "claude.ai Vercel": Initializing claude.ai proxy transport for server mcpsrv_01Cvdwa1Ux9HDScVX6W1rzX3
+2026-05-20T19:15:02.566Z [DEBUG] MCP server "claude.ai Vercel": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01Cvdwa1Ux9HDScVX6W1rzX3
+2026-05-20T19:15:02.567Z [DEBUG] MCP server "claude.ai Vercel": claude.ai proxy transport created successfully
+2026-05-20T19:15:02.569Z [DEBUG] MCP server "claude.ai Vercel": Starting connection with timeout of 30000ms
+2026-05-20T19:15:02.569Z [DEBUG] MCP server "claude.ai Figma": Initializing claude.ai proxy transport for server mcpsrv_014UgvrSSDxCqrJ5z9Q6mc5K
+2026-05-20T19:15:02.569Z [DEBUG] MCP server "claude.ai Figma": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_014UgvrSSDxCqrJ5z9Q6mc5K
+2026-05-20T19:15:02.570Z [DEBUG] MCP server "claude.ai Figma": claude.ai proxy transport created successfully
+2026-05-20T19:15:02.570Z [DEBUG] MCP server "claude.ai Figma": Starting connection with timeout of 30000ms
+2026-05-20T19:15:02.570Z [DEBUG] MCP server "claude.ai Spotify": Initializing claude.ai proxy transport for server mcpsrv_01AhZcbNRmhjJrZLSN1jJtXm
+2026-05-20T19:15:02.570Z [DEBUG] MCP server "claude.ai Spotify": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01AhZcbNRmhjJrZLSN1jJtXm
+2026-05-20T19:15:02.570Z [DEBUG] MCP server "claude.ai Spotify": claude.ai proxy transport created successfully
+2026-05-20T19:15:02.571Z [DEBUG] MCP server "claude.ai Spotify": Starting connection with timeout of 30000ms
+2026-05-20T19:15:02.571Z [DEBUG] MCP server "claude.ai Google Drive": Initializing claude.ai proxy transport for server mcpsrv_01XgZ8yTWWJKdrbjcwCEgnod
+2026-05-20T19:15:02.571Z [DEBUG] MCP server "claude.ai Google Drive": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01XgZ8yTWWJKdrbjcwCEgnod
+2026-05-20T19:15:02.571Z [DEBUG] MCP server "claude.ai Google Drive": claude.ai proxy transport created successfully
+2026-05-20T19:15:02.571Z [DEBUG] MCP server "claude.ai Google Drive": Starting connection with timeout of 30000ms
+
+2026-05-20 23:15:02.653 [info] From claude: 2026-05-20T19:15:02.615Z [DEBUG] [mcp-registry] Loaded 197 official MCP URLs (legacy)
+
+2026-05-20 23:15:02.653 [info] From claude: 2026-05-20T19:15:02.630Z [DEBUG] [mcp-registry] Loaded 197 official MCP URLs (legacy)
+
+2026-05-20 23:15:02.715 [info] From claude: 2026-05-20T19:15:02.715Z [DEBUG] InstructionsLoaded:session_start ["/home/dev/.local/share/GitKrakenCLI/versions/gk_3_1_65/gk_3_1_65" ai hook run --host claude-code] completed with status 0
+2026-05-20T19:15:02.715Z [DEBUG] Hook output does not start with {, treating as plain text
+
+2026-05-20 23:15:02.940 [info] From claude: 2026-05-20T19:15:02.940Z [DEBUG] Hook output does not start with {, treating as plain text
+
+2026-05-20 23:15:02.956 [info] From claude: 2026-05-20T19:15:02.956Z [DEBUG] [ScheduledTasks] scheduler start() — enabled=false, hasTasks=false
+
+2026-05-20 23:15:02.970 [info] From claude: 2026-05-20T19:15:02.969Z [DEBUG] installPluginsForHeadless: starting
+
+2026-05-20 23:15:02.970 [info] From claude: 2026-05-20T19:15:02.970Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/output-styles: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/output-styles'
+
+2026-05-20 23:15:02.970 [info] From claude: 2026-05-20T19:15:02.970Z [DEBUG] Failed to stat directory /home/dev/.claude/output-styles: ENOENT: no such file or directory, statx '/home/dev/.claude/output-styles'
+
+2026-05-20 23:15:02.970 [info] From claude: 2026-05-20T19:15:02.970Z [DEBUG] Total plugin output styles loaded: 0
+
+2026-05-20 23:15:02.974 [info] From claude: 2026-05-20T19:15:02.974Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /home/dev/AI_Workflow/.claude/settings.json
+
+2026-05-20 23:15:02.975 [info] From claude: 2026-05-20T19:15:02.975Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /etc/claude-code/managed-settings.json
+
+2026-05-20 23:15:02.977 [info] Getting authentication status
+2026-05-20 23:15:02.977 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:02.977 [info] Getting authentication status
+2026-05-20 23:15:02.977 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:02.977 [info] Getting authentication status
+2026-05-20 23:15:02.977 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:02.977 [info] Getting authentication status
+2026-05-20 23:15:02.977 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:03.011 [info] From claude: 2026-05-20T19:15:03.010Z [DEBUG] LSP server manager shut down successfully
+
+2026-05-20 23:15:03.027 [info] From claude: 2026-05-20T19:15:03.027Z [DEBUG] MCP server "claude.ai Google Drive": claude.ai proxy connection failed after 456ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured.","details":{"error_code":"mcp_unauthorized_no_token"}},"request_id":"req_011CbEMa2ZYnsnJKoqiAKDfC"}
+
+2026-05-20 23:15:03.027 [info] From claude: 2026-05-20T19:15:03.027Z [ERROR] MCP server "claude.ai Google Drive" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured.","details":{"error_code":"mcp_unauthorized_no_token"}},"request_id":"req_011CbEMa2ZYnsnJKoqiAKDfC"}
+
+2026-05-20 23:15:03.028 [info] From claude: 2026-05-20T19:15:03.027Z [DEBUG] MCP server "claude.ai Google Drive": Authentication required for claude.ai proxy server
+
+2026-05-20 23:15:03.040 [info] From claude: 2026-05-20T19:15:03.030Z [DEBUG] MCP server "claude.ai Figma": claude.ai proxy connection failed after 461ms: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+2026-05-20T19:15:03.030Z [ERROR] MCP server "claude.ai Figma" Error: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+2026-05-20T19:15:03.030Z [DEBUG] MCP server "claude.ai Figma": Connection failed after 461ms: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+2026-05-20T19:15:03.030Z [ERROR] MCP server "claude.ai Figma" Connection failed: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+
+2026-05-20 23:15:03.110 [info] From claude: 2026-05-20T19:15:03.109Z [DEBUG] SessionEnd:other ["/home/dev/.local/share/GitKrakenCLI/versions/gk_3_1_65/gk_3_1_65" ai hook run --host claude-code] completed with status 0
+2026-05-20T19:15:03.109Z [DEBUG] Hook output does not start with {, treating as plain text
+
+2026-05-20 23:15:03.220 [info] From claude: 2026-05-20T19:15:03.219Z [DEBUG] MCP server "claude.ai Vercel": claude.ai proxy connection failed after 653ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured.","details":{"error_code":"mcp_unauthorized_no_token"}},"request_id":"req_011CbEMa2Y4P6Ps8PkAKCbwy"}
+
+2026-05-20 23:15:03.220 [info] From claude: 2026-05-20T19:15:03.219Z [ERROR] MCP server "claude.ai Vercel" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured.","details":{"error_code":"mcp_unauthorized_no_token"}},"request_id":"req_011CbEMa2Y4P6Ps8PkAKCbwy"}
+2026-05-20T19:15:03.220Z [DEBUG] MCP server "claude.ai Vercel": Authentication required for claude.ai proxy server
+
+2026-05-20 23:15:03.264 [info] From claude: 2026-05-20T19:15:03.263Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+
+2026-05-20 23:15:03.334 [info] From claude: 2026-05-20T19:15:03.334Z [DEBUG] InstructionsLoaded:session_start ["/home/dev/.local/share/GitKrakenCLI/versions/gk_3_1_65/gk_3_1_65" ai hook run --host claude-code] completed with status 0
+2026-05-20T19:15:03.334Z [DEBUG] Hook output does not start with {, treating as plain text
+
+2026-05-20 23:15:03.542 [info] From claude: 2026-05-20T19:15:03.542Z [DEBUG] InstructionsLoaded:session_start ["/home/dev/.local/share/GitKrakenCLI/versions/gk_3_1_65/gk_3_1_65" ai hook run --host claude-code] completed with status 0
+2026-05-20T19:15:03.542Z [DEBUG] Hook output does not start with {, treating as plain text
+
+2026-05-20 23:15:03.573 [info] From claude: 2026-05-20T19:15:03.573Z [DEBUG] Writing through symlink: /home/dev/.claude.json -> /home/dev/AI_Workflow/config/claude/.claude.json
+
+2026-05-20 23:15:03.573 [info] From claude: 2026-05-20T19:15:03.573Z [DEBUG] Preserving file permissions: 100600
+2026-05-20T19:15:03.573Z [DEBUG] Writing to temp file: /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12610.a2fe49e0e6b8
+
+2026-05-20 23:15:03.573 [info] From claude: 2026-05-20T19:15:03.573Z [DEBUG] Applied original permissions to temp file
+
+2026-05-20 23:15:03.584 [info] From claude: 2026-05-20T19:15:03.584Z [DEBUG] Temp file written successfully, size: 28075 bytes
+
+2026-05-20 23:15:03.584 [info] From claude: 2026-05-20T19:15:03.584Z [DEBUG] Renaming /home/dev/AI_Workflow/config/claude/.claude.json.tmp.12610.a2fe49e0e6b8 to /home/dev/AI_Workflow/config/claude/.claude.json
+
+2026-05-20 23:15:03.585 [info] From claude: 2026-05-20T19:15:03.585Z [DEBUG] File /home/dev/AI_Workflow/config/claude/.claude.json written atomically
+
+2026-05-20 23:15:03.585 [info] From claude: 2026-05-20T19:15:03.585Z [DEBUG] Passes eligibility cached for org ef9b1753-40d3-43d3-acdd-1c401ab30f79: false
+
+2026-05-20 23:15:03.618 [info] From claude: 2026-05-20T19:15:03.616Z [DEBUG] [Bootstrap] Fetching
+
+2026-05-20 23:15:03.728 [info] From claude: 2026-05-20T19:15:03.728Z [DEBUG] [claudeai-mcp] Fetched 4 servers
+
+2026-05-20 23:15:03.730 [info] From claude: 2026-05-20T19:15:03.730Z [DEBUG] Hook output does not start with {, treating as plain text
+
+2026-05-20 23:15:03.747 [info] From claude: 2026-05-20T19:15:03.747Z [DEBUG] [ScheduledTasks] scheduler start() — enabled=false, hasTasks=false
+
+2026-05-20 23:15:03.751 [info] From claude: 2026-05-20T19:15:03.751Z [DEBUG] MCP server "claude.ai Vercel": Skipping connection (cached needs-auth)
+
+2026-05-20 23:15:03.752 [info] From claude: 2026-05-20T19:15:03.752Z [DEBUG] MCP server "claude.ai Figma": Initializing claude.ai proxy transport for server mcpsrv_014UgvrSSDxCqrJ5z9Q6mc5K
+2026-05-20T19:15:03.752Z [DEBUG] MCP server "claude.ai Figma": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_014UgvrSSDxCqrJ5z9Q6mc5K
+
+2026-05-20 23:15:03.752 [info] From claude: 2026-05-20T19:15:03.752Z [DEBUG] MCP server "claude.ai Figma": claude.ai proxy transport created successfully
+
+2026-05-20 23:15:03.757 [info] From claude: 2026-05-20T19:15:03.757Z [DEBUG] MCP server "claude.ai Figma": Starting connection with timeout of 30000ms
+
+2026-05-20 23:15:03.757 [info] From claude: 2026-05-20T19:15:03.757Z [DEBUG] MCP server "claude.ai Spotify": Initializing claude.ai proxy transport for server mcpsrv_01AhZcbNRmhjJrZLSN1jJtXm
+
+2026-05-20 23:15:03.757 [info] From claude: 2026-05-20T19:15:03.757Z [DEBUG] MCP server "claude.ai Spotify": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01AhZcbNRmhjJrZLSN1jJtXm
+
+2026-05-20 23:15:03.757 [info] From claude: 2026-05-20T19:15:03.757Z [DEBUG] MCP server "claude.ai Spotify": claude.ai proxy transport created successfully
+
+2026-05-20 23:15:03.759 [info] From claude: 2026-05-20T19:15:03.758Z [DEBUG] MCP server "claude.ai Spotify": Starting connection with timeout of 30000ms
+
+2026-05-20 23:15:03.759 [info] From claude: 2026-05-20T19:15:03.759Z [DEBUG] MCP server "claude.ai Google Drive": Skipping connection (cached needs-auth)
+
+2026-05-20 23:15:03.761 [info] From claude: 2026-05-20T19:15:03.761Z [DEBUG] installPluginsForHeadless: starting
+
+2026-05-20 23:15:03.770 [info] From claude: 2026-05-20T19:15:03.770Z [DEBUG] Failed to stat directory /etc/claude-code/.claude/output-styles: ENOENT: no such file or directory, statx '/etc/claude-code/.claude/output-styles'
+2026-05-20T19:15:03.770Z [DEBUG] Failed to stat directory /home/dev/.claude/output-styles: ENOENT: no such file or directory, statx '/home/dev/.claude/output-styles'
+
+2026-05-20 23:15:03.770 [info] From claude: 2026-05-20T19:15:03.770Z [DEBUG] Total plugin output styles loaded: 0
+
+2026-05-20 23:15:03.773 [info] Getting authentication status
+2026-05-20 23:15:03.773 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:03.773 [info] Getting authentication status
+2026-05-20 23:15:03.773 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:03.774 [info] From claude: 2026-05-20T19:15:03.774Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /home/dev/AI_Workflow/.claude/settings.json
+
+2026-05-20 23:15:03.774 [info] From claude: 2026-05-20T19:15:03.774Z [DEBUG] Broken symlink or missing file encountered for settings.json at path: /etc/claude-code/managed-settings.json
+
+2026-05-20 23:15:03.775 [info] Getting authentication status
+2026-05-20 23:15:03.775 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:03.775 [info] Getting authentication status
+2026-05-20 23:15:03.775 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:03.901 [info] From claude: 2026-05-20T19:15:03.901Z [DEBUG] [Bootstrap] Fetch ok
+
+2026-05-20 23:15:03.901 [info] From claude: 2026-05-20T19:15:03.901Z [DEBUG] [Bootstrap] Cache unchanged, skipping write
+
+2026-05-20 23:15:03.930 [info] From claude: 2026-05-20T19:15:03.929Z [DEBUG] Org fast mode: disabled (extra_usage_disabled)
+
+2026-05-20 23:15:03.944 [info] From claude: 2026-05-20T19:15:03.944Z [DEBUG] InstructionsLoaded:session_start ["/home/dev/.local/share/GitKrakenCLI/versions/gk_3_1_65/gk_3_1_65" ai hook run --host claude-code] completed with status 0
+2026-05-20T19:15:03.944Z [DEBUG] Hook output does not start with {, treating as plain text
+
+2026-05-20 23:15:04.241 [info] From claude: 2026-05-20T19:15:04.241Z [DEBUG] MCP server "claude.ai Figma": claude.ai proxy connection failed after 489ms: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+
+2026-05-20 23:15:04.242 [info] From claude: 2026-05-20T19:15:04.241Z [ERROR] MCP server "claude.ai Figma" Error: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+
+2026-05-20 23:15:04.242 [info] From claude: 2026-05-20T19:15:04.242Z [DEBUG] MCP server "claude.ai Figma": Connection failed after 490ms: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+
+2026-05-20 23:15:04.242 [info] From claude: 2026-05-20T19:15:04.242Z [ERROR] MCP server "claude.ai Figma" Connection failed: Streamable HTTP error: Error POSTing to endpoint: {"jsonrpc":"2.0","id":0,"error":{"code":-32600,"message":"Anthropic Proxy: Invalid content from server","data":null}}
+
+2026-05-20 23:15:04.574 [info] From claude: 2026-05-20T19:15:04.573Z [DEBUG] MCP server "claude.ai Spotify": Successfully connected (transport: claudeai-proxy) in 816ms
+
+2026-05-20 23:15:04.574 [info] From claude: 2026-05-20T19:15:04.574Z [DEBUG] MCP server "claude.ai Spotify": Connection established with capabilities: {"hasTools":true,"hasPrompts":true,"hasResources":true,"hasResourceSubscribe":false,"serverVersion":{"name":"duet-mcp","version":"1.0.0"}}
+2026-05-20T19:15:04.574Z [DEBUG] [MCP] Server "claude.ai Spotify" connected with subscribe=false
+
+2026-05-20 23:15:14.685 [info] Received message from webview: {"type":"request","requestId":"gb29weskvwb","request":{"type":"list_sessions_request"}}
+2026-05-20 23:15:14.706 [info] Received message from webview: {"type":"request","requestId":"45bjxz74vrj","request":{"type":"list_remote_sessions"}}
+2026-05-20 23:15:14.707 [info] OAuth tokens found in secure storage
+2026-05-20 23:15:15.001 [info] Fetched 0 remote sessions
+2026-05-20 23:15:38.513 [info] From claude: 2026-05-20T19:15:38.513Z [DEBUG] Zip extraction completed: 358 files, 3795KB uncompressed
+
+2026-05-20 23:15:38.612 [info] From claude: 2026-05-20T19:15:38.612Z [DEBUG] Plugin autoupdate: checking installed plugins
+
+2026-05-20 23:20:30.711 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:31.716 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:32.720 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:33.721 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:34.725 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:35.731 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:36.732 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:37.733 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:38.737 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:39.743 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:40.748 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:41.753 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:42.756 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:43.759 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:44.763 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:45.764 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:46.771 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:47.778 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:48.783 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:49.788 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:50.789 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:51.789 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:52.791 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:53.797 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:54.803 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:55.810 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:56.814 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:57.820 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:58.822 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:20:59.829 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:00.836 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:01.847 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:02.847 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:03.947 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:04.948 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:05.956 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:06.957 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:07.962 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:08.964 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:09.969 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:10.973 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:11.978 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:12.982 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:13.986 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:14.991 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:15.995 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:17.002 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:18.007 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:19.011 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:20.015 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:21.023 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:22.044 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:23.045 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:24.050 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:25.057 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:26.061 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:27.066 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:28.067 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:29.068 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:30.069 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:31.070 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:32.078 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:33.078 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:34.079 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:35.084 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:36.088 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:37.090 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:38.109 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:39.110 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:40.111 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:41.112 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:42.113 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:43.115 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:44.116 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:45.120 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:46.123 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:47.128 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:48.129 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:49.135 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:50.136 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:51.140 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:52.144 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:53.149 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:54.154 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:55.155 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:56.158 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:57.163 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:58.173 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:21:59.178 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:00.183 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:01.188 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:02.189 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:03.197 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:04.199 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:05.203 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:06.205 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:07.210 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:08.212 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:09.215 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:10.220 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:11.225 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:12.231 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:13.233 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:14.235 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:15.236 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:16.242 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:17.243 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:18.247 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:19.253 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:20.258 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:21.258 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:22.259 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:23.259 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:24.263 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:25.272 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:26.273 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:27.277 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:28.282 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:29.297 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:30.302 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:31.303 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:32.312 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:33.314 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:34.320 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:35.325 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:36.333 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:37.334 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:38.335 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:39.342 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:40.343 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:41.348 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:42.363 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:43.368 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:44.373 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:45.377 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:46.382 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:47.389 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:48.395 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:49.399 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:50.403 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:51.410 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:52.410 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:53.415 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:54.418 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:55.422 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:56.427 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:57.431 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:58.435 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:22:59.443 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:00.447 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:01.449 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:02.453 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:03.458 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:04.462 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:05.487 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:06.494 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:07.496 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:08.496 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:09.501 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:10.505 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:11.510 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:12.510 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:13.511 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:14.516 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:15.521 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:16.526 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:17.532 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:18.535 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:19.540 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:20.544 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:21.548 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:22.549 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:23.550 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:24.554 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:25.555 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:26.560 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:27.566 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:28.570 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:29.571 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:30.573 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:31.578 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:32.578 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:33.583 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:34.585 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:35.591 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:36.596 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:37.604 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:38.605 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:39.609 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:40.612 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:41.620 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:42.620 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:43.622 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:44.624 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:45.629 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:46.633 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:47.638 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:48.642 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:49.646 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:50.651 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:51.655 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:52.656 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:53.660 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:54.661 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:55.665 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:56.669 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:57.674 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:58.678 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:23:59.682 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:00.688 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:01.694 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:02.703 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:03.706 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:04.708 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:05.713 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:06.719 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:07.722 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:08.727 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:09.729 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:10.731 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:11.732 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:12.733 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:13.738 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:14.744 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:15.750 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:16.755 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:17.760 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:18.766 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:19.772 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:20.777 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:21.782 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:22.788 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:23.793 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:24.799 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:25.804 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:26.809 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:27.814 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:28.819 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:29.824 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:30.829 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:31.835 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:32.841 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:33.846 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:34.851 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:35.857 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:36.862 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:37.867 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:38.868 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:39.868 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:40.874 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:41.878 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:42.885 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:43.886 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:44.891 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:45.896 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:46.901 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:47.902 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:48.904 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:49.904 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:50.905 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:51.909 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:52.916 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:53.917 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:54.918 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:55.918 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:56.922 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:57.929 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:58.944 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:24:59.945 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:00.950 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:01.951 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:02.957 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:03.963 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:04.964 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:05.969 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:06.969 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:07.974 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:08.980 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:09.988 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:10.993 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:11.998 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:13.000 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:14.001 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:15.003 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:16.004 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:17.005 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:18.007 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:19.008 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:20.012 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:21.013 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:22.014 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:23.016 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:24.017 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:25.018 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:26.019 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:27.021 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:28.021 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:29.022 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:30.027 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:31.028 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:32.030 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:33.032 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:34.033 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:35.034 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:36.034 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:37.036 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:38.036 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:39.038 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:40.042 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:41.050 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:42.051 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:43.052 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:44.053 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:45.055 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:46.060 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:47.065 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:48.065 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:49.067 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:50.073 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:51.078 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:52.078 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:53.079 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:54.080 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:55.081 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:56.082 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:57.083 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:58.084 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:25:59.086 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:00.086 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:01.087 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:02.088 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:03.089 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:04.090 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:05.091 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:06.092 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:07.093 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:08.094 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:09.095 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:10.099 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:11.100 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:12.102 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:13.103 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:14.104 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:15.105 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:16.106 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:17.108 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:18.108 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:19.109 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:20.111 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:21.112 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:22.113 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:23.114 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:24.116 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:25.117 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:26.118 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:27.119 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:28.120 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:29.122 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:30.123 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:31.123 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:32.124 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:33.125 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:34.127 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:35.127 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:36.128 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:37.129 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:38.130 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:39.131 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:40.132 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:41.133 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:42.134 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:43.135 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:44.136 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:45.137 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:46.138 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:47.139 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:48.141 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:49.142 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:50.143 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:51.145 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:52.147 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:53.148 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:54.149 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:55.150 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:56.151 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:57.153 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:58.154 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:26:59.156 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:00.156 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:01.157 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:02.158 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:03.159 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:04.161 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:05.161 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:06.162 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:07.163 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:08.163 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:09.165 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:10.166 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:11.167 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:12.170 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:13.174 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:14.179 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:15.184 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:16.185 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:17.186 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:18.186 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:19.187 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:20.188 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:21.192 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:22.197 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:23.197 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:24.207 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:25.211 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:26.217 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:27.221 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:28.222 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:29.223 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:30.223 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:31.224 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:32.225 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:33.226 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:34.228 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:35.229 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:36.230 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:37.231 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:38.232 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:39.233 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:40.234 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:41.235 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:42.237 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:43.237 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:44.239 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:45.240 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:46.242 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:47.243 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:48.243 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:49.248 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:50.250 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:51.253 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:52.255 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:53.260 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:54.266 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:55.267 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:56.271 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:57.276 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:58.281 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:27:59.281 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:00.288 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:01.292 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:02.295 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:03.299 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:04.301 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:05.302 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:06.302 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:07.309 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:08.310 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:09.318 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:10.320 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:11.325 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:12.327 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:13.336 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:14.338 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:15.339 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:16.344 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:17.346 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:18.351 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:19.357 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:20.360 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:21.363 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:22.369 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:23.376 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:24.378 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:25.383 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:26.390 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:27.391 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:28.392 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:29.398 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:30.404 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:31.410 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:32.415 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:33.420 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:34.422 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:35.422 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:36.426 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:37.431 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:38.437 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:39.445 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:40.447 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:41.447 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:42.452 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:43.453 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:44.454 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:45.465 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:46.470 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:47.472 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:48.478 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:49.483 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:50.485 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:51.485 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:52.490 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:53.496 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:54.498 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:55.505 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:56.511 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:57.513 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:58.515 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:28:59.521 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:00.521 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:01.523 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:02.529 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:03.533 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:04.539 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:05.543 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:06.552 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:07.554 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:08.559 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:09.560 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:10.563 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:11.567 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:12.568 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:13.573 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:14.578 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:15.582 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:16.584 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:17.589 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:18.593 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:19.598 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:20.602 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:21.603 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:22.608 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:23.611 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:24.612 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:25.617 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:26.621 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:27.626 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:28.634 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:29.635 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:30.639 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:31.644 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:32.649 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:33.651 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:34.656 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:35.661 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:36.665 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:37.670 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:38.671 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:39.673 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:40.674 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:41.678 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:42.684 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:43.684 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:44.689 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:45.694 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:46.699 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:47.701 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:48.705 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:49.707 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:50.708 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:51.713 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:52.719 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:53.720 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:54.721 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:55.725 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:56.725 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:57.732 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:58.733 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:29:59.738 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:00.742 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:01.743 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:02.748 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:03.752 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:04.758 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:05.758 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:06.759 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:07.764 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:08.768 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:09.874 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:10.878 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:11.884 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:12.889 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:13.892 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:14.896 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:15.897 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:16.908 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:17.914 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:18.918 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:19.921 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:20.922 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:21.923 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:22.924 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:23.925 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:24.930 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:25.930 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:26.931 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:27.932 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:28.933 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:29.938 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:30.942 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:31.946 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:32.950 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:33.951 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:34.956 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:35.957 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:36.958 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:37.960 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:38.974 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:39.985 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:40.992 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:41.998 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:43.000 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:44.004 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:45.009 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:46.013 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:47.015 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:48.019 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:49.026 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:50.028 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:51.029 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:52.031 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:53.031 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:54.039 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:55.042 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:56.049 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:57.055 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:58.058 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:30:59.064 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:00.069 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:01.075 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:02.076 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:03.079 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:04.084 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:05.085 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:06.089 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:07.090 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:08.097 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:09.102 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:10.105 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:11.109 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:12.113 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:13.119 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:14.121 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:15.122 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:16.122 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:17.126 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:18.131 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:19.133 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:20.138 [error] Unauthorized WebSocket connection attempt
+2026-05-20 23:31:21.142 [error] Unauthorized WebSocket connection attempt

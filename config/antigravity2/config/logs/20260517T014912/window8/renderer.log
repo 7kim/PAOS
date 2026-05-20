@@ -1,0 +1,549 @@
+2026-05-17 04:20:28.586 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vscode.vscode-selfhost-test-provider' wants API proposal 'attributableCoverage' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.586 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vsliveshare.vsliveshare' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.586 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.python' wants API proposal 'contribIssueReporter' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.587 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.vscode-pull-request-github' wants API proposal 'fileComments' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.587 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.copilot-chat' wants API proposal 'chatVariableResolver' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.587 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.copilot-chat' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.587 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.gather' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.588 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.vscode-pylance' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.588 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.debugpy' wants API proposal 'contribIssueReporter' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.588 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-toolsai.jupyter' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.588 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'dbaeumer.vscode-eslint' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.589 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-azuretools.vscode-azure-github-copilot' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.589 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vscode.cpptools' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.589 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'redhat.java' wants API proposal 'documentPaste' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.589 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'vscjava.vscode-java-pack' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:28.997 [info] Started local extension host with pid 214946.
+2026-05-17 04:20:29.268 [error] Extension 'mermaidchart.vscode-mermaid-chart' wants API proposal 'languageModelToolsForAgent' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:29.268 [error] Extension 'ms-python.python' appears in product.json but enables LESS API proposals than the extension wants.
+package.json (LOSES): contribEditorContentMenu, quickPickSortByLabel, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, codeActionAI, notebookReplDocument, notebookVariableProvider
+product.json (WINS): contribEditorContentMenu, quickPickSortByLabel, portsAttributes, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, notebookReplDocument
+2026-05-17 04:20:29.268 [error] Extension 'ms-python.vscode-python-envs CANNOT USE these API proposals 'terminalShellEnv, terminalDataWriteEvent'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2026-05-17 04:20:29.282 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 04:20:29.283 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 04:20:29.288 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravitySettings` which is not defined in the 'commands' section.
+2026-05-17 04:20:29.288 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravityExtensions` which is not defined in the 'commands' section.
+2026-05-17 04:20:29.288 [error] [google.antigravity]: Menu item references a command `antigravity.prioritized.chat.open` which is not defined in the 'commands' section.
+2026-05-17 04:20:32.007 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:32.008 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:32.012 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:32.012 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:32.013 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:32.028 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:32.029 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:32.029 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:42.902 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vscode.vscode-selfhost-test-provider' wants API proposal 'attributableCoverage' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.903 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vsliveshare.vsliveshare' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.903 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.python' wants API proposal 'contribIssueReporter' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.903 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.vscode-pull-request-github' wants API proposal 'fileComments' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.903 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.copilot-chat' wants API proposal 'chatVariableResolver' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.904 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'github.copilot-chat' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.904 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.gather' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.904 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.vscode-pylance' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.905 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-python.debugpy' wants API proposal 'contribIssueReporter' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.905 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-toolsai.jupyter' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.905 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'dbaeumer.vscode-eslint' wants API proposal 'notebookCellExecutionState' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.906 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-azuretools.vscode-azure-github-copilot' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.906 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'ms-vscode.cpptools' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.906 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'redhat.java' wants API proposal 'documentPaste' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:42.906 [warning] Via 'product.json#extensionEnabledApiProposals' extension 'vscjava.vscode-java-pack' wants API proposal 'lmTools' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:43.233 [info] Started local extension host with pid 215204.
+2026-05-17 04:20:43.308 [error] Extension 'mermaidchart.vscode-mermaid-chart' wants API proposal 'languageModelToolsForAgent' but that proposal DOES NOT EXIST. Likely, the proposal has been finalized (check 'vscode.d.ts') or was abandoned.
+2026-05-17 04:20:43.308 [error] Extension 'ms-python.python' appears in product.json but enables LESS API proposals than the extension wants.
+package.json (LOSES): contribEditorContentMenu, quickPickSortByLabel, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, codeActionAI, notebookReplDocument, notebookVariableProvider
+product.json (WINS): contribEditorContentMenu, quickPickSortByLabel, portsAttributes, testObserver, quickPickItemTooltip, terminalDataWriteEvent, terminalExecuteCommandEvent, notebookReplDocument
+2026-05-17 04:20:43.309 [error] Extension 'ms-python.vscode-python-envs CANNOT USE these API proposals 'terminalShellEnv, terminalDataWriteEvent'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2026-05-17 04:20:43.323 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 04:20:43.324 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 04:20:43.328 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravitySettings` which is not defined in the 'commands' section.
+2026-05-17 04:20:43.328 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravityExtensions` which is not defined in the 'commands' section.
+2026-05-17 04:20:43.328 [error] [google.antigravity]: Menu item references a command `antigravity.prioritized.chat.open` which is not defined in the 'commands' section.
+2026-05-17 04:20:43.863 [info] ChatSessionStore: Migrating 0 chat sessions from storage service to file system
+2026-05-17 04:20:44.991 [warning] Authentication provider mermaidchart was not declared in the Extension Manifest.
+2026-05-17 04:20:47.277 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:47.278 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:47.281 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:47.281 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:47.282 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:47.282 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:47.283 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:20:47.283 [error] [Extension Host] Failed to load message bundle for file /home/dev/AI_Workflow/config/antigravity/extensions/ms-edgedevtools.vscode-edge-devtools-2.1.10-universal/out/extension
+2026-05-17 04:22:39.179 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 04:22:39.900 [error] [Extension Host] (node:215204) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-05-17 04:24:49.895 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 04:53:15.009 [error] Extension 'openai.chatgpt CANNOT USE these API proposals 'chatSessionsProvider, languageModelProxy'. You MUST start in extension development mode or use the --enable-proposed-api command line flag
+2026-05-17 04:53:15.055 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 04:53:15.058 [error] [vscode.git]: property `title` is mandatory and must be of type `string` or `object`
+2026-05-17 04:53:15.060 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravitySettings` which is not defined in the 'commands' section.
+2026-05-17 04:53:15.061 [error] [google.antigravity]: Menu item references a command `antigravity.importAntigravityExtensions` which is not defined in the 'commands' section.
+2026-05-17 04:53:15.061 [error] [google.antigravity]: Menu item references a command `antigravity.prioritized.chat.open` which is not defined in the 'commands' section.
+2026-05-17 04:53:15.084 [error] [openai.chatgpt]: chatSessions/newSession is a proposed menu identifier. It requires 'package.json#enabledApiProposals: ["chatSessionsProvider"]' and is only available when running out of dev or with the following command line switch: --enable-proposed-api openai.chatgpt
+2026-05-17 05:23:38.228 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 05:26:31.196 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.203 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 05:26:33.636 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:34.509 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 05:26:34.550 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:34.642 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 05:26:53.672 [error] Model is disposed!
+2026-05-17 05:26:55.455 [error] Model is disposed!
+2026-05-17 05:26:56.466 [error] Model is disposed!
+2026-05-17 05:40:14.864 [error] Model is disposed!
+2026-05-17 06:05:18.332 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:05:18.653 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:05:18.702 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:05:19.334 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:23.248 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:23.645 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:23.676 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:24.251 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:25.374 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:25.403 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:27.021 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:27.037 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.260 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.971 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.280 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:31.288 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:31.338 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.972 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:33.089 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:33.260 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:33.332 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:34.101 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:34.711 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:34.766 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:34.822 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:35.636 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:36.137 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:36.182 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:36.868 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:36.916 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:43.136 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:43.682 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:43.710 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:44.138 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:48.744 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:49.746 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:50.229 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:50.259 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:54.575 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:55.431 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:55.621 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:55.676 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:55.699 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:56.432 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:57.956 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:58.137 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:15:58.169 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:58.959 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:15:59.822 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.824 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:16:01.196 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:01.226 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:05.697 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:06.149 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:06.169 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:06.698 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:16:26.111 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:26.652 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:26.703 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:27.112 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:16:30.534 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:30.900 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:30.961 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:31.535 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:16:32.332 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:32.508 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:32.555 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:33.333 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:16:34.355 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.981 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.143 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:35.203 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.356 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:16:39.868 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:39.904 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:43.625 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:43.670 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:44.639 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:44.669 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:45.322 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:45.350 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:54.462 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:54.463 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:58.043 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:16:58.086 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:49.902 [error] [Extension Host] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:50.966 [error] An unknown error occurred. Please consult the log for more details.
+2026-05-17 06:21:51.018 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:21:51.086 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:52.328 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:21:52.368 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:37.902 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:22:37.941 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:39.452 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:22:39.497 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:42.620 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:22:42.639 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:46.350 [error] Git error: Error: Git error
+	at sp.h (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:117:45037)
+	at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-17 06:22:46.368 [error] Git error: Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:23:09.170 [error] [createInstance] ooe depends on UNKNOWN service agentSessions.: Error: [createInstance] ooe depends on UNKNOWN service agentSessions.
+    at jrs.y (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:4186)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1360)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new Bei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:8181)
+    at new G6n (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:15815)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+    at new _ei (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:6603:18528)
+    at jrs.o (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1710)
+    at jrs.createInstance (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5934:1207)
+2026-05-17 06:26:01.172 [error] Model is disposed!

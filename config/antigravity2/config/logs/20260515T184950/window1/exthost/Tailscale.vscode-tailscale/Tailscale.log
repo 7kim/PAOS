@@ -1,0 +1,115 @@
+2026-05-15 18:49:53.240 [info] [tsrelay] url: http://127.0.0.1:42351
+2026-05-15 18:49:53.240 [info] websocket is open
+2026-05-15 18:49:53.240 [info] [tsrelay] initial ports are set
+2026-05-15 18:49:53.240 [info] [serve-status] Funnel is off
+2026-05-15 18:49:53.240 [info] [serve-status] HTTPS is off
+2026-05-15 18:49:53.250 [info] terminal opened
+2026-05-15 18:49:53.621 [info] pid is 31064
+2026-05-15 18:49:53.621 [info] pid sent
+2026-05-15 18:50:05.828 [info] shutting down tsrelay
+2026-05-15 18:50:07.973 [info] [tsrelay] url: http://127.0.0.1:36043
+2026-05-15 18:50:07.973 [info] websocket is open
+2026-05-15 18:50:07.973 [info] [serve-status] Funnel is off
+2026-05-15 18:50:07.973 [info] [serve-status] HTTPS is off
+2026-05-15 18:50:07.987 [info] [tsrelay] initial ports are set
+2026-05-15 18:50:08.316 [info] terminal opened
+2026-05-15 18:50:08.682 [info] pid is 31425
+2026-05-15 18:50:08.682 [info] pid sent
+2026-05-15 18:50:08.717 [info] terminal opened
+2026-05-15 18:50:08.969 [info] pid is 31451
+2026-05-15 18:50:08.969 [info] pid sent
+2026-05-15 19:00:59.978 [info] terminal opened
+2026-05-15 19:01:00.240 [info] pid is 34746
+2026-05-15 19:01:00.240 [info] pid sent
+2026-05-15 19:14:58.959 [info] got message
+2026-05-15 19:14:58.959 [info] msg is newPort
+2026-05-15 19:15:01.031 [info] error adding serve: Error: /serve failed
+2026-05-15 19:15:41.495 [info] terminal opened
+2026-05-15 19:15:42.333 [info] pid is 38535
+2026-05-15 19:15:42.333 [info] pid sent
+2026-05-15 19:17:32.635 [info] terminal opened
+2026-05-15 19:17:33.080 [info] pid is 39300
+2026-05-15 19:17:33.080 [info] pid sent
+2026-05-15 19:17:34.939 [info] got message
+2026-05-15 19:17:34.939 [info] msg is newPort
+2026-05-15 19:18:16.964 [info] got message
+2026-05-15 19:18:16.964 [info] msg is newPort
+2026-05-15 19:18:19.951 [info] got message
+2026-05-15 19:18:19.952 [info] msg is newPort
+2026-05-15 19:18:20.901 [info] error adding serve: Error: /serve failed
+2026-05-15 19:18:21.786 [info] error adding serve: Error: /serve failed
+2026-05-15 19:27:42.285 [info] shutting down tsrelay
+2026-05-15 19:27:42.287 [warning] [tsrelay] child process exited with code null
+2026-05-15 19:27:42.289 [info] websocket is closed
+2026-05-15 19:27:45.077 [info] [tsrelay] url: http://127.0.0.1:45041
+2026-05-15 19:27:45.077 [info] websocket is open
+2026-05-15 19:27:45.096 [info] [serve-status] Funnel is off
+2026-05-15 19:27:45.096 [info] [serve-status] HTTPS is off
+2026-05-15 19:27:45.097 [info] [tsrelay] initial ports are set
+2026-05-15 19:27:45.500 [info] terminal opened
+2026-05-15 19:27:45.632 [info] pid is 42129
+2026-05-15 19:27:45.632 [info] pid sent
+2026-05-15 19:27:45.924 [info] terminal opened
+2026-05-15 19:27:46.008 [info] pid is 42190
+2026-05-15 19:27:46.008 [info] pid sent
+2026-05-15 19:28:00.013 [info] shutting down tsrelay
+2026-05-15 19:28:00.021 [warning] [tsrelay] child process exited with code null
+2026-05-15 19:28:00.022 [info] websocket is closed
+2026-05-15 19:28:02.451 [info] [tsrelay] url: http://127.0.0.1:33553
+2026-05-15 19:28:02.451 [info] websocket is open
+2026-05-15 19:28:02.453 [info] [serve-status] Funnel is off
+2026-05-15 19:28:02.453 [info] [serve-status] HTTPS is off
+2026-05-15 19:28:02.456 [info] [tsrelay] initial ports are set
+2026-05-15 19:28:02.458 [info] terminal opened
+2026-05-15 19:28:02.828 [info] pid is 42459
+2026-05-15 19:28:02.828 [info] pid sent
+2026-05-15 19:28:02.871 [info] terminal opened
+2026-05-15 19:28:02.922 [info] pid is 42522
+2026-05-15 19:28:02.922 [info] pid sent
+2026-05-15 19:28:23.906 [info] shutting down tsrelay
+2026-05-15 19:28:24.035 [warning] [tsrelay] child process exited with code null
+2026-05-15 19:28:24.037 [info] websocket is closed
+2026-05-15 19:28:26.177 [info] [tsrelay] url: http://127.0.0.1:44829
+2026-05-15 19:28:26.177 [info] websocket is open
+2026-05-15 19:28:26.185 [info] [serve-status] Funnel is off
+2026-05-15 19:28:26.185 [info] [serve-status] HTTPS is off
+2026-05-15 19:28:26.185 [info] [tsrelay] initial ports are set
+2026-05-15 19:28:26.514 [info] terminal opened
+2026-05-15 19:28:26.600 [info] pid is 42783
+2026-05-15 19:28:26.600 [info] pid sent
+2026-05-15 19:28:33.891 [info] shutting down tsrelay
+2026-05-15 19:28:33.893 [warning] [tsrelay] child process exited with code null
+2026-05-15 19:28:35.989 [info] [tsrelay] url: http://127.0.0.1:44023
+2026-05-15 19:28:35.989 [info] websocket is open
+2026-05-15 19:28:35.989 [info] [serve-status] Funnel is off
+2026-05-15 19:28:35.989 [info] [serve-status] HTTPS is off
+2026-05-15 19:28:35.989 [info] [tsrelay] initial ports are set
+2026-05-15 19:28:36.330 [info] terminal opened
+2026-05-15 19:28:36.697 [info] pid is 43028
+2026-05-15 19:28:36.697 [info] pid sent
+2026-05-15 19:28:36.739 [info] terminal opened
+2026-05-15 19:28:37.046 [info] pid is 43058
+2026-05-15 19:28:37.046 [info] pid sent
+2026-05-15 19:28:42.941 [info] shutting down tsrelay
+2026-05-15 19:28:42.944 [warning] [tsrelay] child process exited with code null
+2026-05-15 19:28:45.498 [info] [tsrelay] url: http://127.0.0.1:36187
+2026-05-15 19:28:45.508 [info] websocket is open
+2026-05-15 19:28:45.530 [info] terminal opened
+2026-05-15 19:28:45.580 [info] [serve-status] Funnel is off
+2026-05-15 19:28:45.580 [info] [serve-status] HTTPS is off
+2026-05-15 19:28:45.580 [info] [tsrelay] initial ports are set
+2026-05-15 19:28:45.604 [info] pid is 43312
+2026-05-15 19:28:45.604 [info] pid sent
+2026-05-15 19:28:45.795 [info] terminal opened
+2026-05-15 19:28:45.890 [info] pid is 43372
+2026-05-15 19:28:45.890 [info] pid sent
+2026-05-15 19:43:10.291 [info] terminal opened
+2026-05-15 19:43:11.015 [info] pid is 48551
+2026-05-15 19:43:11.015 [info] pid sent
+2026-05-15 19:46:47.991 [info] terminal opened
+2026-05-15 19:46:48.234 [info] pid is 48976
+2026-05-15 19:46:48.234 [info] pid sent
+2026-05-15 19:47:39.552 [info] got message
+2026-05-15 19:47:39.552 [info] msg is newPort
+2026-05-15 19:48:49.946 [info] shutting down tsrelay
+2026-05-15 19:48:49.950 [warning] [tsrelay] child process exited with code null

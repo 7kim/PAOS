@@ -1,0 +1,6 @@
+2026-05-15 19:29:39.713 [error] [         28ms] [/home/dev/Documents/Dev/Tradingview/.git] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • FAILED
+Error: fatal: this operation must be run in a work tree
+2026-05-15 19:29:39.713 [info] [         11ms] [/home/dev/Documents/Dev/Tradingview/.git] git rev-parse --is-bare-repository • completed
+2026-05-15 19:29:39.713 [info] [         35ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
+2026-05-15 19:29:39.822 [info] [          6ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
+2026-05-15 19:29:40.126 [info] [        267ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed

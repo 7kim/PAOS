@@ -1,0 +1,378 @@
+2026-05-17 02:13:00.003 [info] Extension host with pid 117388 started
+2026-05-17 02:13:00.062 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:13:00.067 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 02:13:00.072 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 02:13:00.079 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 02:13:00.148 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:13:00.192 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 02:13:00.283 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 02:13:00.866 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 02:13:00.984 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 02:13:01.196 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 02:13:02.673 [info] Eager extensions activated
+2026-05-17 02:13:02.686 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.693 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.696 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.723 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.740 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.880 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.881 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.894 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:02.980 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:40.336 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 02:13:40.367 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 02:13:40.371 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:13:40.382 [info] Extension host with pid 117388 exiting with code 0
+2026-05-17 02:13:42.035 [info] Extension host with pid 118293 started
+2026-05-17 02:13:42.035 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/755c9f9523ca938869bb1a858d8fd23a.
+2026-05-17 02:13:42.058 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:13:42.063 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 02:13:42.067 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 02:13:42.075 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 02:13:42.189 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:13:42.235 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 02:13:42.289 [info] ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
+2026-05-17 02:13:42.410 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 02:13:42.713 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 02:13:42.967 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-17 02:13:42.983 [info] ExtensionService#_doActivateExtension MermaidChart.vscode-mermaid-chart, startup: false, activationEvent: 'onLanguage'
+2026-05-17 02:13:43.244 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 02:13:43.344 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 02:13:43.772 [warning] [Decorations] CAPPING events from decorations provider vscode.git 15959
+2026-05-17 02:13:45.955 [info] Eager extensions activated
+2026-05-17 02:13:45.956 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:45.959 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:45.960 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:45.975 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:45.988 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:46.134 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:46.136 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:46.148 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:46.236 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:13:49.834 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 02:13:49.865 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 02:13:49.870 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:13:49.899 [info] Extension host with pid 118293 exiting with code 0
+2026-05-17 02:13:51.491 [info] Extension host with pid 118562 started
+2026-05-17 02:13:51.491 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/de045d141a8b035fd6afde5a0c3a97e9.
+2026-05-17 02:13:51.502 [info] Eager extensions activated
+2026-05-17 02:13:53.480 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 02:13:53.481 [info] Extension host with pid 118562 exiting with code 0
+2026-05-17 02:13:55.069 [info] Extension host with pid 118607 started
+2026-05-17 02:13:55.069 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/de045d141a8b035fd6afde5a0c3a97e9.
+2026-05-17 02:13:55.089 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:13:55.094 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 02:13:55.098 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 02:13:55.106 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 02:13:55.205 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:13:55.249 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 02:13:55.334 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 02:13:55.808 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 02:13:55.913 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 02:13:56.157 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 02:14:02.086 [info] Not activating extension 'github.vscode-github-actions': Timed out while searching for 'workspaceContains' pattern **/.github/workflows/**,**/action.yml,**/action.yaml
+2026-05-17 02:14:02.086 [info] Not activating extension 'ms-python.python': Timed out while searching for 'workspaceContains' pattern **/pylock.*.toml
+2026-05-17 02:14:02.088 [info] Eager extensions activated
+2026-05-17 02:14:02.089 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.100 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.103 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.135 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.155 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.302 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.304 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.331 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:02.438 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:21.273 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 02:14:21.294 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 02:14:21.297 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:14:21.303 [info] Extension host with pid 118607 exiting with code 0
+2026-05-17 02:14:22.957 [info] Extension host with pid 118818 started
+2026-05-17 02:14:22.957 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/de045d141a8b035fd6afde5a0c3a97e9.
+2026-05-17 02:14:22.969 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 02:14:23.034 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 02:14:23.132 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 02:14:23.154 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onView:projectsExplorerFavorites'
+2026-05-17 02:14:23.309 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: false, activationEvent: 'api', root cause: eamodio.gitlens
+2026-05-17 02:14:23.357 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 02:14:23.362 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 02:14:23.371 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 02:14:23.474 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: eamodio.gitlens
+2026-05-17 02:14:23.523 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 02:14:23.655 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 02:14:24.265 [info] ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
+2026-05-17 02:14:30.298 [info] Not activating extension 'ms-python.python': Timed out while searching for 'workspaceContains' pattern **/pylock.*.toml
+2026-05-17 02:14:30.713 [info] Eager extensions activated
+2026-05-17 02:14:30.735 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:30.738 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:30.740 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:30.753 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:30.877 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:30.878 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:30.890 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:30.975 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:36.811 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 02:14:36.831 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 02:14:36.834 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:14:36.846 [info] Extension host with pid 118818 exiting with code 0
+2026-05-17 02:14:38.991 [info] Extension host with pid 119142 started
+2026-05-17 02:14:38.991 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/fa6e6c1fd1b2694cb0633999c09d9096.
+2026-05-17 02:14:39.048 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:14:39.053 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 02:14:39.058 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 02:14:39.067 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 02:14:39.102 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2026-05-17 02:14:39.187 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:14:39.241 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 02:14:39.319 [info] ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
+2026-05-17 02:14:39.424 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 02:14:39.749 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 02:14:39.863 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-17 02:14:39.884 [info] ExtensionService#_doActivateExtension MermaidChart.vscode-mermaid-chart, startup: false, activationEvent: 'onLanguage'
+2026-05-17 02:14:40.200 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 02:14:40.299 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 02:14:40.462 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onView:projectsExplorerFavorites'
+2026-05-17 02:14:40.622 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/.antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:14:41.114 [warning] [Decorations] CAPPING events from decorations provider vscode.git 15959
+2026-05-17 02:14:43.772 [info] Eager extensions activated
+2026-05-17 02:14:43.774 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:43.783 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:43.785 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:43.805 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:43.946 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:43.947 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:43.964 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:44.066 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:14:44.927 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 02:14:44.934 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 02:14:44.944 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 02:17:14.323 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 02:17:14.375 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 02:17:14.379 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:17:14.395 [info] Extension host with pid 119142 exiting with code 0
+2026-05-17 02:17:16.447 [info] Extension host with pid 120169 started
+2026-05-17 02:17:16.447 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/f282f157da16bf2ce290c7a1ed52dc30.
+2026-05-17 02:17:16.467 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:17:16.473 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 02:17:16.479 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 02:17:16.488 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 02:17:16.523 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2026-05-17 02:17:16.640 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 02:17:16.686 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 02:17:16.799 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 02:17:17.148 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-17 02:17:17.169 [info] ExtensionService#_doActivateExtension MermaidChart.vscode-mermaid-chart, startup: false, activationEvent: 'onLanguage'
+2026-05-17 02:17:17.453 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 02:17:17.551 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 02:17:17.896 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 02:17:19.172 [warning] [Decorations] CAPPING events from decorations provider vscode.git 15959
+2026-05-17 02:17:20.169 [info] Eager extensions activated
+2026-05-17 02:17:20.171 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.176 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.177 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.197 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.210 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.357 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.358 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.371 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:20.460 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 02:17:21.829 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 02:17:21.836 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 02:17:21.846 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 02:17:24.582 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/.antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:17:24.582 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/.antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:17:32.390 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 02:17:32.429 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 02:17:32.433 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/.antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 02:17:32.442 [info] Extension host with pid 120169 exiting with code 0

@@ -1,0 +1,993 @@
+2026-05-20 23:14:59.132 [info] I0520 23:14:59.116139 12509 server.go:1236] Starting language server process with pid 12509
+2026-05-20 23:14:59.132 [info] I0520 23:14:59.116207 12509 server.go:301] Setting GOMAXPROCS to 4
+2026-05-20 23:14:59.132 [info] I0520 23:14:59.121761 12509 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-20 23:14:59.132 [info] I0520 23:14:59.121958 12509 server.go:454] Language server listening on random port at 42237 for HTTPS (gRPC)
+2026-05-20 23:14:59.132 [info] I0520 23:14:59.121992 12509 server.go:461] Language server listening on random port at 39289 for HTTP
+2026-05-20 23:14:59.556 [info] I0520 23:14:59.556628 12509 server.go:433] Created extension server client at port 33725
+2026-05-20 23:14:59.578 [info] I0520 23:14:59.577938 12509 cascade_manager.go:773] Reactive state is disabled
+2026-05-20 23:14:59.623 [info] (Antigravity) 2026-05-20 23:14:59.623 [INFO]: Language server started
+2026-05-20 23:14:59.638 [info] I0520 23:14:59.632811 12509 server.go:1693] initialized server successfully in 516.576082ms
+2026-05-20 23:14:59.665 [info] (Antigravity) 2026-05-20 23:14:59.665 [INFO]: LS lspClient started successfully
+2026-05-20 23:15:01.078 [info] I0520 23:15:01.078394 12509 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x42b61a16f52ce646
+2026-05-20 23:15:01.745 [info] I0520 23:15:01.745075 12509 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xd72559449e988e68
+2026-05-20 23:15:54.730 [info] (Antigravity) 2026-05-20 23:15:54.730 [INFO]: [SupercompleteProvider] No supercomplete response
+2026-05-20 23:17:28.094 [info] (Antigravity) 2026-05-20 23:17:28.093 [INFO]: [Terminal] Command completed: antigravity --version exit code 0
+2026-05-20 23:18:45.439 [info] (Antigravity) 2026-05-20 23:18:45.439 [INFO]: [Terminal] Command completed: sudo apt update exit code 0
+2026-05-20 23:18:49.578 [info] (Antigravity) 2026-05-20 23:18:49.578 [INFO]: [Terminal] Command completed: sudo apt-upgrade exit code 1
+2026-05-20 23:19:13.314 [info] (Antigravity) 2026-05-20 23:19:13.314 [INFO]: [Terminal] Command completed: sudo apt upgrade exit code 0
+2026-05-20 23:20:00.413 [info] I0520 23:20:00.413675 12509 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x666789b7a2aafb7b
+2026-05-20 23:20:00.876 [info] I0520 23:20:00.875952 12509 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xa18aaeb67fc070d5
+2026-05-20 23:23:15.491 [info] (Antigravity) 2026-05-20 23:23:15.491 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:15.492 [info] (Antigravity) 2026-05-20 23:23:15.492 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:16.491 [info] (Antigravity) 2026-05-20 23:23:16.491 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:16.492 [info] (Antigravity) 2026-05-20 23:23:16.492 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:17.491 [info] (Antigravity) 2026-05-20 23:23:17.491 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:17.492 [info] (Antigravity) 2026-05-20 23:23:17.492 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:18.491 [info] (Antigravity) 2026-05-20 23:23:18.491 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:18.491 [info] (Antigravity) 2026-05-20 23:23:18.491 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:19.492 [info] (Antigravity) 2026-05-20 23:23:19.491 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:19.492 [info] (Antigravity) 2026-05-20 23:23:19.492 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:20.492 [info] (Antigravity) 2026-05-20 23:23:20.492 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:20.492 [info] (Antigravity) 2026-05-20 23:23:20.492 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:21.493 [info] (Antigravity) 2026-05-20 23:23:21.493 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:21.493 [info] (Antigravity) 2026-05-20 23:23:21.493 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:22.493 [info] (Antigravity) 2026-05-20 23:23:22.493 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:22.493 [info] (Antigravity) 2026-05-20 23:23:22.493 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:23.493 [info] (Antigravity) 2026-05-20 23:23:23.493 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:23.493 [info] (Antigravity) 2026-05-20 23:23:23.493 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:24.494 [info] (Antigravity) 2026-05-20 23:23:24.494 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:24.494 [info] (Antigravity) 2026-05-20 23:23:24.494 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:25.494 [info] (Antigravity) 2026-05-20 23:23:25.494 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:25.495 [info] (Antigravity) 2026-05-20 23:23:25.495 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:26.494 [info] (Antigravity) 2026-05-20 23:23:26.494 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:26.495 [info] (Antigravity) 2026-05-20 23:23:26.495 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:27.494 [info] (Antigravity) 2026-05-20 23:23:27.494 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:27.495 [info] (Antigravity) 2026-05-20 23:23:27.495 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:28.495 [info] (Antigravity) 2026-05-20 23:23:28.495 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:28.495 [info] (Antigravity) 2026-05-20 23:23:28.495 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:29.495 [info] (Antigravity) 2026-05-20 23:23:29.495 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:29.496 [info] (Antigravity) 2026-05-20 23:23:29.496 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:30.496 [info] (Antigravity) 2026-05-20 23:23:30.495 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:30.496 [info] (Antigravity) 2026-05-20 23:23:30.496 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:31.496 [info] (Antigravity) 2026-05-20 23:23:31.496 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:31.497 [info] (Antigravity) 2026-05-20 23:23:31.497 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:32.498 [info] (Antigravity) 2026-05-20 23:23:32.498 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:32.499 [info] (Antigravity) 2026-05-20 23:23:32.499 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:33.498 [info] (Antigravity) 2026-05-20 23:23:33.498 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:33.499 [info] (Antigravity) 2026-05-20 23:23:33.498 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:34.498 [info] (Antigravity) 2026-05-20 23:23:34.498 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:34.499 [info] (Antigravity) 2026-05-20 23:23:34.499 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:35.499 [info] (Antigravity) 2026-05-20 23:23:35.499 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:35.499 [info] (Antigravity) 2026-05-20 23:23:35.499 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:36.499 [info] (Antigravity) 2026-05-20 23:23:36.499 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:36.500 [info] (Antigravity) 2026-05-20 23:23:36.500 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:37.500 [info] (Antigravity) 2026-05-20 23:23:37.500 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:37.501 [info] (Antigravity) 2026-05-20 23:23:37.501 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:38.502 [info] (Antigravity) 2026-05-20 23:23:38.501 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:38.502 [info] (Antigravity) 2026-05-20 23:23:38.502 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:39.502 [info] (Antigravity) 2026-05-20 23:23:39.502 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:39.503 [info] (Antigravity) 2026-05-20 23:23:39.503 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:40.503 [info] (Antigravity) 2026-05-20 23:23:40.503 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:40.503 [info] (Antigravity) 2026-05-20 23:23:40.503 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:41.504 [info] (Antigravity) 2026-05-20 23:23:41.504 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:41.504 [info] (Antigravity) 2026-05-20 23:23:41.504 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:42.505 [info] (Antigravity) 2026-05-20 23:23:42.505 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:42.505 [info] (Antigravity) 2026-05-20 23:23:42.505 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:43.505 [info] (Antigravity) 2026-05-20 23:23:43.505 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:43.506 [info] (Antigravity) 2026-05-20 23:23:43.506 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:44.505 [info] (Antigravity) 2026-05-20 23:23:44.505 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:44.506 [info] (Antigravity) 2026-05-20 23:23:44.506 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:45.506 [info] (Antigravity) 2026-05-20 23:23:45.506 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:45.506 [info] (Antigravity) 2026-05-20 23:23:45.506 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:46.507 [info] (Antigravity) 2026-05-20 23:23:46.507 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:46.507 [info] (Antigravity) 2026-05-20 23:23:46.507 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:47.507 [info] (Antigravity) 2026-05-20 23:23:47.507 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:47.508 [info] (Antigravity) 2026-05-20 23:23:47.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:48.507 [info] (Antigravity) 2026-05-20 23:23:48.507 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:48.507 [info] (Antigravity) 2026-05-20 23:23:48.507 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:49.508 [info] (Antigravity) 2026-05-20 23:23:49.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:49.508 [info] (Antigravity) 2026-05-20 23:23:49.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:50.508 [info] (Antigravity) 2026-05-20 23:23:50.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:50.508 [info] (Antigravity) 2026-05-20 23:23:50.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:51.508 [info] (Antigravity) 2026-05-20 23:23:51.507 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:51.508 [info] (Antigravity) 2026-05-20 23:23:51.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:52.508 [info] (Antigravity) 2026-05-20 23:23:52.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:52.508 [info] (Antigravity) 2026-05-20 23:23:52.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:53.508 [info] (Antigravity) 2026-05-20 23:23:53.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:53.508 [info] (Antigravity) 2026-05-20 23:23:53.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:54.508 [info] (Antigravity) 2026-05-20 23:23:54.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:54.508 [info] (Antigravity) 2026-05-20 23:23:54.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:55.508 [info] (Antigravity) 2026-05-20 23:23:55.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:55.508 [info] (Antigravity) 2026-05-20 23:23:55.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:56.508 [info] (Antigravity) 2026-05-20 23:23:56.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:56.508 [info] (Antigravity) 2026-05-20 23:23:56.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:57.508 [info] (Antigravity) 2026-05-20 23:23:57.508 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:57.508 [info] (Antigravity) 2026-05-20 23:23:57.508 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:58.509 [info] (Antigravity) 2026-05-20 23:23:58.509 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:58.510 [info] (Antigravity) 2026-05-20 23:23:58.510 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:23:59.510 [info] (Antigravity) 2026-05-20 23:23:59.510 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:23:59.511 [info] (Antigravity) 2026-05-20 23:23:59.511 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:00.511 [info] (Antigravity) 2026-05-20 23:24:00.511 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:00.512 [info] (Antigravity) 2026-05-20 23:24:00.512 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:01.511 [info] (Antigravity) 2026-05-20 23:24:01.511 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:01.511 [info] (Antigravity) 2026-05-20 23:24:01.511 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:02.523 [info] (Antigravity) 2026-05-20 23:24:02.523 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:02.523 [info] (Antigravity) 2026-05-20 23:24:02.523 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:03.522 [info] (Antigravity) 2026-05-20 23:24:03.522 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:03.523 [info] (Antigravity) 2026-05-20 23:24:03.523 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:04.523 [info] (Antigravity) 2026-05-20 23:24:04.523 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:04.524 [info] (Antigravity) 2026-05-20 23:24:04.524 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:05.523 [info] (Antigravity) 2026-05-20 23:24:05.522 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:05.523 [info] (Antigravity) 2026-05-20 23:24:05.523 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:06.523 [info] (Antigravity) 2026-05-20 23:24:06.523 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:06.524 [info] (Antigravity) 2026-05-20 23:24:06.524 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:07.524 [info] (Antigravity) 2026-05-20 23:24:07.524 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:07.524 [info] (Antigravity) 2026-05-20 23:24:07.524 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:08.525 [info] (Antigravity) 2026-05-20 23:24:08.525 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:08.526 [info] (Antigravity) 2026-05-20 23:24:08.526 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:09.525 [info] (Antigravity) 2026-05-20 23:24:09.525 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:09.526 [info] (Antigravity) 2026-05-20 23:24:09.526 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:10.527 [info] (Antigravity) 2026-05-20 23:24:10.527 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:10.527 [info] (Antigravity) 2026-05-20 23:24:10.527 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:11.527 [info] (Antigravity) 2026-05-20 23:24:11.527 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:11.527 [info] (Antigravity) 2026-05-20 23:24:11.527 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:12.528 [info] (Antigravity) 2026-05-20 23:24:12.528 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:12.529 [info] (Antigravity) 2026-05-20 23:24:12.529 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:13.529 [info] (Antigravity) 2026-05-20 23:24:13.529 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:13.530 [info] (Antigravity) 2026-05-20 23:24:13.530 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:14.530 [info] (Antigravity) 2026-05-20 23:24:14.529 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:14.530 [info] (Antigravity) 2026-05-20 23:24:14.530 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:15.531 [info] (Antigravity) 2026-05-20 23:24:15.531 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:15.532 [info] (Antigravity) 2026-05-20 23:24:15.532 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:16.533 [info] (Antigravity) 2026-05-20 23:24:16.533 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:16.533 [info] (Antigravity) 2026-05-20 23:24:16.533 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:17.533 [info] (Antigravity) 2026-05-20 23:24:17.533 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:17.534 [info] (Antigravity) 2026-05-20 23:24:17.534 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:18.534 [info] (Antigravity) 2026-05-20 23:24:18.534 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:18.535 [info] (Antigravity) 2026-05-20 23:24:18.535 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:19.535 [info] (Antigravity) 2026-05-20 23:24:19.535 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:19.536 [info] (Antigravity) 2026-05-20 23:24:19.536 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:20.537 [info] (Antigravity) 2026-05-20 23:24:20.536 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:20.537 [info] (Antigravity) 2026-05-20 23:24:20.537 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:21.539 [info] (Antigravity) 2026-05-20 23:24:21.539 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:21.539 [info] (Antigravity) 2026-05-20 23:24:21.539 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:22.540 [info] (Antigravity) 2026-05-20 23:24:22.540 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:22.541 [info] (Antigravity) 2026-05-20 23:24:22.540 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:23.540 [info] (Antigravity) 2026-05-20 23:24:23.540 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:23.541 [info] (Antigravity) 2026-05-20 23:24:23.541 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:24.542 [info] (Antigravity) 2026-05-20 23:24:24.541 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:24.542 [info] (Antigravity) 2026-05-20 23:24:24.542 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:25.543 [info] (Antigravity) 2026-05-20 23:24:25.542 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:25.543 [info] (Antigravity) 2026-05-20 23:24:25.543 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:26.543 [info] (Antigravity) 2026-05-20 23:24:26.543 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:26.544 [info] (Antigravity) 2026-05-20 23:24:26.544 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:27.544 [info] (Antigravity) 2026-05-20 23:24:27.544 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:27.544 [info] (Antigravity) 2026-05-20 23:24:27.544 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:28.546 [info] (Antigravity) 2026-05-20 23:24:28.546 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:28.546 [info] (Antigravity) 2026-05-20 23:24:28.546 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:29.548 [info] (Antigravity) 2026-05-20 23:24:29.548 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:29.548 [info] (Antigravity) 2026-05-20 23:24:29.548 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:30.548 [info] (Antigravity) 2026-05-20 23:24:30.548 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:30.548 [info] (Antigravity) 2026-05-20 23:24:30.548 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:31.550 [info] (Antigravity) 2026-05-20 23:24:31.550 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:31.550 [info] (Antigravity) 2026-05-20 23:24:31.550 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:32.551 [info] (Antigravity) 2026-05-20 23:24:32.551 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:32.551 [info] (Antigravity) 2026-05-20 23:24:32.551 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:33.552 [info] (Antigravity) 2026-05-20 23:24:33.552 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:33.552 [info] (Antigravity) 2026-05-20 23:24:33.552 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:34.553 [info] (Antigravity) 2026-05-20 23:24:34.553 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:34.553 [info] (Antigravity) 2026-05-20 23:24:34.553 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:35.554 [info] (Antigravity) 2026-05-20 23:24:35.554 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:35.554 [info] (Antigravity) 2026-05-20 23:24:35.554 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:36.555 [info] (Antigravity) 2026-05-20 23:24:36.554 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:36.555 [info] (Antigravity) 2026-05-20 23:24:36.555 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:37.556 [info] (Antigravity) 2026-05-20 23:24:37.556 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:37.556 [info] (Antigravity) 2026-05-20 23:24:37.556 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:38.556 [info] (Antigravity) 2026-05-20 23:24:38.556 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:38.556 [info] (Antigravity) 2026-05-20 23:24:38.556 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:39.556 [info] (Antigravity) 2026-05-20 23:24:39.556 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:39.557 [info] (Antigravity) 2026-05-20 23:24:39.557 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:40.557 [info] (Antigravity) 2026-05-20 23:24:40.557 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:40.557 [info] (Antigravity) 2026-05-20 23:24:40.557 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:41.558 [info] (Antigravity) 2026-05-20 23:24:41.558 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:41.558 [info] (Antigravity) 2026-05-20 23:24:41.558 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:42.559 [info] (Antigravity) 2026-05-20 23:24:42.559 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:42.559 [info] (Antigravity) 2026-05-20 23:24:42.559 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:43.559 [info] (Antigravity) 2026-05-20 23:24:43.559 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:43.559 [info] (Antigravity) 2026-05-20 23:24:43.559 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:44.559 [info] (Antigravity) 2026-05-20 23:24:44.559 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:44.560 [info] (Antigravity) 2026-05-20 23:24:44.560 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:45.560 [info] (Antigravity) 2026-05-20 23:24:45.560 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:45.561 [info] (Antigravity) 2026-05-20 23:24:45.561 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:46.561 [info] (Antigravity) 2026-05-20 23:24:46.561 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:46.561 [info] (Antigravity) 2026-05-20 23:24:46.561 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:47.561 [info] (Antigravity) 2026-05-20 23:24:47.561 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:47.561 [info] (Antigravity) 2026-05-20 23:24:47.561 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:48.561 [info] (Antigravity) 2026-05-20 23:24:48.561 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:48.561 [info] (Antigravity) 2026-05-20 23:24:48.561 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:49.561 [info] (Antigravity) 2026-05-20 23:24:49.561 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:49.562 [info] (Antigravity) 2026-05-20 23:24:49.562 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:50.561 [info] (Antigravity) 2026-05-20 23:24:50.561 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:50.561 [info] (Antigravity) 2026-05-20 23:24:50.561 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:51.562 [info] (Antigravity) 2026-05-20 23:24:51.562 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:51.562 [info] (Antigravity) 2026-05-20 23:24:51.562 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:52.562 [info] (Antigravity) 2026-05-20 23:24:52.562 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:52.562 [info] (Antigravity) 2026-05-20 23:24:52.562 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:53.563 [info] (Antigravity) 2026-05-20 23:24:53.563 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:53.563 [info] (Antigravity) 2026-05-20 23:24:53.563 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:54.563 [info] (Antigravity) 2026-05-20 23:24:54.563 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:54.564 [info] (Antigravity) 2026-05-20 23:24:54.564 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:55.563 [info] (Antigravity) 2026-05-20 23:24:55.563 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:55.563 [info] (Antigravity) 2026-05-20 23:24:55.563 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:56.564 [info] (Antigravity) 2026-05-20 23:24:56.564 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:56.564 [info] (Antigravity) 2026-05-20 23:24:56.564 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:57.564 [info] (Antigravity) 2026-05-20 23:24:57.564 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:57.564 [info] (Antigravity) 2026-05-20 23:24:57.564 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:58.564 [info] (Antigravity) 2026-05-20 23:24:58.564 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:58.565 [info] (Antigravity) 2026-05-20 23:24:58.565 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:24:59.565 [info] (Antigravity) 2026-05-20 23:24:59.565 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:24:59.565 [info] (Antigravity) 2026-05-20 23:24:59.565 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:00.566 [info] (Antigravity) 2026-05-20 23:25:00.566 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:00.567 [info] (Antigravity) 2026-05-20 23:25:00.567 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:01.564 [info] (Antigravity) 2026-05-20 23:25:01.564 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:01.565 [info] (Antigravity) 2026-05-20 23:25:01.565 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:02.565 [info] (Antigravity) 2026-05-20 23:25:02.565 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:02.566 [info] (Antigravity) 2026-05-20 23:25:02.566 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:03.566 [info] (Antigravity) 2026-05-20 23:25:03.566 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:03.567 [info] (Antigravity) 2026-05-20 23:25:03.567 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:04.567 [info] (Antigravity) 2026-05-20 23:25:04.567 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:04.568 [info] (Antigravity) 2026-05-20 23:25:04.568 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:05.568 [info] (Antigravity) 2026-05-20 23:25:05.568 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:05.569 [info] (Antigravity) 2026-05-20 23:25:05.569 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:06.569 [info] (Antigravity) 2026-05-20 23:25:06.569 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:06.569 [info] (Antigravity) 2026-05-20 23:25:06.569 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:07.570 [info] (Antigravity) 2026-05-20 23:25:07.570 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:07.570 [info] (Antigravity) 2026-05-20 23:25:07.570 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:08.570 [info] (Antigravity) 2026-05-20 23:25:08.570 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:08.571 [info] (Antigravity) 2026-05-20 23:25:08.570 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:09.571 [info] (Antigravity) 2026-05-20 23:25:09.571 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:09.571 [info] (Antigravity) 2026-05-20 23:25:09.571 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:10.571 [info] (Antigravity) 2026-05-20 23:25:10.571 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:10.571 [info] (Antigravity) 2026-05-20 23:25:10.571 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:11.572 [info] (Antigravity) 2026-05-20 23:25:11.572 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:11.572 [info] (Antigravity) 2026-05-20 23:25:11.572 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:12.573 [info] (Antigravity) 2026-05-20 23:25:12.573 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:12.573 [info] (Antigravity) 2026-05-20 23:25:12.573 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:13.573 [info] (Antigravity) 2026-05-20 23:25:13.573 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:13.574 [info] (Antigravity) 2026-05-20 23:25:13.574 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:14.575 [info] (Antigravity) 2026-05-20 23:25:14.575 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:14.575 [info] (Antigravity) 2026-05-20 23:25:14.575 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:15.575 [info] (Antigravity) 2026-05-20 23:25:15.575 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:15.576 [info] (Antigravity) 2026-05-20 23:25:15.576 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:16.577 [info] (Antigravity) 2026-05-20 23:25:16.577 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:16.577 [info] (Antigravity) 2026-05-20 23:25:16.577 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:17.578 [info] (Antigravity) 2026-05-20 23:25:17.578 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:17.578 [info] (Antigravity) 2026-05-20 23:25:17.578 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:18.578 [info] (Antigravity) 2026-05-20 23:25:18.578 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:18.579 [info] (Antigravity) 2026-05-20 23:25:18.579 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:19.579 [info] (Antigravity) 2026-05-20 23:25:19.579 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:19.579 [info] (Antigravity) 2026-05-20 23:25:19.579 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:20.580 [info] (Antigravity) 2026-05-20 23:25:20.579 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:20.580 [info] (Antigravity) 2026-05-20 23:25:20.580 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:21.581 [info] (Antigravity) 2026-05-20 23:25:21.581 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:21.581 [info] (Antigravity) 2026-05-20 23:25:21.581 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:22.582 [info] (Antigravity) 2026-05-20 23:25:22.582 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:22.582 [info] (Antigravity) 2026-05-20 23:25:22.582 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:23.583 [info] (Antigravity) 2026-05-20 23:25:23.583 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:23.583 [info] (Antigravity) 2026-05-20 23:25:23.583 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:24.584 [info] (Antigravity) 2026-05-20 23:25:24.584 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:24.584 [info] (Antigravity) 2026-05-20 23:25:24.584 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:25.584 [info] (Antigravity) 2026-05-20 23:25:25.584 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:25.584 [info] (Antigravity) 2026-05-20 23:25:25.584 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:26.585 [info] (Antigravity) 2026-05-20 23:25:26.585 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:26.585 [info] (Antigravity) 2026-05-20 23:25:26.585 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:27.585 [info] (Antigravity) 2026-05-20 23:25:27.585 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:27.586 [info] (Antigravity) 2026-05-20 23:25:27.586 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:28.586 [info] (Antigravity) 2026-05-20 23:25:28.586 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:28.586 [info] (Antigravity) 2026-05-20 23:25:28.586 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:29.587 [info] (Antigravity) 2026-05-20 23:25:29.586 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:29.587 [info] (Antigravity) 2026-05-20 23:25:29.587 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:30.588 [info] (Antigravity) 2026-05-20 23:25:30.588 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:30.589 [info] (Antigravity) 2026-05-20 23:25:30.589 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:31.590 [info] (Antigravity) 2026-05-20 23:25:31.590 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:31.590 [info] (Antigravity) 2026-05-20 23:25:31.590 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:32.592 [info] (Antigravity) 2026-05-20 23:25:32.591 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:32.592 [info] (Antigravity) 2026-05-20 23:25:32.592 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:33.594 [info] (Antigravity) 2026-05-20 23:25:33.593 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:33.594 [info] (Antigravity) 2026-05-20 23:25:33.594 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:34.594 [info] (Antigravity) 2026-05-20 23:25:34.594 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:34.595 [info] (Antigravity) 2026-05-20 23:25:34.595 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:35.595 [info] (Antigravity) 2026-05-20 23:25:35.594 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:35.595 [info] (Antigravity) 2026-05-20 23:25:35.595 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:36.596 [info] (Antigravity) 2026-05-20 23:25:36.596 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:36.596 [info] (Antigravity) 2026-05-20 23:25:36.596 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:37.596 [info] (Antigravity) 2026-05-20 23:25:37.596 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:37.597 [info] (Antigravity) 2026-05-20 23:25:37.597 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:38.597 [info] (Antigravity) 2026-05-20 23:25:38.597 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:38.597 [info] (Antigravity) 2026-05-20 23:25:38.597 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:39.597 [info] (Antigravity) 2026-05-20 23:25:39.597 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:39.598 [info] (Antigravity) 2026-05-20 23:25:39.598 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:40.599 [info] (Antigravity) 2026-05-20 23:25:40.599 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:40.599 [info] (Antigravity) 2026-05-20 23:25:40.599 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:41.600 [info] (Antigravity) 2026-05-20 23:25:41.599 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:41.600 [info] (Antigravity) 2026-05-20 23:25:41.600 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:42.600 [info] (Antigravity) 2026-05-20 23:25:42.600 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:42.600 [info] (Antigravity) 2026-05-20 23:25:42.600 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:43.600 [info] (Antigravity) 2026-05-20 23:25:43.600 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:43.601 [info] (Antigravity) 2026-05-20 23:25:43.601 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:44.601 [info] (Antigravity) 2026-05-20 23:25:44.601 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:44.602 [info] (Antigravity) 2026-05-20 23:25:44.602 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:45.602 [info] (Antigravity) 2026-05-20 23:25:45.602 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:45.603 [info] (Antigravity) 2026-05-20 23:25:45.603 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:46.603 [info] (Antigravity) 2026-05-20 23:25:46.603 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:46.603 [info] (Antigravity) 2026-05-20 23:25:46.603 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:47.603 [info] (Antigravity) 2026-05-20 23:25:47.603 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:47.603 [info] (Antigravity) 2026-05-20 23:25:47.603 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:48.604 [info] (Antigravity) 2026-05-20 23:25:48.604 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:48.605 [info] (Antigravity) 2026-05-20 23:25:48.605 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:49.606 [info] (Antigravity) 2026-05-20 23:25:49.606 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:49.606 [info] (Antigravity) 2026-05-20 23:25:49.606 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:50.606 [info] (Antigravity) 2026-05-20 23:25:50.606 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:50.606 [info] (Antigravity) 2026-05-20 23:25:50.606 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:51.607 [info] (Antigravity) 2026-05-20 23:25:51.607 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:51.607 [info] (Antigravity) 2026-05-20 23:25:51.607 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:52.607 [info] (Antigravity) 2026-05-20 23:25:52.607 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:52.607 [info] (Antigravity) 2026-05-20 23:25:52.607 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:53.609 [info] (Antigravity) 2026-05-20 23:25:53.609 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:53.609 [info] (Antigravity) 2026-05-20 23:25:53.609 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:54.609 [info] (Antigravity) 2026-05-20 23:25:54.609 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:54.609 [info] (Antigravity) 2026-05-20 23:25:54.609 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:55.609 [info] (Antigravity) 2026-05-20 23:25:55.609 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:55.610 [info] (Antigravity) 2026-05-20 23:25:55.609 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:56.610 [info] (Antigravity) 2026-05-20 23:25:56.610 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:56.610 [info] (Antigravity) 2026-05-20 23:25:56.610 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:57.610 [info] (Antigravity) 2026-05-20 23:25:57.610 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:57.611 [info] (Antigravity) 2026-05-20 23:25:57.611 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:58.610 [info] (Antigravity) 2026-05-20 23:25:58.610 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:58.610 [info] (Antigravity) 2026-05-20 23:25:58.610 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:25:59.610 [info] (Antigravity) 2026-05-20 23:25:59.610 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:25:59.610 [info] (Antigravity) 2026-05-20 23:25:59.610 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:00.420 [info] I0520 23:26:00.420392 12509 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x6d9b9753d99a954f
+2026-05-20 23:26:00.610 [info] (Antigravity) 2026-05-20 23:26:00.610 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:00.610 [info] (Antigravity) 2026-05-20 23:26:00.610 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:01.041 [info] I0520 23:26:01.041568 12509 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xbbc56f9157a2a333
+2026-05-20 23:26:01.611 [info] (Antigravity) 2026-05-20 23:26:01.611 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:01.611 [info] (Antigravity) 2026-05-20 23:26:01.611 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:02.612 [info] (Antigravity) 2026-05-20 23:26:02.612 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:02.612 [info] (Antigravity) 2026-05-20 23:26:02.612 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:03.613 [info] (Antigravity) 2026-05-20 23:26:03.613 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:03.613 [info] (Antigravity) 2026-05-20 23:26:03.613 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:04.614 [info] (Antigravity) 2026-05-20 23:26:04.614 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:04.614 [info] (Antigravity) 2026-05-20 23:26:04.614 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:05.615 [info] (Antigravity) 2026-05-20 23:26:05.615 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:05.615 [info] (Antigravity) 2026-05-20 23:26:05.615 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:06.616 [info] (Antigravity) 2026-05-20 23:26:06.616 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:06.616 [info] (Antigravity) 2026-05-20 23:26:06.616 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:07.616 [info] (Antigravity) 2026-05-20 23:26:07.616 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:07.617 [info] (Antigravity) 2026-05-20 23:26:07.617 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:08.616 [info] (Antigravity) 2026-05-20 23:26:08.616 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:08.616 [info] (Antigravity) 2026-05-20 23:26:08.616 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:09.617 [info] (Antigravity) 2026-05-20 23:26:09.616 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:09.617 [info] (Antigravity) 2026-05-20 23:26:09.617 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:10.617 [info] (Antigravity) 2026-05-20 23:26:10.617 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:10.617 [info] (Antigravity) 2026-05-20 23:26:10.617 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:11.618 [info] (Antigravity) 2026-05-20 23:26:11.618 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:11.618 [info] (Antigravity) 2026-05-20 23:26:11.618 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:12.618 [info] (Antigravity) 2026-05-20 23:26:12.618 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:12.619 [info] (Antigravity) 2026-05-20 23:26:12.619 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:13.620 [info] (Antigravity) 2026-05-20 23:26:13.620 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:13.620 [info] (Antigravity) 2026-05-20 23:26:13.620 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:14.621 [info] (Antigravity) 2026-05-20 23:26:14.621 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:14.621 [info] (Antigravity) 2026-05-20 23:26:14.621 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:15.622 [info] (Antigravity) 2026-05-20 23:26:15.622 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:15.622 [info] (Antigravity) 2026-05-20 23:26:15.622 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:16.622 [info] (Antigravity) 2026-05-20 23:26:16.622 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:16.622 [info] (Antigravity) 2026-05-20 23:26:16.622 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:17.623 [info] (Antigravity) 2026-05-20 23:26:17.623 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:17.623 [info] (Antigravity) 2026-05-20 23:26:17.623 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:18.624 [info] (Antigravity) 2026-05-20 23:26:18.624 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:18.624 [info] (Antigravity) 2026-05-20 23:26:18.624 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:19.625 [info] (Antigravity) 2026-05-20 23:26:19.625 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:19.625 [info] (Antigravity) 2026-05-20 23:26:19.625 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:20.626 [info] (Antigravity) 2026-05-20 23:26:20.626 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:20.626 [info] (Antigravity) 2026-05-20 23:26:20.626 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:21.627 [info] (Antigravity) 2026-05-20 23:26:21.627 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:21.628 [info] (Antigravity) 2026-05-20 23:26:21.628 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:22.628 [info] (Antigravity) 2026-05-20 23:26:22.628 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:22.628 [info] (Antigravity) 2026-05-20 23:26:22.628 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:23.629 [info] (Antigravity) 2026-05-20 23:26:23.629 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:23.629 [info] (Antigravity) 2026-05-20 23:26:23.629 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:24.630 [info] (Antigravity) 2026-05-20 23:26:24.629 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:24.630 [info] (Antigravity) 2026-05-20 23:26:24.630 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:25.630 [info] (Antigravity) 2026-05-20 23:26:25.630 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:25.631 [info] (Antigravity) 2026-05-20 23:26:25.631 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:26.631 [info] (Antigravity) 2026-05-20 23:26:26.630 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:26.631 [info] (Antigravity) 2026-05-20 23:26:26.631 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:27.630 [info] (Antigravity) 2026-05-20 23:26:27.630 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:27.630 [info] (Antigravity) 2026-05-20 23:26:27.630 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:28.630 [info] (Antigravity) 2026-05-20 23:26:28.630 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:28.630 [info] (Antigravity) 2026-05-20 23:26:28.630 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:29.630 [info] (Antigravity) 2026-05-20 23:26:29.630 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:29.631 [info] (Antigravity) 2026-05-20 23:26:29.631 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:30.631 [info] (Antigravity) 2026-05-20 23:26:30.631 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:30.631 [info] (Antigravity) 2026-05-20 23:26:30.631 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:31.632 [info] (Antigravity) 2026-05-20 23:26:31.632 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:31.632 [info] (Antigravity) 2026-05-20 23:26:31.632 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:32.632 [info] (Antigravity) 2026-05-20 23:26:32.632 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:32.633 [info] (Antigravity) 2026-05-20 23:26:32.633 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:33.632 [info] (Antigravity) 2026-05-20 23:26:33.632 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:33.633 [info] (Antigravity) 2026-05-20 23:26:33.633 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:34.632 [info] (Antigravity) 2026-05-20 23:26:34.632 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:34.632 [info] (Antigravity) 2026-05-20 23:26:34.632 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:35.633 [info] (Antigravity) 2026-05-20 23:26:35.633 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:35.633 [info] (Antigravity) 2026-05-20 23:26:35.633 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:36.634 [info] (Antigravity) 2026-05-20 23:26:36.634 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:36.634 [info] (Antigravity) 2026-05-20 23:26:36.634 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:37.635 [info] (Antigravity) 2026-05-20 23:26:37.635 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:37.636 [info] (Antigravity) 2026-05-20 23:26:37.636 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:38.636 [info] (Antigravity) 2026-05-20 23:26:38.636 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:38.636 [info] (Antigravity) 2026-05-20 23:26:38.636 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:39.636 [info] (Antigravity) 2026-05-20 23:26:39.636 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:39.637 [info] (Antigravity) 2026-05-20 23:26:39.637 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:40.636 [info] (Antigravity) 2026-05-20 23:26:40.636 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:40.637 [info] (Antigravity) 2026-05-20 23:26:40.637 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:41.637 [info] (Antigravity) 2026-05-20 23:26:41.637 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:41.637 [info] (Antigravity) 2026-05-20 23:26:41.637 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:42.638 [info] (Antigravity) 2026-05-20 23:26:42.638 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:42.638 [info] (Antigravity) 2026-05-20 23:26:42.638 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:43.638 [info] (Antigravity) 2026-05-20 23:26:43.638 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:43.638 [info] (Antigravity) 2026-05-20 23:26:43.638 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:44.639 [info] (Antigravity) 2026-05-20 23:26:44.639 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:44.639 [info] (Antigravity) 2026-05-20 23:26:44.639 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:45.640 [info] (Antigravity) 2026-05-20 23:26:45.640 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:45.640 [info] (Antigravity) 2026-05-20 23:26:45.640 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:46.641 [info] (Antigravity) 2026-05-20 23:26:46.641 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:46.641 [info] (Antigravity) 2026-05-20 23:26:46.641 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:47.642 [info] (Antigravity) 2026-05-20 23:26:47.642 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:47.642 [info] (Antigravity) 2026-05-20 23:26:47.642 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:48.643 [info] (Antigravity) 2026-05-20 23:26:48.643 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:48.643 [info] (Antigravity) 2026-05-20 23:26:48.643 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:49.643 [info] (Antigravity) 2026-05-20 23:26:49.643 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:49.644 [info] (Antigravity) 2026-05-20 23:26:49.643 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:50.643 [info] (Antigravity) 2026-05-20 23:26:50.643 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:50.644 [info] (Antigravity) 2026-05-20 23:26:50.644 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:51.645 [info] (Antigravity) 2026-05-20 23:26:51.645 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:51.646 [info] (Antigravity) 2026-05-20 23:26:51.646 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:52.646 [info] (Antigravity) 2026-05-20 23:26:52.646 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:52.647 [info] (Antigravity) 2026-05-20 23:26:52.647 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:53.648 [info] (Antigravity) 2026-05-20 23:26:53.648 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:53.648 [info] (Antigravity) 2026-05-20 23:26:53.648 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:54.649 [info] (Antigravity) 2026-05-20 23:26:54.649 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:54.649 [info] (Antigravity) 2026-05-20 23:26:54.649 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:55.649 [info] (Antigravity) 2026-05-20 23:26:55.649 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:55.650 [info] (Antigravity) 2026-05-20 23:26:55.650 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:56.651 [info] (Antigravity) 2026-05-20 23:26:56.650 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:56.651 [info] (Antigravity) 2026-05-20 23:26:56.651 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:57.652 [info] (Antigravity) 2026-05-20 23:26:57.652 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:57.652 [info] (Antigravity) 2026-05-20 23:26:57.652 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:58.652 [info] (Antigravity) 2026-05-20 23:26:58.652 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:58.652 [info] (Antigravity) 2026-05-20 23:26:58.652 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:26:59.653 [info] (Antigravity) 2026-05-20 23:26:59.653 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:26:59.654 [info] (Antigravity) 2026-05-20 23:26:59.654 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:00.655 [info] (Antigravity) 2026-05-20 23:27:00.654 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:00.655 [info] (Antigravity) 2026-05-20 23:27:00.655 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:01.656 [info] (Antigravity) 2026-05-20 23:27:01.656 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:01.657 [info] (Antigravity) 2026-05-20 23:27:01.657 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:02.657 [info] (Antigravity) 2026-05-20 23:27:02.657 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:02.657 [info] (Antigravity) 2026-05-20 23:27:02.657 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:03.657 [info] (Antigravity) 2026-05-20 23:27:03.657 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:03.657 [info] (Antigravity) 2026-05-20 23:27:03.657 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:04.657 [info] (Antigravity) 2026-05-20 23:27:04.657 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:04.657 [info] (Antigravity) 2026-05-20 23:27:04.657 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:05.657 [info] (Antigravity) 2026-05-20 23:27:05.657 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:05.657 [info] (Antigravity) 2026-05-20 23:27:05.657 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:06.658 [info] (Antigravity) 2026-05-20 23:27:06.658 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:06.658 [info] (Antigravity) 2026-05-20 23:27:06.658 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:07.658 [info] (Antigravity) 2026-05-20 23:27:07.658 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:07.659 [info] (Antigravity) 2026-05-20 23:27:07.658 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:08.660 [info] (Antigravity) 2026-05-20 23:27:08.660 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:08.660 [info] (Antigravity) 2026-05-20 23:27:08.660 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:09.660 [info] (Antigravity) 2026-05-20 23:27:09.660 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:09.660 [info] (Antigravity) 2026-05-20 23:27:09.660 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:10.660 [info] (Antigravity) 2026-05-20 23:27:10.660 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:10.660 [info] (Antigravity) 2026-05-20 23:27:10.660 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:11.662 [info] (Antigravity) 2026-05-20 23:27:11.662 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:11.662 [info] (Antigravity) 2026-05-20 23:27:11.662 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:12.663 [info] (Antigravity) 2026-05-20 23:27:12.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:12.663 [info] (Antigravity) 2026-05-20 23:27:12.663 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:13.663 [info] (Antigravity) 2026-05-20 23:27:13.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:13.664 [info] (Antigravity) 2026-05-20 23:27:13.664 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:14.663 [info] (Antigravity) 2026-05-20 23:27:14.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:14.663 [info] (Antigravity) 2026-05-20 23:27:14.663 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:15.663 [info] (Antigravity) 2026-05-20 23:27:15.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:15.663 [info] (Antigravity) 2026-05-20 23:27:15.663 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:16.663 [info] (Antigravity) 2026-05-20 23:27:16.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:16.664 [info] (Antigravity) 2026-05-20 23:27:16.664 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:17.663 [info] (Antigravity) 2026-05-20 23:27:17.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:17.663 [info] (Antigravity) 2026-05-20 23:27:17.663 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:18.663 [info] (Antigravity) 2026-05-20 23:27:18.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:18.663 [info] (Antigravity) 2026-05-20 23:27:18.663 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:19.663 [info] (Antigravity) 2026-05-20 23:27:19.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:19.663 [info] (Antigravity) 2026-05-20 23:27:19.663 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:20.663 [info] (Antigravity) 2026-05-20 23:27:20.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:20.663 [info] (Antigravity) 2026-05-20 23:27:20.663 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:21.663 [info] (Antigravity) 2026-05-20 23:27:21.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:21.664 [info] (Antigravity) 2026-05-20 23:27:21.664 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:22.663 [info] (Antigravity) 2026-05-20 23:27:22.663 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:22.664 [info] (Antigravity) 2026-05-20 23:27:22.664 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:23.664 [info] (Antigravity) 2026-05-20 23:27:23.664 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:23.664 [info] (Antigravity) 2026-05-20 23:27:23.664 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:24.664 [info] (Antigravity) 2026-05-20 23:27:24.664 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:24.665 [info] (Antigravity) 2026-05-20 23:27:24.665 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:25.665 [info] (Antigravity) 2026-05-20 23:27:25.665 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:25.666 [info] (Antigravity) 2026-05-20 23:27:25.666 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:26.666 [info] (Antigravity) 2026-05-20 23:27:26.666 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:26.667 [info] (Antigravity) 2026-05-20 23:27:26.667 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:27.666 [info] (Antigravity) 2026-05-20 23:27:27.666 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:27.667 [info] (Antigravity) 2026-05-20 23:27:27.667 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:28.666 [info] (Antigravity) 2026-05-20 23:27:28.666 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:28.667 [info] (Antigravity) 2026-05-20 23:27:28.667 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:29.667 [info] (Antigravity) 2026-05-20 23:27:29.667 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:29.667 [info] (Antigravity) 2026-05-20 23:27:29.667 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:30.668 [info] (Antigravity) 2026-05-20 23:27:30.668 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:30.668 [info] (Antigravity) 2026-05-20 23:27:30.668 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:31.669 [info] (Antigravity) 2026-05-20 23:27:31.669 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:31.669 [info] (Antigravity) 2026-05-20 23:27:31.669 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:32.670 [info] (Antigravity) 2026-05-20 23:27:32.670 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:32.671 [info] (Antigravity) 2026-05-20 23:27:32.671 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:33.672 [info] (Antigravity) 2026-05-20 23:27:33.672 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:33.672 [info] (Antigravity) 2026-05-20 23:27:33.672 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:34.672 [info] (Antigravity) 2026-05-20 23:27:34.672 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:34.672 [info] (Antigravity) 2026-05-20 23:27:34.672 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:35.673 [info] (Antigravity) 2026-05-20 23:27:35.673 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:35.674 [info] (Antigravity) 2026-05-20 23:27:35.674 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:36.674 [info] (Antigravity) 2026-05-20 23:27:36.674 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:36.675 [info] (Antigravity) 2026-05-20 23:27:36.675 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:37.675 [info] (Antigravity) 2026-05-20 23:27:37.675 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:37.675 [info] (Antigravity) 2026-05-20 23:27:37.675 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:38.677 [info] (Antigravity) 2026-05-20 23:27:38.677 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:38.677 [info] (Antigravity) 2026-05-20 23:27:38.677 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:39.678 [info] (Antigravity) 2026-05-20 23:27:39.678 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:39.678 [info] (Antigravity) 2026-05-20 23:27:39.678 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:40.678 [info] (Antigravity) 2026-05-20 23:27:40.678 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:40.679 [info] (Antigravity) 2026-05-20 23:27:40.678 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:41.679 [info] (Antigravity) 2026-05-20 23:27:41.679 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:41.680 [info] (Antigravity) 2026-05-20 23:27:41.680 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:42.680 [info] (Antigravity) 2026-05-20 23:27:42.680 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:42.680 [info] (Antigravity) 2026-05-20 23:27:42.680 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:43.680 [info] (Antigravity) 2026-05-20 23:27:43.680 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:43.681 [info] (Antigravity) 2026-05-20 23:27:43.680 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:44.681 [info] (Antigravity) 2026-05-20 23:27:44.681 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:44.681 [info] (Antigravity) 2026-05-20 23:27:44.681 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:45.682 [info] (Antigravity) 2026-05-20 23:27:45.682 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:45.683 [info] (Antigravity) 2026-05-20 23:27:45.683 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:46.683 [info] (Antigravity) 2026-05-20 23:27:46.682 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:46.683 [info] (Antigravity) 2026-05-20 23:27:46.683 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:47.684 [info] (Antigravity) 2026-05-20 23:27:47.683 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:47.684 [info] (Antigravity) 2026-05-20 23:27:47.684 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:48.684 [info] (Antigravity) 2026-05-20 23:27:48.684 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:48.684 [info] (Antigravity) 2026-05-20 23:27:48.684 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:49.684 [info] (Antigravity) 2026-05-20 23:27:49.684 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:49.684 [info] (Antigravity) 2026-05-20 23:27:49.684 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:50.684 [info] (Antigravity) 2026-05-20 23:27:50.684 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:50.684 [info] (Antigravity) 2026-05-20 23:27:50.684 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:51.684 [info] (Antigravity) 2026-05-20 23:27:51.684 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:51.685 [info] (Antigravity) 2026-05-20 23:27:51.685 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:52.685 [info] (Antigravity) 2026-05-20 23:27:52.684 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:52.685 [info] (Antigravity) 2026-05-20 23:27:52.685 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:53.685 [info] (Antigravity) 2026-05-20 23:27:53.685 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:53.686 [info] (Antigravity) 2026-05-20 23:27:53.686 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:54.685 [info] (Antigravity) 2026-05-20 23:27:54.685 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:54.686 [info] (Antigravity) 2026-05-20 23:27:54.686 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:55.685 [info] (Antigravity) 2026-05-20 23:27:55.685 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:55.685 [info] (Antigravity) 2026-05-20 23:27:55.685 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:56.685 [info] (Antigravity) 2026-05-20 23:27:56.685 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:56.686 [info] (Antigravity) 2026-05-20 23:27:56.685 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:57.685 [info] (Antigravity) 2026-05-20 23:27:57.685 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:57.685 [info] (Antigravity) 2026-05-20 23:27:57.685 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:58.685 [info] (Antigravity) 2026-05-20 23:27:58.685 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:58.685 [info] (Antigravity) 2026-05-20 23:27:58.685 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:27:59.685 [info] (Antigravity) 2026-05-20 23:27:59.685 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:27:59.686 [info] (Antigravity) 2026-05-20 23:27:59.686 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:00.687 [info] (Antigravity) 2026-05-20 23:28:00.687 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:00.687 [info] (Antigravity) 2026-05-20 23:28:00.687 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:01.686 [info] (Antigravity) 2026-05-20 23:28:01.686 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:01.687 [info] (Antigravity) 2026-05-20 23:28:01.687 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:02.687 [info] (Antigravity) 2026-05-20 23:28:02.687 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:02.687 [info] (Antigravity) 2026-05-20 23:28:02.687 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:03.689 [info] (Antigravity) 2026-05-20 23:28:03.688 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:03.689 [info] (Antigravity) 2026-05-20 23:28:03.689 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:04.690 [info] (Antigravity) 2026-05-20 23:28:04.690 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:04.691 [info] (Antigravity) 2026-05-20 23:28:04.691 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:05.690 [info] (Antigravity) 2026-05-20 23:28:05.690 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:05.691 [info] (Antigravity) 2026-05-20 23:28:05.691 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:06.690 [info] (Antigravity) 2026-05-20 23:28:06.690 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:06.690 [info] (Antigravity) 2026-05-20 23:28:06.690 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:07.692 [info] (Antigravity) 2026-05-20 23:28:07.691 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:07.692 [info] (Antigravity) 2026-05-20 23:28:07.692 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:08.696 [info] (Antigravity) 2026-05-20 23:28:08.695 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:08.696 [info] (Antigravity) 2026-05-20 23:28:08.696 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:09.696 [info] (Antigravity) 2026-05-20 23:28:09.696 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:09.696 [info] (Antigravity) 2026-05-20 23:28:09.696 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:10.696 [info] (Antigravity) 2026-05-20 23:28:10.696 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:10.697 [info] (Antigravity) 2026-05-20 23:28:10.696 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:11.696 [info] (Antigravity) 2026-05-20 23:28:11.696 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:11.697 [info] (Antigravity) 2026-05-20 23:28:11.697 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:12.696 [info] (Antigravity) 2026-05-20 23:28:12.696 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:12.696 [info] (Antigravity) 2026-05-20 23:28:12.696 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:13.697 [info] (Antigravity) 2026-05-20 23:28:13.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:13.697 [info] (Antigravity) 2026-05-20 23:28:13.697 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:14.697 [info] (Antigravity) 2026-05-20 23:28:14.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:14.698 [info] (Antigravity) 2026-05-20 23:28:14.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:15.697 [info] (Antigravity) 2026-05-20 23:28:15.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:15.697 [info] (Antigravity) 2026-05-20 23:28:15.697 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:16.697 [info] (Antigravity) 2026-05-20 23:28:16.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:16.697 [info] (Antigravity) 2026-05-20 23:28:16.697 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:17.697 [info] (Antigravity) 2026-05-20 23:28:17.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:17.697 [info] (Antigravity) 2026-05-20 23:28:17.697 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:18.696 [info] (Antigravity) 2026-05-20 23:28:18.696 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:18.696 [info] (Antigravity) 2026-05-20 23:28:18.696 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:19.697 [info] (Antigravity) 2026-05-20 23:28:19.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:19.698 [info] (Antigravity) 2026-05-20 23:28:19.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:20.700 [info] (Antigravity) 2026-05-20 23:28:20.699 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:20.700 [info] (Antigravity) 2026-05-20 23:28:20.700 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:21.698 [info] (Antigravity) 2026-05-20 23:28:21.698 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:21.698 [info] (Antigravity) 2026-05-20 23:28:21.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:22.697 [info] (Antigravity) 2026-05-20 23:28:22.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:22.698 [info] (Antigravity) 2026-05-20 23:28:22.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:23.697 [info] (Antigravity) 2026-05-20 23:28:23.697 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:23.698 [info] (Antigravity) 2026-05-20 23:28:23.697 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:24.698 [info] (Antigravity) 2026-05-20 23:28:24.698 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:24.699 [info] (Antigravity) 2026-05-20 23:28:24.699 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:25.698 [info] (Antigravity) 2026-05-20 23:28:25.698 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:25.698 [info] (Antigravity) 2026-05-20 23:28:25.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:26.698 [info] (Antigravity) 2026-05-20 23:28:26.698 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:26.698 [info] (Antigravity) 2026-05-20 23:28:26.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:27.698 [info] (Antigravity) 2026-05-20 23:28:27.698 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:27.698 [info] (Antigravity) 2026-05-20 23:28:27.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:28.698 [info] (Antigravity) 2026-05-20 23:28:28.698 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:28.698 [info] (Antigravity) 2026-05-20 23:28:28.698 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:29.700 [info] (Antigravity) 2026-05-20 23:28:29.700 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:29.700 [info] (Antigravity) 2026-05-20 23:28:29.700 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:30.701 [info] (Antigravity) 2026-05-20 23:28:30.701 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:30.701 [info] (Antigravity) 2026-05-20 23:28:30.701 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:31.702 [info] (Antigravity) 2026-05-20 23:28:31.702 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:31.703 [info] (Antigravity) 2026-05-20 23:28:31.703 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:32.700 [info] (Antigravity) 2026-05-20 23:28:32.700 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:32.701 [info] (Antigravity) 2026-05-20 23:28:32.701 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:33.701 [info] (Antigravity) 2026-05-20 23:28:33.701 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:33.702 [info] (Antigravity) 2026-05-20 23:28:33.702 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:34.700 [info] (Antigravity) 2026-05-20 23:28:34.700 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:34.701 [info] (Antigravity) 2026-05-20 23:28:34.701 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:35.702 [info] (Antigravity) 2026-05-20 23:28:35.702 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:35.702 [info] (Antigravity) 2026-05-20 23:28:35.702 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:36.703 [info] (Antigravity) 2026-05-20 23:28:36.703 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:36.703 [info] (Antigravity) 2026-05-20 23:28:36.703 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:37.706 [info] (Antigravity) 2026-05-20 23:28:37.706 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:37.706 [info] (Antigravity) 2026-05-20 23:28:37.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:38.705 [info] (Antigravity) 2026-05-20 23:28:38.704 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:38.705 [info] (Antigravity) 2026-05-20 23:28:38.705 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:39.705 [info] (Antigravity) 2026-05-20 23:28:39.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:39.705 [info] (Antigravity) 2026-05-20 23:28:39.705 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:40.705 [info] (Antigravity) 2026-05-20 23:28:40.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:40.705 [info] (Antigravity) 2026-05-20 23:28:40.705 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:41.705 [info] (Antigravity) 2026-05-20 23:28:41.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:41.706 [info] (Antigravity) 2026-05-20 23:28:41.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:42.705 [info] (Antigravity) 2026-05-20 23:28:42.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:42.706 [info] (Antigravity) 2026-05-20 23:28:42.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:43.705 [info] (Antigravity) 2026-05-20 23:28:43.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:43.705 [info] (Antigravity) 2026-05-20 23:28:43.705 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:44.704 [info] (Antigravity) 2026-05-20 23:28:44.704 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:44.705 [info] (Antigravity) 2026-05-20 23:28:44.705 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:45.705 [info] (Antigravity) 2026-05-20 23:28:45.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:45.706 [info] (Antigravity) 2026-05-20 23:28:45.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:46.705 [info] (Antigravity) 2026-05-20 23:28:46.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:46.705 [info] (Antigravity) 2026-05-20 23:28:46.705 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:47.705 [info] (Antigravity) 2026-05-20 23:28:47.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:47.706 [info] (Antigravity) 2026-05-20 23:28:47.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:48.705 [info] (Antigravity) 2026-05-20 23:28:48.705 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:48.706 [info] (Antigravity) 2026-05-20 23:28:48.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:49.706 [info] (Antigravity) 2026-05-20 23:28:49.706 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:49.706 [info] (Antigravity) 2026-05-20 23:28:49.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:50.706 [info] (Antigravity) 2026-05-20 23:28:50.706 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:50.706 [info] (Antigravity) 2026-05-20 23:28:50.706 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:51.707 [info] (Antigravity) 2026-05-20 23:28:51.706 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:51.707 [info] (Antigravity) 2026-05-20 23:28:51.707 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:52.708 [info] (Antigravity) 2026-05-20 23:28:52.707 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:52.708 [info] (Antigravity) 2026-05-20 23:28:52.708 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:53.707 [info] (Antigravity) 2026-05-20 23:28:53.707 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:53.707 [info] (Antigravity) 2026-05-20 23:28:53.707 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:54.707 [info] (Antigravity) 2026-05-20 23:28:54.707 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:54.707 [info] (Antigravity) 2026-05-20 23:28:54.707 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:55.707 [info] (Antigravity) 2026-05-20 23:28:55.707 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:55.707 [info] (Antigravity) 2026-05-20 23:28:55.707 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:56.708 [info] (Antigravity) 2026-05-20 23:28:56.708 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:56.709 [info] (Antigravity) 2026-05-20 23:28:56.708 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:57.710 [info] (Antigravity) 2026-05-20 23:28:57.709 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:57.710 [info] (Antigravity) 2026-05-20 23:28:57.710 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:58.708 [info] (Antigravity) 2026-05-20 23:28:58.708 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:58.709 [info] (Antigravity) 2026-05-20 23:28:58.709 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:28:59.709 [info] (Antigravity) 2026-05-20 23:28:59.709 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:28:59.709 [info] (Antigravity) 2026-05-20 23:28:59.709 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:00.710 [info] (Antigravity) 2026-05-20 23:29:00.710 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:00.710 [info] (Antigravity) 2026-05-20 23:29:00.710 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:01.709 [info] (Antigravity) 2026-05-20 23:29:01.709 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:01.709 [info] (Antigravity) 2026-05-20 23:29:01.709 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:02.712 [info] (Antigravity) 2026-05-20 23:29:02.712 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:02.713 [info] (Antigravity) 2026-05-20 23:29:02.713 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:03.710 [info] (Antigravity) 2026-05-20 23:29:03.710 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:03.710 [info] (Antigravity) 2026-05-20 23:29:03.710 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:04.710 [info] (Antigravity) 2026-05-20 23:29:04.710 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:04.711 [info] (Antigravity) 2026-05-20 23:29:04.711 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:05.711 [info] (Antigravity) 2026-05-20 23:29:05.711 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:05.712 [info] (Antigravity) 2026-05-20 23:29:05.712 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:06.711 [info] (Antigravity) 2026-05-20 23:29:06.711 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:06.711 [info] (Antigravity) 2026-05-20 23:29:06.711 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:07.711 [info] (Antigravity) 2026-05-20 23:29:07.711 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:07.711 [info] (Antigravity) 2026-05-20 23:29:07.711 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:08.711 [info] (Antigravity) 2026-05-20 23:29:08.711 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:08.711 [info] (Antigravity) 2026-05-20 23:29:08.711 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:09.711 [info] (Antigravity) 2026-05-20 23:29:09.710 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:09.711 [info] (Antigravity) 2026-05-20 23:29:09.711 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:10.711 [info] (Antigravity) 2026-05-20 23:29:10.711 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:10.711 [info] (Antigravity) 2026-05-20 23:29:10.711 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:11.712 [info] (Antigravity) 2026-05-20 23:29:11.711 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:11.712 [info] (Antigravity) 2026-05-20 23:29:11.712 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:12.712 [info] (Antigravity) 2026-05-20 23:29:12.712 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:12.713 [info] (Antigravity) 2026-05-20 23:29:12.712 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:13.713 [info] (Antigravity) 2026-05-20 23:29:13.713 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:13.714 [info] (Antigravity) 2026-05-20 23:29:13.714 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:14.713 [info] (Antigravity) 2026-05-20 23:29:14.713 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:14.713 [info] (Antigravity) 2026-05-20 23:29:14.713 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:15.713 [info] (Antigravity) 2026-05-20 23:29:15.713 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:15.713 [info] (Antigravity) 2026-05-20 23:29:15.713 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:16.714 [info] (Antigravity) 2026-05-20 23:29:16.713 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:16.714 [info] (Antigravity) 2026-05-20 23:29:16.714 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:17.714 [info] (Antigravity) 2026-05-20 23:29:17.714 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:17.715 [info] (Antigravity) 2026-05-20 23:29:17.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:18.715 [info] (Antigravity) 2026-05-20 23:29:18.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:18.716 [info] (Antigravity) 2026-05-20 23:29:18.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:19.715 [info] (Antigravity) 2026-05-20 23:29:19.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:19.715 [info] (Antigravity) 2026-05-20 23:29:19.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:20.715 [info] (Antigravity) 2026-05-20 23:29:20.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:20.715 [info] (Antigravity) 2026-05-20 23:29:20.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:21.715 [info] (Antigravity) 2026-05-20 23:29:21.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:21.715 [info] (Antigravity) 2026-05-20 23:29:21.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:22.715 [info] (Antigravity) 2026-05-20 23:29:22.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:22.716 [info] (Antigravity) 2026-05-20 23:29:22.716 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:23.715 [info] (Antigravity) 2026-05-20 23:29:23.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:23.715 [info] (Antigravity) 2026-05-20 23:29:23.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:24.715 [info] (Antigravity) 2026-05-20 23:29:24.714 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:24.715 [info] (Antigravity) 2026-05-20 23:29:24.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:25.715 [info] (Antigravity) 2026-05-20 23:29:25.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:25.716 [info] (Antigravity) 2026-05-20 23:29:25.716 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:26.715 [info] (Antigravity) 2026-05-20 23:29:26.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:26.715 [info] (Antigravity) 2026-05-20 23:29:26.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:27.715 [info] (Antigravity) 2026-05-20 23:29:27.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:27.715 [info] (Antigravity) 2026-05-20 23:29:27.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:28.715 [info] (Antigravity) 2026-05-20 23:29:28.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:28.715 [info] (Antigravity) 2026-05-20 23:29:28.715 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:29.720 [info] (Antigravity) 2026-05-20 23:29:29.720 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:29.721 [info] (Antigravity) 2026-05-20 23:29:29.721 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:30.716 [info] (Antigravity) 2026-05-20 23:29:30.716 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:30.716 [info] (Antigravity) 2026-05-20 23:29:30.716 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:31.715 [info] (Antigravity) 2026-05-20 23:29:31.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:31.716 [info] (Antigravity) 2026-05-20 23:29:31.716 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:32.715 [info] (Antigravity) 2026-05-20 23:29:32.715 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:32.716 [info] (Antigravity) 2026-05-20 23:29:32.716 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:33.716 [info] (Antigravity) 2026-05-20 23:29:33.716 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:33.716 [info] (Antigravity) 2026-05-20 23:29:33.716 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:34.717 [info] (Antigravity) 2026-05-20 23:29:34.716 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:34.717 [info] (Antigravity) 2026-05-20 23:29:34.717 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:35.717 [info] (Antigravity) 2026-05-20 23:29:35.717 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:35.717 [info] (Antigravity) 2026-05-20 23:29:35.717 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:36.718 [info] (Antigravity) 2026-05-20 23:29:36.718 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:36.718 [info] (Antigravity) 2026-05-20 23:29:36.718 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:37.718 [info] (Antigravity) 2026-05-20 23:29:37.718 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:37.719 [info] (Antigravity) 2026-05-20 23:29:37.719 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:38.718 [info] (Antigravity) 2026-05-20 23:29:38.718 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:38.720 [info] (Antigravity) 2026-05-20 23:29:38.720 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:39.718 [info] (Antigravity) 2026-05-20 23:29:39.718 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:39.718 [info] (Antigravity) 2026-05-20 23:29:39.718 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:40.719 [info] (Antigravity) 2026-05-20 23:29:40.719 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:40.719 [info] (Antigravity) 2026-05-20 23:29:40.719 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:41.720 [info] (Antigravity) 2026-05-20 23:29:41.719 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:41.720 [info] (Antigravity) 2026-05-20 23:29:41.720 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:42.719 [info] (Antigravity) 2026-05-20 23:29:42.719 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:42.720 [info] (Antigravity) 2026-05-20 23:29:42.720 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:43.720 [info] (Antigravity) 2026-05-20 23:29:43.720 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:43.720 [info] (Antigravity) 2026-05-20 23:29:43.720 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:44.720 [info] (Antigravity) 2026-05-20 23:29:44.720 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:44.720 [info] (Antigravity) 2026-05-20 23:29:44.720 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:45.721 [info] (Antigravity) 2026-05-20 23:29:45.721 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:45.721 [info] (Antigravity) 2026-05-20 23:29:45.721 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:46.722 [info] (Antigravity) 2026-05-20 23:29:46.722 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:46.722 [info] (Antigravity) 2026-05-20 23:29:46.722 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:47.721 [info] (Antigravity) 2026-05-20 23:29:47.721 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:47.721 [info] (Antigravity) 2026-05-20 23:29:47.721 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:48.722 [info] (Antigravity) 2026-05-20 23:29:48.722 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:48.722 [info] (Antigravity) 2026-05-20 23:29:48.722 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:49.722 [info] (Antigravity) 2026-05-20 23:29:49.722 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:49.722 [info] (Antigravity) 2026-05-20 23:29:49.722 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:50.721 [info] (Antigravity) 2026-05-20 23:29:50.721 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:50.722 [info] (Antigravity) 2026-05-20 23:29:50.722 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:51.722 [info] (Antigravity) 2026-05-20 23:29:51.722 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:51.723 [info] (Antigravity) 2026-05-20 23:29:51.723 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:52.723 [info] (Antigravity) 2026-05-20 23:29:52.723 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:52.723 [info] (Antigravity) 2026-05-20 23:29:52.723 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:53.722 [info] (Antigravity) 2026-05-20 23:29:53.722 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:53.722 [info] (Antigravity) 2026-05-20 23:29:53.722 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:54.724 [info] (Antigravity) 2026-05-20 23:29:54.724 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:54.725 [info] (Antigravity) 2026-05-20 23:29:54.725 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:55.723 [info] (Antigravity) 2026-05-20 23:29:55.722 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:55.723 [info] (Antigravity) 2026-05-20 23:29:55.723 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:56.723 [info] (Antigravity) 2026-05-20 23:29:56.723 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:56.723 [info] (Antigravity) 2026-05-20 23:29:56.723 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:57.723 [info] (Antigravity) 2026-05-20 23:29:57.723 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:57.723 [info] (Antigravity) 2026-05-20 23:29:57.723 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:58.724 [info] (Antigravity) 2026-05-20 23:29:58.724 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:58.724 [info] (Antigravity) 2026-05-20 23:29:58.724 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:29:59.723 [info] (Antigravity) 2026-05-20 23:29:59.722 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:29:59.723 [info] (Antigravity) 2026-05-20 23:29:59.723 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:00.723 [info] (Antigravity) 2026-05-20 23:30:00.723 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:00.723 [info] (Antigravity) 2026-05-20 23:30:00.723 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:01.724 [info] (Antigravity) 2026-05-20 23:30:01.724 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:01.725 [info] (Antigravity) 2026-05-20 23:30:01.725 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:02.724 [info] (Antigravity) 2026-05-20 23:30:02.724 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:02.724 [info] (Antigravity) 2026-05-20 23:30:02.724 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:03.725 [info] (Antigravity) 2026-05-20 23:30:03.725 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:03.725 [info] (Antigravity) 2026-05-20 23:30:03.725 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:04.725 [info] (Antigravity) 2026-05-20 23:30:04.725 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:04.726 [info] (Antigravity) 2026-05-20 23:30:04.726 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:05.725 [info] (Antigravity) 2026-05-20 23:30:05.725 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:05.725 [info] (Antigravity) 2026-05-20 23:30:05.725 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:06.727 [info] (Antigravity) 2026-05-20 23:30:06.727 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:06.727 [info] (Antigravity) 2026-05-20 23:30:06.727 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:07.726 [info] (Antigravity) 2026-05-20 23:30:07.726 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:07.726 [info] (Antigravity) 2026-05-20 23:30:07.726 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:08.727 [info] (Antigravity) 2026-05-20 23:30:08.727 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:08.727 [info] (Antigravity) 2026-05-20 23:30:08.727 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:09.875 [info] (Antigravity) 2026-05-20 23:30:09.875 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:09.875 [info] (Antigravity) 2026-05-20 23:30:09.875 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:10.873 [info] (Antigravity) 2026-05-20 23:30:10.873 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:10.874 [info] (Antigravity) 2026-05-20 23:30:10.873 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:11.874 [info] (Antigravity) 2026-05-20 23:30:11.874 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:11.874 [info] (Antigravity) 2026-05-20 23:30:11.874 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:12.874 [info] (Antigravity) 2026-05-20 23:30:12.874 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:12.874 [info] (Antigravity) 2026-05-20 23:30:12.874 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:13.874 [info] (Antigravity) 2026-05-20 23:30:13.874 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:13.875 [info] (Antigravity) 2026-05-20 23:30:13.875 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:14.876 [info] (Antigravity) 2026-05-20 23:30:14.876 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:14.876 [info] (Antigravity) 2026-05-20 23:30:14.876 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:15.876 [info] (Antigravity) 2026-05-20 23:30:15.876 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:15.876 [info] (Antigravity) 2026-05-20 23:30:15.876 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:16.877 [info] (Antigravity) 2026-05-20 23:30:16.877 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:16.877 [info] (Antigravity) 2026-05-20 23:30:16.877 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:17.877 [info] (Antigravity) 2026-05-20 23:30:17.877 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:17.877 [info] (Antigravity) 2026-05-20 23:30:17.877 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:18.878 [info] (Antigravity) 2026-05-20 23:30:18.878 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:18.879 [info] (Antigravity) 2026-05-20 23:30:18.879 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:19.878 [info] (Antigravity) 2026-05-20 23:30:19.878 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:19.878 [info] (Antigravity) 2026-05-20 23:30:19.878 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:20.878 [info] (Antigravity) 2026-05-20 23:30:20.878 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:20.878 [info] (Antigravity) 2026-05-20 23:30:20.878 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:21.880 [info] (Antigravity) 2026-05-20 23:30:21.880 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:21.880 [info] (Antigravity) 2026-05-20 23:30:21.880 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:22.881 [info] (Antigravity) 2026-05-20 23:30:22.881 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:22.881 [info] (Antigravity) 2026-05-20 23:30:22.881 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:23.882 [info] (Antigravity) 2026-05-20 23:30:23.882 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:23.882 [info] (Antigravity) 2026-05-20 23:30:23.882 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:24.883 [info] (Antigravity) 2026-05-20 23:30:24.883 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:24.883 [info] (Antigravity) 2026-05-20 23:30:24.883 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:25.882 [info] (Antigravity) 2026-05-20 23:30:25.882 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:25.882 [info] (Antigravity) 2026-05-20 23:30:25.882 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:26.882 [info] (Antigravity) 2026-05-20 23:30:26.882 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:26.882 [info] (Antigravity) 2026-05-20 23:30:26.882 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:27.882 [info] (Antigravity) 2026-05-20 23:30:27.882 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:27.882 [info] (Antigravity) 2026-05-20 23:30:27.882 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:28.885 [info] (Antigravity) 2026-05-20 23:30:28.885 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:28.885 [info] (Antigravity) 2026-05-20 23:30:28.885 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:29.884 [info] (Antigravity) 2026-05-20 23:30:29.884 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:29.884 [info] (Antigravity) 2026-05-20 23:30:29.884 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:30.888 [info] (Antigravity) 2026-05-20 23:30:30.887 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:30.888 [info] (Antigravity) 2026-05-20 23:30:30.888 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:31.887 [info] (Antigravity) 2026-05-20 23:30:31.886 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:31.887 [info] (Antigravity) 2026-05-20 23:30:31.887 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:32.888 [info] (Antigravity) 2026-05-20 23:30:32.888 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:32.888 [info] (Antigravity) 2026-05-20 23:30:32.888 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:33.888 [info] (Antigravity) 2026-05-20 23:30:33.888 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:33.889 [info] (Antigravity) 2026-05-20 23:30:33.889 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:34.889 [info] (Antigravity) 2026-05-20 23:30:34.889 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:34.890 [info] (Antigravity) 2026-05-20 23:30:34.890 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:35.889 [info] (Antigravity) 2026-05-20 23:30:35.889 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:35.889 [info] (Antigravity) 2026-05-20 23:30:35.889 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:36.889 [info] (Antigravity) 2026-05-20 23:30:36.889 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:36.890 [info] (Antigravity) 2026-05-20 23:30:36.890 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:37.889 [info] (Antigravity) 2026-05-20 23:30:37.889 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:37.893 [info] (Antigravity) 2026-05-20 23:30:37.890 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:38.889 [info] (Antigravity) 2026-05-20 23:30:38.889 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:38.889 [info] (Antigravity) 2026-05-20 23:30:38.889 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:39.893 [info] (Antigravity) 2026-05-20 23:30:39.893 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:39.893 [info] (Antigravity) 2026-05-20 23:30:39.893 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:40.891 [info] (Antigravity) 2026-05-20 23:30:40.891 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:40.891 [info] (Antigravity) 2026-05-20 23:30:40.891 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:41.893 [info] (Antigravity) 2026-05-20 23:30:41.893 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:41.893 [info] (Antigravity) 2026-05-20 23:30:41.893 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:42.893 [info] (Antigravity) 2026-05-20 23:30:42.893 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:42.894 [info] (Antigravity) 2026-05-20 23:30:42.893 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:43.894 [info] (Antigravity) 2026-05-20 23:30:43.894 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:43.894 [info] (Antigravity) 2026-05-20 23:30:43.894 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:44.893 [info] (Antigravity) 2026-05-20 23:30:44.893 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:44.894 [info] (Antigravity) 2026-05-20 23:30:44.894 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:45.894 [info] (Antigravity) 2026-05-20 23:30:45.894 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:45.894 [info] (Antigravity) 2026-05-20 23:30:45.894 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:46.894 [info] (Antigravity) 2026-05-20 23:30:46.894 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:46.894 [info] (Antigravity) 2026-05-20 23:30:46.894 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:47.894 [info] (Antigravity) 2026-05-20 23:30:47.894 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:47.895 [info] (Antigravity) 2026-05-20 23:30:47.895 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:48.895 [info] (Antigravity) 2026-05-20 23:30:48.895 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:48.896 [info] (Antigravity) 2026-05-20 23:30:48.896 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:49.896 [info] (Antigravity) 2026-05-20 23:30:49.896 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:49.896 [info] (Antigravity) 2026-05-20 23:30:49.896 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:50.897 [info] (Antigravity) 2026-05-20 23:30:50.897 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:50.897 [info] (Antigravity) 2026-05-20 23:30:50.897 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:51.898 [info] (Antigravity) 2026-05-20 23:30:51.898 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:51.898 [info] (Antigravity) 2026-05-20 23:30:51.898 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:52.897 [info] (Antigravity) 2026-05-20 23:30:52.897 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:52.897 [info] (Antigravity) 2026-05-20 23:30:52.897 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:53.897 [info] (Antigravity) 2026-05-20 23:30:53.897 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:53.898 [info] (Antigravity) 2026-05-20 23:30:53.898 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:54.898 [info] (Antigravity) 2026-05-20 23:30:54.898 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:54.898 [info] (Antigravity) 2026-05-20 23:30:54.898 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:55.898 [info] (Antigravity) 2026-05-20 23:30:55.898 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:55.898 [info] (Antigravity) 2026-05-20 23:30:55.898 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:56.898 [info] (Antigravity) 2026-05-20 23:30:56.898 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:56.899 [info] (Antigravity) 2026-05-20 23:30:56.899 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:57.898 [info] (Antigravity) 2026-05-20 23:30:57.898 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:57.898 [info] (Antigravity) 2026-05-20 23:30:57.898 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:58.899 [info] (Antigravity) 2026-05-20 23:30:58.899 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:58.899 [info] (Antigravity) 2026-05-20 23:30:58.899 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:30:59.899 [info] (Antigravity) 2026-05-20 23:30:59.899 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:30:59.899 [info] (Antigravity) 2026-05-20 23:30:59.899 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:00.900 [info] (Antigravity) 2026-05-20 23:31:00.900 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:00.900 [info] (Antigravity) 2026-05-20 23:31:00.900 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:01.900 [info] (Antigravity) 2026-05-20 23:31:01.900 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:01.900 [info] (Antigravity) 2026-05-20 23:31:01.900 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:02.901 [info] (Antigravity) 2026-05-20 23:31:02.901 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:02.901 [info] (Antigravity) 2026-05-20 23:31:02.901 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:03.901 [info] (Antigravity) 2026-05-20 23:31:03.901 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:03.901 [info] (Antigravity) 2026-05-20 23:31:03.901 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:04.903 [info] (Antigravity) 2026-05-20 23:31:04.903 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:04.903 [info] (Antigravity) 2026-05-20 23:31:04.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:05.903 [info] (Antigravity) 2026-05-20 23:31:05.903 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:05.903 [info] (Antigravity) 2026-05-20 23:31:05.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:06.903 [info] (Antigravity) 2026-05-20 23:31:06.903 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:06.903 [info] (Antigravity) 2026-05-20 23:31:06.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:07.903 [info] (Antigravity) 2026-05-20 23:31:07.903 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:07.903 [info] (Antigravity) 2026-05-20 23:31:07.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:08.902 [info] (Antigravity) 2026-05-20 23:31:08.902 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:08.903 [info] (Antigravity) 2026-05-20 23:31:08.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:09.902 [info] (Antigravity) 2026-05-20 23:31:09.902 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:09.902 [info] (Antigravity) 2026-05-20 23:31:09.902 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:10.903 [info] (Antigravity) 2026-05-20 23:31:10.903 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:10.903 [info] (Antigravity) 2026-05-20 23:31:10.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:11.902 [info] (Antigravity) 2026-05-20 23:31:11.902 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:11.903 [info] (Antigravity) 2026-05-20 23:31:11.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:12.903 [info] (Antigravity) 2026-05-20 23:31:12.903 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:12.903 [info] (Antigravity) 2026-05-20 23:31:12.903 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:13.904 [info] (Antigravity) 2026-05-20 23:31:13.904 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:13.904 [info] (Antigravity) 2026-05-20 23:31:13.904 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:14.905 [info] (Antigravity) 2026-05-20 23:31:14.905 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:14.906 [info] (Antigravity) 2026-05-20 23:31:14.906 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:15.905 [info] (Antigravity) 2026-05-20 23:31:15.905 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:15.905 [info] (Antigravity) 2026-05-20 23:31:15.905 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:16.907 [info] (Antigravity) 2026-05-20 23:31:16.907 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:16.907 [info] (Antigravity) 2026-05-20 23:31:16.907 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:17.907 [info] (Antigravity) 2026-05-20 23:31:17.907 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:17.907 [info] (Antigravity) 2026-05-20 23:31:17.907 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:18.908 [info] (Antigravity) 2026-05-20 23:31:18.908 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:18.908 [info] (Antigravity) 2026-05-20 23:31:18.908 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:19.908 [info] (Antigravity) 2026-05-20 23:31:19.908 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:19.909 [info] (Antigravity) 2026-05-20 23:31:19.909 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64
+2026-05-20 23:31:20.909 [info] (Antigravity) 2026-05-20 23:31:20.909 [ERROR]: Language server binary not found: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-20 23:31:20.909 [info] (Antigravity) 2026-05-20 23:31:20.909 [ERROR]: LS update error: Language server binary not found: language_server_linux_x64

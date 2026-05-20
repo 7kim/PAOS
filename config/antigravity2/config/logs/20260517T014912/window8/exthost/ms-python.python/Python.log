@@ -1,0 +1,17 @@
+2026-05-17 05:12:25.438 [warning] Dir "/home/dev/AI_Workflow/.pixi/envs" is not watchable (directory does not exist)
+2026-05-17 05:12:25.461 [info] Starting Environment refresh
+2026-05-17 05:12:25.484 [info] > hatch env show --json
+2026-05-17 05:12:25.484 [info] cwd: .
+2026-05-17 05:12:25.507 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
+2026-05-17 05:12:25.507 [info] Python interpreter path: /bin/python3
+2026-05-17 05:12:25.532 [info] Starting Environment refresh
+2026-05-17 05:12:25.554 [info] > /bin/python3 -I ./config/antigravity/extensions/ms-python.python-2026.4.0-universal/python_files/get_output_via_markers.py ./config/antigravity/extensions/ms-python.python-2026.4.0-universal/python_files/interpreterInfo.py
+2026-05-17 05:12:25.568 [info] Environments refresh paths discovered: 107 milliseconds
+2026-05-17 05:12:25.568 [info] Environments refresh paths discovered: 36 milliseconds
+2026-05-17 05:12:25.576 [info] Environments refresh finished (event): 115 milliseconds
+2026-05-17 05:12:25.576 [info] Environments refresh finished (event): 44 milliseconds
+2026-05-17 05:12:25.577 [info] Environment refresh took 117 milliseconds
+2026-05-17 05:12:25.578 [info] Environment refresh took 46 milliseconds
+2026-05-17 05:12:25.588 [info] > pyenv which python
+2026-05-17 05:12:25.588 [info] cwd: .
+2026-05-17 05:12:25.597 [info] Editor support is inactive since language server is set to None.

@@ -1,0 +1,46 @@
+2026-05-17 01:49:19.359 [warning] Dir "/home/dev/Documents/Dev/Tradingview/.pixi/envs" is not watchable (directory does not exist)
+2026-05-17 01:49:19.742 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
+2026-05-17 01:49:19.748 [info] Python interpreter path: ./venv/bin/python
+2026-05-17 01:49:19.918 [info] > pyenv which python
+2026-05-17 01:49:19.918 [info] cwd: .
+2026-05-17 01:49:19.932 [info] Editor support is inactive since language server is set to None.
+2026-05-17 01:57:52.720 [warning] Dir "/home/dev/Documents/Dev/project-gemini/.pixi/envs" is not watchable (directory does not exist)
+2026-05-17 01:57:52.746 [info] Starting Environment refresh
+2026-05-17 01:57:52.751 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
+2026-05-17 01:57:52.764 [info] > hatch env show --json
+2026-05-17 01:57:52.764 [info] cwd: .
+2026-05-17 01:57:52.773 [info] Running installed packages checker:  {
+  id: '/bin/python3',
+  sysPrefix: '/usr',
+  envType: 'Global',
+  envName: '',
+  envPath: '',
+  path: '/bin/python3',
+  architecture: 3,
+  sysVersion: '3.14.4 (main, Apr  8 2026, 04:02:31) [GCC 15.2.0]',
+  version: {
+    raw: '3.14.4',
+    major: 3,
+    minor: 14,
+    patch: 4,
+    build: [],
+    prerelease: [ 'final', '0' ]
+  },
+  displayName: 'Python 3.14.4 64-bit',
+  detailedDisplayName: 'Python 3.14.4 64-bit',
+  type: undefined
+} /home/dev/.antigravity/extensions/ms-python.python-2026.4.0-universal/python_files/installed_check.py /home/dev/Documents/Dev/project-gemini/backend/requirements.txt
+2026-05-17 01:57:52.773 [info] > /bin/python3 ~/.antigravity/extensions/ms-python.python-2026.4.0-universal/python_files/installed_check.py ./backend/requirements.txt
+2026-05-17 01:57:52.774 [info] Python interpreter path: /bin/python3
+2026-05-17 01:57:52.781 [info] Starting Environment refresh
+2026-05-17 01:57:52.800 [info] > /bin/python3 -I ~/.antigravity/extensions/ms-python.python-2026.4.0-universal/python_files/get_output_via_markers.py ~/.antigravity/extensions/ms-python.python-2026.4.0-universal/python_files/interpreterInfo.py
+2026-05-17 01:57:52.801 [info] Environments refresh paths discovered: 54 milliseconds
+2026-05-17 01:57:52.801 [info] Environments refresh paths discovered: 20 milliseconds
+2026-05-17 01:57:52.823 [info] Environments refresh finished (event): 77 milliseconds
+2026-05-17 01:57:52.823 [info] Environments refresh finished (event): 42 milliseconds
+2026-05-17 01:57:52.824 [info] Environment refresh took 79 milliseconds
+2026-05-17 01:57:52.825 [info] Environment refresh took 44 milliseconds
+2026-05-17 01:57:52.834 [info] > pyenv which python
+2026-05-17 01:57:52.834 [info] cwd: .
+2026-05-17 01:57:52.843 [info] Editor support is inactive since language server is set to None.
+2026-05-17 02:22:25.160 [info] Starting Jedi language server for project-gemini.

@@ -1,0 +1,1579 @@
+2026-05-17 04:20:29.631 [info] Extension host with pid 214946 started
+2026-05-17 04:20:29.653 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 04:20:29.657 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 04:20:29.662 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 04:20:29.670 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 04:20:29.739 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 04:20:29.783 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 04:20:29.895 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 04:20:30.425 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 04:20:30.543 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 04:20:30.718 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 04:20:31.744 [info] Eager extensions activated
+2026-05-17 04:20:31.745 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:31.750 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:31.754 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:31.771 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:31.783 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:31.927 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:31.928 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:31.944 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:32.044 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:36.388 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/AI_Workflow/config/antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 04:20:36.388 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/AI_Workflow/config/antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 04:20:36.388 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/AI_Workflow/config/antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 04:20:42.239 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 04:20:42.264 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 04:20:42.269 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 04:20:42.276 [info] Extension host with pid 214946 exiting with code 0
+2026-05-17 04:20:43.864 [info] Extension host with pid 215204 started
+2026-05-17 04:20:43.864 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/a9caf49c083fb159ee914f0e370fafa3.
+2026-05-17 04:20:43.902 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 04:20:43.907 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 04:20:43.912 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 04:20:43.920 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 04:20:43.952 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2026-05-17 04:20:44.029 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 04:20:44.071 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 04:20:44.125 [info] ExtensionService#_doActivateExtension github.vscode-github-actions, startup: true, activationEvent: 'workspaceContains:**/.github/workflows/**,**/action.yml,**/action.yaml'
+2026-05-17 04:20:44.225 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 04:20:44.551 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 04:20:44.609 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onView:projectsExplorerFavorites'
+2026-05-17 04:20:44.653 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-17 04:20:44.677 [info] ExtensionService#_doActivateExtension MermaidChart.vscode-mermaid-chart, startup: false, activationEvent: 'onLanguage'
+2026-05-17 04:20:45.011 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/AI_Workflow/config/antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+2026-05-17 04:20:45.011 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/AI_Workflow/config/antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+2026-05-17 04:20:45.011 [error] TypeError: Cannot read properties of undefined (reading 'rootPath')
+	at Object.provideFileDecoration (/home/dev/AI_Workflow/config/antigravity/extensions/alefragnani.project-manager-13.1.1-universal/dist/extension.js:1:53054)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4935
+	at Array.map (<anonymous>)
+	at pZ.$provideDecorations (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:4871)
+	at D9.S (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126864)
+	at D9.Q (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126644)
+	at D9.M (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:125694)
+	at D9.L (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124837)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:123633)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at Hf.value (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:9341)
+	at v.C (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2330)
+	at v.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:27:2548)
+	at Kl.fire (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:9451)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7573)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+2026-05-17 04:20:45.014 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 04:20:45.119 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 04:20:47.002 [info] Eager extensions activated
+2026-05-17 04:20:47.003 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:47.008 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:47.010 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:47.028 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:47.177 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:47.178 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:47.203 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:47.303 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:20:49.638 [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 04:20:49.657 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 04:20:49.684 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+2026-05-17 04:22:39.211 [info] ExtensionService#_doActivateExtension GrapeCity.gc-excelviewer, startup: false, activationEvent: 'onLanguage:plaintext'
+2026-05-17 04:22:39.217 [info] ExtensionService#_doActivateExtension mechatroner.rainbow-csv, startup: false, activationEvent: 'onLanguage:plaintext'
+2026-05-17 04:22:39.391 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-17 04:22:39.542 [info] ExtensionService#_doActivateExtension DavidAnson.vscode-markdownlint, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-17 04:22:39.577 [info] ExtensionService#_doActivateExtension yzane.markdown-pdf, startup: false, activationEvent: 'onLanguage:markdown'
+2026-05-17 04:22:39.931 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2026-05-17 04:22:49.933 [warning] TextEditor is closed/disposed
+2026-05-17 04:22:59.688 [warning] TextEditor is closed/disposed
+2026-05-17 04:23:01.622 [warning] TextEditor is closed/disposed
+2026-05-17 04:24:42.852 [info] ExtensionService#_doActivateExtension vscode.simple-browser, startup: false, activationEvent: 'onOpenExternalUri:http'
+2026-05-17 04:53:15.345 [info] ExtensionService#_doActivateExtension openai.chatgpt, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 04:53:17.652 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1321
+2026-05-17 04:53:22.727 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1300
+2026-05-17 04:53:28.815 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1300
+2026-05-17 04:53:37.155 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1300
+2026-05-17 04:53:42.232 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:53:46.000 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:53:47.308 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:54:16.971 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:55:16.977 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:55:22.059 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:55:27.135 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:55:37.438 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:55:44.980 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:55:50.065 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1305
+2026-05-17 04:56:05.787 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1307
+2026-05-17 04:56:10.868 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1307
+2026-05-17 04:56:15.950 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:56:36.336 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:56:46.081 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:56:47.166 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:57:16.976 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:57:34.979 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:57:46.981 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:58:10.980 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:58:16.980 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:58:22.058 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:58:42.070 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:58:47.144 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:59:16.975 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:59:46.169 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 04:59:47.248 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 05:00:16.981 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 05:00:49.104 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 05:01:16.981 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 05:01:22.058 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 05:01:46.977 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 05:02:16.978 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1309
+2026-05-17 05:02:35.835 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:02:40.982 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:02:46.261 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:02:47.337 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:02:55.025 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:03:02.277 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:03:07.349 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:03:12.424 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:03:17.501 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:03:25.681 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:03:34.756 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:03:56.465 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:04:12.748 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:04:17.820 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:04:22.897 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:04:46.987 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:05:07.151 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:05:16.979 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:05:31.093 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:05:45.835 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:05:46.351 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:05:50.915 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:06:16.979 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:07:07.624 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:07:14.355 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:07:19.427 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:07:24.503 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:07:29.578 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1323
+2026-05-17 05:07:34.657 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1325
+2026-05-17 05:07:39.733 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:07:44.800 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:07:49.874 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:12.039 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:17.115 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:27.091 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:32.169 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:37.241 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:46.445 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:47.537 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:08:52.743 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:09:16.982 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:09:22.063 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:09:39.803 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:10:16.979 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:10:22.063 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1327
+2026-05-17 05:10:27.142 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:10:38.920 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:10:44.000 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:10:49.078 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:14.485 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:19.563 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:24.643 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:29.720 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:34.799 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:39.882 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:44.963 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:46.537 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:50.046 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:11:55.122 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:12:00.196 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1328
+2026-05-17 05:12:05.253 [warning] [Decorations] CAPPING events from decorations provider vscode.git 1342
+2026-05-17 05:12:15.403 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9072
+2026-05-17 05:12:20.522 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9065
+2026-05-17 05:12:25.212 [info] ExtensionService#_doActivateExtension ms-python.python, startup: false, activationEvent: 'api', root cause: Anthropic.claude-code
+2026-05-17 05:12:28.297 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9065
+2026-05-17 05:12:33.444 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9065
+2026-05-17 05:12:39.622 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9065
+2026-05-17 05:12:44.773 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9066
+2026-05-17 05:12:49.893 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9066
+2026-05-17 05:12:57.124 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:jsonc'
+2026-05-17 05:12:59.675 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9066
+2026-05-17 05:13:04.589 [warning] TextEditor is closed/disposed
+2026-05-17 05:13:04.785 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9067
+2026-05-17 05:13:17.088 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9067
+2026-05-17 05:13:22.210 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9068
+2026-05-17 05:13:27.329 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9068
+2026-05-17 05:13:32.446 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9068
+2026-05-17 05:13:39.283 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9068
+2026-05-17 05:13:44.394 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9068
+2026-05-17 05:13:49.505 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9068
+2026-05-17 05:14:14.579 [info] ExtensionService#_doActivateExtension rangav.vscode-thunder-client, startup: false, activationEvent: 'onView:thunder-client-sidebar'
+2026-05-17 05:14:16.861 [info] ExtensionService#_doActivateExtension google.antigravity-remote-openssh, startup: false, activationEvent: 'onView:antigravitySSHHosts'
+2026-05-17 05:14:17.017 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:14:42.310 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:14:46.672 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:14:47.760 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:14:52.863 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:14:57.996 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:15:03.146 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:15:08.286 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9070
+2026-05-17 05:15:18.472 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9071
+2026-05-17 05:15:25.263 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9072
+2026-05-17 05:15:34.014 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9073
+2026-05-17 05:15:41.723 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9074
+2026-05-17 05:15:53.803 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9075
+2026-05-17 05:15:58.919 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9075
+2026-05-17 05:16:10.441 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9076
+2026-05-17 05:16:17.021 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9076
+2026-05-17 05:16:22.174 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9076
+2026-05-17 05:16:27.290 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:16:32.444 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:16:37.572 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:16:42.721 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:16:47.862 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:16:53.001 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:16:58.127 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:17:03.243 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:17:08.356 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:17:17.018 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:17:46.805 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:17:47.936 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:18:17.017 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:18:26.940 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:18:32.038 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:18:37.156 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:18:43.382 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:18:48.498 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:18:53.615 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:19:05.752 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:19:11.530 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:19:17.080 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:19:22.246 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9077
+2026-05-17 05:19:41.508 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:19:48.081 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:19:53.226 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:17.074 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:22.204 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:29.848 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:34.965 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:40.081 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:45.186 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:46.923 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:50.299 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9078
+2026-05-17 05:20:57.889 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9079
+2026-05-17 05:21:03.041 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9079
+2026-05-17 05:21:08.203 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9079
+2026-05-17 05:21:13.312 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9079
+2026-05-17 05:21:18.436 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9079
+2026-05-17 05:21:28.764 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9080
+2026-05-17 05:21:33.896 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9081
+2026-05-17 05:21:39.014 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9081
+2026-05-17 05:21:59.182 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9081
+2026-05-17 05:22:04.308 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9081
+2026-05-17 05:22:09.423 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9081
+2026-05-17 05:22:15.655 [warning] [Decorations] CAPPING events from decorations provider vscode.git 9081
+2026-05-17 05:22:38.675 [warning] TextEditor is closed/disposed
+2026-05-17 05:23:40.667 [warning] TextEditor is closed/disposed
+2026-05-17 05:26:31.195 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:31.196 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.198 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.202 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.203 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.203 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.204 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.205 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.205 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.206 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.207 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.208 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.208 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.209 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.209 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.210 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.211 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.211 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.212 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:32.212 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:33.635 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:34.443 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 05:26:34.549 [error] [google.antigravity] provider FAILED
+2026-05-17 05:26:34.549 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:34.639 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 05:26:44.722 [info] ExtensionService#_doActivateExtension christian-kohler.npm-intellisense, startup: false, activationEvent: 'onLanguage:javascript'
+2026-05-17 05:26:46.894 [warning] TextEditor is closed/disposed
+2026-05-17 05:26:50.811 [info] ExtensionService#_doActivateExtension ms-azuretools.vscode-containers, startup: false, activationEvent: 'onLanguage:dockercompose'
+2026-05-17 05:26:52.193 [warning] TextEditor is closed/disposed
+2026-05-17 05:26:52.916 [warning] TextEditor is closed/disposed
+2026-05-17 05:26:53.665 [error] Error: Model is disposed!
+    at VS.lb (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3040:304)
+    at VS.getVersionId (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3042:2487)
+    at gqi.fetch (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:15087)
+    at Hk._computeFn (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:34252)
+    at Hk.get (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:9669)
+    at Hk.reportChanges (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:576)
+    at eNr.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:17819)
+    at Hk.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:11059)
+    at F6e.finish (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:104244)
+    at cDl (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:103731)
+2026-05-17 05:26:53.885 [warning] TextEditor is closed/disposed
+2026-05-17 05:26:54.534 [error] Error: Model is disposed!
+    at VS.lb (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3040:304)
+    at VS.getVersionId (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3042:2487)
+    at gqi.fetch (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:15087)
+    at Hk._computeFn (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:34252)
+    at Hk.get (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:9669)
+    at Hk.reportChanges (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:576)
+    at eNr.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:17819)
+    at Hk.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:11059)
+    at F6e.finish (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:104244)
+    at cDl (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:103731)
+2026-05-17 05:26:55.031 [warning] TextEditor is closed/disposed
+2026-05-17 05:26:55.428 [error] Error: Model is disposed!
+    at VS.lb (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3040:304)
+    at VS.getVersionId (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3042:2487)
+    at gqi.fetch (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:15087)
+    at Hk._computeFn (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:34252)
+    at Hk.get (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:9669)
+    at Hk.reportChanges (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:576)
+    at eNr.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:17819)
+    at Hk.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:11059)
+    at F6e.finish (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:104244)
+    at cDl (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:103731)
+2026-05-17 05:26:56.465 [error] Error: Model is disposed!
+    at VS.lb (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3040:304)
+    at VS.getVersionId (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3042:2487)
+    at gqi.fetch (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:15087)
+    at Hk._computeFn (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:34252)
+    at Hk.get (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:9669)
+    at Hk.reportChanges (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:576)
+    at eNr.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:17819)
+    at Hk.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:11059)
+    at F6e.finish (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:104244)
+    at cDl (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:103731)
+2026-05-17 05:40:12.466 [warning] TextEditor is closed/disposed
+2026-05-17 05:40:13.784 [warning] TextEditor is closed/disposed
+2026-05-17 05:40:14.863 [error] Error: Model is disposed!
+    at VS.lb (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3040:304)
+    at VS.getVersionId (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3042:2487)
+    at gqi.fetch (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:15087)
+    at Hk._computeFn (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3243:34252)
+    at Hk.get (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:9669)
+    at Hk.reportChanges (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:576)
+    at eNr.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:17819)
+    at Hk.endUpdate (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2793:11059)
+    at F6e.finish (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:104244)
+    at cDl (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2792:103731)
+2026-05-17 05:40:26.094 [warning] TextEditor is closed/disposed
+2026-05-17 05:50:40.490 [warning] [Decorations] CAPPING events from decorations provider vscode.git 559
+2026-05-17 05:50:45.574 [warning] [Decorations] CAPPING events from decorations provider vscode.git 559
+2026-05-17 05:50:48.396 [warning] [Decorations] CAPPING events from decorations provider vscode.git 559
+2026-05-17 05:50:53.246 [warning] [Decorations] CAPPING events from decorations provider vscode.git 559
+2026-05-17 06:05:07.376 [warning] TextEditor is closed/disposed
+2026-05-17 06:05:18.331 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:05:18.548 [warning] TextEditor is closed/disposed
+2026-05-17 06:05:18.629 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:05:18.696 [error] [google.antigravity] provider FAILED
+2026-05-17 06:05:18.696 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:05:19.332 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:23.248 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:23.248 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:23.601 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:23.675 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:23.676 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:24.249 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:24.251 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:25.369 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:25.402 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:25.402 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:27.014 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:27.037 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:27.037 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.259 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.259 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.259 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.259 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.259 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:30.970 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.274 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:31.287 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.288 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.288 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.288 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.289 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.337 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:31.337 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:31.971 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:33.088 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:33.255 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:33.327 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:33.327 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:34.089 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:34.635 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:34.759 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:34.820 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:34.820 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:35.635 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:36.136 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:36.182 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:36.182 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:36.861 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:36.914 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:36.914 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:43.136 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:43.678 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:43.709 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:43.709 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:44.137 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:48.744 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:48.744 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:49.744 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:49.745 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:50.227 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:50.259 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:50.259 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:54.575 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:55.430 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:55.575 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:55.675 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:55.698 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:55.698 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:56.431 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:57.956 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:58.135 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:15:58.168 [error] [google.antigravity] provider FAILED
+2026-05-17 06:15:58.168 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:58.957 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:59.822 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:59.822 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:59.822 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:59.822 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:59.822 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:59.822 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:15:59.822 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.823 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.824 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.824 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.825 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.825 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.826 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:00.826 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:01.194 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:01.225 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:01.225 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:05.696 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:06.128 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:06.169 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:06.169 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:06.697 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:26.110 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:26.639 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:26.702 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:26.702 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:27.110 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:30.533 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:30.891 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:30.960 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:30.960 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:31.534 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:32.331 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:32.507 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:32.554 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:32.554 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:33.332 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.355 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.355 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.980 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.980 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.980 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.980 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:34.980 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.134 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:35.200 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:35.200 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.355 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.356 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.981 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.982 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.982 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.983 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:35.983 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:39.852 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:39.903 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:39.903 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:43.614 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:43.669 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:43.669 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:44.631 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:44.667 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:44.667 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:45.316 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:45.350 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:45.350 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:54.432 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:54.461 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:54.461 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:16:58.037 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:16:58.085 [error] [google.antigravity] provider FAILED
+2026-05-17 06:16:58.085 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:17:43.042 [warning] TextEditor is closed/disposed
+2026-05-17 06:17:46.008 [warning] TextEditor is closed/disposed
+2026-05-17 06:17:47.541 [warning] TextEditor is closed/disposed
+2026-05-17 06:17:51.841 [warning] TextEditor is closed/disposed
+2026-05-17 06:17:54.927 [warning] TextEditor is closed/disposed
+2026-05-17 06:17:59.645 [warning] TextEditor is closed/disposed
+2026-05-17 06:18:01.501 [warning] TextEditor is closed/disposed
+2026-05-17 06:18:56.400 [warning] TextEditor is closed/disposed
+2026-05-17 06:19:00.347 [warning] TextEditor is closed/disposed
+2026-05-17 06:19:06.183 [warning] TextEditor is closed/disposed
+2026-05-17 06:19:15.657 [warning] TextEditor is closed/disposed
+2026-05-17 06:19:25.872 [warning] TextEditor is closed/disposed
+2026-05-17 06:20:21.170 [warning] TextEditor is closed/disposed
+2026-05-17 06:21:49.901 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:49.901 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:50.902 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:50.903 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:50.926 [warning] TextEditor is closed/disposed
+2026-05-17 06:21:51.010 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:21:51.085 [error] [google.antigravity] provider FAILED
+2026-05-17 06:21:51.085 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:21:52.319 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:21:52.367 [error] [google.antigravity] provider FAILED
+2026-05-17 06:21:52.367 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:37.816 [warning] TextEditor is closed/disposed
+2026-05-17 06:22:37.899 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:22:37.940 [error] [google.antigravity] provider FAILED
+2026-05-17 06:22:37.940 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:39.441 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:22:39.496 [error] [google.antigravity] provider FAILED
+2026-05-17 06:22:39.496 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:42.618 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:22:42.638 [error] [google.antigravity] provider FAILED
+2026-05-17 06:22:42.638 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:46.345 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17) antigravity.isFileGitIgnored {"value":"google.antigravity","_lower":"google.antigravity"}
+2026-05-17 06:22:46.368 [error] [google.antigravity] provider FAILED
+2026-05-17 06:22:46.368 [error] Error: Git error
+	at ChildProcess.<anonymous> (/usr/share/antigravity/resources/app/extensions/git/dist/main.js:2:790914)
+	at ChildProcess.emit (node:events:531:35)
+	at ChildProcess.emit (node:domain:489:12)
+	at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+	at Process.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 06:22:53.785 [warning] TextEditor is closed/disposed
+2026-05-17 06:23:09.211 [warning] TextEditor is closed/disposed
+2026-05-17 06:24:12.522 [warning] TextEditor is closed/disposed
+2026-05-17 06:25:10.778 [warning] Illegal argument: TextEditor(vs.editor.ICodeEditor:8,$model412)
+2026-05-17 06:25:39.741 [warning] TextEditor is closed/disposed
+2026-05-17 06:25:43.253 [warning] TextEditor is closed/disposed
+2026-05-17 06:25:58.980 [warning] TextEditor is closed/disposed
+2026-05-17 06:26:01.156 [error] Error: Model is disposed!
+    at VS.lb (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3040:304)
+    at VS.changeDecorations (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3048:3036)
+    at _Il.b (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3263:6653)
+    at _Il.dispose (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2789:1308)
+    at hn (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2789:762)
+    at JFa.clear (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:2789:1569)
+    at D_e.clearEdits (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:3263:13817)
+    at Bvn.$clearInlineEdits (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:5048:42470)
+    at Jos.S (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:8501:39190)
+    at Jos.Q (vscode-file://vscode-app/usr/share/antigravity/resources/app/out/vs/workbench/workbench.desktop.main.js:8501:38968)
+2026-05-17 06:27:46.925 [warning] TextEditor is closed/disposed
+2026-05-17 06:27:53.423 [warning] TextEditor is closed/disposed
+2026-05-17 06:28:15.056 [warning] TextEditor is closed/disposed
+2026-05-17 06:28:22.908 [warning] TextEditor is closed/disposed
+2026-05-17 06:28:33.823 [warning] TextEditor is closed/disposed
+2026-05-17 06:28:54.049 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 06:28:54.108 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 06:28:54.108 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain.emit (node:domain:489:12)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.topLevelDomainCallback (node:domain:161:15)
+	at Object.callbackTrampoline (node:internal/async_hooks:128:24)
+2026-05-17 06:28:54.130 [info] Extension host with pid 215204 exiting with code 0

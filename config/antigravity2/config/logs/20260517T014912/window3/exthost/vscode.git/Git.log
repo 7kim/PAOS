@@ -1,0 +1,95 @@
+2026-05-17 01:49:23.168 [info] [main] Log level: Info
+2026-05-17 01:49:23.168 [info] [main] Validating found git in: "git"
+2026-05-17 01:49:23.168 [info] [main] Using git "2.53.0" from "git"
+2026-05-17 01:49:23.168 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-17 01:49:23.168 [info] [Model][doInitialScan] Initial repository scan completed - repositories (0), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-17 01:50:30.635 [info] [main] Log level: Info
+2026-05-17 01:50:30.635 [info] [main] Validating found git in: "git"
+2026-05-17 01:50:30.635 [info] [main] Using git "2.53.0" from "git"
+2026-05-17 01:50:30.635 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-17 01:50:30.635 [info] > git rev-parse --show-toplevel [285ms]
+2026-05-17 01:50:30.635 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [21ms]
+2026-05-17 01:50:30.635 [info] [Model][openRepository] Opened repository (path): /home/dev
+2026-05-17 01:50:30.635 [info] [Model][openRepository] Opened repository (real path): /home/dev
+2026-05-17 01:50:30.635 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-17 01:50:30.635 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-17 01:50:30.660 [info] > git config --get commit.template [20ms]
+2026-05-17 01:50:30.660 [info] > git fetch [30ms]
+2026-05-17 01:50:30.674 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 01:50:30.675 [info] > git config --get commit.template [8ms]
+2026-05-17 01:50:30.676 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [2ms]
+2026-05-17 01:50:30.690 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 01:50:30.697 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [14ms]
+2026-05-17 01:50:30.946 [info] > git config --get --local branch.feat/h-factor-os.vscode-merge-base [242ms]
+2026-05-17 01:50:30.946 [warning] [Git][config] git config failed: Failed to execute git
+2026-05-17 01:50:30.953 [info] > git config --get commit.template [256ms]
+2026-05-17 01:50:30.953 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [263ms]
+2026-05-17 01:50:30.976 [info] > git reflog feat/h-factor-os --grep-reflog=branch: Created from *. [24ms]
+2026-05-17 01:50:30.998 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 01:50:30.998 [info] > git reflog HEAD --grep-reflog=checkout: moving from .* to feat/h-factor-os [15ms]
+2026-05-17 01:50:31.152 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [149ms]
+2026-05-17 01:50:31.153 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [155ms]
+2026-05-17 01:50:31.249 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [83ms]
+2026-05-17 01:50:31.915 [info] > git status -z -uall [755ms] (cancelled)
+2026-05-17 01:50:31.926 [info] > git check-ignore -v -z --stdin [15ms]
+2026-05-17 01:50:45.750 [info] > git check-ignore -v -z --stdin [15ms]
+2026-05-17 01:50:45.879 [info] > git show --textconv :Documents/Dev/project-gpt/ss.txt [10ms]
+2026-05-17 01:50:45.888 [info] > git ls-files --stage -- Documents/Dev/project-gpt/ss.txt [12ms]
+2026-05-17 01:50:45.896 [info] > git hash-object -t tree /dev/null [8ms]
+2026-05-17 01:50:45.896 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gpt/ss.txt.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gpt%2Fss.txt%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 01:50:45.897 [info] > git hash-object -t tree /dev/null [1ms]
+2026-05-17 01:50:45.897 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gpt/ss.txt.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gpt%2Fss.txt%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 01:50:46.146 [info] > git check-ignore -v -z --stdin [10ms]
+2026-05-17 01:50:46.860 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-17 01:53:30.979 [info] > git fetch [14ms]
+2026-05-17 01:53:30.994 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 01:53:30.995 [info] > git config --get commit.template [8ms]
+2026-05-17 01:53:30.995 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [1ms]
+2026-05-17 01:53:31.012 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-17 01:53:31.682 [info] > git status -z -uall [679ms] (cancelled)
+2026-05-17 01:53:31.692 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-17 01:53:37.432 [info] > git check-ignore -v -z --stdin [11ms]
+2026-05-17 01:56:31.945 [info] > git fetch [13ms]
+2026-05-17 01:56:31.953 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 01:56:31.962 [info] > git config --get commit.template [8ms]
+2026-05-17 01:56:31.963 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [2ms]
+2026-05-17 01:56:31.980 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-17 01:56:33.604 [info] > git status -z -uall [1635ms] (cancelled)
+2026-05-17 01:56:38.904 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-17 01:56:40.010 [info] > git check-ignore -v -z --stdin [13ms]
+2026-05-17 01:56:40.179 [info] > git show --textconv :Documents/Dev/project-gpt/.vscode/settings.json [10ms]
+2026-05-17 01:56:40.180 [warning] [GitFileSystemProvider][readFile] File not found - git:/home/dev/Documents/Dev/project-gpt/.vscode/settings.json.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gpt%2F.vscode%2Fsettings.json%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 01:56:40.191 [info] > git ls-files --stage -- Documents/Dev/project-gpt/.vscode/settings.json [13ms]
+2026-05-17 01:56:40.191 [warning] [GitFileSystemProvider][stat] File not found - git:/home/dev/Documents/Dev/project-gpt/.vscode/settings.json.git?%7B%22path%22%3A%22%2Fhome%2Fdev%2FDocuments%2FDev%2Fproject-gpt%2F.vscode%2Fsettings.json%22%2C%22ref%22%3A%22%22%7D
+2026-05-17 01:56:41.124 [info] > git check-ignore -v -z --stdin [12ms]
+2026-05-17 01:59:32.869 [info] > git fetch [14ms]
+2026-05-17 01:59:32.886 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 01:59:32.887 [info] > git config --get commit.template [9ms]
+2026-05-17 01:59:32.887 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [1ms]
+2026-05-17 01:59:32.905 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-17 01:59:34.497 [info] > git status -z -uall [1602ms] (cancelled)
+2026-05-17 02:02:33.768 [info] > git fetch [16ms]
+2026-05-17 02:02:33.777 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 02:02:33.785 [info] > git config --get commit.template [9ms]
+2026-05-17 02:02:33.786 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [1ms]
+2026-05-17 02:02:33.804 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-17 02:02:35.326 [info] > git status -z -uall [1532ms] (cancelled)
+2026-05-17 02:05:34.683 [info] > git fetch [14ms]
+2026-05-17 02:05:34.705 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 02:05:34.705 [info] > git config --get commit.template [11ms]
+2026-05-17 02:05:34.706 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [2ms]
+2026-05-17 02:05:34.731 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-17 02:05:36.329 [info] > git status -z -uall [1613ms] (cancelled)
+2026-05-17 02:08:35.603 [info] > git fetch [14ms]
+2026-05-17 02:08:35.619 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 02:08:35.620 [info] > git config --get commit.template [9ms]
+2026-05-17 02:08:35.620 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [1ms]
+2026-05-17 02:08:35.639 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [3ms]
+2026-05-17 02:08:37.247 [info] > git status -z -uall [1619ms] (cancelled)
+2026-05-17 02:11:36.506 [info] > git fetch [14ms]
+2026-05-17 02:11:36.522 [info] [Git][getRemotes] No remotes found in the git config file
+2026-05-17 02:11:36.523 [info] > git config --get commit.template [7ms]
+2026-05-17 02:11:36.523 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/feat/h-factor-os refs/remotes/feat/h-factor-os [1ms]
+2026-05-17 02:11:36.540 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [2ms]
+2026-05-17 02:11:38.049 [info] > git status -z -uall [1518ms] (cancelled)
+2026-05-17 02:12:44.027 [info] > git check-ignore -v -z --stdin [11ms]

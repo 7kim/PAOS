@@ -1,0 +1,141 @@
+2026-05-17 17:20:38.622 [info] Extension host with pid 39730 started
+2026-05-17 17:20:38.670 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 17:20:38.675 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 17:20:38.680 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 17:20:38.688 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 17:20:38.753 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: google.antigravity
+2026-05-17 17:20:38.796 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 17:20:38.896 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 17:20:39.553 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 17:20:39.669 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 17:20:39.889 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 17:20:40.854 [info] Eager extensions activated
+2026-05-17 17:20:40.855 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:40.862 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:40.864 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:40.881 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:40.892 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:41.043 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:41.045 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:41.061 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:41.161 [info] ExtensionService#_doActivateExtension openai.chatgpt, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:41.297 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:43.953 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 17:20:43.983 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 17:20:43.987 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 17:20:43.997 [error] ProxyResolver#resolveProxy DIRECT Canceled: Canceled
+	at new mne (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:122279)
+	at D9.U (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:126901)
+	at s.<computed>.r.charCodeAt.s.<computed> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:30:124393)
+	at LS.resolveProxy (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:114:77316)
+	at Object.resolveProxy (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:217:23838)
+	at useProxySettings (/usr/share/antigravity/resources/app/node_modules/@vscode/proxy-agent/out/index.js:208:16)
+	at /usr/share/antigravity/resources/app/node_modules/@vscode/proxy-agent/out/index.js:231:13
+	at new Promise (<anonymous>)
+	at resolveProxyURL (/usr/share/antigravity/resources/app/node_modules/@vscode/proxy-agent/out/index.js:230:35)
+	at /usr/share/antigravity/resources/app/node_modules/@vscode/proxy-agent/out/index.js:550:53
+	at Generator.next (<anonymous>)
+	at /usr/share/antigravity/resources/app/node_modules/@vscode/proxy-agent/out/index.js:35:71
+	at new Promise (<anonymous>)
+	at __awaiter (/usr/share/antigravity/resources/app/node_modules/@vscode/proxy-agent/out/index.js:31:12)
+	at patchedFetch (/usr/share/antigravity/resources/app/node_modules/@vscode/proxy-agent/out/index.js:535:16)
+	at ANe.globalThis.fetch [as fetchImpl] (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:217:22679)
+	at nS.send (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:105:714)
+	at /home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:105:48
+	at nS.drainQueue (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:105:231)
+	at nS.enqueueBatch (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:104:11355)
+	at rS.onFlush (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:104:10922)
+	at rS.flush (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:104:10112)
+	at rS.flushNow (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:104:9828)
+	at nS.flushNow (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:104:11217)
+	at t.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/openai.chatgpt-26.513.21555-linux-x64/out/extension.js:490:2934)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17) 
+2026-05-17 17:20:44.017 [info] Extension host with pid 39730 exiting with code 0
+2026-05-17 17:20:45.546 [info] Extension host with pid 40037 started
+2026-05-17 17:20:45.546 [info] Skipping acquiring lock for /home/dev/.config/Antigravity/User/workspaceStorage/7a90480ef3c0717c7d948d26b5476169.
+2026-05-17 17:20:45.564 [info] ExtensionService#_doActivateExtension eamodio.gitlens, startup: false, activationEvent: 'onTerminalShellIntegration:bash'
+2026-05-17 17:20:45.663 [info] ExtensionService#_doActivateExtension vscode.terminal-suggest, startup: false, activationEvent: 'onTerminalShellIntegration:*'
+2026-05-17 17:20:45.841 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: false, activationEvent: 'api', root cause: eamodio.gitlens
+2026-05-17 17:20:45.882 [info] ExtensionService#_doActivateExtension johnpapa.vscode-peacock, startup: true, activationEvent: '*'
+2026-05-17 17:20:45.887 [info] ExtensionService#_doActivateExtension mhutchie.git-graph, startup: true, activationEvent: '*'
+2026-05-17 17:20:45.895 [info] ExtensionService#_doActivateExtension Tailscale.vscode-tailscale, startup: true, activationEvent: '*'
+2026-05-17 17:20:45.926 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: eamodio.gitlens
+2026-05-17 17:20:45.973 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2026-05-17 17:20:46.071 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2026-05-17 17:20:46.166 [info] ExtensionService#_doActivateExtension google.antigravity, startup: true, activationEvent: '*'
+2026-05-17 17:20:46.548 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2026-05-17 17:20:46.577 [info] ExtensionService#_doActivateExtension MermaidChart.vscode-mermaid-chart, startup: false, activationEvent: 'onLanguage'
+2026-05-17 17:20:48.337 [warning] [Decorations] CAPPING events from decorations provider vscode.git 20000
+2026-05-17 17:20:49.282 [info] Eager extensions activated
+2026-05-17 17:20:49.283 [info] ExtensionService#_doActivateExtension google.antigravity-dev-containers, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.287 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.288 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.302 [info] ExtensionService#_doActivateExtension alefragnani.project-manager, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.313 [info] ExtensionService#_doActivateExtension Anthropic.claude-code, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.461 [info] ExtensionService#_doActivateExtension ArthurLobo.easy-codesnap, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.462 [info] ExtensionService#_doActivateExtension ducphamngoc.codevisualizer, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.474 [info] ExtensionService#_doActivateExtension ms-edgedevtools.vscode-edge-devtools, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.579 [info] ExtensionService#_doActivateExtension openai.chatgpt, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:49.715 [info] ExtensionService#_doActivateExtension PKief.material-icon-theme, startup: false, activationEvent: 'onStartupFinished'
+2026-05-17 17:20:53.457 [info] ExtensionService#_doActivateExtension ms-python.python, startup: false, activationEvent: 'api', root cause: Anthropic.claude-code
+2026-05-17 17:20:56.439 [info] Extension host terminating: renderer closed the MessagePort
+2026-05-17 17:20:56.477 [error] An error occurred when disposing the subscriptions for extension 'eamodio.gitlens':
+2026-05-17 17:20:56.482 [error] Error: Channel has been closed
+	at r (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:2822)
+	at Object.info (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:125:3167)
+	at Logger.info (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:1567:71824)
+	at GkCliIntegrationProvider.stop (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:44628)
+	at GkCliIntegrationProvider.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2534:42544)
+	at /home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60456
+	at Array.forEach (<anonymous>)
+	at Object.dispose (/home/dev/AI_Workflow/config/antigravity/extensions/eamodio.gitlens-17.12.2-universal/dist/gitlens.js:2449:60437)
+	at bn (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:748)
+	at b7.b (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:16517)
+	at b7.dispose (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:25:1229)
+	at lIe.eb (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:13291)
+	at file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11244
+	at Array.map (<anonymous>)
+	at lIe.$ (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11232)
+	at lIe.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:122:11475)
+	at A6.terminate (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:124:921)
+	at mr (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:11402)
+	at MessagePortMain.<anonymous> (file:///usr/share/antigravity/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:407:7613)
+	at MessagePortMain.emit (node:events:519:28)
+	at MessagePortMain._internalPort.emit (node:electron/js2c/utility_init:2:2949)
+	at Object.callbackTrampoline (node:internal/async_hooks:130:17)
+2026-05-17 17:20:56.590 [info] Extension host with pid 40037 exiting with code 0

@@ -6,26 +6,26 @@
 ---
 
 ## Last Agent
-- **Agent**: opencode-developer
-- **Tool**: OpenCode Developer
-- **Timestamp**: 2026-05-20T23:34:00Z
+- **Agent**: antigravity
+- **Tool**: Antigravity (VS Code extension)
+- **Timestamp**: 2026-05-21T03:19:00Z
 
 ## Active Task
-ANTIGRAVITY-2.0 — Google Antigravity 2.0 installation complete
+ANTIGRAVITY-2.0 — IDE recovery complete after Antigravity 2.0 upgrade
 
 ## What Was Just Done
-- Removed legacy APT antigravity v1.23.2 (purged package + sources)
-- Installed Antigravity 2.0.1 Desktop App at /opt/antigravity/Antigravity-x64/
-- Created /usr/local/bin/update-antigravity helper for future updates
-- Installed agy CLI v1.0.0 at ~/.local/bin/agy
-- Created AI_Workflow/config/antigravity2/ with config/, cache/, local-share/ subdirs
-- Symlinked: ~/.config/Antigravity, ~/.cache/antigravity, ~/.local/share/antigravity-ide → AI_Workflow
-- Stored sudo password in config/secrets/.env as SUDO_PASSWORD
-- Updated .env.template with SUDO_PASSWORD placeholder
-- All 4 ledger entries + developer events log updated
+- Diagnosed: Antigravity 2.0 ships the IDE as `antigravity-ide` (v1.107.0) inside `local-share/`
+- Migrated all 40 extensions from `~/.antigravity/extensions/` → `~/.antigravity-ide/extensions/`
+- Copied settings.json, keybindings.json, argv.json, extensions.json to `~/.antigravity-ide/`
+- Created `~/.local/bin/antigravity-ide` symlink → `AI_Workflow/config/antigravity2/local-share/antigravity-ide`
+- Created `~/.local/bin/agy-ide` launcher script
+- Created `~/.local/share/applications/antigravity-ide.desktop` (app menu entry)
+- Copied IDE icon to `~/.local/share/icons/hicolor/512x512/apps/antigravity-ide.png`
+- Updated desktop DB: `update-desktop-database ~/.local/share/applications/`
 
 ## What Is NOT Done Yet
-- ~/.antigravity (legacy VS Code extensions from v1) still points to AI_Workflow/config/antigravity/ — may need migration if Antigravity 2.0 IDE doesn't pick them up
+- Verify IDE launches successfully (user should run: `antigravity-ide` or open from app menu)
+- Some extensions (Claude Code, ChatGPT) may need re-authentication after migration
 - No active PAOS tasks in pipeline — HANDOFF is clean
 
 ## Active Projects
@@ -40,6 +40,7 @@ ANTIGRAVITY-2.0 — Google Antigravity 2.0 installation complete
 - OpenCode MCP format: `"command": [array]`, `"environment": {}` (not `env`/`args`) — confirmed from live schema
 - Every agent reads HANDOFF.md as Step 0 — universal cold-start (all agents configured)
 - HANDOFF.md is rewritten (not appended) — always current, max 60 lines
+- Antigravity IDE binary: `~/.local/bin/antigravity-ide` → uses `~/.antigravity-ide/` as data folder
 
 ## How to Pick Up
 1. Read this file (done)

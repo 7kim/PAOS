@@ -1,0 +1,34 @@
+2026-05-17 02:13:06.895 [info] [main] Log level: Info
+2026-05-17 02:13:06.895 [info] [main] Validating found git in: "git"
+2026-05-17 02:13:06.895 [info] [main] Using git "2.53.0" from "git"
+2026-05-17 02:13:06.895 [info] [Model][doInitialScan] Initial repository scan started
+2026-05-17 02:13:06.895 [info] > git rev-parse --show-toplevel [14ms]
+2026-05-17 02:13:06.895 [info] > git rev-parse --git-dir --git-common-dir --show-superproject-working-tree [24ms]
+2026-05-17 02:13:06.895 [info] [Model][openRepository] Opened repository (path): /home/dev/Documents/Dev/Tradingview
+2026-05-17 02:13:06.895 [info] [Model][openRepository] Opened repository (real path): /home/dev/Documents/Dev/Tradingview
+2026-05-17 02:13:06.895 [info] [Model][openRepository] Opened repository (kind): repository
+2026-05-17 02:13:06.922 [info] > git config --get commit.template [20ms]
+2026-05-17 02:13:06.925 [info] > git rev-parse --show-toplevel [8ms]
+2026-05-17 02:13:06.950 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/lightweight-charts refs/remotes/lightweight-charts [13ms]
+2026-05-17 02:13:06.951 [info] > git rev-parse --show-toplevel [6ms]
+2026-05-17 02:13:06.974 [info] > git status -z -uall [9ms]
+2026-05-17 02:13:06.974 [info] > git rev-parse --show-toplevel [16ms]
+2026-05-17 02:13:06.981 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [9ms]
+2026-05-17 02:13:07.017 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/lightweight-charts refs/remotes/lightweight-charts [11ms]
+2026-05-17 02:13:07.024 [info] > git rev-parse --show-toplevel [43ms]
+2026-05-17 02:13:07.348 [info] > git config --get --local branch.lightweight-charts.vscode-merge-base [324ms]
+2026-05-17 02:13:07.355 [info] > git config --get commit.template [339ms]
+2026-05-17 02:13:07.387 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/origin/main refs/remotes/origin/main [32ms]
+2026-05-17 02:13:07.396 [info] > git rev-parse --show-toplevel [56ms]
+2026-05-17 02:13:07.398 [info] [Model][doInitialScan] Initial repository scan completed - repositories (1), closed repositories (0), parent repositories (0), unsafe repositories (0)
+2026-05-17 02:13:07.446 [info] > git merge-base refs/heads/lightweight-charts refs/remotes/origin/lightweight-charts [50ms]
+2026-05-17 02:13:07.646 [info] > git check-ignore -v -z --stdin [183ms]
+2026-05-17 02:13:07.647 [info] > git diff --name-status -z --diff-filter=ADMR --find-renames=50% 7fa9b5e2bc81860681d1228680aaf777458b348b...refs/remotes/origin/lightweight-charts -- [193ms]
+2026-05-17 02:13:07.647 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/lightweight-charts refs/remotes/lightweight-charts [213ms]
+2026-05-17 02:13:07.797 [info] > git status -z -uall [12ms]
+2026-05-17 02:13:07.801 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [7ms]
+2026-05-17 02:13:09.224 [info] > git fetch [2331ms]
+2026-05-17 02:13:09.341 [info] > git config --get commit.template [61ms]
+2026-05-17 02:13:09.378 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/lightweight-charts refs/remotes/lightweight-charts [17ms]
+2026-05-17 02:13:09.445 [info] > git status -z -uall [23ms]
+2026-05-17 02:13:09.446 [info] > git for-each-ref --sort -committerdate --format %(refname)%00%(objectname)%00%(*objectname) [16ms]

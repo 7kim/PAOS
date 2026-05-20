@@ -1,0 +1,18 @@
+2026-05-17 17:16:37.739 [info] [tsrelay] url: http://127.0.0.1:33089
+2026-05-17 17:16:37.739 [info] websocket is open
+2026-05-17 17:16:37.739 [info] [serve-status] Funnel is off
+2026-05-17 17:16:37.739 [info] [serve-status] HTTPS is off
+2026-05-17 17:16:37.739 [info] [tsrelay] initial ports are set
+2026-05-17 17:16:37.747 [info] terminal opened
+2026-05-17 17:16:38.132 [info] pid is 38231
+2026-05-17 17:16:38.132 [info] pid sent
+2026-05-17 17:16:47.802 [info] terminal opened
+2026-05-17 17:16:48.799 [info] pid is 38712
+2026-05-17 17:16:48.799 [info] pid sent
+2026-05-17 17:16:52.139 [info] got message
+2026-05-17 17:16:52.139 [info] msg is newPort
+2026-05-17 17:20:00.988 [info] terminal opened
+2026-05-17 17:20:01.087 [info] pid is 39442
+2026-05-17 17:20:01.087 [info] pid sent
+2026-05-17 17:22:18.239 [info] shutting down tsrelay
+2026-05-17 17:22:18.242 [warning] [tsrelay] child process exited with code null

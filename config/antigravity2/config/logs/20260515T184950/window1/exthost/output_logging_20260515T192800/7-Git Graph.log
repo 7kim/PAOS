@@ -1,0 +1,7 @@
+[2026-05-15 19:28:02.122] Starting Git Graph ...
+[2026-05-15 19:28:02.280] Using git (version: 2.53.0)
+[2026-05-15 19:28:02.282] Removed repo: /home/dev/Documents/Dev/Tradingview
+[2026-05-15 19:28:02.283] Started Git Graph - Ready to use!
+[2026-05-15 19:28:02.283] Searching workspace for new repos ...
+[2026-05-15 19:28:02.283] Completed searching workspace for new repos
+[2026-05-15 19:28:02.345] Successfully set Visual Studio Code Context "git-graph:codiconsSupported" to "true"

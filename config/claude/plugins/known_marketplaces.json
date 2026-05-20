@@ -5,6 +5,14 @@
       "repo": "anthropics/claude-plugins-official"
     },
     "installLocation": "/home/dev/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-05-17T13:36:39.687Z"
+    "lastUpdated": "2026-05-20T19:15:38.610Z"
+  },
+  "gitkraken": {
+    "source": {
+      "source": "directory",
+      "path": "/home/dev/.claude/plugins/marketplaces/gitkraken"
+    },
+    "installLocation": "/home/dev/.claude/plugins/marketplaces/gitkraken",
+    "lastUpdated": "2026-05-19T22:38:58Z"
   }
 }

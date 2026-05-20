@@ -1,25 +1,36 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(git commit -m ':*)",
-      "Bash(git rm:*)",
-      "Bash(npm install:*)",
-      "Bash(openclaw --version)",
-      "Bash(/home/dev/.local/bin/openclaw --version)",
-      "Bash(node openclaw.mjs --version)",
-      "Bash(gh --version)",
-      "Bash(gh auth:*)",
-      "Bash(npm config:*)",
-      "Bash(gh repo:*)",
-      "Bash(git push:*)",
-      "Bash(git remote:*)",
-      "Bash(git branch:*)"
-    ],
-    "deny": [],
-    "additionalDirectories": [
-      "/home/dev/AI_Workflow"
-    ]
-  },
-  "autoUpdaterStatus": "enabled",
-  "effortLevel": "medium"
+	"permissions": {
+		"allow": [
+			"Bash(git commit -m ':*)",
+			"Bash(git rm:*)",
+			"Bash(npm install:*)",
+			"Bash(openclaw --version)",
+			"Bash(/home/dev/.local/bin/openclaw --version)",
+			"Bash(node openclaw.mjs --version)",
+			"Bash(gh --version)",
+			"Bash(gh auth:*)",
+			"Bash(npm config:*)",
+			"Bash(gh repo:*)",
+			"Bash(git push:*)",
+			"Bash(git remote:*)",
+			"Bash(git branch:*)"
+		],
+		"deny": [],
+		"additionalDirectories": [
+			"/home/dev/AI_Workflow"
+		]
+	},
+	"autoUpdaterStatus": "enabled",
+	"effortLevel":       "medium",
+	"enabledPlugins": {
+		"gitkraken-hooks@gitkraken": true
+	},
+	"extraKnownMarketplaces": {
+		"gitkraken": {
+			"source": {
+				"path":   "/home/dev/.claude/plugins/marketplaces/gitkraken",
+				"source": "directory"
+			}
+		}
+	}
 }

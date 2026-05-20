@@ -1,0 +1,106 @@
+2026-05-17 01:49:12.951 [info] [LS Main] Starting language server from: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-17 01:49:13.370 [info] [LS Main] Args: --csrf_token a634d913-e4e0-43ad-811d-da86d93b2230 --extension_server_port 43687 --extension_server_csrf_token 9999549e-6081-4e67-bb67-aec465d218f9 --app_data_dir antigravity --cloud_code_endpoint https://cloudcode-pa.googleapis.com
+2026-05-17 01:49:13.539 [info] [LS Main] Process spawned with PID: 105665
+2026-05-17 01:49:14.686 [error] [LS Main stderr] I0517 01:49:14.686444 105665 server.go:1236] Starting language server process with pid 105665
+
+2026-05-17 01:49:14.687 [error] [LS Main stderr] I0517 01:49:14.687519 105665 server.go:301] Setting GOMAXPROCS to 4
+
+2026-05-17 01:49:14.692 [error] [LS Main stderr] I0517 01:49:14.692111 105665 server.go:440] Language server will attempt to listen on host 127.0.0.1
+
+2026-05-17 01:49:14.693 [error] [LS Main stderr] I0517 01:49:14.693421 105665 server.go:454] Language server listening on random port at 40567 for HTTPS (gRPC)
+I0517 01:49:14.693466 105665 server.go:461] Language server listening on random port at 33867 for HTTP
+
+2026-05-17 01:49:15.032 [error] No LS client info found for local authority
+2026-05-17 01:49:15.302 [error] [LS Main stderr] I0517 01:49:15.302277 105665 server.go:433] Created extension server client at port 43687
+
+2026-05-17 01:49:15.337 [error] [LS Main stderr] I0517 01:49:15.337360 105665 cascade_manager.go:773] Reactive state is disabled
+
+2026-05-17 01:49:15.770 [info] [LS Main] LS started on port 40567
+2026-05-17 01:49:15.781 [error] [LS Main stderr] I0517 01:49:15.779811 105665 server.go:1693] initialized server successfully in 1.092953913s
+
+2026-05-17 01:49:15.794 [error] [LS Main stderr] 2026/05/17 01:49:15 http: TLS handshake error from 127.0.0.1:42188: remote error: tls: unknown certificate
+
+2026-05-17 01:49:16.512 [error] [LS Main stderr] I0517 01:49:16.511936 105665 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe64db0f01baa16ac
+
+2026-05-17 01:49:17.292 [error] [LS Main stderr] I0517 01:49:17.292611 105665 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xb3b4db9e83994ef
+
+2026-05-17 01:49:17.598 [error] [LS Main stderr] I0517 01:49:17.598047 105665 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xdecc364d9a10cb61
+
+2026-05-17 01:49:18.914 [error] [LS Main stderr] I0517 01:49:18.914041 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x40b3abc7303b84c0
+
+2026-05-17 01:49:20.097 [error] [LS Main stderr] I0517 01:49:20.097260 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x253b600f960f431d
+
+2026-05-17 01:49:20.417 [error] [LS Main stderr] I0517 01:49:20.417654 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x20c64f8922b6fd94
+
+2026-05-17 01:50:46.898 [error] [LS Main stderr] I0517 01:50:46.898748 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x9099effd2377ec3f
+
+2026-05-17 01:50:57.794 [error] [LS Main stderr] I0517 01:50:57.794658 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x976151decd48307a
+
+2026-05-17 01:50:58.082 [error] [LS Main stderr] I0517 01:50:58.082621 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xf4596af00500f005
+
+2026-05-17 01:51:14.471 [error] [LS Main stderr] I0517 01:51:14.471549 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x4404919c44fb2fc5
+
+2026-05-17 01:51:15.042 [error] [LS Main stderr] I0517 01:51:15.042705 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x94691a54a0254cf1
+
+2026-05-17 01:51:15.501 [error] [LS Main stderr] I0517 01:51:15.501362 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xba3a245c079ec9ea
+
+2026-05-17 01:51:29.212 [error] [LS Main stderr] I0517 01:51:29.212242 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x6af792b63dcd2380
+
+2026-05-17 01:51:29.605 [error] [LS Main stderr] I0517 01:51:29.605274 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x996da4e9760d4351
+
+2026-05-17 01:51:30.791 [error] [LS Main stderr] I0517 01:51:30.791022 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x4d26a9ce7c4de01e
+
+2026-05-17 01:54:14.847 [error] [LS Main stderr] I0517 01:54:14.847287 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x31a2c1a81527ec51
+
+2026-05-17 01:54:15.364 [error] [LS Main stderr] I0517 01:54:15.363959 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xfbf1d8115ff3e0f4
+
+2026-05-17 01:54:15.820 [error] [LS Main stderr] I0517 01:54:15.820541 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x31eac7b88b26ff67
+
+2026-05-17 01:56:40.777 [error] [LS Main stderr] I0517 01:56:40.776811 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x65f58bc85ed96208
+
+2026-05-17 01:56:40.783 [error] [LS Main stderr] I0517 01:56:40.783483 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xf0666b6938c158d4
+
+2026-05-17 01:56:42.135 [error] [LS Main stderr] I0517 01:56:42.134970 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x1605588c1eff07bf
+
+2026-05-17 01:56:48.513 [error] [LS Main stderr] I0517 01:56:48.512930 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x873620f598b1824
+
+2026-05-17 01:56:48.795 [error] [LS Main stderr] I0517 01:56:48.795519 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xbb4755f01f8336da
+
+2026-05-17 01:56:49.639 [error] [LS Main stderr] I0517 01:56:49.639123 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x95f18f0e180a1002
+
+2026-05-17 01:57:53.361 [error] [LS Main stderr] I0517 01:57:53.361060 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xe6c8c84416d096d2
+I0517 01:57:53.361060 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x4d207b1901915d7f
+
+2026-05-17 01:57:54.262 [error] [LS Main stderr] I0517 01:57:54.262257 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xdbc617e08ebf768f
+
+2026-05-17 01:58:12.633 [error] [LS Main stderr] I0517 01:58:12.633306 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x10efa6e2f24946c8
+
+2026-05-17 01:58:12.973 [error] [LS Main stderr] I0517 01:58:12.973584 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x5a78ac1d9e359d58
+
+2026-05-17 01:58:16.597 [error] [LS Main stderr] I0517 01:58:16.597504 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xeead8e7517f38bf9
+I0517 01:58:16.597505 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x3c4c6b97701d6d97
+
+2026-05-17 01:59:10.015 [error] [LS Main stderr] I0517 01:59:10.015699 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xb0ec01832df8a19e
+
+2026-05-17 01:59:10.074 [error] [LS Main stderr] I0517 01:59:10.074750 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xf46de1864eea1fb9
+
+2026-05-17 01:59:14.657 [error] [LS Main stderr] I0517 01:59:14.656695 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x5896e3c95e9f7593
+
+2026-05-17 01:59:15.093 [error] [LS Main stderr] I0517 01:59:15.093466 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x970030ac56010d47
+
+2026-05-17 01:59:19.036 [error] [LS Main stderr] I0517 01:59:19.036366 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x8923cfab8140d3e3
+
+2026-05-17 01:59:19.093 [error] [LS Main stderr] I0517 01:59:19.093140 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x23ff7305c640e924
+
+2026-05-17 02:01:09.128 [error] [LS Main stderr] I0517 02:01:09.128757 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x28699775e5d0c70e
+
+2026-05-17 02:01:09.354 [error] [LS Main stderr] I0517 02:01:09.353895 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x83b7418fa992c732
+
+2026-05-17 02:04:14.515 [error] [LS Main stderr] I0517 02:04:14.515821 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xfeeaab3e6375cbff
+
+2026-05-17 02:04:14.814 [error] [LS Main stderr] I0517 02:04:14.814687 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xfbd9c76a836049a1
+
+2026-05-17 02:09:14.919 [error] [LS Main stderr] I0517 02:09:14.919388 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9b2618ed7e7d52e
+
+2026-05-17 02:09:15.402 [error] [LS Main stderr] I0517 02:09:15.402682 105665 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5e0119a215fc18dc
+

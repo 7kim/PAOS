@@ -1,0 +1,18 @@
+2026-05-17 17:20:39.806 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 17:20:39.806 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|f20c32e9-9cf2-410f-8039-c714982ddf631779024037533)
+2026-05-17 17:20:39.806 [info]    [            1] GitLens v17.12.2 activated [55ms]
+2026-05-17 17:20:39.806 [info]    [IPC          ] Server started on http://127.0.0.1:45071
+2026-05-17 17:20:45.991 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 17:20:45.991 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|a7512244-ba56-4d98-ac46-c21f7162b7ce1779024044623)
+2026-05-17 17:20:45.991 [info]    [            1] GitLens v17.12.2 activated [82ms]
+2026-05-17 17:20:45.991 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [43ms]
+2026-05-17 17:20:45.991 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) searching (depth=1)...
+2026-05-17 17:20:45.991 [info]    [GIT      27ms] [/home/dev/Documents/Dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [27ms]
+2026-05-17 17:20:46.037 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) found root repository in '/home/dev'
+2026-05-17 17:20:46.464 [info]    [IPC          ] Server started on http://127.0.0.1:38261
+2026-05-17 17:20:46.507 [info]    [GIT      50ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [50ms]
+2026-05-17 17:20:46.880 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev) found repository in '/home/dev/Documents/Dev/Tradingview'
+2026-05-17 17:20:47.004 [info]    [GIT      21ms] [/home/dev] git remote -v [21ms]
+2026-05-17 17:20:47.038 [info]    [GIT      18ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote [18ms]
+2026-05-17 17:20:47.068 [info]    [GIT      29ms] [/home/dev/Documents/Dev/Tradingview] git remote -v [29ms]
+2026-05-17 17:20:47.089 [info]    [GIT      18ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote [18ms]

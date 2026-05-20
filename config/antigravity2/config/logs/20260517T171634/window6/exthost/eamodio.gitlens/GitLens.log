@@ -1,0 +1,11 @@
+2026-05-17 17:21:19.334 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 17:21:19.334 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|0240192c-6e81-41f4-ace7-7666b1096e6f1779024076416)
+2026-05-17 17:21:19.334 [info]    [            1] GitLens v17.12.2 activated [88ms]
+2026-05-17 17:21:19.334 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [73ms]
+2026-05-17 17:21:19.334 [info]    [   6e →    94] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/Tradingview) searching (depth=1)...
+2026-05-17 17:21:19.334 [info]    [GIT      28ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [28ms]
+2026-05-17 17:21:19.334 [info]    [   6e →    94] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/Tradingview) found root repository in '/home/dev/Documents/Dev/Tradingview'
+2026-05-17 17:21:19.340 [info]    [IPC          ] Server started on http://127.0.0.1:43637
+2026-05-17 17:21:19.383 [info]    [GIT      34ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [34ms]
+2026-05-17 17:21:19.384 [info]    [GIT      15ms] [/home/dev/Documents/Dev/Tradingview] git remote -v [15ms]
+2026-05-17 17:21:19.393 [info]    [GIT       8ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote [8ms]

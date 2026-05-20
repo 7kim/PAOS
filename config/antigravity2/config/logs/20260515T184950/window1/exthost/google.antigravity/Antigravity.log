@@ -1,0 +1,176 @@
+2026-05-15 18:49:54.350 [info] I0515 18:49:54.350552 31166 server.go:1236] Starting language server process with pid 31166
+2026-05-15 18:49:54.350 [info] I0515 18:49:54.350611 31166 server.go:301] Setting GOMAXPROCS to 4
+2026-05-15 18:49:54.351 [info] I0515 18:49:54.351502 31166 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-15 18:49:54.351 [info] I0515 18:49:54.351728 31166 server.go:454] Language server listening on random port at 38149 for HTTPS (gRPC)
+2026-05-15 18:49:54.351 [info] I0515 18:49:54.351768 31166 server.go:461] Language server listening on random port at 33863 for HTTP
+2026-05-15 18:49:54.778 [info] I0515 18:49:54.778409 31166 server.go:433] Created extension server client at port 46755
+2026-05-15 18:49:54.800 [info] I0515 18:49:54.800428 31166 cascade_manager.go:773] Reactive state is disabled
+2026-05-15 18:49:54.818 [info] (Antigravity) 2026-05-15 18:49:54.817 [INFO]: Language server started
+2026-05-15 18:49:54.846 [info] I0515 18:49:54.834331 31166 server.go:1693] initialized server successfully in 483.67244ms
+2026-05-15 18:49:55.326 [info] (Antigravity) 2026-05-15 18:49:55.326 [INFO]: LS lspClient started successfully
+2026-05-15 18:49:56.023 [info] I0515 18:49:56.022748 31166 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x67b9cff3c32e8861
+2026-05-15 18:49:56.871 [info] I0515 18:49:56.871568 31166 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7a93c73fa2339d7d
+2026-05-15 18:49:57.517 [info] I0515 18:49:57.517233 31166 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6b5d4b9986cd553e
+2026-05-15 18:50:09.874 [info] I0515 18:50:09.177567 31474 server.go:1236] Starting language server process with pid 31474
+2026-05-15 18:50:09.874 [info] I0515 18:50:09.177630 31474 server.go:301] Setting GOMAXPROCS to 4
+2026-05-15 18:50:09.874 [info] I0515 18:50:09.178567 31474 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-15 18:50:09.874 [info] I0515 18:50:09.178741 31474 server.go:454] Language server listening on random port at 43001 for HTTPS (gRPC)
+2026-05-15 18:50:09.874 [info] I0515 18:50:09.178764 31474 server.go:461] Language server listening on random port at 45495 for HTTP
+2026-05-15 18:50:09.874 [info] I0515 18:50:09.618563 31474 server.go:433] Created extension server client at port 39861
+2026-05-15 18:50:10.852 [info] I0515 18:50:10.831943 31474 cascade_manager.go:773] Reactive state is disabled
+2026-05-15 18:50:10.858 [info] (Antigravity) 2026-05-15 18:50:10.857 [INFO]: Language server started
+2026-05-15 18:50:10.873 [info] I0515 18:50:10.867724 31474 server.go:1693] initialized server successfully in 1.690071576s
+2026-05-15 18:50:11.176 [info] E0515 18:50:10.896651 31474 log.go:398] failed to get git info for workspace /home/dev/Documents/Dev/Tradingview: reference not found: reference not found
+2026-05-15 18:50:11.182 [info] (Antigravity) 2026-05-15 18:50:11.182 [INFO]: LS lspClient started successfully
+2026-05-15 18:50:12.946 [info] I0515 18:50:12.945920 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xc0c4fdaa18fe047c
+2026-05-15 18:50:13.386 [info] I0515 18:50:13.386172 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf907218909eb8947
+2026-05-15 18:50:58.803 [info] (Antigravity) 2026-05-15 18:50:58.802 [INFO]: [SupercompleteProvider] No supercomplete response
+2026-05-15 18:54:14.914 [info] E0515 18:54:14.913876 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:55:11.619 [info] I0515 18:55:11.619126 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x142f2592cf92b533
+2026-05-15 18:55:12.097 [info] I0515 18:55:12.097153 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7f5a132a675cacb7
+2026-05-15 18:56:10.864 [info] E0515 18:56:10.864488 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:56:13.620 [info] E0515 18:56:13.620170 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:56:34.054 [info] E0515 18:56:34.054682 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:56:35.861 [info] E0515 18:56:35.861429 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:57:15.930 [info] E0515 18:57:15.929773 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:57:22.976 [info] E0515 18:57:22.975727 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:57:26.704 [info] E0515 18:57:26.704303 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:57:30.511 [info] E0515 18:57:30.510722 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:57:34.157 [info] E0515 18:57:34.157204 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:57:48.284 [info] E0515 18:57:48.284627 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 18:58:02.557 [info] E0515 18:58:02.557196 31474 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 19:01:11.461 [info] I0515 19:01:11.461124 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xba313a9e3abaec67
+2026-05-15 19:01:12.042 [info] I0515 19:01:12.042447 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6dbded96bad838bd
+2026-05-15 19:01:45.912 [info] (Antigravity) 2026-05-15 19:01:45.911 [INFO]: [Terminal] Command completed: git status exit code 0
+2026-05-15 19:02:30.998 [info] (Antigravity) 2026-05-15 19:02:30.998 [INFO]: [Terminal] Command completed: git add . exit code 0
+2026-05-15 19:02:37.767 [info] (Antigravity) 2026-05-15 19:02:37.767 [INFO]: [Terminal] Command completed: git status exit code 0
+2026-05-15 19:03:01.257 [info] (Antigravity) 2026-05-15 19:03:01.257 [INFO]: [Terminal] Command completed: git commit -m "Your message here" exit code 1
+2026-05-15 19:03:07.085 [info] (Antigravity) 2026-05-15 19:03:07.084 [INFO]: [Terminal] Command completed: git push origin main exit code 1
+2026-05-15 19:04:35.661 [info] (Antigravity) 2026-05-15 19:04:35.661 [INFO]: [Terminal] Command completed: git remote set-url origin https://7kim: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@github.com/7kim/TradingView-Advanced-Bot.git exit code 0
+2026-05-15 19:04:55.896 [info] (Antigravity) 2026-05-15 19:04:55.895 [INFO]: [Terminal] Command completed: cd /home/dev/Documents/Dev/Tradingview
+git pull origin main --rebase
+git push origin main exit code 1
+2026-05-15 19:05:54.335 [info] (Antigravity) 2026-05-15 19:05:54.335 [INFO]: [Terminal] Command completed: # 1. Generate SSH key (press Enter 3 times to accept defaults)
+ssh-keygen -t ed25519 -C "abdullaabdulhakeem@hotmail.com"
+# 2. Copy your public key
+cat ~/.ssh/id_ed25519.pub exit code 0
+2026-05-15 19:07:11.521 [info] I0515 19:07:11.521664 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x73da0165a6e0247a
+2026-05-15 19:07:12.030 [info] I0515 19:07:12.029775 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9824ed43879e149d
+2026-05-15 19:07:17.607 [info] (Antigravity) 2026-05-15 19:07:17.606 [INFO]: [Terminal] Command completed: # 3. Switch your remote to SSH
+git remote set-url origin git@github.com:7kim/TradingView-Advanced-Bot.git
+# 4. Pull + push
+git pull origin main --rebase
+git push origin main exit code 1
+2026-05-15 19:07:52.498 [info] (Antigravity) 2026-05-15 19:07:52.498 [INFO]: [Terminal] Command completed: clear exit code 0
+2026-05-15 19:13:11.339 [info] I0515 19:13:11.339473 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x219679f391ee97d5
+2026-05-15 19:13:12.286 [info] I0515 19:13:12.286463 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x224cacb9bf643e2e
+2026-05-15 19:14:40.064 [info] (Antigravity) 2026-05-15 19:14:40.064 [INFO]: [Terminal] Command completed: # 1. Install venv support for Python 3.14
+sudo apt install python3.14-venv -y
+# 2. Then run the full setup
+cd /home/dev/Documents/Dev/Tradingview
+python3 -m venv venv
+venv/bin/pip install -r requirements.txt
+cd dashboard && npm install exit code 0
+2026-05-15 19:14:52.873 [info] (Antigravity) 2026-05-15 19:14:52.873 [INFO]: [Terminal] Command completed: npm install exit code 0
+2026-05-15 19:14:54.143 [info] (Antigravity) 2026-05-15 19:14:54.143 [INFO]: [Terminal] Command completed: clear exit code 0
+2026-05-15 19:15:55.210 [info] (Antigravity) 2026-05-15 19:15:55.210 [INFO]: [Terminal] Command completed: python3 bot.py exit code 1
+2026-05-15 19:16:12.617 [info] (Antigravity) 2026-05-15 19:16:12.617 [INFO]: [Terminal] Command completed: sudo apt install python3.14-venv -y exit code 0
+2026-05-15 19:16:16.346 [info] (Antigravity) 2026-05-15 19:16:16.346 [INFO]: [Terminal] Command completed: clear exit code 0
+2026-05-15 19:19:11.371 [info] I0515 19:19:11.371282 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5a8594833eedf28f
+2026-05-15 19:19:11.996 [info] I0515 19:19:11.996369 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xbb1cf523835658a0
+2026-05-15 19:25:11.555 [info] I0515 19:25:11.555035 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x386cd402f4f6be12
+2026-05-15 19:25:12.051 [info] I0515 19:25:12.051486 31474 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x87c6580857c49a36
+2026-05-15 19:25:38.937 [info] (Antigravity) 2026-05-15 19:25:38.937 [INFO]: [Terminal] Command completed: opencode --port 19991 exit code 0
+2026-05-15 19:25:52.591 [info] (Antigravity) 2026-05-15 19:25:52.591 [INFO]: [Terminal] Command completed: ^C
+dev@developer:~/Documents/Dev/Tradingview$ clear exit code 0
+2026-05-15 19:25:58.908 [info] (Antigravity) 2026-05-15 19:25:58.908 [INFO]: [Terminal] Command completed: npm run dev exit code 130
+2026-05-15 19:26:28.673 [info] (Antigravity) 2026-05-15 19:26:28.672 [INFO]: [SupercompleteProvider] No supercomplete response
+2026-05-15 19:27:42.291 [info] I0515 19:27:42.291506 31474 server.go:1956] Exit requested on language server process 31474
+2026-05-15 19:27:42.291 [info] I0515 19:27:42.291667 31474 server.go:1897] Language server shutting down
+2026-05-15 19:27:46.153 [info] I0515 19:27:46.149589 42211 server.go:1236] Starting language server process with pid 42211
+2026-05-15 19:27:46.153 [info] I0515 19:27:46.149657 42211 server.go:301] Setting GOMAXPROCS to 4
+2026-05-15 19:27:46.153 [info] I0515 19:27:46.150500 42211 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-15 19:27:46.153 [info] I0515 19:27:46.150703 42211 server.go:454] Language server listening on random port at 46575 for HTTPS (gRPC)
+2026-05-15 19:27:46.153 [info] I0515 19:27:46.150729 42211 server.go:461] Language server listening on random port at 34893 for HTTP
+2026-05-15 19:27:46.578 [info] I0515 19:27:46.578317 42211 server.go:433] Created extension server client at port 33529
+2026-05-15 19:27:46.596 [info] I0515 19:27:46.596295 42211 cascade_manager.go:773] Reactive state is disabled
+2026-05-15 19:27:46.614 [info] (Antigravity) 2026-05-15 19:27:46.614 [INFO]: Language server started
+2026-05-15 19:27:46.627 [info] I0515 19:27:46.620605 42211 server.go:1693] initialized server successfully in 470.925718ms
+2026-05-15 19:27:47.154 [info] (Antigravity) 2026-05-15 19:27:47.154 [INFO]: LS lspClient started successfully
+2026-05-15 19:27:47.558 [info] I0515 19:27:47.558178 42211 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x99334a2e27627698
+2026-05-15 19:27:48.026 [info] I0515 19:27:48.026635 42211 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x89ca20ec32e9e021
+2026-05-15 19:28:00.024 [info] I0515 19:28:00.024542 42211 server.go:1956] Exit requested on language server process 42211
+2026-05-15 19:28:00.024 [info] I0515 19:28:00.024668 42211 server.go:1897] Language server shutting down
+2026-05-15 19:28:03.124 [info] I0515 19:28:03.123607 42546 server.go:1236] Starting language server process with pid 42546
+2026-05-15 19:28:03.124 [info] I0515 19:28:03.123665 42546 server.go:301] Setting GOMAXPROCS to 4
+2026-05-15 19:28:03.124 [info] I0515 19:28:03.124657 42546 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-15 19:28:03.124 [info] I0515 19:28:03.124844 42546 server.go:454] Language server listening on random port at 43223 for HTTPS (gRPC)
+2026-05-15 19:28:03.124 [info] I0515 19:28:03.124870 42546 server.go:461] Language server listening on random port at 33439 for HTTP
+2026-05-15 19:28:03.561 [info] I0515 19:28:03.560860 42546 server.go:433] Created extension server client at port 33133
+2026-05-15 19:28:03.580 [info] I0515 19:28:03.580138 42546 cascade_manager.go:773] Reactive state is disabled
+2026-05-15 19:28:03.602 [info] (Antigravity) 2026-05-15 19:28:03.601 [INFO]: Language server started
+2026-05-15 19:28:03.626 [info] I0515 19:28:03.613390 42546 server.go:1693] initialized server successfully in 489.67804ms
+2026-05-15 19:28:04.465 [info] (Antigravity) 2026-05-15 19:28:04.465 [INFO]: LS lspClient started successfully
+2026-05-15 19:28:04.720 [info] I0515 19:28:04.575426 42546 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6ae5b16f8f812ff2
+2026-05-15 19:28:04.852 [info] I0515 19:28:04.852467 42546 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x17d4fb22a8027dc6
+2026-05-15 19:28:24.040 [info] I0515 19:28:24.039096 42546 server.go:1956] Exit requested on language server process 42546
+2026-05-15 19:28:24.040 [info] I0515 19:28:24.039659 42546 server.go:1897] Language server shutting down
+2026-05-15 19:28:27.421 [info] I0515 19:28:27.167804 42821 server.go:1236] Starting language server process with pid 42821
+2026-05-15 19:28:27.421 [info] I0515 19:28:27.167864 42821 server.go:301] Setting GOMAXPROCS to 4
+2026-05-15 19:28:27.421 [info] I0515 19:28:27.168924 42821 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-15 19:28:27.421 [info] I0515 19:28:27.169094 42821 server.go:454] Language server listening on random port at 35453 for HTTPS (gRPC)
+2026-05-15 19:28:27.421 [info] I0515 19:28:27.169123 42821 server.go:461] Language server listening on random port at 37459 for HTTP
+2026-05-15 19:28:27.602 [info] I0515 19:28:27.595002 42821 server.go:433] Created extension server client at port 37451
+2026-05-15 19:28:27.615 [info] I0515 19:28:27.614937 42821 cascade_manager.go:773] Reactive state is disabled
+2026-05-15 19:28:27.636 [info] (Antigravity) 2026-05-15 19:28:27.635 [INFO]: Language server started
+2026-05-15 19:28:27.651 [info] I0515 19:28:27.645562 42821 server.go:1693] initialized server successfully in 477.660629ms
+2026-05-15 19:28:27.995 [info] (Antigravity) 2026-05-15 19:28:27.995 [INFO]: LS lspClient started successfully
+2026-05-15 19:28:28.650 [info] I0515 19:28:28.650596 42821 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xae367d3035df143a
+2026-05-15 19:28:29.726 [info] I0515 19:28:29.726591 42821 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x1c7e1c7cb76c9dee
+2026-05-15 19:28:37.244 [info] I0515 19:28:37.232815 43084 server.go:1236] Starting language server process with pid 43084
+2026-05-15 19:28:37.244 [info] I0515 19:28:37.232933 43084 server.go:301] Setting GOMAXPROCS to 4
+2026-05-15 19:28:37.244 [info] I0515 19:28:37.235342 43084 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-15 19:28:37.244 [info] I0515 19:28:37.235569 43084 server.go:454] Language server listening on random port at 33213 for HTTPS (gRPC)
+2026-05-15 19:28:37.244 [info] I0515 19:28:37.235603 43084 server.go:461] Language server listening on random port at 33355 for HTTP
+2026-05-15 19:28:37.669 [info] I0515 19:28:37.669191 43084 server.go:433] Created extension server client at port 40431
+2026-05-15 19:28:37.688 [info] I0515 19:28:37.687942 43084 cascade_manager.go:773] Reactive state is disabled
+2026-05-15 19:28:37.709 [info] (Antigravity) 2026-05-15 19:28:37.708 [INFO]: Language server started
+2026-05-15 19:28:37.738 [info] I0515 19:28:37.726220 43084 server.go:1693] initialized server successfully in 493.254655ms
+2026-05-15 19:28:38.022 [info] (Antigravity) 2026-05-15 19:28:38.022 [INFO]: LS lspClient started successfully
+2026-05-15 19:28:38.775 [info] I0515 19:28:38.724883 43084 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe531035440b2a92d
+2026-05-15 19:28:39.179 [info] I0515 19:28:39.179380 43084 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x105b0e12959853c
+2026-05-15 19:28:45.926 [info] I0515 19:28:45.926417 43357 server.go:1236] Starting language server process with pid 43357
+2026-05-15 19:28:45.926 [info] I0515 19:28:45.926477 43357 server.go:301] Setting GOMAXPROCS to 4
+2026-05-15 19:28:45.927 [info] I0515 19:28:45.927496 43357 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-15 19:28:45.928 [info] I0515 19:28:45.927706 43357 server.go:454] Language server listening on random port at 40113 for HTTPS (gRPC)
+2026-05-15 19:28:45.928 [info] I0515 19:28:45.927738 43357 server.go:461] Language server listening on random port at 42325 for HTTP
+2026-05-15 19:28:46.348 [info] I0515 19:28:46.348316 43357 server.go:433] Created extension server client at port 42439
+2026-05-15 19:28:46.367 [info] I0515 19:28:46.367098 43357 cascade_manager.go:773] Reactive state is disabled
+2026-05-15 19:28:46.385 [info] (Antigravity) 2026-05-15 19:28:46.384 [INFO]: Language server started
+2026-05-15 19:28:46.406 [info] I0515 19:28:46.395370 43357 server.go:1693] initialized server successfully in 468.860297ms
+2026-05-15 19:28:46.780 [info] (Antigravity) 2026-05-15 19:28:46.780 [INFO]: LS lspClient started successfully
+2026-05-15 19:28:47.345 [info] I0515 19:28:47.345738 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x91b5f38a76bde90c
+2026-05-15 19:28:47.878 [info] I0515 19:28:47.878502 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x1a003507220f74c9
+2026-05-15 19:34:16.413 [info] E0515 19:34:16.413268 43357 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 19:34:17.599 [info] I0515 19:34:17.598902 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x91af35d85d351c2c
+2026-05-15 19:34:17.922 [info] I0515 19:34:17.922204 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xcb0d0c4891d8c265
+2026-05-15 19:37:22.092 [info] E0515 19:37:22.091830 43357 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 19:37:27.059 [info] E0515 19:37:27.059213 43357 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 19:37:29.257 [info] E0515 19:37:29.256939 43357 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 19:38:13.900 [info] E0515 19:38:13.899738 43357 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 19:39:47.011 [info] I0515 19:39:47.011450 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x888111435fddb8e3
+2026-05-15 19:39:47.862 [info] I0515 19:39:47.862630 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe11b61505109aa7
+2026-05-15 19:43:20.497 [info] (Antigravity) 2026-05-15 19:43:20.496 [INFO]: [Terminal] Command completed: python3 bot.py exit code 1
+2026-05-15 19:44:04.132 [info] (Antigravity) 2026-05-15 19:44:04.132 [INFO]: [Terminal] Command completed: python3 bot.py exit code 1
+2026-05-15 19:44:46.740 [info] (Antigravity) 2026-05-15 19:44:46.740 [INFO]: [Terminal] Command completed: python3 bot.py exit code 1
+2026-05-15 19:44:47.774 [info] I0515 19:44:47.774206 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x53b142308f6b91b4
+2026-05-15 19:46:03.006 [info] (Antigravity) 2026-05-15 19:46:03.006 [INFO]: [SupercompleteProvider] No supercomplete response
+2026-05-15 19:46:17.106 [info] (Antigravity) 2026-05-15 19:46:17.105 [INFO]: [SupercompleteProvider] No supercomplete response
+2026-05-15 19:46:19.513 [info] E0515 19:46:19.513699 43357 interceptor.go:74] /exa.language_server_pb.LanguageServerService/AcknowledgeCodeActionStep (unknown): run state not found
+2026-05-15 19:46:26.980 [info] I0515 19:46:26.980398 43357 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xa32b07d935ef7cb1
+2026-05-15 19:47:25.564 [info] (Antigravity) 2026-05-15 19:47:25.564 [INFO]: [Terminal] Command completed: cd dashboard exit code 0
+2026-05-15 19:47:33.342 [info] (Antigravity) 2026-05-15 19:47:33.342 [INFO]: [Terminal] Command completed: npm install exit code 0
+2026-05-15 19:48:38.948 [info] (Antigravity) 2026-05-15 19:48:38.948 [INFO]: [Terminal] Command completed: npm run dev exit code 130
+2026-05-15 19:48:42.875 [info] (Antigravity) 2026-05-15 19:48:42.875 [INFO]: [Terminal] Command completed: cd Tradingview
+source venv/bin/activate
+python bot.py exit code 130

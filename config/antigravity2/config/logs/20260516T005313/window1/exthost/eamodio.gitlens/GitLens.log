@@ -1,0 +1,32 @@
+2026-05-16 00:53:18.301 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-16 00:53:18.301 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|2c764c49-09ab-41d4-8579-9f9064a0b4da1778878394963)
+2026-05-16 00:53:18.301 [info]    [            1] GitLens v17.12.2 activated [78ms]
+2026-05-16 00:53:18.301 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [62ms]
+2026-05-16 00:53:18.301 [info]    [   6e →    94] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/Tradingview) searching (depth=1)...
+2026-05-16 00:53:18.301 [info]    [GIT      58ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [58ms]
+2026-05-16 00:53:18.301 [info]    [   6e →    94] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/Tradingview) found root repository in '/home/dev/Documents/Dev/Tradingview'
+2026-05-16 00:53:18.327 [info]    [IPC          ] Server started on http://127.0.0.1:44347
+2026-05-16 00:53:18.373 [info]    [GIT      23ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [23ms]
+2026-05-16 00:53:18.377 [info]    [GIT       9ms] [/home/dev/Documents/Dev/Tradingview] git remote -v [9ms]
+2026-05-16 00:53:18.389 [info]    [GIT      10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote [10ms]
+2026-05-16 00:53:53.357 [info]    [GIT      20ms] [/home/dev/Documents/Dev/Tradingview] git rev-list --max-parents=0 HEAD -- [20ms]
+2026-05-16 00:53:53.359 [info]    [   fb →    fc] LocalSharedGkStorageLocationProvider.load Using shared GK path: /home/dev/.local/share/gk
+2026-05-16 00:53:53.360 [info]    [GIT      23ms] [/home/dev/Documents/Dev/Tradingview] git shortlog -s --all --no-min-parents --since=1.year.ago [23ms]
+2026-05-16 00:54:23.082 [info]    [GIT      21ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ [21ms]
+2026-05-16 00:54:23.083 [info]    [GIT       9ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex -f /home/dev/Documents/Dev/Tradingview/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ [9ms]
+2026-05-16 00:54:23.096 [info]    [GIT      10ms] [/home/dev/Documents/Dev/Tradingview] git for-each-ref --format=%1E%(refname)%1D%(objectname)%1D%(*objectname)%1D%(creatordate:iso8601)%1D%(authordate:iso8601)%1D%(subject)%1D refs/tags/ [10ms]
+2026-05-16 00:54:33.738 [info]    [GIT      11ms] [/home/dev/Documents/Dev/Tradingview] git ls-files -- SETUP.md [11ms]
+2026-05-16 00:54:33.755 [info]    [GIT      13ms] [/home/dev/Documents/Dev/Tradingview] git config --get-regex ^user\.(name|email)$ [13ms]
+2026-05-16 00:54:33.771 [info]    [GIT      15ms] [/home/dev/Documents/Dev/Tradingview] git check-mailmap Abdullah Abdul Hakim <abdullaabdulhakeem25@gmail.com> [15ms]
+2026-05-16 00:54:33.782 [info]    [GIT:→1       ] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md · starting...
+2026-05-16 00:54:33.791 [info]    [GIT:←1   17ms] (spawn) [/home/dev/Documents/Dev/Tradingview] git blame --root --incremental --encoding=utf-8 -- SETUP.md [17ms]
+2026-05-16 00:54:33.841 [info]    [GIT      48ms] [/home/dev/Documents/Dev/Tradingview] git show --textconv HEAD:./SETUP.md -- [48ms]
+2026-05-16 00:54:34.814 [info]    [GIT     999ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 9b50ddb8725bbdf9dacacdd9f1c8bd84bd78dd19 -- [999ms]
+2026-05-16 00:55:09.673 [info]    [GIT      14ms] [/home/dev/Documents/Dev/Tradingview] git log --format=%x1E%H%x1D%aN%x1D%aE%x1D%at%x1D%cN%x1D%cE%x1D%ct%x1D%P%x1D%D%x1D%B%x1D --numstat --raw -M --use-mailmap -m --no-min-parents -n1 7fa9b5e2bc81860681d1228680aaf777458b348b -- [14ms]
+2026-05-16 00:55:22.139 [info]    [GIT      27ms] [/home/dev/Documents/Dev/Tradingview] git cat-file commit 7fa9b5e2bc81860681d1228680aaf777458b348b [27ms]
+2026-05-16 00:55:22.148 [info]    [GIT      22ms] [/home/dev/Documents/Dev/Tradingview] git diff --no-ext-diff --minimal -U0 -M --diff-filter=M 2f5b9e047e95dba44a29467b40ae9d533f37f9bc -- SETUP.md [22ms]
+2026-05-16 00:55:48.307 [info]    [GIT      12ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-accessed [12ms]
+2026-05-16 00:55:48.320 [info]    [GIT      11ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-accessed 2026-05-15T20:55:48.295Z [11ms]
+2026-05-16 00:57:50.293 [info]    [GIT      11ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-accessed [11ms]
+2026-05-16 00:57:50.304 [info]    [GIT      10ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-modified [10ms]
+2026-05-16 00:57:50.316 [info]    [GIT      11ms] [/home/dev/Documents/Dev/Tradingview] git config -f /home/dev/Documents/Dev/Tradingview/.git/gk/config branch.lightweight-charts.gk-last-modified 2026-05-15T20:57:50.281Z [11ms]

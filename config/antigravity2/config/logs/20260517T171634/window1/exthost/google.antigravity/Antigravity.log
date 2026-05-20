@@ -1,0 +1,16 @@
+2026-05-17 17:16:38.378 [info] I0517 17:16:38.375438 38315 server.go:1236] Starting language server process with pid 38315
+2026-05-17 17:16:38.378 [info] I0517 17:16:38.375523 38315 server.go:301] Setting GOMAXPROCS to 4
+2026-05-17 17:16:38.378 [info] I0517 17:16:38.376496 38315 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-17 17:16:38.378 [info] I0517 17:16:38.376659 38315 server.go:454] Language server listening on random port at 42595 for HTTPS (gRPC)
+2026-05-17 17:16:38.378 [info] I0517 17:16:38.376682 38315 server.go:461] Language server listening on random port at 43763 for HTTP
+2026-05-17 17:16:38.804 [info] I0517 17:16:38.804311 38315 server.go:433] Created extension server client at port 46495
+2026-05-17 17:16:38.828 [info] I0517 17:16:38.828102 38315 cascade_manager.go:773] Reactive state is disabled
+2026-05-17 17:16:38.842 [info] (Antigravity) 2026-05-17 17:16:38.841 [INFO]: Language server started
+2026-05-17 17:16:38.866 [info] I0517 17:16:38.855588 38315 server.go:1693] initialized server successfully in 480.030813ms
+2026-05-17 17:16:39.256 [info] (Antigravity) 2026-05-17 17:16:39.256 [INFO]: LS lspClient started successfully
+2026-05-17 17:16:40.959 [info] I0517 17:16:40.958975 38315 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9f9d261b6d3da81a
+2026-05-17 17:16:41.797 [info] I0517 17:16:41.797670 38315 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x71a14b9efb72adf3
+2026-05-17 17:16:42.021 [info] I0517 17:16:42.021115 38315 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x5e1b632e8d1481a1
+2026-05-17 17:21:39.582 [info] I0517 17:21:39.582065 38315 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xf876044535274f23
+2026-05-17 17:21:40.025 [info] I0517 17:21:40.025490 38315 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xb50499047e5301b0
+2026-05-17 17:21:42.275 [info] (Antigravity) 2026-05-17 17:21:42.274 [INFO]: [SupercompleteProvider] No supercomplete response

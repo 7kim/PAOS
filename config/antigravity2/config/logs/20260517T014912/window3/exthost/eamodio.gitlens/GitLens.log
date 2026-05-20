@@ -1,0 +1,27 @@
+2026-05-17 01:49:23.831 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 01:49:23.831 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|db294e41-fd02-400c-a67e-78c429bc89951778968161480)
+2026-05-17 01:49:23.831 [info]    [            1] GitLens v17.12.2 activated [61ms]
+2026-05-17 01:49:23.831 [info]    [IPC          ] Server started on http://127.0.0.1:40689
+2026-05-17 01:50:31.271 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 01:50:31.271 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|a5ff3aba-0ebf-4ced-a554-a1551dbd84341778968229038)
+2026-05-17 01:50:31.271 [info]    [            1] GitLens v17.12.2 activated [73ms]
+2026-05-17 01:50:31.287 [info]    [   6f →    70] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [78ms]
+2026-05-17 01:50:31.290 [info]    [   6f →    98] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/project-gpt) searching (depth=1)...
+2026-05-17 01:50:31.301 [info]    [GIT      11ms] [/home/dev/Documents/Dev/project-gpt] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [11ms]
+2026-05-17 01:50:31.302 [info]    [   6f →    98] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/project-gpt) found root repository in '/home/dev'
+2026-05-17 01:50:31.340 [info]    [IPC          ] Server started on http://127.0.0.1:44515
+2026-05-17 01:50:31.406 [info]    [GIT      32ms] [/home/dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [32ms]
+2026-05-17 01:50:31.450 [info]    [GIT       7ms] [/home/dev] git remote -v [7ms]
+2026-05-17 01:50:31.457 [info]    [GIT       6ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote [6ms]
+2026-05-17 01:50:45.715 [info]    [GIT      22ms] [/home/dev] git ls-files -- Documents/Dev/project-gpt/ss.txt [22ms]
+2026-05-17 01:50:45.736 [info]    [GIT      20ms] [/home/dev/Documents/Dev/project-gpt] git ls-files -- ss.txt [20ms]
+2026-05-17 01:50:45.775 [info]    [GIT      22ms] [/home/dev/Documents/Dev/project-gpt] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [22ms]
+2026-05-17 01:51:06.330 [info]    [GIT      19ms] [/home/dev] git rev-list --max-parents=0 HEAD -- [19ms]
+2026-05-17 01:51:06.331 [info]    [GIT      20ms] [/home/dev] git shortlog -s --all --no-min-parents --since=1.year.ago [20ms]
+2026-05-17 01:51:19.968 [info]    [GIT      23ms] [/home/dev] git for-each-ref --format=%1E%(HEAD)%1D%(refname)%1D%(upstream)%1D%(upstream:track)%1D%(objectname)%1D%(committerdate:iso8601)%1D%(worktreepath)%1D refs/heads/ refs/remotes/ [23ms]
+2026-05-17 01:51:19.969 [info]    [GIT      12ms] [/home/dev] git config --get-regex -f /home/dev/.git/gk/config ^branch\..*\.gk-(last-(accessed|modified)|disposition)$ [12ms]
+2026-05-17 01:51:19.984 [info]    [GIT      11ms] [/home/dev] git for-each-ref --format=%1E%(refname)%1D%(objectname)%1D%(*objectname)%1D%(creatordate:iso8601)%1D%(authordate:iso8601)%1D%(subject)%1D refs/tags/ [11ms]
+2026-05-17 01:53:01.319 [info]    [GIT      13ms] [/home/dev] git config --get -f /home/dev/.git/gk/config branch.feat/h-factor-os.gk-last-accessed [13ms]
+2026-05-17 01:56:39.976 [info]    [GIT      21ms] [/home/dev] git ls-files -- Documents/Dev/project-gpt/.vscode/settings.json [21ms]
+2026-05-17 01:56:39.998 [info]    [GIT      21ms] [/home/dev/Documents/Dev/project-gpt/.vscode] git ls-files -- settings.json [21ms]
+2026-05-17 01:56:40.087 [info]    [GIT      22ms] [/home/dev/Documents/Dev/project-gpt/.vscode] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [22ms]

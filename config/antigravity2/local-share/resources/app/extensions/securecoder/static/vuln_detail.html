@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: var(--vscode-font-family, sans-serif); padding: 20px; color: var(--vscode-foreground); background: var(--vscode-editor-background); }
+    h1 { font-size: 1.4em; margin-bottom: 4px; }
+    .description { font-size: 1.05em; margin: 12px 0 16px 0; line-height: 1.5; }
+    .severity-badge { display: inline-block; padding: 3px 10px; border-radius: 4px; color: #fff; font-weight: bold; font-size: 0.85em; }
+    table { border-collapse: collapse; margin-top: 12px; }
+    td { padding: 6px 14px 6px 0; vertical-align: top; }
+    hr { border: none; border-top: 1px solid var(--vscode-widget-border, #444); margin: 16px 0; }
+    .rule-id { color: var(--vscode-descriptionForeground, #888); font-size: 0.9em; margin-top: 16px; }
+    a { color: var(--vscode-textLink-foreground, #3794ff); }
+  </style>
+</head>
+<body>
+  <h1>&#x1F6E1; SecureCoder Finding</h1>
+  <p class="description">{{DESCRIPTION}}</p>
+  <hr>
+  <table>
+    <tr>
+      <td><strong>Severity</strong></td>
+      <td><span class="severity-badge" style="background:{{SEV_COLOR}}">{{SEV_UPPER}}</span></td>
+    </tr>
+    {{DETAIL_ROWS}}
+  </table>
+  <hr>
+  <p class="rule-id">Rule ID: <code>{{RULE_ID}}</code></p>
+</body>
+</html>

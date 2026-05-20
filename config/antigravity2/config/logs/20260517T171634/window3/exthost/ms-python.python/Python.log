@@ -1,0 +1,6 @@
+2026-05-17 17:20:53.608 [warning] Dir "/home/dev/Documents/Dev/.pixi/envs" is not watchable (directory does not exist)
+2026-05-17 17:20:53.642 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
+2026-05-17 17:20:53.643 [info] Python interpreter path: /bin/python3
+2026-05-17 17:20:53.657 [info] > pyenv which python
+2026-05-17 17:20:53.657 [info] cwd: .
+2026-05-17 17:20:53.664 [info] Editor support is inactive since language server is set to None.

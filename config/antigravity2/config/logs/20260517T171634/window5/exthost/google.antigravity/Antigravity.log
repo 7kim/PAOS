@@ -1,0 +1,13 @@
+2026-05-17 17:21:19.068 [info] I0517 17:21:19.041381 41174 server.go:1236] Starting language server process with pid 41174
+2026-05-17 17:21:19.069 [info] I0517 17:21:19.041445 41174 server.go:301] Setting GOMAXPROCS to 4
+2026-05-17 17:21:19.069 [info] I0517 17:21:19.042618 41174 server.go:440] Language server will attempt to listen on host 127.0.0.1
+2026-05-17 17:21:19.069 [info] I0517 17:21:19.042840 41174 server.go:454] Language server listening on random port at 39535 for HTTPS (gRPC)
+2026-05-17 17:21:19.069 [info] I0517 17:21:19.042869 41174 server.go:461] Language server listening on random port at 40213 for HTTP
+2026-05-17 17:21:19.469 [info] I0517 17:21:19.469297 41174 server.go:433] Created extension server client at port 38401
+2026-05-17 17:21:19.491 [info] I0517 17:21:19.491559 41174 cascade_manager.go:773] Reactive state is disabled
+2026-05-17 17:21:19.522 [info] (Antigravity) 2026-05-17 17:21:19.521 [INFO]: Language server started
+2026-05-17 17:21:19.548 [info] I0517 17:21:19.538268 41174 server.go:1693] initialized server successfully in 496.805419ms
+2026-05-17 17:21:19.877 [info] (Antigravity) 2026-05-17 17:21:19.877 [INFO]: LS lspClient started successfully
+2026-05-17 17:21:21.121 [info] I0517 17:21:20.799198 41174 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xc70be444eab86704
+2026-05-17 17:21:21.785 [info] I0517 17:21:21.414402 41174 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x861821a0c11b3dbe
+2026-05-17 17:21:47.203 [info] (Antigravity) 2026-05-17 17:21:47.203 [ERROR]: LS update error: Canceled

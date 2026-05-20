@@ -1,0 +1,32 @@
+2026-05-17 16:51:55.130 [info] [LS Main] Starting language server from: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-17 16:51:55.223 [info] [LS Main] Args: --csrf_token 2d9a7e25-ba32-47bc-a490-09bf872137a5 --extension_server_port 40741 --extension_server_csrf_token 8d4aab98-0d03-4228-8809-3e5c4e6192b7 --app_data_dir antigravity --cloud_code_endpoint https://cloudcode-pa.googleapis.com
+2026-05-17 16:51:55.497 [info] [LS Main] Process spawned with PID: 20667
+2026-05-17 16:51:56.626 [error] [LS Main stderr] I0517 16:51:56.626490 20667 server.go:1236] Starting language server process with pid 20667
+
+2026-05-17 16:51:56.628 [error] [LS Main stderr] I0517 16:51:56.628159 20667 server.go:301] Setting GOMAXPROCS to 4
+
+2026-05-17 16:51:56.631 [error] [LS Main stderr] I0517 16:51:56.631492 20667 server.go:440] Language server will attempt to listen on host 127.0.0.1
+
+2026-05-17 16:51:56.632 [error] [LS Main stderr] I0517 16:51:56.632775 20667 server.go:454] Language server listening on random port at 35073 for HTTPS (gRPC)
+I0517 16:51:56.632821 20667 server.go:461] Language server listening on random port at 34549 for HTTP
+
+2026-05-17 16:51:56.924 [error] No LS client info found for local authority
+2026-05-17 16:51:57.082 [error] [LS Main stderr] I0517 16:51:57.082397 20667 server.go:433] Created extension server client at port 40741
+
+2026-05-17 16:51:57.120 [error] [LS Main stderr] I0517 16:51:57.120761 20667 cascade_manager.go:773] Reactive state is disabled
+
+2026-05-17 16:51:57.483 [info] [LS Main] LS started on port 35073
+2026-05-17 16:51:57.490 [error] [LS Main stderr] I0517 16:51:57.489935 20667 server.go:1693] initialized server successfully in 862.438259ms
+
+2026-05-17 16:51:59.227 [error] [LS Main stderr] I0517 16:51:59.226953 20667 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x1bc5e2f60fd860e7
+
+2026-05-17 16:52:00.004 [error] [LS Main stderr] I0517 16:52:00.004212 20667 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf2484cdbab0e28b5
+
+2026-05-17 16:52:00.704 [error] [LS Main stderr] I0517 16:52:00.704821 20667 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x39e03f6471d9884a
+
+2026-05-17 16:52:01.877 [error] [LS Main stderr] I0517 16:52:01.877100 20667 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x192a7dd73e58b978
+
+2026-05-17 16:52:02.931 [error] [LS Main stderr] I0517 16:52:02.931127 20667 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xd2c37ce25fc26e13
+
+2026-05-17 16:52:03.546 [error] [LS Main stderr] I0517 16:52:03.546393 20667 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9f1efb0015fc5ae5
+

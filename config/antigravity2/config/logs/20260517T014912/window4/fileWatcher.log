@@ -1,0 +1,6 @@
+2026-05-17 02:13:56.079 [error] [File Watcher ('parcel')] Unexpected error: Permission denied (EUNKNOWN) (path: /)
+2026-05-17 02:13:56.079 [error] [File Watcher (universal)] Permission denied
+2026-05-17 02:14:10.411 [error] [File Watcher ('parcel')] Unexpected error: Permission denied (EUNKNOWN) (path: /)
+2026-05-17 02:14:10.694 [error] [File Watcher (universal)] Permission denied
+2026-05-17 02:14:15.850 [error] [File Watcher ('parcel')] Unexpected error: Permission denied (EUNKNOWN) (path: /)
+2026-05-17 02:14:15.852 [error] [File Watcher (universal)] Permission denied

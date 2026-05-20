@@ -1,0 +1,74 @@
+2026-05-16 00:53:13.275 [info] [LS Main] Starting language server from: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-16 00:53:13.627 [info] [LS Main] Args: --csrf_token d52dffaf-a9f0-47fa-ae71-03f2ac2a3ddc --extension_server_port 35491 --extension_server_csrf_token d4929697-0c15-4c23-935e-4af785e682af --app_data_dir antigravity --cloud_code_endpoint https://cloudcode-pa.googleapis.com
+2026-05-16 00:53:13.681 [info] [LS Main] Process spawned with PID: 26682
+2026-05-16 00:53:14.862 [error] [LS Main stderr] I0516 00:53:14.861776 26682 server.go:1236] Starting language server process with pid 26682
+
+2026-05-16 00:53:14.863 [error] [LS Main stderr] I0516 00:53:14.862870 26682 server.go:301] Setting GOMAXPROCS to 4
+
+2026-05-16 00:53:14.867 [error] [LS Main stderr] I0516 00:53:14.867189 26682 server.go:440] Language server will attempt to listen on host 127.0.0.1
+
+2026-05-16 00:53:14.868 [error] [LS Main stderr] I0516 00:53:14.868443 26682 server.go:454] Language server listening on random port at 39717 for HTTPS (gRPC)
+I0516 00:53:14.868481 26682 server.go:461] Language server listening on random port at 45463 for HTTP
+
+2026-05-16 00:53:15.248 [error] No LS client info found for local authority
+2026-05-16 00:53:15.324 [error] [LS Main stderr] I0516 00:53:15.324335 26682 server.go:433] Created extension server client at port 35491
+
+2026-05-16 00:53:15.350 [error] [LS Main stderr] I0516 00:53:15.350613 26682 cascade_manager.go:773] Reactive state is disabled
+
+2026-05-16 00:53:15.586 [info] [LS Main] LS started on port 39717
+2026-05-16 00:53:15.599 [error] [LS Main stderr] I0516 00:53:15.592951 26682 server.go:1693] initialized server successfully in 730.715082ms
+
+2026-05-16 00:53:16.519 [error] [LS Main stderr] I0516 00:53:16.519748 26682 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xeb14979855c6e673
+
+2026-05-16 00:53:17.409 [error] [LS Main stderr] I0516 00:53:17.408767 26682 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7de8901d3319822d
+
+2026-05-16 00:53:17.648 [error] [LS Main stderr] I0516 00:53:17.648293 26682 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xee8d9cff26777cb6
+
+2026-05-16 00:53:19.025 [error] [LS Main stderr] I0516 00:53:19.025639 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb6e2d2ead777badb
+
+2026-05-16 00:53:20.218 [error] [LS Main stderr] I0516 00:53:20.217970 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xe6ce833e8a5af213
+
+2026-05-16 00:53:20.416 [error] [LS Main stderr] I0516 00:53:20.416387 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x8d48a86619e8ae16
+
+2026-05-16 00:55:19.955 [error] [LS Main stderr] E0516 00:55:19.954306 26682 log.go:398] failed to check terminal shell support: internal: internal error
+
+2026-05-16 00:55:20.007 [error] [LS Main stderr] I0516 00:55:20.007460 26682 planner_generator.go:283] Requesting planner with 12 chat messages at model retry attempt 1 and API retry attempt 1
+
+2026-05-16 00:55:25.938 [error] [LS Main stderr] I0516 00:55:25.938204 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x816767f2306f4d9c
+
+2026-05-16 00:55:26.067 [error] [LS Main stderr] I0516 00:55:26.066778 26682 planner_generator.go:283] Requesting planner with 14 chat messages at model retry attempt 1 and API retry attempt 1
+
+2026-05-16 00:55:27.204 [error] [LS Main stderr] I0516 00:55:27.203903 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xea4b17b42ee832d4
+
+2026-05-16 00:55:31.026 [error] [LS Main stderr] I0516 00:55:31.025864 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xcc7de33b6ff3ed61
+
+2026-05-16 00:55:36.197 [error] [LS Main stderr] I0516 00:55:36.196929 26682 planner_generator.go:283] Requesting planner with 16 chat messages at model retry attempt 1 and API retry attempt 1
+
+2026-05-16 00:55:40.692 [error] [LS Main stderr] I0516 00:55:40.692646 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xe105e83146bdb732
+
+2026-05-16 00:58:15.303 [error] [LS Main stderr] I0516 00:58:15.302954 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6eb4901cf22ad85e
+
+2026-05-16 00:58:15.988 [error] [LS Main stderr] I0516 00:58:15.988484 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7ac3957dce9905e6
+
+2026-05-16 00:58:16.228 [error] [LS Main stderr] I0516 00:58:16.228525 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe1ee3394f3f3d9af
+
+2026-05-16 01:03:15.071 [error] [LS Main stderr] I0516 01:03:15.071116 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x78b2cc74b9ed7567
+
+2026-05-16 01:03:15.656 [error] [LS Main stderr] I0516 01:03:15.656324 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x579e7b991b531951
+
+2026-05-16 01:08:15.493 [error] [LS Main stderr] I0516 01:08:15.493659 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9d8f9c6e7fe479ba
+
+2026-05-16 01:08:15.987 [error] [LS Main stderr] I0516 01:08:15.987611 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7f759d28dbb51d87
+
+2026-05-16 01:13:14.982 [error] [LS Main stderr] I0516 01:13:14.982090 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x7020140f780b21bb
+
+2026-05-16 01:13:15.455 [error] [LS Main stderr] I0516 01:13:15.455285 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x29ff582fe1413787
+
+2026-05-16 01:18:14.851 [error] [LS Main stderr] I0516 01:18:14.850817 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xcc9d6a7689d21fc3
+
+2026-05-16 01:18:15.557 [error] [LS Main stderr] I0516 01:18:15.557002 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x2cb0a55179584f01
+
+2026-05-16 01:23:14.996 [error] [LS Main stderr] I0516 01:23:14.996736 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x5b797653a25592a8
+
+2026-05-16 01:23:15.451 [error] [LS Main stderr] I0516 01:23:15.451471 26682 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5cc4e3796daba5ff
+

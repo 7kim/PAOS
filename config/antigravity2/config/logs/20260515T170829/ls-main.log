@@ -1,0 +1,29 @@
+2026-05-15 17:08:29.527 [info] [LS Main] Starting language server from: /usr/share/antigravity/resources/app/extensions/antigravity/bin/language_server_linux_x64
+2026-05-15 17:08:29.551 [info] [LS Main] Args: --csrf_token 95850998-5aad-4191-a1c5-912b8b13d427 --extension_server_port 36697 --extension_server_csrf_token 5d2b6994-879c-40c6-874a-01b5e69e22a5 --app_data_dir antigravity --cloud_code_endpoint https://cloudcode-pa.googleapis.com
+2026-05-15 17:08:29.767 [info] [LS Main] Process spawned with PID: 62423
+2026-05-15 17:08:29.864 [error] [LS Main stderr] I0515 17:08:29.864256 62423 server.go:1236] Starting language server process with pid 62423
+I0515 17:08:29.864364 62423 server.go:301] Setting GOMAXPROCS to 4
+
+2026-05-15 17:08:29.866 [error] [LS Main stderr] I0515 17:08:29.866176 62423 server.go:440] Language server will attempt to listen on host 127.0.0.1
+
+2026-05-15 17:08:29.866 [error] [LS Main stderr] I0515 17:08:29.866423 62423 server.go:454] Language server listening on random port at 40777 for HTTPS (gRPC)
+
+2026-05-15 17:08:29.866 [error] [LS Main stderr] I0515 17:08:29.866456 62423 server.go:461] Language server listening on random port at 42321 for HTTP
+
+2026-05-15 17:08:30.424 [error] [LS Main stderr] I0515 17:08:30.424697 62423 server.go:433] Created extension server client at port 36697
+
+2026-05-15 17:08:30.445 [error] [LS Main stderr] I0515 17:08:30.445022 62423 cascade_manager.go:773] Reactive state is disabled
+
+2026-05-15 17:08:30.463 [info] [LS Main] LS started on port 40777
+2026-05-15 17:08:30.466 [error] [LS Main stderr] I0515 17:08:30.465762 62423 server.go:1693] initialized server successfully in 601.364257ms
+
+2026-05-15 17:08:31.633 [error] [LS Main stderr] I0515 17:08:31.632658 62423 http_helpers.go:151] URL: https://cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x622c8bb9c6d8638e
+
+2026-05-15 17:08:32.331 [error] [LS Main stderr] I0515 17:08:32.331139 62423 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xe25d78a348013cf
+
+2026-05-15 17:08:33.446 [error] [LS Main stderr] I0515 17:08:33.446290 62423 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x677064e20be37d45
+
+2026-05-15 17:08:34.026 [error] [LS Main stderr] I0515 17:08:33.979466 62423 http_helpers.go:151] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x45251ca306d99cdc
+
+2026-05-15 17:09:14.385 [error] [LS Main stderr] E0515 17:09:14.384952 62423 interceptor.go:74] /exa.language_server_pb.LanguageServerService/GetUserMemories (unknown): deprecated
+

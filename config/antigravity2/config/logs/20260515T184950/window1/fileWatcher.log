@@ -1,0 +1,2 @@
+2026-05-15 19:04:55.187 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-05-15 19:28:00.007 [error] [File Watcher (node.js)] Failed to watch /home/dev/Documents/Dev/Tradingview/.git/Tradingview.code-workspace for changes using fs.watch() (Error: ENOENT: no such file or directory, watch '/home/dev/Documents/Dev/Tradingview/.git/Tradingview.code-workspace')

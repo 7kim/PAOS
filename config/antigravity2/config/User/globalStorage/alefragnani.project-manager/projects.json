@@ -1,0 +1,34 @@
+[
+	{
+		"name": "root",
+		"rootPath": "/",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "dev",
+		"rootPath": "/home/dev",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": ".opencode",
+		"rootPath": "/home/dev/.opencode",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	},
+	{
+		"name": "AI_Workflow",
+		"rootPath": "/home/dev/AI_Workflow",
+		"paths": [],
+		"tags": [],
+		"enabled": true,
+		"profile": ""
+	}
+]

@@ -1,0 +1,10 @@
+2026-05-17 02:13:07.791 [info] To enable debug logging, run "GitLens: Enable Debug Logging" or "Developer: Set Log Level..." from the Command Palette
+2026-05-17 02:13:07.791 [info]    [            1] GitLens v17.12.2  activating in Antigravity (1.107.0) on the desktop; mode=production,language='en', logLevel='info', defaultDateLocale='null' (antigravity|fba7d0e441f79ff4c5be727cba943b67ef55086d924406756b80b02747a938ee|78162563-19dd-44f1-893b-68e7783d21571778969584927)
+2026-05-17 02:13:07.791 [info]    [            1] GitLens v17.12.2 activated [93ms]
+2026-05-17 02:13:07.791 [info]    [   6e →    6f] GlCliGitProvider.findGit Git (2.53.0) found in /usr/bin/git [87ms]
+2026-05-17 02:13:07.791 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/project-gpt) searching (depth=1)...
+2026-05-17 02:13:07.791 [info]    [GIT      50ms] [/home/dev/Documents/Dev/project-gpt] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree [50ms]
+2026-05-17 02:13:07.791 [info]    [   6e →    91] GlCliGitProvider.repositorySearch(/home/dev/Documents/Dev/project-gpt) found root repository in '/home/dev'
+2026-05-17 02:13:07.830 [info]    [IPC          ] Server started on http://127.0.0.1:39555
+2026-05-17 02:13:07.965 [info]    [GIT       8ms] [/home/dev] git remote -v [8ms]
+2026-05-17 02:13:07.991 [info]    [GIT      10ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote [10ms]

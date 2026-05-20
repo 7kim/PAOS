@@ -1,0 +1,12 @@
+2026-05-15 19:29:35.932 [info] [Manager] [DEBUG bootstrap-window] cssModules: undefined (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
+2026-05-15 19:29:35.932 [info] [Manager] [DEBUG bootstrap-window] esModule: jetskiAgent/main (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
+2026-05-15 19:29:35.932 [info] [Manager] [DEBUG bootstrap-window] baseUrl: [object URL] (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
+2026-05-15 19:29:35.932 [info] [Manager] [DEBUG bootstrap-window] new URL: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/jetskiAgent/main.js (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
+2026-05-15 19:29:36.638 [info] [Manager] [FileWatch:undefined] connecting... (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:3662)
+2026-05-15 19:29:36.794 [info] [Manager] Overwriting grammar scope name to file mapping for scope source.ruby.
+Old grammar file: file:///usr/share/antigravity/resources/app/extensions/ruby/syntaxes/ruby.tmLanguage.json.
+New grammar file: file:///home/dev/.antigravity/extensions/shopify.ruby-lsp-0.10.3-universal/grammars/ruby.cson.json (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:4561)
+2026-05-15 19:29:47.730 [info] [Manager] Uncaught (in promise) Error: No TM Grammar registered for this language. (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:4563)
+2026-05-15 19:29:47.731 [info] [Manager] Uncaught (in promise) Error: No TM Grammar registered for this language. (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:4563)
+2026-05-15 19:29:47.732 [info] [Manager] Uncaught (in promise) Error: No TM Grammar registered for this language. (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:4563)
+2026-05-15 19:29:47.733 [info] [Manager] Uncaught (in promise) Error: No TM Grammar registered for this language. (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:4563)

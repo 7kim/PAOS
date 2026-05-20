@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src {{CSP_SOURCE}} 'unsafe-inline'; font-src {{CSP_SOURCE}}; script-src 'nonce-{{NONCE}}';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SecureCoder Dashboard</title>
+  <link href="{{CODICONS_URI}}" rel="stylesheet" />
+  <link href="{{DASHBOARD_CSS_URI}}" rel="stylesheet" />
+</head>
+<body>
+  <div id="loader-overlay" class="loading hidden">Loading...</div>
+
+  <div id="button-container" class="button-container">
+    <div class="top-action-container">
+      <button id="manual-scan-btn" class="btn-full-width"
+        title="Select files or folders to scan for vulnerabilities">
+        <span class="codicon codicon-folder"></span>
+        <span>Scan File/Folder...</span>
+      </button>
+      <div class="action-btn-group">
+        <button id="ignore-selected-btn" class="btn-ignore" disabled
+          title="Suppress selected vulnerabilities from future scans">
+          <span class="codicon codicon-eye-closed"></span>
+          <span id="ignore-selected-label">Ignore (0)</span>
+        </button>
+        <div class="split-btn-container">
+          <button id="fix-selected-btn" class="btn-fix-main" disabled
+            title="Start fixing immediately (skips prompt review)">
+            <span class="codicon codicon-sparkle" id="fix-btn-icon"></span>
+            <span id="fix-selected-label">Fix (0)</span>
+          </button>
+          <button id="fix-dropdown-btn" class="btn-fix-dropdown" disabled
+            title="Show fix options">
+            <span class="codicon codicon-chevron-down"></span>
+          </button>
+          <div id="fix-dropdown-menu" class="dropdown-menu">
+            <div class="dropdown-item selected" data-mode="auto"
+              title="Start fixing immediately (skips prompt review)">
+              <span>Fix</span>
+              <span class="codicon codicon-check"></span>
+            </div>
+            <div class="dropdown-item" data-mode="review"
+              title="Review the prompt before starting the fix">
+              <span>Review and fix</span>
+              <span class="codicon codicon-check"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="welcome-state" class="state-panel hidden">
+    <span class="codicon codicon-search state-panel-icon"></span>
+    <h2 class="state-panel-heading">Ready to Scan</h2>
+    <p class="state-panel-body state-panel-body--welcome">Open any file to start an automatic scan, or use the Scan button above to inspect your workspace.</p>
+  </div>
+
+  <div id="no-issues" class="state-panel hidden">
+    <span class="codicon codicon-shield state-panel-icon state-panel-icon--green"></span>
+    <h2 class="state-panel-heading">No Identified Issues</h2>
+    <p class="state-panel-body">No identified issues were found in this scan. Note that this does not guarantee the absence of all vulnerabilities.</p>
+  </div>
+
+  <!-- Active vulnerabilities list -->
+  <div id="vuln-list" class="list-container">
+    <!-- Populated dynamically via postMessage renderHTML -->
+  </div>
+
+  <!-- Ignored vulnerabilities list (hidden by default) -->
+  <div id="ignored-list" class="list-container hidden">
+    <!-- Populated dynamically -->
+  </div>
+
+  <!-- Footer: scope toggle + ignored view toggle + edit ignore file -->
+  <div class="footer">
+    <button id="scope-toggle-btn" class="footer-btn" title="Show vulnerabilities for all files or only the active file">
+      <span class="codicon codicon-files" id="scope-toggle-icon"></span>
+      <span id="scope-toggle-label">Dashboard Scope: All Files</span>
+    </button>
+    <button id="toggle-ignored-btn" class="footer-btn" title="View and manage vulnerabilities you have chosen to suppress">
+      <span class="codicon codicon-eye-closed"></span>
+      <span id="toggle-ignored-label">View Ignored</span>
+    </button>
+    <button id="edit-ignore-file-btn" class="footer-btn" title="Configure files you would like to exclude from scanning">
+      <span class="codicon codicon-settings-gear"></span>
+      <span>SecureCoder Ignore File</span>
+    </button>
+  </div>
+
+  <script nonce="{{NONCE}}">
+    const vscode = acquireVsCodeApi();
+    let vulnerabilities = [];
+    let ignoredEntries = [];
+    let showingIgnored = false;
+    let currentScope = 'all';
+    // True after the first successful data load; suppresses the loader spinner
+    // on subsequent background refreshes so the UI doesn't flash on every scan.
+    let initialLoadComplete = false;
+    let hasScanned = false;
+
+    // Gmail-style selection state: Map<vulnId, boolean>
+    const selectedVulns = new Map();
+    let fixMode = 'auto'; // 'review' or 'auto'
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    window.onerror = function (message, source, lineno, colno, error) {
+      vscode.postMessage({ type: 'log', message: `Webview Error: ${message} (${source}:${lineno})` });
+    };
+
+    // -- Selection helpers ------------------------------------------------
+    function getSelectedCount() {
+      let count = 0;
+      for (const v of selectedVulns.values()) {
+        if (v) count++;
+      }
+      return count;
+    }
+
+    function getSelectedVulns() {
+      return vulnerabilities.filter((v) => selectedVulns.get(v.id) === true);
+    }
+
+    function updateActionButtons() {
+      const count = getSelectedCount();
+      const fixBtn = document.getElementById('fix-selected-btn');
+      const ignoreBtn = document.getElementById('ignore-selected-btn');
+      const fixDropdownBtn = document.getElementById('fix-dropdown-btn');
+      const fixLabel = document.getElementById('fix-selected-label');
+      const ignoreLabel = document.getElementById('ignore-selected-label');
+
+      if (fixBtn) fixBtn.disabled = count === 0;
+      if (fixDropdownBtn) fixDropdownBtn.disabled = count === 0;
+      if (ignoreBtn) ignoreBtn.disabled = count === 0;
+
+      if (fixLabel) {
+        if (fixMode === 'auto') {
+          fixLabel.textContent = `Fix (${count})`;
+        } else {
+          fixLabel.textContent = `Review and fix (${count})`;
+        }
+      }
+      if (ignoreLabel) ignoreLabel.textContent = `Ignore (${count})`;
+    }
+
+    // -- Normalize type name (mirrors dashboard_utils.ts normalizeVulnType) --
+    function normalizeType(type) {
+      return type.replace(/\s+in\s+[\w.]+(?:\s+[\w.]+){0,2}$/i, '').trim();
+    }
+
+    // -- Cascading checkbox logic -----------------------------------------
+
+    /**
+     * When a severity-level checkbox changes, select or deselect all
+     * vulnerabilities under that severity.
+     */
+    function onSeverityCheckboxChange(checkbox) {
+      const severity = checkbox.getAttribute('data-severity');
+      const checked = checkbox.checked;
+      // Unset indeterminate since user explicitly clicked
+      checkbox.indeterminate = false;
+
+      vulnerabilities
+        .filter((v) => v.severity === severity)
+        .forEach((v) => selectedVulns.set(v.id, checked));
+
+      // Update all child checkboxes in the DOM
+      const group = checkbox.closest('.vuln-group');
+      if (group) {
+        group.querySelectorAll('.type-checkbox, .file-checkbox').forEach((cb) => {
+          cb.checked = checked;
+          cb.indeterminate = false;
+        });
+      }
+
+      updateActionButtons();
+    }
+
+    /**
+     * When a type-level checkbox changes, select or deselect all
+     * vulnerabilities of that type.
+     */
+    function onTypeCheckboxChange(checkbox) {
+      const typeName = checkbox.getAttribute('data-type');
+      const checked = checkbox.checked;
+      checkbox.indeterminate = false;
+
+      vulnerabilities
+        .filter((v) => normalizeType(v.type) === typeName)
+        .forEach((v) => selectedVulns.set(v.id, checked));
+
+      // Update file-level checkboxes within this type group
+      const group = checkbox.closest('.vuln-group');
+      if (group) {
+        group.querySelectorAll('.file-checkbox').forEach((cb) => {
+          cb.checked = checked;
+          cb.indeterminate = false;
+        });
+      }
+
+      // Propagate upward to the severity-level parent
+      syncSeverityParent(checkbox);
+
+      updateActionButtons();
+    }
+
+    /**
+     * When a file-level checkbox changes, toggle just that vulnerability.
+     */
+    function onFileCheckboxChange(checkbox) {
+      const vulnId = checkbox.getAttribute('data-vulnid');
+      selectedVulns.set(vulnId, checkbox.checked);
+
+      // Propagate upward: type parent, then severity parent
+      syncTypeParent(checkbox);
+
+      updateActionButtons();
+    }
+
+    /**
+     * Update a type-level parent checkbox based on its file-level children.
+     * Then cascade up to the severity parent.
+     */
+    function syncTypeParent(childCheckbox) {
+      // Walk up to the type-level <details class="vuln-group">
+      // File checkboxes are inside a nested vuln-group (the type group).
+      const typeGroup = childCheckbox.closest('.vuln-group');
+      if (!typeGroup) return;
+
+      const typeCheckbox = typeGroup.querySelector(':scope > summary .type-checkbox');
+      if (!typeCheckbox) return;
+
+      const fileCheckboxes = typeGroup.querySelectorAll('.file-checkbox');
+      const total = fileCheckboxes.length;
+      let checkedCount = 0;
+      fileCheckboxes.forEach((cb) => { if (cb.checked) checkedCount++; });
+
+      if (checkedCount === 0) {
+        typeCheckbox.checked = false;
+        typeCheckbox.indeterminate = false;
+      } else if (checkedCount === total) {
+        typeCheckbox.checked = true;
+        typeCheckbox.indeterminate = false;
+      } else {
+        typeCheckbox.checked = false;
+        typeCheckbox.indeterminate = true;
+      }
+
+      // Now cascade up to severity
+      syncSeverityParent(typeCheckbox);
+    }
+
+    /**
+     * Update a severity-level parent checkbox based on its type-level children.
+     */
+    function syncSeverityParent(childCheckbox) {
+      // The type checkbox is inside a nested vuln-group (type group).
+      // The severity group is the outer vuln-group that contains all type groups.
+      const typeGroup = childCheckbox.closest('.vuln-group');
+      if (!typeGroup) return;
+
+      // The severity group is the <details class="vuln-group"> that contains
+      // this type group's parent .group-content.
+      const sevGroup = typeGroup.parentElement?.closest('.vuln-group');
+      if (!sevGroup) return;
+
+      const sevCheckbox = sevGroup.querySelector(':scope > summary .sev-checkbox');
+      if (!sevCheckbox) return;
+
+      // Count all file-level checkboxes under this severity group
+      const allFiles = sevGroup.querySelectorAll('.file-checkbox');
+      const total = allFiles.length;
+      let checkedCount = 0;
+      allFiles.forEach((cb) => { if (cb.checked) checkedCount++; });
+
+      if (checkedCount === 0) {
+        sevCheckbox.checked = false;
+        sevCheckbox.indeterminate = false;
+      } else if (checkedCount === total) {
+        sevCheckbox.checked = true;
+        sevCheckbox.indeterminate = false;
+      } else {
+        sevCheckbox.checked = false;
+        sevCheckbox.indeterminate = true;
+      }
+    }
+
+    // -- Message handling -------------------------------------------------
+
+    window.addEventListener('message', (event) => {
+      const message = event.data;
+      switch (message.type) {
+        case 'refresh':
+          fetchData();
+          break;
+        case 'autostartFixesChanged': {
+          fixMode = message.enabled ? 'auto' : 'review';
+
+          // Update selection in UI
+          const fixDropdownMenu = document.getElementById('fix-dropdown-menu');
+          if (fixDropdownMenu) {
+            fixDropdownMenu.querySelectorAll('.dropdown-item').forEach(i => {
+              if (i.getAttribute('data-mode') === fixMode) {
+                i.classList.add('selected');
+              } else {
+                i.classList.remove('selected');
+              }
+            });
+          }
+
+          // Update button label and icon
+          const label = document.getElementById('fix-selected-label');
+          const icon = document.getElementById('fix-btn-icon');
+          const count = getSelectedCount();
+          const fixSelectedBtn = document.getElementById('fix-selected-btn');
+
+          if (fixMode === 'auto') {
+            if (label) label.textContent = `Fix (${count})`;
+            if (icon) icon.className = 'codicon codicon-sparkle';
+            if (fixSelectedBtn) fixSelectedBtn.title = "Start fixing immediately (skips prompt review)";
+          } else {
+            if (label) label.textContent = `Review and fix (${count})`;
+            if (icon) icon.className = 'codicon codicon-sparkle';
+            if (fixSelectedBtn) fixSelectedBtn.title = "Review the prompt before starting the fix";
+          }
+          break;
+        }
+        case 'renderHTML': {
+          const vulnList = document.getElementById('vuln-list');
+          if (vulnList) {
+            // Capture UI state before destroying the DOM so we can restore
+            // the user's scroll position and any cards they had expanded.
+            const openIds = [];
+            vulnList.querySelectorAll('details[open]').forEach((el) => {
+              if (el.id) openIds.push(el.id);
+            });
+            const scrollTop = vulnList.scrollTop;
+
+            vulnList.innerHTML = message.html;
+
+            // Restore expanded cards (best-effort: IDs may not exist if
+            // the vulnerability set shrank and those cards were removed).
+            openIds.forEach((id) => {
+              const el = document.getElementById(id);
+              if (el && el.tagName === 'DETAILS') el.open = true;
+            });
+
+            // Restore scroll position.
+            vulnList.scrollTop = scrollTop;
+          }
+          // Reset selections after re-render: new DOM elements may have
+          // different IDs if the vuln set genuinely changed.
+          selectedVulns.clear();
+          updateActionButtons();
+          break;
+        }
+        case 'vulnerabilitiesFetched': {
+          vulnerabilities = message.vulnerabilities || [];
+          hasScanned = !!message.hasScanned;
+          vscode.postMessage({ type: 'updateBadge', count: vulnerabilities.length });
+
+          const loader = document.getElementById('loader-overlay');
+          const noIssues = document.getElementById('no-issues');
+          const welcomeState = document.getElementById('welcome-state');
+          const vulnList = document.getElementById('vuln-list');
+          const buttonContainer = document.getElementById('button-container');
+
+          if (loader) loader.classList.add('hidden');
+          initialLoadComplete = true;
+
+          if (!showingIgnored) {
+            if (buttonContainer) buttonContainer.classList.remove('hidden');
+            if (vulnerabilities.length === 0) {
+              if (!message.hasScanned) {
+                if (welcomeState) {
+                  welcomeState.classList.remove('hidden');
+                  welcomeState.style.display = 'flex';
+                }
+                if (noIssues) {
+                  noIssues.classList.add('hidden');
+                  noIssues.style.display = 'none';
+                }
+              } else {
+                if (welcomeState) {
+                  welcomeState.classList.add('hidden');
+                  welcomeState.style.display = 'none';
+                }
+                if (noIssues) {
+                  noIssues.classList.remove('hidden');
+                  noIssues.style.display = 'flex';
+                }
+              }
+              if (vulnList) vulnList.classList.add('hidden');
+            } else {
+              if (welcomeState) {
+                welcomeState.classList.add('hidden');
+                welcomeState.style.display = 'none';
+              }
+              if (noIssues) {
+                noIssues.classList.add('hidden');
+                noIssues.style.display = 'none';
+              }
+              if (vulnList) vulnList.classList.remove('hidden');
+              requestRender();
+            }
+          }
+
+          // Keep ignored count fresh after each scan
+          vscode.postMessage({ type: 'fetchIgnored' });
+          break;
+        }
+        case 'ignoredFetched': {
+          ignoredEntries = message.entries || [];
+          updateToggleBtn();
+          if (showingIgnored) {
+            renderIgnoredList();
+          }
+          break;
+        }
+        case 'scopeChanged': {
+          currentScope = message.scope || 'all';
+          vscode.setState({ ...vscode.getState(), scope: currentScope });
+          updateScopeBtn();
+          break;
+        }
+      }
+    });
+
+    function requestRender() {
+      vscode.postMessage({ type: 'requestRender', vulnerabilities, groupBy: 'severity' });
+    }
+
+    function fetchData() {
+      // Only show the spinner on the very first load; subsequent refreshes
+      // happen silently in the background to avoid distracting flicker.
+      if (!initialLoadComplete) {
+        const loader = document.getElementById('loader-overlay');
+        if (loader) loader.classList.remove('hidden');
+      }
+      vscode.postMessage({ type: 'fetchVulnerabilities' });
+    }
+
+    // --- Ignored view --------------------------------------------------------
+
+
+    function updateToggleBtn() {
+      const label = document.getElementById('toggle-ignored-label');
+      const btn = document.getElementById('toggle-ignored-btn');
+      const count = ignoredEntries.length;
+      if (label) label.textContent = showingIgnored ? 'View Active Issues' : `View Ignored (${count})`;
+      if (btn) {
+        if (showingIgnored) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      }
+    }
+
+    function showActiveView() {
+      document.getElementById('ignored-list')?.classList.add('hidden');
+      document.getElementById('button-container')?.classList.remove('hidden');
+      const welcomeState = document.getElementById('welcome-state');
+      const noIssues = document.getElementById('no-issues');
+
+      if (vulnerabilities.length === 0) {
+        if (!hasScanned) {
+          if (welcomeState) {
+            welcomeState.classList.remove('hidden');
+            welcomeState.style.display = 'flex';
+          }
+          if (noIssues) {
+            noIssues.classList.add('hidden');
+            noIssues.style.display = 'none';
+          }
+        } else {
+          if (welcomeState) {
+            welcomeState.classList.add('hidden');
+            welcomeState.style.display = 'none';
+          }
+          if (noIssues) {
+            noIssues.classList.remove('hidden');
+            noIssues.style.display = 'flex';
+          }
+        }
+      } else {
+        if (welcomeState) {
+          welcomeState.classList.add('hidden');
+          welcomeState.style.display = 'none';
+        }
+        if (noIssues) {
+          noIssues.classList.add('hidden');
+          noIssues.style.display = 'none';
+        }
+        document.getElementById('vuln-list')?.classList.remove('hidden');
+      }
+    }
+
+    function showIgnoredView() {
+      document.getElementById('button-container')?.classList.add('hidden');
+      document.getElementById('vuln-list')?.classList.add('hidden');
+
+      const welcomeState = document.getElementById('welcome-state');
+      const noIssues = document.getElementById('no-issues');
+      if (welcomeState) {
+        welcomeState.classList.add('hidden');
+        welcomeState.style.display = 'none';
+      }
+      if (noIssues) {
+        noIssues.classList.add('hidden');
+        noIssues.style.display = 'none';
+      }
+
+      document.getElementById('ignored-list')?.classList.remove('hidden');
+      renderIgnoredList();
+    }
+
+    function renderIgnoredList() {
+      const list = document.getElementById('ignored-list');
+      if (!list) return;
+
+      if (ignoredEntries.length === 0) {
+        list.innerHTML =
+          '<div class="empty-state">' +
+          '<span class="codicon codicon-eye-closed empty-state-icon"></span>' +
+          '<div>No ignored vulnerabilities.</div>' +
+          '</div>';
+        return;
+      }
+
+      const clearBtn = `<button class="clear-all-btn" id="clear-all-ignored-btn" title="Un-ignore all">Clear all</button>`;
+      const header =
+        '<div class="ignored-header">' +
+        '<span class="ignored-header-title">' +
+        '<span class="codicon codicon-eye-closed"></span>' +
+        `Ignored (${ignoredEntries.length})` +
+        '</span>' +
+        clearBtn +
+        '</div>';
+
+      const items = ignoredEntries.map(renderIgnoredEntry).join('');
+      list.innerHTML = header + items;
+    }
+
+    function renderIgnoredEntry(e) {
+      const basename = e.filePath ? e.filePath.split('/').pop() : e.filePath;
+      // Strip VS Code codicon syntax like "$(error) " from reason
+      const reason = (e.reason || '').replace(/\$\([^)]+\)\s*/g, '');
+      const dateStr = e.timestamp ? new Date(e.timestamp).toLocaleDateString() : '';
+      return (
+        '<div class="ignored-entry">' +
+        '<div class="ignored-entry-info">' +
+        `<div class="ignored-rule">${escHtml(e.ruleId)}</div>` +
+        `<div class="ignored-file"><span class="codicon codicon-file"></span> ${escHtml(basename)}</div>` +
+        `<div class="ignored-reason">${escHtml(reason)}${dateStr ? ' · ' + escHtml(dateStr) : ''}</div>` +
+        '</div>' +
+        `<button class="unignore-btn" data-ruleid="${escHtml(e.ruleId)}" data-filepath="${escHtml(e.filePath)}" title="Un-ignore this vulnerability">` +
+        '<span class="codicon codicon-eye"></span>' +
+        '</button>' +
+        '</div>'
+      );
+    }
+
+    // --- Click handlers ------------------------------------------------------
+
+    function updateScopeBtn() {
+      const label = document.getElementById('scope-toggle-label');
+      const icon = document.getElementById('scope-toggle-icon');
+      const btn = document.getElementById('scope-toggle-btn');
+      if (currentScope === 'activeFile') {
+        if (label) label.textContent = 'Dashboard Scope: Active File';
+        if (icon) { icon.className = 'codicon codicon-file'; }
+        if (btn) btn.classList.add('active');
+      } else {
+        if (label) label.textContent = 'Dashboard Scope: All Files';
+        if (icon) { icon.className = 'codicon codicon-files'; }
+        if (btn) btn.classList.remove('active');
+      }
+    }
+
+    const scopeToggleBtn = document.getElementById('scope-toggle-btn');
+    if (scopeToggleBtn) {
+      scopeToggleBtn.addEventListener('click', () => {
+        currentScope = currentScope === 'all' ? 'activeFile' : 'all';
+        vscode.setState({ ...vscode.getState(), scope: currentScope });
+        updateScopeBtn();
+        vscode.postMessage({ type: 'setScope', scope: currentScope });
+      });
+    }
+
+    const manualScanBtn = document.getElementById('manual-scan-btn');
+    if (manualScanBtn) {
+      manualScanBtn.addEventListener('click', () => {
+        vscode.postMessage({ type: 'customScan' });
+      });
+    }
+    // -- Action buttons ---------------------------------------------------
+    const fixSelectedBtn = document.getElementById('fix-selected-btn');
+    if (fixSelectedBtn) {
+      fixSelectedBtn.addEventListener('click', () => {
+        const selected = getSelectedVulns();
+        if (selected.length > 0) {
+          vscode.postMessage({
+            type: 'fixAllWithAgent',
+            vulnerabilities: selected,
+            autoSend: fixMode === 'auto'
+          });
+        }
+      });
+    }
+
+    const fixDropdownBtn = document.getElementById('fix-dropdown-btn');
+    const fixDropdownMenu = document.getElementById('fix-dropdown-menu');
+    if (fixDropdownBtn && fixDropdownMenu) {
+      fixDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fixDropdownMenu.classList.toggle('show');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!fixDropdownMenu.contains(e.target) && e.target !== fixDropdownBtn) {
+          fixDropdownMenu.classList.remove('show');
+        }
+      });
+
+      fixDropdownMenu.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          fixMode = item.getAttribute('data-mode');
+
+          // Update selection in UI
+          fixDropdownMenu.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
+          item.classList.add('selected');
+
+          // Update button label and icon
+          const label = document.getElementById('fix-selected-label');
+          const icon = document.getElementById('fix-btn-icon');
+          const count = getSelectedCount();
+
+          if (fixMode === 'auto') {
+            if (label) label.textContent = `Fix (${count})`;
+            if (icon) icon.className = 'codicon codicon-sparkle';
+            if (fixSelectedBtn) fixSelectedBtn.title = "Start fixing immediately (skips prompt review)";
+          } else {
+            if (label) label.textContent = `Review and fix (${count})`;
+            if (icon) icon.className = 'codicon codicon-sparkle';
+            if (fixSelectedBtn) fixSelectedBtn.title = "Review the prompt before starting the fix";
+          }
+
+          fixDropdownMenu.classList.remove('show');
+
+          // Notify extension to persist setting
+          vscode.postMessage({ type: 'setAutostartFixes', enabled: fixMode === 'auto' });
+        });
+      });
+    }
+
+    const ignoreSelectedBtn = document.getElementById('ignore-selected-btn');
+    if (ignoreSelectedBtn) {
+      ignoreSelectedBtn.addEventListener('click', () => {
+        const selected = getSelectedVulns();
+        if (selected.length > 0) {
+          vscode.postMessage({ type: 'ignoreGroup', vulnerabilities: selected });
+        }
+      });
+    }
+
+    const toggleBtn = document.getElementById('toggle-ignored-btn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        showingIgnored = !showingIgnored;
+        updateToggleBtn();
+        if (showingIgnored) {
+          vscode.postMessage({ type: 'fetchIgnored' });
+          showIgnoredView();
+        } else {
+          showActiveView();
+        }
+      });
+    }
+
+    const editIgnoreFileBtn = document.getElementById('edit-ignore-file-btn');
+    if (editIgnoreFileBtn) {
+      editIgnoreFileBtn.addEventListener('click', () => {
+        vscode.postMessage({ type: 'editIgnoreFile' });
+      });
+    }
+
+    // -- Delegated click/change handlers on the vulnerability list --------
+
+    document.addEventListener('change', (event) => {
+      const target = event.target;
+      if (!target || !target.classList || !target.classList.contains('select-checkbox')) return;
+
+      // Prevent the details element from toggling when clicking a checkbox
+      event.stopPropagation();
+
+      if (target.classList.contains('sev-checkbox')) {
+        onSeverityCheckboxChange(target);
+      } else if (target.classList.contains('type-checkbox')) {
+        onTypeCheckboxChange(target);
+      } else if (target.classList.contains('file-checkbox')) {
+        onFileCheckboxChange(target);
+      }
+    });
+
+    // Prevent checkbox clicks from toggling the parent <details>/<summary>
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!target) return;
+
+      if (target.classList && target.classList.contains('select-checkbox')) {
+        event.stopPropagation();
+        return;
+      }
+
+      if (!target.closest) return;
+
+      // Clear all ignored
+      if (target.id === 'clear-all-ignored-btn' || target.closest('#clear-all-ignored-btn')) {
+        vscode.postMessage({ type: 'clearAllIgnored' });
+        event.stopPropagation();
+        return;
+      }
+
+      // Un-ignore a single entry (in ignored view)
+      const unignoreBtn = target.closest('.unignore-btn');
+      if (unignoreBtn) {
+        const ruleId = unignoreBtn.getAttribute('data-ruleid');
+        const filePath = unignoreBtn.getAttribute('data-filepath');
+        vscode.postMessage({ type: 'unignore', ruleId, filePath });
+        event.stopPropagation();
+        return;
+      }
+
+      // Handle file path click (opens file at finding line)
+      const fileLink = target.closest('.file-link');
+      if (fileLink) {
+        const file = fileLink.getAttribute('data-file');
+        const line = parseInt(fileLink.getAttribute('data-line'), 10);
+        const vulnId = fileLink.getAttribute('data-vulnid');
+        vscode.postMessage({ type: 'openFile', vulnId, file, line });
+        event.stopPropagation();
+        return;
+      }
+    });
+
+
+    vscode.postMessage({ type: 'log', message: 'Webview Script: Loading' });
+    fetchData();
+    vscode.postMessage({ type: 'log', message: 'Webview Script: Loaded' });
+  </script>
+</body>
+</html>

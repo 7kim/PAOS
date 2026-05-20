@@ -1,0 +1,7 @@
+starting generic LSP server
+ INFO Reading messages
+ INFO Language server processed event `LspResponse` in 0.00s (0.00s waiting)
+ INFO Unhandled notification: Notification { method: "$/setTrace", params: Object {"value": String("off")}, activity_key: None }
+ INFO Language server processed event `DidChangeWorkspaceFolders` in 0.00s (0.00s waiting)
+ INFO Language server processed event `LspResponse` in 0.00s (0.00s waiting)
+ INFO Language server processed event `LspResponse` in 0.00s (0.00s waiting)
