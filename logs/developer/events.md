@@ -14,3 +14,7 @@
 | 2026-05-20T23:30:31Z | EXEC | ~/.local/bin/agy | Installed Antigravity CLI (agy) v1.0.0. Replaces Gemini CLI. |
 | 2026-05-20T23:31:00Z | UPDATE | config/secrets/.env | Stored sudo password; added SUDO_PASSWORD to .env + template |
 | 2026-05-20T23:31:30Z | UPDATE | config/antigravity2/ | Symlinked ~/.config/Antigravity, ~/.cache/antigravity, ~/.local/share/antigravity-ide into AI_Workflow |
+
+[2026-05-21T05:16:00Z] | READ | memory/gemini/antigravity-ide/brain/*/.system_generated/logs/overview.txt | Reconstructed 4 Antigravity conversations from May 14-15
+[2026-05-21T05:16:00Z] | CREATE | ~/Desktop/antigravity-chat-history-May-14-15-2026.html | Exported full conversation history as styled HTML
+[2026-05-21T05:16:00Z] | UPDATE | logs/developer/events.md | Logged this session's actions

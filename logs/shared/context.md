@@ -145,3 +145,17 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Removed legacy APT antigravity v1.23.2 (pkg: antigravity) - was VS Code fork v1\n- Installed Antigravity 2.0 Desktop App via tarball to /opt/antigravity/\n- Created /usr/local/bin/update-antigravity helper for future updates\n- Installed agy CLI v1.0.0 at ~/.local/bin/agy\n- Symlinked ~/.config/Antigravity → AI_Workflow/config/antigravity2/config\n- Symlinked ~/.cache/antigravity → AI_Workflow/config/antigravity2/cache\n- Symlinked ~/.local/share/antigravity-ide → AI_Workflow/config/antigravity2/local-share\n- Stored sudo password in config/secrets/.env as SUDO_PASSWORD\n- Flag: ~/.antigravity (legacy VS Code extensions) still points to AI_Workflow/config/antigravity/ — may need migration
 
 **Handoff Notes**: Antigravity 2.0 is installed and ready. Desktop app: `antigravity` (or launch from Activities). CLI: `agy`. Configs are in AI_Workflow/config/antigravity2/. The legacy ~/.antigravity symlink (VS Code extensions from v1) still exists at AI_Workflow/config/antigravity/ — the Antigravity 2.0 IDE wizard may have copied some extensions already during first launch. To update desktop app: `sudo update-antigravity`. To update CLI: `agy update`.
+
+---
+
+## 2026-05-20 23:29 @opencode-developer — Task: SESSION-May-21
+
+**Thinking**: Completed full Antigravity 2.0 installation and conversation recovery. Installed Antigravity 2.0.1 Desktop App + agy CLI, symlinked all config into AI_Workflow, stored SUDO_PASSWORD in .env, created update helper. Recovered 4 conversations from Antigravity brain dirs (protobuf artifacts + overview.txt logs) covering Ubuntu migration, Git/GitHub workflow, running the bot, and Lightweight Charts migration. Exported as styled HTML to Desktop.
+
+**Decisions**:
+- Used tarball-based install (not APT) since Antigravity 2.0 is not distributed via apt repo
+- Stored SUDO_PASSWORD in config/secrets/.env for future non-interactive agent sudo
+- Did NOT commit config/antigravity2/ contents to git (too volatile)
+- Conversation HTML exported to Desktop as requested
+
+**Handoff Notes**: Antigravity 2.0 is installed and integrated. Language server binary is missing at legacy path — may need attention if IDE is launched. No active PAOS tasks — pipeline clear. User has the full chat history on Desktop if they need to review Tradingview project decisions.
