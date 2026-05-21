@@ -36,3 +36,8 @@
 [2026-05-21T05:13:29Z] | PAOS-SETUP | UPDATE setup.sh, install-ubuntu.sh | Three-tier ecosystem banner + companion project next steps
 [2026-05-21T05:14:00Z] | PAOS-SETUP | CREATE setup.sh, UPDATE .env.local.template | PAOS-WEB setup script with ecosystem integration
 [2026-05-21T05:15:00Z] | PAOS-SETUP | CREATE .gitignore, setup.sh, UPDATE README.md | PAOS-VPS initial git init with scaffold and gitignore
+[2026-05-21T09:35:00Z] | PAOS-DASHBOARD | UPDATE api/ledger/route.ts, api/overview/route.ts | Sort ledger by parsed timestamp (newest first)
+[2026-05-21T09:36:00Z] | PAOS-DASHBOARD | CREATE registry.json entry | Add opencode-developer as separate registered agent
+[2026-05-21T09:37:00Z] | PAOS-DASHBOARD | CREATE app/pipelines/, api/pipelines/ | GitGraph page — visual DAG of all pipelines
+[2026-05-21T09:38:00Z] | PAOS-DASHBOARD | UPDATE app/plans/, api/plans/ | Fix plans to read from pipelines/ as primary source
+[2026-05-21T09:39:00Z] | PAOS-DASHBOARD | UPDATE Sidebar, ledger/page.tsx, page.tsx | Add Pipelines nav link, update agent colors
