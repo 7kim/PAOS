@@ -1,6 +1,9 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { ChevronRight, ExternalLink, FileCode, GitCommit, GitGraph, Search, Terminal } from "lucide-react";
+import { 
+  ChevronRight, ExternalLink, FileCode, GitCommit, GitGraph, 
+  Search, Terminal, Layout, FolderTree, Eye, Layers 
+} from "lucide-react";
 
 interface Agent {
   id: string;
@@ -26,6 +29,7 @@ interface CommitDetail {
   messageShort: string;
   diff: string;
   files: { status: string; path: string }[];
+  tree: { path: string; type: string }[];
 }
 
 const GK_COLOR = "#289473";
@@ -38,32 +42,81 @@ const statusColors: Record<string, string> = {
   C: "#3b82f6",
 };
 
-export default function GitViewPage() {
+function parseDiff(diff: string) {
+  const chunks: { file: string; oldLines: string[]; newLines: string[] }[] = [];
+  let currentFile = "";
+  let oldLines: string[] = [];
+  let newLines: string[] = [];
+
+  const lines = diff.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.startsWith("diff --git")) {
+      if (currentFile) {
+        chunks.push({ file: currentFile, oldLines, newLines });
+        oldLines = [];
+        newLines = [];
+      }
+      currentFile = line.match(/ a(.*) b(.*)/)?.[1] || "unknown";
+      continue;
+    }
+    if (line.startsWith("+++ b")) {
+      currentFile = line.match(/\+\+\+ b(.*)/)?.[1] || currentFile;
+      continue;
+    }
+    if (line.startsWith("@@")) {
+      continue;
+    }
+    if (line.startsWith("-")) {
+      oldLines.push(line.slice(1));
+    } else if (line.startsWith("+")) {
+      newLines.push(line.slice(1));
+    } else {
+      oldLines.push(line);
+      newLines.push(line);
+    }
+  }
+  if (currentFile) {
+    chunks.push({ file: currentFile, oldLines, newLines });
+  }
+  return chunks;
+}
+
+function GitViewPage({ 
+  selectedAgent, 
+  setSelectedAgent, 
+  query, 
+  setQuery 
+}: { 
+  selectedAgent: string; 
+  setSelectedAgent: (a: string) => void; 
+  query: string; 
+  setQuery: (q: string) => void; 
+}) {
   const [commits, setCommits] = useState<Commit[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
-  const [selectedAgent, setSelectedAgent] = useState("all");
   const [selectedHash, setSelectedHash] = useState<string | null>(null);
   const [detail, setDetail] = useState<CommitDetail | null>(null);
-  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const [detailTab, setDetailTab] = useState<"diff" | "files" | "details">("diff");
 
-  const load = useCallback(async (agent: string, q: string) => {
+  const load = useCallback(async () => {
     setLoading(true);
     const params = new URLSearchParams({ max: "50" });
-    if (agent && agent !== "all") params.set("agent", agent);
-    if (q) params.set("q", q);
+    if (selectedAgent && selectedAgent !== "all") params.set("agent", selectedAgent);
+    if (query) params.set("q", query);
     const res = await fetch(`/api/gitview?${params}`);
     const data = await res.json();
     setCommits(data.commits ?? []);
     if (data.agents) setAgents(data.agents);
     setLoading(false);
-  }, []);
+  }, [selectedAgent, query]);
 
   useEffect(() => {
-    queueMicrotask(() => void load(selectedAgent, query));
-    const id = setInterval(() => void load(selectedAgent, query), 60000);
+    queueMicrotask(() => void load());
+    const id = setInterval(() => void load(), 60000);
     return () => clearInterval(id);
-  }, [load, selectedAgent, query]);
+  }, [load]);
 
   useEffect(() => {
     if (!selectedHash) { setDetail(null); return; }
@@ -74,7 +127,6 @@ export default function GitViewPage() {
   }, [selectedHash]);
 
   function shortHash(h: string) { return h.slice(0, 7); }
-
   function timeAgo(iso: string) {
     try {
       const diff = Date.now() - new Date(iso).getTime();
@@ -88,39 +140,8 @@ export default function GitViewPage() {
   }
 
   return (
-    <div className="flex gap-4 h-[calc(100vh-3rem)]">
-      {/* ── Left: Commit List ─────────────────────────────────────────────── */}
+    <div className="flex gap-4 h-full overflow-hidden">
       <div className="w-80 shrink-0 flex flex-col gap-3">
-        {/* GitKraken-branded header */}
-        <div
-          className="rounded-lg border p-3 flex items-center gap-2.5"
-          style={{ borderColor: `${GK_COLOR}44`, background: `${GK_COLOR}0a` }}
-        >
-          <div
-            className="w-8 h-8 rounded flex items-center justify-center shrink-0"
-            style={{ background: GK_COLOR }}
-          >
-            <GitGraph size={16} className="text-white" />
-          </div>
-          <div>
-            <h1 className="text-sm font-semibold" style={{ color: GK_COLOR }}>
-              GitKraken MCP
-            </h1>
-            <p className="text-[10px]" style={{ color: "var(--muted)" }}>
-              29 tools · git · issues · PRs
-            </p>
-          </div>
-          <div className="ml-auto">
-            <span
-              className="text-[10px] px-1.5 py-0.5 rounded-full"
-              style={{ background: `${GK_COLOR}18`, color: GK_COLOR }}
-            >
-              v3.1.64
-            </span>
-          </div>
-        </div>
-
-        {/* Agent filter */}
         <select
           value={selectedAgent}
           onChange={(e) => { setSelectedAgent(e.target.value); setSelectedHash(null); }}
@@ -133,7 +154,6 @@ export default function GitViewPage() {
           ))}
         </select>
 
-        {/* Search */}
         <div className="relative">
           <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2" style={{ color: "var(--muted)" }} />
           <input
@@ -145,7 +165,6 @@ export default function GitViewPage() {
           />
         </div>
 
-        {/* Commit list */}
         <div className="flex-1 overflow-y-auto space-y-0.5 rounded-lg border" style={{ borderColor: "var(--border)" }}>
           {loading && commits.length === 0 && (
             <div className="p-4 text-xs text-center" style={{ color: "var(--muted)" }}>Loading...</div>
@@ -165,61 +184,28 @@ export default function GitViewPage() {
               }}
             >
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="font-mono text-[10px]" style={{ color: GK_COLOR }}>
-                  {shortHash(c.hash)}
-                </span>
-                <span className="text-[10px] ml-auto" style={{ color: "var(--muted)" }}>
-                  {timeAgo(c.date)}
-                </span>
+                <span className="font-mono text-[10px]" style={{ color: GK_COLOR }}>{shortHash(c.hash)}</span>
+                <span className="text-[10px] ml-auto" style={{ color: "var(--muted)" }}>{timeAgo(c.date)}</span>
               </div>
               <div className="truncate font-medium text-xs">{c.message}</div>
-              <div className="text-[10px] mt-0.5" style={{ color: "var(--muted)" }}>
-                {c.author_name}
-              </div>
+              <div className="text-[10px] mt-0.5" style={{ color: "var(--muted)" }}>{c.author_name}</div>
             </button>
           ))}
         </div>
       </div>
 
-      {/* ── Right: Detail Panel ───────────────────────────────────────────── */}
-      <div className="flex-1 min-w-0 flex flex-col gap-3">
+      <div className="flex-1 min-w-0 flex flex-col gap-3 overflow-hidden">
         {!detail ? (
-          <div
-            className="rounded-lg border h-full flex flex-col items-center justify-center text-sm gap-3"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}
-          >
+          <div className="rounded-lg border h-full flex flex-col items-center justify-center text-sm gap-3" style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}>
             <GitGraph size={40} className="opacity-20" style={{ color: GK_COLOR }} />
             <div className="text-center">
               <p>Select a commit to view diff</p>
               <p className="text-xs mt-1">Powered by GitKraken MCP — 29 tools for AI agents</p>
             </div>
-            <div className="flex gap-2 mt-2">
-              <button
-                onClick={() => window.open("https://help.gitkraken.com/mcp/mcp-tools-reference/", "_blank")}
-                className="flex items-center gap-1.5 text-xs rounded-md px-3 py-1.5 border transition-colors"
-                style={{ borderColor: `${GK_COLOR}44`, color: GK_COLOR }}
-              >
-                <Terminal size={12} />
-                MCP Tools Reference
-                <ExternalLink size={10} />
-              </button>
-              <button
-                onClick={() => window.open("https://www.gitkraken.com/mcp", "_blank")}
-                className="flex items-center gap-1.5 text-xs rounded-md px-3 py-1.5 border transition-colors"
-                style={{ borderColor: "var(--border)" }}
-              >
-                <ExternalLink size={10} />
-                GitKraken MCP
-              </button>
-            </div>
           </div>
         ) : (
-          <>
-            {/* Commit header + MCP actions */}
-            <div
-              className="rounded-lg border p-3"
-              style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-            >
+          <div className="flex flex-col gap-3 h-full">
+            <div className="rounded-lg border p-3" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-mono text-xs" style={{ color: GK_COLOR }}>{detail.hash}</span>
                 <span className="text-xs" style={{ color: "var(--muted)" }}>by</span>
@@ -229,54 +215,238 @@ export default function GitViewPage() {
               <div className="text-sm font-medium">{detail.messageShort}</div>
             </div>
 
-            {/* Files changed */}
-            <div
-              className="rounded-lg border overflow-hidden"
-              style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-            >
-              <div className="px-3 py-2 border-b text-xs font-semibold flex items-center gap-1.5" style={{ borderColor: "var(--border)" }}>
-                <FileCode size={12} />
-                Files changed ({detail.files.length})
-              </div>
-              <div className="divide-y max-h-32 overflow-y-auto" style={{ borderColor: "var(--border)" }}>
-                {detail.files.map((f) => (
-                  <div key={f.path} className="flex items-center gap-2 px-3 py-1.5 text-xs">
-                    <span
-                      className="font-mono text-[10px] w-5 text-center"
-                      style={{ color: statusColors[f.status] || "var(--muted)" }}
-                    >
-                      {f.status}
-                    </span>
-                    <span className="truncate font-mono" style={{ color: "var(--foreground)", opacity: 0.8 }}>
+            <div className="flex-1 overflow-hidden flex gap-3">
+              <div className="w-64 shrink-0 rounded-lg border overflow-hidden flex flex-col" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
+                <div className="px-3 py-2 border-b text-xs font-semibold flex items-center gap-1.5" style={{ borderColor: "var(--border)" }}>
+                  <FolderTree size={12} />
+                  Tree View
+                </div>
+                <div className="flex-1 overflow-y-auto p-2 space-y-1">
+                  {detail.tree.map((f) => (
+                    <div key={f.path} className="text-[10px] font-mono truncate px-2 py-0.5 rounded hover:bg-white/5 cursor-default" style={{ color: "var(--muted)" }}>
                       {f.path}
-                    </span>
-                  </div>
-                ))}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Diff view */}
-            <div
-              className="rounded-lg border flex-1 overflow-hidden"
-              style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-            >
-              <div className="px-3 py-2 border-b text-xs font-semibold flex items-center justify-between" style={{ borderColor: "var(--border)" }}>
-                <span>Diff</span>
-                <span className="text-[10px] flex items-center gap-1" style={{ color: GK_COLOR }}>
-                  <GitGraph size={10} />
-                  GitKraken MCP
-                </span>
+              <div className="flex-1 flex flex-col overflow-hidden">
+                <div className="rounded-lg border overflow-hidden flex flex-col h-full" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
+                  <div className="border-b flex" style={{ borderColor: "var(--border)" }}>
+                    {(["diff", "files", "details"] as const).map((t) => (
+                      <button
+                        key={t}
+                        onClick={() => setDetailTab(t)}
+                        className="px-4 py-2 text-xs capitalize transition-colors"
+                        style={{
+                          color: detailTab === t ? "var(--accent)" : "var(--muted)",
+                          borderBottom: detailTab === t ? "2px solid var(--accent)" : "2px solid transparent",
+                        }}
+                      >
+                        {t}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex-1 overflow-auto p-0">
+                    {detailTab === "diff" && (
+                      <div className="font-mono text-[11px] leading-tight">
+                        {parseDiff(detail.diff).map((chunk, i) => (
+                          <div key={i} className="mb-4">
+                            <div className="px-3 py-1 bg-black/30 border-b text-[10px] font-bold flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
+                              <FileCode size={10} />
+                              {chunk.file}
+                            </div>
+                            <div className="grid grid-cols-2 gap-0 border-b" style={{ borderColor: "var(--border)" }}>
+                              <div className="border-r" style={{ borderColor: "var(--border)" }}>
+                                {chunk.oldLines.map((line, li) => (
+                                  <div key={li} className="flex px-2 py-0.5 whitespace-pre" style={{ background: line.startsWith("-") ? "rgba(239, 68, 68, 0.1)" : "transparent", color: line.startsWith("-") ? "#ef4444" : "var(--foreground)" }}>
+                                    <span className="w-6 shrink-0 text-right opacity-30 mr-2">{li + 1}</span>
+                                    {line}
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="bg-black/10">
+                                {chunk.newLines.map((line, li) => (
+                                  <div key={li} className="flex px-2 py-0.5 whitespace-pre" style={{ background: line.startsWith("+") ? "rgba(34, 197, 94, 0.1)" : "transparent", color: line.startsWith("+") ? "#22c55e" : "var(--foreground)" }}>
+                                    <span className="w-6 shrink-0 text-right opacity-30 mr-2">{li + 1}</span>
+                                    {line}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {detailTab === "files" && (
+                      <div className="p-4 space-y-2">
+                        {detail.files.map((f) => (
+                          <div key={f.path} className="flex items-center gap-2 p-2 rounded-md border" style={{ borderColor: "var(--border)", background: "rgba(255,255,255,0.02)" }}>
+                            <span className="font-mono text-[10px] w-5 text-center" style={{ color: statusColors[f.status] || "var(--muted)" }}>
+                              {f.status}
+                            </span>
+                            <span className="text-xs font-mono truncate">{f.path}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {detailTab === "details" && (
+                      <div className="p-4 space-y-4">
+                        <div>
+                          <div className="text-xs mb-1" style={{ color: "var(--muted)" }}>Full Message</div>
+                          <div className="text-sm leading-relaxed whitespace-pre-wrap">{detail.message}</div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <div className="text-xs mb-1" style={{ color: "var(--muted)" }}>Author</div>
+                            <div className="text-sm font-medium">{detail.author}</div>
+                          </div>
+                          <div>
+                            <div className="text-xs mb-1" style={{ color: "var(--muted)" }}>Email</div>
+                            <div className="text-xs font-mono">{detail.email}</div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-              <pre
-                className="p-3 text-xs leading-relaxed overflow-auto h-full font-mono"
-                style={{ color: "var(--foreground)", opacity: 0.85 }}
-              >
-                {detail.diff}
-              </pre>
             </div>
-          </>
+          </div>
         )}
       </div>
+    </div>
+  );
+}
+
+function CodebaseVisualizer() {
+  const [data, setData] = useState<Record<string, { size: number; files: number }> | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [selectedDir, setSelectedDir] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const res = await fetch(`/api/gitview?visualize=true`);
+    const d = await res.json();
+    setData(d.map ?? null);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  if (loading) return <div className="p-8 text-center text-sm" style={{ color: "var(--muted)" }}>Analyzing codebase...</div>;
+  if (!data) return <div className="p-8 text-center text-sm" style={{ color: "var(--muted)" }}>No data available</div>;
+
+  const sortedDirs = Object.entries(data)
+    .filter(([path]) => path.split("/").length <= 3)
+    .sort((a, b) => b[1].files - a[1].files)
+    .slice(0, 20);
+
+  return (
+    <div className="p-6 space-y-6">
+      <div className="flex items-center gap-3 mb-6">
+        <Layout size={20} style={{ color: GK_COLOR }} />
+        <h2 className="text-xl font-semibold">Codebase Map</h2>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sortedDirs.map(([path, stats]) => (
+          <div 
+            key={path} 
+            onClick={() => setSelectedDir(path)}
+            className="rounded-lg border p-4 cursor-pointer transition-all hover:border-accent"
+            style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
+          >
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-mono truncate" style={{ color: "var(--muted)" }}>{path}</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: `${GK_COLOR}18`, color: GK_COLOR }}>
+                {stats.files} files
+              </span>
+            </div>
+            <div className="text-lg font-bold" style={{ color: "var(--foreground)" }}>
+              {stats.files} <span className="text-xs font-normal opacity-50">entities</span>
+            </div>
+            <div className="w-full h-1 bg-black/20 rounded-full mt-3 overflow-hidden">
+              <div 
+                className="h-full transition-all" 
+                style={{ width: `${Math.min(100, (stats.files / 100) * 100)}%`, background: GK_COLOR }} 
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+      {selectedDir && (
+        <div className="rounded-lg border p-4 mt-6" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-semibold">Details: {selectedDir}</h3>
+            <button onClick={() => setSelectedDir(null)} className="text-xs" style={{ color: "var(--muted)" }}>Close</button>
+          </div>
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="p-3 rounded-lg bg-black/20">
+              <div className="text-xs" style={{ color: "var(--muted)" }}>Total Files</div>
+              <div className="text-xl font-bold">{data[selectedDir].files}</div>
+            </div>
+            <div className="p-3 rounded-lg bg-black/20">
+              <div className="text-xs" style={{ color: "var(--muted)" }}>Complexity</div>
+              <div className="text-xl font-bold">Medium</div>
+            </div>
+            <div className="p-3 rounded-lg bg-black/20">
+              <div className="text-xs" style={{ color: "var(--muted)" }}>Depth</div>
+              <div className="text-xl font-bold">{selectedDir.split("/").length}</div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function GitViewWrapper() {
+  const [activeTab, setActiveTab] = useState<"commits" | "visualize">("commits");
+  const [selectedAgent, setSelectedAgent] = useState("all");
+  const [query, setQuery] = useState("");
+
+  return (
+    <div className="flex flex-col h-full gap-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <GitGraph size={20} style={{ color: GK_COLOR }} />
+            <h1 className="text-xl font-semibold">Git View</h1>
+          </div>
+          <div className="flex bg-black/20 rounded-lg p-1 border" style={{ borderColor: "var(--border)" }}>
+            {(["commits", "visualize"] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => setActiveTab(t)}
+                className="px-3 py-1 text-xs rounded-md transition-all"
+                style={{
+                  background: activeTab === t ? GK_COLOR : "transparent",
+                  color: activeTab === t ? "white" : "var(--muted)",
+                  fontWeight: activeTab === t ? 600 : 400,
+                }}
+              >
+                {t === "commits" ? "Commit History" : "Codebase Map"}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: `${GK_COLOR}18`, color: GK_COLOR }}>
+            Powered by GitKraken MCP
+          </span>
+        </div>
+      </div>
+
+      {activeTab === "commits" ? (
+        <GitViewPage 
+          selectedAgent={selectedAgent} 
+          setSelectedAgent={setSelectedAgent} 
+          query={query} 
+          setQuery={setQuery} 
+        />
+      ) : (
+        <CodebaseVisualizer />
+      )}
     </div>
   );
 }

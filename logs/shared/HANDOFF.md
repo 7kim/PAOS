@@ -8,26 +8,22 @@
 ## Last Agent
 - **Agent**: opencode-developer
 - **Tool**: OpenCode Developer
-- **Timestamp**: 2026-05-21T05:26:18.403Z
-- **Session**: Dashboard fixes: ledger sort, pipeline gitgraph, plans, agents
+- **Timestamp**: 2026-05-21T05:42:05.918Z
 
 ## Active Task
-PAOS-DASHBOARD — Ledger sort, agent registry, pipeline gitgraph, plans fix
+PAOS-DASHBOARD — GitKraken MCP integration, gitview rebrand, pipeline gitgraph
 
 ## What Was Just Done
-- Closed out Code-SRS pipeline: META.json status→completed, task card→done
-- Executed TASK-002: created logs/gemini/events.md
-- Sorted ledger API by parsed timestamp (newest first) in api/ledger and api/overview
-- Added opencode-developer as separate registered agent in agents/registry.json
-- Created Pipeline GitGraph tab at /pipelines with visual DAG (nodes, phases, progress bar, agent badges)
-- Fixed Plans page to read from memory/pipelines/ as primary source (fallback pm-logs/)
-- Added Pipelines navigation link to Sidebar
-- Updated agent color maps across all dashboard pages to cover all 12 registered agents
-- Dashboard build passes with zero TypeScript errors
+- Installed GitKraken CLI v3.1.64 from GitHub releases (gk_3.1.64_linux_amd64.deb)
+- Registered GitKraken MCP server in mcp/mcp-config.json (command: gk mcp --readonly)
+- Added gitkraken as registered PAOS agent in agents/registry.json with 29 MCP tools
+- Created bin/setup-gitkraken.sh — auto-downloads, installs, and verifies GitKraken MCP
+- Rebranded dashboard Git View page with GitKraken identity (teal #289473 theme, MCP tools header, links to docs)
+- Git View shows agent-filtered commits, diff view, file view — powered by GitKraken MCP metadata
 
 ## What Is NOT Done Yet
-- TASK-002 is done (simple smoke test), pipeline system is operational
-- GitGraph page shows pipeline DAG — click to expand phases/progress
+- `gk auth login` still needs to be run interactively to unlock issue/PR/AI features (read-only git tools work without auth)
+- GitHub/GitLab/Bitbucket integrations need provider tokens configured for issue and PR tools
 
 ## Active Projects
 | Project | Path | Stack | Status |
