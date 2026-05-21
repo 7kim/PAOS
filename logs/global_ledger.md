@@ -82,3 +82,4 @@
 | 2026-05-21T05:25:00Z | antigravity | INIT | vault/memory/antigravity/events.md | Initialized Antigravity in PAOS loop and synced chat | - | - |
 | 2026-05-21T05:27:00Z | antigravity | INIT | vault/daily/2026-05-21.md | Created daily log for May 21st | - | - |
 | 2026-05-21T09:45:00Z | opencode-developer | CREATE | dashboard/app/gitview/page.tsx, dashboard/app/api/gitview/route.ts, dashboard/components/Sidebar.tsx | Create Git View page — filter commits by PAOS agent, view diff and changed files per commit | PAOS-DASHBOARD | - |
+| 2026-05-21T09:50:00Z | opencode-developer | INSTALL | mcp/mcp-config.json, agents/registry.json, bin/setup-gitkraken.sh, logs/gitkraken/events.md, dashboard/app/gitview/ | Install GitKraken CLI v3.1.64 via deb, register MCP in mcp-config.json, add gitkraken agent to registry with 29 tools | PAOS-DASHBOARD | - |

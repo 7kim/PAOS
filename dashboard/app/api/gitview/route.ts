@@ -133,10 +133,22 @@ export async function GET(req: NextRequest) {
       email: ident.email,
     }));
 
+    // Mark as GitKraken-powered
+    const gkVersion = (() => {
+      try {
+        return require("child_process").execSync("gk --version", { encoding: "utf-8" }).trim();
+      } catch { return "unknown"; }
+    })();
+
     return NextResponse.json({
       commits,
       agents: agentList,
       total: commits.length,
+      meta: {
+        powered_by: "gitkraken-mcp",
+        version: gkVersion,
+        tools_url: "https://help.gitkraken.com/mcp/mcp-tools-reference/",
+      },
     });
   } catch (e: unknown) {
     const err = e as Error;

@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { ChevronRight, FileCode, GitCommit, Search } from "lucide-react";
+import { ChevronRight, ExternalLink, FileCode, GitCommit, GitGraph, Search, Terminal } from "lucide-react";
 
 interface Agent {
   id: string;
@@ -28,9 +28,11 @@ interface CommitDetail {
   files: { status: string; path: string }[];
 }
 
+const GK_COLOR = "#289473";
+
 const statusColors: Record<string, string> = {
   A: "var(--green)",
-  M: "var(--accent)",
+  M: GK_COLOR,
   D: "var(--red)",
   R: "#a855f7",
   C: "#3b82f6",
@@ -63,7 +65,6 @@ export default function GitViewPage() {
     return () => clearInterval(id);
   }, [load, selectedAgent, query]);
 
-  // Load detail when commit selected
   useEffect(() => {
     if (!selectedHash) { setDetail(null); return; }
     fetch(`/api/gitview?commit=${selectedHash}`)
@@ -90,14 +91,33 @@ export default function GitViewPage() {
     <div className="flex gap-4 h-[calc(100vh-3rem)]">
       {/* ── Left: Commit List ─────────────────────────────────────────────── */}
       <div className="w-80 shrink-0 flex flex-col gap-3">
-        <div>
-          <h1 className="text-xl font-semibold mb-1 flex items-center gap-2">
-            <GitCommit size={16} style={{ color: "var(--accent)" }} />
-            Git View
-          </h1>
-          <p className="text-xs" style={{ color: "var(--muted)" }}>
-            Browse commits by PAOS agent
-          </p>
+        {/* GitKraken-branded header */}
+        <div
+          className="rounded-lg border p-3 flex items-center gap-2.5"
+          style={{ borderColor: `${GK_COLOR}44`, background: `${GK_COLOR}0a` }}
+        >
+          <div
+            className="w-8 h-8 rounded flex items-center justify-center shrink-0"
+            style={{ background: GK_COLOR }}
+          >
+            <GitGraph size={16} className="text-white" />
+          </div>
+          <div>
+            <h1 className="text-sm font-semibold" style={{ color: GK_COLOR }}>
+              GitKraken MCP
+            </h1>
+            <p className="text-[10px]" style={{ color: "var(--muted)" }}>
+              29 tools · git · issues · PRs
+            </p>
+          </div>
+          <div className="ml-auto">
+            <span
+              className="text-[10px] px-1.5 py-0.5 rounded-full"
+              style={{ background: `${GK_COLOR}18`, color: GK_COLOR }}
+            >
+              v3.1.64
+            </span>
+          </div>
         </div>
 
         {/* Agent filter */}
@@ -139,12 +159,13 @@ export default function GitViewPage() {
               onClick={() => setSelectedHash(c.hash)}
               className="w-full text-left px-3 py-2 border-b text-xs transition-colors"
               style={{
-                background: selectedHash === c.hash ? "rgba(252,213,53,0.07)" : "transparent",
+                background: selectedHash === c.hash ? `${GK_COLOR}0d` : "transparent",
                 borderColor: "var(--border)",
+                borderLeft: selectedHash === c.hash ? `2px solid ${GK_COLOR}` : "2px solid transparent",
               }}
             >
               <div className="flex items-center gap-2 mb-0.5">
-                <span className="font-mono text-[10px]" style={{ color: "var(--accent)" }}>
+                <span className="font-mono text-[10px]" style={{ color: GK_COLOR }}>
                   {shortHash(c.hash)}
                 </span>
                 <span className="text-[10px] ml-auto" style={{ color: "var(--muted)" }}>
@@ -164,20 +185,43 @@ export default function GitViewPage() {
       <div className="flex-1 min-w-0 flex flex-col gap-3">
         {!detail ? (
           <div
-            className="rounded-lg border h-full flex items-center justify-center text-sm"
+            className="rounded-lg border h-full flex flex-col items-center justify-center text-sm gap-3"
             style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}
           >
-            Select a commit to view diff
+            <GitGraph size={40} className="opacity-20" style={{ color: GK_COLOR }} />
+            <div className="text-center">
+              <p>Select a commit to view diff</p>
+              <p className="text-xs mt-1">Powered by GitKraken MCP — 29 tools for AI agents</p>
+            </div>
+            <div className="flex gap-2 mt-2">
+              <button
+                onClick={() => window.open("https://help.gitkraken.com/mcp/mcp-tools-reference/", "_blank")}
+                className="flex items-center gap-1.5 text-xs rounded-md px-3 py-1.5 border transition-colors"
+                style={{ borderColor: `${GK_COLOR}44`, color: GK_COLOR }}
+              >
+                <Terminal size={12} />
+                MCP Tools Reference
+                <ExternalLink size={10} />
+              </button>
+              <button
+                onClick={() => window.open("https://www.gitkraken.com/mcp", "_blank")}
+                className="flex items-center gap-1.5 text-xs rounded-md px-3 py-1.5 border transition-colors"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <ExternalLink size={10} />
+                GitKraken MCP
+              </button>
+            </div>
           </div>
         ) : (
           <>
-            {/* Commit header */}
+            {/* Commit header + MCP actions */}
             <div
               className="rounded-lg border p-3"
               style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
             >
               <div className="flex items-center gap-2 mb-1">
-                <span className="font-mono text-xs" style={{ color: "var(--accent)" }}>{detail.hash}</span>
+                <span className="font-mono text-xs" style={{ color: GK_COLOR }}>{detail.hash}</span>
                 <span className="text-xs" style={{ color: "var(--muted)" }}>by</span>
                 <span className="text-xs font-medium">{detail.author}</span>
                 <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>{detail.date}</span>
@@ -216,8 +260,12 @@ export default function GitViewPage() {
               className="rounded-lg border flex-1 overflow-hidden"
               style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
             >
-              <div className="px-3 py-2 border-b text-xs font-semibold" style={{ borderColor: "var(--border)" }}>
-                Diff
+              <div className="px-3 py-2 border-b text-xs font-semibold flex items-center justify-between" style={{ borderColor: "var(--border)" }}>
+                <span>Diff</span>
+                <span className="text-[10px] flex items-center gap-1" style={{ color: GK_COLOR }}>
+                  <GitGraph size={10} />
+                  GitKraken MCP
+                </span>
               </div>
               <pre
                 className="p-3 text-xs leading-relaxed overflow-auto h-full font-mono"

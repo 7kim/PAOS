@@ -47,6 +47,7 @@ const agentColorMap: Record<string, string> = {
   "antigravity-ide": "#f472b6",
   gemini: "#4285f4",
   hermes: "#eab308",
+  gitkraken: "#289473",
   signal: "#2dbdb6",
   copilot: "#64748b",
 };

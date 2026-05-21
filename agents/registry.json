@@ -307,6 +307,28 @@
       },
       "healthChecks": ["binary", "config", "identity", "inbox", "log"],
       "riskLevel": "medium"
+    },
+    {
+      "id": "gitkraken",
+      "label": "GitKraken MCP",
+      "role": "Git context and issue tracking MCP server for AI agents",
+      "binary": "gk",
+      "color": "#289473",
+      "configPaths": ["mcp/mcp-config.json"],
+      "mcpServers": [],
+      "inbox": "memory/inbox/gitkraken",
+      "log": "logs/gitkraken/events.md",
+      "gitIdentity": {
+        "name": "GitKraken MCP [PAOS]",
+        "email": "gitkraken@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["memory"],
+        "write": [],
+        "execute": ["mcp"]
+      },
+      "healthChecks": ["binary", "mcp"],
+      "riskLevel": "low"
     }
   ]
 }

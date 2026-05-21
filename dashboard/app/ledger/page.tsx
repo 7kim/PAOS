@@ -25,6 +25,7 @@ const agentColors: Record<string, string> = {
   antigravity: "#ec4899",
   "antigravity-ide": "#f472b6",
   gemini: "#4285f4",
+  gitkraken: "#289473",
   hermes: "#eab308",
   dashboard: "#64748b",
 };

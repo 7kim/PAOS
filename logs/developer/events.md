@@ -42,3 +42,7 @@
 [2026-05-21T09:38:00Z] | PAOS-DASHBOARD | UPDATE app/plans/, api/plans/ | Fix plans to read from pipelines/ as primary source
 [2026-05-21T09:39:00Z] | PAOS-DASHBOARD | UPDATE Sidebar, ledger/page.tsx, page.tsx | Add Pipelines nav link, update agent colors
 [2026-05-21T09:45:00Z] | PAOS-DASHBOARD | CREATE app/gitview/, api/gitview/ | Git View page — agent-filtered commit list, diff view, files changed
+[2026-05-21T09:50:00Z] | PAOS-DASHBOARD | INSTALL gk CLI v3.1.64 | GitKraken MCP server installed and registered in mcp/mcp-config.json
+[2026-05-21T09:51:00Z] | PAOS-DASHBOARD | REGISTER agents/registry.json | Added gitkraken agent with 29 MCP tools
+[2026-05-21T09:52:00Z] | PAOS-DASHBOARD | CREATE bin/setup-gitkraken.sh | Auto-install and auth script for GitKraken MCP
+[2026-05-21T09:53:00Z] | PAOS-DASHBOARD | UPDATE app/gitview/ | Rebranded page as GitKraken-powered git viewer with MCP tools header
