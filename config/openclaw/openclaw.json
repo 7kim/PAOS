@@ -1,0 +1,47 @@
+{
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "mcp": {
+    "servers": {
+      "shared-memory": {
+        "command": "node",
+        "args": [
+          "/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"
+        ],
+        "env": {
+          "MEMORY_DIR": "/home/dev/AI_Workflow/memory",
+          "KNOWLEDGE_DIR": "/home/dev/AI_Workflow/knowledge",
+          "REPO_ROOT": "/home/dev/AI_Workflow"
+        }
+      },
+      "scaffold": {
+        "command": "node",
+        "args": [
+          "/home/dev/AI_Workflow/mcp/scaffold-server/index.js"
+        ],
+        "env": {
+          "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
+        }
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "agents": {
+    "defaults": {
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.5.12",
+    "lastTouchedAt": "2026-05-21T02:35:40.829Z"
+  }
+}

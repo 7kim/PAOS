@@ -6,27 +6,18 @@
 ---
 
 ## Last Agent
-- **Agent**: developer
-- **Tool**: developer
-- **Timestamp**: 2026-05-21T02:26:58.381Z
-- **Session**: Hermes Nous full configuration complete
+- **Agent**: opencode-developer
+- **Tool**: opencode-developer
+- **Timestamp**: 2026-05-21T02:38:15.302Z
 
 ## Active Task
-Full configuration of Hermes Nous Agent in PAOS
+Session wrap-up — agent MCP/skills audit complete, all agents integrated
 
 ## What Was Just Done
-- Created PAOS skill at `~/.hermes/skills/paos/SKILL.md` — comprehensive PAOS knowledge (architecture, agents, /h-pipeline, H-Factor, protocols)
-- Added both MCP servers to Hermes config: shared-memory (14 tools) + scaffold (2 tools)
-- Created `~/AI_Workflow/AGENTS.md` for Hermes auto-injection at session start/end
-- Patched `~/.hermes/SOUL.md` with full PAOS context (HANDOFF, ledger, peer agents, commit protocol)
-- Set up API keys (ANTHROPIC, GOOGLE, OPENAI) in `~/.hermes/.env`
-- Configured model: anthropic/claude-sonnet-4-20250514
-- Verified Hermes correctly reads HANDOFF and identifies as hermes-nous agent
+- Diagnosed and fully recovered Antigravity IDE after 2.0 upgrade (40 extensions migrated, SUID sandbox fixed, official tar.gz installed)\n- Completed PAOS SWOT audit saved to vault/memory/shared/swot_audit.md\n- Built Cross-Agent Chat Continuity: bin/sync-chat.py + /H-Continue command across all agents\n- Renamed PAOS Hermes → Signal to avoid name collision\n- Installed and fully integrated Nous Research Hermes Agent v0.14.0 (25 skills, MCP servers, PAOS skill, SOUL.md)\n- Stripped proprietary API keys from Hermes .env, set model to ollama/llama3 placeholder\n- Audited MCP + skills for all 8 agents; fixed Signal mcp_config.json symlink, registered MCP servers in OpenClaw\n- Disabled dashboard autostart (on-demand via desktop launcher only)
 
 ## What Is NOT Done Yet
-- Run `hermes setup` for full interactive setup (optional)
-  - Install system packages: `sudo apt install ripgrep ffmpeg` (optional)
-  - Pipeline completion workflow (executor WALKTHROUGH.md, META.json update)
+- Antigravity IDE has no MCP servers configured (VS Code — only matters if using Continue.dev or Claude Code extension)\n- Codex skills/ directory is empty (Codex doesn't use PAOS skills natively)\n- User to configure free/open-source LLM for Nous Hermes later
 
 ## Active Projects
 | Project | Path | Stack | Status |
