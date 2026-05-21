@@ -7,6 +7,27 @@
 
 ---
 
+## The PAOS Ecosystem
+
+PAOS is no longer just a single workspace; it's a tiered ecosystem designed for different user profiles:
+
+| Project | Role | Target User | Location |
+|---------|------|-------------|----------|
+| **PAOS** | Core Orchestration & Dev Hub | Everyday Developers | `~/AI_Workflow/` |
+| **PAOS-WEB** | Customer-Facing App Builder | Simple Customers | `~/Documents/Dev/PAOS-WEB/` |
+| **PAOS-VPS** | Remote Agent Coordination | VPS/Cloud Deployments | `~/Documents/Dev/PAOS-VPS/` |
+
+### 1. PAOS (Core)
+The central nervous system. This is where the agents live, the memory is stored, and the governance (H-Factor) is enforced. It's the "Developer's Cockpit" for managing the entire AI workforce.
+
+### 2. PAOS-WEB (Customer Interface)
+A streamlined, high-design web interface (Code-SRS) that allows non-technical customers to describe an app idea and trigger the PAOS pipeline to generate a full SRS. It acts as a "Frontend" to the PAOS core.
+
+### 3. PAOS-VPS (Remote Layer)
+A specialized coordination layer for agents running on remote servers. It allows VPS agents to share state and memory with the local PAOS hub, enabling seamless hybrid local-remote execution.
+
+---
+
 ## What is PAOS?
 
 PAOS is a self-hosted orchestration layer that connects multiple AI coding agents so they can collaborate on real software projects. Every agent shares the same memory, follows the same governance rules, and leaves a permanent audit trail of everything it does.
@@ -89,64 +110,51 @@ PAOS is a self-hosted orchestration layer that connects multiple AI coding agent
 ## Architecture
 
 ```
-
-## Enterprise Agent Registry
-
-The canonical agent integration contract is `agents/registry.json`. Dashboard APIs, MCP `list_agents`, health checks, and `bin/agent-commit.sh` read this registry instead of maintaining separate rosters.
-
-```bash
-bin/paos-agent list
-bin/paos-agent doctor
-bin/paos-agent doctor codex
-bin/paos-agent mcp-sync
-```
-
-`doctor` commands are side-effect free: they do not call agents, write logs, mutate inboxes, or commit.
-┌─────────────────────────────────────────────────────────────────┐
-│                          Your Machine                           │
-│                                                                 │
-│  Claude Code ──────┐                                            │
-│  OpenCode ─────────┤                                            │
-│  Codex ────────────┤                                            │
-│  Gemini ───────────┤                                            │
-│  Antigravity ──────┼──► MCP Shared-Memory Server (14 tools)     │
-│  Nous Hermes ──────┤     + Scaffold (2 tools)                   │
-│  OpenClaw ─────────┤         │           │           │          │
-│  Signal ───────────┤     memory/      vault/       logs/        │
-│  Ollama ───────────┘       (shared filesystem — all agents)     │
-│                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐    │
-│  │  Docker Container                                        │    │
-│  │  Dashboard (Next.js :3333) + MCP server                  │    │
-│  │  Volumes: memory/ logs/ vault/ knowledge/ agents/        │    │
-│  └─────────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────────┘
+  ┌─────────────────────────────────────────────────────────────────┐
+  │                          Your Machine                           │
+  │                                                                 │
+  │  Claude Code ──────┐                                            │
+  │  OpenCode ─────────┤                                            │
+  │  Codex ────────────┤                                            │
+  │  Gemini ───────────┤                                            │
+  │  Antigravity ──────┼──► MCP Shared-Memory Server (14 tools)     │
+  │  Nous Hermes ──────┤     + Scaffold (2 tools)                   │
+  │  OpenClaw ─────────┤         │           │           │          │
+  │  Signal ───────────┤     memory/      vault/       logs/        │
+  │  Ollama ───────────┘       (shared filesystem — all agents)     │
+  │                                                                 │
+  │  ┌─────────────────────────────────────────────────────────┐    │
+  │  │  Docker Container                                        │    │
+  │  │  Dashboard (Next.js :3333) + MCP server                  │    │
+  │  │  Volumes: memory/ logs/ vault/ knowledge/ agents/        │    │
+  │  └─────────────────────────────────────────────────────────┘    │
+  └─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Agent Pipeline (Antigravity Review Loop)
 
 ```
 User request
-     │
-     ▼
- @plan ──────────────────────────────────────────────────────────┐
- (Project Manager)                                               │
- Produces: TASKS.md + IMPLEMENTATION_PLAN.md                     │
-     │                                                           │
-  ┌──┴──┐                                                        │
-  ▼     ▼                                                        │
-@architect  @coordinator  (parallel review + H-Factor gate)      │
-     │                                                           │
-     ▼  [PASS gate]                                              │
- @developer                                                      │
- (execution — writes code, files, tests, commits)                │
-     │                                                           │
-     ▼                                                           │
- @coordinator  (verification — all acceptance criteria)          │
-     │                                                           │
-     ▼                                                           │
- WALKTHROUGH.md  ←──────────────────────────────────────────────┘
- (post-execution audit, pipeline closed)
+      │
+      ▼
+  @plan ──────────────────────────────────────────────────────────┐
+  (Project Manager)                                               │
+  Produces: TASKS.md + IMPLEMENTATION_PLAN.md                     │
+      │                                                           │
+   ┌──┴──┐                                                        │
+   ▼     ▼                                                        │
+ @architect  @coordinator  (parallel review + H-Factor gate)      │
+      │                                                           │
+      ▼  [PASS gate]                                              │
+  @developer                                                      │
+  (execution — writes code, files, tests, commits)                │
+      │                                                           │
+      ▼                                                           │
+  @coordinator  (verification — all acceptance criteria)          │
+      │                                                           │
+      ▼                                                           │
+  WALKTHROUGH.md  ←──────────────────────────────────────────────┘
+  (post-execution audit, pipeline closed)
 ```
 
 ---
@@ -546,8 +554,8 @@ openclaw onboard   # configure your channels
 | Key | Where to Get | Used By |
 |-----|-------------|---------|
 | `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com/settings/keys) | Claude Code, Nous Hermes |
-| `OPENAI_API_KEY` | [platform.openai.com](https://platform.openai.com/api-keys) | Codex |
-| `GOOGLE_API_KEY` | [aistudio.google.com](https://aistudio.google.com/app/apikey) | Gemini, Antigravity |
+| `OPENAI_API_KEY` | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) | Codex |
+| `GOOGLE_API_KEY` | [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) | Gemini, Antigravity |
 | `GITHUB_TOKEN` | [github.com/settings/tokens](https://github.com/settings/tokens) | GitHub push, Hermes skill hub |
 | `OPENROUTER_API_KEY` | [openrouter.ai/keys](https://openrouter.ai/keys) | Nous Hermes (optional) |
 | `HF_TOKEN` | [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) | Nous Hermes (free models) |

@@ -26,3 +26,18 @@ models:
     model_id: "claude-sonnet-4-6"
     tier: pro
     description: "Balanced performance and reasoning"
+  - alias: "Qwen"
+    provider: ollama
+    model_id: "qwen3.6"
+    tier: free
+    description: "Local Qwen 3.6 — free, unlimited, no API key"
+  - alias: "Qwen-Lite"
+    provider: ollama
+    model_id: "qwen2.5:3b"
+    tier: free
+    description: "Lightweight local Qwen — fast, low RAM"
+  - alias: "DeepSeek-Lite"
+    provider: ollama
+    model_id: "deepseek-r1:1.5b"
+    tier: free
+    description: "Tiny DeepSeek R1 — reasoning on low-end hardware"
