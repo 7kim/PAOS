@@ -14,6 +14,7 @@ import {
   Settings,
   Zap,
   GitBranch,
+  GitCommit,
 } from "lucide-react";
 
 const nav = [
@@ -23,6 +24,7 @@ const nav = [
   { href: "/agents", label: "Agents", icon: Bot },
   { href: "/tasks", label: "Tasks", icon: ListTodo },
   { href: "/pipelines", label: "Pipelines", icon: GitBranch },
+  { href: "/gitview", label: "Git View", icon: GitCommit },
   { href: "/plans", label: "Plans", icon: FileText },
   { href: "/inbox", label: "Inbox", icon: Inbox },
 ];

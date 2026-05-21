@@ -41,3 +41,4 @@
 [2026-05-21T09:37:00Z] | PAOS-DASHBOARD | CREATE app/pipelines/, api/pipelines/ | GitGraph page — visual DAG of all pipelines
 [2026-05-21T09:38:00Z] | PAOS-DASHBOARD | UPDATE app/plans/, api/plans/ | Fix plans to read from pipelines/ as primary source
 [2026-05-21T09:39:00Z] | PAOS-DASHBOARD | UPDATE Sidebar, ledger/page.tsx, page.tsx | Add Pipelines nav link, update agent colors
+[2026-05-21T09:45:00Z] | PAOS-DASHBOARD | CREATE app/gitview/, api/gitview/ | Git View page — agent-filtered commit list, diff view, files changed
