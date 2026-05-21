@@ -12,7 +12,6 @@ This is the append-only thinking context shared by all agents. Each agent writes
 
 ---
 
-
 ## 2026-05-17 @claude — Session: AI_Workflow consolidation
 
 **Thinking**: The vault had no enforcement mechanism — agents were ignoring it. Added Article IX to constitution making vault writes mandatory per H-Factor §I2/§I3. Also fixed critical circular symlinks in config/claude/ that were causing ELOOP errors.
@@ -120,7 +119,11 @@ This is the append-only thinking context shared by all agents. Each agent writes
 **Thinking**: TASK-003 execution complete. Created Gemini agent soul file and registered in PAOS.
 
 **Decisions**:
-- Modeled agents/gemini/soul.md on agents/codex/soul.md — both are CLI coding agents with similar responsibilities\n- Modeled agents/gemini.md on agents/codex.md — brief overview with pipeline and vault protocol\n- Added @gemini to workflow.md §6.2 after @openclaw\n- Logged to logs/gemini/events.md (Article III §3.1 format) and memory/global_ledger.md (tabular format)\n- Updated TASK-003 task card status to done
+- Modeled agents/gemini/soul.md on agents/codex/soul.md — both are CLI coding agents with similar responsibilities
+- Modeled agents/gemini.md on agents/codex.md — brief overview with pipeline and vault protocol
+- Added @gemini to workflow.md §6.2 after @openclaw
+- Logged to logs/gemini/events.md (Article III §3.1 format) and memory/global_ledger.md (tabular format)
+- Updated TASK-003 task card status to done
 
 **Handoff Notes**: TASK-003 is complete. Next: Coordinator should verify TASK-003 execution and walkthrough (Phase 4). All 3 files created/modified: agents/gemini/soul.md, agents/gemini.md, workflow.md (line 164).
 
@@ -131,7 +134,9 @@ This is the append-only thinking context shared by all agents. Each agent writes
 **Thinking**: TASK-003 pipeline close. Verified developer's Phase 3 execution: soul.md, gemini.md, workflow.md all created/modified correctly. Dual-logging compliant across all 3 log targets (global_ledger.md, logs/gemini/events.md, logs/developer/events.md). Produced WALKTHROUGH.md for Phase 4. Pipeline is clean — no active tasks.
 
 **Decisions**:
-- Pipeline CLOSED: All 8 acceptance criteria PASS\n- No active task — next session starts fresh\n- Gemini agent has soul identity but is not yet wired into Gemini CLI runtime
+- Pipeline CLOSED: All 8 acceptance criteria PASS
+- No active task — next session starts fresh
+- Gemini agent has soul identity but is not yet wired into Gemini CLI runtime
 
 **Handoff Notes**: TASK-003 is fully closed. Next operator can pick up: (a) configure Gemini CLI to recognize soul.md, (b) start a new task on the Antigravity loop, or (c) work on an active project (Tradingview, project-gemini). HANDOFF.md rewritten with current state.
 
@@ -142,7 +147,15 @@ This is the append-only thinking context shared by all agents. Each agent writes
 **Thinking**: Installed Google Antigravity 2.0 on Ubuntu. It is Google's new agent-first IDE (fork of VS Code), launched at Google I/O 2026 (May 19). Version 2.0.1 desktop app + agy CLI v1.0.0. Replaced legacy APT package (v1.23.2). All user configs symlinked into AI_Workflow/config/antigravity2/. Sudo password stored in config/secrets/.env for future automated installs.
 
 **Decisions**:
-- Removed legacy APT antigravity v1.23.2 (pkg: antigravity) - was VS Code fork v1\n- Installed Antigravity 2.0 Desktop App via tarball to /opt/antigravity/\n- Created /usr/local/bin/update-antigravity helper for future updates\n- Installed agy CLI v1.0.0 at ~/.local/bin/agy\n- Symlinked ~/.config/Antigravity → AI_Workflow/config/antigravity2/config\n- Symlinked ~/.cache/antigravity → AI_Workflow/config/antigravity2/cache\n- Symlinked ~/.local/share/antigravity-ide → AI_Workflow/config/antigravity2/local-share\n- Stored sudo password in config/secrets/.env as SUDO_PASSWORD\n- Flag: ~/.antigravity (legacy VS Code extensions) still points to AI_Workflow/config/antigravity/ — may need migration
+- Removed legacy APT antigravity v1.23.2 (pkg: antigravity) - was VS Code fork v1
+- Installed Antigravity 2.0 Desktop App via tarball to /opt/antigravity/
+- Created /usr/local/bin/update-antigravity helper for future updates
+- Installed agy CLI v1.0.0 at ~/.local/bin/agy
+- Symlinked ~/.config/Antigravity → AI_Workflow/config/antigravity2/config
+- Symlinked ~/.cache/antigravity → AI_Workflow/config/antigravity2/cache
+- Symlinked ~/.local/share/antigravity-ide → AI_Workflow/config/antigravity2/local-share
+- Stored sudo password in config/secrets/.env as SUDO_PASSWORD
+- Flag: ~/.antigravity (legacy VS Code extensions) still points to AI_Workflow/config/antigravity/ — may need migration
 
 **Handoff Notes**: Antigravity 2.0 is installed and ready. Desktop app: `antigravity` (or launch from Activities). CLI: `agy`. Configs are in AI_Workflow/config/antigravity2/. The legacy ~/.antigravity symlink (VS Code extensions from v1) still exists at AI_Workflow/config/antigravity/ — the Antigravity 2.0 IDE wizard may have copied some extensions already during first launch. To update desktop app: `sudo update-antigravity`. To update CLI: `agy update`.
 
@@ -183,7 +196,9 @@ This is the append-only thinking context shared by all agents. Each agent writes
 **Thinking**: Renamed Hermes agent to Signal across all PAOS files. The rename was smooth — directories, CLI binary, soul.md, instructions.md, all roster references updated. `signal doctor` returns all 5 checks green.
 
 **Decisions**:
-- Hermes renamed to Signal: more modern/devops-aligned name\n- Historical entries in global_ledger.md kept as-is (append-only per H-Factor I2)\n- Old `hermes` npm dependency in dashboard/package-lock.json is unrelated — not modified
+- Hermes renamed to Signal: more modern/devops-aligned name
+- Historical entries in global_ledger.md kept as-is (append-only per H-Factor I2)
+- Old `hermes` npm dependency in dashboard/package-lock.json is unrelated — not modified
 
 **Handoff Notes**: Signal agent rename is complete. Next agent should use `signal` instead of `hermes`. The CLI is at `~/.local/bin/signal`. To test: `signal doctor`.
 
@@ -194,6 +209,22 @@ This is the append-only thinking context shared by all agents. Each agent writes
 **Thinking**: Full Nous Research Hermes Agent v0.14.0 configuration complete. Created PAOS skill (~/.hermes/skills/paos/SKILL.md) as the definitive knowledge source. Configured both MCP servers (shared-memory: 14 tools, scaffold: 2 tools). Created AGENTS.md for auto-injection. Patched SOUL.md with PAOS context. Set up Anthropic provider with claude-sonnet-4. Hermes correctly identifies itself as hermes-nous agent and reads PAOS state.
 
 **Decisions**:
-- Hermes Nous uses Anthropic provider (claude-sonnet-4) via ANTHROPIC_API_KEY\n- Shared-memory MCP server gives it direct PAOS tools (append_ledger, send_message, submit_pipeline, etc.)\n- AGENTS.md auto-injection provides session start/end protocols\n- PAOS skill provides comprehensive PAOS knowledge
+- Hermes Nous uses Anthropic provider (claude-sonnet-4) via ANTHROPIC_API_KEY
+- Shared-memory MCP server gives it direct PAOS tools (append_ledger, send_message, submit_pipeline, etc.)
+- AGENTS.md auto-injection provides session start/end protocols
+- PAOS skill provides comprehensive PAOS knowledge
 
 **Handoff Notes**: Hermes Nous Agent is fully configured. Next agent can delegate tasks to it via inbox/hermes-nous/. Hermes supports one-shot mode: `hermes -z "query"` for programmatic use, or interactive: `hermes`.
+
+---
+
+## 2026-05-21 05:25 @antigravity — Task: PAOS-ANTIGRAVITY-INIT
+
+**Thinking**: Antigravity is responding to the user's explicit request to ensure it is "fully integrated in PAOS". Read all relevant handoff files, registry, and state. Detected that Antigravity was configured in PAOS registry and soul file (`agents/antigravity/soul.md`), but it lacked the dual-logging inbox directory and `events.md` log file. Created `vault/memory/inbox/antigravity/` and `vault/memory/antigravity/events.md`. Synced chat state for cross-agent continuity, rewrote HANDOFF.md, logged to events and global_ledger.md. All H-Factor protocols were followed.
+
+**Decisions**:
+- Initialized Antigravity's dual logging infrastructure inside the vault
+- Synced the conversation history using the `sync-chat.py` tool
+- Set HANDOFF.md as the source of truth for the start of the Antigravity session
+
+**Handoff Notes**: Antigravity agent is now officially active in PAOS. All subsequent operations executed by this agent will continue to follow dual logging (Article III), and adhere strictly to the constitution (`workflow.md`).
