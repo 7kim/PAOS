@@ -41,6 +41,7 @@ This is the live state document. It tells you what the last agent stopped at, wh
 
 **Step 2 — Cross-agent continuity**
 ```
+~/AI_Workflow/vault/chats/active_chat_transcript.md → read the full active chat transcript to load the exact previous dialogue history
 ~/AI_Workflow/vault/chats/<YYYY-MM-DD>-*.md   → most recent chat summary (any agent)
 ```
 
@@ -62,10 +63,12 @@ This is the live state document. It tells you what the last agent stopped at, wh
 
 ### SESSION END — write before closing
 
-1. Update `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-2. Write `~/AI_Workflow/vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-3. Append to `~/AI_Workflow/vault/memory/shared/context.md` — handoff notes for next agent.
-4. Git commit: `Agent[codex]: <present-tense description>`
+1. **Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
+2. **Synchronize active chat transcript**: Run `python3 ~/AI_Workflow/bin/sync-chat.py` to sync dialogue history.
+3. Update `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — add activity rows.
+4. Write `~/AI_Workflow/vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
+5. Append to `~/AI_Workflow/vault/memory/shared/context.md` — handoff notes for next agent.
+6. Git commit: `Agent[codex]: <present-tense description>`
 
 ## Pipeline
 

@@ -38,6 +38,7 @@ shared-memory: list_agents        → confirm roster is current
 **Step 2 — Cross-agent continuity (read files)**
 
 ```
+vault/chats/active_chat_transcript.md → read the full active chat transcript to load the exact previous dialogue history
 vault/chats/<YYYY-MM-DD>-*.md     → read the most recent chat summary (any agent)
 vault/daily/<YYYY-MM-DD>.md       → today's focus and activity log
 user.md                           → operator profile
@@ -95,10 +96,11 @@ For non-trivial tasks, use the Antigravity Review Loop:
 ### SESSION END — write before closing
 
 1. **Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet. This is the most critical step.
-2. Call `shared-memory: write_context` — key decisions and handoff notes for next agent
-2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows
-3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions
-4. Commit:
+2. **Synchronize active chat transcript**: Run `python3 ~/AI_Workflow/bin/sync-chat.py` (which parses JSONL logs and syncs the dialogue to `vault/chats/active_chat_transcript.md`).
+3. Call `shared-memory: write_context` — key decisions and handoff notes for next agent
+4. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows
+5. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions
+6. Commit:
    ```bash
    ~/AI_Workflow/bin/agent-commit.sh claude "Agent[claude]: <description>"
    ```

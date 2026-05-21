@@ -75,6 +75,7 @@ memory/inbox/gemini/         → messages delegated to Gemini
 
 **Step 2 — Cross-agent continuity**
 ```
+vault/chats/active_chat_transcript.md → read the full active chat transcript to load the exact previous dialogue history
 vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
 vault/daily/<YYYY-MM-DD>.md       → today's focus
 ```
@@ -101,7 +102,8 @@ vault/daily/<YYYY-MM-DD>.md       → today's focus
 **SESSION END** — write before closing:
 
 1. **Rewrite `memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
-2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-4. Append to `memory/shared/context.md` — handoff notes for next agent.
-5. Git commit: `bin/agent-commit.sh gemini "Agent[gemini]: <description>"`.
+2. **Synchronize active chat transcript**: Run `python3 bin/sync-chat.py` to sync dialogue history.
+3. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
+4. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
+5. Append to `memory/shared/context.md` — handoff notes for next agent.
+6. Git commit: `bin/agent-commit.sh gemini "Agent[gemini]: <description>"`.
