@@ -38,57 +38,13 @@ When a user sends a message:
 - **I3 — Identity First**: All log entries carry the `openclaw` agent stamp
 - **I4 — Skill Boundary**: Channel management and delegation only — no coding
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-Skipping vault writes violates H-Factor §I2 and §I3.
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-**SESSION START** — execute in order before any work:
-
-**Step 0 — Read HANDOFF first**
-```
-vault/memory/shared/HANDOFF.md   ← live state, always current, rewritten each session
-```
-
-**Step 1 — MCP tools**
-```
-shared-memory: read_ledger        → last 20 rows of global_ledger.md
-shared-memory: read_context       → full shared/context.md
-shared-memory: read_inbox         → agent="openclaw"
-```
-
-**Step 2 — Cross-agent continuity**
-```
-vault/chats/active_chat_transcript.md → read the full active chat transcript to load the exact previous dialogue history
-vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
-vault/daily/<YYYY-MM-DD>.md       → today's focus
-```
-
-**Step 3 — Synthesize**: Are there pending user requests from the channel? Results from agents waiting to be relayed back?
-
-**Step 4 — Project files (when working on a project)**
-- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
-- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
-- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
-
-**DURING work:**
-
-- Append every delegation to `vault/memory/openclaw/events.md` using structured format (Article III §3.1):
-  ```
-  [TIMESTAMP] | AGENT: openclaw | ACTION: <Receive|Route|Relay|Notify>
-  THINKING: "<routing decision reasoning>"
-  EXECUTION: "<message handled or task created>"
-  IMPACT: "<which agent notified, what task created>"
-  ```
-- Append summary row to `vault/memory/global_ledger.md` after each significant action
-
-**SESSION END** — write before closing:
-
-1. **Rewrite `vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
-2. **Synchronize active chat transcript**: Run `python3 bin/sync-chat.py` to sync dialogue history.
-3. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-4. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-5. Append to `vault/memory/shared/context.md` — handoff notes for next agent.
-6. Git commit: `Agent[openclaw]: <description>` using `bin/agent-commit.sh openclaw "<message>"`.
+- **Inbox**: `vault/memory/inbox/openclaw/`
+- **Events log**: `vault/memory/openclaw/events.md`
+- **Commit**: `bin/agent-commit.sh openclaw "Agent[openclaw]: <description>"`
 
 ## Channels
 

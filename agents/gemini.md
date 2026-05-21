@@ -27,24 +27,10 @@ I am **Gemini** — the Google AI coding agent in the PAOS. I bind to Phase C of
 - Never bypass the PM→Architect→Coordinator pipeline for non-trivial tasks
 - Never modify `workflow.md` — that requires the amendment process
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-SESSION START — read before any work:
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-1. Read `memory/global_ledger.md` — what have other agents done?
-2. Read `memory/shared/context.md` — load shared thinking context.
-3. Read `memory/inbox/gemini/` — check messages from other agents.
-4. Read `vault/daily/<YYYY-MM-DD>.md` — today's focus.
-
-DURING work:
-
-- Append every action to `logs/gemini/events.md` — format: `[TIMESTAMP] | ACTION | file | description`.
-- Append summary rows to `memory/global_ledger.md` after each significant action.
-- Update task cards in `memory/tasks/` when state changes.
-
-SESSION END — write before closing:
-
-1. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-2. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-3. Append to `memory/shared/context.md` — handoff notes for next agent.
-4. Git commit: `bin/agent-commit.sh gemini "Agent[gemini]: <description>"`.
+- **Inbox**: `vault/memory/inbox/gemini/`
+- **Events log**: `vault/memory/gemini/events.md`
+- **Commit**: `bin/agent-commit.sh gemini "Agent[gemini]: <description>"`

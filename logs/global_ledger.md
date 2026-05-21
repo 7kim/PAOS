@@ -55,27 +55,10 @@
 | 2026-05-20T23:33:30Z | opencode-developer | UPDATE | config/antigravity2/, ~/.config/Antigravity, ~/.cache/antigravity, ~/.local/share/antigravity-ide | Symlinked Antigravity 2.0 config/cache/IDE into AI_Workflow/config/antigravity2/ | ANTIGRAVITY-2.0 | - |
 | 2026-05-21T04:08:00Z | antigravity | AUDIT | vault/memory/shared/swot_audit.md + bin/sync-chat.py | Run SWOT Audit, create sync-chat.py, update configs for cross-agent continuity | PAOS-AUDIT | - |
 | 2026-05-21T04:10:00Z | antigravity | INTEGRATE | agents/hermes/ + config/hermes/ | Created Hermes soul.md, instructions.md, logs, and updated active rosters | PAOS-AUDIT | - |
-
-
-| 2026-05-21T00:19:13Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
-| 2026-05-21T00:19:37Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
-| 2026-05-21T00:19:39Z | hermes | EXEC | - | Hermes processed prompt: Ping! Verify your status. | - | - |
-| 2026-05-21T00:19:39Z | hermes | END | - | Hermes agent CLI session finalized | - | - |
-| 2026-05-21T00:19:50Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
-| 2026-05-21T00:19:52Z | hermes | EXEC | - | Hermes processed prompt: Ping! Verify status again. | - | - |
-| 2026-05-21T00:19:52Z | hermes | END | - | Hermes agent CLI session finalized | - | - |
 | 2026-05-21T04:34:00Z | antigravity | UPDATE | - | Disabled paos-dashboard service to run on-demand only | PAOS-AUDIT | - |
-
-| 2026-05-21T00:37:27Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
-| 2026-05-21T00:43:28Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
-| 2026-05-21T00:43:33Z | hermes | EXEC | - | Hermes processed prompt: --help | - | - |
-| 2026-05-21T00:43:33Z | hermes | END | - | Hermes agent CLI session finalized | - | - |
 | 2026-05-21T01:28:44Z | gemini | SUBMIT | memory/pipelines/PIPE-20260521-012844-a76a63/ | Submitted /h-pipeline: Build a test pipeline for verification | PIPE-20260521-012844-a76a63 | - |
 | 2026-05-21T01:29:54Z | gemini | SUBMIT | memory/pipelines/PIPE-20260521-012954-0dbd93/ | Submitted /h-pipeline: Build a test pipeline for verification | PIPE-20260521-012954-0dbd93 | - |
 | 2026-05-21T01:30:00Z | opencode-developer | CREATE | bin/h-pipeline, config/pipeline-defaults.yaml, mcp/shared-memory-server/index.js, config/claude/CLAUDE.md, GEMINI.md, agents/gemini/soul.md, agents/antigravity/soul.md, config/codex/instructions.md, agents/openclaw/soul.md, workflow.md, memory/pipelines/ | Implement /h-pipeline system: CLI script, MCP tool, pipeline config, agent configs, workflow constitution | /h-pipeline | - |
-| 2026-05-21T01:43:16Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
-| 2026-05-21T01:43:24Z | hermes | EXEC | - | Hermes processed prompt: what is the current state of the PAOS system? check the ledg | - | - |
-| 2026-05-21T01:43:24Z | hermes | END | - | Hermes agent CLI session finalized | - | - |
 | 2026-05-21T06:08:00Z | developer | RENAME | agents/signal/, config/signal/, vault/memory/signal/, ~/.local/bin/signal | Renamed agent Hermes → Signal: soul.md, instructions.md, CLI binary, events log, inbox, all rosters updated | PAOS-RENAME | - |
 | 2026-05-21T06:12:00Z | developer | INSTALL | agents/hermes-nous/soul.md, config/hermes-nous/instructions.md, config/hermes-nous/mcp_config.json, vault/memory/hermes-nous/events.md, vault/memory/inbox/hermes-nous/, ~/.hermes/SOUL.md, config/claude/CLAUDE.md, config/codex/instructions.md, config/signal/instructions.md, workflow.md | Install Nous Research Hermes Agent v0.14.0 via curl install.sh and integrate into PAOS: created agents/hermes-nous/soul.md, config/hermes-nous/instructions.md, events log, inbox, updated all rosters (CLAUDE.md, codex/instructions.md, signal/instructions.md, workflow.md), patched ~/.hermes/SOUL.md with PAOS context | PAOS-INTEGRATE | - |
 | 2026-05-21T06:20:00Z | developer | CONFIGURE | ~/.hermes/skills/paos/, ~/.hermes/config.yaml, ~/AI_Workflow/AGENTS.md | Full Hermes PAOS configuration: PAOS skill installed, MCP servers connected, AGENTS.md created, API keys configured, model provider set | PAOS-CONFIGURE | - |

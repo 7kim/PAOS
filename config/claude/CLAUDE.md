@@ -14,97 +14,42 @@ This file applies to **every project and every session**. Project-specific rules
 
 ## Article IX — Obsidian Vault Protocol (Mandatory — Every Session)
 
-The vault at `~/AI_Workflow/vault/` is the **shared persistent memory** of the PAOS.
-Vault writes are non-negotiable — skipping violates H-Factor §I2 and §I3.
+> Canonical protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
+> Vault writes are non-negotiable — skipping violates H-Factor §I2 and §I3.
 
-### SESSION START — execute in order before any work
+### SESSION START — 3 steps
 
-**Step 0 — Read HANDOFF first (most important)**
-
-```
-~/AI_Workflow/vault/memory/shared/HANDOFF.md
-```
-This is the live state document. Always read this first — it tells you what the last agent stopped at, what's in-progress, and what decisions have been made. It is rewritten every session (not append-only).
-
-**Step 1 — MCP: load shared state (call these tools)**
-
-```
-shared-memory: read_ledger        → last 20 rows of global_ledger.md
-shared-memory: read_context       → full shared/context.md
-shared-memory: read_inbox         → agent="claude" (check messages from other agents)
-shared-memory: list_agents        → confirm roster is current
-```
-
-**Step 2 — Cross-agent continuity (read files)**
-
-```
-vault/chats/active_chat_transcript.md → read the full active chat transcript to load the exact previous dialogue history
-vault/chats/<YYYY-MM-DD>-*.md     → read the most recent chat summary (any agent)
-vault/daily/<YYYY-MM-DD>.md       → today's focus and activity log
-user.md                           → operator profile
-```
-
-**Step 3 — Context synthesis**
-
-Before responding to the user, synthesize: what did the last agent stop at? What is in-progress? What is blocked? Surface this to the user if relevant.
-
-### PROJECT START — when opening a project for the first time in a session
-
-After completing SESSION START steps, if working inside a project directory:
-
-1. **Read notes file** — for AI_Workflow hub: `knowledge/docs/notes.md`. For other projects: `<project>/notes.md`. Execute every item in order. After completing all items, call:
+1. **Read HANDOFF** — `~/AI_Workflow/vault/memory/shared/HANDOFF.md` (live state, always first)
+2. **Load shared state** (call in parallel):
    ```
-   shared-memory: process_notes
-     project_path: "<absolute path to project>"
-     agent: "claude"
-     completed: ["<item text>", ...]
+   shared-memory: read_ledger    → last 20 rows
+   shared-memory: read_inbox     → agent="claude"
    ```
-   Completed items are removed from `notes.md` and archived in `notes-done.md` (or `knowledge/docs/notes-done.md` for hub).
+3. **Start working** — surface anything in-progress or blocked to the user before proceeding
 
-2. **Read user-questions file** — for AI_Workflow hub: `knowledge/docs/user-questions.md`. For other projects: `<project>/user-questions.md`. Answer every question fully. After answering, call:
-   ```
-   shared-memory: process_questions
-     project_path: "<absolute path to project>"
-     project_name: "<project name>"
-     agent: "claude"
-     qa_pairs: [{ question: "...", answer: "..." }, ...]
-   ```
-   Answered questions are removed from `user-questions.md` and appended with full Q&A to `user-questions-answered.md` (same directory).
-   If a question cannot be answered without deeper investigation, leave it with `<!-- TODO: needs investigation -->`.
+### PROJECT START — when opening a project
 
-### DURING work — mandatory per-action logging
+If working inside a project directory after session start:
+1. Read `knowledge/docs/notes.md` (hub) or `<project>/notes.md` → execute items → call `shared-memory: process_notes`
+2. Read `knowledge/docs/user-questions.md` (hub) or `<project>/user-questions.md` → answer → call `shared-memory: process_questions`
 
-**After every significant action**, call both MCP tools:
+### DURING work
 
-```
-shared-memory: append_ledger   → log the action
-shared-memory: write_context   → update shared thinking if a decision was made
-```
+After every significant action: `shared-memory: append_ledger`
+After any key decision: `shared-memory: write_context`
+Also write to `~/AI_Workflow/vault/memory/claude/events.md` (Article III §3.1 format).
 
-Also write directly to `~/AI_Workflow/vault/memory/claude/events.md` using the structured format (Article III §3.1):
-```
-[TIMESTAMP] | AGENT: claude | ACTION: <Read|Write|Exec|Edit|Test>
-THINKING: "<why this approach>"
-EXECUTION: "<what was done>"
-IMPACT: "<what changed, which files>"
-```
+For non-trivial tasks: Antigravity Review Loop — TASKS.md + IMPLEMENTATION_PLAN.md → wait for review → execute → WALKTHROUGH.md.
 
-For non-trivial tasks, use the Antigravity Review Loop:
-1. Produce `TASKS.md` + `IMPLEMENTATION_PLAN.md` → stop, wait for user review
-2. On approval → execute → produce `WALKTHROUGH.md`
+### SESSION END — 2 steps
 
-### SESSION END — write before closing
-
-1. **Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet. This is the most critical step.
-2. **Synchronize active chat transcript**: Run `python3 ~/AI_Workflow/bin/sync-chat.py` (which parses JSONL logs and syncs the dialogue to `vault/chats/active_chat_transcript.md`).
-3. Call `shared-memory: write_context` — key decisions and handoff notes for next agent
-4. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows
-5. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions
-6. Commit:
+1. **Rewrite HANDOFF** — `~/AI_Workflow/vault/memory/shared/HANDOFF.md` (most critical step)
+2. **Log + commit**:
    ```bash
+   # append_ledger one summary row, then:
    ~/AI_Workflow/bin/agent-commit.sh claude "Agent[claude]: <description>"
    ```
-   **Never use plain `git commit`** — always `agent-commit.sh` so every agent appears separately in gitgraph.
+   **Never use plain `git commit`** — always `agent-commit.sh`.
 
 ---
 

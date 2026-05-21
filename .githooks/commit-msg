@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# .githooks/commit-msg — PAOS H-Factor §I3 enforcement
+# Every commit message MUST start with "Agent[<id>]:" to ensure identity attribution.
+# Hard error — blocks the commit.
+
+MSG_FILE="$1"
+MSG="$(cat "$MSG_FILE")"
+
+if ! echo "$MSG" | grep -qE '^Agent\[[a-zA-Z0-9_-]+\]:'; then
+  echo "" >&2
+  echo "ERROR [H-Factor §I3 — Identity First]: commit message must start with Agent[<id>]:" >&2
+  echo "" >&2
+  echo "  Expected:  Agent[claude]: <description>" >&2
+  echo "  Got:       $MSG" >&2
+  echo "" >&2
+  echo "  Use: ~/AI_Workflow/bin/agent-commit.sh <agent-id> \"Agent[<id>]: <description>\"" >&2
+  echo "" >&2
+  exit 1
+fi
+
+exit 0

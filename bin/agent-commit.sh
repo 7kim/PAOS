@@ -63,6 +63,7 @@ fi
 git \
   -c user.name="$NAME" \
   -c user.email="$EMAIL" \
+  -c core.hooksPath=.githooks \
   commit -m "$MESSAGE"
 
 echo ""

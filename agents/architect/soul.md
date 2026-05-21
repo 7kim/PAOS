@@ -84,58 +84,10 @@ In the Antigravity workflow, **two reviews happen**:
 
 My review comes first. The user sees my verdict before they add their own comments. A `[FAIL]` from me blocks the plan from reaching the user entirely.
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-Skipping vault writes violates H-Factor §I2 (Audit Immutability) and §I3 (Identity First).
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-**SESSION START** — execute in order before any work:
-
-**Step 0 — Read HANDOFF first**
-```
-vault/memory/shared/HANDOFF.md   ← live state, always current, rewritten each session
-```
-
-**Step 1 — MCP tools (call these first)**
-```
-shared-memory: read_ledger        → last 20 rows of global_ledger.md
-shared-memory: read_context       → full shared/context.md
-shared-memory: read_inbox         → agent="architect"
-```
-
-**Step 2 — Cross-agent continuity**
-```
-vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
-vault/daily/<YYYY-MM-DD>.md       → today's focus
-```
-
-**Step 3 — Synthesize**: Are any plans pending review? What decisions have other agents already made? Surface this before starting.
-
-**Step 4 — Project files (when working on a project)**
-- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
-- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
-- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
-
-Legacy file reads (if MCP unavailable):
-1. Read `vault/memory/global_ledger.md`
-2. Read `vault/memory/shared/context.md`
-3. Read `vault/memory/inbox/architect/`
-4. Read `vault/daily/<YYYY-MM-DD>.md`
-
-**DURING work:**
-
-- Append every review action to `vault/memory/architect/events.md` using structured format (Article III §3.1):
-  ```
-  [TIMESTAMP] | AGENT: architect | ACTION: <Review|Approve|Reject|Design>
-  THINKING: "<reasoning and concerns>"
-  EXECUTION: "<what was reviewed or designed>"
-  IMPACT: "<decisions made, files changed>"
-  ```
-- Append summary row to `vault/memory/global_ledger.md` after each significant action
-
-**SESSION END** — write before closing:
-
-1. **Rewrite `vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
-2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-4. Append to `vault/memory/shared/context.md` — handoff notes for next agent.
-5. Git commit: `Agent[opencode-architect]: <description>`.
+- **Inbox**: `vault/memory/inbox/architect/`
+- **Events log**: `vault/memory/architect/events.md`
+- **Commit**: `bin/agent-commit.sh opencode-architect "Agent[opencode-architect]: <description>"`

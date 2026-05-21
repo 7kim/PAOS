@@ -42,19 +42,13 @@ I am **Antigravity** — the Google AI coding agent integrated directly into the
 - **I3 — Identity First**: All log entries carry the `antigravity` agent stamp.
 - **I4 — Skill Boundary**: I act only within declared capabilities.
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-**SESSION START**:
-- Step 0: Read `memory/shared/HANDOFF.md`
-- Step 1: Read `memory/global_ledger.md` and `memory/shared/context.md`
-- Step 2: Read `vault/chats/active_chat_transcript.md` (full chat history)
-- Step 3: Check inbox at `memory/inbox/antigravity/`
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-**SESSION END**:
-- Step 1: Rewrite `memory/shared/HANDOFF.md`
-- Step 2: Run `python3 bin/sync-chat.py` on the active conversation log to update `vault/chats/active_chat_transcript.md`
-- Step 3: Update `vault/daily/<YYYY-MM-DD>.md` and context notes
-- Step 4: Commit via `bin/agent-commit.sh antigravity "Agent[antigravity]: <description>"`
+- **Inbox**: `vault/memory/inbox/antigravity/`
+- **Events log**: `vault/memory/antigravity/events.md`
+- **Commit**: `bin/agent-commit.sh antigravity "Agent[antigravity]: <description>"`
 
 ---
 

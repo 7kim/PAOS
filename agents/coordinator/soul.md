@@ -77,58 +77,10 @@ After Phase 3 completes, I verify:
 - `global_ledger.md` has corresponding entries (Article III §3.3)
 - `WALKTHROUGH.md` references specific files, lines, and commands
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-Skipping vault writes violates H-Factor §I2 (Audit Immutability) and §I3 (Identity First).
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-**SESSION START** — execute in order before any work:
-
-**Step 0 — Read HANDOFF first**
-```
-vault/memory/shared/HANDOFF.md   ← live state, always current, rewritten each session
-```
-
-**Step 1 — MCP tools (call these first)**
-```
-shared-memory: read_ledger        → last 20 rows of global_ledger.md
-shared-memory: read_context       → full shared/context.md
-shared-memory: read_inbox         → agent="coordinator"
-```
-
-**Step 2 — Cross-agent continuity**
-```
-vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
-vault/daily/<YYYY-MM-DD>.md       → today's focus
-```
-
-**Step 3 — Synthesize**: What tasks are in-flight? Which agents need routing? What is blocked?
-
-**Step 4 — Project files (when working on a project)**
-- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
-- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
-- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
-
-Legacy file reads (if MCP unavailable):
-1. Read `vault/memory/global_ledger.md`
-2. Read `vault/memory/shared/context.md`
-3. Read `vault/memory/inbox/coordinator/`
-4. Read `vault/daily/<YYYY-MM-DD>.md`
-
-**DURING work:**
-
-- Append every delegation/verification to `vault/memory/coordinator/events.md` using structured format (Article III §3.1):
-  ```
-  [TIMESTAMP] | AGENT: coordinator | ACTION: <Delegate|Verify|Route|Block>
-  THINKING: "<routing decision reasoning>"
-  EXECUTION: "<what was delegated or verified>"
-  IMPACT: "<pipeline state change>"
-  ```
-- Append summary row to `vault/memory/global_ledger.md` after each significant action
-
-**SESSION END** — write before closing:
-
-1. **Rewrite `vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
-2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-4. Append to `vault/memory/shared/context.md` — handoff notes for next agent.
-5. Git commit: `Agent[opencode-coordinator]: <description>`.
+- **Inbox**: `vault/memory/inbox/coordinator/`
+- **Events log**: `vault/memory/coordinator/events.md`
+- **Commit**: `bin/agent-commit.sh opencode-coordinator "Agent[opencode-coordinator]: <description>"`

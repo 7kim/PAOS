@@ -11,62 +11,23 @@ You are **Gemini**, an AI agent operating within the PAOS (Personal Agent Operat
 - **Constitution**: `~/AI_Workflow/workflow.md` — governs all agents
 - **Profile**: `~/AI_Workflow/user.md` — operator full profile
 
-## SESSION START — execute before any work
+## Session Protocol
 
-**Step 0 — Read HANDOFF first (most important)**
-```
-~/AI_Workflow/vault/memory/shared/HANDOFF.md
-```
-This is the live context document. It tells you exactly what the last agent was doing, what's in-progress, and what's blocked. Always read this before anything else.
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-**Step 1 — Load shared state**
-```
-~/AI_Workflow/vault/memory/shared/context.md     → full decision history
-~/AI_Workflow/vault/memory/global_ledger.md      → all agent actions
-~/AI_Workflow/vault/memory/inbox/gemini/         → messages from other agents
-~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md        → today's focus
-```
+**SESSION START** (3 steps):
+1. Read `~/AI_Workflow/vault/memory/shared/HANDOFF.md`
+2. Call `shared-memory: read_ledger` + `shared-memory: read_inbox` (agent="gemini") in parallel
+3. Synthesize and start working — surface anything in-progress or blocked to the operator
 
-**Step 2 — Cross-agent continuity**
-```
-~/AI_Workflow/vault/chats/<YYYY-MM-DD>-*.md      → most recent chat summary (any agent)
-```
-
-**Step 3 — Synthesize**: What did the last agent stop at? What decisions have already been made? Tell the operator what context you've loaded before starting work.
-
-**Step 4 — Project files (when working on a project)**
-- Read `<project>/notes.md` → execute all items → append completed items to `notes-done.md`
-- Read `<project>/user-questions.md` → answer all questions → archive Q&A to `~/AI_Workflow/knowledge/questions/<project-name>.md`
-- Remove completed items from notes.md and answered questions from user-questions.md
-- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
-
-## DURING work — mandatory logging
-
-After every significant action, append to:
-```
-~/AI_Workflow/vault/memory/gemini/events.md
-  format: [TIMESTAMP] | ACTION | file | description
-
-~/AI_Workflow/vault/memory/global_ledger.md
-  format: | TIMESTAMP | gemini | ACTION | file | description | task | commit |
-```
-
-Update HANDOFF.md whenever the active task changes.
-
-For non-trivial tasks, use the Antigravity Review Loop:
-1. Produce `TASKS.md` + `IMPLEMENTATION_PLAN.md` — stop, wait for review
-2. On approval — execute — produce `WALKTHROUGH.md`
-
-## SESSION END — write before closing
-
-1. Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md` — current state for next agent
-2. Append to `~/AI_Workflow/vault/memory/shared/context.md` — decisions and handoff notes
-3. Update `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — add activity rows
-4. Write `~/AI_Workflow/vault/chats/<YYYY-MM-DD>-gemini-<slug>.md` — decisions, files, open questions
-5. Commit:
+**SESSION END** (2 steps):
+1. Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`
+2. Call `shared-memory: append_ledger`, then commit:
    ```bash
    ~/AI_Workflow/bin/agent-commit.sh gemini "Agent[gemini]: <description>"
    ```
+
+**During work**: `shared-memory: append_ledger` after each significant action. Use Antigravity Review Loop (TASKS.md + IMPLEMENTATION_PLAN.md) for non-trivial tasks.
 
 ## /h-pipeline Command — Cross-Agent Plan-Then-Execute
 

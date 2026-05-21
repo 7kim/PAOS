@@ -75,60 +75,30 @@ Developer → @plan (PM) → @architect + @coordinator (parallel review) → PM 
 
 ## Claude Code Conventions
 
-Claude Code **must** follow these rules every session. Non-negotiable — H-Factor §I2 (Audit Immutability) and §I3 (Identity First). Skipping vault writes is a protocol violation.
+> Full session protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
+> Skipping vault writes violates H-Factor §I2 and §I3.
 
-### Session START — execute in order
+### Session START — 3 steps
 
-**Step 0 — Read HANDOFF first**
-```
-~/AI_Workflow/vault/memory/shared/HANDOFF.md   ← live state, always current
-```
+1. Read `~/AI_Workflow/vault/memory/shared/HANDOFF.md`
+2. Call `shared-memory: read_ledger` + `shared-memory: read_inbox` (agent="claude") in parallel
+3. Synthesize — surface anything in-progress or blocked before responding
 
-**Step 1 — MCP tools (call these first)**
-```
-shared-memory: read_ledger        → last 20 rows of global_ledger.md
-shared-memory: read_context       → full shared/context.md
-shared-memory: read_inbox         → agent="claude"
-```
+### Project START
 
-**Step 2 — Cross-agent continuity (read files)**
-```
-vault/chats/<YYYY-MM-DD>-*.md     → most recent chat summary (any agent)
-vault/daily/<YYYY-MM-DD>.md       → today's focus
-user.md                           → operator profile
-```
-
-**Step 3 — Synthesize** — what did the last agent stop at? Surface to user if relevant.
-
-### Project START — when opening a project
-
-After session start, if working inside a project:
-
-1. **Read `knowledge/docs/notes.md`** — execute each item, then call `process_notes` with completed items.
-   Items are removed from `notes.md` and archived in `knowledge/docs/notes-done.md`.
-2. **Read `knowledge/docs/user-questions.md`** — answer each question, then call `process_questions` with Q&A pairs.
-   Answered questions are removed from `user-questions.md` and appended with full Q&A to `knowledge/docs/user-questions-answered.md`.
-   Unanswerable questions stay with `<!-- TODO: needs investigation -->`.
+If working inside a project: read `knowledge/docs/notes.md` → call `process_notes`; read `knowledge/docs/user-questions.md` → call `process_questions`.
 
 ### During work
 
-1. Call `shared-memory: append_ledger` after every significant action.
-2. Call `shared-memory: write_context` after every key decision.
-3. Write to `vault/memory/claude/events.md` using structured format (Article III §3.1):
-   ```
-   [TIMESTAMP] | AGENT: claude | ACTION: <Read|Write|Exec|Edit|Test>
-   THINKING: "<why this approach>"
-   EXECUTION: "<what was done>"
-   IMPACT: "<what changed, which files>"
-   ```
-4. Use Antigravity Review Loop for non-trivial tasks — TASKS.md + IMPLEMENTATION_PLAN.md → wait for review → execute → WALKTHROUGH.md.
+- `shared-memory: append_ledger` after every significant action
+- `shared-memory: write_context` after any key decision
+- Write to `vault/memory/claude/events.md` (Article III §3.1 format)
+- Non-trivial tasks: Antigravity Review Loop (TASKS.md + IMPLEMENTATION_PLAN.md → review → execute → WALKTHROUGH.md)
 
-### Session END
+### Session END — 2 steps
 
-1. Call `shared-memory: write_context` — handoff notes for next agent.
-2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-4. Commit: `~/AI_Workflow/bin/agent-commit.sh claude "Agent[claude]: <description>"`
+1. Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`
+2. `shared-memory: append_ledger` → `~/AI_Workflow/bin/agent-commit.sh claude "Agent[claude]: <description>"`
 
 ## MCP Servers
 

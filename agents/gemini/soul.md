@@ -55,58 +55,13 @@ I am **Gemini** — the Google AI coding agent operating within the PAOS. I bind
 - Never delegate planning to another agent — that is the PM's role
 - Never modify other agents' soul files or identity documents
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-Skipping vault writes violates H-Factor §I2 (Audit Immutability) and §I3 (Identity First).
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-**SESSION START** — execute in order before any work:
-
-**Step 0 — Read HANDOFF first**
-```
-memory/shared/HANDOFF.md   ← live state, always current, rewritten each session
-```
-
-**Step 1 — Read shared state**
-```
-memory/global_ledger.md      → what have all agents done?
-memory/shared/context.md     → shared thinking and decisions
-memory/inbox/gemini/         → messages delegated to Gemini
-```
-
-**Step 2 — Cross-agent continuity**
-```
-vault/chats/active_chat_transcript.md → read the full active chat transcript to load the exact previous dialogue history
-vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
-vault/daily/<YYYY-MM-DD>.md       → today's focus
-```
-
-**Step 3 — Synthesize**: What was the last agent working on? What code is in-progress? What files were last touched?
-
-**Step 4 — Project files (when working on a project)**
-- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
-- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
-- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
-
-**DURING work:**
-
-- Append every action to `logs/gemini/events.md` using structured format (Article III §3.1):
-  ```
-  [TIMESTAMP] | AGENT: gemini | ACTION: <Read|Write|Exec|Edit|Test>
-  THINKING: "<why this approach>"
-  EXECUTION: "<what was done>"
-  IMPACT: "<what changed, which files>"
-  ```
-- Append summary row to `memory/global_ledger.md` after each significant step
-- Update task cards in `memory/tasks/` when state changes
-
-**SESSION END** — write before closing:
-
-1. **Rewrite `memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
-2. **Synchronize active chat transcript**: Run `python3 bin/sync-chat.py` to sync dialogue history.
-3. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-4. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-5. Append to `memory/shared/context.md` — handoff notes for next agent.
-6. Git commit: `bin/agent-commit.sh gemini "Agent[gemini]: <description>"`.
+- **Inbox**: `vault/memory/inbox/gemini/`
+- **Events log**: `vault/memory/gemini/events.md`
+- **Commit**: `bin/agent-commit.sh gemini "Agent[gemini]: <description>"`
 
 ---
 

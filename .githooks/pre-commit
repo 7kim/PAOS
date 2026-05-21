@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# .githooks/pre-commit — PAOS H-Factor enforcement
+# Checks that HANDOFF.md and global_ledger.md are staged before committing.
+# Warnings only (exit 0) — does not block commits, just reminds agents.
+
+HANDOFF_STAGED=$(git diff --cached --name-only | grep -c "HANDOFF.md" || true)
+LEDGER_STAGED=$(git diff --cached --name-only | grep -c "global_ledger.md" || true)
+
+WARNINGS=0
+
+if [[ "$HANDOFF_STAGED" -eq 0 ]]; then
+  echo "WARN [H-Factor §I2]: HANDOFF.md not staged — session end requires rewriting HANDOFF.md" >&2
+  WARNINGS=$((WARNINGS + 1))
+fi
+
+if [[ "$LEDGER_STAGED" -eq 0 ]]; then
+  echo "WARN [H-Factor §I2]: global_ledger.md not staged — every session requires an append_ledger entry" >&2
+  WARNINGS=$((WARNINGS + 1))
+fi
+
+if [[ "$WARNINGS" -gt 0 ]]; then
+  echo "  → See: ~/AI_Workflow/knowledge/docs/session-protocol.md for required session end steps" >&2
+fi
+
+# Run ledger lint if the ledger is staged
+if [[ "$LEDGER_STAGED" -gt 0 ]]; then
+  REPO_ROOT="$(git rev-parse --show-toplevel)"
+  if "$REPO_ROOT/bin/lint-ledger.sh" "$REPO_ROOT/vault/memory/global_ledger.md"; then
+    : # OK
+  else
+    echo "ERROR: ledger lint failed — fix format errors before committing" >&2
+    exit 1
+  fi
+fi
+
+exit 0

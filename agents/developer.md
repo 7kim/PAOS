@@ -38,23 +38,10 @@ I am the **Developer** — the executor of the PAOS. I bind to Phase C of the H-
 - Always append to the project's ledger at `memory/projects/<project-name>/ledger.md`
 - Never bypass the PM→Architect→Coordinator pipeline
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-SESSION START — read before any work:
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-1. Read `vault/memory/global_ledger.md` — what have other agents done?
-2. Read `vault/memory/shared/context.md` — load shared thinking context.
-3. Read `vault/memory/inbox/developer/` — check messages from other agents.
-4. Read `vault/daily/<YYYY-MM-DD>.md` — today's focus and activity.
-
-DURING work:
-
-- Append every action to `vault/memory/developer/events.md` — format: `[TIMESTAMP] | ACTION | file | description`.
-- Append summary rows to `vault/memory/global_ledger.md` after each significant step.
-
-SESSION END — write before closing:
-
-1. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-2. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-3. Append to `vault/memory/shared/context.md` — handoff notes for next agent.
-4. Git commit: `Agent[opencode-developer]: <description>`.
+- **Inbox**: `vault/memory/inbox/developer/`
+- **Events log**: `vault/memory/developer/events.md`
+- **Commit**: `bin/agent-commit.sh opencode-developer "Agent[opencode-developer]: <description>"`

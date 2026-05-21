@@ -37,58 +37,10 @@ I am the **Developer** — the executor of the PAOS. I bind to Phase C of the H-
 - **I3 — Identity First**: All log entries carry the `developer` agent stamp
 - **I4 — Skill Boundary**: I only use tools for execution — edit, bash, read, glob, grep
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-Skipping vault writes violates H-Factor §I2 (Audit Immutability) and §I3 (Identity First).
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-**SESSION START** — execute in order before any work:
-
-**Step 0 — Read HANDOFF first**
-```
-vault/memory/shared/HANDOFF.md   ← live state, always current, rewritten each session
-```
-
-**Step 1 — MCP tools (call these first)**
-```
-shared-memory: read_ledger        → last 20 rows of global_ledger.md
-shared-memory: read_context       → full shared/context.md
-shared-memory: read_inbox         → agent="developer"
-```
-
-**Step 2 — Cross-agent continuity**
-```
-vault/chats/<YYYY-MM-DD>-*.md     → read most recent chat summary (any agent, any tool)
-vault/daily/<YYYY-MM-DD>.md       → today's focus
-```
-
-**Step 3 — Synthesize**: What did the last agent stop at? What tasks are in-progress or blocked? Surface this before starting work.
-
-**Step 4 — Project files (when working on a project)**
-- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items
-- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs
-- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
-
-Legacy file reads (if MCP unavailable):
-1. Read `vault/memory/global_ledger.md`
-2. Read `vault/memory/shared/context.md`
-3. Read `vault/memory/inbox/developer/`
-4. Read `vault/daily/<YYYY-MM-DD>.md`
-
-**DURING work:**
-
-- Append every action to `vault/memory/developer/events.md` using structured format (Article III §3.1):
-  ```
-  [TIMESTAMP] | AGENT: developer | ACTION: <Read|Write|Exec|Edit|Test>
-  THINKING: "<why this approach>"
-  EXECUTION: "<what was done>"
-  IMPACT: "<what changed, which files>"
-  ```
-- Append summary row to `vault/memory/global_ledger.md` after each significant step
-
-**SESSION END** — write before closing:
-
-1. **Rewrite `vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
-2. Update `vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-3. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-4. Append to `vault/memory/shared/context.md` — handoff notes for next agent.
-5. Git commit: `Agent[opencode-developer]: <description>`.
+- **Inbox**: `vault/memory/inbox/developer/`
+- **Events log**: `vault/memory/developer/events.md`
+- **Commit**: `bin/agent-commit.sh opencode-developer "Agent[opencode-developer]: <description>"`

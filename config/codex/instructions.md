@@ -20,55 +20,20 @@ You are **Codex**, an AI coding agent operating within the PAOS (Personal Agent 
 | I3 | Identity First — every action attributed to `codex` agent stamp |
 | I4 | Skill Boundary — act only within declared coding capabilities |
 
-## Article IX — Obsidian Vault Protocol (Mandatory)
+## Session Protocol (Article IX)
 
-The vault at `~/AI_Workflow/vault/` is the shared persistent memory for all agents. Skipping vault writes violates H-Factor §I2 and §I3.
+> Full protocol: `~/AI_Workflow/knowledge/docs/session-protocol.md`
 
-### SESSION START — execute in order before any work
+**SESSION START** (3 steps):
+1. Read `~/AI_Workflow/vault/memory/shared/HANDOFF.md`
+2. Call `shared-memory: read_ledger` + `shared-memory: read_inbox` (agent="codex") in parallel
+3. Synthesize and start working
 
-**Step 0 — Read HANDOFF first (most important)**
-```
-~/AI_Workflow/vault/memory/shared/HANDOFF.md
-```
-This is the live state document. It tells you what the last agent stopped at, what's in-progress, and what decisions have been made. Always read this before anything else.
+**SESSION END** (2 steps):
+1. Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`
+2. Call `shared-memory: append_ledger`, then: `~/AI_Workflow/bin/agent-commit.sh codex "Agent[codex]: <description>"`
 
-**Step 1 — Load shared state**
-1. Read `~/AI_Workflow/vault/memory/global_ledger.md` — what have all agents done?
-2. Read `~/AI_Workflow/vault/memory/shared/context.md` — full decision history.
-3. Read `~/AI_Workflow/vault/memory/inbox/codex/` — messages from other agents.
-4. Read `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — today's focus.
-5. Read `~/AI_Workflow/user.md` — operator profile.
-
-**Step 2 — Cross-agent continuity**
-```
-~/AI_Workflow/vault/chats/active_chat_transcript.md → read the full active chat transcript to load the exact previous dialogue history
-~/AI_Workflow/vault/chats/<YYYY-MM-DD>-*.md   → most recent chat summary (any agent)
-```
-
-**Step 3 — Synthesize**: What did the last agent stop at? Tell the operator what context you've loaded before starting.
-
-**Step 4 — Project files (when working on a project)**
-- Read `<project>/notes.md` → execute all items → call `process_notes` with completed items (or manually archive to `notes-done.md`)
-- Read `<project>/user-questions.md` → answer all questions → call `process_questions` with Q&A pairs (or manually archive to `~/AI_Workflow/knowledge/questions/<project-name>.md`)
-- Unanswerable questions: leave in file with `<!-- TODO: needs investigation -->`
-
-### DURING work
-
-1. Append every significant action to `~/AI_Workflow/vault/memory/codex/events.md`:
-   ```
-   [TIMESTAMP] | ACTION | file | description
-   ```
-2. Append summary rows to `~/AI_Workflow/vault/memory/global_ledger.md`.
-3. For multi-step tasks: produce TASKS.md + IMPLEMENTATION_PLAN.md, wait for review, then execute, then produce WALKTHROUGH.md (Antigravity Review Loop — Article VIII).
-
-### SESSION END — write before closing
-
-1. **Rewrite `~/AI_Workflow/vault/memory/shared/HANDOFF.md`** — update Last Agent, Active Task, What Was Just Done, What Is NOT Done Yet.
-2. **Synchronize active chat transcript**: Run `python3 ~/AI_Workflow/bin/sync-chat.py` to sync dialogue history.
-3. Update `~/AI_Workflow/vault/daily/<YYYY-MM-DD>.md` — add activity rows.
-4. Write `~/AI_Workflow/vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
-5. Append to `~/AI_Workflow/vault/memory/shared/context.md` — handoff notes for next agent.
-6. Git commit: `Agent[codex]: <present-tense description>`
+**During work**: `shared-memory: append_ledger` after each significant action.
 
 ## Pipeline
 
