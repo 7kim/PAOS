@@ -38,7 +38,7 @@ export default function LedgerPage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 5000);
+    const id = setInterval(() => void load(), 15000);
     return () => clearInterval(id);
   }, [load]);
 

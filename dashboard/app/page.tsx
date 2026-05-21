@@ -74,15 +74,15 @@ export default function OverviewPage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 5000);
+    const id = setInterval(() => void load(), 15000);
     return () => clearInterval(id);
   }, [load]);
 
   const cards = [
-    { label: "System", value: stats?.systemStatus ?? "loading", icon: ShieldCheck, color: stats?.systemStatus === "healthy" ? "#22c55e" : "#eab308" },
-    { label: "Healthy Agents", value: `${stats?.healthyAgents ?? 0}/${stats?.agents ?? 0}`, icon: Bot, color: "#10b981" },
-    { label: "Ledger Entries", value: stats?.ledgerCount ?? 0, icon: ScrollText, color: "#3b82f6" },
-    { label: "Inbox Messages", value: stats?.inboxTotal ?? 0, icon: Inbox, color: "#f97316" },
+    { label: "System", value: stats?.systemStatus ?? "loading", icon: ShieldCheck, color: stats?.systemStatus === "healthy" ? "var(--green)" : "#eab308" },
+    { label: "Healthy Agents", value: `${stats?.healthyAgents ?? 0}/${stats?.agents ?? 0}`, icon: Bot, color: "var(--green)" },
+    { label: "Ledger Entries", value: stats?.ledgerCount ?? 0, icon: ScrollText, color: "var(--accent)" },
+    { label: "Inbox Messages", value: stats?.inboxTotal ?? 0, icon: Inbox, color: "var(--orange)" },
   ];
 
   return (
@@ -103,7 +103,7 @@ export default function OverviewPage() {
               <span className="text-xs" style={{ color: "var(--muted)" }}>{label}</span>
               <Icon size={14} style={{ color }} />
             </div>
-            <div className="text-2xl font-bold capitalize" style={{ color }}>{value}</div>
+            <div className="text-2xl font-bold font-mono capitalize" style={{ color }}>{value}</div>
           </div>
         ))}
       </div>
@@ -193,8 +193,8 @@ export default function OverviewPage() {
 
       <div className="grid grid-cols-2 gap-4 mt-4 md:grid-cols-4">
         {[
-          { label: "Tasks", value: stats?.tasks ?? 0, icon: ListTodo, color: "#22c55e" },
-          { label: "Plans", value: stats?.plans ?? 0, icon: ScrollText, color: "#a855f7" },
+          { label: "Tasks", value: stats?.tasks ?? 0, icon: ListTodo, color: "var(--green)" },
+          { label: "Plans", value: stats?.plans ?? 0, icon: ScrollText, color: "var(--purple)" },
         ].map(({ label, value, icon: Icon, color }) => (
           <div
             key={label}
@@ -205,7 +205,7 @@ export default function OverviewPage() {
               <span className="text-xs" style={{ color: "var(--muted)" }}>{label}</span>
               <Icon size={14} style={{ color }} />
             </div>
-            <div className="text-2xl font-bold" style={{ color }}>{value}</div>
+            <div className="text-2xl font-bold font-mono" style={{ color }}>{value}</div>
           </div>
         ))}
       </div>

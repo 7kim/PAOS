@@ -61,7 +61,7 @@ export default function InboxPage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 5000);
+    const id = setInterval(() => void load(), 15000);
     return () => clearInterval(id);
   }, [load]);
 
@@ -89,7 +89,7 @@ export default function InboxPage() {
         <button
           onClick={() => setShowCompose(!showCompose)}
           className="flex items-center gap-2 px-3 py-2 rounded-md text-sm"
-          style={{ background: "var(--accent)", color: "#fff" }}
+          style={{ background: "var(--accent)", color: "var(--accent-on)" }}
         >
           <Send size={13} /> Send Message
         </button>
@@ -140,7 +140,7 @@ export default function InboxPage() {
             onClick={send}
             disabled={sending || !composeTo || !composeBody}
             className="px-4 py-1.5 text-sm rounded"
-            style={{ background: "var(--accent)", color: "#fff", opacity: (sending || !composeTo || !composeBody) ? 0.5 : 1 }}
+            style={{ background: "var(--accent)", color: "var(--accent-on)", opacity: (sending || !composeTo || !composeBody) ? 0.5 : 1 }}
           >
             {sending ? "Sending..." : "Send"}
           </button>
@@ -155,7 +155,7 @@ export default function InboxPage() {
             className="px-3 py-1 rounded-full text-xs transition-colors"
             style={{
               background: activeInbox === inbox ? "var(--accent)" : "var(--card-bg)",
-              color: activeInbox === inbox ? "#fff" : "var(--muted)",
+              color: activeInbox === inbox ? "var(--accent-on)" : "var(--muted)",
               border: `1px solid ${activeInbox === inbox ? "var(--accent)" : "var(--border)"}`,
             }}
           >
@@ -179,7 +179,7 @@ export default function InboxPage() {
             onClick={() => setSelected(selected?.id === msg.id ? null : msg)}
             className="text-left rounded-lg border p-4 transition-colors"
             style={{
-              background: selected?.id === msg.id ? "rgba(59,130,246,0.08)" : "var(--card-bg)",
+              background: selected?.id === msg.id ? "rgba(252,213,53,0.07)" : "var(--card-bg)",
               borderColor: selected?.id === msg.id ? "var(--accent)" : "var(--border)",
             }}
           >

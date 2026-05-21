@@ -25,7 +25,7 @@ export default function PlansPage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 10000);
+    const id = setInterval(() => void load(), 30000);
     return () => clearInterval(id);
   }, [load]);
 
@@ -46,8 +46,8 @@ export default function PlansPage() {
             onClick={() => { setSelected(p); setTab("plan"); }}
             className="w-full text-left rounded-lg border p-3 transition-colors"
             style={{
-              background: selected?.id === p.id ? "rgba(59,130,246,0.1)" : "var(--card-bg)",
-              borderColor: selected?.id === p.id ? "#3b82f6" : "var(--border)",
+              background: selected?.id === p.id ? "rgba(252,213,53,0.07)" : "var(--card-bg)",
+              borderColor: selected?.id === p.id ? "var(--accent)" : "var(--border)",
             }}
           >
             <div className="flex items-center gap-2 mb-1">

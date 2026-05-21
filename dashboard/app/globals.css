@@ -1,33 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d0f14;
-  --foreground: #e2e8f0;
-  --sidebar-bg: #0a0c10;
-  --card-bg: #131720;
-  --border: #1e2535;
-  --accent: #3b82f6;
-  --accent-green: #22c55e;
-  --accent-yellow: #eab308;
-  --accent-red: #ef4444;
-  --accent-purple: #a855f7;
-  --muted: #64748b;
+  /* Binance design tokens */
+  --background:    #0b0e11;   /* canvas-dark */
+  --foreground:    #eaecef;   /* body on dark */
+  --sidebar-bg:    #0b0e11;   /* same as canvas */
+  --card-bg:       #1e2329;   /* surface-card-dark */
+  --elevated:      #2b3139;   /* surface-elevated-dark */
+  --border:        #2b3139;   /* hairline-on-dark */
+  --muted:         #707a8a;
+  --muted-strong:  #929aa5;
+
+  /* Accent — Binance Yellow */
+  --accent:        #fcd535;
+  --accent-active: #f0b90b;
+  --accent-on:     #181a20;   /* text ON yellow button */
+
+  /* Semantic */
+  --green:         #0ecb81;   /* trading-up */
+  --red:           #f6465d;   /* trading-down */
+  --purple:        #a855f7;
+  --blue:          #3b82f6;
+  --orange:        #f97316;
+  --pink:          #ec4899;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-inter, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 14px;
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* Numbers / mono: JetBrains Mono = BinancePlex substitute */
+.font-mono, code, pre {
+  font-family: var(--font-mono, 'JetBrains Mono', 'Fira Code', monospace);
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #1e2535; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #2d3748; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted-strong); }
+
+/* Table row hover */
+tr.hover-row:hover td { background: rgba(255,255,255,0.02); }

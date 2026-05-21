@@ -6,6 +6,13 @@ export const REPO_ROOT = process.env.PAOS_ROOT || "/home/dev/AI_Workflow";
 export const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
 export const LOGS_DIR = process.env.LOGS_DIR || "/home/dev/AI_Workflow/logs";
 
+// Cache binary lookups — binaries don't move during a session
+const binaryCache = new Map<string, string | null>();
+
+// Cache full systemDoctor result — health checks are expensive (500+ fs ops for 12 agents)
+let doctorCache: { result: Awaited<ReturnType<typeof runSystemDoctor>>; ts: number } | null = null;
+const DOCTOR_TTL = 30_000; // 30 seconds
+
 export interface AgentRegistryEntry {
   id: string;
   label: string;
@@ -47,18 +54,25 @@ async function exists(path: string) {
 }
 
 async function executableOnPath(binary: string) {
+  if (binaryCache.has(binary)) return binaryCache.get(binary) ?? null;
+  let found: string | null = null;
   for (const dir of (process.env.PATH || "").split(delimiter)) {
     if (!dir) continue;
     const candidate = resolve(dir, binary);
     try {
       await access(candidate, constants.X_OK);
-      return candidate;
+      found = candidate;
+      break;
     } catch {
       // Continue.
     }
   }
-  const local = join(/* turbopackIgnore: true */ REPO_ROOT, "bin", binary);
-  return (await exists(local)) ? local : null;
+  if (!found) {
+    const local = join(/* turbopackIgnore: true */ REPO_ROOT, "bin", binary);
+    if (await exists(local)) found = local;
+  }
+  binaryCache.set(binary, found);
+  return found;
 }
 
 async function inboxCount(path: string) {
@@ -129,7 +143,7 @@ export async function agentHealth(agent: AgentRegistryEntry, registry: AgentRegi
   };
 }
 
-export async function systemDoctor() {
+async function runSystemDoctor() {
   const registry = await readRegistry();
   const agents = await Promise.all(registry.agents.map((agent) => agentHealth(agent, registry)));
   return {
@@ -137,4 +151,13 @@ export async function systemDoctor() {
     status: agents.every((agent) => agent.status === "healthy") ? "healthy" : "degraded",
     agents,
   };
+}
+
+export async function systemDoctor() {
+  if (doctorCache && Date.now() - doctorCache.ts < DOCTOR_TTL) {
+    return doctorCache.result;
+  }
+  const result = await runSystemDoctor();
+  doctorCache = { result, ts: Date.now() };
+  return result;
 }

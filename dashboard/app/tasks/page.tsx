@@ -10,11 +10,13 @@ interface Task {
 }
 
 const STATUS_STYLES: Record<string, { bg: string; color: string; label: string }> = {
-  done: { bg: "#22c55e22", color: "#22c55e", label: "Done" },
-  ready_for_execution: { bg: "#3b82f622", color: "#3b82f6", label: "Ready" },
-  in_progress: { bg: "#eab30822", color: "#eab308", label: "In Progress" },
-  planning: { bg: "#a855f722", color: "#a855f7", label: "Planning" },
-  unknown: { bg: "#64748b22", color: "#64748b", label: "Unknown" },
+  done: { bg: "rgba(14,203,129,0.12)", color: "#0ecb81", label: "Done" },
+  ready_for_execution: { bg: "rgba(252,213,53,0.12)", color: "#fcd535", label: "Ready" },
+  in_progress: { bg: "rgba(252,213,53,0.08)", color: "#f0b90b", label: "In Progress" },
+  planning: { bg: "rgba(168,85,247,0.12)", color: "#a855f7", label: "Planning" },
+  needs_planning: { bg: "rgba(59,130,246,0.12)", color: "#3b82f6", label: "Needs Planning" },
+  pending: { bg: "rgba(112,122,138,0.12)", color: "#929aa5", label: "Pending" },
+  unknown: { bg: "rgba(112,122,138,0.1)", color: "#707a8a", label: "Unknown" },
 };
 
 function statusStyle(status: string) {
@@ -32,7 +34,7 @@ export default function TasksPage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 5000);
+    const id = setInterval(() => void load(), 20000);
     return () => clearInterval(id);
   }, [load]);
 

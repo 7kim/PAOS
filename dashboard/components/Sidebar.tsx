@@ -9,10 +9,10 @@ import {
   ListTodo,
   FileText,
   Inbox,
-  Zap,
   HandMetal,
   Code,
   Settings,
+  Zap,
 } from "lucide-react";
 
 const nav = [
@@ -26,8 +26,29 @@ const nav = [
 ];
 
 const codeSrsNav = [
-  { href: "/settings/code-srs", label: "Code-SRS", icon: Code },
+  { href: "/settings/code-srs", label: "Code-SRS Settings", icon: Code },
 ];
+
+const agentColorMap: Record<string, string> = {
+  claude: "#f97316",
+  "opencode-developer": "#3b82f6",
+  "opencode-plan": "#60a5fa",
+  openclaw: "#8b5cf6",
+  ollama: "#0ecb81",
+  antigravity: "#ec4899",
+  codex: "#fcd535",
+  signal: "#2dbdb6",
+  gemini: "#3b82f6",
+  hermes: "#a855f7",
+  copilot: "#64748b",
+};
+
+function resolveColor(id: string) {
+  for (const [key, color] of Object.entries(agentColorMap)) {
+    if (id.toLowerCase().includes(key)) return color;
+  }
+  return "#707a8a";
+}
 
 interface Agent {
   id: string;
@@ -42,77 +63,108 @@ export default function Sidebar() {
   const loadAgents = useCallback(async () => {
     const res = await fetch("/api/agents");
     const data = await res.json();
-    setAgents(data.agents ?? []);
+    setAgents((data.agents ?? []) as Agent[]);
   }, []);
 
   useEffect(() => {
     queueMicrotask(() => void loadAgents());
   }, [loadAgents]);
 
+  function isActive(href: string) {
+    return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+  }
+
   return (
     <aside
       className="w-56 flex flex-col border-r shrink-0"
       style={{ background: "var(--sidebar-bg)", borderColor: "var(--border)" }}
     >
-      <div className="px-4 py-5 border-b" style={{ borderColor: "var(--border)" }}>
-        <div className="flex items-center gap-2">
-          <Zap size={18} style={{ color: "var(--accent)" }} />
-          <span className="font-semibold text-sm tracking-wide">AI Workflow Hub</span>
+      {/* Logo */}
+      <div
+        className="px-4 py-5 border-b flex items-center gap-2.5"
+        style={{ borderColor: "var(--border)" }}
+      >
+        <div
+          className="w-7 h-7 rounded flex items-center justify-center shrink-0"
+          style={{ background: "var(--accent)" }}
+        >
+          <Zap size={14} style={{ color: "var(--accent-on)" }} />
         </div>
-        <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>Orchestration Dashboard</p>
+        <div>
+          <div className="font-bold text-sm tracking-tight" style={{ color: "var(--foreground)" }}>
+            AI Workflow
+          </div>
+          <div className="text-xs" style={{ color: "var(--muted)" }}>PAOS Hub</div>
+        </div>
       </div>
 
-      <nav className="flex-1 px-2 py-4 space-y-0.5">
+      {/* Main nav */}
+      <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
+        <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted)" }}>
+          Dashboard
+        </p>
         {nav.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href;
+          const active = isActive(href);
           return (
             <Link
               key={href}
               href={href}
               className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
               style={{
-                background: active ? "rgba(59,130,246,0.12)" : "transparent",
+                background: active ? "rgba(252,213,53,0.1)" : "transparent",
                 color: active ? "var(--accent)" : "var(--foreground)",
+                fontWeight: active ? 600 : 400,
               }}
             >
-              <Icon size={15} />
+              <Icon size={14} style={{ color: active ? "var(--accent)" : "var(--muted)" }} />
               {label}
             </Link>
           );
         })}
 
-        <div className="pt-4 pb-1">
-          <p className="text-xs font-medium px-3" style={{ color: "var(--muted)" }}>CODE-SRS</p>
+        <div className="pt-3 pb-1">
+          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted)" }}>
+            Code-SRS
+          </p>
         </div>
         {codeSrsNav.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href || pathname.startsWith(href);
+          const active = isActive(href);
           return (
             <Link
               key={href}
               href={href}
               className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
               style={{
-                background: active ? "rgba(59,130,246,0.12)" : "transparent",
+                background: active ? "rgba(252,213,53,0.1)" : "transparent",
                 color: active ? "var(--accent)" : "var(--foreground)",
+                fontWeight: active ? 600 : 400,
               }}
             >
-              <Icon size={15} />
+              <Icon size={14} style={{ color: active ? "var(--accent)" : "var(--muted)" }} />
               {label}
             </Link>
           );
         })}
       </nav>
 
-      <div className="px-4 py-4 border-t" style={{ borderColor: "var(--border)" }}>
-        <p className="text-xs font-medium mb-2" style={{ color: "var(--muted)" }}>AGENTS</p>
-        <div className="space-y-1.5">
+      {/* Agent status strip */}
+      <div
+        className="px-4 py-4 border-t"
+        style={{ borderColor: "var(--border)", background: "var(--elevated)" }}
+      >
+        <p className="text-xs font-semibold uppercase tracking-wider mb-2.5" style={{ color: "var(--muted)" }}>
+          Agents
+        </p>
+        <div className="space-y-2">
           {agents.map((a) => (
             <div key={a.id} className="flex items-center gap-2 text-xs">
               <span
                 className="w-1.5 h-1.5 rounded-full shrink-0"
-                style={{ background: a.color }}
+                style={{ background: resolveColor(a.id) }}
               />
-              <span style={{ color: "var(--foreground)", opacity: 0.8 }}>{a.label}</span>
+              <span className="truncate" style={{ color: "var(--foreground)", opacity: 0.8 }}>
+                {a.label}
+              </span>
             </div>
           ))}
         </div>

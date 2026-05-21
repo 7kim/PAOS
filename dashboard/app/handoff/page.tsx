@@ -17,7 +17,7 @@ export default function HandoffPage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 10000);
+    const id = setInterval(() => void load(), 30000);
     return () => clearInterval(id);
   }, [load]);
 

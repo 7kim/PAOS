@@ -52,7 +52,7 @@ export default function AgentsPage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 5000);
+    const id = setInterval(() => void load(), 30000);
     return () => clearInterval(id);
   }, [load]);
 
@@ -82,7 +82,7 @@ export default function AgentsPage() {
               style={{
                 background: statusFilter === status ? "var(--accent)" : "var(--card-bg)",
                 borderColor: statusFilter === status ? "var(--accent)" : "var(--border)",
-                color: statusFilter === status ? "#fff" : "var(--muted)",
+                color: statusFilter === status ? "var(--accent-on)" : "var(--muted)",
               }}
             >
               {status.replace("_", " ")}
@@ -98,11 +98,11 @@ export default function AgentsPage() {
         </div>
         <div className="rounded-lg border p-4" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
           <div className="text-xs mb-2" style={{ color: "var(--muted)" }}>Healthy</div>
-          <div className="text-2xl font-semibold" style={{ color: "#22c55e" }}>{healthyCount}</div>
+          <div className="text-2xl font-semibold" style={{ color: "var(--green)" }}>{healthyCount}</div>
         </div>
         <div className="rounded-lg border p-4" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
           <div className="text-xs mb-2" style={{ color: "var(--muted)" }}>Degraded</div>
-          <div className="text-2xl font-semibold" style={{ color: agents.length === healthyCount ? "#22c55e" : "#eab308" }}>
+          <div className="text-2xl font-semibold font-mono" style={{ color: agents.length === healthyCount ? "var(--green)" : "var(--red)" }}>
             {agents.length - healthyCount}
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function AgentsPage() {
             onClick={() => setSelectedId(agent.id)}
             className="rounded-lg border p-4 text-left"
             style={{
-              background: selected?.id === agent.id ? "rgba(59,130,246,0.08)" : "var(--card-bg)",
+              background: selected?.id === agent.id ? "rgba(252,213,53,0.07)" : "var(--card-bg)",
               borderColor: selected?.id === agent.id ? "var(--accent)" : "var(--border)",
             }}
           >
@@ -158,7 +158,7 @@ export default function AgentsPage() {
                 <Clock size={12} />
                 <span>Last active: {timeAgo(agent.lastActivity)}</span>
               </div>
-              <div className="text-xs" style={{ color: agent.status === "healthy" ? "#22c55e" : "#eab308" }}>
+              <div className="text-xs" style={{ color: agent.status === "healthy" ? "var(--green)" : "var(--red)" }}>
                 {agent.status} · {agent.riskLevel} risk
               </div>
             </div>
