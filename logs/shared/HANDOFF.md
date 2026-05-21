@@ -6,21 +6,28 @@
 ---
 
 ## Last Agent
-- **Agent**: antigravity
-- **Tool**: Antigravity IDE
-- **Timestamp**: 2026-05-21T05:25:00Z
-- **Session**: Initialized Antigravity IDE into the PAOS loop
+- **Agent**: opencode-developer
+- **Tool**: OpenCode Developer
+- **Timestamp**: 2026-05-21T05:26:18.403Z
+- **Session**: Dashboard fixes: ledger sort, pipeline gitgraph, plans, agents
 
 ## Active Task
-PAOS-ANTIGRAVITY-INIT — Setting up Antigravity agent in PAOS dual-logging and structure
+PAOS-DASHBOARD — Ledger sort, agent registry, pipeline gitgraph, plans fix
 
 ## What Was Just Done
-- Created inbox directory at `vault/memory/inbox/antigravity`
-- Created events log file at `vault/memory/antigravity/events.md`
-- Synced the chat transcript to enable cross-agent continuity
+- Closed out Code-SRS pipeline: META.json status→completed, task card→done
+- Executed TASK-002: created logs/gemini/events.md
+- Sorted ledger API by parsed timestamp (newest first) in api/ledger and api/overview
+- Added opencode-developer as separate registered agent in agents/registry.json
+- Created Pipeline GitGraph tab at /pipelines with visual DAG (nodes, phases, progress bar, agent badges)
+- Fixed Plans page to read from memory/pipelines/ as primary source (fallback pm-logs/)
+- Added Pipelines navigation link to Sidebar
+- Updated agent color maps across all dashboard pages to cover all 12 registered agents
+- Dashboard build passes with zero TypeScript errors
 
 ## What Is NOT Done Yet
-- Pipeline and task execution using Antigravity
+- TASK-002 is done (simple smoke test), pipeline system is operational
+- GitGraph page shows pipeline DAG — click to expand phases/progress
 
 ## Active Projects
 | Project | Path | Stack | Status |
