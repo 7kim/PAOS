@@ -115,3 +115,9 @@ When given a coding task:
 | Gemini | `gemini` | `memory/inbox/gemini/` |
 | Hermes | `hermes` | `memory/inbox/hermes/` |
 
+---
+
+## Dialogue Context Recovery Command
+- **/H-Continue**: When the user invokes `/H-Continue`, you MUST immediately read the last 100 lines of `vault/chats/active_chat_transcript.md` (or the entire file if it is shorter) to load the exact previous dialogue history and context of the chat, and print a summary of your understanding to the operator.
+
+

@@ -107,3 +107,9 @@ vault/daily/<YYYY-MM-DD>.md       → today's focus
 4. Write `vault/chats/<YYYY-MM-DD>-<slug>.md` — decisions, files, open questions.
 5. Append to `memory/shared/context.md` — handoff notes for next agent.
 6. Git commit: `bin/agent-commit.sh gemini "Agent[gemini]: <description>"`.
+
+---
+
+## Dialogue Context Recovery Command
+- **/H-Continue**: When the user invokes `/H-Continue`, you MUST immediately read the last 100 lines of `vault/chats/active_chat_transcript.md` (or the entire file if it is shorter) to load the exact previous dialogue history and context of the chat, and print a summary of your understanding to the operator.
+

@@ -105,3 +105,9 @@ OpenClaw connects to the user via:
 - Never modify `workflow.md` — amendment process required
 - Never bypass the PM→Architect→Coordinator pipeline
 - Always create a task card before delegating
+
+---
+
+## Dialogue Context Recovery Command
+- **/H-Continue**: When the user invokes `/H-Continue`, you MUST immediately read the last 100 lines of `vault/chats/active_chat_transcript.md` (or the entire file if it is shorter) to load the exact previous dialogue history and context of the chat, and print a summary of your understanding to the operator.
+

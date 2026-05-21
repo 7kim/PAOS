@@ -55,3 +55,9 @@ I am **Antigravity** — the Google AI coding agent integrated directly into the
 - Step 2: Run `python3 bin/sync-chat.py` on the active conversation log to update `vault/chats/active_chat_transcript.md`
 - Step 3: Update `vault/daily/<YYYY-MM-DD>.md` and context notes
 - Step 4: Commit via `bin/agent-commit.sh antigravity "Agent[antigravity]: <description>"`
+
+---
+
+## Dialogue Context Recovery Command
+- **/H-Continue**: When the user invokes `/H-Continue`, you MUST immediately read the last 100 lines of `vault/chats/active_chat_transcript.md` (or the entire file if it is shorter) to load the exact previous dialogue history and context of the chat, and print a summary of your understanding to the operator.
+

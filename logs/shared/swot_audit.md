@@ -44,11 +44,11 @@ mindmap
       Empty Gemini MCP config
       Hermes Integration Gap
     Opportunities
-      Dialogue Syncer (sync-chat)
+      ["Dialogue Syncer (sync-chat)"]
       Dashboard systemd service
       Unified CLI interface
     Threats
-      Expansion disk space (99% full)
+      ["Expansion disk space (99% full)"]
       Context window explosion
       Credential security in plain text
 ```
