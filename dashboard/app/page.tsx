@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Bot, CheckCircle2, Inbox, ListTodo, ScrollText, ShieldCheck, TriangleAlert } from "lucide-react";
+import { Bot, CheckCircle2, Inbox, ListTodo, ScrollText, ShieldCheck, TriangleAlert, X } from "lucide-react";
 
 interface Stats {
   tasks: number;
@@ -18,6 +18,8 @@ interface RecentEntry {
   agent: string;
   action: string;
   description: string;
+  file?: string;
+  task?: string;
 }
 
 interface UnhealthyAgent {
@@ -63,6 +65,7 @@ export default function OverviewPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [recent, setRecent] = useState<RecentEntry[]>([]);
   const [unhealthyAgents, setUnhealthyAgents] = useState<UnhealthyAgent[]>([]);
+  const [selectedEntry, setSelectedEntry] = useState<RecentEntry | null>(null);
 
   const load = useCallback(async () => {
     const res = await fetch("/api/overview");
@@ -151,8 +154,9 @@ export default function OverviewPage() {
           className="rounded-lg border overflow-hidden"
           style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
         >
-          <div className="px-4 py-3 border-b" style={{ borderColor: "var(--border)" }}>
+          <div className="px-4 py-3 border-b flex items-center justify-between" style={{ borderColor: "var(--border)" }}>
             <span className="text-sm font-medium">Recent Activity</span>
+            <span className="text-xs" style={{ color: "var(--muted)" }}>click to expand</span>
           </div>
           <div className="divide-y" style={{ borderColor: "var(--border)" }}>
             {recent.length === 0 && (
@@ -160,33 +164,81 @@ export default function OverviewPage() {
                 No activity yet
               </div>
             )}
-            {recent.map((entry, i) => (
-              <div key={i} className="px-4 py-3 flex items-start gap-3">
-                <span
-                  className="w-2 h-2 rounded-full mt-1.5 shrink-0"
-                  style={{ background: agentColor(entry.agent) }}
-                />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs font-medium" style={{ color: agentColor(entry.agent) }}>
-                      {entry.agent}
-                    </span>
+            {recent.map((entry, i) => {
+              const isSelected = selectedEntry?.timestamp === entry.timestamp && selectedEntry?.description === entry.description;
+              return (
+                <div key={i}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedEntry(isSelected ? null : entry)}
+                    className="w-full text-left px-4 py-3 flex items-start gap-3 transition-colors"
+                    style={{ background: isSelected ? "rgba(252,213,53,0.05)" : undefined }}
+                  >
                     <span
-                      className="text-xs px-1.5 py-0.5 rounded"
-                      style={{ background: "rgba(255,255,255,0.05)", color: "var(--muted)" }}
+                      className="w-2 h-2 rounded-full mt-1.5 shrink-0"
+                      style={{ background: agentColor(entry.agent) }}
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-xs font-medium" style={{ color: agentColor(entry.agent) }}>
+                          {entry.agent}
+                        </span>
+                        <span
+                          className="text-xs px-1.5 py-0.5 rounded"
+                          style={{ background: "rgba(255,255,255,0.05)", color: "var(--muted)" }}
+                        >
+                          {entry.action}
+                        </span>
+                        <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>
+                          {timeAgo(entry.timestamp)}
+                        </span>
+                      </div>
+                      <p className="text-sm mt-0.5 truncate" style={{ color: "var(--foreground)", opacity: 0.8 }}>
+                        {entry.description}
+                      </p>
+                    </div>
+                  </button>
+                  {isSelected && (
+                    <div
+                      className="px-4 pb-4 pt-2 border-t"
+                      style={{ background: "rgba(252,213,53,0.03)", borderColor: "var(--border)" }}
                     >
-                      {entry.action}
-                    </span>
-                    <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>
-                      {timeAgo(entry.timestamp)}
-                    </span>
-                  </div>
-                  <p className="text-sm mt-0.5 truncate" style={{ color: "var(--foreground)", opacity: 0.8 }}>
-                    {entry.description}
-                  </p>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-semibold" style={{ color: "var(--accent)" }}>Detail</span>
+                        <button
+                          type="button"
+                          title="Close"
+                          onClick={() => setSelectedEntry(null)}
+                          className="p-0.5 rounded"
+                          style={{ color: "var(--muted)" }}
+                        >
+                          <X size={12} />
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-xs mb-2">
+                        <div>
+                          <span style={{ color: "var(--muted)" }}>Timestamp </span>
+                          <span className="font-mono">{entry.timestamp}</span>
+                        </div>
+                        {entry.task && (
+                          <div>
+                            <span style={{ color: "var(--muted)" }}>Task </span>
+                            <span className="font-mono">{entry.task}</span>
+                          </div>
+                        )}
+                      </div>
+                      {entry.file && (
+                        <div className="text-xs mb-2">
+                          <span style={{ color: "var(--muted)" }}>File </span>
+                          <span className="font-mono break-all">{entry.file}</span>
+                        </div>
+                      )}
+                      <div className="text-sm leading-relaxed break-words">{entry.description}</div>
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

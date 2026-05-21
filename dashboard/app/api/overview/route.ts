@@ -43,7 +43,9 @@ async function getRecentLedgerEntries(n = 5) {
           timestamp: cells[0] ?? "",
           agent: cells[1] ?? "",
           action: cells[2] ?? "",
+          file: cells[3] ?? "",
           description: cells[4] ?? "",
+          task: cells[5] ?? "",
         };
       });
     return rows;

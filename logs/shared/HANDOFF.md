@@ -8,26 +8,22 @@
 ## Last Agent
 - **Agent**: opencode-developer
 - **Tool**: opencode-developer
-- **Timestamp**: 2026-05-21T04:14:21.687Z
+- **Timestamp**: 2026-05-21T04:35:55.649Z
 
 ## Active Task
-PIPE-20260521-033337-code1 — All 4 future items complete
+PAOS-RESTRUCTURE — Project restructuring complete
 
 ## What Was Just Done
-- [x] PostgreSQL 18 installed, database `codesrs` created, schema migrated (users, sessions, pipelines, invite_codes tables)
-- [x] Created `lib/db.ts` — Node.js `pg` connection pool for all API routes
-- [x] Rewrote `app/api/auth/login/route.ts` — PostgreSQL-backed auth (replaced in-memory Map)
-- [x] Wired real PAOS pipeline submission in `app/api/pipeline/route.ts` — calls `bin/h-pipeline submit` CLI with generated PLAN.md + TASKS.md
-- [x] Added OAuth routes: `GET /api/auth/oauth/[provider]` initiates flow, `GET /api/auth/oauth/[provider]/callback` handles callback with code exchange + user creation (GitHub/Google)
-- [x] Rewrote `app/api/stream/[id]/route.ts` — tails real filesystem events from `memory/pipelines/<id>/` (reads META.json status, PLAN.md, TASKS.md progress, WALKTHROUGH.md), polls every 3s for up to 2min
-- [x] Added `@types/pg` and `tsx` dev dependencies
-- [x] `npm run build` passes with zero TypeScript errors
-- [x] Commit SHA f59e71f
+- [x] Created project tree: PAOS (~/AI_Workflow), PAOS-WEB (~/Documents/Dev/PAOS-WEB), PAOS-VPS (~/Documents/Dev/PAOS-VPS)
+- [x] Moved frontend/ contents to PAOS-WEB, all hardcoded AI_Workflow paths replaced with centralized lib/paths.ts
+- [x] Created symlink ~/AI_Workflow/frontend/ -> ~/Documents/Dev/PAOS-WEB/
+- [x] Created PAOS-VPS scaffold directory with README outlining planned structure
+- [x] `npm run build` passes with zero errors in PAOS-WEB
+- [x] PAOS-WEB initialized as independent git repo; AI_Workflow commit SHA ec77616
 
 ## What Is NOT Done Yet
-- Set GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET / GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET env vars for production OAuth
-- Configure NEXT_PUBLIC_BASE_URL for production deployment
-- The h-pipeline CLI requires the PAOS agent registry to be populated for the executor lookup to work fully
+- The dashboard at port 3333 still references old frontend path if any; verify it works
+- PAOS-VPS is empty scaffold — ready for future VPS agent layer work
 
 ## Active Projects
 | Project | Path | Stack | Status |

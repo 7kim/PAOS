@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import { X } from "lucide-react";
 
 interface Task {
   id: string;
@@ -7,6 +8,7 @@ interface Task {
   status: string;
   agent: string;
   project: string;
+  raw: string;
 }
 
 const STATUS_STYLES: Record<string, { bg: string; color: string; label: string }> = {
@@ -25,6 +27,7 @@ function statusStyle(status: string) {
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [selected, setSelected] = useState<Task | null>(null);
 
   const load = useCallback(async () => {
     const res = await fetch("/api/tasks");
@@ -39,46 +42,91 @@ export default function TasksPage() {
   }, [load]);
 
   return (
-    <div>
-      <h1 className="text-xl font-semibold mb-1">Tasks</h1>
-      <p className="text-sm mb-6" style={{ color: "var(--muted)" }}>
-        Task cards from <span className="font-mono">memory/tasks/</span>
-      </p>
-
-      {tasks.length === 0 ? (
-        <div
-          className="rounded-lg border p-12 text-center text-sm"
-          style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}
-        >
-          No task cards found in <span className="font-mono">memory/tasks/</span>
+    <div className="flex gap-4 h-full">
+      <div className={`flex-1 min-w-0 flex flex-col`}>
+        <div className="mb-6">
+          <h1 className="text-xl font-semibold mb-1">Tasks</h1>
+          <p className="text-sm" style={{ color: "var(--muted)" }}>
+            Task cards from <span className="font-mono">memory/tasks/</span> — click to inspect
+          </p>
         </div>
-      ) : (
-        <div className="space-y-3">
-          {tasks.map((task) => {
-            const s = statusStyle(task.status);
-            return (
-              <div
-                key={task.id}
-                className="rounded-lg border p-4 flex items-center gap-4"
-                style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-              >
-                <span
-                  className="text-xs px-2 py-0.5 rounded-full font-medium shrink-0"
-                  style={{ background: s.bg, color: s.color }}
+
+        {tasks.length === 0 ? (
+          <div
+            className="rounded-lg border p-12 text-center text-sm"
+            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}
+          >
+            No task cards found in <span className="font-mono">memory/tasks/</span>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {tasks.map((task) => {
+              const s = statusStyle(task.status);
+              const isSelected = selected?.id === task.id;
+              return (
+                <button
+                  key={task.id}
+                  type="button"
+                  onClick={() => setSelected(isSelected ? null : task)}
+                  className="w-full text-left rounded-lg border p-4 flex items-center gap-4 transition-colors"
+                  style={{
+                    background: isSelected ? "rgba(252,213,53,0.06)" : "var(--card-bg)",
+                    borderColor: isSelected ? "var(--accent)" : "var(--border)",
+                    borderLeft: isSelected ? "2px solid var(--accent)" : undefined,
+                  }}
                 >
-                  {s.label}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <div className="font-medium text-sm truncate">{task.title}</div>
-                  <div className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
-                    {task.id}
-                    {task.project && ` · ${task.project}`}
-                    {task.agent && ` · ${task.agent}`}
+                  <span
+                    className="text-xs px-2 py-0.5 rounded-full font-medium shrink-0"
+                    style={{ background: s.bg, color: s.color }}
+                  >
+                    {s.label}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium text-sm truncate">{task.title}</div>
+                    <div className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
+                      {task.id}
+                      {task.project && ` · ${task.project}`}
+                      {task.agent && ` · ${task.agent}`}
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {selected && (
+        <div
+          className="w-[420px] shrink-0 rounded-lg border flex flex-col overflow-hidden"
+          style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
+        >
+          <div
+            className="flex items-center justify-between px-4 py-3 border-b"
+            style={{ borderColor: "var(--border)" }}
+          >
+            <div>
+              <span className="font-medium text-sm">{selected.title}</span>
+              <div className="text-xs mt-0.5 font-mono" style={{ color: "var(--muted)" }}>{selected.id}</div>
+            </div>
+            <button
+              type="button"
+              title="Close"
+              onClick={() => setSelected(null)}
+              className="p-1 rounded ml-2 shrink-0"
+              style={{ color: "var(--muted)" }}
+            >
+              <X size={14} />
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto p-4">
+            <pre
+              className="text-xs leading-relaxed whitespace-pre-wrap font-mono"
+              style={{ color: "var(--foreground)", opacity: 0.85 }}
+            >
+              {selected.raw}
+            </pre>
+          </div>
         </div>
       )}
     </div>
