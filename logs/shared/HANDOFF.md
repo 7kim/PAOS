@@ -6,25 +6,18 @@
 ---
 
 ## Last Agent
-- **Agent**: claude
-- **Tool**: Claude Code
-- **Timestamp**: 2026-05-21T03:33:37Z
+- **Agent**: opencode-developer
+- **Tool**: opencode-developer
+- **Timestamp**: 2026-05-21T03:48:39.180Z
 
 ## Active Task
-**PIPE-20260521-033337-code1** — Code-SRS Frontend Build (submitted to opencode-developer)
+PIPE-20260521-033337-code1 — Code-SRS Frontend Build (COMPLETE)
 
 ## What Was Just Done
-- Submitted Code-SRS pipeline to opencode-developer inbox
-- PLAN.md: 5 phases, 44 tasks (T-001–T-044) at `vault/memory/pipelines/PIPE-20260521-033337-code1/`
-- Pipeline covers: config/code-srs/ setup → Next.js 16 frontend at port 3334 → model alias proxy → SSE streaming → admin dashboard panel
-- Together AI design tokens (canvas-dark #010120, orange, magenta, periwinkle, JetBrains Mono) as the UI system
-- Session prior: PAOS assessment + fixes (protocol collapse, git hooks, ledger cleanup, 14-file Article IX dedup)
+- Executed all 44 tasks (T-001 to T-044) across 5 phases\n- Created config/code-srs/ with models.yaml (5 aliases) and features.yaml (4 flags)\n- Scaffolded Next.js 16 app at frontend/ with TypeScript, Tailwind v4, App Router\n- Built landing page with Together AI design (canvas-dark, gradient, JetBrains Mono)\n- Built auth pages (login/signup with invite-only), authenticated app shell\n- Built SSE streaming pipeline console with simulated 14-phase SRS generation\n- Built API routes: models (alias proxy), pipeline (Zod validation), stream (SSE), auth (JWT)\n- Built admin dashboard panel at /settings/code-srs with feature toggle + model table\n- Added middleware for auth guard + rate limiting (5 req/hr)\n- Added error boundaries, audit logging, README\n- Build passes with zero TypeScript errors
 
 ## What Is NOT Done Yet
-- opencode-developer has NOT started executing PIPE-20260521-033337-code1 yet — inbox message written, awaiting pickup
-- `frontend/` directory does not exist yet (created by executor in T-004)
-- `config/code-srs/` does not exist yet (created by executor in T-001–T-003)
-- Admin panel at `dashboard/app/settings/code-srs/` not built yet (T-036–T-038)
+- Wire real PAOS pipeline submission to /h-pipeline system (T-032 currently has TODO placeholder)\n- Add PostgreSQL/user persistence layer (currently in-memory)\n- Add OAuth providers for production auth\n- Replace simulated SSE phases with real pipeline event tailing
 
 ## Active Projects
 | Project | Path | Stack | Status |
@@ -46,5 +39,5 @@
 ## How to Pick Up
 1. Read this file (done)
 2. Call `shared-memory: read_ledger` — last 20 rows
-3. If opencode-developer: read `vault/memory/inbox/developer/1748220817-PIPE-20260521-033337-code1.md` and start executing
-4. If claude: ask operator what's next or check pipeline status
+3. Read `vault/chats/` — most recent chat summary
+4. Ask the operator: "Continuing from HANDOFF — what's next?"

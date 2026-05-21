@@ -1,0 +1,14 @@
+# Feature flags for Code-SRS
+features:
+  srs_visibility_toggle:
+    enabled: false           # Admin default: SRS files hidden from users
+    description: "Show/hide SRS system-analysis files in user file tree"
+  invite_only:
+    enabled: true
+    description: "Restrict signup to invited users only"
+  public_signup:
+    enabled: false
+    description: "Open registration (future SaaS phase)"
+  model_selector:
+    enabled: true
+    description: "Allow users to select from aliased models"

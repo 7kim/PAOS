@@ -1,0 +1,28 @@
+# Model alias proxy — real IDs never exposed to frontend users
+# Server-side only: resolves alias → real model_id
+models:
+  - alias: "Nova"
+    provider: together
+    model_id: "meta-llama/Llama-3.3-70B-Instruct-Turbo"
+    tier: free
+    description: "Fast general-purpose model"
+  - alias: "Atlas"
+    provider: together
+    model_id: "deepseek-ai/DeepSeek-R1"
+    tier: pro
+    description: "Advanced reasoning model"
+  - alias: "Apex"
+    provider: openai
+    model_id: "gpt-4o"
+    tier: pro
+    description: "Flagship multimodal model"
+  - alias: "Spark"
+    provider: anthropic
+    model_id: "claude-haiku-4-5-20251001"
+    tier: free
+    description: "Fast, lightweight tasks"
+  - alias: "Cortex"
+    provider: anthropic
+    model_id: "claude-sonnet-4-6"
+    tier: pro
+    description: "Balanced performance and reasoning"

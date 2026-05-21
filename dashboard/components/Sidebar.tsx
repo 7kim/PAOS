@@ -11,6 +11,8 @@ import {
   Inbox,
   Zap,
   HandMetal,
+  Code,
+  Settings,
 } from "lucide-react";
 
 const nav = [
@@ -21,6 +23,10 @@ const nav = [
   { href: "/tasks", label: "Tasks", icon: ListTodo },
   { href: "/plans", label: "Plans", icon: FileText },
   { href: "/inbox", label: "Inbox", icon: Inbox },
+];
+
+const codeSrsNav = [
+  { href: "/settings/code-srs", label: "Code-SRS", icon: Code },
 ];
 
 interface Agent {
@@ -59,6 +65,27 @@ export default function Sidebar() {
       <nav className="flex-1 px-2 py-4 space-y-0.5">
         {nav.map(({ href, label, icon: Icon }) => {
           const active = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
+              style={{
+                background: active ? "rgba(59,130,246,0.12)" : "transparent",
+                color: active ? "var(--accent)" : "var(--foreground)",
+              }}
+            >
+              <Icon size={15} />
+              {label}
+            </Link>
+          );
+        })}
+
+        <div className="pt-4 pb-1">
+          <p className="text-xs font-medium px-3" style={{ color: "var(--muted)" }}>CODE-SRS</p>
+        </div>
+        {codeSrsNav.map(({ href, label, icon: Icon }) => {
+          const active = pathname === href || pathname.startsWith(href);
           return (
             <Link
               key={href}
