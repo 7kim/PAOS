@@ -1,9 +1,0 @@
-2026-05-17 17:21:18.118 [info] [tsrelay] url: http://127.0.0.1:41855
-2026-05-17 17:21:18.118 [info] websocket is open
-2026-05-17 17:21:18.118 [info] [serve-status] Funnel is off
-2026-05-17 17:21:18.118 [info] [serve-status] HTTPS is off
-2026-05-17 17:21:18.118 [info] [tsrelay] initial ports are set
-2026-05-17 17:21:18.143 [info] terminal opened
-2026-05-17 17:21:18.491 [info] pid is 41048
-2026-05-17 17:21:18.491 [info] pid sent
-2026-05-17 17:21:47.201 [info] shutting down tsrelay

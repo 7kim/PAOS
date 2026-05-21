@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { readdir, readFile } from "fs/promises";
 import { join } from "path";
+import { systemDoctor } from "@/lib/paos";
 
 const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
-const LOGS_DIR = process.env.LOGS_DIR || "/home/dev/AI_Workflow/logs";
 
 async function countFiles(dir: string, ext = ".md"): Promise<number> {
   const files = await readdir(dir).catch(() => []);
@@ -53,16 +53,34 @@ async function getRecentLedgerEntries(n = 5) {
 }
 
 export async function GET() {
-  const [tasks, plans, inboxTotal, ledgerCount, recent] = await Promise.all([
+  const [tasks, plans, inboxTotal, ledgerCount, recent, doctor] = await Promise.all([
     countFiles(join(MEMORY_DIR, "tasks")),
     countFiles(join(MEMORY_DIR, "pm-logs")),
     countInbox(),
     getLedgerEntryCount(),
     getRecentLedgerEntries(5),
+    systemDoctor(),
   ]);
 
+  const unhealthy = doctor.agents.filter((agent) => agent.status !== "healthy");
+
   return NextResponse.json({
-    stats: { tasks, plans, inboxTotal, ledgerCount },
+    stats: {
+      tasks,
+      plans,
+      inboxTotal,
+      ledgerCount,
+      agents: doctor.agents.length,
+      healthyAgents: doctor.agents.length - unhealthy.length,
+      degradedAgents: unhealthy.length,
+      systemStatus: doctor.status,
+    },
     recent,
+    unhealthyAgents: unhealthy.map((agent) => ({
+      id: agent.id,
+      label: agent.label,
+      status: agent.status,
+      failedChecks: agent.checks.filter((check) => !check.ok).map((check) => check.name),
+    })),
   });
 }

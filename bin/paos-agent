@@ -1,0 +1,162 @@
+#!/usr/bin/env node
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import {
+  REPO_ROOT,
+  getAgentHealth,
+  getSystemHealth,
+  readRegistry,
+  resolveRepoPath,
+} from "../lib/paos-registry.mjs";
+
+function usage() {
+  console.log(`PAOS Agent Registry
+
+Usage:
+  bin/paos-agent list
+  bin/paos-agent doctor [agent-id]
+  bin/paos-agent mcp-sync
+
+Commands:
+  list              Print all registered agents.
+  doctor            Run side-effect-free registry and health checks.
+  doctor <agent>    Run side-effect-free checks for one agent.
+  mcp-sync          Rewrite supported MCP config files from agents/registry.json.
+`);
+}
+
+function asCodexToml(registry) {
+  const shared = registry.mcpServers["shared-memory"];
+  const scaffold = registry.mcpServers.scaffold;
+  return [
+    "[mcp_servers.shared-memory]",
+    `command = "${shared.command}"`,
+    `args = ${JSON.stringify(shared.args)}`,
+    "[mcp_servers.shared-memory.env]",
+    ...Object.entries(shared.env || {}).map(([key, value]) => `${key} = "${value}"`),
+    "",
+    "[mcp_servers.scaffold]",
+    `command = "${scaffold.command}"`,
+    `args = ${JSON.stringify(scaffold.args)}`,
+    "[mcp_servers.scaffold.env]",
+    ...Object.entries(scaffold.env || {}).map(([key, value]) => `${key} = "${value}"`),
+    "",
+  ].join("\n");
+}
+
+function asMcpConfig(registry) {
+  const mcpServers = Object.fromEntries(
+    Object.entries(registry.mcpServers).map(([id, server]) => [
+      id,
+      {
+        command: server.command,
+        args: server.args,
+        env: server.env || {},
+      },
+    ])
+  );
+  return JSON.stringify(
+    {
+      $schema: "https://raw.githubusercontent.com/modelcontextprotocol/specification/main/schema/2025-02-28/mcp-config.schema.json",
+      mcpServers,
+    },
+    null,
+    2
+  ) + "\n";
+}
+
+function upsertBlock(raw, start, end, block) {
+  const pattern = new RegExp(`${start}[\\s\\S]*?${end}\\n?`, "m");
+  const wrapped = `${start}\n${block.trimEnd()}\n${end}\n`;
+  if (pattern.test(raw)) return raw.replace(pattern, wrapped);
+  return `${raw.trimEnd()}\n\n${wrapped}`;
+}
+
+async function syncCodex(registry) {
+  const path = resolveRepoPath("config/codex/config.toml");
+  const raw = await readFile(path, "utf-8").catch(() => "");
+  const block = asCodexToml(registry);
+  await writeFile(path, upsertBlock(raw, "# BEGIN PAOS MCP", "# END PAOS MCP", block));
+  return path;
+}
+
+async function syncMcpConfig(registry) {
+  const path = resolveRepoPath("mcp/mcp-config.json");
+  await writeFile(path, asMcpConfig(registry));
+  return path;
+}
+
+async function syncGeminiAntigravity(registry) {
+  const content = asMcpConfig(registry);
+  const targets = [
+    "config/gemini/antigravity-ide/mcp_config.json",
+    "config/gemini/antigravity-backup/mcp_config.json",
+  ].map(resolveRepoPath);
+  for (const target of targets) {
+    await mkdir(dirname(target), { recursive: true });
+    await writeFile(target, content);
+  }
+  return targets;
+}
+
+async function main() {
+  const [command, arg] = process.argv.slice(2);
+  const registry = await readRegistry();
+
+  if (!command || command === "--help" || command === "-h") {
+    usage();
+    return;
+  }
+
+  if (command === "--version" || command === "-v") {
+    console.log(registry.version);
+    return;
+  }
+
+  if (command === "list") {
+    for (const agent of registry.agents) {
+      console.log(`${agent.id}\t${agent.label}\t${agent.binary}\t${agent.riskLevel}`);
+    }
+    return;
+  }
+
+  if (command === "doctor") {
+    if (arg) {
+      const agent = registry.agents.find((item) => item.id === arg);
+      if (!agent) {
+        console.error(`Unknown agent: ${arg}`);
+        process.exitCode = 2;
+        return;
+      }
+      const health = await getAgentHealth(agent, registry);
+      console.log(JSON.stringify(health, null, 2));
+      process.exitCode = health.status === "healthy" ? 0 : 1;
+      return;
+    }
+
+    const system = await getSystemHealth();
+    console.log(JSON.stringify(system, null, 2));
+    process.exitCode = system.status === "healthy" ? 0 : 1;
+    return;
+  }
+
+  if (command === "mcp-sync") {
+    const written = [
+      await syncMcpConfig(registry),
+      await syncCodex(registry),
+      ...(await syncGeminiAntigravity(registry)),
+    ];
+    console.log(`Synced MCP config from ${join(REPO_ROOT, "agents", "registry.json")}`);
+    for (const path of written) console.log(`- ${path}`);
+    return;
+  }
+
+  console.error(`Unknown command: ${command}`);
+  usage();
+  process.exitCode = 2;
+}
+
+main().catch((error) => {
+  console.error(error.stack || String(error));
+  process.exit(1);
+});

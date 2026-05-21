@@ -6,25 +6,27 @@
 ---
 
 ## Last Agent
-- **Agent**: antigravity
-- **Tool**: Antigravity (VS Code extension)
-- **Timestamp**: 2026-05-21T04:21:00Z
+- **Agent**: opencode-developer
+- **Tool**: opencode-developer
+- **Timestamp**: 2026-05-21T01:32:01.277Z
 
 ## Active Task
-PAOS-AUDIT — SWOT Audit & Cross-Agent Chat Continuity Complete
+Implement /h-pipeline Cross-Agent Plan-Then-Execute Pipeline
 
 ## What Was Just Done
-- Completed SWOT Audit and fixed Mermaid diagrams.
-- Fully integrated Hermes Agent (soul, instructions, log files, registered in dashboard).
-- Created a robust custom Python-based CLI for Hermes at `~/.local/bin/hermes` utilizing the Gemini 2.5 API with full logging & transcript syncing.
-- Implemented `/H-Continue` dialogue context recovery command across all 6 agent souls/configurations.
-- Symbolically linked all agent MCP configurations to a single registry file at `mcp/mcp-config.json` by default.
-- Daemonized the Next.js dashboard under systemd service (`paos-dashboard.service`) on port 3333 and added a Desktop Launcher shortcut.
-- Registered `@antigravity` and `@hermes` in the `workflow.md` direct invocation list.
+- Created `bin/h-pipeline` CLI script with `submit`, `status`, `list` subcommands
+- Created `config/pipeline-defaults.yaml` with executor defaults and per-agent overrides
+- Added `submit_pipeline` MCP tool to `mcp/shared-memory-server/index.js` (generates pipeline dir, task card, inbox message, ledger entry)
+- Updated all 6 planner agent configs with Pipeline Settings + /h-pipeline command docs: CLAUDE.md, GEMINI.md, agents/gemini/soul.md, agents/antigravity/soul.md, config/codex/instructions.md, agents/openclaw/soul.md
+- Added Section 6.6 — /h-pipeline Command to workflow.md constitution
+- Created `memory/pipelines/` directory structure for pipeline artifacts
+- Verified end-to-end: submit creates pipeline dir, task card, inbox message (registry-aware alias resolution), ledger entry
+- Inbox resolution fixes: CLI + MCP both use agent registry to resolve correct inbox directory (e.g. opencode-developer → developer)
 
 ## What Is NOT Done Yet
-- sliding window truncation configuration for `sync-chat.py` (if desired by operator).
-- passwordless sudoers configuration for `dev` (if desired by operator).
+- Pipeline completion workflow: executor WALKTHROUGH.md and META.json update on completion
+- Notification back to planner on pipeline completion
+- Optional sliding window truncation for sync-chat.py
 
 ## Active Projects
 | Project | Path | Stack | Status |
@@ -43,5 +45,6 @@ PAOS-AUDIT — SWOT Audit & Cross-Agent Chat Continuity Complete
 
 ## How to Pick Up
 1. Read this file (done)
-2. Read `vault/chats/active_chat_transcript.md` for full chat continuity context.
-3. Call `shared-memory: read_ledger` — last 20 rows.
+2. Call `shared-memory: read_ledger` — last 20 rows
+3. Read `vault/chats/` — most recent chat summary
+4. Ask the operator: "Continuing from HANDOFF — what's next?"

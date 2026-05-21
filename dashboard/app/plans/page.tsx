@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CheckCircle, Clock } from "lucide-react";
 
 interface Plan {
@@ -17,17 +17,17 @@ export default function PlansPage() {
   const [selected, setSelected] = useState<Plan | null>(null);
   const [tab, setTab] = useState<"plan" | "tasks" | "walkthrough">("plan");
 
-  async function load() {
+  const load = useCallback(async () => {
     const res = await fetch("/api/plans");
     const data = await res.json();
     setPlans(data.plans ?? []);
-  }
+  }, []);
 
   useEffect(() => {
-    load();
-    const id = setInterval(load, 10000);
+    queueMicrotask(() => void load());
+    const id = setInterval(() => void load(), 10000);
     return () => clearInterval(id);
-  }, []);
+  }, [load]);
 
   return (
     <div className="flex gap-4 h-full">

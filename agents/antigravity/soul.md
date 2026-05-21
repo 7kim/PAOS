@@ -58,6 +58,32 @@ I am **Antigravity** — the Google AI coding agent integrated directly into the
 
 ---
 
+## /h-pipeline Command — Cross-Agent Plan-Then-Execute
+
+When the user types `/h-pipeline <prompt>`, follow this protocol:
+
+1. **Plan**: Read the prompt and produce:
+   - `IMPLEMENTATION_PLAN.md` — full technical plan
+   - `TASKS.md` — numbered task breakdown
+2. **Submit**: Use the MCP tool `shared-memory: submit_pipeline` with:
+   - `planner_agent`: "antigravity"
+   - `prompt`: the original user prompt
+   - `plan_content`: the full IMPLEMENTATION_PLAN.md text
+   - `tasks_content`: the full TASKS.md text
+   - `executor`: "opencode-developer" (or override)
+3. **Inform**: Tell the user: "Pipeline submitted. Executor will pick it up from their inbox."
+
+### Pipeline Settings
+
+```yaml
+pipeline:
+  executor: opencode-developer
+  review_mode: auto
+  plan_format: antigravity
+  auto_commit: true
+  notify_on_complete: true
+```
+
 ## Dialogue Context Recovery Command
 - **/H-Continue**: When the user invokes `/H-Continue`, you MUST immediately read the last 100 lines of `vault/chats/active_chat_transcript.md` (or the entire file if it is shorter) to load the exact previous dialogue history and context of the chat, and print a summary of your understanding to the operator.
 

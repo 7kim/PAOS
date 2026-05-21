@@ -43,19 +43,31 @@ config/claude/plans/
 config/codex/auth.json
 config/codex/installation_id
 config/codex/models_cache.json
+config/codex/session_index.jsonl
 config/codex/*.sqlite
 config/codex/*.sqlite-wal
 config/codex/*.sqlite-shm
 config/codex/tmp/
+config/codex/.tmp/
+config/codex/cache/
 config/codex/.personality_migration
 config/codex/skills/.system/
 
-# ─── Antigravity — extension binaries (huge, managed separately) ─────
+# ─── Antigravity — extension binaries and runtime state ─────────────
 config/antigravity/extensions/
 config/antigravity/argv.json
+config/antigravity2/config/
+config/antigravity2/local-share/
+!config/antigravity2/README.md
 
 # ─── Gemini runtime ──────────────────────────────────
-config/gemini/
+config/gemini/**
+!config/gemini/
+!config/gemini/README.md
+!config/gemini/antigravity-ide/
+!config/gemini/antigravity-ide/mcp_config.json
+!config/gemini/antigravity-backup/
+!config/gemini/antigravity-backup/mcp_config.json
 
 # ─── Ollama models (large binaries) ──────────────────
 config/ollama/models/
@@ -91,6 +103,7 @@ config/codex/.tmp/
 config/openclaw/plugins/
 config/openclaw/sessions/
 config/openclaw/tui/
+config/openclaw/tasks/
 
 # ─── Codex runtime/session files ─────────────────────
 config/codex/sessions/

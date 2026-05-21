@@ -24,16 +24,7 @@ echo "  PAOS Agent Commit Test — ${DATE}"
 echo "════════════════════════════════════════════════════"
 echo ""
 
-AGENTS=(
-  "claude"
-  "codex"
-  "opencode-developer"
-  "opencode-architect"
-  "opencode-coordinator"
-  "antigravity"
-  "openclaw"
-  "ollama"
-)
+mapfile -t AGENTS < <(node -e 'const fs = require("fs"); const r = JSON.parse(fs.readFileSync("agents/registry.json", "utf8")); for (const a of r.agents) console.log(a.id);')
 
 PASS=0
 FAIL=0

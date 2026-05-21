@@ -1,8 +1,0 @@
-2026-05-17 17:21:19.016 [info] [         44ms] [/home/dev/Documents/Dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
-2026-05-17 17:21:19.079 [info] [         19ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
-2026-05-17 17:21:19.152 [info] [         20ms] [/home/dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
-2026-05-17 17:21:19.152 [info] [         27ms] [/home/dev/Documents/Dev/Tradingview] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
-2026-05-17 17:21:19.165 [info] [          9ms] [/home/dev] git remote -v • completed
-2026-05-17 17:21:19.179 [info] [         12ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote • completed
-2026-05-17 17:21:19.179 [info] [          6ms] [/home/dev/Documents/Dev/Tradingview] git remote -v • completed
-2026-05-17 17:21:19.186 [info] [          5ms] [/home/dev/Documents/Dev/Tradingview] git config --get -f /home/dev/Documents/Dev/Tradingview/.git/gk/config gk.defaultRemote • completed

@@ -8,10 +8,6 @@
 # Commits show as separate identities in gitgraph, allowing full audit
 # of which AI agent made each change.
 #
-# Agent IDs:
-#   claude | codex | opencode-developer | opencode-architect |
-#   opencode-coordinator | opencode-plan | antigravity | openclaw | ollama
-#
 # Example:
 #   ./bin/agent-commit.sh claude "Agent[claude]: updated shared context"
 #   ./bin/agent-commit.sh codex  "Agent[codex]: refactored auth module"
@@ -25,57 +21,32 @@ NO_STAGE="${3:-}"
 
 if [[ -z "$AGENT_ID" || -z "$MESSAGE" ]]; then
   echo "Usage: $0 <agent-id> \"<commit message>\" [--no-stage]" >&2
-  echo "Agent IDs: claude, codex, opencode-developer, opencode-architect, opencode-coordinator, opencode-plan, antigravity, openclaw, ollama" >&2
+  echo "Run: bin/paos-agent list" >&2
   exit 1
 fi
-
-# ── Agent identity map ────────────────────────────────────────────────────────
-declare -A AGENT_NAME
-declare -A AGENT_EMAIL
-
-AGENT_NAME[claude]="Claude Code [PAOS]"
-AGENT_EMAIL[claude]="claude@paos.nodealgo.com"
-
-AGENT_NAME[codex]="Codex [PAOS]"
-AGENT_EMAIL[codex]="codex@paos.nodealgo.com"
-
-AGENT_NAME[opencode-developer]="OpenCode Developer [PAOS]"
-AGENT_EMAIL[opencode-developer]="developer@paos.nodealgo.com"
-
-AGENT_NAME[opencode-architect]="OpenCode Architect [PAOS]"
-AGENT_EMAIL[opencode-architect]="architect@paos.nodealgo.com"
-
-AGENT_NAME[opencode-coordinator]="OpenCode Coordinator [PAOS]"
-AGENT_EMAIL[opencode-coordinator]="coordinator@paos.nodealgo.com"
-
-AGENT_NAME[opencode-plan]="OpenCode Plan [PAOS]"
-AGENT_EMAIL[opencode-plan]="plan@paos.nodealgo.com"
-
-AGENT_NAME[antigravity]="Antigravity [PAOS]"
-AGENT_EMAIL[antigravity]="antigravity@paos.nodealgo.com"
-
-AGENT_NAME[openclaw]="OpenClaw [PAOS]"
-AGENT_EMAIL[openclaw]="openclaw@paos.nodealgo.com"
-
-AGENT_NAME[ollama]="Ollama [PAOS]"
-AGENT_EMAIL[ollama]="ollama@paos.nodealgo.com"
-
-AGENT_NAME[gemini]="Gemini [PAOS]"
-AGENT_EMAIL[gemini]="gemini@paos.nodealgo.com"
-
-# ── Validate agent ─────────────────────────────────────────────────────────────
-if [[ -z "${AGENT_NAME[$AGENT_ID]+_}" ]]; then
-  echo "Unknown agent: $AGENT_ID" >&2
-  echo "Valid agents: ${!AGENT_NAME[*]}" >&2
-  exit 1
-fi
-
-NAME="${AGENT_NAME[$AGENT_ID]}"
-EMAIL="${AGENT_EMAIL[$AGENT_ID]}"
 
 # ── Navigate to repo root ──────────────────────────────────────────────────────
 REPO_ROOT="$(git -C "$(dirname "$0")" rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
+
+# ── Resolve identity from canonical registry ──────────────────────────────────
+IDENTITY_JSON="$(node -e '
+const fs = require("fs");
+const id = process.argv[1];
+const registry = JSON.parse(fs.readFileSync("agents/registry.json", "utf8"));
+const agent = registry.agents.find((item) => item.id === id || (item.aliases || []).includes(id));
+if (!agent) process.exit(2);
+process.stdout.write(JSON.stringify(agent.gitIdentity));
+' "$AGENT_ID" || true)"
+
+if [[ -z "$IDENTITY_JSON" ]]; then
+  echo "Unknown agent: $AGENT_ID" >&2
+  echo "Run: bin/paos-agent list" >&2
+  exit 1
+fi
+
+NAME="$(node -e 'const data = JSON.parse(process.argv[1]); process.stdout.write(data.name)' "$IDENTITY_JSON")"
+EMAIL="$(node -e 'const data = JSON.parse(process.argv[1]); process.stdout.write(data.email)' "$IDENTITY_JSON")"
 
 # ── Stage all changes unless --no-stage ───────────────────────────────────────
 if [[ "$NO_STAGE" != "--no-stage" ]]; then

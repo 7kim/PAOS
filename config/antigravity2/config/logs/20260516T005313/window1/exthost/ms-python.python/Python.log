@@ -1,6 +1,0 @@
-2026-05-16 00:53:17.352 [warning] Dir "/home/dev/Documents/Dev/Tradingview/.pixi/envs" is not watchable (directory does not exist)
-2026-05-16 00:53:17.838 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
-2026-05-16 00:53:17.844 [info] Python interpreter path: ./venv/bin/python
-2026-05-16 00:53:18.314 [info] > pyenv which python
-2026-05-16 00:53:18.314 [info] cwd: .
-2026-05-16 00:53:18.347 [info] Editor support is inactive since language server is set to None.

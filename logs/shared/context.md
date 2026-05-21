@@ -159,3 +159,19 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Conversation HTML exported to Desktop as requested
 
 **Handoff Notes**: Antigravity 2.0 is installed and integrated. Language server binary is missing at legacy path — may need attention if IDE is launched. No active PAOS tasks — pipeline clear. User has the full chat history on Desktop if they need to review Tradingview project decisions.
+
+---
+
+## 2026-05-21 01:31 @opencode-developer — Task: /h-pipeline
+
+**Thinking**: Implemented the full /h-pipeline cross-agent plan-then-execute system. The system allows any planner agent to submit a structured plan to an executor via a pipeline ID. Components: CLI script at bin/h-pipeline with submit/status/list subcommands, MCP submit_pipeline tool, pipeline-defaults.yaml config, /h-pipeline command docs in 6 agent configs, Section 6.6 in workflow.md, and memory/pipelines/ directory. Inbox path resolution uses the agent registry to handle aliases correctly.
+
+**Decisions**:
+- bin/h-pipeline CLI and MCP submit_pipeline tool both exist — agents can use either
+- Inbox resolution is registry-aware (opencode-developer → developer inbox)
+- Default executor is opencode-developer; configurable per-pipeline with --executor flag
+- Task card status parsed from YAML frontmatter to avoid ambiguous Status: fields in body
+- Pipeline directory stores PLAN.md, TASKS.md, META.json for each pipeline
+- All 6 planner agents have /h-pipeline command documentation in their configs
+
+**Handoff Notes**: The /h-pipeline system is fully implemented and tested. Agents can now use /h-pipeline to submit structured plans to executors. The executor picks up the plan from its inbox and executes. On completion, the executor should write WALKTHROUGH.md to the pipeline directory and update META.json status to 'completed'.

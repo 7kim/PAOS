@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import {
   LayoutDashboard,
   ScrollText,
@@ -22,18 +23,25 @@ const nav = [
   { href: "/inbox", label: "Inbox", icon: Inbox },
 ];
 
-const agents = [
-  { id: "claude", label: "Claude Code", color: "#f97316" },
-  { id: "opencode-developer", label: "OpenCode", color: "#3b82f6" },
-  { id: "codex", label: "Codex", color: "#10b981" },
-  { id: "gemini", label: "Gemini", color: "#4285f4" },
-  { id: "openclaw", label: "OpenClaw", color: "#8b5cf6" },
-  { id: "ollama", label: "Ollama", color: "#22c55e" },
-  { id: "antigravity", label: "Antigravity", color: "#ec4899" },
-];
+interface Agent {
+  id: string;
+  label: string;
+  color: string;
+}
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const [agents, setAgents] = useState<Agent[]>([]);
+
+  const loadAgents = useCallback(async () => {
+    const res = await fetch("/api/agents");
+    const data = await res.json();
+    setAgents(data.agents ?? []);
+  }, []);
+
+  useEffect(() => {
+    queueMicrotask(() => void loadAgents());
+  }, [loadAgents]);
 
   return (
     <aside

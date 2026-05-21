@@ -1,6 +1,0 @@
-2026-05-20 23:14:59.015 [warning] Dir "/home/dev/AI_Workflow/.pixi/envs" is not watchable (directory does not exist)
-2026-05-20 23:14:59.125 [info] Skipping ActivatedEnv Detection:  process.env.VSCODE_CLI !== '1'
-2026-05-20 23:14:59.125 [info] Python interpreter path: /bin/python3
-2026-05-20 23:14:59.182 [info] > pyenv which python
-2026-05-20 23:14:59.182 [info] cwd: .
-2026-05-20 23:14:59.247 [info] Editor support is inactive since language server is set to None.

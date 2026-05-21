@@ -1,0 +1,20 @@
+# /h-pipeline default configuration
+# Each agent can override these in its own config section
+version: "1.0"
+
+defaults:
+  executor: opencode-developer
+  review_mode: auto          # auto = submit directly, manual = wait for approval, skip = no review
+  plan_format: antigravity   # antigravity = TASKS.md + IMPLEMENTATION_PLAN.md
+  auto_commit: true
+  notify_on_complete: true
+
+# Per-agent overrides (optional)
+# Uncomment and customize per agent:
+# overrides:
+#   claude:
+#     executor: codex
+#     review_mode: auto
+#   gemini:
+#     executor: opencode-developer
+#     review_mode: auto

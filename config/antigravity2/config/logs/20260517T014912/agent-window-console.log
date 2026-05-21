@@ -1,8 +1,0 @@
-2026-05-17 02:13:03.241 [info] [Manager] [DEBUG bootstrap-window] cssModules: undefined (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
-2026-05-17 02:13:03.241 [info] [Manager] [DEBUG bootstrap-window] esModule: jetskiAgent/main (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
-2026-05-17 02:13:03.242 [info] [Manager] [DEBUG bootstrap-window] baseUrl: [object URL] (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
-2026-05-17 02:13:03.242 [info] [Manager] [DEBUG bootstrap-window] new URL: vscode-file://vscode-app/usr/share/antigravity/resources/app/out/jetskiAgent/main.js (/usr/share/antigravity/resources/app/out/vs/code/electron-browser/workbench/jetskiAgent.js:3)
-2026-05-17 02:13:03.967 [info] [Manager] [FileWatch:undefined] connecting... (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:3662)
-2026-05-17 02:13:04.146 [info] [Manager] Overwriting grammar scope name to file mapping for scope source.ruby.
-Old grammar file: file:///usr/share/antigravity/resources/app/extensions/ruby/syntaxes/ruby.tmLanguage.json.
-New grammar file: file:///home/dev/.antigravity/extensions/shopify.ruby-lsp-0.10.3-universal/grammars/ruby.cson.json (/usr/share/antigravity/resources/app/out/jetskiAgent/main.js:4561)

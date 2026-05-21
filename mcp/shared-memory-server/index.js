@@ -21,20 +21,13 @@ const CONTEXT_FILE = join(MEMORY_DIR, "shared", "context.md");
 const HANDOFF_FILE = join(MEMORY_DIR, "shared", "HANDOFF.md");
 const LEDGER_FILE = join(MEMORY_DIR, "global_ledger.md");
 const TASKS_DIR = join(MEMORY_DIR, "tasks");
+const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
+const REGISTRY_FILE = join(REPO_ROOT, "agents", "registry.json");
 
-// ── Known agents ──────────────────────────────────────────────────────────────
-const KNOWN_AGENTS = [
-  { id: "claude",               label: "Claude Code",          email: "claude@paos.nodealgo.com" },
-  { id: "codex",                label: "Codex",                email: "codex@paos.nodealgo.com" },
-  { id: "opencode-developer",   label: "OpenCode Developer",   email: "developer@paos.nodealgo.com" },
-  { id: "opencode-architect",   label: "OpenCode Architect",   email: "architect@paos.nodealgo.com" },
-  { id: "opencode-coordinator", label: "OpenCode Coordinator", email: "coordinator@paos.nodealgo.com" },
-  { id: "opencode-plan",        label: "OpenCode Plan",        email: "plan@paos.nodealgo.com" },
-  { id: "antigravity",          label: "Antigravity",          email: "antigravity@paos.nodealgo.com" },
-  { id: "openclaw",             label: "OpenClaw",             email: "openclaw@paos.nodealgo.com" },
-  { id: "ollama",               label: "Ollama",               email: "ollama@paos.nodealgo.com" },
-  { id: "gemini",               label: "Gemini",               email: "gemini@paos.nodealgo.com" },
-];
+async function readAgentRegistry() {
+  const raw = await readFile(REGISTRY_FILE, "utf-8");
+  return JSON.parse(raw);
+}
 
 const server = new Server(
   { name: "shared-memory-server", version: "1.2.0" },
@@ -258,6 +251,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
       },
     },
     {
+      name: "submit_pipeline",
+      description: "Submit a /h-pipeline plan for execution. Creates pipeline directory, task card, and sends to executor inbox.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          planner_agent: { type: "string", description: "Agent ID of the planner" },
+          prompt:        { type: "string", description: "Original user prompt" },
+          plan_content:  { type: "string", description: "Full IMPLEMENTATION_PLAN.md content" },
+          tasks_content: { type: "string", description: "Full TASKS.md content" },
+          executor:      { type: "string", description: "Executor agent ID (default: opencode-developer)" },
+          project_path:  { type: "string", description: "Project path if applicable" },
+        },
+        required: ["planner_agent", "prompt", "plan_content", "tasks_content"],
+      },
+    },
+    {
       name: "process_questions",
       description: "Archive answered questions: removes answered questions from <project>/user-questions.md and appends Q&A pairs to ~/AI_Workflow/knowledge/questions/<project_name>.md.",
       inputSchema: {
@@ -351,8 +360,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
   // ── list_agents ────────────────────────────────────────────────────────────
   if (name === "list_agents") {
+    const registry = await readAgentRegistry();
     const results = [];
-    for (const agent of KNOWN_AGENTS) {
+    for (const agent of registry.agents) {
       const inboxDir = join(INBOX_DIR, agent.id);
       let inboxCount = 0;
       let lastActivity = null;
@@ -365,7 +375,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const s = await stat(eventsFile);
         lastActivity = s.mtime.toISOString();
       } catch { /* no events */ }
-      results.push({ ...agent, inbox: inboxCount, lastActivity });
+      results.push({
+        id: agent.id,
+        label: agent.label,
+        email: agent.gitIdentity?.email,
+        role: agent.role,
+        riskLevel: agent.riskLevel,
+        inbox: inboxCount,
+        lastActivity,
+      });
     }
     return { content: [{ type: "text", text: JSON.stringify(results, null, 2) }] };
   }
@@ -418,7 +436,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (name === "write_handoff") {
     const { agent, active_task, what_done, what_pending, session_note = "" } = args;
     const ts = new Date().toISOString();
-    const tool = KNOWN_AGENTS.find(a => a.id === agent)?.label ?? agent;
+    const registry = await readAgentRegistry().catch(() => ({ agents: [] }));
+    const tool = registry.agents.find(a => a.id === agent)?.label ?? agent;
 
     // Preserve stable sections from the existing file if present
     let projectsSection = "";
@@ -510,6 +529,199 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
 
     return { content: [{ type: "text", text: JSON.stringify({ ok: true, moved: removedLines.length, items: removedLines.map(l => normalize(l)) }) }] };
+  }
+
+  // ── submit_pipeline ────────────────────────────────────────────────────────
+  if (name === "submit_pipeline") {
+    const { planner_agent, prompt, plan_content, tasks_content, executor: executorOverride, project_path } = args;
+    const ts = new Date().toISOString();
+    const pipelineId = `PIPE-${ts.slice(0,10).replace(/-/g,"")}-${ts.slice(11,19).replace(/:/g,"")}-${Date.now().toString(36).slice(-6)}`;
+
+    // Resolve executor: try config file first, then default
+    let executor = executorOverride || "opencode-developer";
+    const configFile = join(REPO_ROOT, "config", "pipeline-defaults.yaml");
+    try {
+      const fs = await import("fs");
+      // Simple YAML-like parsing for executor resolution
+      const configRaw = await readFile(configFile, "utf-8").catch(() => "");
+      const executorMatch = configRaw.match(/executor:\s*(\S+)/);
+      if (executorMatch && !executorOverride) {
+        // Check for per-agent overrides
+        const overrideRegex = new RegExp(`${planner_agent}:\\s*\\n[^#]*?executor:\\s*(\\S+)`, "m");
+        const overrideMatch = configRaw.match(overrideRegex);
+        if (overrideMatch) {
+          executor = overrideMatch[1];
+        } else {
+          // Use defaults.executor
+          const defaultMatch = configRaw.match(/^\s{2}executor:\s*(\S+)/m);
+          if (defaultMatch) executor = defaultMatch[1];
+        }
+      }
+    } catch {}
+
+    // Create pipeline directory
+    const pipelineDir = join(PIPELINES_DIR, pipelineId);
+    await mkdir(pipelineDir, { recursive: true });
+
+    // Write PLAN.md
+    await writeFile(join(pipelineDir, "PLAN.md"), plan_content);
+
+    // Write TASKS.md
+    await writeFile(join(pipelineDir, "TASKS.md"), tasks_content);
+
+    // Write META.json
+    const meta = {
+      pipeline_id: pipelineId,
+      planner: planner_agent,
+      executor,
+      prompt,
+      status: "submitted",
+      created_at: ts,
+      completed_at: null,
+      project_path: project_path || null,
+      review_mode: "auto",
+    };
+    await writeFile(join(pipelineDir, "META.json"), JSON.stringify(meta, null, 2));
+
+    // Create task card
+    const taskTitle = `Pipeline: ${prompt.slice(0, 60)}${prompt.length > 60 ? "..." : ""}`;
+    const taskDescription = [
+      `## Pipeline: ${pipelineId}`,
+      "",
+      `**Planner**: ${planner_agent}`,
+      `**Executor**: ${executor}`,
+      `**Pipeline Status**: submitted`,
+      `**Created**: ${ts}`,
+      "",
+      "### Original Prompt",
+      "```",
+      prompt,
+      "```",
+      "",
+      `### Pipeline Directory`,
+      `memory/pipelines/${pipelineId}/`,
+      "",
+      "### Instructions",
+      `1. Read memory/pipelines/${pipelineId}/PLAN.md for the implementation plan`,
+      `2. Read memory/pipelines/${pipelineId}/TASKS.md for the task breakdown`,
+      `3. Execute tasks in order, updating TASKS.md as you go`,
+      `4. On completion, produce WALKTHROUGH.md in the pipeline directory`,
+      `5. Update META.json: set status to "completed", set completed_at`,
+      `6. Send completion message to ${planner_agent}'s inbox`,
+    ].join("\n");
+
+    const taskCard = [
+      "---",
+      `task_id: ${pipelineId}`,
+      `title: "${taskTitle}"`,
+      "status: pending",
+      `assigned_to: ${executor}`,
+      `created_by: ${planner_agent}`,
+      "priority: normal",
+      "depends_on: -",
+      `created_at: ${ts}`,
+      `pipeline_id: ${pipelineId}`,
+      "---",
+      "",
+      `# ${pipelineId} — ${taskTitle}`,
+      "",
+      `**Status**: pending`,
+      `**Assigned**: ${executor}`,
+      `**Created by**: ${planner_agent}`,
+      `**Pipeline**: ${pipelineId}`,
+      `**Created**: ${ts}`,
+      "",
+      "## Description",
+      "",
+      taskDescription,
+      "",
+      "## Progress",
+      "",
+      "<!-- Agent updates this section during execution -->",
+      "",
+    ].join("\n");
+
+    await mkdir(TASKS_DIR, { recursive: true });
+    await writeFile(join(TASKS_DIR, `${pipelineId}.md`), taskCard);
+
+    // Send message to executor's inbox
+    const inboxMsg = [
+      "---",
+      `from: ${planner_agent}`,
+      `to: ${executor}`,
+      `subject: Pipeline Execution Request: ${pipelineId}`,
+      "priority: high",
+      `timestamp: ${ts}`,
+      `pipeline_id: ${pipelineId}`,
+      "---",
+      "",
+      `# Pipeline Execution Request — ${pipelineId}`,
+      "",
+      `**From**: ${planner_agent}`,
+      `**Pipeline**: ${pipelineId}`,
+      `**Created**: ${ts}`,
+      "",
+      "## Prompt",
+      "",
+      prompt,
+      "",
+      `## Plan Location`,
+      `memory/pipelines/${pipelineId}/PLAN.md — Full implementation plan`,
+      "",
+      `## Tasks Location`,
+      `memory/pipelines/${pipelineId}/TASKS.md — Numbered task breakdown`,
+      "",
+      `## Task Card`,
+      `memory/tasks/${pipelineId}.md — Track status here`,
+      "",
+      "## Instructions",
+      "",
+      "1. Read PLAN.md and TASKS.md from the pipeline directory",
+      "2. Execute each task in order, updating TASKS.md with [x] when complete",
+      "3. Log all actions to your events.md and global_ledger.md",
+      "4. On completion:",
+      "   - Write WALKTHROUGH.md to the pipeline directory",
+      "   - Update META.json status to 'completed'",
+      `   - Send completion notification to ${planner_agent}'s inbox`,
+    ].join("\n");
+
+    // Resolve inbox directory from registry
+    let inboxDir = join(INBOX_DIR, executor);
+    try {
+      const registry = await readAgentRegistry();
+      for (const agent of registry.agents) {
+        if (agent.id === executor) {
+          inboxDir = agent.inbox ? join(MEMORY_DIR, agent.inbox) : join(INBOX_DIR, executor);
+          break;
+        }
+        if ((agent.aliases || []).includes(executor)) {
+          inboxDir = agent.inbox ? join(MEMORY_DIR, agent.inbox) : join(INBOX_DIR, agent.id);
+          break;
+        }
+      }
+    } catch {}
+    await mkdir(inboxDir, { recursive: true });
+    const inboxFile = join(inboxDir, `${Date.now()}-pipeline-${planner_agent}.md`);
+    await writeFile(inboxFile, inboxMsg);
+
+    // Append to global ledger
+    const ledgerRow = `| ${ts} | ${planner_agent} | SUBMIT | memory/pipelines/${pipelineId}/ | Submitted /h-pipeline: ${prompt.slice(0, 80)} | ${pipelineId} | - |\n`;
+    await appendFile(LEDGER_FILE, ledgerRow);
+
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          ok: true,
+          pipeline_id: pipelineId,
+          pipeline_dir: pipelineDir,
+          task_path: join(TASKS_DIR, `${pipelineId}.md`),
+          executor,
+          planner: planner_agent,
+          prompt,
+        }, null, 2),
+      }],
+    };
   }
 
   // ── process_questions ──────────────────────────────────────────────────────

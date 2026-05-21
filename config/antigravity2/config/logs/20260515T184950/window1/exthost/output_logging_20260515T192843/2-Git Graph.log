@@ -1,9 +1,0 @@
-[2026-05-15 19:28:45.054] Starting Git Graph ...
-[2026-05-15 19:28:45.105] Using git (version: 2.53.0)
-[2026-05-15 19:28:45.108] Started Git Graph - Ready to use!
-[2026-05-15 19:28:45.109] Searching workspace for new repos ...
-[2026-05-15 19:28:45.115] > git rev-parse --show-toplevel
-[2026-05-15 19:28:45.453] Added new repo: /home/dev/Documents/Dev/Tradingview
-[2026-05-15 19:28:45.454] Successfully set Visual Studio Code Context "git-graph:codiconsSupported" to "true"
-[2026-05-15 19:28:45.499] Completed searching workspace for new repos
-[2026-05-15 19:28:45.499] Showing "Git Graph" Status Bar Item

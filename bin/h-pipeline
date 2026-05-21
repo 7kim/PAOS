@@ -1,0 +1,420 @@
+#!/usr/bin/env python3
+"""
+/h-pipeline — Cross-Agent Plan-Then-Execute Pipeline
+
+Subcommands:
+  submit    Submit a plan for execution
+  status    Check pipeline status
+
+Usage:
+  bin/h-pipeline submit --planner <id> --prompt "<text>" --plan <plan.md> --tasks <tasks.md> [--executor <id>]
+  bin/h-pipeline status <pipeline-id>
+  bin/h-pipeline list
+"""
+
+import os
+import sys
+import json
+import uuid
+import yaml
+import argparse
+from datetime import datetime, timezone
+from pathlib import Path
+
+# ── Paths ──────────────────────────────────────────────────────────────────────
+REPO_ROOT = Path(os.environ.get("REPO_ROOT", os.path.expanduser("~/AI_Workflow"))).resolve()
+MEMORY_DIR = REPO_ROOT / "memory"
+PIPELINES_DIR = MEMORY_DIR / "pipelines"
+TASKS_DIR = MEMORY_DIR / "tasks"
+INBOX_DIR = MEMORY_DIR / "inbox"
+LEDGER_FILE = MEMORY_DIR / "global_ledger.md"
+CONFIG_FILE = REPO_ROOT / "config" / "pipeline-defaults.yaml"
+REGISTRY_FILE = REPO_ROOT / "agents" / "registry.json"
+
+# ── Defaults ───────────────────────────────────────────────────────────────────
+DEFAULT_CONFIG = {
+    "version": "1.0",
+    "defaults": {
+        "executor": "opencode-developer",
+        "review_mode": "auto",
+        "plan_format": "antigravity",
+        "auto_commit": True,
+        "notify_on_complete": True,
+    },
+    "overrides": {},
+}
+
+
+def load_config():
+    """Load pipeline configuration from YAML."""
+    if CONFIG_FILE.exists():
+        with open(CONFIG_FILE) as f:
+            return yaml.safe_load(f)
+    return dict(DEFAULT_CONFIG)
+
+
+def save_config(cfg):
+    """Save pipeline configuration to YAML."""
+    CONFIG_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(CONFIG_FILE, "w") as f:
+        yaml.dump(cfg, f, default_flow_style=False, sort_keys=False)
+
+
+def load_registry():
+    """Load agent registry."""
+    with open(REGISTRY_FILE) as f:
+        return json.load(f)
+
+
+def get_executor_for_planner(planner_agent, executor_override=None):
+    """Resolve the executor agent ID based on planner + overrides."""
+    cfg = load_config()
+    if executor_override:
+        return executor_override
+    overrides = cfg.get("overrides", {})
+    if planner_agent in overrides and "executor" in overrides[planner_agent]:
+        return overrides[planner_agent]["executor"]
+    return cfg.get("defaults", {}).get("executor", "opencode-developer")
+
+
+def resolve_inbox_for_agent(agent_id):
+    """Resolve the correct inbox directory for an agent, handling aliases."""
+    registry = load_registry()
+    # First try direct match
+    for a in registry["agents"]:
+        if a["id"] == agent_id:
+            return Path(a.get("inbox", f"memory/inbox/{agent_id}"))
+        # Check aliases
+        if agent_id in a.get("aliases", []):
+            return Path(a.get("inbox", f"memory/inbox/{a['id']}"))
+    # Fallback
+    return MEMORY_DIR / "inbox" / agent_id
+
+
+def generate_pipeline_id():
+    """Generate a unique pipeline ID: PIPE-<YYYYMMDD-HHMMSS>-<short-uuid>"""
+    now = datetime.now(timezone.utc)
+    ts = now.strftime("%Y%m%d-%H%M%S")
+    short_id = uuid.uuid4().hex[:6]
+    return f"PIPE-{ts}-{short_id}"
+
+
+def write_file(path, content):
+    """Write content to a file, creating parent directories."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w") as f:
+        f.write(content)
+
+
+def append_file(path, content):
+    """Append content to a file."""
+    with open(path, "a") as f:
+        f.write(content)
+
+
+# ── Submit ────────────────────────────────────────────────────────────────────
+
+def cmd_submit(args):
+    """Submit a new pipeline plan for execution."""
+    planner = args.planner
+    prompt = args.prompt
+    executor = get_executor_for_planner(planner, args.executor)
+
+    # Validate executor exists in registry
+    registry = load_registry()
+    known_ids = {a["id"] for a in registry["agents"]} | set()
+    # Also include aliases
+    for a in registry["agents"]:
+        for alias in a.get("aliases", []):
+            known_ids.add(alias)
+    if executor not in known_ids:
+        # Check for aliases
+        found = False
+        for a in registry["agents"]:
+            if executor in a.get("aliases", []):
+                executor = a["id"]
+                found = True
+                break
+        if not found:
+            print(f"Warning: executor '{executor}' not found in registry", file=sys.stderr)
+            print(f"Known agents: {', '.join(sorted(known_ids))}", file=sys.stderr)
+
+    # Read plan and task files
+    if args.plan:
+        with open(args.plan) as f:
+            plan_content = f.read()
+    else:
+        plan_content = "# IMPLEMENTATION_PLAN.md\n\n(no plan file provided — planner wrote inline)\n"
+
+    if args.tasks:
+        with open(args.tasks) as f:
+            tasks_content = f.read()
+    else:
+        tasks_content = "# TASKS.md\n\n(no tasks file provided)\n"
+
+    # Generate pipeline ID
+    pipeline_id = generate_pipeline_id()
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    # Create pipeline directory
+    pipeline_dir = PIPELINES_DIR / pipeline_id
+    pipeline_dir.mkdir(parents=True, exist_ok=True)
+
+    # Write PLAN.md
+    write_file(pipeline_dir / "PLAN.md", plan_content)
+
+    # Write TASKS.md
+    write_file(pipeline_dir / "TASKS.md", tasks_content)
+
+    # Write META.json
+    meta = {
+        "pipeline_id": pipeline_id,
+        "planner": planner,
+        "executor": executor,
+        "prompt": prompt,
+        "status": "submitted",
+        "created_at": ts,
+        "completed_at": None,
+        "project_path": args.project or None,
+        "review_mode": args.review_mode or "auto",
+    }
+    write_file(pipeline_dir / "META.json", json.dumps(meta, indent=2))
+
+    # Create task card
+    task_id = pipeline_id
+    task_title = f"Pipeline: {prompt[:60]}..." if len(prompt) > 60 else f"Pipeline: {prompt}"
+    task_description = f"""## Pipeline: {pipeline_id}
+
+**Planner**: {planner}
+**Executor**: {executor}
+**Pipeline Status**: submitted
+**Created**: {ts}
+
+### Original Prompt
+```
+{prompt}
+```
+
+### Pipeline Directory
+`memory/pipelines/{pipeline_id}/`
+
+### Instructions
+1. Read `memory/pipelines/{pipeline_id}/PLAN.md` for the implementation plan
+2. Read `memory/pipelines/{pipeline_id}/TASKS.md` for the task breakdown
+3. Execute the tasks in order, updating TASKS.md as you go
+4. On completion, produce a WALKTHROUGH.md in the pipeline directory
+5. Update META.json: set status to "completed", set completed_at
+6. Send a completion message to `{planner}`'s inbox
+"""
+    task_card = f"""---
+task_id: {task_id}
+title: "{task_title}"
+status: pending
+assigned_to: {executor}
+created_by: {planner}
+priority: normal
+depends_on: "-"
+created_at: {ts}
+pipeline_id: {pipeline_id}
+---
+
+# {task_id} — {task_title}
+
+**Status**: pending  
+**Assigned**: {executor}  
+**Created by**: {planner}  
+**Pipeline**: {pipeline_id}  
+**Created**: {ts}
+
+## Description
+
+{task_description}
+
+## Progress
+
+<!-- Agent updates this section during execution -->
+
+"""
+    write_file(TASKS_DIR / f"{task_id}.md", task_card)
+
+    # Send message to executor's inbox (resolve correct inbox directory)
+    inbox_dir = resolve_inbox_for_agent(executor)
+    inbox_msg = f"""---
+from: {planner}
+to: {executor}
+subject: Pipeline Execution Request: {pipeline_id}
+priority: high
+timestamp: {ts}
+pipeline_id: {pipeline_id}
+---
+
+# Pipeline Execution Request — {pipeline_id}
+
+**From**: {planner}
+**Pipeline**: {pipeline_id}
+**Created**: {ts}
+
+## Prompt
+
+{prompt}
+
+## Plan Location
+`memory/pipelines/{pipeline_id}/PLAN.md` — Full implementation plan
+
+## Tasks Location
+`memory/pipelines/{pipeline_id}/TASKS.md` — Numbered task breakdown
+
+## Task Card
+`memory/tasks/{task_id}.md` — Track status here
+
+## Instructions
+
+1. Read `PLAN.md` and `TASKS.md` from the pipeline directory
+2. Execute each task in order, updating TASKS.md with [x] when complete
+3. Log all actions to your events.md and global_ledger.md
+4. On completion:
+   - Write `WALKTHROUGH.md` to the pipeline directory
+   - Update `META.json` status to "completed"
+   - Send completion notification to `{planner}`'s inbox
+"""
+    inbox_file = inbox_dir / f"{int(datetime.now(timezone.utc).timestamp() * 1000)}-pipeline-{planner}.md"
+    inbox_file.parent.mkdir(parents=True, exist_ok=True)
+    write_file(inbox_file, inbox_msg)
+
+    # Append to global ledger
+    ledger_row = f"| {ts} | {planner} | SUBMIT | memory/pipelines/{pipeline_id}/ | Submitted /h-pipeline: {prompt[:80]} | {pipeline_id} | - |\n"
+    append_file(LEDGER_FILE, ledger_row)
+
+    # Success output
+    result = {
+        "ok": True,
+        "pipeline_id": pipeline_id,
+        "pipeline_dir": str(pipeline_dir),
+        "task_path": str(TASKS_DIR / f"{task_id}.md"),
+        "executor": executor,
+        "planner": planner,
+        "prompt": prompt,
+        "created_at": ts,
+    }
+    print(json.dumps(result, indent=2))
+    return 0
+
+
+# ── Status ────────────────────────────────────────────────────────────────────
+
+def cmd_status(args):
+    """Check the status of a pipeline."""
+    pipeline_id = args.pipeline_id
+    pipeline_dir = PIPELINES_DIR / pipeline_id
+
+    if not pipeline_dir.exists():
+        print(f"Pipeline not found: {pipeline_id}", file=sys.stderr)
+        return 1
+
+    # Read META
+    meta_file = pipeline_dir / "META.json"
+    if meta_file.exists():
+        with open(meta_file) as f:
+            meta = json.load(f)
+    else:
+        meta = {"status": "unknown"}
+
+    # Read task card (parse YAML frontmatter for status)
+    task_file = TASKS_DIR / f"{pipeline_id}.md"
+    task_status = "unknown"
+    if task_file.exists():
+        with open(task_file) as f:
+            content = f.read()
+        # Parse YAML frontmatter between --- markers
+        if content.startswith("---"):
+            parts = content.split("---", 2)
+            if len(parts) >= 3:
+                yaml_block = parts[1]
+                for line in yaml_block.split("\n"):
+                    line = line.strip()
+                    if line.startswith("status:"):
+                        task_status = line.split(":", 1)[1].strip().strip('"')
+
+    result = {
+        "pipeline_id": pipeline_id,
+        "status": meta.get("status", "unknown"),
+        "task_status": task_status,
+        "planner": meta.get("planner"),
+        "executor": meta.get("executor"),
+        "prompt": meta.get("prompt", "")[:100],
+        "created_at": meta.get("created_at"),
+        "completed_at": meta.get("completed_at"),
+        "files": [f.name for f in pipeline_dir.iterdir() if f.is_file()],
+    }
+    print(json.dumps(result, indent=2))
+    return 0
+
+
+# ── List ──────────────────────────────────────────────────────────────────────
+
+def cmd_list(args):
+    """List all pipelines."""
+    if not PIPELINES_DIR.exists():
+        print(json.dumps({"pipelines": []}))
+        return 0
+
+    pipelines = []
+    for d in sorted(PIPELINES_DIR.iterdir()):
+        if d.is_dir():
+            meta_file = d / "META.json"
+            if meta_file.exists():
+                with open(meta_file) as f:
+                    meta = json.load(f)
+                pipelines.append({
+                    "pipeline_id": meta.get("pipeline_id", d.name),
+                    "status": meta.get("status", "unknown"),
+                    "planner": meta.get("planner"),
+                    "executor": meta.get("executor"),
+                    "prompt": (meta.get("prompt", "") or "")[:80],
+                    "created_at": meta.get("created_at"),
+                })
+
+    print(json.dumps({"pipelines": pipelines}, indent=2))
+    return 0
+
+
+# ── Main ──────────────────────────────────────────────────────────────────────
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="/h-pipeline — Cross-Agent Plan-Then-Execute Pipeline",
+    )
+    subparsers = parser.add_subparsers(dest="command", help="Subcommand")
+
+    # submit
+    submit_parser = subparsers.add_parser("submit", help="Submit a plan for execution")
+    submit_parser.add_argument("--planner", required=True, help="Agent ID of the planner")
+    submit_parser.add_argument("--prompt", required=True, help="Original user prompt")
+    submit_parser.add_argument("--plan", help="Path to IMPLEMENTATION_PLAN.md file")
+    submit_parser.add_argument("--tasks", help="Path to TASKS.md file")
+    submit_parser.add_argument("--executor", help="Executor agent ID (default: from config)")
+    submit_parser.add_argument("--project", help="Project path if applicable")
+    submit_parser.add_argument("--review-mode", choices=["auto", "manual", "skip"], help="Review mode")
+
+    # status
+    status_parser = subparsers.add_parser("status", help="Check pipeline status")
+    status_parser.add_argument("pipeline_id", help="Pipeline ID (e.g. PIPE-20260521-051900-abc123)")
+
+    # list
+    list_parser = subparsers.add_parser("list", help="List all pipelines")
+
+    args = parser.parse_args()
+
+    if args.command == "submit":
+        return cmd_submit(args)
+    elif args.command == "status":
+        return cmd_status(args)
+    elif args.command == "list":
+        return cmd_list(args)
+    else:
+        parser.print_help()
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

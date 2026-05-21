@@ -1,3 +1,5 @@
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
 [projects."/tmp/openclaw-crestodian-planner-M8rMvO"]
 trust_level = "trusted"
 
@@ -10,5 +12,24 @@ trust_level = "trusted"
 [projects."/home/dev"]
 trust_level = "trusted"
 
+[projects."/home/dev/AI_Workflow"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 "gpt-5.5" = 1
+
+# BEGIN PAOS MCP
+[mcp_servers.shared-memory]
+command = "node"
+args = ["/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"]
+[mcp_servers.shared-memory.env]
+MEMORY_DIR = "/home/dev/AI_Workflow/memory"
+KNOWLEDGE_DIR = "/home/dev/AI_Workflow/knowledge"
+REPO_ROOT = "/home/dev/AI_Workflow"
+
+[mcp_servers.scaffold]
+command = "node"
+args = ["/home/dev/AI_Workflow/mcp/scaffold-server/index.js"]
+[mcp_servers.scaffold.env]
+TEMPLATES_DIR = "/home/dev/AI_Workflow/knowledge/templates"
+# END PAOS MCP

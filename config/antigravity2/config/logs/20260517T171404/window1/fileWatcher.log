@@ -1,6 +1,0 @@
-2026-05-17 17:14:12.304 [error] [File Watcher ('parcel')] Unexpected error: inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0TA2pu9' failed: No such file or directory (EUNKNOWN) (path: /home/dev/AI_Workflow)
-2026-05-17 17:14:12.304 [error] [File Watcher (universal)] inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0TA2pu9' failed: No such file or directory
-2026-05-17 17:14:12.315 [error] [File Watcher ('parcel')] Unexpected error: inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0TA2pu9' failed: No such file or directory (EUNKNOWN) (path: /home/dev/AI_Workflow)
-2026-05-17 17:14:12.318 [error] [File Watcher (universal)] inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0TA2pu9' failed: No such file or directory
-2026-05-17 17:14:13.136 [error] [File Watcher ('parcel')] Unexpected error: inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0TA2pu9' failed: No such file or directory (EUNKNOWN) (path: /home/dev/AI_Workflow)
-2026-05-17 17:14:13.137 [error] [File Watcher (universal)] inotify_add_watch on '/home/dev/AI_Workflow/config/codex/tmp/arg0/codex-arg0TA2pu9' failed: No such file or directory

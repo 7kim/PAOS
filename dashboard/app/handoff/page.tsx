@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RefreshCw } from "lucide-react";
 
 export default function HandoffPage() {
@@ -7,19 +7,19 @@ export default function HandoffPage() {
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  async function load() {
+  const load = useCallback(async () => {
     const res = await fetch("/api/handoff");
     const data = await res.json();
     setContent(data.content ?? "");
     setUpdatedAt(data.updatedAt ?? null);
     setLoading(false);
-  }
+  }, []);
 
   useEffect(() => {
-    load();
-    const id = setInterval(load, 10000);
+    queueMicrotask(() => void load());
+    const id = setInterval(() => void load(), 10000);
     return () => clearInterval(id);
-  }, []);
+  }, [load]);
 
   return (
     <div>

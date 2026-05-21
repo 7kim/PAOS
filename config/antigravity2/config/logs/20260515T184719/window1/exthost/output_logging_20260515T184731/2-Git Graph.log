@@ -1,9 +1,0 @@
-[2026-05-15 18:47:31.997] Starting Git Graph ...
-[2026-05-15 18:47:32.010] Using git (version: 2.53.0)
-[2026-05-15 18:47:32.017] Started Git Graph - Ready to use!
-[2026-05-15 18:47:32.017] Searching workspace for new repos ...
-[2026-05-15 18:47:32.022] > git rev-parse --show-toplevel
-[2026-05-15 18:47:32.128] Added new repo: /home/dev/Documents/Dev/scalping_bot_v2
-[2026-05-15 18:47:32.130] Successfully set Visual Studio Code Context "git-graph:codiconsSupported" to "true"
-[2026-05-15 18:47:32.199] Completed searching workspace for new repos
-[2026-05-15 18:47:32.199] Showing "Git Graph" Status Bar Item

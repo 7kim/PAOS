@@ -153,6 +153,8 @@ When the Coordinator is active:
 4. Coordinator verifies `log.md` entry before reporting back.
 
 ### Section 6.2 — Direct Invocation
+The canonical roster, git identities, permissions, MCP bindings, and health checks live in `agents/registry.json`. The list below is the human-facing invocation shorthand.
+
 Agents may be invoked directly:
 - `@developer <request>` — Execute a task (default — no planning needed) or initiate the pipeline (planning needed → delegates to PM).
 - `@plan <request>` — Project Manager: think, plan, produce Antigravity artifacts and handoff prompts.
@@ -210,6 +212,50 @@ The Project Manager's thinking is captured in `memory/pm-logs/` using the Antigr
 3. `<task-id>-WALKTHROUGH.md` — post-planning summary and handoff guide
 
 These serve as both the PM's thinking log AND the input to Architect review and Developer execution.
+
+### Section 6.6 — /h-pipeline Command (Cross-Agent Plan-Then-Execute)
+
+The `/h-pipeline` command enables any planner agent to submit a structured plan to an executor agent through the PAOS pipeline system. This saves tokens by separating planning from execution.
+
+**Flow**:
+1. User types `/h-pipeline <prompt>` in any planner agent
+2. Planner produces `IMPLEMENTATION_PLAN.md` + `TASKS.md`
+3. Planner calls `shared-memory: submit_pipeline` MCP tool (or `bin/h-pipeline submit` CLI)
+4. The system creates:
+   - `memory/pipelines/PIPE-<id>/` with PLAN.md + TASKS.md + META.json
+   - Task card at `memory/tasks/PIPE-<id>.md`
+   - Message in executor's inbox at `memory/inbox/<executor>/`
+   - Entry in `memory/global_ledger.md`
+5. Executor picks up the task from its inbox and executes
+
+**Planner Agents** (can invoke `/h-pipeline`):
+- Claude Code, Gemini, Antigravity IDE, Antigravity 2.0 CLI, Codex, OpenClaw
+
+**Executor Agents** (receive and execute plans):
+- Default: `opencode-developer` (OpenCode)
+- Fallback: `hermes` (notification-only pipelines)
+- Configurable per pipeline via `config/pipeline-defaults.yaml`
+
+**Pipeline Settings** (configured in each agent's config file and `config/pipeline-defaults.yaml`):
+```yaml
+pipeline:
+  executor: opencode-developer
+  review_mode: auto
+  plan_format: antigravity
+  auto_commit: true
+  notify_on_complete: true
+```
+
+**Architecture**:
+```
+Planner Agent → submit_pipeline MCP tool → memory/pipelines/PIPE-xxx/
+                                            ├── PLAN.md
+                                            ├── TASKS.md
+                                            └── META.json
+                                        → memory/tasks/PIPE-xxx.md (task card)
+                                        → memory/inbox/<executor>/ (message)
+                                        → memory/global_ledger.md (audit entry)
+```
 
 ---
 

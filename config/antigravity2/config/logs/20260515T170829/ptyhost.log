@@ -1,9 +1,0 @@
-2026-05-15 17:08:31.257 [info] Revived process, old id f282f157da16bf2ce290c7a1ed52dc30-5 -> new id 1
-2026-05-15 17:08:54.797 [info] Revived process, old id 7a90480ef3c0717c7d948d26b5476169-2 -> new id 3
-2026-05-15 17:08:54.865 [info] Expanding terminal instance, old id 7a90480ef3c0717c7d948d26b5476169-4 -> new id undefined
-2026-05-15 17:08:54.865 [warning] Couldn't get layout info, a terminal was probably disconnected Could not find pty 4 on pty host
-2026-05-15 17:09:28.390 [info] Revived process, old id f282f157da16bf2ce290c7a1ed52dc30-2 -> new id 8
-2026-05-15 17:10:59.387 [info] Expanding terminal instance, old id 7a90480ef3c0717c7d948d26b5476169-7 -> new id undefined
-2026-05-15 17:11:19.535 [warning] Persistent process "7": Process had no disconnect runners but was an orphan
-2026-05-15 17:11:19.535 [info] Persistent process reconnection "7"
-2026-05-15 17:11:19.538 [info] Persistent process "7": Replaying 61 chars and 1 size events

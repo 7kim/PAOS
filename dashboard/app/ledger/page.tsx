@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface LedgerEntry {
   timestamp: string;
@@ -30,17 +30,17 @@ function agentColor(agent: string) {
 export default function LedgerPage() {
   const [entries, setEntries] = useState<LedgerEntry[]>([]);
 
-  async function load() {
+  const load = useCallback(async () => {
     const res = await fetch("/api/ledger");
     const data = await res.json();
     setEntries(data.entries ?? []);
-  }
+  }, []);
 
   useEffect(() => {
-    load();
-    const id = setInterval(load, 5000);
+    queueMicrotask(() => void load());
+    const id = setInterval(() => void load(), 5000);
     return () => clearInterval(id);
-  }, []);
+  }, [load]);
 
   return (
     <div>

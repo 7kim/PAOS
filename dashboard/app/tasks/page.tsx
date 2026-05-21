@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface Task {
   id: string;
@@ -24,17 +24,17 @@ function statusStyle(status: string) {
 export default function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  async function load() {
+  const load = useCallback(async () => {
     const res = await fetch("/api/tasks");
     const data = await res.json();
     setTasks(data.tasks ?? []);
-  }
+  }, []);
 
   useEffect(() => {
-    load();
-    const id = setInterval(load, 5000);
+    queueMicrotask(() => void load());
+    const id = setInterval(() => void load(), 5000);
     return () => clearInterval(id);
-  }, []);
+  }, [load]);
 
   return (
     <div>

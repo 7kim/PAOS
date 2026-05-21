@@ -1,0 +1,289 @@
+{
+  "$schema": "./registry.schema.json",
+  "version": "1.0.0",
+  "mcpServers": {
+    "shared-memory": {
+      "command": "node",
+      "args": ["/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"],
+      "env": {
+        "MEMORY_DIR": "/home/dev/AI_Workflow/memory",
+        "KNOWLEDGE_DIR": "/home/dev/AI_Workflow/knowledge",
+        "REPO_ROOT": "/home/dev/AI_Workflow"
+      }
+    },
+    "scaffold": {
+      "command": "node",
+      "args": ["/home/dev/AI_Workflow/mcp/scaffold-server/index.js"],
+      "env": {
+        "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
+      }
+    }
+  },
+  "agents": [
+    {
+      "id": "claude",
+      "label": "Claude Code",
+      "role": "Primary orchestrator and coding assistant",
+      "binary": "claude",
+      "color": "#f97316",
+      "configPaths": ["config/claude/CLAUDE.md", "config/claude/mcp.json"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/claude",
+      "log": "logs/claude/events.md",
+      "gitIdentity": {
+        "name": "Claude Code [PAOS]",
+        "email": "claude@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["bash", "mcp"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "high"
+    },
+    {
+      "id": "codex",
+      "label": "Codex",
+      "role": "OpenAI coding executor",
+      "binary": "codex",
+      "color": "#10b981",
+      "configPaths": ["config/codex/config.toml", "config/codex/instructions.md"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/codex",
+      "log": "logs/codex/events.md",
+      "gitIdentity": {
+        "name": "Codex [PAOS]",
+        "email": "codex@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["bash", "mcp"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "high"
+    },
+    {
+      "id": "opencode",
+      "aliases": ["opencode-developer", "developer"],
+      "label": "OpenCode",
+      "role": "Multi-agent CLI runtime",
+      "binary": "opencode",
+      "color": "#3b82f6",
+      "configPaths": ["opencode.json", "config/opencode/opencode.json", "config/opencode/AGENTS.md"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/developer",
+      "log": "logs/opencode/events.md",
+      "gitIdentity": {
+        "name": "OpenCode Developer [PAOS]",
+        "email": "developer@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["bash", "mcp", "task"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "high"
+    },
+    {
+      "id": "opencode-plan",
+      "label": "OpenCode Plan",
+      "role": "Project manager and implementation planner",
+      "binary": "opencode",
+      "color": "#60a5fa",
+      "configPaths": ["config/opencode/opencode.json"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/plan",
+      "log": "logs/opencode/events.md",
+      "gitIdentity": {
+        "name": "OpenCode Plan [PAOS]",
+        "email": "plan@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs"],
+        "write": ["memory/pm-logs", "memory/prompts", "logs"],
+        "execute": ["mcp", "task"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "medium"
+    },
+    {
+      "id": "opencode-architect",
+      "label": "OpenCode Architect",
+      "role": "Peer reviewer and system designer",
+      "binary": "opencode",
+      "color": "#818cf8",
+      "configPaths": ["agents/architect/soul.md", "config/opencode/opencode.json"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/architect",
+      "log": "logs/opencode-architect/events.md",
+      "gitIdentity": {
+        "name": "OpenCode Architect [PAOS]",
+        "email": "architect@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "plans"],
+        "write": ["reviews", "logs"],
+        "execute": ["mcp"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "medium"
+    },
+    {
+      "id": "opencode-coordinator",
+      "label": "OpenCode Coordinator",
+      "role": "Pipeline router and compliance verifier",
+      "binary": "opencode",
+      "color": "#2563eb",
+      "configPaths": ["agents/coordinator/soul.md", "config/opencode/opencode.json"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/coordinator",
+      "log": "logs/opencode-coordinator/events.md",
+      "gitIdentity": {
+        "name": "OpenCode Coordinator [PAOS]",
+        "email": "coordinator@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "plans"],
+        "write": ["memory", "logs", "inbox"],
+        "execute": ["mcp", "task"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "medium"
+    },
+    {
+      "id": "gemini",
+      "label": "Gemini",
+      "role": "Google coding executor",
+      "binary": "gemini",
+      "color": "#4285f4",
+      "configPaths": ["GEMINI.md", "agents/gemini/soul.md", "config/gemini/antigravity-ide/mcp_config.json"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/gemini",
+      "log": "logs/gemini/events.md",
+      "gitIdentity": {
+        "name": "Gemini [PAOS]",
+        "email": "gemini@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["bash", "mcp"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "high"
+    },
+    {
+      "id": "antigravity",
+      "label": "Antigravity CLI",
+      "role": "Google Antigravity CLI executor",
+      "binary": "agy",
+      "color": "#ec4899",
+      "configPaths": ["agents/antigravity/soul.md", "config/gemini/antigravity-ide/mcp_config.json"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/antigravity",
+      "log": "logs/antigravity/events.md",
+      "gitIdentity": {
+        "name": "Antigravity [PAOS]",
+        "email": "antigravity@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["bash", "mcp"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "high"
+    },
+    {
+      "id": "antigravity-ide",
+      "label": "Antigravity IDE",
+      "role": "Desktop IDE agent surface",
+      "binary": "antigravity-ide",
+      "color": "#f472b6",
+      "configPaths": ["agents/antigravity/soul.md", "config/antigravity2/config/Preferences"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/antigravity",
+      "log": "logs/antigravity/events.md",
+      "gitIdentity": {
+        "name": "Antigravity [PAOS]",
+        "email": "antigravity@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["ide", "mcp"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "high"
+    },
+    {
+      "id": "openclaw",
+      "label": "OpenClaw",
+      "role": "Human channel and delegation agent",
+      "binary": "openclaw",
+      "color": "#8b5cf6",
+      "configPaths": ["config/openclaw/README.md", "agents/openclaw/soul.md"],
+      "mcpServers": ["shared-memory"],
+      "inbox": "memory/inbox/openclaw",
+      "log": "logs/openclaw/events.md",
+      "gitIdentity": {
+        "name": "OpenClaw [PAOS]",
+        "email": "openclaw@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["memory", "logs", "inbox"],
+        "write": ["memory", "logs", "inbox"],
+        "execute": ["mcp", "channels"]
+      },
+      "healthChecks": ["binary", "config", "openclaw-mcp", "identity", "inbox", "log"],
+      "riskLevel": "medium"
+    },
+    {
+      "id": "hermes",
+      "label": "Hermes",
+      "role": "Notification and message router",
+      "binary": "hermes",
+      "color": "#eab308",
+      "configPaths": ["config/hermes/instructions.md", "config/hermes/mcp_config.json", "agents/hermes/soul.md"],
+      "mcpServers": ["shared-memory"],
+      "inbox": "memory/inbox/hermes",
+      "log": "logs/hermes/events.md",
+      "gitIdentity": {
+        "name": "Hermes [PAOS]",
+        "email": "hermes@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["memory", "logs", "inbox"],
+        "write": ["memory", "logs", "notifications"],
+        "execute": ["mcp", "webhook"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "medium"
+    },
+    {
+      "id": "ollama",
+      "label": "Ollama",
+      "role": "Local model runtime",
+      "binary": "ollama",
+      "color": "#22c55e",
+      "configPaths": ["config/ollama/system-prompt.md", "config/ollama/config.json"],
+      "mcpServers": ["shared-memory"],
+      "inbox": "memory/inbox/ollama",
+      "log": "logs/ollama/events.md",
+      "gitIdentity": {
+        "name": "Ollama [PAOS]",
+        "email": "ollama@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory"],
+        "write": ["memory", "logs"],
+        "execute": ["local-model"]
+      },
+      "healthChecks": ["binary", "config", "identity", "inbox", "log"],
+      "riskLevel": "medium"
+    }
+  ]
+}

@@ -68,6 +68,35 @@ For non-trivial tasks, use the Antigravity Review Loop:
    ~/AI_Workflow/bin/agent-commit.sh gemini "Agent[gemini]: <description>"
    ```
 
+## /h-pipeline Command — Cross-Agent Plan-Then-Execute
+
+When the user types `/h-pipeline <prompt>`, follow this protocol:
+
+1. **Plan**: Read the prompt and produce:
+   - `IMPLEMENTATION_PLAN.md` — full technical plan
+   - `TASKS.md` — numbered task breakdown
+2. **Submit**: Run the CLI or use context to call the pipeline:
+   ```bash
+   python3 ~/AI_Workflow/bin/h-pipeline submit \
+     --planner gemini \
+     --prompt "<prompt>" \
+     --plan IMPLEMENTATION_PLAN.md \
+     --tasks TASKS.md
+   ```
+   Or use the MCP tool `shared-memory: submit_pipeline` with the same parameters.
+3. **Inform**: Tell the user: "Pipeline submitted. Executor will pick it up from their inbox."
+
+### Pipeline Settings (default — override in config/pipeline-defaults.yaml)
+
+```yaml
+pipeline:
+  executor: opencode-developer
+  review_mode: auto
+  plan_format: antigravity
+  auto_commit: true
+  notify_on_complete: true
+```
+
 ## H-Factor Invariants
 
 | ID | Rule |

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Send } from "lucide-react";
 
 interface Message {
@@ -11,18 +11,14 @@ interface Message {
   body: string;
 }
 
-const INBOXES = ["all", "developer", "architect", "coordinator", "plan", "claude", "openclaw", "ollama"];
+interface Agent {
+  id: string;
+  label: string;
+  color: string;
+  inbox: number;
+}
 
-const agentColors: Record<string, string> = {
-  claude: "#f97316",
-  opencode: "#3b82f6",
-  openclaw: "#8b5cf6",
-  ollama: "#22c55e",
-  antigravity: "#ec4899",
-  dashboard: "#64748b",
-};
-
-function agentColor(agent: string) {
+function agentColor(agent: string, agentColors: Record<string, string>) {
   for (const [key, color] of Object.entries(agentColors)) {
     if (agent.toLowerCase().includes(key)) return color;
   }
@@ -38,19 +34,36 @@ export default function InboxPage() {
   const [composeBody, setComposeBody] = useState("");
   const [sending, setSending] = useState(false);
   const [showCompose, setShowCompose] = useState(false);
+  const [agents, setAgents] = useState<Agent[]>([]);
 
-  async function load() {
+  const inboxes = useMemo(() => ["all", ...agents.map((agent) => agent.id)], [agents]);
+  const agentColors = useMemo(
+    () => Object.fromEntries(agents.map((agent) => [agent.id, agent.color])),
+    [agents]
+  );
+
+  const load = useCallback(async () => {
     const params = activeInbox !== "all" ? `?agent=${activeInbox}` : "";
     const res = await fetch(`/api/inbox${params}`);
     const data = await res.json();
     setMessages(data.messages ?? []);
-  }
+  }, [activeInbox]);
+
+  const loadAgents = useCallback(async () => {
+    const res = await fetch("/api/agents");
+    const data = await res.json();
+    setAgents(data.agents ?? []);
+  }, []);
 
   useEffect(() => {
-    load();
-    const id = setInterval(load, 5000);
+    queueMicrotask(() => void loadAgents());
+  }, [loadAgents]);
+
+  useEffect(() => {
+    queueMicrotask(() => void load());
+    const id = setInterval(() => void load(), 5000);
     return () => clearInterval(id);
-  }, [activeInbox]);
+  }, [load]);
 
   async function send() {
     if (!composeTo || !composeBody) return;
@@ -63,7 +76,7 @@ export default function InboxPage() {
     setSending(false);
     setShowCompose(false);
     setComposeTo(""); setComposeSubject(""); setComposeBody("");
-    load();
+    void load();
   }
 
   return (
@@ -97,7 +110,7 @@ export default function InboxPage() {
                 style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
               >
                 <option value="">Select agent...</option>
-                {INBOXES.filter((i) => i !== "all").map((i) => (
+                {inboxes.filter((i) => i !== "all").map((i) => (
                   <option key={i} value={i}>{i}</option>
                 ))}
               </select>
@@ -135,7 +148,7 @@ export default function InboxPage() {
       )}
 
       <div className="flex gap-1 mb-4 flex-wrap">
-        {INBOXES.map((inbox) => (
+        {inboxes.map((inbox) => (
           <button
             key={inbox}
             onClick={() => setActiveInbox(inbox)}
@@ -173,7 +186,7 @@ export default function InboxPage() {
             <div className="flex items-center gap-2 mb-2">
               <span
                 className="text-xs px-1.5 py-0.5 rounded"
-                style={{ background: `${agentColor(msg.from)}22`, color: agentColor(msg.from) }}
+                style={{ background: `${agentColor(msg.from, agentColors)}22`, color: agentColor(msg.from, agentColors) }}
               >
                 {msg.from}
               </span>

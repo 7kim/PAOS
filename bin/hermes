@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+import json
+import os
+import subprocess
+import sys
+import urllib.request
+from datetime import datetime, timezone
+
+VERSION = "1.1.0"
+REPO_ROOT = "/home/dev/AI_Workflow"
+ENV_PATH = f"{REPO_ROOT}/config/secrets/.env"
+INSTRUCTIONS_PATH = f"{REPO_ROOT}/config/hermes/instructions.md"
+EVENTS_LOG_PATH = f"{REPO_ROOT}/vault/memory/hermes/events.md"
+GLOBAL_LEDGER_PATH = f"{REPO_ROOT}/vault/memory/global_ledger.md"
+SYNC_SCRIPT_PATH = f"{REPO_ROOT}/bin/sync-chat.py"
+
+
+def usage():
+    print(
+        """Hermes — PAOS notification and messenger agent
+
+Usage:
+  hermes <prompt>
+  hermes doctor
+  hermes --help
+  hermes --version
+
+Side-effect-free commands:
+  --help, -h       Show this help without logging or calling an LLM.
+  --version, -v    Print the Hermes wrapper version.
+  doctor           Check local config without logging or calling an LLM.
+"""
+    )
+
+
+def load_env():
+    env = {}
+    if os.path.exists(ENV_PATH):
+        with open(ENV_PATH, "r", encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, value = line.split("=", 1)
+                env[key.strip()] = value.strip()
+    return env
+
+
+def doctor():
+    env = load_env()
+    checks = {
+        "instructions": os.path.exists(INSTRUCTIONS_PATH),
+        "events_log": os.path.exists(EVENTS_LOG_PATH),
+        "global_ledger": os.path.exists(GLOBAL_LEDGER_PATH),
+        "sync_script": os.path.exists(SYNC_SCRIPT_PATH),
+        "google_api_key": bool(env.get("GOOGLE_API_KEY")),
+    }
+    print(json.dumps({"agent": "hermes", "version": VERSION, "checks": checks}, indent=2))
+    return 0 if all(checks.values()) else 1
+
+
+def log_event(action, description):
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        if os.path.exists(EVENTS_LOG_PATH):
+            with open(EVENTS_LOG_PATH, "a", encoding="utf-8") as handle:
+                handle.write(f"[{timestamp}] | PAOS-RUN | {action} | - | {description} | -\n")
+    except Exception as error:
+        sys.stderr.write(f"Failed to log event: {error}\n")
+
+    try:
+        if os.path.exists(GLOBAL_LEDGER_PATH):
+            with open(GLOBAL_LEDGER_PATH, "a", encoding="utf-8") as handle:
+                handle.write(f"| {timestamp} | hermes | {action} | - | {description} | - | - |\n")
+    except Exception as error:
+        sys.stderr.write(f"Failed to log to global ledger: {error}\n")
+
+
+def call_gemini(api_key, system_instruction, prompt):
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
+    headers = {"Content-Type": "application/json"}
+    data = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "systemInstruction": {"parts": [{"text": system_instruction}]},
+    }
+
+    req = urllib.request.Request(url, data=json.dumps(data).encode("utf-8"), headers=headers, method="POST")
+    try:
+        with urllib.request.urlopen(req) as res:
+            res_data = json.loads(res.read().decode("utf-8"))
+            return res_data["candidates"][0]["content"]["parts"][0]["text"]
+    except Exception as error:
+        sys.stderr.write(f"Error calling Gemini API: {error}\n")
+        sys.exit(1)
+
+
+def read_prompt():
+    if len(sys.argv) > 1:
+        return " ".join(sys.argv[1:])
+    if not sys.stdin.isatty():
+        return sys.stdin.read().strip()
+    sys.stderr.write("Usage: hermes <prompt> or pipe input into hermes\n")
+    sys.exit(1)
+
+
+def main():
+    if len(sys.argv) > 1 and sys.argv[1] in ("--help", "-h"):
+        usage()
+        return 0
+    if len(sys.argv) > 1 and sys.argv[1] in ("--version", "-v"):
+        print(VERSION)
+        return 0
+    if len(sys.argv) > 1 and sys.argv[1] == "doctor":
+        return doctor()
+
+    prompt = read_prompt()
+    log_event("START", "Hermes agent CLI session initialized")
+
+    env = load_env()
+    api_key = env.get("GOOGLE_API_KEY")
+    if not api_key:
+        sys.stderr.write("Error: GOOGLE_API_KEY not found in config/secrets/.env\n")
+        sys.exit(1)
+
+    system_instruction = "You are Hermes, the Notification and Messenger agent of PAOS."
+    if os.path.exists(INSTRUCTIONS_PATH):
+        with open(INSTRUCTIONS_PATH, "r", encoding="utf-8") as handle:
+            system_instruction = handle.read()
+
+    print(f"Hermes agent processing request: '{prompt[:60]}...'")
+    response = call_gemini(api_key, system_instruction, prompt)
+    print("\n--- Hermes Response ---")
+    print(response)
+    print("-----------------------\n")
+
+    log_event("EXEC", f"Hermes processed prompt: {prompt[:60]}")
+    log_event("END", "Hermes agent CLI session finalized")
+
+    if os.path.exists(SYNC_SCRIPT_PATH):
+        subprocess.run([sys.executable, SYNC_SCRIPT_PATH], capture_output=True, check=False)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

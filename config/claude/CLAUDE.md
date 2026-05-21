@@ -112,7 +112,7 @@ For non-trivial tasks, use the Antigravity Review Loop:
 
 Both servers are registered in `~/.claude/mcp.json`. They are available in every session.
 
-### `shared-memory` — 10 tools
+### `shared-memory` — 12 tools
 
 | Tool | When to call |
 |------|-------------|
@@ -126,6 +126,7 @@ Both servers are registered in `~/.claude/mcp.json`. They are available in every
 | `create_task` | To create a tracked task card in `memory/tasks/` |
 | `read_task` | To read a specific task card |
 | `agent_commit` | Alternative to shell agent-commit.sh |
+| `submit_pipeline` | After producing PLAN.md + TASKS.md — submits to executor via /h-pipeline |
 
 ### `scaffold` — 2 tools
 
@@ -196,6 +197,34 @@ Invoke these when the trigger condition is met. Read the `SKILL.md` inside each 
 | Project Ledgers | `~/AI_Workflow/vault/memory/projects/<name>/ledger.md` |
 
 ---
+
+## /h-pipeline Command — Cross-Agent Plan-Then-Execute
+
+When the user types `/h-pipeline <prompt>`, follow this protocol:
+
+1. **Plan**: Read the prompt and produce:
+   - `IMPLEMENTATION_PLAN.md` — full technical plan
+   - `TASKS.md` — numbered task breakdown
+2. **Submit**: Call `shared-memory: submit_pipeline` with:
+   - `planner_agent`: "claude"
+   - `prompt`: the original user prompt
+   - `plan_content`: the full IMPLEMENTATION_PLAN.md text
+   - `tasks_content`: the full TASKS.md text
+   - `executor`: "opencode-developer" (or override via `/h-pipeline --executor <id> <prompt>`)
+3. **Inform**: Tell the user: "Pipeline submitted. Executor will pick it up from their inbox."
+
+The MCP tool handles: creating `memory/pipelines/PIPE-xxx/` with PLAN.md + TASKS.md + META.json, creating a task card, sending the plan to the executor's inbox, and logging to the global ledger.
+
+### Pipeline Settings (default — override in config/pipeline-defaults.yaml)
+
+```yaml
+pipeline:
+  executor: opencode-developer
+  review_mode: auto
+  plan_format: antigravity
+  auto_commit: true
+  notify_on_complete: true
+```
 
 ## Dialogue Context Recovery Command
 - **/H-Continue**: When the user invokes `/H-Continue`, you MUST immediately read the last 100 lines of `vault/chats/active_chat_transcript.md` (or the entire file if it is shorter) to load the exact previous dialogue history and context of the chat, and print a summary of your understanding to the operator.

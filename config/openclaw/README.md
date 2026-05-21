@@ -7,6 +7,7 @@ OpenClaw is a personal AI assistant that connects to Telegram, WhatsApp, Slack, 
 **Soul**: `agents/openclaw/soul.md`  
 **Inbox**: `memory/inbox/openclaw/`  
 **Events**: `logs/openclaw/events.md`
+**MCP mode**: `openclaw mcp` registry and `openclaw mcp serve <server>` are used for tool-server integration.
 
 ---
 
@@ -17,6 +18,7 @@ OpenClaw is a personal AI assistant that connects to Telegram, WhatsApp, Slack, 
 - [x] `~/.openclaw` symlink created
 - [x] Soul + PAOS integration files written
 - [x] Inbox wired (`memory/inbox/openclaw/`)
+- [x] MCP behavior documented (`openclaw mcp`, registry, and server mode)
 - [ ] **Channel setup** — run: `openclaw onboard` to configure Telegram/WhatsApp/etc.
 - [ ] **API keys** — configure LLM provider in OpenClaw settings
 
@@ -30,6 +32,12 @@ openclaw onboard
 
 # 2. Configure LLM backend in OpenClaw settings
 # Point to Claude (Anthropic) or OpenAI as the AI provider
+
+# 3. Verify MCP registry support without mutating PAOS state
+openclaw mcp
+
+# 4. Start a specific OpenClaw MCP server when needed
+openclaw mcp serve <server-name>
 ```
 
 ---
@@ -42,6 +50,7 @@ OpenClaw writes to the vault as `openclaw` agent:
 - Inbox: `memory/inbox/openclaw/` (other agents send tasks here)
 - Ledger: `memory/global_ledger.md` (via MCP `append_ledger`)
 - Commits: `bin/agent-commit.sh openclaw "Agent[openclaw]: <description>"`
+- MCP registry/serve flow: use `openclaw mcp` to inspect configured MCP servers and `openclaw mcp serve <server-name>` when OpenClaw needs to expose one.
 
 OpenClaw's soul is at `agents/openclaw/soul.md` — it defines how OpenClaw interacts with the PAOS pipeline.
 

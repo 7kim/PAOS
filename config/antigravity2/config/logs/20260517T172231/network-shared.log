@@ -1,2 +1,0 @@
-2026-05-17 18:18:04.062 [error] #59: https://browser.events.data.microsoft.com/OneCollector/1.0/?cors=true&content-type=application/x-json-stream - error POST net::ERR_TIMED_OUT
-2026-05-17 20:08:03.946 [error] #101: https://browser.events.data.microsoft.com/OneCollector/1.0/?cors=true&content-type=application/x-json-stream - error POST net::ERR_TIMED_OUT

@@ -1,5 +1,0 @@
-2026-05-17 17:14:08.669 [info] [         74ms] [/home/dev/AI_Workflow] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
-2026-05-17 17:14:08.961 [info] [         13ms] [/home/dev/AI_Workflow] git remote -v • completed
-2026-05-17 17:14:08.970 [info] [          8ms] [/home/dev/AI_Workflow] git config --get -f /home/dev/AI_Workflow/.git/gk/config gk.defaultRemote • completed
-2026-05-17 17:14:43.748 [info] [         23ms] [/home/dev/AI_Workflow] git rev-list --max-parents=0 HEAD -- • completed
-2026-05-17 17:14:43.750 [info] [         23ms] [/home/dev/AI_Workflow] git shortlog -s --all --no-min-parents --since=1.year.ago • completed

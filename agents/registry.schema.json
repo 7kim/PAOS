@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PAOS Agent Registry",
+  "type": "object",
+  "required": ["version", "mcpServers", "agents"],
+  "properties": {
+    "version": { "type": "string" },
+    "mcpServers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["command", "args"],
+        "properties": {
+          "command": { "type": "string" },
+          "args": { "type": "array", "items": { "type": "string" } },
+          "env": { "type": "object", "additionalProperties": { "type": "string" } }
+        }
+      }
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "role",
+          "binary",
+          "configPaths",
+          "mcpServers",
+          "inbox",
+          "log",
+          "gitIdentity",
+          "permissions",
+          "healthChecks",
+          "riskLevel"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "aliases": { "type": "array", "items": { "type": "string" } },
+          "label": { "type": "string" },
+          "role": { "type": "string" },
+          "binary": { "type": "string" },
+          "color": { "type": "string" },
+          "configPaths": { "type": "array", "items": { "type": "string" } },
+          "mcpServers": { "type": "array", "items": { "type": "string" } },
+          "inbox": { "type": "string" },
+          "log": { "type": "string" },
+          "gitIdentity": {
+            "type": "object",
+            "required": ["name", "email"],
+            "properties": {
+              "name": { "type": "string" },
+              "email": { "type": "string" }
+            }
+          },
+          "permissions": {
+            "type": "object",
+            "required": ["read", "write", "execute"],
+            "properties": {
+              "read": { "type": "array", "items": { "type": "string" } },
+              "write": { "type": "array", "items": { "type": "string" } },
+              "execute": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "healthChecks": { "type": "array", "items": { "type": "string" } },
+          "riskLevel": { "enum": ["low", "medium", "high"] }
+        }
+      }
+    }
+  }
+}

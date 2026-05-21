@@ -1,4 +1,0 @@
-2026-05-15 17:09:30.241 [info] [         19ms] [/home/dev/.opencode] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
-2026-05-15 17:09:31.193 [info] [         23ms] [/home/dev] git rev-parse --show-toplevel --git-dir --git-common-dir --show-superproject-working-tree • completed
-2026-05-15 17:09:31.291 [info] [          7ms] [/home/dev] git remote -v • completed
-2026-05-15 17:09:31.299 [info] [          6ms] [/home/dev] git config --get -f /home/dev/.git/gk/config gk.defaultRemote • completed

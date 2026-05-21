@@ -85,6 +85,19 @@ PAOS is a self-hosted orchestration layer that connects multiple AI coding agent
 ## Architecture
 
 ```
+
+## Enterprise Agent Registry
+
+The canonical agent integration contract is `agents/registry.json`. Dashboard APIs, MCP `list_agents`, health checks, and `bin/agent-commit.sh` read this registry instead of maintaining separate rosters.
+
+```bash
+bin/paos-agent list
+bin/paos-agent doctor
+bin/paos-agent doctor codex
+bin/paos-agent mcp-sync
+```
+
+`doctor` commands are side-effect free: they do not call agents, write logs, mutate inboxes, or commit.
 ┌─────────────────────────────────────────────────────────────────┐
 │                          Your Machine                           │
 │                                                                 │
