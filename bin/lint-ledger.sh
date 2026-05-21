@@ -22,17 +22,17 @@ if [[ -n "$BLANK_IN_TABLE" ]]; then
 fi
 
 # Check for START/END lifecycle noise rows (match the action column specifically)
-LIFECYCLE_ROWS=$(awk -F'|' 'NR>2 && /^\|/ { action=$3; gsub(/^ +| +$/, "", action); if (action == "START" || action == "END") print NR": "action }' "$LEDGER" | wc -l)
+LIFECYCLE_ROWS=$(awk -F'|' 'NR>2 && /^\|/ { action=$4; gsub(/^ +| +$/, "", action); if (action == "START" || action == "END") print NR": "action }' "$LEDGER" | wc -l)
 if [[ "$LIFECYCLE_ROWS" -gt 0 ]]; then
   echo "FAIL: $LIFECYCLE_ROWS lifecycle noise rows (START/END) — these belong in events.md only" >&2
-  awk -F'|' 'NR>2 && /^\|/ { action=$3; gsub(/^ +| +$/, "", action); if (action == "START" || action == "END") print NR": "$0 }' "$LEDGER" >&2
+  awk -F'|' 'NR>2 && /^\|/ { action=$4; gsub(/^ +| +$/, "", action); if (action == "START" || action == "END") print NR": "$0 }' "$LEDGER" >&2
   ERRORS=$((ERRORS + 1))
 fi
 
 # Warn on rows where both Task and Commit are '-' but Action is a real action (not PAOS_TEST)
 MISSING_TASK=$(awk -F'|' '
   NR > 2 && /^\|/ {
-    action = $3; task = $6; commit = $7
+    action = $4; task = $7; commit = $8
     gsub(/^ +| +$/, "", action)
     gsub(/^ +| +$/, "", task)
     gsub(/^ +| +$/, "", commit)
