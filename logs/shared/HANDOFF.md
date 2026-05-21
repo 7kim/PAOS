@@ -8,16 +8,26 @@
 ## Last Agent
 - **Agent**: opencode-developer
 - **Tool**: opencode-developer
-- **Timestamp**: 2026-05-21T03:48:39.180Z
+- **Timestamp**: 2026-05-21T04:14:21.687Z
 
 ## Active Task
-PIPE-20260521-033337-code1 — Code-SRS Frontend Build (COMPLETE)
+PIPE-20260521-033337-code1 — All 4 future items complete
 
 ## What Was Just Done
-- Executed all 44 tasks (T-001 to T-044) across 5 phases\n- Created config/code-srs/ with models.yaml (5 aliases) and features.yaml (4 flags)\n- Scaffolded Next.js 16 app at frontend/ with TypeScript, Tailwind v4, App Router\n- Built landing page with Together AI design (canvas-dark, gradient, JetBrains Mono)\n- Built auth pages (login/signup with invite-only), authenticated app shell\n- Built SSE streaming pipeline console with simulated 14-phase SRS generation\n- Built API routes: models (alias proxy), pipeline (Zod validation), stream (SSE), auth (JWT)\n- Built admin dashboard panel at /settings/code-srs with feature toggle + model table\n- Added middleware for auth guard + rate limiting (5 req/hr)\n- Added error boundaries, audit logging, README\n- Build passes with zero TypeScript errors
+- [x] PostgreSQL 18 installed, database `codesrs` created, schema migrated (users, sessions, pipelines, invite_codes tables)
+- [x] Created `lib/db.ts` — Node.js `pg` connection pool for all API routes
+- [x] Rewrote `app/api/auth/login/route.ts` — PostgreSQL-backed auth (replaced in-memory Map)
+- [x] Wired real PAOS pipeline submission in `app/api/pipeline/route.ts` — calls `bin/h-pipeline submit` CLI with generated PLAN.md + TASKS.md
+- [x] Added OAuth routes: `GET /api/auth/oauth/[provider]` initiates flow, `GET /api/auth/oauth/[provider]/callback` handles callback with code exchange + user creation (GitHub/Google)
+- [x] Rewrote `app/api/stream/[id]/route.ts` — tails real filesystem events from `memory/pipelines/<id>/` (reads META.json status, PLAN.md, TASKS.md progress, WALKTHROUGH.md), polls every 3s for up to 2min
+- [x] Added `@types/pg` and `tsx` dev dependencies
+- [x] `npm run build` passes with zero TypeScript errors
+- [x] Commit SHA f59e71f
 
 ## What Is NOT Done Yet
-- Wire real PAOS pipeline submission to /h-pipeline system (T-032 currently has TODO placeholder)\n- Add PostgreSQL/user persistence layer (currently in-memory)\n- Add OAuth providers for production auth\n- Replace simulated SSE phases with real pipeline event tailing
+- Set GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET / GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET env vars for production OAuth
+- Configure NEXT_PUBLIC_BASE_URL for production deployment
+- The h-pipeline CLI requires the PAOS agent registry to be populated for the executor lookup to work fully
 
 ## Active Projects
 | Project | Path | Stack | Status |

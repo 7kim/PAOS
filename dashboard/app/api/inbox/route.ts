@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile } from "fs/promises";
+import { readdir, readFile, stat } from "fs/promises";
 import { join } from "path";
 
 const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
@@ -10,7 +10,13 @@ export async function GET(request: Request) {
 
   try {
     const inboxDir = join(MEMORY_DIR, "inbox");
-    const agentDirs = await readdir(inboxDir).catch(() => []);
+    const allEntries = await readdir(inboxDir).catch(() => []);
+    // Filter to actual directories only (exclude stray .md files)
+    const agentDirs: string[] = [];
+    for (const entry of allEntries) {
+      const s = await stat(join(inboxDir, entry)).catch(() => null);
+      if (s?.isDirectory()) agentDirs.push(entry);
+    }
 
     const targetDirs = agent ? [agent] : agentDirs;
 
@@ -45,8 +51,8 @@ export async function GET(request: Request) {
       })
     );
 
-    return NextResponse.json({ messages: messages.flat() });
+    return NextResponse.json({ messages: messages.flat(), inboxes: agentDirs });
   } catch {
-    return NextResponse.json({ messages: [] });
+    return NextResponse.json({ messages: [], inboxes: [] });
   }
 }

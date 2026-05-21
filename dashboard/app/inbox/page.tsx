@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Send } from "lucide-react";
 
 interface Message {
@@ -11,22 +11,33 @@ interface Message {
   body: string;
 }
 
-interface Agent {
-  id: string;
-  label: string;
-  color: string;
-  inbox: number;
-}
+const INBOX_COLORS: Record<string, string> = {
+  claude: "#f97316",
+  developer: "#3b82f6",
+  "opencode-developer": "#3b82f6",
+  plan: "#60a5fa",
+  architect: "#a855f7",
+  coordinator: "#22c55e",
+  codex: "#f59e0b",
+  antigravity: "#ec4899",
+  gemini: "#34d399",
+  ollama: "#84cc16",
+  openclaw: "#8b5cf6",
+  signal: "#06b6d4",
+  "hermes-nous": "#f472b6",
+};
 
-function agentColor(agent: string, agentColors: Record<string, string>) {
-  for (const [key, color] of Object.entries(agentColors)) {
-    if (agent.toLowerCase().includes(key)) return color;
+function inboxColor(name: string) {
+  if (INBOX_COLORS[name]) return INBOX_COLORS[name];
+  for (const [key, color] of Object.entries(INBOX_COLORS)) {
+    if (name.toLowerCase().includes(key)) return color;
   }
   return "#64748b";
 }
 
 export default function InboxPage() {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [inboxDirs, setInboxDirs] = useState<string[]>([]);
   const [activeInbox, setActiveInbox] = useState("all");
   const [selected, setSelected] = useState<Message | null>(null);
   const [composeTo, setComposeTo] = useState("");
@@ -34,30 +45,16 @@ export default function InboxPage() {
   const [composeBody, setComposeBody] = useState("");
   const [sending, setSending] = useState(false);
   const [showCompose, setShowCompose] = useState(false);
-  const [agents, setAgents] = useState<Agent[]>([]);
 
-  const inboxes = useMemo(() => ["all", ...agents.map((agent) => agent.id)], [agents]);
-  const agentColors = useMemo(
-    () => Object.fromEntries(agents.map((agent) => [agent.id, agent.color])),
-    [agents]
-  );
+  const inboxes = ["all", ...inboxDirs];
 
   const load = useCallback(async () => {
     const params = activeInbox !== "all" ? `?agent=${activeInbox}` : "";
     const res = await fetch(`/api/inbox${params}`);
     const data = await res.json();
     setMessages(data.messages ?? []);
+    if (data.inboxes?.length) setInboxDirs(data.inboxes);
   }, [activeInbox]);
-
-  const loadAgents = useCallback(async () => {
-    const res = await fetch("/api/agents");
-    const data = await res.json();
-    setAgents(data.agents ?? []);
-  }, []);
-
-  useEffect(() => {
-    queueMicrotask(() => void loadAgents());
-  }, [loadAgents]);
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -106,6 +103,7 @@ export default function InboxPage() {
               <select
                 value={composeTo}
                 onChange={(e) => setComposeTo(e.target.value)}
+                title="Select recipient inbox"
                 className="w-full text-sm rounded px-2 py-1.5 border"
                 style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
               >
@@ -132,6 +130,7 @@ export default function InboxPage() {
               value={composeBody}
               onChange={(e) => setComposeBody(e.target.value)}
               rows={3}
+              title="Message body"
               className="w-full text-sm rounded px-2 py-1.5 border resize-none"
               style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
             />
@@ -186,7 +185,7 @@ export default function InboxPage() {
             <div className="flex items-center gap-2 mb-2">
               <span
                 className="text-xs px-1.5 py-0.5 rounded"
-                style={{ background: `${agentColor(msg.from, agentColors)}22`, color: agentColor(msg.from, agentColors) }}
+                style={{ background: `${inboxColor(msg.from)}22`, color: inboxColor(msg.from) }}
               >
                 {msg.from}
               </span>
