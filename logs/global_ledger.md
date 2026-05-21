@@ -64,3 +64,5 @@
 | 2026-05-21T00:19:50Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
 | 2026-05-21T00:19:52Z | hermes | EXEC | - | Hermes processed prompt: Ping! Verify status again. | - | - |
 | 2026-05-21T00:19:52Z | hermes | END | - | Hermes agent CLI session finalized | - | - |
+| 2026-05-21T04:34:00Z | antigravity | UPDATE | - | Disabled paos-dashboard service to run on-demand only | PAOS-AUDIT | - |
+
