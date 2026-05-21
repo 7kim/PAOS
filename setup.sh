@@ -141,6 +141,11 @@ if [[ "$MODE" == "docker" || "$MODE" == "vps" ]]; then
   echo -e "    ${YELLOW}docker compose down${NC}            # Stop"
   echo -e "    ${YELLOW}docker compose up -d --build${NC}   # Rebuild + restart"
   echo ""
+  echo -e "  Agent MCP configs are at:"
+  echo -e "    ${YELLOW}${REPO_ROOT}/mcp/mcp-config.json${NC} (unified registry)"
+  echo ""
+  echo -e "  Cross-agent chat syncing:"
+  echo -e "    ${YELLOW}python3 ${REPO_ROOT}/bin/sync-chat.py${NC}"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # NATIVE MODE

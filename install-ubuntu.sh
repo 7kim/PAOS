@@ -109,6 +109,33 @@ else
     warn "OpenClaw install failed — install manually: npm install -g openclaw --prefix ~/.local"
 fi
 
+# ── 10b. Install Nous Research Hermes Agent (optional) ─────────────────────────
+if command -v hermes &>/dev/null; then
+  success "Nous Hermes already installed ($(hermes --version 2>&1 | head -1))"
+else
+  info "Installing Nous Research Hermes Agent (autonomous agent with 89 skills)..."
+  curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash 2>/dev/null && \
+    success "Nous Hermes installed" || \
+    warn "Install manually: curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash"
+fi
+
+# ── 10c. Install Signal CLI (PAOS notification agent) ──────────────────────────
+if [[ ! -f "${HOME}/.local/bin/signal" ]]; then
+  info "Creating Signal CLI — PAOS notification agent..."
+  cp "${INSTALL_DIR}/bin/signal-template" "${HOME}/.local/bin/signal" 2>/dev/null || \
+    cat > "${HOME}/.local/bin/signal" << 'SIGNAL'
+#!/usr/bin/env python3
+"""PAOS Signal — notification & messenger agent. Usage: signal <message>"""
+import os, sys, json
+from datetime import datetime
+MSG = ' '.join(sys.argv[1:]) if len(sys.argv) > 1 else 'Ping from Signal'
+TS = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+print(f'[{TS}] Signal: {MSG}')
+SIGNAL
+  chmod +x "${HOME}/.local/bin/signal"
+  success "Signal CLI created at ~/.local/bin/signal"
+fi
+
 # ── 11. Set up symlinks ────────────────────────────────────────────────────────
 info "Setting up agent symlinks..."
 setup_symlink() {
@@ -125,7 +152,19 @@ setup_symlink() {
 
 setup_symlink "${INSTALL_DIR}/config/claude"   "${HOME}/.claude"   ".claude"
 setup_symlink "${INSTALL_DIR}/config/codex"    "${HOME}/.codex"    ".codex"
+setup_symlink "${INSTALL_DIR}/config/gemini"   "${HOME}/.gemini"   ".gemini"
 setup_symlink "${INSTALL_DIR}/config/openclaw" "${HOME}/.openclaw" ".openclaw"
+
+# Symlink MCP configs to unified registry
+MCP_CONFIG="${INSTALL_DIR}/mcp/mcp-config.json"
+for agent_link in \
+  "${HOME}/.claude/mcp.json" \
+  "${INSTALL_DIR}/config/gemini/config/mcp_config.json" \
+  "${INSTALL_DIR}/config/signal/mcp_config.json"; do
+  mkdir -p "$(dirname "${agent_link}")"
+  ln -sf "${MCP_CONFIG}" "${agent_link}" 2>/dev/null || true
+done
+success "MCP configs symlinked to unified registry"
 
 # ── 12. Configure secrets ─────────────────────────────────────────────────────
 if [[ ! -f "${INSTALL_DIR}/config/secrets/.env" ]]; then
@@ -152,18 +191,24 @@ echo ""
 echo "  1. Fill in your API keys:"
 echo -e "     ${YELLOW}nano ${INSTALL_DIR}/config/secrets/.env${NC}"
 echo ""
-echo "  2. Start the dashboard:"
-echo -e "     ${YELLOW}cd ${INSTALL_DIR}/dashboard && npm run dev${NC}"
+echo "  2. Launch the PAOS Dashboard (click desktop icon or run):"
+echo -e "     ${YELLOW}sudo systemctl start paos-dashboard${NC}"
 echo -e "     → ${CYAN}http://localhost:3333${NC}"
 echo ""
 echo "  3. Set up OpenClaw channels (Telegram, WhatsApp, etc.):"
 echo -e "     ${YELLOW}openclaw onboard${NC}"
 echo ""
-echo "  4. Test all agent git identities:"
+echo "  4. (Optional) Configure Nous Hermes API keys:"
+echo -e "     ${YELLOW}nano ~/.hermes/.env${NC}"
+echo ""
+echo "  5. Test all agent git identities:"
 echo -e "     ${YELLOW}cd ${INSTALL_DIR} && ./bin/test-agents.sh${NC}"
 echo ""
-echo "  5. Start Claude Code:"
-echo -e "     ${YELLOW}claude${NC}"
+echo "  6. Sync continuous chat transcript:"
+echo -e "     ${YELLOW}python3 ${INSTALL_DIR}/bin/sync-chat.py${NC}"
+echo ""
+echo "  7. Start an agent:"
+echo -e "     ${YELLOW}claude${NC}  or  ${YELLOW}opencode${NC}  or  ${YELLOW}hermes${NC}"
 echo ""
 echo -e "${CYAN}Documentation:${NC} ${INSTALL_DIR}/README.md"
 echo -e "${CYAN}Constitution:${NC}  ${INSTALL_DIR}/workflow.md"
