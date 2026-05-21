@@ -8,34 +8,25 @@
 ## Last Agent
 - **Agent**: developer
 - **Tool**: developer
-- **Timestamp**: 2026-05-21T02:13:48.283Z
-- **Session**: Nous Hermes v0.14.0 installed and integrated
+- **Timestamp**: 2026-05-21T02:26:58.381Z
+- **Session**: Hermes Nous full configuration complete
 
 ## Active Task
-Install & integrate Nous Research Hermes Agent into PAOS
+Full configuration of Hermes Nous Agent in PAOS
 
 ## What Was Just Done
-- Installed **Nous Research Hermes Agent v0.14.0** via official install.sh
-  - CLI at `~/.local/bin/hermes`
-  - Home at `~/.hermes/` (config, sessions, logs, 89 skills)
-  - Supports 40+ LLM providers, multi-platform gateway, persistent memory, cron, browser control
-- Created PAOS integration:
-  - `agents/hermes-nous/soul.md` — full identity + PAOS pipeline protocol
-  - `config/hermes-nous/instructions.md` — quick reference for other agents
-  - `config/hermes-nous/mcp_config.json` — MCP server config
-  - `vault/memory/hermes-nous/events.md` — audit log
-  - `vault/memory/inbox/hermes-nous/` — agent inbox
-- Updated `~/.hermes/SOUL.md` with PAOS context (HANDOFF, ledger, peer agents, protocols)
-- Registered in all PAOS rosters:
-  - `config/claude/CLAUDE.md`
-  - `config/codex/instructions.md`
-  - `config/signal/instructions.md`
-  - `workflow.md` (as @hermes-nous)
+- Created PAOS skill at `~/.hermes/skills/paos/SKILL.md` — comprehensive PAOS knowledge (architecture, agents, /h-pipeline, H-Factor, protocols)
+- Added both MCP servers to Hermes config: shared-memory (14 tools) + scaffold (2 tools)
+- Created `~/AI_Workflow/AGENTS.md` for Hermes auto-injection at session start/end
+- Patched `~/.hermes/SOUL.md` with full PAOS context (HANDOFF, ledger, peer agents, commit protocol)
+- Set up API keys (ANTHROPIC, GOOGLE, OPENAI) in `~/.hermes/.env`
+- Configured model: anthropic/claude-sonnet-4-20250514
+- Verified Hermes correctly reads HANDOFF and identifies as hermes-nous agent
 
 ## What Is NOT Done Yet
-- Run `hermes setup` to configure API keys and providers (recommended post-install)
-- Install optional system packages: `sudo apt install ripgrep ffmpeg`
-- Pipeline completion workflow (executor WALKTHROUGH.md, META.json update)
+- Run `hermes setup` for full interactive setup (optional)
+  - Install system packages: `sudo apt install ripgrep ffmpeg` (optional)
+  - Pipeline completion workflow (executor WALKTHROUGH.md, META.json update)
 
 ## Active Projects
 | Project | Path | Stack | Status |

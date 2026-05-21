@@ -186,3 +186,14 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Hermes renamed to Signal: more modern/devops-aligned name\n- Historical entries in global_ledger.md kept as-is (append-only per H-Factor I2)\n- Old `hermes` npm dependency in dashboard/package-lock.json is unrelated — not modified
 
 **Handoff Notes**: Signal agent rename is complete. Next agent should use `signal` instead of `hermes`. The CLI is at `~/.local/bin/signal`. To test: `signal doctor`.
+
+---
+
+## 2026-05-21 02:26 @developer — Task: PAOS-CONFIGURE
+
+**Thinking**: Full Nous Research Hermes Agent v0.14.0 configuration complete. Created PAOS skill (~/.hermes/skills/paos/SKILL.md) as the definitive knowledge source. Configured both MCP servers (shared-memory: 14 tools, scaffold: 2 tools). Created AGENTS.md for auto-injection. Patched SOUL.md with PAOS context. Set up Anthropic provider with claude-sonnet-4. Hermes correctly identifies itself as hermes-nous agent and reads PAOS state.
+
+**Decisions**:
+- Hermes Nous uses Anthropic provider (claude-sonnet-4) via ANTHROPIC_API_KEY\n- Shared-memory MCP server gives it direct PAOS tools (append_ledger, send_message, submit_pipeline, etc.)\n- AGENTS.md auto-injection provides session start/end protocols\n- PAOS skill provides comprehensive PAOS knowledge
+
+**Handoff Notes**: Hermes Nous Agent is fully configured. Next agent can delegate tasks to it via inbox/hermes-nous/. Hermes supports one-shot mode: `hermes -z "query"` for programmatic use, or interactive: `hermes`.
