@@ -8,22 +8,27 @@
 ## Last Agent
 - **Agent**: opencode-developer
 - **Tool**: opencode-developer
-- **Timestamp**: 2026-05-21T04:35:55.649Z
+- **Timestamp**: 2026-05-21T05:13:29.674Z
+- **Session**: Setup files updated for three-tier ecosystem
 
 ## Active Task
-PAOS-RESTRUCTURE — Project restructuring complete
+PAOS-SETUP — Update setup files for three-tier ecosystem
 
 ## What Was Just Done
-- [x] Created project tree: PAOS (~/AI_Workflow), PAOS-WEB (~/Documents/Dev/PAOS-WEB), PAOS-VPS (~/Documents/Dev/PAOS-VPS)
-- [x] Moved frontend/ contents to PAOS-WEB, all hardcoded AI_Workflow paths replaced with centralized lib/paths.ts
-- [x] Created symlink ~/AI_Workflow/frontend/ -> ~/Documents/Dev/PAOS-WEB/
-- [x] Created PAOS-VPS scaffold directory with README outlining planned structure
-- [x] `npm run build` passes with zero errors in PAOS-WEB
-- [x] PAOS-WEB initialized as independent git repo; AI_Workflow commit SHA ec77616
+- Updated PAOS setup.sh banner to show three-tier ecosystem (PAOS, PAOS-WEB, PAOS-VPS)
+- Updated PAOS setup.sh Docker mode outro with companion project references
+- Updated PAOS setup.sh Native mode outro with ecosystem info section
+- Updated PAOS install-ubuntu.sh Next Steps with companion projects (steps 8-9)
+- Updated PAOS-WEB .env.local.template: replaced hardcoded /home/dev paths with $HOME-based PAOS_ROOT env var pattern, documented OAuth env vars
+- Created PAOS-WEB setup.sh: checks Node >=20, auto-generates JWT secret, runs npm install, migrates DB, creates PAOS symlink
+- Created PAOS-VPS setup.sh: scaffolds agent/, sync/, services/, config/ directories with placeholder files
+- Created PAOS-VPS .gitignore
+- Updated PAOS-VPS README with setup.sh usage and quick reference table
+- Committed PAOS-WEB (b4ee384), PAOS-VPS (3bb9a0e) as independent git repos
 
 ## What Is NOT Done Yet
-- The dashboard at port 3333 still references old frontend path if any; verify it works
-- PAOS-VPS is empty scaffold — ready for future VPS agent layer work
+- PAOS-VPS is an empty scaffold — needs agent daemon, memory sync, and tunnel implementation
+- PAOS-WEB setup.sh references ~/Documents/Dev/PAOS-WEB/ — works but assumes companion projects live in ~/Documents/Dev/
 
 ## Active Projects
 | Project | Path | Stack | Status |

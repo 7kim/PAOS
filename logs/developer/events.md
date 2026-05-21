@@ -33,3 +33,6 @@
 
 [2026-05-21T06:45:00Z] | PIPE-20260521-033337-code1 | CREATE | frontend/ + config/code-srs/ + dashboard/settings/code-srs | Executed Code-SRS pipeline: 44 tasks across 5 phases, build passes with zero errors | -
 [2026-05-21T04:35:00Z] | PIPE-20260521-033337-code1 | UPDATE | frontend/ | Wire real PAOS pipeline, PostgreSQL, OAuth, real SSE — all 4 future items complete
+[2026-05-21T05:13:29Z] | PAOS-SETUP | UPDATE setup.sh, install-ubuntu.sh | Three-tier ecosystem banner + companion project next steps
+[2026-05-21T05:14:00Z] | PAOS-SETUP | CREATE setup.sh, UPDATE .env.local.template | PAOS-WEB setup script with ecosystem integration
+[2026-05-21T05:15:00Z] | PAOS-SETUP | CREATE .gitignore, setup.sh, UPDATE README.md | PAOS-VPS initial git init with scaffold and gitignore
