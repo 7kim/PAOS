@@ -79,3 +79,4 @@
 | 2026-05-21T09:37:00Z | opencode-developer | CREATE | dashboard/app/pipelines/page.tsx, dashboard/app/api/pipelines/route.ts | Create Pipeline GitGraph page (app/pipelines/) with visual DAG showing pipeline nodes, phases, progress bars, and agent badges | PAOS-DASHBOARD | - |
 | 2026-05-21T09:38:00Z | opencode-developer | UPDATE | dashboard/app/plans/page.tsx, dashboard/app/api/plans/route.ts | Fix Plans page/API: read from memory/pipelines/ as primary source, fall back to memory/pm-logs/ for legacy | PAOS-DASHBOARD | - |
 | 2026-05-21T09:39:00Z | opencode-developer | UPDATE | dashboard/components/Sidebar.tsx, dashboard/app/ledger/page.tsx, dashboard/app/page.tsx | Update Sidebar with Pipelines link, update agent color maps across all pages to cover all registered agents | PAOS-DASHBOARD | - |
+| 2026-05-21T05:25:00Z | antigravity | INIT | vault/memory/antigravity/events.md | Initialized Antigravity in PAOS loop and synced chat | - | - |
