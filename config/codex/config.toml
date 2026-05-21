@@ -1,4 +1,4 @@
-model = "gpt-5.5"
+model = "gpt-5.4"
 model_reasoning_effort = "medium"
 [projects."/tmp/openclaw-crestodian-planner-M8rMvO"]
 trust_level = "trusted"

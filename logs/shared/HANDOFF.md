@@ -6,27 +6,19 @@
 ---
 
 ## Last Agent
-- **Agent**: opencode-developer
-- **Tool**: opencode-developer
-- **Timestamp**: 2026-05-21T01:32:01.277Z
+- **Agent**: developer
+- **Tool**: developer
+- **Timestamp**: 2026-05-21T02:08:04.934Z
+- **Session**: Hermes → Signal rename complete
 
 ## Active Task
-Implement /h-pipeline Cross-Agent Plan-Then-Execute Pipeline
+Rename Hermes agent → Signal
 
 ## What Was Just Done
-- Created `bin/h-pipeline` CLI script with `submit`, `status`, `list` subcommands
-- Created `config/pipeline-defaults.yaml` with executor defaults and per-agent overrides
-- Added `submit_pipeline` MCP tool to `mcp/shared-memory-server/index.js` (generates pipeline dir, task card, inbox message, ledger entry)
-- Updated all 6 planner agent configs with Pipeline Settings + /h-pipeline command docs: CLAUDE.md, GEMINI.md, agents/gemini/soul.md, agents/antigravity/soul.md, config/codex/instructions.md, agents/openclaw/soul.md
-- Added Section 6.6 — /h-pipeline Command to workflow.md constitution
-- Created `memory/pipelines/` directory structure for pipeline artifacts
-- Verified end-to-end: submit creates pipeline dir, task card, inbox message (registry-aware alias resolution), ledger entry
-- Inbox resolution fixes: CLI + MCP both use agent registry to resolve correct inbox directory (e.g. opencode-developer → developer)
+- Renamed Hermes agent to **Signal** across all PAOS files:\n  - `~/.local/bin/hermes` → `~/.local/bin/signal` (CLI binary, all internal paths updated)\n  - `agents/hermes/` → `agents/signal/` (soul.md identity updated)\n  - `config/hermes/` → `config/signal/` (instructions.md + mcp_config.json updated)\n  - `vault/memory/hermes/` → `vault/memory/signal/` (events.md header updated)\n  - `vault/memory/inbox/hermes/` → `vault/memory/inbox/signal/`\n- Updated all config roster references: CLAUDE.md, config/codex/instructions.md, workflow.md\n- `signal doctor` returns all 5 checks green (instructions, events_log, global_ledger, sync_script, google_api_key)
 
 ## What Is NOT Done Yet
-- Pipeline completion workflow: executor WALKTHROUGH.md and META.json update on completion
-- Notification back to planner on pipeline completion
-- Optional sliding window truncation for sync-chat.py
+- Pipeline completion workflow (executor WALKTHROUGH.md, META.json update, notification back to planner)\n- Optional sliding window truncation for sync-chat.py
 
 ## Active Projects
 | Project | Path | Stack | Status |

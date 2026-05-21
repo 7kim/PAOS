@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/specification/main/schema/2025-02-28/mcp-config.schema.json",
+  "mcpServers": {
+    "shared-memory": {
+      "command": "node",
+      "args": [
+        "/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"
+      ],
+      "env": {
+        "MEMORY_DIR": "/home/dev/AI_Workflow/memory",
+        "KNOWLEDGE_DIR": "/home/dev/AI_Workflow/knowledge",
+        "REPO_ROOT": "/home/dev/AI_Workflow"
+      }
+    },
+    "scaffold": {
+      "command": "node",
+      "args": [
+        "/home/dev/AI_Workflow/mcp/scaffold-server/index.js"
+      ],
+      "env": {
+        "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
+      }
+    }
+  }
+}

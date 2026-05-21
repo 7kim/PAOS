@@ -164,7 +164,7 @@ Agents may be invoked directly:
 - `@profiler` — Re-elicit identity.
 - `@openclaw <request>` — OpenClaw agent (reserved — install OpenClaw to activate; config at `~/AI_Workflow/config/openclaw/`).
 - `@gemini <request>` — Google Gemini AI coding agent (config: `~/AI_Workflow/config/gemini/`; soul: `agents/gemini/soul.md`).
-- `@hermes <request>` — Notification & Messenger agent (config: `~/AI_Workflow/config/hermes/`; soul: `agents/hermes/soul.md`).
+- `@signal <request>` — Notification & Messenger agent (config: `~/AI_Workflow/config/signal/`; soul: `agents/signal/soul.md`).
 - `@antigravity <request>` — Antigravity Desktop IDE Agent (config: `~/AI_Workflow/config/antigravity2/`; soul: `agents/antigravity/soul.md`).
 
 

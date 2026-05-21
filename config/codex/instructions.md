@@ -113,7 +113,7 @@ When given a coding task:
 | OpenClaw | `openclaw` | `memory/inbox/openclaw/` |
 | Ollama | `ollama` | `memory/inbox/ollama/` |
 | Gemini | `gemini` | `memory/inbox/gemini/` |
-| Hermes | `hermes` | `memory/inbox/hermes/` |
+| Signal | `signal` | `memory/inbox/signal/` |
 
 ---
 

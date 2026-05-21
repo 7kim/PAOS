@@ -73,3 +73,7 @@
 | 2026-05-21T01:28:44Z | gemini | SUBMIT | memory/pipelines/PIPE-20260521-012844-a76a63/ | Submitted /h-pipeline: Build a test pipeline for verification | PIPE-20260521-012844-a76a63 | - |
 | 2026-05-21T01:29:54Z | gemini | SUBMIT | memory/pipelines/PIPE-20260521-012954-0dbd93/ | Submitted /h-pipeline: Build a test pipeline for verification | PIPE-20260521-012954-0dbd93 | - |
 | 2026-05-21T01:30:00Z | opencode-developer | CREATE | bin/h-pipeline, config/pipeline-defaults.yaml, mcp/shared-memory-server/index.js, config/claude/CLAUDE.md, GEMINI.md, agents/gemini/soul.md, agents/antigravity/soul.md, config/codex/instructions.md, agents/openclaw/soul.md, workflow.md, memory/pipelines/ | Implement /h-pipeline system: CLI script, MCP tool, pipeline config, agent configs, workflow constitution | /h-pipeline | - |
+| 2026-05-21T01:43:16Z | hermes | START | - | Hermes agent CLI session initialized | - | - |
+| 2026-05-21T01:43:24Z | hermes | EXEC | - | Hermes processed prompt: what is the current state of the PAOS system? check the ledg | - | - |
+| 2026-05-21T01:43:24Z | hermes | END | - | Hermes agent CLI session finalized | - | - |
+| 2026-05-21T06:08:00Z | developer | RENAME | agents/signal/, config/signal/, vault/memory/signal/, ~/.local/bin/signal | Renamed agent Hermes → Signal: soul.md, instructions.md, CLI binary, events log, inbox, all rosters updated | PAOS-RENAME | - |

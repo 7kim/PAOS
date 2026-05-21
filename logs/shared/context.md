@@ -175,3 +175,14 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - All 6 planner agents have /h-pipeline command documentation in their configs
 
 **Handoff Notes**: The /h-pipeline system is fully implemented and tested. Agents can now use /h-pipeline to submit structured plans to executors. The executor picks up the plan from its inbox and executes. On completion, the executor should write WALKTHROUGH.md to the pipeline directory and update META.json status to 'completed'.
+
+---
+
+## 2026-05-21 02:08 @developer — Task: PAOS-RENAME
+
+**Thinking**: Renamed Hermes agent to Signal across all PAOS files. The rename was smooth — directories, CLI binary, soul.md, instructions.md, all roster references updated. `signal doctor` returns all 5 checks green.
+
+**Decisions**:
+- Hermes renamed to Signal: more modern/devops-aligned name\n- Historical entries in global_ledger.md kept as-is (append-only per H-Factor I2)\n- Old `hermes` npm dependency in dashboard/package-lock.json is unrelated — not modified
+
+**Handoff Notes**: Signal agent rename is complete. Next agent should use `signal` instead of `hermes`. The CLI is at `~/.local/bin/signal`. To test: `signal doctor`.
