@@ -82,6 +82,7 @@ This is the live state document. It tells you what the last agent stopped at, wh
 | Ollama | `ollama` | `memory/inbox/ollama/` |
 | Gemini | `gemini` | `memory/inbox/gemini/` |
 | Signal | `signal` | `memory/inbox/signal/` |
+| Hermes Nous | `hermes-nous` | `memory/inbox/hermes-nous/` |
 
 ---
 

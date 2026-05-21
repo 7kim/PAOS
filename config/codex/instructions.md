@@ -114,6 +114,7 @@ When given a coding task:
 | Ollama | `ollama` | `memory/inbox/ollama/` |
 | Gemini | `gemini` | `memory/inbox/gemini/` |
 | Signal | `signal` | `memory/inbox/signal/` |
+| Hermes Nous | `hermes-nous` | `memory/inbox/hermes-nous/` |
 
 ---
 

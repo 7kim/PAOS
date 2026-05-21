@@ -176,6 +176,7 @@ Invoke these when the trigger condition is met. Read the `SKILL.md` inside each 
 | Ollama | `~/.ollama` | `config/ollama/` | `memory/inbox/ollama/` |
 | Gemini | `~/.gemini` | `agents/gemini/soul.md` | `memory/inbox/gemini/` |
 | Signal | `~/.local/bin/signal` | `config/signal/instructions.md` | `memory/inbox/signal/` |
+| Hermes Nous | `~/.local/bin/hermes` | `agents/hermes-nous/soul.md` | `memory/inbox/hermes-nous/` |
 | Copilot | VS Code extension | `config/copilot/` | — |
 
 ---

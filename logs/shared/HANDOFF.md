@@ -8,17 +8,34 @@
 ## Last Agent
 - **Agent**: developer
 - **Tool**: developer
-- **Timestamp**: 2026-05-21T02:08:04.934Z
-- **Session**: Hermes → Signal rename complete
+- **Timestamp**: 2026-05-21T02:13:48.283Z
+- **Session**: Nous Hermes v0.14.0 installed and integrated
 
 ## Active Task
-Rename Hermes agent → Signal
+Install & integrate Nous Research Hermes Agent into PAOS
 
 ## What Was Just Done
-- Renamed Hermes agent to **Signal** across all PAOS files:\n  - `~/.local/bin/hermes` → `~/.local/bin/signal` (CLI binary, all internal paths updated)\n  - `agents/hermes/` → `agents/signal/` (soul.md identity updated)\n  - `config/hermes/` → `config/signal/` (instructions.md + mcp_config.json updated)\n  - `vault/memory/hermes/` → `vault/memory/signal/` (events.md header updated)\n  - `vault/memory/inbox/hermes/` → `vault/memory/inbox/signal/`\n- Updated all config roster references: CLAUDE.md, config/codex/instructions.md, workflow.md\n- `signal doctor` returns all 5 checks green (instructions, events_log, global_ledger, sync_script, google_api_key)
+- Installed **Nous Research Hermes Agent v0.14.0** via official install.sh
+  - CLI at `~/.local/bin/hermes`
+  - Home at `~/.hermes/` (config, sessions, logs, 89 skills)
+  - Supports 40+ LLM providers, multi-platform gateway, persistent memory, cron, browser control
+- Created PAOS integration:
+  - `agents/hermes-nous/soul.md` — full identity + PAOS pipeline protocol
+  - `config/hermes-nous/instructions.md` — quick reference for other agents
+  - `config/hermes-nous/mcp_config.json` — MCP server config
+  - `vault/memory/hermes-nous/events.md` — audit log
+  - `vault/memory/inbox/hermes-nous/` — agent inbox
+- Updated `~/.hermes/SOUL.md` with PAOS context (HANDOFF, ledger, peer agents, protocols)
+- Registered in all PAOS rosters:
+  - `config/claude/CLAUDE.md`
+  - `config/codex/instructions.md`
+  - `config/signal/instructions.md`
+  - `workflow.md` (as @hermes-nous)
 
 ## What Is NOT Done Yet
-- Pipeline completion workflow (executor WALKTHROUGH.md, META.json update, notification back to planner)\n- Optional sliding window truncation for sync-chat.py
+- Run `hermes setup` to configure API keys and providers (recommended post-install)
+- Install optional system packages: `sudo apt install ripgrep ffmpeg`
+- Pipeline completion workflow (executor WALKTHROUGH.md, META.json update)
 
 ## Active Projects
 | Project | Path | Stack | Status |

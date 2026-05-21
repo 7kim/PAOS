@@ -166,7 +166,7 @@ Agents may be invoked directly:
 - `@gemini <request>` — Google Gemini AI coding agent (config: `~/AI_Workflow/config/gemini/`; soul: `agents/gemini/soul.md`).
 - `@signal <request>` — Notification & Messenger agent (config: `~/AI_Workflow/config/signal/`; soul: `agents/signal/soul.md`).
 - `@antigravity <request>` — Antigravity Desktop IDE Agent (config: `~/AI_Workflow/config/antigravity2/`; soul: `agents/antigravity/soul.md`).
-
+- `@hermes-nous <request>` — Nous Research Hermes Agent (binary: `~/.local/bin/hermes`; soul: `agents/hermes-nous/soul.md`; home: `~/.hermes/`).
 
 ### Section 6.3 — Pipeline Routing (Handoff Protocol)
 The standard multi-agent pipeline is:
