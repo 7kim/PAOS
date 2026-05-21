@@ -19,12 +19,17 @@ header()  { echo -e "\n${BOLD}${CYAN}── $* ──${NC}"; }
 
 # ── Banner ────────────────────────────────────────────────────────────────────
 echo ""
-echo -e "${CYAN}╔══════════════════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║                                                      ║${NC}"
-echo -e "${CYAN}║   PAOS — Personal Agent Operating System             ║${NC}"
-echo -e "${CYAN}║   Multi-Agent AI Orchestration Hub                   ║${NC}"
-echo -e "${CYAN}║                                                      ║${NC}"
-echo -e "${CYAN}╚══════════════════════════════════════════════════════╝${NC}"
+echo -e "${CYAN}╔══════════════════════════════════════════════════════════════╗${NC}"
+echo -e "${CYAN}║                                                              ║${NC}"
+echo -e "${CYAN}║   PAOS — Personal Agent Operating System                     ║${NC}"
+echo -e "${CYAN}║   Multi-Agent AI Orchestration Hub                           ║${NC}"
+echo -e "${CYAN}║                                                              ║${NC}"
+echo -e "${CYAN}╠══════════════════════════════════════════════════════════════╣${NC}"
+echo -e "${CYAN}║  Three-Tier Ecosystem:                                       ║${NC}"
+echo -e "${CYAN}║  • PAOS (this repo)       — Core orchestration hub          ║${NC}"
+echo -e "${CYAN}║  • PAOS-WEB (port 3334)   — Customer-facing app builder     ║${NC}"
+echo -e "${CYAN}║  • PAOS-VPS               — Remote agent coordination       ║${NC}"
+echo -e "${CYAN}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
 # ── Parse args ────────────────────────────────────────────────────────────────
@@ -146,6 +151,13 @@ if [[ "$MODE" == "docker" || "$MODE" == "vps" ]]; then
   echo ""
   echo -e "  Cross-agent chat syncing:"
   echo -e "    ${YELLOW}python3 ${REPO_ROOT}/bin/sync-chat.py${NC}"
+  echo ""
+  echo -e "  ${BOLD}Companion Projects:${NC}"
+  echo -e "  • ${CYAN}PAOS-WEB${NC} — Customer-facing app at ~/Documents/Dev/PAOS-WEB/"
+  echo -e "    (run its setup.sh to install: the web interface for pipeline submission)"
+  echo -e "  • ${CYAN}PAOS-VPS${NC} — Remote agent coordination at ~/Documents/Dev/PAOS-VPS/"
+  echo -e "    (future: deploy agents to a VPS via encrypted tunnel)"
+  echo ""
 
 # ─────────────────────────────────────────────────────────────────────────────
 # NATIVE MODE
@@ -171,5 +183,24 @@ elif [[ "$MODE" == "native" ]]; then
       fail "Unsupported OS: $OS. Please follow the manual install steps in README.md."
       ;;
   esac
+
+  # ── Ecosystem info ──────────────────────────────────────────────────────────
+  echo ""
+  echo -e "${BOLD}${CYAN}── PAOS Ecosystem ──${NC}"
+  echo ""
+  echo -e "  ${GREEN}✓${NC} ${BOLD}PAOS${NC} core installed at:    ${REPO_ROOT}"
+  echo ""
+  echo "  Companion projects (separate repos):"
+  echo ""
+  echo "  • PAOS-WEB — Customer-facing app builder"
+  echo "    ${YELLOW}~/Documents/Dev/PAOS-WEB/${NC}"
+  echo "    Setup: cd ~/Documents/Dev/PAOS-WEB && bash setup.sh"
+  echo "    → Web interface at ${CYAN}http://localhost:3334${NC}"
+  echo ""
+  echo "  • PAOS-VPS — Remote agent coordination"
+  echo "    ${YELLOW}~/Documents/Dev/PAOS-VPS/${NC}"
+  echo "    Setup: cd ~/Documents/Dev/PAOS-VPS && bash setup.sh"
+  echo "    → Future: VPS agent daemon + encrypted tunnel"
+  echo ""
 
 fi
