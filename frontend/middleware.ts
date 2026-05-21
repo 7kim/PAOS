@@ -83,6 +83,7 @@ const publicPaths = [
   "/auth/login",
   "/auth/signup",
   "/api/auth/login",
+  "/api/auth/oauth",
   "/api/models",
   "/_next/static",
   "/favicon.ico",
