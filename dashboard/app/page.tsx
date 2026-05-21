@@ -79,7 +79,7 @@ export default function OverviewPage() {
   }, [load]);
 
   const cards = [
-    { label: "System", value: stats?.systemStatus ?? "loading", icon: ShieldCheck, color: stats?.systemStatus === "healthy" ? "var(--green)" : "#eab308" },
+    { label: "System", value: stats?.systemStatus ?? "loading", icon: ShieldCheck, color: stats?.systemStatus === "healthy" ? "var(--green)" : "var(--accent)" },
     { label: "Healthy Agents", value: `${stats?.healthyAgents ?? 0}/${stats?.agents ?? 0}`, icon: Bot, color: "var(--green)" },
     { label: "Ledger Entries", value: stats?.ledgerCount ?? 0, icon: ScrollText, color: "var(--accent)" },
     { label: "Inbox Messages", value: stats?.inboxTotal ?? 0, icon: Inbox, color: "var(--orange)" },
@@ -115,9 +115,9 @@ export default function OverviewPage() {
         >
           <div className="px-4 py-3 border-b flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
             {unhealthyAgents.length === 0 ? (
-              <CheckCircle2 size={15} style={{ color: "#22c55e" }} />
+              <CheckCircle2 size={15} style={{ color: "var(--green)" }} />
             ) : (
-              <TriangleAlert size={15} style={{ color: "#eab308" }} />
+              <TriangleAlert size={15} style={{ color: "var(--accent)" }} />
             )}
             <span className="text-sm font-medium">Agent Health</span>
             <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>
@@ -135,7 +135,7 @@ export default function OverviewPage() {
                   <div key={agent.id} className="rounded-md border p-3" style={{ borderColor: "var(--border)" }}>
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-sm">{agent.label}</span>
-                      <span className="text-xs font-mono ml-auto" style={{ color: "#eab308" }}>{agent.status}</span>
+                      <span className="text-xs font-mono ml-auto" style={{ color: "var(--accent)" }}>{agent.status}</span>
                     </div>
                     <div className="text-xs mt-1" style={{ color: "var(--muted)" }}>
                       Failed checks: {agent.failedChecks.join(", ")}

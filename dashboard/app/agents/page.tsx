@@ -141,9 +141,9 @@ export default function AgentsPage() {
                 <div className="text-xs font-mono" style={{ color: "var(--muted)" }}>{agent.id}</div>
               </div>
               {agent.status === "healthy" ? (
-                <CheckCircle2 size={15} className="ml-auto" style={{ color: "#22c55e" }} />
+                <CheckCircle2 size={15} className="ml-auto" style={{ color: "var(--green)" }} />
               ) : (
-                <TriangleAlert size={15} className="ml-auto" style={{ color: "#eab308" }} />
+                <TriangleAlert size={15} className="ml-auto" style={{ color: "var(--accent)" }} />
               )}
             </div>
 
@@ -207,12 +207,12 @@ export default function AgentsPage() {
                     style={{ borderColor: "var(--border)" }}
                   >
                     {check.ok ? (
-                      <CheckCircle2 size={14} style={{ color: "#22c55e" }} />
+                      <CheckCircle2 size={14} style={{ color: "var(--green)" }} />
                     ) : (
-                      <XCircle size={14} style={{ color: "#ef4444" }} />
+                      <XCircle size={14} style={{ color: "var(--red)" }} />
                     )}
                     <span className="text-sm">{check.name}</span>
-                    <span className="text-xs ml-auto" style={{ color: check.ok ? "#22c55e" : "#ef4444" }}>
+                    <span className="text-xs ml-auto" style={{ color: check.ok ? "var(--green)" : "var(--red)" }}>
                       {check.ok ? "pass" : "fail"}
                     </span>
                   </div>

@@ -52,7 +52,7 @@ export default function PlansPage() {
           >
             <div className="flex items-center gap-2 mb-1">
               {p.hasWalkthrough
-                ? <CheckCircle size={12} style={{ color: "#22c55e" }} />
+                ? <CheckCircle size={12} style={{ color: "var(--green)" }} />
                 : <Clock size={12} style={{ color: "var(--muted)" }} />
               }
               <span className="text-xs font-mono" style={{ color: "var(--muted)" }}>{p.id}</span>
