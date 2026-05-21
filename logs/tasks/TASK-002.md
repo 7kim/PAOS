@@ -1,7 +1,8 @@
 ---
 id: TASK-002
 title: "Pipeline Smoke Test — Add gemini events log dir"
-status: needs_planning
+status: done
+completed: 2026-05-21T09:30:00Z
 created: 2026-05-17T14:43:17Z
 created_by: claude
 priority: low
