@@ -14,6 +14,7 @@ const KNOWN_AGENTS = [
   { id: "ollama", label: "Ollama", color: "#22c55e" },
   { id: "antigravity", label: "Antigravity", color: "#ec4899" },
   { id: "gemini", label: "Gemini", color: "#4285f4" },
+  { id: "hermes", label: "Hermes", color: "#eab308" },
 ];
 
 async function getLastActivity(agentId: string): Promise<string | null> {

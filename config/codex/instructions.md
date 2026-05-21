@@ -112,3 +112,6 @@ When given a coding task:
 | Antigravity | `antigravity` | `memory/inbox/antigravity/` |
 | OpenClaw | `openclaw` | `memory/inbox/openclaw/` |
 | Ollama | `ollama` | `memory/inbox/ollama/` |
+| Gemini | `gemini` | `memory/inbox/gemini/` |
+| Hermes | `hermes` | `memory/inbox/hermes/` |
+

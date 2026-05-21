@@ -173,6 +173,8 @@ Invoke these when the trigger condition is met. Read the `SKILL.md` inside each 
 | Antigravity | VS Code extension | `config/antigravity/` | `memory/inbox/antigravity/` |
 | OpenClaw | `~/.openclaw` → `config/openclaw/` | `config/openclaw/README.md` | `memory/inbox/openclaw/` |
 | Ollama | `~/.ollama` | `config/ollama/` | `memory/inbox/ollama/` |
+| Gemini | `~/.gemini` | `agents/gemini/soul.md` | `memory/inbox/gemini/` |
+| Hermes | `~/.hermes` | `config/hermes/instructions.md` | `memory/inbox/hermes/` |
 | Copilot | VS Code extension | `config/copilot/` | — |
 
 ---
