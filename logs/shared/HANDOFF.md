@@ -8,22 +8,23 @@
 ## Last Agent
 - **Agent**: antigravity
 - **Tool**: Antigravity (VS Code extension)
-- **Timestamp**: 2026-05-21T04:08:00Z
+- **Timestamp**: 2026-05-21T04:21:00Z
 
 ## Active Task
-PAOS-AUDIT — SWOT Audit & Cross-Agent Chat Continuity
+PAOS-AUDIT — SWOT Audit & Cross-Agent Chat Continuity Complete
 
 ## What Was Just Done
-- Completed comprehensive SWOT Audit of PAOS system and Ubuntu setup: saved to `vault/memory/shared/swot_audit.md`.
-- Formalized Antigravity agent integration by creating `agents/antigravity/soul.md`.
-- Implemented **PAOS Cross-Agent Chat Continuity Protocol**:
-  - Developed `bin/sync-chat.py` to parse JSONL logs and generate a clean, readable Markdown transcript in `vault/chats/active_chat_transcript.md` with smart tool output truncation.
-  - Updated configuration & soul files of Claude, Gemini, Codex, OpenClaw, and OpenCode to read this transcript at start and sync it at end.
-- Synchronized the active session transcript to `vault/chats/active_chat_transcript.md`.
+- Completed SWOT Audit and fixed Mermaid diagrams.
+- Fully integrated Hermes Agent (soul, instructions, log files, registered in dashboard).
+- Created a robust custom Python-based CLI for Hermes at `~/.local/bin/hermes` utilizing the Gemini 2.5 API with full logging & transcript syncing.
+- Implemented `/H-Continue` dialogue context recovery command across all 6 agent souls/configurations.
+- Symbolically linked all agent MCP configurations to a single registry file at `mcp/mcp-config.json` by default.
+- Daemonized the Next.js dashboard under systemd service (`paos-dashboard.service`) on port 3333 and added a Desktop Launcher shortcut.
+- Registered `@antigravity` and `@hermes` in the `workflow.md` direct invocation list.
 
 ## What Is NOT Done Yet
-- Integrate Hermes agent into PAOS (create soul file, add to roster, map configuration).
-- Configure systemd daemon/PM2 to auto-start Next.js dashboard at `http://localhost:3333`.
+- sliding window truncation configuration for `sync-chat.py` (if desired by operator).
+- passwordless sudoers configuration for `dev` (if desired by operator).
 
 ## Active Projects
 | Project | Path | Stack | Status |
@@ -38,6 +39,7 @@ PAOS-AUDIT — SWOT Audit & Cross-Agent Chat Continuity
 - HANDOFF.md is rewritten (not appended) — always current, max 60 lines
 - Antigravity IDE binary: /opt/antigravity-ide/antigravity-ide | data: ~/.antigravity-ide/
 - **CHAT CONTINUITY**: Read `vault/chats/active_chat_transcript.md` at session start, and run `python3 bin/sync-chat.py` at session end.
+- **MCP CONFIGS**: All agent MCP registries are symlinked to `/home/dev/AI_Workflow/mcp/mcp-config.json`.
 
 ## How to Pick Up
 1. Read this file (done)
