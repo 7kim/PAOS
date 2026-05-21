@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { CheckCircle, Clock } from "lucide-react";
+import { CheckCircle, Clock, GitBranch, Layers } from "lucide-react";
 
 interface Plan {
   id: string;
@@ -10,6 +10,7 @@ interface Plan {
   tasks: string;
   walkthrough: string;
   hasWalkthrough: boolean;
+  source?: string;
 }
 
 export default function PlansPage() {
@@ -33,7 +34,9 @@ export default function PlansPage() {
     <div className="flex gap-4 h-full">
       <div className="w-72 shrink-0 space-y-2">
         <h1 className="text-xl font-semibold mb-1">Plans</h1>
-        <p className="text-xs mb-4" style={{ color: "var(--muted)" }}>Implementation plans from pm-logs/</p>
+        <p className="text-xs mb-4" style={{ color: "var(--muted)" }}>
+          Implementation plans from pipelines/ and pm-logs/
+        </p>
 
         {plans.length === 0 && (
           <div className="text-sm py-8 text-center" style={{ color: "var(--muted)" }}>
@@ -56,8 +59,28 @@ export default function PlansPage() {
                 : <Clock size={12} style={{ color: "var(--muted)" }} />
               }
               <span className="text-xs font-mono" style={{ color: "var(--muted)" }}>{p.id}</span>
+              {p.source && (
+                <span
+                  className="text-[10px] px-1.5 py-0.5 rounded-full ml-auto"
+                  style={{
+                    background: p.source === "pipeline" ? "rgba(59,130,246,0.15)" : "rgba(168,85,247,0.15)",
+                    color: p.source === "pipeline" ? "#3b82f6" : "#a855f7",
+                  }}
+                >
+                  {p.source === "pipeline" ? (
+                    <><GitBranch size={9} className="inline mr-0.5" />pipeline</>
+                  ) : (
+                    <><Layers size={9} className="inline mr-0.5" />legacy</>
+                  )}
+                </span>
+              )}
             </div>
             <div className="text-sm font-medium truncate">{p.title}</div>
+            {p.preview && (
+              <div className="text-xs mt-1 line-clamp-2" style={{ color: "var(--muted)" }}>
+                {p.preview}
+              </div>
+            )}
           </button>
         ))}
       </div>
@@ -75,7 +98,7 @@ export default function PlansPage() {
             className="rounded-lg border overflow-hidden flex flex-col h-full"
             style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
           >
-            <div className="border-b flex" style={{ borderColor: "var(--border)" }}>
+            <div className="border-b flex items-center" style={{ borderColor: "var(--border)" }}>
               {(["plan", "tasks", "walkthrough"] as const).map((t) => (
                 <button
                   key={t}
@@ -92,13 +115,24 @@ export default function PlansPage() {
                   )}
                 </button>
               ))}
+              {selected.source && (
+                <span
+                  className="ml-auto mr-3 text-[10px] px-2 py-0.5 rounded-full"
+                  style={{
+                    background: selected.source === "pipeline" ? "rgba(59,130,246,0.12)" : "rgba(168,85,247,0.12)",
+                    color: selected.source === "pipeline" ? "#3b82f6" : "#a855f7",
+                  }}
+                >
+                  {selected.source}
+                </span>
+              )}
             </div>
             <div className="flex-1 overflow-auto p-4">
               <pre
                 className="text-xs leading-relaxed whitespace-pre-wrap font-mono"
                 style={{ color: "var(--foreground)", opacity: 0.85 }}
               >
-                {tab === "plan" ? selected.plan
+                {tab === "plan" ? (selected.plan || "No PLAN.md found")
                   : tab === "tasks" ? (selected.tasks || "No TASKS.md found")
                   : (selected.walkthrough || "WALKTHROUGH.md not generated yet")}
               </pre>

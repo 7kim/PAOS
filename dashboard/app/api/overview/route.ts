@@ -30,13 +30,21 @@ async function getLedgerEntryCount(): Promise<number> {
   }
 }
 
+function parseTimestamp(raw: string): number {
+  let d = new Date(raw.replace("Z", "").replace(" ", "T"));
+  if (!isNaN(d.getTime())) return d.getTime();
+  d = new Date(raw.replace(" ", "T"));
+  if (!isNaN(d.getTime())) return d.getTime();
+  d = new Date(raw);
+  if (!isNaN(d.getTime())) return d.getTime();
+  return 0;
+}
+
 async function getRecentLedgerEntries(n = 5) {
   try {
     const raw = await readFile(join(MEMORY_DIR, "global_ledger.md"), "utf-8");
     const rows = raw.split("\n")
       .filter((l) => l.startsWith("|") && !l.includes("---") && !l.includes("Timestamp"))
-      .slice(-n)
-      .reverse()
       .map((line) => {
         const cells = line.split("|").map((c) => c.trim()).filter(Boolean);
         return {
@@ -48,7 +56,10 @@ async function getRecentLedgerEntries(n = 5) {
           task: cells[5] ?? "",
         };
       });
-    return rows;
+
+    // Sort by timestamp descending, take top n
+    rows.sort((a, b) => parseTimestamp(b.timestamp) - parseTimestamp(a.timestamp));
+    return rows.slice(0, n);
   } catch {
     return [];
   }

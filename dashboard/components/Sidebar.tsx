@@ -13,6 +13,7 @@ import {
   Code,
   Settings,
   Zap,
+  GitBranch,
 } from "lucide-react";
 
 const nav = [
@@ -21,6 +22,7 @@ const nav = [
   { href: "/ledger", label: "Audit Ledger", icon: ScrollText },
   { href: "/agents", label: "Agents", icon: Bot },
   { href: "/tasks", label: "Tasks", icon: ListTodo },
+  { href: "/pipelines", label: "Pipelines", icon: GitBranch },
   { href: "/plans", label: "Plans", icon: FileText },
   { href: "/inbox", label: "Inbox", icon: Inbox },
 ];
@@ -33,13 +35,17 @@ const agentColorMap: Record<string, string> = {
   claude: "#f97316",
   "opencode-developer": "#3b82f6",
   "opencode-plan": "#60a5fa",
+  "opencode-architect": "#818cf8",
+  "opencode-coordinator": "#2563eb",
+  opencode: "#3b82f6",
+  codex: "#10b981",
   openclaw: "#8b5cf6",
-  ollama: "#0ecb81",
+  ollama: "#22c55e",
   antigravity: "#ec4899",
-  codex: "#fcd535",
+  "antigravity-ide": "#f472b6",
+  gemini: "#4285f4",
+  hermes: "#eab308",
   signal: "#2dbdb6",
-  gemini: "#3b82f6",
-  hermes: "#a855f7",
   copilot: "#64748b",
 };
 

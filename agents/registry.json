@@ -65,10 +65,33 @@
       "riskLevel": "high"
     },
     {
+      "id": "opencode-developer",
+      "aliases": ["developer"],
+      "label": "OpenCode Developer",
+      "role": "PAOS executor — builds code from approved plans",
+      "binary": "opencode",
+      "color": "#3b82f6",
+      "configPaths": ["config/opencode/opencode.json", "agents/developer/soul.md"],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/developer",
+      "log": "logs/developer/events.md",
+      "gitIdentity": {
+        "name": "OpenCode Developer [PAOS]",
+        "email": "developer@paos.nodealgo.com"
+      },
+      "permissions": {
+        "read": ["knowledge", "memory", "logs", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["bash", "mcp", "task"]
+      },
+      "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
+      "riskLevel": "high"
+    },
+    {
       "id": "opencode",
-      "aliases": ["opencode-developer", "developer"],
-      "label": "OpenCode",
-      "role": "Multi-agent CLI runtime",
+      "aliases": [],
+      "label": "OpenCode CLI",
+      "role": "Multi-agent CLI runtime (parent)",
       "binary": "opencode",
       "color": "#3b82f6",
       "configPaths": ["opencode.json", "config/opencode/opencode.json", "config/opencode/AGENTS.md"],
@@ -76,8 +99,8 @@
       "inbox": "memory/inbox/developer",
       "log": "logs/opencode/events.md",
       "gitIdentity": {
-        "name": "OpenCode Developer [PAOS]",
-        "email": "developer@paos.nodealgo.com"
+        "name": "OpenCode [PAOS]",
+        "email": "opencode@paos.nodealgo.com"
       },
       "permissions": {
         "read": ["knowledge", "memory", "logs", "projects"],
