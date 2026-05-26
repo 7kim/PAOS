@@ -20,6 +20,17 @@
       "env": {
         "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
       }
+    },
+    "gitkraken": {
+      "command": "gk",
+      "args": [
+        "mcp",
+        "--readonly"
+      ],
+      "env": {
+        "NO_TELEMETRY": "1"
+      },
+      "disabled": false
     }
   }
 }

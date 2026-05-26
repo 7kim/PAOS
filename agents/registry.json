@@ -17,6 +17,11 @@
       "env": {
         "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
       }
+    },
+    "gitkraken": {
+      "command": "gk",
+      "args": ["mcp", "--readonly"],
+      "env": { "NO_TELEMETRY": "1" }
     }
   },
   "agents": [
@@ -26,8 +31,8 @@
       "role": "Primary orchestrator and coding assistant",
       "binary": "claude",
       "color": "#f97316",
-      "configPaths": ["config/claude/CLAUDE.md", "config/claude/mcp.json"],
-      "mcpServers": ["shared-memory", "scaffold"],
+      "configPaths": ["~/.claude/CLAUDE.md", "~/.claude/mcp.json", "~/.claude/settings.json"],
+      "mcpServers": ["shared-memory", "scaffold", "gitkraken"],
       "inbox": "memory/inbox/claude",
       "log": "logs/claude/events.md",
       "gitIdentity": {
@@ -179,11 +184,11 @@
     {
       "id": "gemini",
       "label": "Gemini",
-      "role": "Google coding executor",
+      "role": "Google Gemini CLI coding executor",
       "binary": "gemini",
       "color": "#4285f4",
-      "configPaths": ["GEMINI.md", "agents/gemini/soul.md", "config/gemini/antigravity-ide/mcp_config.json"],
-      "mcpServers": ["shared-memory", "scaffold"],
+      "configPaths": ["GEMINI.md", "agents/gemini/soul.md", "config/gemini/config/mcp_config.json"],
+      "mcpServers": ["shared-memory", "scaffold", "gitkraken"],
       "inbox": "memory/inbox/gemini",
       "log": "logs/gemini/events.md",
       "gitIdentity": {
@@ -201,11 +206,11 @@
     {
       "id": "antigravity",
       "label": "Antigravity CLI",
-      "role": "Google Antigravity CLI executor",
+      "role": "Google Antigravity CLI coding executor",
       "binary": "agy",
       "color": "#ec4899",
-      "configPaths": ["agents/antigravity/soul.md", "config/gemini/antigravity-ide/mcp_config.json"],
-      "mcpServers": ["shared-memory", "scaffold"],
+      "configPaths": ["agents/antigravity/soul.md", "config/gemini/antigravity/mcp_config.json", "config/gemini/antigravity-cli/settings.json"],
+      "mcpServers": ["shared-memory", "scaffold", "gitkraken"],
       "inbox": "memory/inbox/antigravity",
       "log": "logs/antigravity/events.md",
       "gitIdentity": {
@@ -223,11 +228,11 @@
     {
       "id": "antigravity-ide",
       "label": "Antigravity IDE",
-      "role": "Desktop IDE agent surface",
+      "role": "Desktop IDE agent surface (VS Code fork)",
       "binary": "antigravity-ide",
       "color": "#f472b6",
-      "configPaths": ["agents/antigravity/soul.md", "config/antigravity2/config/Preferences"],
-      "mcpServers": ["shared-memory", "scaffold"],
+      "configPaths": ["agents/antigravity/soul.md", "config/gemini/antigravity-ide/mcp_config.json"],
+      "mcpServers": ["shared-memory", "scaffold", "gitkraken"],
       "inbox": "memory/inbox/antigravity",
       "log": "logs/antigravity/events.md",
       "gitIdentity": {
@@ -265,26 +270,32 @@
       "riskLevel": "medium"
     },
     {
-      "id": "hermes",
-      "label": "Hermes",
-      "role": "Notification and message router",
+      "id": "hermes-nous",
+      "aliases": ["hermes"],
+      "label": "Hermes (Nous Research)",
+      "role": "Autonomous multi-platform AI agent — persistent memory, 89 skills, browser control, cron scheduling",
       "binary": "hermes",
+      "binaryPath": "/home/dev/.local/bin/hermes",
       "color": "#eab308",
-      "configPaths": ["config/hermes/instructions.md", "config/hermes/mcp_config.json", "agents/hermes/soul.md"],
-      "mcpServers": ["shared-memory"],
-      "inbox": "memory/inbox/hermes",
-      "log": "logs/hermes/events.md",
+      "configPaths": [
+        "config/hermes-nous/instructions.md",
+        "config/hermes-nous/mcp_config.json",
+        "agents/hermes-nous/soul.md"
+      ],
+      "mcpServers": ["shared-memory", "scaffold"],
+      "inbox": "memory/inbox/hermes-nous",
+      "log": "logs/hermes-nous/events.md",
       "gitIdentity": {
         "name": "Hermes [PAOS]",
-        "email": "hermes@paos.nodealgo.com"
+        "email": "hermes-nous@paos.nodealgo.com"
       },
       "permissions": {
-        "read": ["memory", "logs", "inbox"],
-        "write": ["memory", "logs", "notifications"],
-        "execute": ["mcp", "webhook"]
+        "read": ["knowledge", "memory", "logs", "inbox", "projects"],
+        "write": ["memory", "logs", "project-files"],
+        "execute": ["bash", "mcp", "browser", "cron", "webhook"]
       },
       "healthChecks": ["binary", "config", "mcp", "identity", "inbox", "log"],
-      "riskLevel": "medium"
+      "riskLevel": "high"
     },
     {
       "id": "ollama",

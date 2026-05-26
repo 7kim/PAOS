@@ -2,6 +2,7 @@
 
 | Timestamp (UTC) | Agent | Action | File | Description | Task | Commit |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| 2026-05-26T02:22:49Z | claude | AGENT_INTEGRATION | ~/.claude/settings.json, GEMINI.md, ~/.hermes/config.yaml, config/gemini/antigravity-*.json, agents/registry.json | Integrated Claude, Antigravity, Gemini, Hermes into PAOS — added PAOS permissions+Stop hook to Claude, updated GEMINI.md, fixed Hermes config stale keys, added gitkraken to Antigravity IDE/backup MCP configs, corrected hermes-nous registry entry | PAOS-INTEGRATION | - |
 | 2026-05-17T12:00:00Z | claude | EXEC | memory/global_ledger.md | Testing shared-memory MCP server write capability | #TEST-001 | - |
 | 2026-05-17T12:05:00Z | opencode-developer | EXEC | - | Testing shared-memory write from OpenCode | #TEST-002 | - |
 | 2026-05-17T00:28:38Z | claude | WRITE | CLAUDE.md + vault/dashboard.md | Updated PAOS docs with OpenClaw + Claude logging rules | - | - |
@@ -88,3 +89,4 @@
 | 2026-05-24T20:33:34.915Z | opencode-developer | UPDATE | dashboard/app/gitview/page.tsx, dashboard/app/api/gitview/route.ts, dashboard/components/Sidebar.tsx, bin/setup-gitkraken.sh, mcp/mcp-config.json, agents/registry.json | Completed GitKraken MCP integration and authentication: installed GitKraken CLI, registered MCP server, enhanced Git View UI with side-by-side diff, file tree view, codebase visualization, added branding, created setup script, verified zero TypeScript errors, user authenticated GitKraken CLI account enabling cloud-based features (PRs, Issues) | PAOS-DASHBOARD | PAOS-DASHBOARD-COMPLETE |
 | 2026-05-24T20:35:00Z | opencode-developer | CREATE | /home/dev/AI_Workflow/.env | Added AWS CLI credentials to .env file: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION=ap-south-1 | AWS-CLI-CONFIG | AWS-CLI-SETUP |
 | 2026-05-24T20:39:27.952Z | opencode-developer | UPDATE | config/secrets/.env | Moved AWS CLI credentials to proper secrets location: added AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION to config/secrets/.env and removed incorrectly placed .env file from AI_Workflow root directory | AWS-CLI-CONFIG | AWS-CLI-MOVE-TO-SECRETS |
+| 2026-05-25T21:15:00Z | opencode-developer | EXEC | config/secrets/dev.pem, skills/vps-kit/SKILL.md | Moved dev.pem SSH key from Downloads/ to config/secrets/ and updated all skill references | VPS-KEY-MOVE | - |

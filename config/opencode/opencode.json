@@ -71,7 +71,9 @@
       "system-analysis-and-design": "allow",
       "project-scaffolder": "allow",
       "antigravity-review-loop": "allow",
-      "skill-creator-elicitation": "allow"
+      "skill-creator-elicitation": "allow",
+      "vps-kit": "allow",
+      "vps-kit": "allow"
     }
   }
 }

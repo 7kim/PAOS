@@ -71,21 +71,24 @@ pipeline:
 
 | Agent | Tool | Inbox |
 |-------|------|-------|
-| Claude Code | `~/.claude` | `memory/inbox/claude/` |
-| OpenCode developer | `~/.opencode` | `memory/inbox/developer/` |
-| Codex | `~/.codex` | `memory/inbox/codex/` |
+| Claude Code | `claude` | `memory/inbox/claude/` |
+| OpenCode developer | `opencode` | `memory/inbox/developer/` |
+| Codex | `codex` | `memory/inbox/codex/` |
 | Gemini | This file | `memory/inbox/gemini/` |
 | Antigravity | VS Code extension | `memory/inbox/antigravity/` |
-| OpenClaw | `~/.openclaw` | `memory/inbox/openclaw/` |
+| Hermes Nous | `hermes` | `memory/inbox/hermes-nous/` |
+| OpenClaw | `openclaw` | `memory/inbox/openclaw/` |
 | Ollama | local | `memory/inbox/ollama/` |
 
-## MCP Servers (if available)
+## MCP Servers (always available)
 
-If MCP is configured for Gemini, call these at session start:
+MCP config: `~/.gemini/config/mcp_config.json`
+
+Call these at session start:
 ```
 shared-memory: read_ledger    → last 20 rows
 shared-memory: read_context   → full shared/context.md
 shared-memory: read_inbox     → agent="gemini"
 ```
 
-MCP config: `~/AI_Workflow/mcp/mcp-config.json`
+Available tools: `read_ledger`, `read_context`, `read_inbox`, `append_ledger`, `write_context`, `send_message`, `create_task`, `read_task`, `list_agents`, `agent_commit`, `submit_pipeline`

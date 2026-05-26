@@ -13,11 +13,37 @@
 			"Bash(gh repo:*)",
 			"Bash(git push:*)",
 			"Bash(git remote:*)",
-			"Bash(git branch:*)"
+			"Bash(git branch:*)",
+			"Bash(/home/dev/AI_Workflow/bin/agent-commit.sh *)",
+			"Bash(~/AI_Workflow/bin/agent-commit.sh *)",
+			"Bash(git add *)",
+			"Bash(git status*)",
+			"Bash(git log*)",
+			"Bash(git diff*)",
+			"Bash(git show*)",
+			"Bash(hermes *)",
+			"Bash(/home/dev/.local/bin/hermes *)",
+			"Bash(gemini *)",
+			"Bash(/home/dev/.local/bin/gemini *)",
+			"Bash(node /home/dev/AI_Workflow/mcp/*)",
+			"Bash(python3 /home/dev/AI_Workflow/bin/*)"
 		],
 		"deny": [],
 		"additionalDirectories": [
 			"/home/dev/AI_Workflow"
+		]
+	},
+	"hooks": {
+		"Stop": [
+			{
+				"hooks": [
+					{
+						"type": "command",
+						"command": "cd /home/dev/AI_Workflow && git diff --quiet && git diff --cached --quiet || /home/dev/AI_Workflow/bin/agent-commit.sh claude \"Agent[claude]: session work\" 2>/dev/null || true",
+						"timeout": 30
+					}
+				]
+			}
 		]
 	},
 	"autoUpdaterStatus": "enabled",
