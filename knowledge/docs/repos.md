@@ -126,5 +126,5 @@ deepseek 99 usd
 project 1: PAOS
 project 2: PAOS WEB
 project 3: AI-Ecommerce
-project 4: HostingNode (arbitration of hostinger *2 with no liabilities + sell AI model API keys(open router arbitration ))
+- [x] `project 4: HostingNode (arbitration of hostinger *2 with no liabilities + sell AI model API keys(open router arbitration ))`
 Project 5: TheFourHorsemen

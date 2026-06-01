@@ -228,3 +228,14 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Set HANDOFF.md as the source of truth for the start of the Antigravity session
 
 **Handoff Notes**: Antigravity agent is now officially active in PAOS. All subsequent operations executed by this agent will continue to follow dual logging (Article III), and adhere strictly to the constitution (`workflow.md`).
+
+---
+
+## 2026-05-28 04:06 @opencode-developer — Task: -
+
+**Thinking**: Built eporner and porntrex scraper connectors. Eporner uses public JSON API (/api/v2/) — no HTML scraping needed. Porntrex is HTML-based with multiple video card extraction strategies. Both implement all 6 BaseConnector methods (scrape, search, get_metadata, get_torrents). Registry verified: all 3 scrapers (Eporner, Sxyprn, Porntrex) discovered without errors.
+
+**Decisions**:
+- Eporner scrapers uses API not HTML: public JSON endpoint at /api/v2/ with video/search/, video/id/, category/list/ endpoints\n- Eporner content_type=None (auto-detect from categories) since site hosts both straight and trans\n- Porntrex content_type=straight (primarily straight content)\n- Both scrapers use curl_cffi with httpx fallback for Cloudflare bypass (currently blocked at server level)\n- All scrapers in connectors/scrapers/{site} with __init__.py + connector.py pattern
+
+**Handoff Notes**: Scrapers are built and discovered. Three target sites (sxyprn.com, eporner.com, porntrex.com) all behind aggressive Cloudflare — must use Playwright/browser or residential proxy for actual execution. Server IP is blocked at TLS handshake level for all three.

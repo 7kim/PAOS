@@ -4,10 +4,10 @@ Projects the operator has built. Agents should consult these when working on sim
 
 ## Active Projects (~/Documents/Dev/)
 
-| Project | File | Stack |
-|---------|------|-------|
-| Tradingview | [tradingview.md](tradingview.md) | Python FastAPI + React + Vite + lightweight-charts |
-| project-gemini | [project-gemini.md](project-gemini.md) | Next.js 16 + FastAPI + PostgreSQL |
+| Project        | File                                   | Stack                                              |
+| -------------- | -------------------------------------- | -------------------------------------------------- |
+| Tradingview    | [tradingview.md](tradingview.md)       | Python FastAPI + React + Vite + lightweight-charts |
+
 
 
 ---

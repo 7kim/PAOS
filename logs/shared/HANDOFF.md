@@ -6,28 +6,20 @@
 ---
 
 ## Last Agent
-
-- **Agent**: claude
-- **Tool**: Claude Code
-- **Timestamp**: 2026-05-26T02:22:49Z
-- **Session**: Full PAOS agent integration — Claude, Antigravity, Gemini, Hermes
+- **Agent**: antigravity
+- **Tool**: Antigravity IDE
+- **Timestamp**: 2026-05-28T01:30:00Z (approx, from previous state)
+- **Session**: VOD platform — qBittorrent, streaming, local video, settings
 
 ## Active Task
-
-PAOS-INTEGRATION — All four agents fully integrated into PAOS shared memory hub
+VOD platform development (qBittorrent integration, local video, streaming)
 
 ## What Was Just Done
-
-- **Claude** (`~/.claude/settings.json`): Added 13 new PAOS permissions (agent-commit.sh, hermes, gemini, git add/status/log/diff) + `Stop` hook to auto-commit on session end
-- **Gemini** (`GEMINI.md`): Updated roster with Hermes entry + corrected MCP config path to `~/.gemini/config/mcp_config.json`
-- **Hermes** (`~/.hermes/config.yaml`): Fixed stale `provider: ollama` root key and flat `model:` string → nested dict; `hermes doctor` now clean
-- **Antigravity** (`antigravity-ide/mcp_config.json`, `antigravity-backup/mcp_config.json`): Added missing `gitkraken` MCP server to match `antigravity/mcp_config.json`
-- **Registry** (`agents/registry.json`): Added gitkraken to root mcpServers; fixed claude/gemini/antigravity configPaths; corrected `hermes` → `hermes-nous` id with correct paths, inbox, log, role
+- Full VOD platform fixes across qBittorrent, streaming, local video, settings, analytics
+- see shared/context.md for full history
 
 ## What Is NOT Done Yet
-
-- Hermes model is `ollama/llama3` — add an API key in `~/.hermes/.env` to switch to a cloud model (e.g. `anthropic/claude-sonnet-4-6` via OpenRouter)
-- Hermes optional platform logins (Nous Portal, Gemini OAuth, Telegram, Discord) not configured
+- ctx7 MCP server setup (blocked — needs browser login)
 
 ## Active Projects
 
@@ -49,7 +41,6 @@ PAOS-INTEGRATION — All four agents fully integrated into PAOS shared memory hu
 - **SRS location**: `knowledge/srs/` — both .md and .pdf artifacts
 
 ## How to Pick Up
-
 1. Read this file (done)
 2. Call `shared-memory: read_ledger` — last 20 rows
 3. Read `vault/chats/` — most recent chat summary

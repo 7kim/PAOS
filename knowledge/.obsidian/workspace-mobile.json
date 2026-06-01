@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "todolist.md",
+                "file": "docs/idea.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "todolist"
+              "title": "idea"
             }
           }
         ],
@@ -199,7 +199,29 @@
   },
   "active": "d7a1e6c62dc34adb",
   "lastOpenFiles": [
+    "docs/todolist.md",
+    "docs/idea.md",
+    "books/pdfs/Data Structures and Algorithms in Python [Goodrich, Tamassia  Goldwasser 2013-03-18].pdf",
+    "notes-done.md",
+    "notes.md",
     "idea.md",
+    "srs/SRS-2-Enterprise-Agentic-AI-Harness.md",
+    "srs/SRS-2-Enterprise-Agentic-AI-Harness.pdf",
+    "references/books.md",
+    "srs/SRS-1-PAOS-Current-State.pdf",
+    "questions/test-project.md",
+    "questions/index.md",
+    "previous-projects/README.md",
+    "previous-projects/project-gemini.md",
+    "paos/constitution.md",
+    "docs/user-questions-answered.md",
+    "docs/user-questions.md",
+    "docs/session-protocol.md",
+    "docs/repos.md",
+    "docs/push-vps-pull-local.md",
+    "docs/notes-done.md",
+    "docs/notes.md",
+    "books/README.md",
     "todolist.md",
     "repos.md",
     "user-questions.md",
