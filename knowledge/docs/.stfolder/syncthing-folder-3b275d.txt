@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: notes-dev
+created: 2026-05-24T02:57:05+04:00
