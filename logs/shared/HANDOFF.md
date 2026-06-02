@@ -25,7 +25,8 @@ Maintained AI_Workflow directory consistency
 
 | Project | Path | Stack | Status |
 | ------- | ---- | ----- | ------ |
-| Code-SRS | `~/Documents/Dev/PAOS-WEB/` | Next.js 16 App Router, Together AI design | Active — frontend built, OAuth wired |
+| PAOS-WEB (Code-SRS) | `~/Documents/Dev/PAOS-WEB/` | Next.js 16 App Router, Together AI design | Active — frontend built, OAuth wired |
+| PAOS-VPS | `~/Documents/Dev/PAOS-VPS/` | Shell script | Active |
 | Tradingview | `~/Documents/Dev/Tradingview/` | Python FastAPI + React + Vite + lightweight-charts | Active |
 | AgentHarness Enterprise | `knowledge/srs/SRS-2-*.md` | Design only | SRS complete — not yet built |
 

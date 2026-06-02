@@ -5,6 +5,8 @@
 | Project | Stack | Status | Path | Notes |
 |---------|-------|--------|------|-------|
 | **Tradingview** | Python FastAPI + React + Vite + lightweight-charts | Active | `~/Documents/Dev/Tradingview/` | Scalping bot + real-time dashboard. Has CLAUDE.md, SRS.md, SETUP.md |
+| **PAOS-WEB** | Next.js 16 App Router | Active | `~/Documents/Dev/PAOS-WEB/` | Frontend and OAuth wired. (Code-SRS) |
+| **PAOS-VPS** | Shell script | Active | `~/Documents/Dev/PAOS-VPS/` | VPS setup scripts. |
 
 ## Previous Projects (Historical — on external drive)
 
