@@ -92,3 +92,4 @@
 | 2026-05-25T21:15:00Z | opencode-developer | EXEC | config/secrets/dev.pem, skills/vps-kit/SKILL.md | Moved dev.pem SSH key from Downloads/ to config/secrets/ and updated all skill references | VPS-KEY-MOVE | - |
 | 2026-05-28T00:00:00Z | opencode-developer | CREATE | connectors/scrapers/eporner/connector.py, connectors/scrapers/porntrex/connector.py | Created eporner (API-based) and porntrex (HTML-based) scraper connectors. Verified registry discovers all 3 connectors (Eporner, Sxyprn, Porntrex). | - | - |
 | 2026-06-02T00:01:00Z | gemini | UPDATE | vault/memory/shared/HANDOFF.md | Cleaned up duplicate Markdown files in PAOS directory and updated HANDOFF.md | - | 98e04a3 |
+| 2026-06-02T00:22:00Z | gemini | DELETE | knowledge/idea.md,knowledge/notes.md,knowledge/push-vps-pull-local.md,knowledge/todolist.md,knowledge/user-questions-answered.md | Deleted second wave of duplicate MD files in knowledge/ root to consolidate into knowledge/docs/ | - | - |

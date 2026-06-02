@@ -15,9 +15,8 @@
 Maintained AI_Workflow directory consistency
 
 ## What Was Just Done
-- Removed duplicate markdown files (AGENTS, CLAUDE, session-protocol, notes-done, user-questions)
-- Moved repos.md to correct location in knowledge/docs/
-- Committed changes via agent-commit.sh
+- Removed second wave of duplicates from knowledge/ root (idea.md, notes.md, push-vps-pull-local.md, todolist.md, user-questions-answered.md)
+- Maintained docs/ as the single source of truth
 
 ## What Is NOT Done Yet
 - ctx7 MCP server setup (blocked — needs browser login)
