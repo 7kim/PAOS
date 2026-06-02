@@ -1,0 +1,25 @@
+I want to optimize my qBittorrent download speeds on this Ubuntu machine. Please execute the following multi-step plan autonomously, verifying results at each step. 
+
+### Step 1: Network Speed Baseline
+- Install any lightweight CLI tool needed (like `speedtest-cli`) if not present.
+- Run a speed test to determine my current maximum Download and Upload bandwidth.
+- Log these baseline speeds for reference.
+
+### Step 2: Analyze Current qBittorrent State & Settings
+- Locate and read my qBittorrent configuration files (typically found in `~/.config/qBittorrent/qBittorrent.conf`).
+- Identify the current incoming listening port. Check if UPnP or NAT-PMP is enabled.
+- Check my local Ubuntu firewall (`ufw status`) to see if this port is explicitly allowed or if the firewall is inactive.
+- Run an internal check (`ss -tulnp`) to ensure qBittorrent is actively listening on that port across the correct network interfaces (note: I have a Tailscale interface, but want to prioritize my primary physical network interface for public torrenting).
+
+### Step 3: Formulate an Optimization Plan
+Based on the results from Steps 1 and 2, calculate and propose the optimal settings for:
+- Global download and upload rate limits (usually ~80-90% of maximum pipe capacity to avoid bufferbloat).
+- Maximum active downloads, uploads, and torrents.
+- Global maximum number of connections and maximum connections per torrent.
+- Recommendation on whether we need to adjust the incoming port or modify UFW rules.
+
+### Step 4: Execute and Apply Optimizations
+- Ask for my permission if you need to run `sudo` commands to update UFW rules.
+- Directly modify the `qBittorrent.conf` file to apply the calculated speed limits, connection limits, and performance tweaks.
+- If qBittorrent is running as a daemon or desktop app, let me know if I need to restart it for the changes to take effect.
+- Print out a summary of the exact changes you made.
