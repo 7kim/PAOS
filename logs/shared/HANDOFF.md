@@ -8,22 +8,19 @@
 ## Last Agent
 - **Agent**: opencode-developer
 - **Tool**: OpenCode Developer
-- **Timestamp**: 2026-05-21T05:42:05.918Z
+- **Timestamp**: 2026-05-24T20:39:27.952Z
+- **Session**: Moved AWS credentials to config/secrets/.env and cleaned up root .env
 
 ## Active Task
-PAOS-DASHBOARD — GitKraken MCP integration, gitview rebrand, pipeline gitgraph
+AWS-CLI-CONFIG — Moved AWS credentials to proper secrets location
 
 ## What Was Just Done
-- Installed GitKraken CLI v3.1.64 from GitHub releases (gk_3.1.64_linux_amd64.deb)
-- Registered GitKraken MCP server in mcp/mcp-config.json (command: gk mcp --readonly)
-- Added gitkraken as registered PAOS agent in agents/registry.json with 29 MCP tools
-- Created bin/setup-gitkraken.sh — auto-downloads, installs, and verifies GitKraken MCP
-- Rebranded dashboard Git View page with GitKraken identity (teal #289473 theme, MCP tools header, links to docs)
-- Git View shows agent-filtered commits, diff view, file view — powered by GitKraken MCP metadata
+- Added AWS CLI credentials to config/secrets/.env file (proper location)
+- Removed incorrectly placed .env file from AI_Workflow root directory
+- Updated HANDOFF.md to reflect proper secrets storage location
 
 ## What Is NOT Done Yet
-- `gk auth login` still needs to be run interactively to unlock issue/PR/AI features (read-only git tools work without auth)
-- GitHub/GitLab/Bitbucket integrations need provider tokens configured for issue and PR tools
+- None; AWS CLI credentials properly configured
 
 ## Active Projects
 | Project | Path | Stack | Status |
