@@ -10,9 +10,9 @@ Sections: Overview · Audit Ledger · Agents · Tasks · Plans · Inbox
 
 ## Active Projects
 
-- [[projects/Tradingview]] — Binance scalping bot (Live)
-- [[projects/project-gemini]] — Scaffold template
-- [[projects/project-gpt]] — GPT session archive
+- [[knowledge/docs/Tradingview]] — Binance scalping bot (Live)
+- PAOS-WEB (Code-SRS) — Next.js 16 App Router (Live)
+- PAOS-VPS — Shell scripts (Live)
 
 ## Knowledge Base
 

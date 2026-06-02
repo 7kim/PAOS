@@ -98,3 +98,5 @@
 | 2026-06-02T00:31:10Z | gemini | UPDATE | vault/memory/shared/HANDOFF.md | Added PAOS rule to protect vault symlinks (knowledge, memory) from deletion | - | - |
 | 2026-06-02T01:46:00Z | gemini | COMMIT | .obsidian/core-plugins.json, .obsidian/workspaces.json | Aborted bad git merge and staging Obsidian configs | - | - |
 | 2026-06-02T02:07:00Z | gemini | COMMIT | knowledge/docs/todolist.md | Commit updated todolist.md and push | - | - |
+| 2026-06-02T02:14:00Z | gemini | EXEC | knowledge/docs/idea.md | Scrubbed knowledge/docs/idea.md from entire git history via filter-repo | - | - |
+| 2026-06-02T04:08:15Z | gemini | UPDATE | vault/projects/projects.md,vault/projects/Tradingview.md,knowledge/previous-projects/tradingview.md,knowledge/docs/Tradingview.md,vault/dashboard.md,vault/memory/shared/HANDOFF.md | Cleaned up duplicate files inside vault/projects/ and consolidated Tradingview.md into knowledge/docs/ | - | - |

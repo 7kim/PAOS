@@ -15,7 +15,9 @@
 Commit and push todolist.md update
 
 ## What Was Just Done
-- Committed knowledge/docs/todolist.md\n- Pushed to remote
+- Replaced vault/projects/projects.md with a symlink to the root projects.md
+- Consolidated tradingview documentation into knowledge/docs/Tradingview.md and removed vault duplicates
+- Updated vault/dashboard.md Active Projects list
 
 ## What Is NOT Done Yet
 - Monitor next tasks
