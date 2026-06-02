@@ -5,8 +5,6 @@
 | Project | Stack | Status | Path | Notes |
 |---------|-------|--------|------|-------|
 | **Tradingview** | Python FastAPI + React + Vite + lightweight-charts | Active | `~/Documents/Dev/Tradingview/` | Scalping bot + real-time dashboard. Has CLAUDE.md, SRS.md, SETUP.md |
-| **project-gemini** | Next.js 16, FastAPI, PostgreSQL | Active | `~/Documents/Dev/project-gemini/` | Full-stack scaffold. Has tasks.md, docker-compose.yml |
-| **project-gpt** | Markdown | Archive | `~/Documents/Dev/project-gpt/` | GPT session archive. Single file. |
 
 ## Previous Projects (Historical — on external drive)
 
@@ -17,6 +15,8 @@
 | tv-clone | Next.js 16 + Python | `/run/media/dev/.../tv-clone/` |
 | downloader | Express + Playwright | `/run/media/dev/.../downloader/` |
 | openclaw-vps | Python | `/run/media/dev/.../openclaw-vps/` |
+| project-gemini | Next.js 16, FastAPI, PostgreSQL | `~/Documents/Dev/project-gemini/` |
+| project-gpt | Markdown | `~/Documents/Dev/project-gpt/` |
 
 ---
 

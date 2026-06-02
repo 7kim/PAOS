@@ -27,7 +27,6 @@ Maintained AI_Workflow directory consistency
 | ------- | ---- | ----- | ------ |
 | Code-SRS | `~/Documents/Dev/PAOS-WEB/` | Next.js 16 App Router, Together AI design | Active — frontend built, OAuth wired |
 | Tradingview | `~/Documents/Dev/Tradingview/` | Python FastAPI + React + Vite + lightweight-charts | Active |
-| project-gemini | `~/Documents/Dev/project-gemini/` | Next.js 16, FastAPI, PostgreSQL | Scaffold exists, mostly empty |
 | AgentHarness Enterprise | `knowledge/srs/SRS-2-*.md` | Design only | SRS complete — not yet built |
 
 ## Key Decisions (permanent)
@@ -39,6 +38,7 @@ Maintained AI_Workflow directory consistency
 - **frontend/ port**: 3334 | **dashboard/ port**: 3333
 - **CHAT CONTINUITY**: Read `vault/chats/active_chat_transcript.md` at session start, run `python3 bin/sync-chat.py` at end
 - **SRS location**: `knowledge/srs/` — both .md and .pdf artifacts
+- **Documentation**: All new documentation MUST be created in `knowledge/docs/` (NEVER in `knowledge/` root) to prevent duplicates.
 
 ## How to Pick Up
 1. Read this file (done)
