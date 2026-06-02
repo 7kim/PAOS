@@ -95,3 +95,4 @@
 | 2026-06-02T00:22:00Z | gemini | DELETE | knowledge/idea.md,knowledge/notes.md,knowledge/push-vps-pull-local.md,knowledge/todolist.md,knowledge/user-questions-answered.md | Deleted second wave of duplicate MD files in knowledge/ root to consolidate into knowledge/docs/ | - | - |
 | 2026-06-02T00:24:45Z | gemini | UPDATE | projects.md,vault/memory/shared/HANDOFF.md | Updated projects registry and PAOS docs policy in HANDOFF.md | - | - |
 | 2026-06-02T00:26:40Z | gemini | UPDATE | projects.md,vault/memory/shared/HANDOFF.md | Added all /home/dev/Documents/Dev/ projects (PAOS-WEB, PAOS-VPS) to active project registry | - | - |
+| 2026-06-02T00:31:10Z | gemini | UPDATE | vault/memory/shared/HANDOFF.md | Added PAOS rule to protect vault symlinks (knowledge, memory) from deletion | - | - |

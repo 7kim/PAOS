@@ -17,6 +17,7 @@ Maintained AI_Workflow directory consistency
 ## What Was Just Done
 - Removed second wave of duplicates from knowledge/ root (idea.md, notes.md, push-vps-pull-local.md, todolist.md, user-questions-answered.md)
 - Maintained docs/ as the single source of truth
+- Documented vault symlink rules to prevent accidental deletion
 
 ## What Is NOT Done Yet
 - ctx7 MCP server setup (blocked — needs browser login)
@@ -40,6 +41,7 @@ Maintained AI_Workflow directory consistency
 - **CHAT CONTINUITY**: Read `vault/chats/active_chat_transcript.md` at session start, run `python3 bin/sync-chat.py` at end
 - **SRS location**: `knowledge/srs/` — both .md and .pdf artifacts
 - **Documentation**: All new documentation MUST be created in `knowledge/docs/` (NEVER in `knowledge/` root) to prevent duplicates.
+- **Vault Symlinks**: `vault/knowledge` and `vault/memory` are critical symlinks mapping to root folders. NEVER delete them.
 
 ## How to Pick Up
 1. Read this file (done)
