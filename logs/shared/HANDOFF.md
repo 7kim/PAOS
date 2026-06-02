@@ -15,9 +15,8 @@
 Commit and push todolist.md update
 
 ## What Was Just Done
-- Replaced vault/projects/projects.md with a symlink to the root projects.md
-- Consolidated tradingview documentation into knowledge/docs/Tradingview.md and removed vault duplicates
-- Updated vault/dashboard.md Active Projects list
+- Added Section 5.4 to constitution.md to enforce directory mapping and prevent duplicate files.
+- Completed vault deduplication.
 
 ## What Is NOT Done Yet
 - Monitor next tasks

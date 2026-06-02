@@ -133,6 +133,13 @@ Before finalizing any `IMPLEMENTATION_PLAN.md`, the Lead Agent must:
 - Shared knowledge lives in `~/AI_Workflow/knowledge/`.
 - Agent-specific knowledge lives in `~/AI_Workflow/agents/<name>/docs/`.
 
+### Section 5.4 — Single Source of Truth & Directory Rules
+To prevent duplicate data and fragmentation across the PAOS:
+1. **Projects Registry**: `~/AI_Workflow/projects.md` is the canonical registry. NEVER create duplicate copies in `vault/` or `knowledge/`. Use symlinks if Obsidian visibility is required.
+2. **Active Project Documentation**: All active project docs (e.g., Tradingview) MUST live in `~/AI_Workflow/knowledge/docs/<ProjectName>.md`. NEVER store them in `vault/projects/` or `knowledge/previous-projects/`.
+3. **The Vault**: `~/AI_Workflow/vault/` is an interface. `vault/knowledge` and `vault/memory` are STRICT SYMLINKS to the root folders. NEVER delete them and NEVER replace them with actual directories.
+4. **Dashboard**: `vault/dashboard.md` serves as the Obsidian entry point, but it relies on `[[links]]` to the canonical docs in `knowledge/docs/`.
+
 ---
 
 ## Article VI — Agent Communication

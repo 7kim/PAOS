@@ -100,3 +100,4 @@
 | 2026-06-02T02:07:00Z | gemini | COMMIT | knowledge/docs/todolist.md | Commit updated todolist.md and push | - | - |
 | 2026-06-02T02:14:00Z | gemini | EXEC | knowledge/docs/idea.md | Scrubbed knowledge/docs/idea.md from entire git history via filter-repo | - | - |
 | 2026-06-02T04:08:15Z | gemini | UPDATE | vault/projects/projects.md,vault/projects/Tradingview.md,knowledge/previous-projects/tradingview.md,knowledge/docs/Tradingview.md,vault/dashboard.md,vault/memory/shared/HANDOFF.md | Cleaned up duplicate files inside vault/projects/ and consolidated Tradingview.md into knowledge/docs/ | - | - |
+| 2026-06-02T04:09:56Z | gemini | UPDATE | knowledge/paos/constitution.md,vault/memory/shared/HANDOFF.md | Amended PAOS Constitution (Section 5.4) to formalize Single Source of Truth & Directory Rules, preventing future file duplication. | - | - |
