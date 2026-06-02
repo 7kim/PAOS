@@ -97,3 +97,4 @@
 | 2026-06-02T00:26:40Z | gemini | UPDATE | projects.md,vault/memory/shared/HANDOFF.md | Added all /home/dev/Documents/Dev/ projects (PAOS-WEB, PAOS-VPS) to active project registry | - | - |
 | 2026-06-02T00:31:10Z | gemini | UPDATE | vault/memory/shared/HANDOFF.md | Added PAOS rule to protect vault symlinks (knowledge, memory) from deletion | - | - |
 | 2026-06-02T01:46:00Z | gemini | COMMIT | .obsidian/core-plugins.json, .obsidian/workspaces.json | Aborted bad git merge and staging Obsidian configs | - | - |
+| 2026-06-02T02:07:00Z | gemini | COMMIT | knowledge/docs/todolist.md | Commit updated todolist.md and push | - | - |
