@@ -10,6 +10,15 @@
         "KNOWLEDGE_DIR": "/home/dev/AI_Workflow/knowledge",
         "REPO_ROOT": "/home/dev/AI_Workflow"
       }
+    },
+    "scaffold": {
+      "command": "node",
+      "args": [
+        "/home/dev/AI_Workflow/mcp/scaffold-server/index.js"
+      ],
+      "env": {
+        "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
+      }
     }
   }
 }
