@@ -52,3 +52,7 @@
 | 2026-06-14T08:10:00Z | ADMIN-SEED | CREATE | db/seed-admin.ts | Created seed script for default admin user | done |
 | 2026-06-14T08:10:00Z | ADMIN-SEED | WRITE | .env.local, .env.local.template | Added DEFAULT_ADMIN_EMAIL and DEFAULT_ADMIN_PASSWORD to env files | done |
 | 2026-06-14T08:10:00Z | ADMIN-SEED | EXEC | db/seed-admin.ts | Ran seed script — inserted admin@paos.nodealgo.com with admin role into PostgreSQL | done |
+| 2026-06-14T08:30:00Z | DOCKER-SETUP | CREATE | Dockerfile | Created Dockerfile for Next.js dev container | done |
+| 2026-06-14T08:30:00Z | DOCKER-SETUP | CREATE | docker-compose.yml | Created compose stack with PostgreSQL + pgAdmin + frontend | done |
+| 2026-06-14T08:30:00Z | DOCKER-SETUP | CREATE | .dockerignore, docker-entrypoint.sh, docker/pgadmin/servers.json | Created supporting Docker files | done |
+| 2026-06-14T08:30:00Z | DOCKER-SETUP | BUILD | Dockerfile | Built paos-web-frontend:latest (425MB) | done |

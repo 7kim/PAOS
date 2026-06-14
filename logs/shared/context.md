@@ -254,3 +254,19 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Invite code: ADMIN-SEED-2026 seeded along with user
 
 **Handoff Notes**: Default admin user created. See .env.local for credentials. The dashboard at port 3333 has no auth (local-only).
+
+---
+
+## 2026-06-14 04:20 @opencode-developer — Task: DOCKER-SETUP
+
+**Thinking**: Dockerized the PAOS-WEB frontend with a full dev stack: PostgreSQL 18 (Alpine), pgAdmin 4 (auto-configured via servers.json), and the Next.js dev server with hot-reload via volume mount. The docker-entrypoint.sh waits for PG, runs migrate + seed, then starts dev. Host PG on 5432 is untouched — Docker PG maps to 5433.
+
+**Decisions**:
+- Docker PG on host port 5433 to avoid conflict with existing host PG on 5432
+- pgAdmin auto-configures a server entry via docker/pgadmin/servers.json
+- pgAdmin credentials match the default admin we created (admin@paos.nodealgo.com)
+- docker-entrypoint.sh runs migrate + seed automatically on every start
+- /app/node_modules and /app/.next are shadow volumes to preserve container state
+- debian: slim node image with postgresql-client for pg_isready health check
+
+**Handoff Notes**: Run 'docker compose up -d' from ~/Documents/Dev/PAOS-WEB to start the full stack. Access frontend at http://localhost:3334, pgAdmin at http://localhost:5050, PG on host port 5433.
