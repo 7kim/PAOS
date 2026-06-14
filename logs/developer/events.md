@@ -56,3 +56,12 @@
 | 2026-06-14T08:30:00Z | DOCKER-SETUP | CREATE | docker-compose.yml | Created compose stack with PostgreSQL + pgAdmin + frontend | done |
 | 2026-06-14T08:30:00Z | DOCKER-SETUP | CREATE | .dockerignore, docker-entrypoint.sh, docker/pgadmin/servers.json | Created supporting Docker files | done |
 | 2026-06-14T08:30:00Z | DOCKER-SETUP | BUILD | Dockerfile | Built paos-web-frontend:latest (425MB) | done |
+
+[2026-06-14T15:40:00Z] | opencode-developer | FIX | /usr/local/bin/python | Created python → python3 symlink (was missing after Python removal)
+[2026-06-14T15:41:00Z] | opencode-developer | INSTALL | /usr/local/bin/codex | Reinstalled @openai/codex@0.139.0 (binary was missing)
+[2026-06-14T15:50:00Z] | opencode-developer | MERGE | config/antigravity2/config | Merged ~/.config/Antigravity into PAOS-managed config
+[2026-06-14T15:53:00Z] | opencode-developer | SYMLINK | ~/.config/Antigravity | Created symlink → config/antigravity2/config
+[2026-06-14T15:53:00Z] | opencode-developer | SYMLINK | ~/.gemini | Created symlink → config/gemini (merged 72MB live data)
+[2026-06-14T15:53:00Z] | opencode-developer | SYMLINK | ~/.gemini/config/mcp_config.json | Created symlink → config/gemini/config/mcp_config.json (was empty 0-byte file)
+[2026-06-14T15:54:00Z] | opencode-developer | SYMLINK | AI_Workflow/bin/* | Created 8 agent binary symlinks in bin/: claude, gemini, codex, ollama, agy, gk, antigravity, python
+[2026-06-14T15:55:00Z] | opencode-developer | VERIFY | - | Full system health check — 41/41 checks passed

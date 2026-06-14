@@ -270,3 +270,21 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - debian: slim node image with postgresql-client for pg_isready health check
 
 **Handoff Notes**: Run 'docker compose up -d' from ~/Documents/Dev/PAOS-WEB to start the full stack. Access frontend at http://localhost:3334, pgAdmin at http://localhost:5050, PG on host port 5433.
+
+---
+
+## 2026-06-14 11:55 @opencode-developer — Task: PAOS-RECOVERY
+
+**Thinking**: Complete PAOS system recovery after Python uninstallation on Ubuntu 26.04 LTS. The system lost the `python` command, the codex CLI binary, and several home→PAOS config symlinks were missing/broken. Performed comprehensive health check and repair of all agents. Added Gemini and Antigrity 2.0 into the PAOS symlink ecosystem. Created agent binary symlinks in bin/ for all 8 agent tools. Full integration is now complete.
+
+**Decisions**:
+- Created /usr/local/bin/python → /usr/bin/python3 symlink (fixes scripts expecting `python`)
+- Reinstalled @openai/codex@0.139.0 via npm global install
+- Merged ~/.gemini (71MB) into config/gemini/ then symlinked ~/.gemini → config/gemini
+- Merged ~/.config/Antigravity (449MB) into config/antigravity2/config then symlinked
+- Created ~/.gemini/config/mcp_config.json → config/gemini/config/mcp_config.json (was empty 0-byte)
+- Created AI_Workflow/bin/ symlinks for all 8 agent binaries
+- Verified all 7 home→PAOS config symlinks and all 8 binary symlinks work
+- Antigrity 2.0 ran uninterrupted through the config symlink replacement
+
+**Handoff Notes**: PAOS is fully recovered and integrated. All 7 agents have home→PAOS config symlinks. All 8 agent binaries have symlinks in AI_Workflow/bin/. The system is healthy. Next focus areas: (1) signal agent needs a binary - it's a PAOS-conceptual agent without a real CLI tool; (2) the Antigrity 2.0 symlinks survived a live-replace without crash.

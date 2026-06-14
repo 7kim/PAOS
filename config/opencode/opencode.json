@@ -9,7 +9,7 @@
   ],
   "agent": {
     "build": {
-      "mode": "primary",
+      "mode": "all",
       "temperature": 0.3
     },
     "plan": {
@@ -47,7 +47,10 @@
     "shared-memory": {
       "type": "local",
       "enabled": true,
-      "command": ["node", "/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"],
+      "command": [
+        "node",
+        "/home/dev/AI_Workflow/mcp/shared-memory-server/index.js"
+      ],
       "environment": {
         "MEMORY_DIR": "/home/dev/AI_Workflow/memory",
         "KNOWLEDGE_DIR": "/home/dev/AI_Workflow/knowledge",
@@ -57,23 +60,24 @@
     "scaffold": {
       "type": "local",
       "enabled": true,
-      "command": ["node", "/home/dev/AI_Workflow/mcp/scaffold-server/index.js"],
+      "command": [
+        "node",
+        "/home/dev/AI_Workflow/mcp/scaffold-server/index.js"
+      ],
       "environment": {
         "TEMPLATES_DIR": "/home/dev/AI_Workflow/knowledge/templates"
       }
     }
   },
   "permission": {
-    "edit": "ask",
-    "bash": "ask",
+    "edit": "allow",
+    "bash": "allow",
     "skill": {
       "*": "allow",
       "system-analysis-and-design": "allow",
       "project-scaffolder": "allow",
       "antigravity-review-loop": "allow",
       "skill-creator-elicitation": "allow",
-      "vps-kit": "allow",
-      "vps-kit": "allow"
     }
   }
 }

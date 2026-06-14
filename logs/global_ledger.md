@@ -110,3 +110,9 @@
 | 2026-06-14T08:30:00Z | opencode-developer | CREATE | Documents/Dev/PAOS-WEB/docker-compose.yml | Docker Compose stack: PostgreSQL 18, pgAdmin 4, frontend dev server | DOCKER-SETUP | - |
 | 2026-06-14T08:30:00Z | opencode-developer | CREATE | Documents/Dev/PAOS-WEB/.dockerignore, Documents/Dev/PAOS-WEB/docker-entrypoint.sh, Documents/Dev/PAOS-WEB/docker/pgadmin/servers.json | Docker supporting files (entrypoint, pgAdmin config) | DOCKER-SETUP | - |
 | 2026-06-14T08:30:00Z | opencode-developer | BUILD | Documents/Dev/PAOS-WEB/Dockerfile | Built paos-web-frontend:latest (425MB) | DOCKER-SETUP | - |
+| 2026-06-14T15:40:00Z | opencode-developer | FIX | /usr/local/bin/python | Created python → python3 symlink (was missing after Python removal) | PAOS-RECOVERY | - |
+| 2026-06-14T15:41:00Z | opencode-developer | INSTALL | /usr/local/bin/codex | Reinstalled @openai/codex@0.139.0 (binary was missing after Python removal) | PAOS-RECOVERY | - |
+| 2026-06-14T15:50:00Z | opencode-developer | MERGE | config/antigravity2/config | Merged ~/.config/Antigravity live data into PAOS-managed config/antigravity2/config | PAOS-RECOVERY | - |
+| 2026-06-14T15:53:00Z | opencode-developer | SYMLINK | ~/.config/Antigravity, ~/.gemini, ~/.gemini/config/mcp_config.json | Created home→PAOS config symlinks: ~/.config/Antigravity → config/antigravity2/config, ~/.gemini → config/gemini, ~/.gemini/config/mcp_config.json → PAOS version | PAOS-RECOVERY | - |
+| 2026-06-14T15:54:00Z | opencode-developer | SYMLINK | AI_Workflow/bin/* | Created 8 agent binary symlinks in bin/: claude, gemini, codex, ollama, agy, gk, antigravity, python | PAOS-RECOVERY | - |
+| 2026-06-14T15:55:00Z | opencode-developer | VERIFY | - | Full system health check — 41/41 checks passed | PAOS-RECOVERY | - |
