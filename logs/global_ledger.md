@@ -116,3 +116,4 @@
 | 2026-06-14T15:53:00Z | opencode-developer | SYMLINK | ~/.config/Antigravity, ~/.gemini, ~/.gemini/config/mcp_config.json | Created home→PAOS config symlinks: ~/.config/Antigravity → config/antigravity2/config, ~/.gemini → config/gemini, ~/.gemini/config/mcp_config.json → PAOS version | PAOS-RECOVERY | - |
 | 2026-06-14T15:54:00Z | opencode-developer | SYMLINK | AI_Workflow/bin/* | Created 8 agent binary symlinks in bin/: claude, gemini, codex, ollama, agy, gk, antigravity, python | PAOS-RECOVERY | - |
 | 2026-06-14T15:55:00Z | opencode-developer | VERIFY | - | Full system health check — 41/41 checks passed | PAOS-RECOVERY | - |
+| 2026-06-14T15:57:00Z | opencode-developer | COMMIT | 13 files | Committed PAOS recovery: python symlink, codex reinstall, agent symlinks, config integrations, logs | PAOS-RECOVERY | 3f4cc11 |

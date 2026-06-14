@@ -1,18 +1,18 @@
 {
   "claude-plugins-official": {
-    "installLocation": "/home/dev/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-05-26T02:36:48.892Z",
     "source": {
-      "repo": "anthropics/claude-plugins-official",
-      "source": "github"
-    }
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/home/dev/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-06-14T11:58:18.616Z"
   },
   "gitkraken": {
-    "installLocation": "/home/dev/.claude/plugins/marketplaces/gitkraken",
-    "lastUpdated": "2026-06-14T04:45:11Z",
     "source": {
-      "path": "/home/dev/.claude/plugins/marketplaces/gitkraken",
-      "source": "directory"
-    }
+      "source": "directory",
+      "path": "/home/dev/.claude/plugins/marketplaces/gitkraken"
+    },
+    "installLocation": "/home/dev/.claude/plugins/marketplaces/gitkraken",
+    "lastUpdated": "2026-06-14T04:45:11Z"
   }
 }
