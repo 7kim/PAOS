@@ -101,3 +101,6 @@
 | 2026-06-02T02:14:00Z | gemini | EXEC | knowledge/docs/idea.md | Scrubbed knowledge/docs/idea.md from entire git history via filter-repo | - | - |
 | 2026-06-02T04:08:15Z | gemini | UPDATE | vault/projects/projects.md,vault/projects/Tradingview.md,knowledge/previous-projects/tradingview.md,knowledge/docs/Tradingview.md,vault/dashboard.md,vault/memory/shared/HANDOFF.md | Cleaned up duplicate files inside vault/projects/ and consolidated Tradingview.md into knowledge/docs/ | - | - |
 | 2026-06-02T04:09:56Z | gemini | UPDATE | knowledge/paos/constitution.md,vault/memory/shared/HANDOFF.md | Amended PAOS Constitution (Section 5.4) to formalize Single Source of Truth & Directory Rules, preventing future file duplication. | - | - |
+| 2026-06-14T08:10:00Z | opencode-developer | CREATE | Documents/Dev/PAOS-WEB/db/seed-admin.ts | Created seed-admin.ts script to insert default admin user | ADMIN-SEED | - |
+| 2026-06-14T08:10:00Z | opencode-developer | UPDATE | Documents/Dev/PAOS-WEB/.env.local, Documents/Dev/PAOS-WEB/.env.local.template | Added DEFAULT_ADMIN_EMAIL + DEFAULT_ADMIN_PASSWORD to env files | ADMIN-SEED | - |
+| 2026-06-14T08:10:06Z | opencode-developer | EXEC | - | Ran seed-admin.ts — inserted admin@paos.nodealgo.com (admin role) into PostgreSQL codesrs.users | ADMIN-SEED | - |

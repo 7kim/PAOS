@@ -239,3 +239,18 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Eporner scrapers uses API not HTML: public JSON endpoint at /api/v2/ with video/search/, video/id/, category/list/ endpoints\n- Eporner content_type=None (auto-detect from categories) since site hosts both straight and trans\n- Porntrex content_type=straight (primarily straight content)\n- Both scrapers use curl_cffi with httpx fallback for Cloudflare bypass (currently blocked at server level)\n- All scrapers in connectors/scrapers/{site} with __init__.py + connector.py pattern
 
 **Handoff Notes**: Scrapers are built and discovered. Three target sites (sxyprn.com, eporner.com, porntrex.com) all behind aggressive Cloudflare — must use Playwright/browser or residential proxy for actual execution. Server IP is blocked at TLS handshake level for all three.
+
+---
+
+## 2026-06-14 04:10 @opencode-developer — Task: ADMIN-SEED
+
+**Thinking**: Created a default admin user for the PAOS-WEB frontend. The system previously had no seeded admin — just invite-only signup with invite codes. Added db/seed-admin.ts script that inserts admin@paos.nodealgo.com with a strong password, stored credentials in .env.local.
+
+**Decisions**:
+- Admin email: admin@paos.nodealgo.com (consistent with PAOS agent email convention @paos.nodealgo.com)
+- Password: 32-char base64 random (q/nwGo46akhKIvtikL4Cxul3qMnvWUd0)
+- Storage: .env.local with DEFAULT_ADMIN_EMAIL / DEFAULT_ADMIN_PASSWORD
+- Seed script: db/seed-admin.ts — idempotent (skips if email exists, upgrades to admin if not admin)
+- Invite code: ADMIN-SEED-2026 seeded along with user
+
+**Handoff Notes**: Default admin user created. See .env.local for credentials. The dashboard at port 3333 has no auth (local-only).
