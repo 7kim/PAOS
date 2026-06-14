@@ -209,7 +209,13 @@
       "role": "Google Antigravity CLI coding executor",
       "binary": "agy",
       "color": "#ec4899",
-      "configPaths": ["agents/antigravity/soul.md", "config/gemini/antigravity/mcp_config.json", "config/gemini/antigravity-cli/settings.json"],
+      "configPaths": [
+        "ANTIGRAVITY.md",
+        "agents/antigravity-cli/soul.md",
+        "config/gemini/antigravity-cli/mcp_config.json",
+        "config/gemini/antigravity-cli/settings.json",
+        ".antigravity-cli/1c4ef59e-3118-41c8-8acd-015be58c692c.json"
+      ],
       "mcpServers": ["shared-memory", "scaffold", "gitkraken"],
       "inbox": "memory/inbox/antigravity",
       "log": "logs/antigravity/events.md",
