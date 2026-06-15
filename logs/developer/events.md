@@ -65,3 +65,9 @@
 [2026-06-14T15:53:00Z] | opencode-developer | SYMLINK | ~/.gemini/config/mcp_config.json | Created symlink → config/gemini/config/mcp_config.json (was empty 0-byte file)
 [2026-06-14T15:54:00Z] | opencode-developer | SYMLINK | AI_Workflow/bin/* | Created 8 agent binary symlinks in bin/: claude, gemini, codex, ollama, agy, gk, antigravity, python
 [2026-06-14T15:55:00Z] | opencode-developer | VERIFY | - | Full system health check — 41/41 checks passed
+[2026-06-14T16:40:00Z] | opencode-developer | CREATE | BrainChart-main/developer/ | Created `developer` venv using `uv venv developer --python 3.14` for BrainChart playground
+[2026-06-14T16:41:00Z] | opencode-developer | INSTALL | BrainChart-main/developer/ | Installed 50 packages (ipykernel, fastapi, pandas, uvicorn, sqlalchemy, numpy, pydantic, etc.)
+[2026-06-14T16:42:00Z] | opencode-developer | INSTALL | ~/.local/share/jupyter/kernels/developer | Registered IPython kernel `developer (BrainChart)` for notebook execution
+[2026-06-14T16:43:00Z] | opencode-developer | FIX | brainchart/brain.py | Added venv PATH to subprocess env so `uvicorn` is found when launching server
+[2026-06-14T16:44:00Z] | opencode-developer | TEST | playground/example.ipynb | Full end-to-end test passed: CSV loading, symbol creation, server startup, shape CRUD, server shutdown
+[2026-06-14T16:45:00Z] | opencode-developer | UPDATE | playground/example.ipynb | Updated notebook kernel spec to `developer (BrainChart)`

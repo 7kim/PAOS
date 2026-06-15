@@ -288,3 +288,12 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Antigrity 2.0 ran uninterrupted through the config symlink replacement
 
 **Handoff Notes**: PAOS is fully recovered and integrated. All 7 agents have home→PAOS config symlinks. All 8 agent binaries have symlinks in AI_Workflow/bin/. The system is healthy. Next focus areas: (1) signal agent needs a binary - it's a PAOS-conceptual agent without a real CLI tool; (2) the Antigrity 2.0 symlinks survived a live-replace without crash.
+
+## [2026-06-14 16:45] @opencode-developer — Task: BrainChart environment setup
+**Thinking**: Set up a complete Python environment for the BrainChart project's playground notebook. Used `uv venv` to create a `developer` venv (Python 3.14), installed dependencies (ipykernel, fastapi, pandas, uvicorn, sqlalchemy, etc.), registered an IPython kernel, and fixed a PATH issue in brain.py where `uvicorn` wasn't found via subprocess. Full end-to-end test passed including CSV data loading, symbol creation, server startup, shape CRUD operations via the REST API, and clean shutdown.
+**Decisions**:
+- Created `developer` venv using `uv venv developer --python 3.14` at project root
+- Fixed `brainchart/brain.py` `run_servers()` to include `sys.prefix/bin` on PATH so uvicorn is resolved correctly
+- Updated notebook kernel spec from `Project_Brainy_Charts` to `developer (BrainChart)`
+- Installed 50 packages total — all core deps from `env/requirements.txt` plus ipykernel
+**Handoff Notes**: Environment is ready at `BrainChart-main/developer/`. Activate with `source developer/bin/activate` from project root. The notebook at `playground/example.ipynb` uses the `developer` kernel now. All 5 examples have been validated.
