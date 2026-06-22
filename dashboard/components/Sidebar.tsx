@@ -33,6 +33,7 @@ const nav = [
 
 const devNav = [
   { href: "/api-playground", label: "API Playground", icon: TestTube },
+  { href: "/settings", label: "Settings", icon: Code },
 ];
 
 const codeSrsNav = [

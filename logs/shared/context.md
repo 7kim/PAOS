@@ -104,3 +104,27 @@ But the user wants a multi-agent conversation: share this idea with Hermes, get 
 - This needs agent coordination: share → enhance → finalize → execute
 
 **Handoff Notes**: Hermes should read this, refine the idea from an infrastructure/always-on perspective, then pass the combined plan back to opencode-developer for implementation.
+
+---
+
+## 2026-06-22 19:21 @opencode-developer — Task: PIPE-20260622-185724-pia2ix
+
+**Thinking**: Hermes needs to check inbox. Phase 3 (Implementation Plan) is complete — IMPLEMENTATION_PLAN.md and TASKS.md are in the pipeline directory. I sent the handoff to Hermes' inbox with a detailed message. Hermes needs to do Phase 4 (review the plan) and then Phase 5 (pass back to opencode-developer for execution).
+
+**Decisions**:
+- Phase 3 artifacts delivered to hermes-nous inbox
+- Pending: Phase 4 (hermes-nous reviews), Phase 5 (opencode-developer executes)
+- Hermes needs to read inbox/memory first thing next session
+
+**Handoff Notes**: Hermes: read inbox/memory for PIPE-20260622-185724-pia2ix. Review IMPLEMENTATION_PLAN.md and TASKS.md in the pipeline dir. Send review verdict back to opencode-developer inbox.
+
+---
+
+## 2026-06-22 19:44 @opencode-developer — Task: PIPE-20260622-185724-pia2ix
+
+**Thinking**: Completed PIPE-20260622-185724-pia2ix: real-time cross-agent execution via systemd path unit. All 13 tasks executed. Systemd paos-pipeline.path watches memory/pipelines/ and triggers handler on new directory creation. Handler has 6 guardrails: lock, whitelist, rate limit, kill switch, task cap, timeout. Automatically writes inbox notifications and optionally spawns executors. Verified with test pipeline PIPE-TEST-0001.
+
+**Decisions**:
+- systemd PathChanged is non-recursive — new directory creation triggers it, but deep file updates don't. Acceptable for pipeline submission use case.
+
+**Handoff Notes**: Pipeline complete. Systemd unit active. Hermes has been notified via inbox message with full summary.

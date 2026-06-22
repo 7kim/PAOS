@@ -1,9 +1,16 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { 
-  ChevronRight, ExternalLink, FileCode, GitCommit, GitGraph, 
-  Search, Terminal, Layout, FolderTree, Eye, Layers 
+import {
+  ChevronRight, ExternalLink, FileCode, GitCommit, GitGraph,
+  Search, Terminal, Layout, FolderTree, Eye, Layers
 } from "lucide-react";
+import { formatTime } from "@/lib/settings";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Agent {
   id: string;
@@ -82,16 +89,16 @@ function parseDiff(diff: string) {
   return chunks;
 }
 
-function GitViewPage({ 
-  selectedAgent, 
-  setSelectedAgent, 
-  query, 
-  setQuery 
-}: { 
-  selectedAgent: string; 
-  setSelectedAgent: (a: string) => void; 
-  query: string; 
-  setQuery: (q: string) => void; 
+function GitViewPage({
+  selectedAgent,
+  setSelectedAgent,
+  query,
+  setQuery
+}: {
+  selectedAgent: string;
+  setSelectedAgent: (a: string) => void;
+  query: string;
+  setQuery: (q: string) => void;
 }) {
   const [commits, setCommits] = useState<Commit[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
@@ -126,77 +133,99 @@ function GitViewPage({
       .catch(() => setDetail(null));
   }, [selectedHash]);
 
-  function shortHash(h: string) { return h.slice(0, 7); }
+  function shortHash(h: string) {
+    return h?.substring(0, 8) ?? "";
+  }
+
   function timeAgo(iso: string) {
-    try {
-      const diff = Date.now() - new Date(iso).getTime();
-      const m = Math.floor(diff / 60000);
-      if (m < 1) return "now";
-      if (m < 60) return `${m}m`;
-      const h = Math.floor(m / 60);
-      if (h < 24) return `${h}h`;
-      return `${Math.floor(h / 24)}d`;
-    } catch { return iso; }
+    return formatTime(iso);
   }
 
   return (
     <div className="flex gap-4 h-full overflow-hidden">
       <div className="w-80 shrink-0 flex flex-col gap-3">
-        <select
-          value={selectedAgent}
-          onChange={(e) => { setSelectedAgent(e.target.value); setSelectedHash(null); }}
-          className="rounded-md border px-3 py-1.5 text-sm w-full"
-          style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--foreground)" }}
-        >
-          <option value="all">All agents</option>
-          {agents.filter((a, i, arr) => arr.findIndex((x) => x.email === a.email) === i).map((a) => (
-            <option key={a.id} value={a.id}>{a.name}</option>
-          ))}
-        </select>
+        {/* Agent selector + repo info header */}
+        <div className="flex items-center gap-2">
+          <Select
+            value={selectedAgent}
+            onValueChange={(v) => { setSelectedAgent(v); setSelectedHash(null); }}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="All agents" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All agents</SelectItem>
+              {agents.filter((a, i, arr) => arr.findIndex((x) => x.email === a.email) === i).map((a) => (
+                <SelectItem key={a.id} value={a.id}>{a.name}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Badge variant="outline" className="text-[10px] shrink-0">
+            GitKraken MCP
+          </Badge>
+        </div>
 
+        {/* Search input */}
         <div className="relative">
-          <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2" style={{ color: "var(--muted)" }} />
+          <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search commits..."
-            className="w-full rounded-md border py-1.5 pl-8 pr-3 text-xs"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--foreground)" }}
+            className="w-full rounded-md border border-input bg-card py-1.5 pl-8 pr-3 text-xs text-foreground"
           />
         </div>
 
-        <div className="flex-1 overflow-y-auto space-y-0.5 rounded-lg border" style={{ borderColor: "var(--border)" }}>
-          {loading && commits.length === 0 && (
-            <div className="p-4 text-xs text-center" style={{ color: "var(--muted)" }}>Loading...</div>
-          )}
-          {!loading && commits.length === 0 && (
-            <div className="p-4 text-xs text-center" style={{ color: "var(--muted)" }}>No commits found</div>
-          )}
-          {commits.map((c) => (
-            <button
-              key={c.hash}
-              onClick={() => setSelectedHash(c.hash)}
-              className="w-full text-left px-3 py-2 border-b text-xs transition-colors"
-              style={{
-                background: selectedHash === c.hash ? `${GK_COLOR}0d` : "transparent",
-                borderColor: "var(--border)",
-                borderLeft: selectedHash === c.hash ? `2px solid ${GK_COLOR}` : "2px solid transparent",
-              }}
-            >
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className="font-mono text-[10px]" style={{ color: GK_COLOR }}>{shortHash(c.hash)}</span>
-                <span className="text-[10px] ml-auto" style={{ color: "var(--muted)" }}>{timeAgo(c.date)}</span>
-              </div>
-              <div className="truncate font-medium text-xs">{c.message}</div>
-              <div className="text-[10px] mt-0.5" style={{ color: "var(--muted)" }}>{c.author_name}</div>
-            </button>
-          ))}
-        </div>
+        {/* Commit list card */}
+        <Card className="flex-1 overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-sm">Commits</CardTitle>
+          </CardHeader>
+          <CardContent className="p-0">
+            <ScrollArea className="h-[calc(100vh-12rem)]">
+              {loading && commits.length === 0 && (
+                <div className="p-4 space-y-3">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div key={i} className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <Skeleton className="h-4 w-16" />
+                        <Skeleton className="h-3 w-12" />
+                      </div>
+                      <Skeleton className="h-3 w-full" />
+                      <Skeleton className="h-3 w-24" />
+                    </div>
+                  ))}
+                </div>
+              )}
+              {!loading && commits.length === 0 && (
+                <div className="p-4 text-xs text-center text-muted-foreground">No commits found</div>
+              )}
+              {commits.map((c) => (
+                <button
+                  key={c.hash}
+                  onClick={() => setSelectedHash(c.hash)}
+                  className="w-full text-left p-3 border-b hover:bg-muted/50 transition-colors"
+                  style={{
+                    borderLeft: selectedHash === c.hash ? `2px solid ${GK_COLOR}` : "2px solid transparent",
+                    background: selectedHash === c.hash ? `${GK_COLOR}0d` : undefined,
+                  }}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs">{shortHash(c.hash)}</span>
+                    <Badge variant="outline" className="text-[10px]">{timeAgo(c.date)}</Badge>
+                  </div>
+                  <p className="text-xs mt-1 line-clamp-2">{c.message}</p>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">{c.author_name}</p>
+                </button>
+              ))}
+            </ScrollArea>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="flex-1 min-w-0 flex flex-col gap-3 overflow-hidden">
         {!detail ? (
-          <div className="rounded-lg border h-full flex flex-col items-center justify-center text-sm gap-3" style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}>
+          <div className="rounded-lg border h-full flex flex-col items-center justify-center text-sm gap-3 bg-card text-muted-foreground">
             <GitGraph size={40} className="opacity-20" style={{ color: GK_COLOR }} />
             <div className="text-center">
               <p>Select a commit to view diff</p>
@@ -204,115 +233,124 @@ function GitViewPage({
             </div>
           </div>
         ) : (
-          <div className="flex flex-col gap-3 h-full">
-            <div className="rounded-lg border p-3" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-mono text-xs" style={{ color: GK_COLOR }}>{detail.hash}</span>
-                <span className="text-xs" style={{ color: "var(--muted)" }}>by</span>
-                <span className="text-xs font-medium">{detail.author}</span>
-                <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>{detail.date}</span>
-              </div>
-              <div className="text-sm font-medium">{detail.messageShort}</div>
-            </div>
-
-            <div className="flex-1 overflow-hidden flex gap-3">
-              <div className="w-64 shrink-0 rounded-lg border overflow-hidden flex flex-col" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
-                <div className="px-3 py-2 border-b text-xs font-semibold flex items-center gap-1.5" style={{ borderColor: "var(--border)" }}>
-                  <FolderTree size={12} />
-                  Tree View
+          <Card className="h-full flex flex-col overflow-hidden">
+            <CardHeader>
+              <CardTitle className="font-mono text-sm">{shortHash(selectedHash!)}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1 overflow-hidden flex flex-col gap-3 p-4">
+              {/* Commit summary */}
+              <div className="rounded-lg border bg-card p-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="font-mono text-xs" style={{ color: GK_COLOR }}>{detail.hash}</span>
+                  <span className="text-xs text-muted-foreground">by</span>
+                  <span className="text-xs font-medium">{detail.author}</span>
+                  <span className="text-xs ml-auto text-muted-foreground">{detail.date}</span>
                 </div>
-                <div className="flex-1 overflow-y-auto p-2 space-y-1">
-                  {detail.tree.map((f) => (
-                    <div key={f.path} className="text-[10px] font-mono truncate px-2 py-0.5 rounded hover:bg-white/5 cursor-default" style={{ color: "var(--muted)" }}>
-                      {f.path}
-                    </div>
-                  ))}
-                </div>
+                <div className="text-sm font-medium">{detail.messageShort}</div>
               </div>
 
-              <div className="flex-1 flex flex-col overflow-hidden">
-                <div className="rounded-lg border overflow-hidden flex flex-col h-full" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
-                  <div className="border-b flex" style={{ borderColor: "var(--border)" }}>
-                    {(["diff", "files", "details"] as const).map((t) => (
-                      <button
-                        key={t}
-                        onClick={() => setDetailTab(t)}
-                        className="px-4 py-2 text-xs capitalize transition-colors"
-                        style={{
-                          color: detailTab === t ? "var(--accent)" : "var(--muted)",
-                          borderBottom: detailTab === t ? "2px solid var(--accent)" : "2px solid transparent",
-                        }}
-                      >
-                        {t}
-                      </button>
+              {/* Tree view + tabbed content */}
+              <div className="flex-1 overflow-hidden flex gap-3">
+                {/* Tree view sidebar */}
+                <div className="w-64 shrink-0 rounded-lg border bg-card overflow-hidden flex flex-col">
+                  <div className="px-3 py-2 border-b text-xs font-semibold flex items-center gap-1.5 text-muted-foreground">
+                    <FolderTree size={12} />
+                    Tree View
+                  </div>
+                  <div className="flex-1 overflow-y-auto p-2 space-y-1">
+                    {detail.tree.map((f) => (
+                      <div key={f.path} className="text-[10px] font-mono truncate px-2 py-0.5 rounded hover:bg-muted cursor-default text-muted-foreground">
+                        {f.path}
+                      </div>
                     ))}
                   </div>
-                  <div className="flex-1 overflow-auto p-0">
-                    {detailTab === "diff" && (
-                      <div className="font-mono text-[11px] leading-tight">
-                        {parseDiff(detail.diff).map((chunk, i) => (
-                          <div key={i} className="mb-4">
-                            <div className="px-3 py-1 bg-black/30 border-b text-[10px] font-bold flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
-                              <FileCode size={10} />
-                              {chunk.file}
-                            </div>
-                            <div className="grid grid-cols-2 gap-0 border-b" style={{ borderColor: "var(--border)" }}>
-                              <div className="border-r" style={{ borderColor: "var(--border)" }}>
-                                {chunk.oldLines.map((line, li) => (
-                                  <div key={li} className="flex px-2 py-0.5 whitespace-pre" style={{ background: line.startsWith("-") ? "rgba(239, 68, 68, 0.1)" : "transparent", color: line.startsWith("-") ? "#ef4444" : "var(--foreground)" }}>
-                                    <span className="w-6 shrink-0 text-right opacity-30 mr-2">{li + 1}</span>
-                                    {line}
-                                  </div>
-                                ))}
+                </div>
+
+                {/* Tabbed content area */}
+                <div className="flex-1 flex flex-col overflow-hidden">
+                  <div className="rounded-lg border bg-card overflow-hidden flex flex-col h-full">
+                    <div className="border-b flex">
+                      {(["diff", "files", "details"] as const).map((t) => (
+                        <button
+                          key={t}
+                          onClick={() => setDetailTab(t)}
+                          className="px-4 py-2 text-xs capitalize transition-colors"
+                          style={{
+                            color: detailTab === t ? "var(--accent)" : undefined,
+                            borderBottom: detailTab === t ? "2px solid var(--accent)" : "2px solid transparent",
+                          }}
+                        >
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="flex-1 overflow-auto p-0">
+                      {detailTab === "diff" && (
+                        <div className="font-mono text-[11px] leading-tight">
+                          {parseDiff(detail.diff).map((chunk, i) => (
+                            <div key={i} className="mb-4">
+                              <div className="px-3 py-1 bg-black/30 border-b text-[10px] font-bold flex items-center gap-2">
+                                <FileCode size={10} />
+                                {chunk.file}
                               </div>
-                              <div className="bg-black/10">
-                                {chunk.newLines.map((line, li) => (
-                                  <div key={li} className="flex px-2 py-0.5 whitespace-pre" style={{ background: line.startsWith("+") ? "rgba(34, 197, 94, 0.1)" : "transparent", color: line.startsWith("+") ? "#22c55e" : "var(--foreground)" }}>
-                                    <span className="w-6 shrink-0 text-right opacity-30 mr-2">{li + 1}</span>
-                                    {line}
-                                  </div>
-                                ))}
+                              <div className="grid grid-cols-2 gap-0 border-b">
+                                <div className="border-r">
+                                  {chunk.oldLines.map((line, li) => (
+                                    <div key={li} className="flex px-2 py-0.5 whitespace-pre" style={{ background: line.startsWith("-") ? "rgba(239, 68, 68, 0.1)" : "transparent", color: line.startsWith("-") ? "#ef4444" : undefined }}>
+                                      <span className="w-6 shrink-0 text-right opacity-30 mr-2">{li + 1}</span>
+                                      {line}
+                                    </div>
+                                  ))}
+                                </div>
+                                <div className="bg-black/10">
+                                  {chunk.newLines.map((line, li) => (
+                                    <div key={li} className="flex px-2 py-0.5 whitespace-pre" style={{ background: line.startsWith("+") ? "rgba(34, 197, 94, 0.1)" : "transparent", color: line.startsWith("+") ? "#22c55e" : undefined }}>
+                                      <span className="w-6 shrink-0 text-right opacity-30 mr-2">{li + 1}</span>
+                                      {line}
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {detailTab === "files" && (
-                      <div className="p-4 space-y-2">
-                        {detail.files.map((f) => (
-                          <div key={f.path} className="flex items-center gap-2 p-2 rounded-md border" style={{ borderColor: "var(--border)", background: "rgba(255,255,255,0.02)" }}>
-                            <span className="font-mono text-[10px] w-5 text-center" style={{ color: statusColors[f.status] || "var(--muted)" }}>
-                              {f.status}
-                            </span>
-                            <span className="text-xs font-mono truncate">{f.path}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {detailTab === "details" && (
-                      <div className="p-4 space-y-4">
-                        <div>
-                          <div className="text-xs mb-1" style={{ color: "var(--muted)" }}>Full Message</div>
-                          <div className="text-sm leading-relaxed whitespace-pre-wrap">{detail.message}</div>
+                          ))}
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
+                      )}
+                      {detailTab === "files" && (
+                        <div className="p-4 space-y-2">
+                          {detail.files.map((f) => (
+                            <div key={f.path} className="flex items-center gap-2 p-2 rounded-md border bg-card">
+                              <span className="font-mono text-[10px] w-5 text-center" style={{ color: statusColors[f.status] || undefined }}>
+                                {f.status}
+                              </span>
+                              <span className="text-xs font-mono truncate">{f.path}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      {detailTab === "details" && (
+                        <div className="p-4 space-y-4">
                           <div>
-                            <div className="text-xs mb-1" style={{ color: "var(--muted)" }}>Author</div>
-                            <div className="text-sm font-medium">{detail.author}</div>
+                            <div className="text-xs mb-1 text-muted-foreground">Full Message</div>
+                            <div className="text-sm leading-relaxed whitespace-pre-wrap">{detail.message}</div>
                           </div>
-                          <div>
-                            <div className="text-xs mb-1" style={{ color: "var(--muted)" }}>Email</div>
-                            <div className="text-xs font-mono">{detail.email}</div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <div className="text-xs mb-1 text-muted-foreground">Author</div>
+                              <div className="text-sm font-medium">{detail.author}</div>
+                            </div>
+                            <div>
+                              <div className="text-xs mb-1 text-muted-foreground">Email</div>
+                              <div className="text-xs font-mono">{detail.email}</div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         )}
       </div>
     </div>
@@ -334,8 +372,8 @@ function CodebaseVisualizer() {
 
   useEffect(() => { load(); }, [load]);
 
-  if (loading) return <div className="p-8 text-center text-sm" style={{ color: "var(--muted)" }}>Analyzing codebase...</div>;
-  if (!data) return <div className="p-8 text-center text-sm" style={{ color: "var(--muted)" }}>No data available</div>;
+  if (loading) return <div className="p-8 text-center text-sm text-muted-foreground">Analyzing codebase...</div>;
+  if (!data) return <div className="p-8 text-center text-sm text-muted-foreground">No data available</div>;
 
   const sortedDirs = Object.entries(data)
     .filter(([path]) => path.split("/").length <= 3)
@@ -350,47 +388,46 @@ function CodebaseVisualizer() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {sortedDirs.map(([path, stats]) => (
-          <div 
-            key={path} 
+          <div
+            key={path}
             onClick={() => setSelectedDir(path)}
-            className="rounded-lg border p-4 cursor-pointer transition-all hover:border-accent"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
+            className="rounded-lg border p-4 cursor-pointer transition-all hover:border-accent bg-card"
           >
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono truncate" style={{ color: "var(--muted)" }}>{path}</span>
+              <span className="text-xs font-mono truncate text-muted-foreground">{path}</span>
               <span className="text-[10px] px-1.5 py-0.5 rounded-full" style={{ background: `${GK_COLOR}18`, color: GK_COLOR }}>
                 {stats.files} files
               </span>
             </div>
-            <div className="text-lg font-bold" style={{ color: "var(--foreground)" }}>
+            <div className="text-lg font-bold">
               {stats.files} <span className="text-xs font-normal opacity-50">entities</span>
             </div>
             <div className="w-full h-1 bg-black/20 rounded-full mt-3 overflow-hidden">
-              <div 
-                className="h-full transition-all" 
-                style={{ width: `${Math.min(100, (stats.files / 100) * 100)}%`, background: GK_COLOR }} 
+              <div
+                className="h-full transition-all"
+                style={{ width: `${Math.min(100, (stats.files / 100) * 100)}%`, background: GK_COLOR }}
               />
             </div>
           </div>
         ))}
       </div>
       {selectedDir && (
-        <div className="rounded-lg border p-4 mt-6" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
+        <div className="rounded-lg border p-4 mt-6 bg-card">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold">Details: {selectedDir}</h3>
-            <button onClick={() => setSelectedDir(null)} className="text-xs" style={{ color: "var(--muted)" }}>Close</button>
+            <button onClick={() => setSelectedDir(null)} className="text-xs text-muted-foreground">Close</button>
           </div>
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="p-3 rounded-lg bg-black/20">
-              <div className="text-xs" style={{ color: "var(--muted)" }}>Total Files</div>
+              <div className="text-xs text-muted-foreground">Total Files</div>
               <div className="text-xl font-bold">{data[selectedDir].files}</div>
             </div>
             <div className="p-3 rounded-lg bg-black/20">
-              <div className="text-xs" style={{ color: "var(--muted)" }}>Complexity</div>
+              <div className="text-xs text-muted-foreground">Complexity</div>
               <div className="text-xl font-bold">Medium</div>
             </div>
             <div className="p-3 rounded-lg bg-black/20">
-              <div className="text-xs" style={{ color: "var(--muted)" }}>Depth</div>
+              <div className="text-xs text-muted-foreground">Depth</div>
               <div className="text-xl font-bold">{selectedDir.split("/").length}</div>
             </div>
           </div>
@@ -413,7 +450,7 @@ export default function GitViewWrapper() {
             <GitGraph size={20} style={{ color: GK_COLOR }} />
             <h1 className="text-xl font-semibold">Git View</h1>
           </div>
-          <div className="flex bg-black/20 rounded-lg p-1 border" style={{ borderColor: "var(--border)" }}>
+          <div className="flex bg-muted rounded-lg p-1 border">
             {(["commits", "visualize"] as const).map((t) => (
               <button
                 key={t}
@@ -421,7 +458,7 @@ export default function GitViewWrapper() {
                 className="px-3 py-1 text-xs rounded-md transition-all"
                 style={{
                   background: activeTab === t ? GK_COLOR : "transparent",
-                  color: activeTab === t ? "white" : "var(--muted)",
+                  color: activeTab === t ? "white" : undefined,
                   fontWeight: activeTab === t ? 600 : 400,
                 }}
               >
@@ -431,18 +468,18 @@ export default function GitViewWrapper() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: `${GK_COLOR}18`, color: GK_COLOR }}>
+          <Badge variant="secondary" className="text-[10px]">
             Powered by GitKraken MCP
-          </span>
+          </Badge>
         </div>
       </div>
 
       {activeTab === "commits" ? (
-        <GitViewPage 
-          selectedAgent={selectedAgent} 
-          setSelectedAgent={setSelectedAgent} 
-          query={query} 
-          setQuery={setQuery} 
+        <GitViewPage
+          selectedAgent={selectedAgent}
+          setSelectedAgent={setSelectedAgent}
+          query={query}
+          setQuery={setQuery}
         />
       ) : (
         <CodebaseVisualizer />

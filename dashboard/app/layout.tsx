@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import ThemeProvider from "@/components/ThemeProvider";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,12 +31,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`h-full ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={cn("h-full", inter.variable, jetbrainsMono.variable, "font-sans", geist.variable)}>
       <body className="flex h-screen overflow-hidden" style={{ background: "var(--background)" }}>
-        <Sidebar />
-        <main className="flex-1 overflow-auto p-6">
-          {children}
-        </main>
+        <ThemeProvider>
+          <TooltipProvider>
+            <Sidebar />
+            <main className="flex-1 overflow-auto p-6">
+              {children}
+            </main>
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

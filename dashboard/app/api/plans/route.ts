@@ -21,7 +21,7 @@ export async function GET() {
   // ── Source 1: memory/pipelines/ (primary) ────────────────────────────────
   try {
     const dirs = await readdir(PIPELINES_DIR).catch(() => []);
-    const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-"));
+    const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE"));
 
     for (const dir of pipelineDirs) {
       const pipelineDir = join(PIPELINES_DIR, dir);

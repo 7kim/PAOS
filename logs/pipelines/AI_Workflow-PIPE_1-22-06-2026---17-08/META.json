@@ -1,6 +1,6 @@
 {
-  "pipeline_id": "PIPE-20260622-170843-pgz8kg",
-  "prompt": "Build a Projects page on the PAOS dashboard with file-explorer layout, two tabs (Current / Previous), and three API endpoints. Keep it lightweight — zero new npm dependencies.",
+  "pipeline_id": "AI_Workflow-PIPE_1-22-06-2026---17-08",
+  "prompt": "Build a Projects page on the PAOS dashboard with file-explorer layout, two tabs (Current / Previous), and three API endpoints. Keep it lightweight \u2014 zero new npm dependencies.",
   "status": "completed",
   "created_at": "2026-06-22T17:08:43.168Z",
   "completed_at": "2026-06-22T18:10:00.000Z",
@@ -12,14 +12,19 @@
       "role": "planner",
       "label": "Plan",
       "status": "completed",
-      "artifacts": ["PLAN.md", "TASKS.md"]
+      "artifacts": [
+        "PLAN.md",
+        "TASKS.md"
+      ]
     },
     {
       "agent": "opencode-developer",
       "role": "executor",
       "label": "Execute",
       "status": "completed",
-      "artifacts": ["WALKTHROUGH.md"]
+      "artifacts": [
+        "WALKTHROUGH.md"
+      ]
     }
   ]
 }

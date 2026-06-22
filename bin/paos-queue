@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# PAOS Pipeline Queue — FIFO queue management
+# Usage:
+#   paos-queue enqueue <pipeline-id>    — Add pipeline to pending
+#   paos-queue dequeue                  — Move oldest pending → running (returns id)
+#   paos-queue done <pipeline-id>       — Move running → done
+#   paos-queue list [pending|running|done] — List queues
+#   paos-queue status <pipeline-id>     — Show which queue a pipeline is in
+
+PAOS_HOME="${PAOS_HOME:-$HOME/AI_Workflow}"
+QUEUE_DIR="$PAOS_HOME/memory/queue"
+
+case "${1:-help}" in
+  enqueue)
+    id="$2"
+    if [ -z "$id" ]; then echo "Usage: paos-queue enqueue <pipeline-id>"; exit 1; fi
+    ln -sf "../../pipelines/$id" "$QUEUE_DIR/pending/$id" 2>/dev/null
+    echo "enqueued:$id"
+    ;;
+
+  dequeue)
+    # Pick the oldest pending (FIFO by symlink creation time)
+    oldest=$(ls -1t "$QUEUE_DIR/pending/" 2>/dev/null | tail -1)
+    if [ -z "$oldest" ]; then echo "queue:empty"; exit 0; fi
+    mv "$QUEUE_DIR/pending/$oldest" "$QUEUE_DIR/running/$oldest" 2>/dev/null
+    echo "dequeued:$oldest"
+    ;;
+
+  done)
+    id="$2"
+    if [ -z "$id" ]; then echo "Usage: paos-queue done <pipeline-id>"; exit 1; fi
+    if [ -L "$QUEUE_DIR/running/$id" ]; then
+      mv "$QUEUE_DIR/running/$id" "$QUEUE_DIR/done/$id" 2>/dev/null
+      echo "done:$id"
+    else
+      echo "not-running:$id"
+      exit 1
+    fi
+    ;;
+
+  list)
+    queue="${2:-all}"
+    case "$queue" in
+      pending) ls "$QUEUE_DIR/pending/" 2>/dev/null ;;
+      running) ls "$QUEUE_DIR/running/" 2>/dev/null ;;
+      done)    ls "$QUEUE_DIR/done/" 2>/dev/null | tail -10 ;;
+      all)
+        echo "=== pending ==="
+        ls "$QUEUE_DIR/pending/" 2>/dev/null | head -5 || echo "(empty)"
+        echo "=== running ==="
+        ls "$QUEUE_DIR/running/" 2>/dev/null | head -5 || echo "(empty)"
+        echo "=== done ==="
+        ls "$QUEUE_DIR/done/" 2>/dev/null | head -5 || echo "(empty)"
+        ;;
+    esac
+    ;;
+
+  status)
+    id="$2"
+    if [ -z "$id" ]; then echo "Usage: paos-queue status <pipeline-id>"; exit 1; fi
+    if [ -L "$QUEUE_DIR/pending/$id" ]; then echo "pending"
+    elif [ -L "$QUEUE_DIR/running/$id" ]; then echo "running"
+    elif [ -L "$QUEUE_DIR/done/$id" ]; then echo "done"
+    else echo "not-found"; fi
+    ;;
+
+  *)
+    echo "PAOS Pipeline Queue — FIFO queue management"
+    echo ""
+    echo "Usage:"
+    echo "  paos-queue enqueue <id>      Add to pending"
+    echo "  paos-queue dequeue           Move oldest pending → running"
+    echo "  paos-queue done <id>         Move running → done"
+    echo "  paos-queue list [queue]      List queues (pending|running|done|all)"
+    echo "  paos-queue status <id>       Check which queue a pipeline is in"
+    ;;
+esac

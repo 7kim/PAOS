@@ -6,18 +6,26 @@
 ---
 
 ## Last Agent
-- **Agent**: hermes-nous
-- **Tool**: Hermes (Nous Research)
-- **Timestamp**: 2026-06-22T18:56:44.107Z
+- **Agent**: opencode-developer
+- **Tool**: OpenCode Developer
+- **Timestamp**: 2026-06-22T19:48:57.002Z
 
 ## Active Task
-PAOS Dashboard and Pipeline System — fully operational
+PIPE-20260622-185724-pia2ix — verified and finalized
 
 ## What Was Just Done
-- Dynamic pipeline visualization: N-node phase flow with expandable artifacts, diff view, live pipeline.json, task summary, and walkthrough\n- Execute API (POST /api/pipelines/[id]/execute) that spawns opencode run in background\n- Play button on pipelines list to trigger execution\n- Review & Enhance multi-agent pipeline flow (opencode → hermes → opencode)\n- Show diff toggle for enhanced plans inside phase headers\n- Slash commands for OpenCode and Claude Code: /pipelines-view, /pipeline-execute\n- Pipeline protocol instructions for both agents (AGENTS.md, CLAUDE.md)\n- Pipeline progress bars read from pipeline.json (live) instead of static TASKS.md markers\n- Polling stops and spinner stops when pipeline hits 100%\n- Pipeline phases use new dynamic phases[] format (not legacy planner/executor)\n- Task parsing uses LAST TASKS.md (latest phase) not first\n- API Playground updated with all 18 endpoints (pipelines detail, execute, projects, code-srs)\n- Projects page built with file explorer tree, current/previous tabs\n- Task stats use actual parsed task count, capped enrichment from pipeline.json\n- List API reads pipeline.json for live progress on all pipelines
+- Verified all 13 tasks of PIPE-20260622-185724-pia2ix are complete
+- Confirmed systemd units (paos-pipeline.path, paos-pipeline.service) are active/enabled
+- Confirmed handler script (bin/paos-pipeline-handler.sh) and fallback watcher (bin/paos-pipeline-watch.sh) installed
+- Confirmed whitelist config (~/.config/paos/pipeline-whitelist.txt) exists
+- Confirmed documentation updated in CLAUDE.md, INDEX.md, developer/soul.md, hermes-nous/soul.md
+- Confirmed WALKTHROUGH.md written with full summary
+- Fixed pipeline.json status from 'failed' to 'completed' (remnant from truncated execution attempt)
+- Logged to global_ledger
 
 ## What Is NOT Done Yet
-- Terminals page (view/kill running terminal sessions)\n- Enhance Projects page as full file explorer with file views\n- IDE Mode with CodeMirror 6\n- Built-in terminal (xterm.js)\n- Research Termux AI\n- PAOS web finalization/polish
+- No pending tasks for this pipeline
+- User may want to review the walkthrough at memory/pipelines/PIPE-20260622-185724-pia2ix/WALKTHROUGH.md
 
 ## Active Projects
 

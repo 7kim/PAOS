@@ -36,6 +36,7 @@ const endpoints: ApiEndpoint[] = [
   { path: "/api/pipelines", method: "GET", description: "List all pipelines with status, progress, and phases" },
   { path: "/api/pipelines/[id]", method: "GET", description: "Pipeline detail — phases, artifacts, tasks, diffs", dynamic: { param: "id", options: [] } },
   { path: "/api/pipelines/[id]/execute", method: "POST", description: "Execute a pipeline — spawns opencode run in background", dynamic: { param: "id", options: [] }, bodyPlaceholder: "{}" },
+  { path: "/api/pipelines/[id]/intervene", method: "POST", description: "Intervene — pause pipeline and log intervention note", dynamic: { param: "id", options: [] }, bodyPlaceholder: '{"phase": 1, "note": "I want to review this phase"}' },
 
   // ── Projects ──
   { path: "/api/projects", method: "GET", description: "List all projects (current + previous) with status and activity" },

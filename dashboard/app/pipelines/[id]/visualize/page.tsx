@@ -18,6 +18,7 @@ import {
   ExternalLink,
   Eye,
   EyeOff,
+  HandMetal,
 } from "lucide-react";
 
 interface PhaseArtifact {
@@ -151,6 +152,7 @@ export default function PipelineVisualizePage() {
 
   const [openArtifacts, setOpenArtifacts] = useState<Set<string>>(new Set());
   const [showDiff, setShowDiff] = useState<Set<string>>(new Set());
+  const [isIntervening, setIsIntervening] = useState(false);
 
   const load = useCallback(async () => {
     if (!id) return;
@@ -194,6 +196,23 @@ export default function PipelineVisualizePage() {
       const baseName = art.filename.replace(/\.md$/, "").replace(/-[a-zA-Z0-9_-]+$/, "");
       return (data?.versionedArtifacts[baseName]?.filter((v) => v.filename !== art.filename).length ?? 0) > 0;
     });
+  }
+
+  async function handleIntervene(phaseNum: number, phaseLabel: string) {
+    if (!data?.id) return;
+    setIsIntervening(true);
+    try {
+      // Create an INTERVENE.md file in the pipeline directory via the API
+      await fetch(`/api/pipelines/${data.id}/intervene`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ phase: phaseNum, label: phaseLabel }),
+      });
+      // Reload to show the new artifact
+      window.location.reload();
+    } catch {
+      setIsIntervening(false);
+    }
   }
 
   if (loading) {
@@ -279,6 +298,24 @@ export default function PipelineVisualizePage() {
                       <span className="text-[10px]" style={{ color: "var(--muted)" }}>
                         Phase {idx + 1}/{data.phases.length}
                       </span>
+                      {data.stats.progress < 100 && !isIntervening && (
+                        <button
+                          type="button"
+                          onClick={() => handleIntervene(idx + 1, phase.label)}
+                          className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border transition-colors hover:opacity-70"
+                          style={{ borderColor: "var(--border)", color: "var(--muted)" }}
+                          title="Intervene — add intervene note to this phase"
+                        >
+                          <HandMetal size={10} />
+                          Intervene
+                        </button>
+                      )}
+                      {isIntervening && (
+                        <span className="text-[10px] flex items-center gap-1" style={{ color: "#8b5cf6" }}>
+                          <Loader2 size={10} className="animate-spin" />
+                          Adding intervene note...
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -330,13 +367,28 @@ export default function PipelineVisualizePage() {
               </div>
 
               {!isLast && (
-                <div className="relative z-10 flex justify-center py-2">
+                <button
+                  type="button"
+                  disabled={phase.status === "completed"}
+                  onClick={() => {
+                    if (phase.status === "completed") return;
+                    const confirmed = confirm(`Advance pipeline to the next phase?\n\nCurrent: ${phase.label} (${phase.status})`);
+                    if (confirmed) {
+                      fetch(`/api/pipelines/${data.id}/execute`, { method: "POST" })
+                        .then(() => window.location.reload())
+                        .catch(() => {});
+                    }
+                  }}
+                  className="relative z-10 flex justify-center py-2 w-full transition-opacity"
+                  style={{ opacity: phase.status === "completed" ? 0.4 : 1, cursor: phase.status === "completed" ? "default" : "pointer" }}
+                  title={phase.status === "completed" ? `${phase.label} already completed — click next undone phase's arrow` : "Click to advance to next phase"}
+                >
                   <div className="w-8 h-8 rounded-full flex items-center justify-center border-2"
                     style={{ background: "var(--card-bg)", borderColor: color }}
                   >
                     <ArrowDown size={16} style={{ color }} />
                   </div>
-                </div>
+                </button>
               )}
             </div>
           );

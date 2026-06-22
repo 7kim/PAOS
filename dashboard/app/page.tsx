@@ -1,6 +1,10 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { Bot, CheckCircle2, Inbox, ListTodo, ScrollText, ShieldCheck, TriangleAlert, X } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 
 interface Stats {
   tasks: number;
@@ -46,19 +50,10 @@ function agentColor(agent: string) {
   return "#64748b";
 }
 
+import { formatTime } from "@/lib/settings";
+
 function timeAgo(iso: string) {
-  if (!iso) return "";
-  try {
-    const diff = Date.now() - new Date(iso).getTime();
-    const m = Math.floor(diff / 60000);
-    if (m < 1) return "just now";
-    if (m < 60) return `${m}m ago`;
-    const h = Math.floor(m / 60);
-    if (h < 24) return `${h}h ago`;
-    return `${Math.floor(h / 24)}d ago`;
-  } catch {
-    return iso;
-  }
+  return formatTime(iso);
 }
 
 export default function OverviewPage() {
@@ -91,156 +86,145 @@ export default function OverviewPage() {
   return (
     <div>
       <h1 className="text-xl font-semibold mb-1">Overview</h1>
-      <p className="text-sm mb-6" style={{ color: "var(--muted)" }}>
+      <p className="text-sm text-muted-foreground mb-6">
         Live AI orchestration status — refreshes every 5s
       </p>
 
       <div className="grid grid-cols-2 gap-4 mb-6 lg:grid-cols-4">
         {cards.map(({ label, value, icon: Icon, color }) => (
-          <div
-            key={label}
-            className="rounded-lg p-4 border"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs" style={{ color: "var(--muted)" }}>{label}</span>
+          <Card key={label}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">{label}</CardTitle>
               <Icon size={14} style={{ color }} />
-            </div>
-            <div className="text-2xl font-bold font-mono capitalize" style={{ color }}>{value}</div>
-          </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold font-mono capitalize" style={{ color }}>{value}</div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1fr_1.35fr]">
-        <div
-          className="rounded-lg border overflow-hidden"
-          style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-        >
-          <div className="px-4 py-3 border-b flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
+        <Card>
+          <CardHeader className="flex flex-row items-center gap-2 pb-2">
             {unhealthyAgents.length === 0 ? (
               <CheckCircle2 size={15} style={{ color: "var(--green)" }} />
             ) : (
               <TriangleAlert size={15} style={{ color: "var(--accent)" }} />
             )}
-            <span className="text-sm font-medium">Agent Health</span>
-            <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>
+            <CardTitle className="text-sm font-medium">Agent Health</CardTitle>
+            <span className="text-xs text-muted-foreground ml-auto">
               {stats?.degradedAgents ?? 0} degraded
             </span>
-          </div>
-          <div className="p-4">
+          </CardHeader>
+          <CardContent>
             {unhealthyAgents.length === 0 ? (
-              <div className="text-sm" style={{ color: "var(--muted)" }}>
+              <div className="text-sm text-muted-foreground">
                 All registered agents pass binary, config, MCP, identity, inbox, and log checks.
               </div>
             ) : (
               <div className="space-y-3">
                 {unhealthyAgents.map((agent) => (
-                  <div key={agent.id} className="rounded-md border p-3" style={{ borderColor: "var(--border)" }}>
+                  <div key={agent.id} className="rounded-md border p-3">
                     <div className="flex items-center gap-2">
                       <span className="font-medium text-sm">{agent.label}</span>
                       <span className="text-xs font-mono ml-auto" style={{ color: "var(--accent)" }}>{agent.status}</span>
                     </div>
-                    <div className="text-xs mt-1" style={{ color: "var(--muted)" }}>
+                    <div className="text-xs mt-1 text-muted-foreground">
                       Failed checks: {agent.failedChecks.join(", ")}
                     </div>
                   </div>
                 ))}
               </div>
             )}
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
-        <div
-          className="rounded-lg border overflow-hidden"
-          style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-        >
-          <div className="px-4 py-3 border-b flex items-center justify-between" style={{ borderColor: "var(--border)" }}>
-            <span className="text-sm font-medium">Recent Activity</span>
-            <span className="text-xs" style={{ color: "var(--muted)" }}>click to expand</span>
-          </div>
-          <div className="divide-y" style={{ borderColor: "var(--border)" }}>
-            {recent.length === 0 && (
-              <div className="px-4 py-8 text-center text-sm" style={{ color: "var(--muted)" }}>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Recent Activity</CardTitle>
+            <span className="text-xs text-muted-foreground">click to expand</span>
+          </CardHeader>
+          <CardContent className="p-0">
+            {recent.length === 0 ? (
+              <div className="px-4 py-8 text-center text-sm text-muted-foreground">
                 No activity yet
               </div>
-            )}
-            {recent.map((entry, i) => {
-              const isSelected = selectedEntry?.timestamp === entry.timestamp && selectedEntry?.description === entry.description;
-              return (
-                <div key={i}>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedEntry(isSelected ? null : entry)}
-                    className="w-full text-left px-4 py-3 flex items-start gap-3 transition-colors"
-                    style={{ background: isSelected ? "rgba(252,213,53,0.05)" : undefined }}
-                  >
-                    <span
-                      className="w-2 h-2 rounded-full mt-1.5 shrink-0"
-                      style={{ background: agentColor(entry.agent) }}
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs font-medium" style={{ color: agentColor(entry.agent) }}>
-                          {entry.agent}
-                        </span>
+            ) : (
+              <div className="divide-y">
+                {recent.map((entry, i) => {
+                  const isSelected = selectedEntry?.timestamp === entry.timestamp && selectedEntry?.description === entry.description;
+                  return (
+                    <div key={i}>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedEntry(isSelected ? null : entry)}
+                        className="w-full text-left px-4 py-3 flex items-start gap-3 transition-colors"
+                        style={{ background: isSelected ? "rgba(252,213,53,0.05)" : undefined }}
+                      >
                         <span
-                          className="text-xs px-1.5 py-0.5 rounded"
-                          style={{ background: "rgba(255,255,255,0.05)", color: "var(--muted)" }}
-                        >
-                          {entry.action}
-                        </span>
-                        <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>
-                          {timeAgo(entry.timestamp)}
-                        </span>
-                      </div>
-                      <p className="text-sm mt-0.5 truncate" style={{ color: "var(--foreground)", opacity: 0.8 }}>
-                        {entry.description}
-                      </p>
-                    </div>
-                  </button>
-                  {isSelected && (
-                    <div
-                      className="px-4 pb-4 pt-2 border-t"
-                      style={{ background: "rgba(252,213,53,0.03)", borderColor: "var(--border)" }}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold" style={{ color: "var(--accent)" }}>Detail</span>
-                        <button
-                          type="button"
-                          title="Close"
-                          onClick={() => setSelectedEntry(null)}
-                          className="p-0.5 rounded"
-                          style={{ color: "var(--muted)" }}
-                        >
-                          <X size={12} />
-                        </button>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 text-xs mb-2">
-                        <div>
-                          <span style={{ color: "var(--muted)" }}>Timestamp </span>
-                          <span className="font-mono">{entry.timestamp}</span>
-                        </div>
-                        {entry.task && (
-                          <div>
-                            <span style={{ color: "var(--muted)" }}>Task </span>
-                            <span className="font-mono">{entry.task}</span>
+                          className="w-2 h-2 rounded-full mt-1.5 shrink-0"
+                          style={{ background: agentColor(entry.agent) }}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-xs font-medium" style={{ color: agentColor(entry.agent) }}>
+                              {entry.agent}
+                            </span>
+                            <Badge variant="outline" className="text-xs">{entry.action}</Badge>
+                            <span className="text-xs text-muted-foreground ml-auto">
+                              {timeAgo(entry.timestamp)}
+                            </span>
                           </div>
-                        )}
-                      </div>
-                      {entry.file && (
-                        <div className="text-xs mb-2">
-                          <span style={{ color: "var(--muted)" }}>File </span>
-                          <span className="font-mono break-all">{entry.file}</span>
+                          <p className="text-sm mt-0.5 truncate text-foreground/80">
+                            {entry.description}
+                          </p>
+                        </div>
+                      </button>
+                      {isSelected && (
+                        <div
+                          className="px-4 pb-4 pt-2 border-t"
+                          style={{ background: "rgba(252,213,53,0.03)" }}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs font-semibold" style={{ color: "var(--accent)" }}>Detail</span>
+                            <button
+                              type="button"
+                              title="Close"
+                              onClick={() => setSelectedEntry(null)}
+                              className="p-0.5 rounded text-muted-foreground"
+                            >
+                              <X size={12} />
+                            </button>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 text-xs mb-2">
+                            <div>
+                              <span className="text-muted-foreground">Timestamp </span>
+                              <span className="font-mono">{entry.timestamp}</span>
+                            </div>
+                            {entry.task && (
+                              <div>
+                                <span className="text-muted-foreground">Task </span>
+                                <span className="font-mono">{entry.task}</span>
+                              </div>
+                            )}
+                          </div>
+                          {entry.file && (
+                            <div className="text-xs mb-2">
+                              <span className="text-muted-foreground">File </span>
+                              <span className="font-mono break-all">{entry.file}</span>
+                            </div>
+                          )}
+                          <div className="text-sm leading-relaxed break-words">{entry.description}</div>
                         </div>
                       )}
-                      <div className="text-sm leading-relaxed break-words">{entry.description}</div>
                     </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                  );
+                })}
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
 
       <div className="grid grid-cols-2 gap-4 mt-4 md:grid-cols-4">
@@ -248,17 +232,15 @@ export default function OverviewPage() {
           { label: "Tasks", value: stats?.tasks ?? 0, icon: ListTodo, color: "var(--green)" },
           { label: "Plans", value: stats?.plans ?? 0, icon: ScrollText, color: "var(--purple)" },
         ].map(({ label, value, icon: Icon, color }) => (
-          <div
-            key={label}
-            className="rounded-lg p-4 border"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs" style={{ color: "var(--muted)" }}>{label}</span>
+          <Card key={label}>
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">{label}</CardTitle>
               <Icon size={14} style={{ color }} />
-            </div>
-            <div className="text-2xl font-bold font-mono" style={{ color }}>{value}</div>
-          </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold font-mono" style={{ color }}>{value}</div>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </div>

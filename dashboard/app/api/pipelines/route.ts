@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile } from "fs/promises";
+import { readdir, readFile, stat } from "fs/promises";
 import { join } from "path";
 
 const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
@@ -8,7 +8,7 @@ const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
 export async function GET() {
   try {
     const dirs = await readdir(PIPELINES_DIR).catch(() => []);
-    const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-"));
+    const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE"));
 
     const pipelines = await Promise.all(
       pipelineDirs.map(async (dir) => {
@@ -61,6 +61,11 @@ export async function GET() {
         return {
           id: dir,
           status: meta.status ?? "unknown",
+          queue: (await stat(join(PIPELINES_DIR.replace("pipelines", "queue"), "running", dir)).then(() => "running").catch(() =>
+            stat(join(PIPELINES_DIR.replace("pipelines", "queue"), "pending", dir)).then(() => "pending").catch(() =>
+              stat(join(PIPELINES_DIR.replace("pipelines", "queue"), "done", dir)).then(() => "done").catch(() => "none")
+            )
+          )),
           phases: Array.isArray(meta.phases) ? meta.phases.map((p: Record<string, unknown>) => ({
             agent: p.agent, role: p.role, label: p.label, status: p.status,
           })) : [],

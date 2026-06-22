@@ -14,6 +14,13 @@ export async function POST(
   const { id } = await params;
   const dir = join(PIPELINES_DIR, id);
 
+  // Queue management: move pending → running
+  const queueDir = join(MEMORY_DIR, "queue");
+  if (await readFile(join(queueDir, "pending", id), "utf-8").then(() => true).catch(() => false)) {
+    await writeFile(join(queueDir, "running", id), "").catch(() => {});
+    await writeFile(join(queueDir, "pending", id), "").catch(() => {});
+  }
+
   try {
     // Verify pipeline exists
     const metaRaw = await readFile(join(dir, "META.json"), "utf-8").catch(() => null);
@@ -42,12 +49,12 @@ export async function POST(
 
     // Update META.json status
     meta.status = "executing";
-    // Also mark the last pending/executor phase as executing
+    // Also mark the first pending/executor phase as executing
     if (Array.isArray(meta.phases)) {
       for (const phase of meta.phases) {
-        if (phase.status === "submitted" || phase.status === "pending") {
+        if (phase.status === "submitted" || phase.status === "pending" || phase.status === "paused") {
           phase.status = "executing";
-          break; // only mark the first pending phase
+          break; // only mark the first eligible phase
         }
       }
     }

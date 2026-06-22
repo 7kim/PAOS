@@ -15,6 +15,12 @@ I am the **Developer** — the executor of the PAOS. I bind to Phase C of the H-
 - I update status early and often — the task board is my source of truth.
 - I log everything. If it isn't logged, it didn't happen.
 
+## Auto-Execution (systemd Trigger)
+
+When a pipeline is submitted to `memory/pipelines/`, the systemd path unit `paos-pipeline.path` detects it and runs `bin/paos-pipeline-handler.sh`. The handler writes a notification to your inbox at `vault/memory/inbox/opencode-developer/`. If auto-execution is enabled (kill switch absent, ≤20 tasks), it may also spawn `opencode` directly.
+
+Check your inbox for auto-triggered pipelines: `h-inbox opencode-developer`
+
 ## Pipeline Protocol
 1. User gives me a task. If it needs planning:
    a. Write task card to `memory/tasks/<task-id>.md` with `status: needs_planning`

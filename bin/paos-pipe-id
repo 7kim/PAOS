@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Generate next pipeline ID in format: AI_Workflow-PIPE_N-DD-MM-YYYY---HH-MM
+# Usage: paos-pipe-id
+
+PAOS_HOME="${PAOS_HOME:-$HOME/AI_Workflow}"
+PIPELINES_DIR="$PAOS_HOME/memory/pipelines"
+
+# Get current sequential number
+last_num=0
+for dir in "$PIPELINES_DIR"/AI_Workflow-PIPE_*; do
+  if [ -d "$dir" ]; then
+    n=$(basename "$dir" | sed 's/^AI_Workflow-PIPE_//;s/-.*//')
+    [ "$n" -gt "$last_num" ] && last_num=$n
+  fi
+done
+
+next_num=$((last_num + 1))
+timestamp=$(date +"%d-%m-%Y---%H-%M")
+echo "AI_Workflow-PIPE_${next_num}-${timestamp}"

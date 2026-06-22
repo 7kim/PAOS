@@ -165,6 +165,8 @@ When the user types `/h-pipeline <prompt>`, follow this protocol:
 
 The MCP tool handles: creating `memory/pipelines/PIPE-xxx/` with PLAN.md + TASKS.md + META.json, creating a task card, sending the plan to the executor's inbox, and logging to the global ledger.
 
+**Pipeline naming convention**: `AI_Workflow-PIPE_N-DD-MM-YYYY---HH-MM` (sequential number, date, 24hr time). Use `bin/paos-pipe-id` to generate the next ID.
+
 ### Pipeline Execution Protocol (when acting as executor)
 
 When you receive a pipeline task (your inbox says "pipeline PIPE-xxx"):
@@ -181,6 +183,33 @@ When you receive a pipeline task (your inbox says "pipeline PIPE-xxx"):
 3. **Update TASKS.md** markers: `[ ]` → `[~]` → `[x]` as you progress
 
 4. **Update META.json**: set `status: "completed"` and `completed_at`
+
+### Auto-Execution (systemd Path Unit)
+
+PAOS supports real-time cross-agent execution: when a pipeline is submitted, the executor is automatically notified (and optionally spawned) without polling.
+
+**Mechanism**: systemd path unit `paos-pipeline.path` watches `memory/pipelines/` for new submissions.
+
+| Component | Path | Purpose |
+|-----------|------|---------|
+| `.path` unit | `~/.config/systemd/user/paos-pipeline.path` | Watches `memory/pipelines/` with `PathChanged` |
+| `.service` unit | `~/.config/systemd/user/paos-pipeline.service` | Runs handler script |
+| Handler | `bin/paos-pipeline-handler.sh` | Routes pipeline to executor, checks guardrails |
+| Fallback | `bin/paos-pipeline-watch.sh` | Inotifywait loop for containers/WSL |
+| Whitelist | `~/.config/paos/pipeline-whitelist.txt` | Auto-execute only from trusted planners |
+| Kill switch | `~/.config/paos/auto-execute.off` | File-based disable of all auto-execution |
+
+**Guardrails**: Lock file → whitelist → rate limit (300s/agent) → task count cap (≤20 auto) → 30m execution timeout → kill switch.
+
+**When a pipeline is submitted**:
+1. systemd fires → handler runs
+2. Handler reads META.json → determines executor agent
+3. Checks guardrails (whitelist, rate, kill switch, task count)
+4. Writes notification to executor's inbox
+5. Updates pipeline.json status to `"executing"`
+6. If auto-execute enabled: spawns `opencode` or `claude` in background
+
+Check status: `systemctl --user status paos-pipeline.path`
 
 ### Pipeline Settings (default — override in config/pipeline-defaults.yaml)
 

@@ -32,6 +32,12 @@ I am **Hermes Agent** by Nous Research — an open-source autonomous AI agent wi
 - **Inbox**: `~/AI_Workflow/vault/memory/inbox/hermes-nous/`
 - **Events**: `~/AI_Workflow/vault/memory/hermes-nous/events.md`
 
+## Auto-Execution (systemd Trigger — for publisher awareness)
+
+When a pipeline is submitted, the systemd path unit `paos-pipeline.path` detects the new directory in `memory/pipelines/` and triggers `bin/paos-pipeline-handler.sh`. The handler reads META.json, determines the executor, checks guardrails (whitelist, rate limit, kill switch, task count), writes an inbox notification, and optionally spawns the executor.
+
+As a pipeline submitter (e.g., via `h-pipeline submit`), this means the executor will be notified automatically — no need to send a separate inbox message.
+
 ## Pipeline Protocol
 
 1. Read `vault/memory/shared/HANDOFF.md` first — always the current state

@@ -80,6 +80,24 @@
 4. **Never auto-proceed in the Antigravity loop.** Wait for explicit user approval (`## APPROVED` or verbal).
 5. **Read `workflow.md` first.** It is the source of truth for all PAOS behavior.
 
+## Pipeline Naming Convention
+
+When creating a new pipeline, use the format:
+
+```
+AI_Workflow-PIPE_N-DD-MM-YYYY---HH-MM
+```
+
+Where:
+- `N` = sequential number (1, 2, 3... — auto-detect by scanning existing dirs)
+- `DD-MM-YYYY` = current date
+- `---` = separator between date and time
+- `HH-MM` = current time in 24hr format
+
+Example: `AI_Workflow-PIPE_1-22-06-2026---20-15`
+
+Use `bin/paos-pipe-id` to generate the next ID automatically.
+
 ## Pipeline Protocol (Mandatory for Inbox Tasks)
 
 When you receive a task via inbox that references a pipeline directory (`memory/pipelines/PIPE-*`):

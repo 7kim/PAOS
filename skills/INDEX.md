@@ -45,6 +45,17 @@ All agents can invoke `/h-*` commands from the terminal. These are bash scripts 
 | `h-chat` | Write chat summary |
 | `h-audit` | Run compliance checks |
 
+## Auto-Execution Infrastructure
+
+| System | Description | Location |
+|--------|-------------|----------|
+| systemd path unit | Real-time pipeline watcher — triggers on new pipeline submissions | `~/.config/systemd/user/paos-pipeline.path` |
+| systemd service | Runs the handler script on path event | `~/.config/systemd/user/paos-pipeline.service` |
+| Handler script | Routes pipelines to executor agents with guardrails (lock, whitelist, rate limit, timeout, kill switch) | `bin/paos-pipeline-handler.sh` |
+| Fallback watcher | Inotifywait loop for containers/WSL | `bin/paos-pipeline-watch.sh` |
+| Whitelist | Allowed planner agents for auto-execution | `~/.config/paos/pipeline-whitelist.txt` |
+| Kill switch | File-based auto-execution disable | `~/.config/paos/auto-execute.off` |
+
 ## Documentation Skills
 
 | Skill | Description | Category | Agent Access |

@@ -1,6 +1,6 @@
 {
   "status": "completed",
-  "currentTask": "All 13 tasks complete — systemd path unit active, handler + fallback scripts installed, whitelist configured, documentation updated, Hermes notified.",
+  "currentTask": "All 13 tasks complete \u2014 systemd path unit active, handler + fallback scripts installed, whitelist configured, documentation updated, Hermes notified.",
   "progress": "13/13",
   "startedAt": "2026-06-22T18:57:24.000Z",
   "updatedAt": "2026-06-22T19:44:14.301Z",
