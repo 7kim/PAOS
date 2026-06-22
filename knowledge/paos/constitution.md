@@ -307,4 +307,78 @@ Amendments to `workflow.md` require:
 
 ---
 
-*PAOS Constitution v2.0.0 — Established 2026-05-15. Governed by H-Factor invariants I1–I4.*
+## Article X — Shared Infrastructure Convention
+
+### Section 10.1 — The Mandate
+
+When the operator says "install an MCP server" or "install a skill", the installation target is ALWAYS the PAOS shared infrastructure — not a single agent. Every MCP server and every skill installed in PAOS must be usable by all agents in the ecosystem (Hermes, Claude Code, Gemini, Antigravity, Codex, OpenCode, OpenClaw, and any future agent).
+
+### Section 10.2 — Shared MCP Servers
+
+The canonical MCP registry is:
+```
+~/AI_Workflow/mcp/mcp-config.json
+```
+
+Every PAOS-compatible agent MUST reference this file as its MCP configuration. The standard mechanism is a symlink:
+```
+config/<agent>/mcp.json → ../../mcp/mcp-config.json
+```
+
+To add a new shared MCP server:
+1. Add the server definition to `~/AI_Workflow/mcp/mcp-config.json`
+2. Verify each agent's MCP config resolves through the symlink
+3. Append an entry to `global_ledger.md`
+
+MCP servers are implemented in `~/AI_Workflow/mcp/<server-name>/` with their own `package.json` and source code.
+
+### Section 10.3 — Shared Skills
+
+The canonical skills repository is:
+```
+~/AI_Workflow/skills/
+```
+
+Skills follow the PAOS SKILL.md format (YAML frontmatter + markdown body). Every skill added here is available for all agents to reference.
+
+- **Hermes Agent** discovers shared skills via its own skills system (symlinked or external_dirs in config.yaml)
+- **Claude Code, Gemini, Codex, OpenCode, OpenClaw** reference shared skills through their agent config files (e.g., `CLAUDE.md`, `instructions.md`, `soul.md`)
+- Each skill in `~/AI_Workflow/skills/` may include `references/`, `templates/`, and `assets/` subdirectories for supporting files
+
+To add a new shared skill:
+1. Create `~/AI_Workflow/skills/<skill-name>/SKILL.md` with proper YAML frontmatter
+2. Add supporting files in `references/`, `templates/`, `scripts/`, or `assets/` as needed
+3. Register the skill in the skill index: `~/AI_Workflow/skills/INDEX.md`
+4. Append an entry to `global_ledger.md`
+
+### Section 10.4 — Agent Wiring Verification
+
+After any shared infrastructure change, verify that every agent can access it:
+
+| Agent | MCP Config Location | Skill Access |
+|-------|-------------------|--------------|
+| Hermes | `~/.hermes/config.yaml` (mcp_servers) | `~/.hermes/skills/` + external_dirs |
+| Claude Code | `config/claude/mcp.json` → `mcp/mcp-config.json` | via `CLAUDE.md` |
+| Gemini | `config/gemini/config/mcp_config.json` → `mcp/mcp-config.json` | via `soul.md` |
+| Codex | `config/codex/mcp_config.json` → `mcp/mcp-config.json` | via `instructions.md` |
+| OpenCode | `opencode.json` (mcp section) | via `AGENTS.md` |
+| OpenClaw | `config/openclaw/mcp_config.json` → `mcp/mcp-config.json` | via `soul.md` |
+| Antigravity | `config/antigravity2/mcp_config.json` → `mcp/mcp-config.json` | via `soul.md` |
+
+### Section 10.5 — Skill Index
+
+A skill index at `~/AI_Workflow/skills/INDEX.md` catalogs all shared skills. Every new skill MUST be registered here. The index format:
+
+```markdown
+# PAOS Shared Skills Index
+
+| Skill | Description | Category |
+|-------|-------------|----------|
+| antigravity-review-loop | Artifact-driven review workflow | workflow |
+| project-scaffolder | Project scaffolding from templates | devops |
+| ...
+```
+
+---
+
+*PAOS Constitution v2.1.0 — Article X: Shared Infrastructure. All agents share one MCP config and one skills repo.*

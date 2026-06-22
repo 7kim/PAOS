@@ -64,6 +64,8 @@ config/antigravity2/local-share/
 config/gemini/**
 !config/gemini/
 !config/gemini/README.md
+!config/gemini/config/
+!config/gemini/config/mcp_config.json
 !config/gemini/antigravity-ide/
 !config/gemini/antigravity-ide/mcp_config.json
 !config/gemini/antigravity-backup/

@@ -417,4 +417,46 @@ Amendments to `workflow.md` require:
 
 ---
 
-*PAOS Constitution v2.0.0 — Established 2026-05-15. Governed by H-Factor invariants I1–I4.*
+## Article X — Shared Infrastructure Convention
+
+### Section 10.1 — The Mandate
+
+When the operator says "install an MCP server" or "install a skill", the installation target is ALWAYS the PAOS shared infrastructure — not a single agent. Every MCP server and every skill installed in PAOS must be usable by all agents in the ecosystem (Hermes, Claude Code, Gemini, Antigravity, Codex, OpenCode, OpenClaw, and any future agent).
+
+### Section 10.2 — Shared MCP Servers
+
+The canonical MCP registry is `~/AI_Workflow/mcp/mcp-config.json`. Every PAOS-compatible agent MUST reference this file as its MCP configuration, typically via symlink:
+
+```
+config/<agent>/mcp.json → ../../mcp/mcp-config.json
+```
+
+To add a new shared MCP server:
+1. Add the server definition to `~/AI_Workflow/mcp/mcp-config.json`
+2. Verify each agent's MCP config resolves through the symlink
+3. Append an entry to `global_ledger.md`
+
+### Section 10.3 — Shared Skills
+
+The canonical skills repository is `~/AI_Workflow/skills/`. Skills follow the PAOS SKILL.md format (YAML frontmatter + markdown body). Every skill added here is available for all agents to reference.
+
+To add a new shared skill:
+1. Create `~/AI_Workflow/skills/<skill-name>/SKILL.md` with proper YAML frontmatter
+2. Register the skill in `~/AI_Workflow/skills/INDEX.md`
+3. Append an entry to `global_ledger.md`
+
+### Section 10.4 — Agent Wiring
+
+| Agent | MCP Config | Skills Access |
+|-------|-----------|---------------|
+| Hermes | `config.yaml` (mcp_servers) | `~/.hermes/skills/` + external_dirs |
+| Claude Code | `config/claude/mcp.json` → unified | via `CLAUDE.md` |
+| Gemini | `config/gemini/config/mcp_config.json` → unified | via `soul.md` |
+| Codex | `config/codex/mcp_config.json` → unified | via `instructions.md` |
+| OpenCode | `opencode.json` (mcp section) | via `AGENTS.md` |
+| OpenClaw | `config/openclaw/mcp_config.json` → unified | via `soul.md` |
+| Antigravity | `config/antigravity2/mcp_config.json` → unified | via `soul.md` |
+
+---
+
+*PAOS Constitution v2.1.0 — Article X: Shared Infrastructure. Established 2026-06-22.*
