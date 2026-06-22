@@ -11,15 +11,16 @@ import {
   Inbox,
   HandMetal,
   Code,
-  Settings,
   Zap,
   GitBranch,
   GitCommit,
   TestTube,
+  FolderKanban,
 } from "lucide-react";
 
 const nav = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
+  { href: "/projects", label: "Projects", icon: FolderKanban },
   { href: "/handoff", label: "Handoff", icon: HandMetal },
   { href: "/ledger", label: "Audit Ledger", icon: ScrollText },
   { href: "/agents", label: "Agents", icon: Bot },

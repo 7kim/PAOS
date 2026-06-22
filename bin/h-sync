@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# h-sync — End-of-session ritual: handoff + commit + sync-chat.py
+# Usage: h-sync <active_task> <what_done> <what_pending> [session_note] [commit_msg]
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+ACTIVE_TASK="${1:-}"
+WHAT_DONE="${2:-}"
+WHAT_PENDING="${3:-}"
+SESSION_NOTE="${4:-}"
+COMMIT_MSG="${5:-}"
+
+if [[ -z "$ACTIVE_TASK" || -z "$WHAT_DONE" || -z "$WHAT_PENDING" ]]; then
+  die "Usage: h-sync <active_task> <what_done> <what_pending> [session_note] [commit_msg]"
+fi
+
+# 1. Write handoff
+info "Writing handoff..."
+"$PAOS_HOME/bin/h-write-handoff" "$ACTIVE_TASK" "$WHAT_DONE" "$WHAT_PENDING" "$SESSION_NOTE"
+
+# 2. Commit
+if [[ -n "$COMMIT_MSG" ]]; then
+  info "Committing..."
+  "$PAOS_HOME/bin/h-commit" "$COMMIT_MSG" || warn "Commit failed (nothing to commit?)"
+fi
+
+# 3. Sync chat
+CHAT_SYNC="$PAOS_HOME/bin/sync-chat.py"
+if [[ -x "$CHAT_SYNC" ]]; then
+  info "Syncing chat..."
+  python3 "$CHAT_SYNC" || warn "Chat sync failed"
+fi
+
+ok "Session synced"

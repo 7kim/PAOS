@@ -7,7 +7,7 @@ import {
   CheckCircle2,
   Clock,
   AlertCircle,
-  ArrowRight,
+  ArrowDown,
   FileText,
   ListTodo,
   Loader2,
@@ -16,118 +16,129 @@ import {
   ChevronRight,
   FileCode,
   ExternalLink,
-  Code2,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 
-interface TaskDetail {
-  status: string;
+interface PhaseArtifact {
+  filename: string;
+  content: string;
+  lines: number;
+}
+
+interface Phase {
+  agent: string;
+  role: string;
   label: string;
-  complexity: string;
-  file?: string;
-  details: string[];
+  status: string;
+  artifacts: PhaseArtifact[];
 }
 
 interface PipelineData {
   id: string;
   meta: Record<string, unknown>;
   pipeline: Record<string, unknown>;
-  plan: string;
-  tasks: string;
-  taskList: TaskDetail[];
-  walkthrough: string;
+  phases: Phase[];
+  versionedArtifacts: Record<string, { filename: string; content: string; lines: number; version: number }[]>;
+  taskList: { status: string; label: string; complexity: string; file?: string; details: string[] }[];
   stats: {
     completedTasks: number;
-    inProgressTasks: number;
-    pendingTasks: number;
     totalTasks: number;
+    completedPhases: number;
+    totalPhases: number;
     progress: number;
     hasWalkthrough: boolean;
     hasPipelineJson: boolean;
   };
 }
 
-const statusConfig: Record<string, { label: string; color: string; pulse: boolean }> = {
-  submitted: { label: "Submitted", color: "#f59e0b", pulse: false },
-  thinking: { label: "Thinking", color: "#8b5cf6", pulse: true },
-  executing: { label: "Executing", color: "#3b82f6", pulse: true },
-  completed: { label: "Completed", color: "#22c55e", pulse: false },
-  failed: { label: "Failed", color: "#ef4444", pulse: false },
+const agentColors: Record<string, string> = {
+  "hermes-nous": "#eab308",
+  "hermes": "#eab308",
+  "opencode-developer": "#3b82f6",
+  "opencode": "#3b82f6",
+  "claude": "#f97316",
+  "codex": "#10b981",
+  "antigravity": "#ec4899",
+  "gemini": "#4285f4",
+  "openclaw": "#8b5cf6",
 };
 
-function getStatus(s: string) {
-  return statusConfig[s] ?? { label: s, color: "#64748b", pulse: false };
+const roleColors: Record<string, string> = {
+  planner: "#eab308",
+  enhancer: "#8b5cf6",
+  reviewer: "#f97316",
+  executor: "#3b82f6",
+};
+
+function agentColor(agent: string): string {
+  for (const [key, color] of Object.entries(agentColors)) {
+    if (agent.toLowerCase().includes(key)) return color;
+  }
+  return "#64748b";
 }
 
-function timeAgo(iso: string) {
-  if (!iso) return "";
-  try {
-    const diff = Date.now() - new Date(iso).getTime();
-    const m = Math.floor(diff / 60000);
-    if (m < 1) return "just now";
-    if (m < 60) return `${m}m ago`;
-    const h = Math.floor(m / 60);
-    if (h < 24) return `${h}h ago`;
-    return `${Math.floor(h / 24)}d ago`;
-  } catch { return iso; }
+function statusBadge(s: string) {
+  const cfg: Record<string, { color: string; icon: React.ReactNode; label: string }> = {
+    completed: { color: "#22c55e", icon: <CheckCircle2 size={10} />, label: "Done" },
+    executing: { color: "#3b82f6", icon: <Loader2 size={10} className="animate-spin" />, label: "Running" },
+    pending: { color: "#64748b", icon: <Clock size={10} />, label: "Pending" },
+    failed: { color: "#ef4444", icon: <AlertCircle size={10} />, label: "Failed" },
+  };
+  const c = cfg[s] ?? { color: "#64748b", icon: <Clock size={10} />, label: s };
+  return (
+    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium" style={{ background: `${c.color}18`, color: c.color }}>
+      {c.icon}
+      {c.label}
+    </span>
+  );
 }
 
-// ── Accordion: clickable toggle line ──────────────────────────────────────
-function AccordionLine({
-  open,
-  onToggle,
-  icon,
-  label,
-  badge,
-  color,
-}: {
-  open: boolean;
-  onToggle: () => void;
-  icon: React.ReactNode;
-  label: string;
-  badge?: string;
-  color: string;
+function Toggle({ open, onToggle, icon, label, badge, color }: {
+  open: boolean; onToggle: () => void; icon: React.ReactNode; label: string; badge?: string; color: string;
 }) {
   return (
-    <button
-      type="button"
-      onClick={onToggle}
+    <button type="button" onClick={onToggle}
       className="w-full flex items-center gap-2 text-xs rounded-lg px-3 py-2.5 transition-colors hover:opacity-80 text-left"
       style={{ background: open ? `${color}0a` : "rgba(255,255,255,0.02)" }}
     >
       {open ? <ChevronDown size={12} style={{ color }} /> : <ChevronRight size={12} style={{ color }} />}
       {icon}
       <span className="font-medium" style={{ color: "var(--foreground)" }}>{label}</span>
-      {badge && (
-        <span className="ml-auto text-[10px] font-mono" style={{ color: "var(--muted)" }}>{badge}</span>
-      )}
+      {badge && <span className="ml-auto text-[10px] font-mono" style={{ color: "var(--muted)" }}>{badge}</span>}
     </button>
   );
 }
 
-// ── Status badge ──────────────────────────────────────────────────────────
-function TaskBadge({ status }: { status: string }) {
-  const color = status === "done" ? "#22c55e" : status === "doing" ? "#3b82f6" : "#64748b";
-  const bg = status === "done" ? "rgba(34,197,94,0.12)" : status === "doing" ? "rgba(59,130,246,0.12)" : "rgba(100,116,139,0.12)";
-  const icon = status === "done" ? <CheckCircle2 size={10} /> : status === "doing" ? <Loader2 size={10} className="animate-spin" /> : <Clock size={10} />;
+function DiffView({ v1, v2 }: { v1: string; v2: string }) {
+  const lines1 = v1.split("\n");
+  const lines2 = v2.split("\n");
+  const maxLen = Math.max(lines1.length, lines2.length);
+  const diffLines: { type: "same" | "removed" | "added"; text: string }[] = [];
+  for (let i = 0; i < maxLen; i++) {
+    if (i >= lines1.length) {
+      diffLines.push({ type: "added", text: lines2[i] });
+    } else if (i >= lines2.length) {
+      diffLines.push({ type: "removed", text: lines1[i] });
+    } else if (lines1[i] !== lines2[i]) {
+      diffLines.push({ type: "removed", text: lines1[i] });
+      diffLines.push({ type: "added", text: lines2[i] });
+    } else {
+      diffLines.push({ type: "same", text: lines1[i] });
+    }
+  }
   return (
-    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium shrink-0" style={{ background: bg, color }}>
-      {icon}
-      {status}
-    </span>
-  );
-}
-
-// ── Live status dot ───────────────────────────────────────────────────────
-function StatusDot({ color, pulse }: { color: string; pulse: boolean }) {
-  return (
-    <span
-      className="inline-block w-2 h-2 rounded-full"
-      style={{
-        background: color,
-        animation: pulse ? "pulse 1.5s ease-in-out infinite" : "none",
-        boxShadow: pulse ? `0 0 6px ${color}` : "none",
-      }}
-    />
+    <pre className="text-[11px] p-3 overflow-auto max-h-96 leading-relaxed font-mono" style={{ background: "rgba(0,0,0,0.15)" }}>
+      {diffLines.map((l, i) => (
+        <div key={i} style={{
+          background: l.type === "removed" ? "rgba(239,68,68,0.15)" : l.type === "added" ? "rgba(34,197,94,0.12)" : "transparent",
+          color: l.type === "removed" ? "#ef4444" : l.type === "added" ? "#22c55e" : "var(--foreground)",
+          padding: "0 8px",
+        }}>
+          {l.type === "removed" ? "− " : l.type === "added" ? "+ " : "  "}{l.text}
+        </div>
+      ))}
+    </pre>
   );
 }
 
@@ -138,12 +149,8 @@ export default function PipelineVisualizePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Accordion state: which items are expanded
-  const [openPlan, setOpenPlan] = useState(false);
-  const [openTasksDoc, setOpenTasksDoc] = useState(false);
-  const [openWalkthrough, setOpenWalkthrough] = useState(false);
-  const [openPipelineJson, setOpenPipelineJson] = useState(false);
-  const [expandedTasks, setExpandedTasks] = useState<Set<number>>(new Set());
+  const [openArtifacts, setOpenArtifacts] = useState<Set<string>>(new Set());
+  const [showDiff, setShowDiff] = useState<Set<string>>(new Set());
 
   const load = useCallback(async () => {
     if (!id) return;
@@ -160,15 +167,32 @@ export default function PipelineVisualizePage() {
 
   useEffect(() => {
     queueMicrotask(() => void load());
-    const interval = setInterval(() => void load(), 5000);
-    return () => clearInterval(interval);
+    const id = setInterval(() => void load(), 5000);
+    return () => clearInterval(id);
   }, [load]);
 
-  function toggleTask(i: number) {
-    setExpandedTasks((prev) => {
+  function toggleArtifact(key: string) {
+    setOpenArtifacts((prev) => {
       const next = new Set(prev);
-      if (next.has(i)) next.delete(i); else next.add(i);
+      if (next.has(key)) next.delete(key); else next.add(key);
       return next;
+    });
+  }
+
+  function toggleDiff(key: string) {
+    setShowDiff((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      return next;
+    });
+  }
+
+  function phaseHasDiff(idx: number): boolean {
+    const phase = data?.phases[idx];
+    if (!phase) return false;
+    return phase.artifacts.some((art) => {
+      const baseName = art.filename.replace(/\.md$/, "").replace(/-[a-zA-Z0-9_-]+$/, "");
+      return (data?.versionedArtifacts[baseName]?.filter((v) => v.filename !== art.filename).length ?? 0) > 0;
     });
   }
 
@@ -189,295 +213,194 @@ export default function PipelineVisualizePage() {
     );
   }
 
-  const status = getStatus(String(data.meta.status ?? "unknown"));
-  const sc = status.color;
-
   return (
     <div>
-      {/* ── Header ──────────────────────────────────────────────────────── */}
       <div className="flex items-center gap-3 mb-1">
         <GitBranch size={18} style={{ color: "var(--accent)" }} />
         <h1 className="text-xl font-semibold">{id}</h1>
-        <span
-          className="text-[11px] px-2 py-0.5 rounded-full font-medium"
-          style={{
-            background: `${sc}18`,
-            color: sc,
-            animation: status.pulse ? "pulse 2s infinite" : "none",
-          }}
+        <span className="text-[11px] px-2 py-0.5 rounded-full font-medium"
+          style={{ background: `${data.stats.progress === 100 ? "#22c55e" : "#3b82f6"}18`, color: data.stats.progress === 100 ? "#22c55e" : "#3b82f6" }}
         >
-          {status.label}
+          {data.stats.progress}%
         </span>
       </div>
       <p className="text-sm mb-6" style={{ color: "var(--muted)" }}>
         {String(data.meta.prompt ?? "")}
       </p>
 
-      {/* ── Pipeline Flow ───────────────────────────────────────────────── */}
       <div className="relative mb-8">
-        {/* Vertical connector line */}
-        <div
-          className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 z-0"
+        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 z-0"
           style={{ background: `linear-gradient(180deg, var(--accent) 0%, #3b82f6 100%)` }}
         />
 
-        {/* ── PLANNER NODE ──────────────────────────────────────────── */}
-        <div className="relative z-10 flex justify-center mb-[-1px]">
-          <div
-            className="w-full max-w-4xl rounded-xl border-2 p-5"
-            style={{ background: "var(--card-bg)", borderColor: "var(--accent)" }}
-          >
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(252,213,53,0.15)" }}>
-                <Brain size={20} style={{ color: "var(--accent)" }} />
-              </div>
-              <div>
-                <div className="text-sm font-semibold">Planner</div>
-                <div className="text-xs font-mono" style={{ color: "var(--accent)" }}>
-                  {String(data.meta.planner ?? "—")}
-                </div>
-              </div>
-              <div className="ml-auto flex items-center gap-1.5">
-                <StatusDot color="#22c55e" pulse={false} />
-                <span className="text-[11px]" style={{ color: "#22c55e" }}>Done</span>
-              </div>
-            </div>
+        {data.phases.map((phase, idx) => {
+          const isLast = idx === data.phases.length - 1;
+          const color = roleColors[phase.role] ?? agentColor(phase.agent);
+          const agentIcon = phase.role === "planner" || phase.role === "enhancer" ? <Brain size={20} /> : <Zap size={20} />;
 
-            {/* Created timestamp */}
-            <div className="text-[10px] font-mono mb-3" style={{ color: "var(--muted)" }}>
-              Created {timeAgo(String(data.meta.created_at ?? ""))}
-            </div>
-
-            {/* Plan.md — clickable accordion */}
-            <div className="rounded-lg border mb-2 overflow-hidden" style={{ borderColor: "var(--border)" }}>
-              <AccordionLine
-                open={openPlan}
-                onToggle={() => setOpenPlan(!openPlan)}
-                icon={<FileText size={13} style={{ color: "var(--accent)" }} />}
-                label="IMPLEMENTATION_PLAN.md"
-                badge={`${(data.plan || "").split("\n").length} lines`}
-                color="var(--accent)"
-              />
-              {openPlan && (
-                <pre
-                  className="text-[11px] p-3 overflow-auto leading-relaxed font-mono"
-                  style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)", borderTop: "1px solid var(--border)" }}
+          return (
+            <div key={idx}>
+              <div className="relative z-10 flex justify-center" style={{ marginBottom: isLast ? 0 : -1 }}>
+                <div className="w-full max-w-4xl rounded-xl border-2 p-5"
+                  style={{ background: "var(--card-bg)", borderColor: color }}
                 >
-                  {data.plan || "(empty)"}
-                </pre>
-              )}
-            </div>
-
-            {/* TASKS.md — clickable accordion */}
-            <div className="rounded-lg border overflow-hidden" style={{ borderColor: "var(--border)" }}>
-              <AccordionLine
-                open={openTasksDoc}
-                onToggle={() => setOpenTasksDoc(!openTasksDoc)}
-                icon={<ListTodo size={13} style={{ color: "var(--accent)" }} />}
-                label="TASKS.md"
-                badge={`${data.stats.totalTasks} tasks`}
-                color="var(--accent)"
-              />
-              {openTasksDoc && (
-                <pre
-                  className="text-[11px] p-3 overflow-auto leading-relaxed font-mono"
-                  style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)", borderTop: "1px solid var(--border)" }}
-                >
-                  {data.tasks || "(empty)"}
-                </pre>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* ── ARROW CONNECTOR ───────────────────────────────────────── */}
-        <div className="relative z-10 flex justify-center py-2">
-          <div
-            className="w-10 h-10 rounded-full flex items-center justify-center border-2"
-            style={{
-              background: "var(--card-bg)",
-              borderColor: sc,
-              boxShadow: status.pulse ? `0 0 14px ${sc}55` : "none",
-            }}
-          >
-            <ArrowRight size={18} style={{ color: sc }} />
-          </div>
-        </div>
-
-        {/* ── EXECUTOR NODE ─────────────────────────────────────────── */}
-        <div className="relative z-10 flex justify-center">
-          <div
-            className="w-full max-w-4xl rounded-xl border-2 p-5"
-            style={{ background: "var(--card-bg)", borderColor: "#3b82f6" }}
-          >
-            {/* Header */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(59,130,246,0.15)" }}>
-                <Zap size={20} style={{ color: "#3b82f6" }} />
-              </div>
-              <div>
-                <div className="text-sm font-semibold">Executor</div>
-                <div className="text-xs font-mono" style={{ color: "#3b82f6" }}>
-                  {String(data.meta.executor ?? "—")}
-                </div>
-              </div>
-              <div className="ml-auto flex items-center gap-1.5">
-                <StatusDot color={sc} pulse={status.pulse} />
-                <span className="text-[11px]" style={{ color: sc }}>{status.label}</span>
-              </div>
-            </div>
-
-            {/* Progress bar */}
-            {data.stats.totalTasks > 0 && (
-              <div className="mb-4">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span style={{ color: "var(--muted)" }}>
-                    {data.stats.completedTasks}/{data.stats.totalTasks} tasks
-                  </span>
-                  <span className="font-mono" style={{ color: data.stats.progress === 100 ? "#22c55e" : sc }}>
-                    {data.stats.progress}%
-                  </span>
-                </div>
-                <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
-                  <div
-                    className="h-full rounded-full transition-all duration-700"
-                    style={{
-                      width: `${data.stats.progress}%`,
-                      background: data.stats.progress === 100
-                        ? "linear-gradient(90deg, #22c55e, #16a34a)"
-                        : "linear-gradient(90deg, #3b82f6, #60a5fa)",
-                    }}
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Live status line from pipeline.json */}
-            {data.pipeline && (data.pipeline as Record<string, unknown>).currentTask && (
-              <div className="flex items-center gap-1.5 text-[11px] mb-2 px-2 py-1 rounded" style={{ background: "rgba(59,130,246,0.08)", color: "#60a5fa" }}>
-                <Loader2 size={11} className="animate-spin" />
-                <span className="font-medium">{(data.pipeline as Record<string, unknown>).currentTask as string}</span>
-              </div>
-            )}
-
-            {/* pipeline.json raw live viewer */}
-            {data.pipeline && Object.keys(data.pipeline).length > 1 && (
-              <div
-                className="mb-3 rounded-lg border overflow-hidden"
-                style={{ borderColor: "var(--border)" }}
-              >
-                <AccordionLine
-                  open={openPipelineJson}
-                  onToggle={() => setOpenPipelineJson(!openPipelineJson)}
-                  icon={<Code2 size={13} style={{ color: "#3b82f6" }} />}
-                  label="pipeline.json (live)"
-                  badge="auto-refresh"
-                  color="#3b82f6"
-                />
-                {openPipelineJson && (
-                  <pre
-                    className="text-[11px] p-3 overflow-auto font-mono"
-                    style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)", borderTop: "1px solid var(--border)" }}
-                  >
-                    {JSON.stringify(data.pipeline, null, 2)}
-                  </pre>
-                )}
-              </div>
-            )}
-
-            {/* Task list */}
-            <div className="space-y-1.5">
-              {data.taskList.length === 0 && (
-                <div className="text-xs text-center py-4" style={{ color: "var(--muted)" }}>No tasks parsed</div>
-              )}
-              {data.taskList.map((task, i) => {
-                const isOpen = expandedTasks.has(i);
-                const isDoing = task.status === "doing";
-                const isDone = task.status === "done";
-
-                return (
-                  <div key={i} className="rounded-lg overflow-hidden border" style={{ borderColor: isDoing ? "#3b82f6" : "var(--border)" }}>
-                    {/* Clickable task header */}
-                    <button
-                      type="button"
-                      onClick={() => toggleTask(i)}
-                      className="w-full flex items-center gap-2 text-xs px-3 py-2.5 text-left transition-colors"
-                      style={{
-                        background: isDoing ? "rgba(59,130,246,0.06)" : isDone ? "rgba(34,197,94,0.04)" : "transparent",
-                      }}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center"
+                      style={{ background: `${color}18` }}
                     >
-                      {isOpen
-                        ? <ChevronDown size={11} style={{ color: "var(--muted)" }} />
-                        : <ChevronRight size={11} style={{ color: "var(--muted)" }} />
-                      }
-                      <TaskBadge status={task.status} />
-                      <span className="flex-1 truncate" style={{ color: "var(--foreground)" }}>
-                        {task.label}
-                      </span>
-                      <span className="text-[10px] font-mono shrink-0" style={{ color: "var(--muted)" }}>
-                        [{task.complexity}]
-                      </span>
-                    </button>
-
-                    {/* Expandable task details */}
-                    {isOpen && (
-                      <div
-                        className="px-3 pb-3 pt-1 text-xs space-y-1.5"
-                        style={{ background: "rgba(0,0,0,0.08)", borderTop: "1px solid var(--border)" }}
-                      >
-                        {task.file && (
-                          <div className="flex items-center gap-1.5 font-mono" style={{ color: "var(--accent)" }}>
-                            <FileCode size={11} />
-                            {task.file}
-                          </div>
-                        )}
-                        {task.details.length > 0 && (
-                          <ul className="space-y-0.5">
-                            {task.details.map((d, j) => (
-                              <li key={j} className="flex items-start gap-1.5" style={{ color: "var(--foreground)", opacity: 0.75 }}>
-                                <span className="shrink-0 mt-0.5">•</span>
-                                <span>{d}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {!task.file && task.details.length === 0 && (
-                          <span style={{ color: "var(--muted)" }}>No details</span>
+                      {agentIcon}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
+                          {phase.label || phase.role}
+                        </span>
+                        {statusBadge(phase.status)}
+                        {phase.role === "enhancer" && phaseHasDiff(idx) && (
+                          <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); toggleDiff(String(idx)); }}
+                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium transition-colors"
+                            style={{
+                              background: showDiff.has(String(idx)) ? "rgba(139,92,246,0.2)" : "rgba(139,92,246,0.1)",
+                              color: showDiff.has(String(idx)) ? "#a78bfa" : "#8b5cf6",
+                            }}
+                          >
+                            {showDiff.has(String(idx)) ? <EyeOff size={10} /> : <Eye size={10} />}
+                            {showDiff.has(String(idx)) ? "Hide diff" : "Show diff"}
+                          </button>
                         )}
                       </div>
-                    )}
+                      <div className="text-xs font-mono" style={{ color }}>
+                        {phase.agent}
+                      </div>
+                    </div>
+                    <div className="ml-auto flex items-center gap-2">
+                      <span className="text-[10px]" style={{ color: "var(--muted)" }}>
+                        Phase {idx + 1}/{data.phases.length}
+                      </span>
+                    </div>
                   </div>
-                );
-              })}
+
+                  {phase.artifacts.length === 0 && phase.status === "pending" && (
+                    <div className="text-xs text-center py-3 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", color: "var(--muted)" }}>
+                      Waiting for agent...
+                    </div>
+                  )}
+
+                  {phase.artifacts.length > 0 && (
+                    <div className="space-y-1.5">
+                      {phase.artifacts.map((art) => {
+                        const key = `${idx}:${art.filename}`;
+                        const isOpen = openArtifacts.has(key);
+                        const baseName = art.filename.replace(/\.md$/, "").replace(/-[a-zA-Z0-9_-]+$/, "");
+                        const versions = data.versionedArtifacts[baseName]?.filter((v) => v.filename !== art.filename) ?? [];
+                        const hasV2 = versions.length > 0;
+                        const showingDiff = showDiff.has(String(idx)) && hasV2;
+
+                        return (
+                          <div key={key} className="rounded-lg border overflow-hidden" style={{ borderColor: "var(--border)" }}>
+                            <Toggle
+                              open={isOpen}
+                              onToggle={() => toggleArtifact(key)}
+                              icon={art.filename.toLowerCase().includes("plan") ? <FileText size={13} style={{ color }} /> : <ListTodo size={13} style={{ color }} />}
+                              label={art.filename}
+                              badge={`${art.lines} lines`}
+                              color={color}
+                            />
+                            {isOpen && (
+                              <div style={{ borderTop: "1px solid var(--border)" }}>
+                                {showingDiff && hasV2 ? (
+                                  <DiffView v1={versions[0].content} v2={art.content} />
+                                ) : (
+                                  <pre className="text-[11px] p-3 overflow-auto leading-relaxed font-mono"
+                                    style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)" }}
+                                  >
+                                    {(art.content as string) || "(empty)"}
+                                  </pre>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {!isLast && (
+                <div className="relative z-10 flex justify-center py-2">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center border-2"
+                    style={{ background: "var(--card-bg)", borderColor: color }}
+                  >
+                    <ArrowDown size={16} style={{ color }} />
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
 
-      {/* ── WALKTHROUGH (bottom, only if exists) ────────────────────── */}
-      {data.stats.hasWalkthrough && (
-        <div className="max-w-md mx-auto rounded-xl border overflow-hidden" style={{ borderColor: "var(--border)", background: "var(--card-bg)" }}>
-          <AccordionLine
-            open={openWalkthrough}
-            onToggle={() => setOpenWalkthrough(!openWalkthrough)}
-            icon={<ExternalLink size={13} style={{ color: "#22c55e" }} />}
-            label="WALKTHROUGH.md"
-            badge="completed"
-            color="#22c55e"
-          />
-          {openWalkthrough && (
-            <pre
-              className="text-[11px] p-3 overflow-auto max-h-64 leading-relaxed font-mono"
-              style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)", borderTop: "1px solid var(--border)" }}
-            >
-              {data.walkthrough || "(empty)"}
-            </pre>
-          )}
+      {/* Task summary */}
+      {data.taskList.length > 0 && (
+        <div className="max-w-4xl mx-auto rounded-xl border overflow-hidden" style={{ borderColor: "var(--border)", background: "var(--card-bg)" }}>
+          <div className="px-4 py-3 border-b flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
+            <ListTodo size={14} style={{ color: "#3b82f6" }} />
+            <span className="text-sm font-medium">Task Summary</span>
+            <span className="ml-auto text-xs" style={{ color: "var(--muted)" }}>
+              {data.stats.completedTasks}/{data.stats.totalTasks}
+            </span>
+          </div>
+          <div className="p-3 space-y-1">
+            {data.taskList.map((t, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs px-3 py-2 rounded"
+                style={{
+                  background: t.status === "doing" ? "rgba(59,130,246,0.08)" : "transparent",
+                  borderLeft: t.status === "doing" ? "3px solid #3b82f6" : t.status === "done" ? "3px solid #22c55e" : "3px solid transparent",
+                  opacity: t.status === "done" ? 0.6 : 1,
+                }}
+              >
+                {t.status === "done" ? <CheckCircle2 size={11} style={{ color: "#22c55e" }} /> : t.status === "doing" ? <Loader2 size={11} className="animate-spin" style={{ color: "#3b82f6" }} /> : <Clock size={11} style={{ color: "#64748b" }} />}
+                <span className="flex-1" style={{ color: "var(--foreground)" }}>{t.label}</span>
+                <span className="text-[10px] font-mono" style={{ color: "var(--muted)" }}>[{t.complexity}]</span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
-      {/* ── pipeline.json (hidden but shown as live status in executor) ── */}
+      {/* pipeline.json live */}
+      {data.stats.hasPipelineJson && (
+        <div className="max-w-4xl mx-auto mt-4 rounded-xl border overflow-hidden" style={{ borderColor: "var(--border)", background: "var(--card-bg)" }}>
+          <div className="px-4 py-3 flex items-center gap-2" style={{ color: data.stats.progress === 100 ? "#22c55e" : "#3b82f6" }}>
+            {data.stats.progress === 100 ? (
+              <CheckCircle2 size={14} />
+            ) : (
+              <Loader2 size={14} className="animate-spin" />
+            )}
+            <span className="text-sm font-medium">pipeline.json</span>
+            <span className="ml-auto text-[10px] font-mono" style={{ color: "var(--muted)" }}>
+              {data.stats.progress === 100 ? "completed" : "auto-refresh 5s"}
+            </span>
+          </div>
+          <pre className="text-xs p-4 overflow-auto max-h-48 leading-relaxed font-mono" style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)", borderTop: "1px solid var(--border)" }}>
+            {JSON.stringify(data.pipeline, null, 2)}
+          </pre>
+        </div>
+      )}
+
+      {/* Walkthrough */}
+      {data.stats.hasWalkthrough && (
+        <div className="max-w-4xl mx-auto mt-4 rounded-xl border overflow-hidden" style={{ borderColor: "var(--border)", background: "var(--card-bg)" }}>
+          <div className="px-4 py-3 flex items-center gap-2" style={{ color: "#22c55e" }}>
+            <ExternalLink size={14} />
+            <span className="text-sm font-medium">WALKTHROUGH.md</span>
+            <span className="ml-auto text-[10px]" style={{ color: "var(--muted)" }}>completed</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

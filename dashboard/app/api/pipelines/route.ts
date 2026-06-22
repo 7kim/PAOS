@@ -38,21 +38,40 @@ export async function GET() {
         } catch { /* no walkthrough */ }
 
         // Count completed tasks from TASKS.md
-        const completedTasks = tasks ? (tasks.match(/\[x\]/gi) || []).length : 0;
-        const totalTasks = tasks ? (tasks.match(/\[ \]/g) || []).length + completedTasks : 0;
+        let completedTasks = tasks ? (tasks.match(/\[x\]/gi) || []).length : 0;
+        let totalTasks = tasks ? (tasks.match(/\[ \]/g) || []).length + completedTasks : 0;
+
+        // Override with pipeline.json live progress if available
+        const pipelineJsonPath = join(PIPELINES_DIR, dir, "pipeline.json");
+        try {
+          const pjRaw = await readFile(pipelineJsonPath, "utf-8");
+          const pj = JSON.parse(pjRaw) as Record<string, unknown>;
+          const progress = pj.progress as string | undefined;
+          if (progress && progress !== "0/...") {
+            const parts = progress.split("/");
+            const liveCompleted = parseInt(parts[0], 10) || 0;
+            const liveTotal = parseInt(parts[1], 10) || 0;
+            if (liveTotal > 0) {
+              completedTasks = liveCompleted;
+              totalTasks = liveTotal;
+            }
+          }
+        } catch { /* no pipeline.json */ }
 
         return {
           id: dir,
           status: meta.status ?? "unknown",
-          planner: String(meta.planner ?? meta.planner_agent ?? "—"),
-          executor: String(meta.executor ?? meta.executor_agent ?? "—"),
+          phases: Array.isArray(meta.phases) ? meta.phases.map((p: Record<string, unknown>) => ({
+            agent: p.agent, role: p.role, label: p.label, status: p.status,
+          })) : [],
+          planner: String(meta.planner ?? meta.phases?.[0]?.agent ?? "—"),
+          executor: String(meta.executor ?? meta.phases?.[meta.phases.length - 1]?.agent ?? "—"),
           prompt: String(meta.prompt ?? ""),
           created_at: String(meta.submitted_at ?? meta.created_at ?? ""),
           completed_at: String(meta.completed_at ?? ""),
           completedTasks,
           totalTasks,
           hasWalkthrough: !!walkthrough,
-          phases: extractPhases(tasks),
         };
       })
     );

@@ -6,26 +6,18 @@
 ---
 
 ## Last Agent
-- **Agent**: opencode-developer
-- **Tool**: OpenCode Developer
-- **Timestamp**: 2026-06-22T17:45:22.177Z
-- **Session**: PAOS Commands pipeline designed and submitted
+- **Agent**: hermes-nous
+- **Tool**: Hermes (Nous Research)
+- **Timestamp**: 2026-06-22T18:56:44.107Z
 
 ## Active Task
-Pipeline PIPE-20260622-174508-pia2ix — PAOS Commands (16 /h-* scripts)
+PAOS Dashboard and Pipeline System — fully operational
 
 ## What Was Just Done
-- Designed 16 PAOS /h-* commands covering full session lifecycle (start → work → end → governance)
-- Produced IMPLEMENTATION_PLAN.md + TASKS.md with 19 tasks
-- Submitted pipeline to opencode-developer's inbox via submit_pipeline
-- Sent notification to Hermes inbox about the new pipeline
-- Cleaned up stray artifact files from AI_Workflow root
+- Dynamic pipeline visualization: N-node phase flow with expandable artifacts, diff view, live pipeline.json, task summary, and walkthrough\n- Execute API (POST /api/pipelines/[id]/execute) that spawns opencode run in background\n- Play button on pipelines list to trigger execution\n- Review & Enhance multi-agent pipeline flow (opencode → hermes → opencode)\n- Show diff toggle for enhanced plans inside phase headers\n- Slash commands for OpenCode and Claude Code: /pipelines-view, /pipeline-execute\n- Pipeline protocol instructions for both agents (AGENTS.md, CLAUDE.md)\n- Pipeline progress bars read from pipeline.json (live) instead of static TASKS.md markers\n- Polling stops and spinner stops when pipeline hits 100%\n- Pipeline phases use new dynamic phases[] format (not legacy planner/executor)\n- Task parsing uses LAST TASKS.md (latest phase) not first\n- API Playground updated with all 18 endpoints (pipelines detail, execute, projects, code-srs)\n- Projects page built with file explorer tree, current/previous tabs\n- Task stats use actual parsed task count, capped enrichment from pipeline.json\n- List API reads pipeline.json for live progress on all pipelines
 
 ## What Is NOT Done Yet
-- Pipeline needs an executor to pick it up and execute the 19 tasks
-- Each script needs writing, testing, chmod +x
-- OpenCode wrappers (16 .md files) need creation
-- Agent documentation (CLAUDE.md, INDEX.md, soul.md) needs updating
+- Terminals page (view/kill running terminal sessions)\n- Enhance Projects page as full file explorer with file views\n- IDE Mode with CodeMirror 6\n- Built-in terminal (xterm.js)\n- Research Termux AI\n- PAOS web finalization/polish
 
 ## Active Projects
 

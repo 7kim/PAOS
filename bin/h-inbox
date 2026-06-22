@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# h-inbox — List messages in agent inbox
+# Usage: h-inbox [agent-id]
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+AGENT="${1:-$(agent_name)}"
+INBOX="$PAOS_HOME/memory/inbox/$AGENT"
+
+if [[ ! -d "$INBOX" ]]; then
+  info "No inbox for agent: $AGENT"
+  exit 0
+fi
+
+shopt -s nullglob
+files=("$INBOX"/*.md)
+count=${#files[@]}
+
+echo -e "${H_BOLD}Inbox for: $AGENT${H_RESET}  (${count} message(s))"
+echo ""
+
+if [[ $count -eq 0 ]]; then
+  echo "  (empty)"
+  exit 0
+fi
+
+for f in "${files[@]}"; do
+  # Parse sender and subject from front matter
+  sender="$(sed -n 's/^from: //p' "$f" 2>/dev/null | head -1)"
+  subject="$(sed -n 's/^subject: //p' "$f" 2>/dev/null | head -1)"
+  ts_fmt="$(stat -c '%y' "$f" 2>/dev/null | cut -d. -f1)"
+  priority="$(sed -n 's/^priority: //p' "$f" 2>/dev/null | head -1)"
+  pfx=""
+  [[ "$priority" == "high" ]] && pfx="!"
+  echo "  ${pfx}[$(basename "$f")]"
+  echo "    From:     ${sender:-unknown}"
+  echo "    Subject:  ${subject:-untitled}"
+  echo "    Received: $ts_fmt"
+  echo ""
+done

@@ -84,3 +84,25 @@ After Phase 3 completes, I verify:
 - **Inbox**: `vault/memory/inbox/coordinator/`
 - **Events log**: `vault/memory/coordinator/events.md`
 - **Commit**: `bin/agent-commit.sh opencode-coordinator "Agent[opencode-coordinator]: <description>"`
+
+## Available /h-* Commands
+
+All PAOS agents can invoke `/h-*` bash scripts from `~/AI_Workflow/bin/`. These work without MCP.
+
+| Command | What it does |
+|---------|-------------|
+| `h-help` | List all commands |
+| `h-whoami` | Show agent identity |
+| `h-status` | Show recent activity, context, projects |
+| `h-inbox` | Check inbox messages |
+| `h-daily` | Read/create daily note |
+| `h-log` | Dual-log to events.md + global_ledger.md |
+| `h-context` | Append to shared context.md |
+| `h-task` | Manage task cards |
+| `h-pipeline` | Pipeline lifecycle (submit/list/execute) |
+| `h-write-handoff` | Rewrite HANDOFF.md |
+| `h-commit` | Git commit with agent identity |
+| `h-sync` | End-of-session ritual |
+| `h-chat` | Write chat summary |
+| `h-audit` | Run compliance checks |
+

@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# h-task — Manage task cards
+# Usage: h-task list|read <id>|create <title>
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+TASKS_DIR="$PAOS_HOME/memory/tasks"
+
+subcmd="${1:-list}"
+shift 2>/dev/null || true
+
+case "$subcmd" in
+  list)
+    echo -e "${H_BOLD}Task Cards${H_RESET}"
+    echo ""
+    shopt -s nullglob
+    for f in "$TASKS_DIR"/*.md; do
+      name="$(basename "$f" .md)"
+      title="$(sed -n 's/^title: "//p' "$f" 2>/dev/null | head -1 | sed 's/"$//')"
+      status="$(sed -n 's/^status: //p' "$f" 2>/dev/null | head -1)"
+      echo "  ${H_INFO}$name${H_RESET}  ${status:-?}  ${title:-}"
+    done | sort
+    ;;
+
+  read)
+    id="${1:-}"
+    if [[ -z "$id" ]]; then
+      die "Usage: h-task read <task-id>"
+    fi
+    file="$TASKS_DIR/$id.md"
+    if [[ ! -f "$file" ]]; then
+      die "Task not found: $id"
+    fi
+    cat "$file"
+    ;;
+
+  create)
+    title="${*:-}"
+    if [[ -z "$title" ]]; then
+      die "Usage: h-task create <title>"
+    fi
+    # Generate ID: TASK-<N>
+    next=1
+    shopt -s nullglob
+    for f in "$TASKS_DIR"/TASK-*.md; do
+      n="${f##*/TASK-}"; n="${n%.md}"
+      [[ "$n" -ge "$next" ]] && next=$((n + 1))
+    done
+    id="TASK-$(printf '%03d' "$next")"
+    ts_now="$(ts)"
+    cat > "$TASKS_DIR/$id.md" <<- TASK
+---
+task_id: $id
+title: "$title"
+status: pending
+assigned_to: $(agent_name)
+created_by: $(agent_name)
+priority: normal
+depends_on: "-"
+created_at: $ts_now
+---
+
+# $id — $title
+
+**Status**: pending
+**Created**: $ts_now
+
+## Description
+
+$title
+TASK
+    ok "Created task: $id — $title"
+    ;;
+
+  *)
+    die "Usage: h-task list|read <id>|create <title>"
+    ;;
+esac

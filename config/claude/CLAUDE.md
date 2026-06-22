@@ -193,6 +193,27 @@ pipeline:
   notify_on_complete: true
 ```
 
+## PAOS /h-* Commands (Available to All Agents)
+
+Bash scripts in `~/AI_Workflow/bin/h-*`. Run directly from terminal — work without MCP.
+
+| Command | Usage | Purpose |
+|---------|-------|---------|
+| `h-help` | `h-help` | List all commands + live pipeline status |
+| `h-whoami` | `h-whoami` | Show agent identity, soul, inbox, git config |
+| `h-status` | `h-status` | Recent ledger (10), context tail, active projects |
+| `h-inbox` | `h-inbox [agent]` | List inbox messages with sender/subject |
+| `h-daily` | `h-daily [date]` | Read or create today's daily note |
+| `h-log` | `h-log <action> <file> <desc>` | Dual-log to events.md + global_ledger.md |
+| `h-context` | `h-context <thinking> [decisions] [handoff]` | Append to shared context.md |
+| `h-task` | `h-task list\|read\|create` | Manage task cards |
+| `h-pipeline` | `h-pipeline submit\|list\|execute` | Pipeline lifecycle |
+| `h-write-handoff` | `h-write-handoff <active> <done> <pending>` | Rewrite HANDOFF.md |
+| `h-commit` | `h-commit <message>` | Git add + commit with Agent[<name>]: |
+| `h-sync` | `h-sync <active> <done> <pending>` | End-of-session: handoff + commit + sync |
+| `h-chat` | `h-chat <title> [summary]` | Write chat summary to vault/chats/ |
+| `h-audit` | `h-audit` | Run compliance checks |
+
 ## Dialogue Context Recovery Command
 - **/H-Continue**: When the user invokes `/H-Continue`, you MUST immediately read the last 100 lines of `vault/chats/active_chat_transcript.md` (or the entire file if it is shorter) to load the exact previous dialogue history and context of the chat, and print a summary of your understanding to the operator.
 

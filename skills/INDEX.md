@@ -24,6 +24,27 @@
 |-------|-------------|----------|-------------|
 | [ponytail](ponytail/SKILL.md) | Minimal-essential coding philosophy — lazy senior dev mode. ~54% less code, ~20% cheaper, ~27% faster, 100% safe. Before writing code: YAGNI → stdlib → native → installed dep → one line → minimum. | software-development | all agents |
 
+## PAOS Commands
+
+All agents can invoke `/h-*` commands from the terminal. These are bash scripts in `bin/` that work even without MCP running.
+
+| Command | Description |
+|---------|-------------|
+| `h-help` | List all commands |
+| `h-whoami` | Show agent identity |
+| `h-status` | Show recent ledger, context, projects |
+| `h-inbox` | List inbox messages |
+| `h-daily` | Read/create daily note |
+| `h-log` | Dual-log to events.md + global_ledger.md |
+| `h-context` | Append to shared context.md |
+| `h-task` | Manage task cards (list/read/create) |
+| `h-pipeline` | Pipeline lifecycle (submit/list/execute) |
+| `h-write-handoff` | Rewrite HANDOFF.md |
+| `h-commit` | Git commit with agent identity |
+| `h-sync` | End-of-session: handoff + commit + sync-chat |
+| `h-chat` | Write chat summary |
+| `h-audit` | Run compliance checks |
+
 ## Documentation Skills
 
 | Skill | Description | Category | Agent Access |

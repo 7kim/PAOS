@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# h-audit — Check PAOS compliance: dual-logging, recent commits, HANDOFF freshness, stale inbox
+# Usage: h-audit
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+ANAME="$(agent_name)"
+FAIL=0
+
+echo -e "${H_BOLD}PAOS Compliance Audit${H_RESET}"
+echo ""
+
+# 1. Dual-logging check
+AGENT_LOG="$PAOS_HOME/logs/$ANAME/events.md"
+GLOBAL_LOG="$PAOS_HOME/memory/global_ledger.md"
+
+echo -e "${H_INFO}1. Dual-Logging${H_RESET}"
+if [[ -f "$AGENT_LOG" ]]; then
+  last_agent="$(tail -1 "$AGENT_LOG" 2>/dev/null)"
+  echo "  ✓ Agent log:   $AGENT_LOG (last entry: ${last_agent:0:60})"
+else
+  echo "  ✗ Agent log missing: $AGENT_LOG"
+  FAIL=$((FAIL + 1))
+fi
+
+if [[ -f "$GLOBAL_LOG" ]]; then
+  last_global="$(tail -1 "$GLOBAL_LOG" 2>/dev/null)"
+  echo "  ✓ Global log:  $GLOBAL_LOG"
+else
+  echo "  ✗ Global ledger missing"
+  FAIL=$((FAIL + 1))
+fi
+echo ""
+
+# 2. Last commit
+echo -e "${H_INFO}2. Recent Git Activity${H_RESET}"
+if git -C "$PAOS_HOME" log --oneline -1 2>/dev/null; then
+  last_commit="$(git -C "$PAOS_HOME" log --oneline -1 2>/dev/null)"
+  echo "  Last commit: $last_commit"
+else
+  echo "  No commits or not a git repo"
+fi
+echo ""
+
+# 3. HANDOFF freshness
+echo -e "${H_INFO}3. HANDOFF.md Freshness${H_RESET}"
+HANDOFF_FILE="$PAOS_HOME/memory/shared/HANDOFF.md"
+if [[ -f "$HANDOFF_FILE" ]]; then
+  handoff_time="$(stat -c '%y' "$HANDOFF_FILE" 2>/dev/null | cut -d. -f1)"
+  echo "  Last updated: $handoff_time"
+else
+  echo "  ✗ HANDOFF.md missing"
+  FAIL=$((FAIL + 1))
+fi
+echo ""
+
+# 4. Stale inbox messages
+echo -e "${H_INFO}4. Inbox Status${H_RESET}"
+INBOX="$PAOS_HOME/memory/inbox/$ANAME"
+if [[ -d "$INBOX" ]]; then
+  shopt -s nullglob
+  msgs=("$INBOX"/*.md)
+  echo "  ${#msgs[@]} message(s) in inbox"
+  for f in "${msgs[@]}"; do
+    age=$(( ($(date +%s) - $(stat -c '%Y' "$f")) / 86400 ))
+    [[ $age -gt 7 ]] && echo "  ⚠ Stale: $(basename "$f") ($age days old)"
+  done
+else
+  echo "  No inbox directory"
+fi
+echo ""
+
+# Summary
+if [[ $FAIL -eq 0 ]]; then
+  echo -e "${H_OK}All checks passed${H_RESET}"
+else
+  echo -e "${H_WARN}$FAIL check(s) failed${H_RESET}"
+fi

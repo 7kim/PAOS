@@ -144,3 +144,25 @@ When user invokes `/H-Continue`: read the last 100 lines of `vault/chats/active_
 | Commit script | `bin/agent-commit.sh antigravity "Agent[antigravity]: <desc>"` |
 | HANDOFF | `vault/memory/shared/HANDOFF.md` |
 | Ledger | `vault/memory/global_ledger.md` |
+
+## Available /h-* Commands
+
+All PAOS agents can invoke `/h-*` bash scripts from `~/AI_Workflow/bin/`. These work without MCP.
+
+| Command | What it does |
+|---------|-------------|
+| `h-help` | List all commands |
+| `h-whoami` | Show agent identity |
+| `h-status` | Show recent activity, context, projects |
+| `h-inbox` | Check inbox messages |
+| `h-daily` | Read/create daily note |
+| `h-log` | Dual-log to events.md + global_ledger.md |
+| `h-context` | Append to shared context.md |
+| `h-task` | Manage task cards |
+| `h-pipeline` | Pipeline lifecycle (submit/list/execute) |
+| `h-write-handoff` | Rewrite HANDOFF.md |
+| `h-commit` | Git commit with agent identity |
+| `h-sync` | End-of-session ritual |
+| `h-chat` | Write chat summary |
+| `h-audit` | Run compliance checks |
+

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# h-pipeline — Pipeline lifecycle: submit/list/execute
 """
 /h-pipeline — Cross-Agent Plan-Then-Execute Pipeline
 
@@ -18,6 +19,8 @@ import json
 import uuid
 import yaml
 import argparse
+import urllib.request
+import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -378,6 +381,68 @@ def cmd_list(args):
     return 0
 
 
+# ── Execute ──────────────────────────────────────────────────────────────────
+
+def cmd_execute(args):
+    """Execute a pipeline by ID. Calls dashboard API if available, falls back to direct."""
+    pipeline_id = args.pipeline_id
+    pipeline_dir = PIPELINES_DIR / pipeline_id
+
+    if not pipeline_dir.exists():
+        print(f"Pipeline not found: {pipeline_id}", file=sys.stderr)
+        return 1
+
+    # Read META
+    meta_file = pipeline_dir / "META.json"
+    if not meta_file.exists():
+        print(f"No META.json for pipeline: {pipeline_id}", file=sys.stderr)
+        return 1
+
+    with open(meta_file) as f:
+        meta = json.load(f)
+
+    if meta.get("status") == "completed":
+        print(f"Pipeline {pipeline_id} is already completed")
+        return 0
+    if meta.get("status") == "executing":
+        print(f"Pipeline {pipeline_id} is already executing")
+        return 0
+
+    # Try dashboard API first
+    api_url = f"http://localhost:3333/api/pipelines/{pipeline_id}/execute"
+    try:
+        req = urllib.request.Request(api_url, method="POST")
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            result = json.loads(resp.read())
+            print(json.dumps(result, indent=2))
+            if result.get("ok"):
+                return 0
+            else:
+                print(f"API returned error: {result.get('error', 'unknown')}", file=sys.stderr)
+                return 1
+    except (urllib.error.URLError, urllib.error.HTTPError, ConnectionRefusedError) as e:
+        print(f"Dashboard API unreachable ({e}), falling back to direct update...", file=sys.stderr)
+
+    # Fallback: update pipeline.json directly
+    ts = datetime.now(timezone.utc).isoformat()
+    pipeline_json = pipeline_dir / "pipeline.json"
+    meta["status"] = "executing"
+    with open(meta_file, "w") as f:
+        json.dump(meta, f, indent=2)
+    with open(pipeline_json, "w") as f:
+        json.dump({
+            "status": "executing",
+            "currentTask": "Pipeline execution started",
+            "progress": "0/...",
+            "startedAt": ts,
+            "note": "Dashboard API unavailable — pipeline.json updated directly. Run opencode manually.",
+        }, f, indent=2)
+
+    print(f"Pipeline {pipeline_id} marked as executing.")
+    print(f"To execute manually: opencode run 'You have been assigned pipeline {pipeline_id}...'")
+    return 0
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -403,6 +468,10 @@ def main():
     # list
     list_parser = subparsers.add_parser("list", help="List all pipelines")
 
+    # execute
+    execute_parser = subparsers.add_parser("execute", help="Execute a pipeline")
+    execute_parser.add_argument("pipeline_id", help="Pipeline ID (e.g. PIPE-20260521-051900-abc123)")
+
     args = parser.parse_args()
 
     if args.command == "submit":
@@ -411,6 +480,8 @@ def main():
         return cmd_status(args)
     elif args.command == "list":
         return cmd_list(args)
+    elif args.command == "execute":
+        return cmd_execute(args)
     else:
         parser.print_help()
         return 1

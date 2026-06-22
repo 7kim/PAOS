@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# h-context — Append structured thinking to shared context.md
+# Usage: h-context <thinking> [decisions] [handoff]
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+THINKING="${1:-}"
+DECISIONS="${2:-}"
+HANDOFF="${3:-}"
+
+if [[ -z "$THINKING" ]]; then
+  # Interactive mode
+  echo "Enter your thinking (Ctrl+D when done):"
+  THINKING="$(cat)"
+fi
+
+ANAME="$(agent_name)"
+NOW="$(ts)"
+CONTEXT_FILE="$PAOS_HOME/memory/shared/context.md"
+
+mkdir -p "$(dirname "$CONTEXT_FILE")"
+
+cat >> "$CONTEXT_FILE" <<- ENTRY
+
+## $NOW @$ANAME
+
+**Thinking**: $THINKING
+ENTRY
+
+if [[ -n "$DECISIONS" ]]; then
+  echo "**Decisions**: $DECISIONS" >> "$CONTEXT_FILE"
+fi
+
+if [[ -n "$HANDOFF" ]]; then
+  echo "**Handoff**: $HANDOFF" >> "$CONTEXT_FILE"
+fi
+
+ok "Appended to shared context"

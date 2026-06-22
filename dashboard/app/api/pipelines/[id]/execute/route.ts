@@ -42,6 +42,15 @@ export async function POST(
 
     // Update META.json status
     meta.status = "executing";
+    // Also mark the last pending/executor phase as executing
+    if (Array.isArray(meta.phases)) {
+      for (const phase of meta.phases) {
+        if (phase.status === "submitted" || phase.status === "pending") {
+          phase.status = "executing";
+          break; // only mark the first pending phase
+        }
+      }
+    }
     await writeFile(join(dir, "META.json"), JSON.stringify(meta, null, 2));
 
     // Spawn opencode run in background to execute the pipeline

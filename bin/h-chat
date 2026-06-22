@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# h-chat — Write structured chat summary to vault/chats/
+# Usage: h-chat <title> [summary]
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+TITLE="${1:-}"
+SUMMARY="${2:-}"
+
+if [[ -z "$TITLE" ]]; then
+  # Interactive mode
+  echo "Enter chat title:"
+  read -r TITLE
+  echo "Enter summary (Ctrl+D when done):"
+  SUMMARY="$(cat)"
+fi
+
+ANAME="$(agent_name)"
+NOW="$(ts)"
+DATE="$(date -u '+%Y-%m-%d')"
+SLUG="$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-' | sed 's/-$//' | cut -c1-40)"
+CHATS_DIR="$PAOS_HOME/vault/chats"
+CHAT_FILE="$CHATS_DIR/$DATE-$SLUG.md"
+
+mkdir -p "$CHATS_DIR"
+
+cat > "$CHAT_FILE" <<- CHAT
+# $TITLE
+
+**Date**: $DATE
+**Agent**: $ANAME
+**Created**: $NOW
+
+## Summary
+
+$SUMMARY
+
+## Decisions Made
+
+-
+
+## Files Changed
+
+-
+
+## Next Steps
+
+-
+CHAT
+
+echo "$CHAT_FILE"
+ok "Chat saved: ${CHAT_FILE/#$HOME/~}"

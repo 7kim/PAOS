@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# h-status — Show recent ledger, shared context, active projects
+# Usage: h-status
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+echo -e "${H_BOLD}PAOS Status${H_RESET}"
+echo ""
+
+# Recent ledger (last 10 entries)
+LEDGER="$PAOS_HOME/memory/global_ledger.md"
+if [[ -f "$LEDGER" ]]; then
+  echo -e "${H_INFO}Recent Activity (last 10)${H_RESET}"
+  grep '|' "$LEDGER" | grep -v '---' | grep -v 'Timestamp' | tail -10 | while IFS='|' read -r _ ts agent action file desc _; do
+    echo "  $(echo "$ts" | xargs)  $(echo "$agent" | xargs)  $(echo "$action" | xargs)  $(echo "$desc" | xargs)"
+  done
+  echo ""
+fi
+
+# Shared context (last 5 lines)
+CONTEXT="$PAOS_HOME/memory/shared/context.md"
+if [[ -f "$CONTEXT" ]]; then
+  echo -e "${H_INFO}Shared Context (tail)${H_RESET}"
+  tail -5 "$CONTEXT" | sed 's/^/  /'
+  echo ""
+fi
+
+# Active projects
+PROJECTS="$PAOS_HOME/projects.md"
+if [[ -f "$PROJECTS" ]]; then
+  echo -e "${H_INFO}Active Projects${H_RESET}"
+  grep '|' "$PROJECTS" | grep -v '---' | grep -v 'Project' | while IFS='|' read -r _ name path stack status notes _; do
+    echo "  $(echo "$name" | xargs) — $(echo "$status" | xargs)"
+  done
+fi

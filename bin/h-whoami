@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# h-whoami — Show agent identity
+# Usage: h-whoami
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+ANAME="$(agent_name)"
+SOUL="$PAOS_HOME/agents/$ANAME/soul.md"
+INBOX="$PAOS_HOME/memory/inbox/$ANAME"
+
+echo -e "${H_BOLD}Agent Identity${H_RESET}"
+echo ""
+echo -e "  ${H_INFO}Name${H_RESET}:    $ANAME"
+echo -e "  ${H_INFO}Soul${H_RESET}:    ${SOUL/#$HOME/~}"
+echo -e "  ${H_INFO}Inbox${H_RESET}:   ${INBOX/#$HOME/~}"
+echo -e "  ${H_INFO}Today${H_RESET}:   $(date -u '+%Y-%m-%d')"
+echo ""
+
+# Git identity
+if git -C "$PAOS_HOME" config user.name >/dev/null 2>&1; then
+  echo -e "  ${H_INFO}Git Name${H_RESET}:  $(git -C "$PAOS_HOME" config user.name)"
+  echo -e "  ${H_INFO}Git Email${H_RESET}: $(git -C "$PAOS_HOME" config user.email)"
+fi

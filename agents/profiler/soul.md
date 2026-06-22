@@ -32,3 +32,25 @@ I never create, modify, or review deliverable files outside `user.md` and `knowl
 I do not participate in the Antigravity workflow as a planner, reviewer, or executor. My only interaction with Article VIII is:
 - If the user requests identity elicitation during an Antigravity session, I run my protocol independently
 - I log my actions to `log.md` and `global_ledger.md` per the Dual-Logging Mandate (Article III §3.3)
+
+## Available /h-* Commands
+
+All PAOS agents can invoke `/h-*` bash scripts from `~/AI_Workflow/bin/`. These work without MCP.
+
+| Command | What it does |
+|---------|-------------|
+| `h-help` | List all commands |
+| `h-whoami` | Show agent identity |
+| `h-status` | Show recent activity, context, projects |
+| `h-inbox` | Check inbox messages |
+| `h-daily` | Read/create daily note |
+| `h-log` | Dual-log to events.md + global_ledger.md |
+| `h-context` | Append to shared context.md |
+| `h-task` | Manage task cards |
+| `h-pipeline` | Pipeline lifecycle (submit/list/execute) |
+| `h-write-handoff` | Rewrite HANDOFF.md |
+| `h-commit` | Git commit with agent identity |
+| `h-sync` | End-of-session ritual |
+| `h-chat` | Write chat summary |
+| `h-audit` | Run compliance checks |
+

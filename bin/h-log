@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# h-log — Dual-log to events.md + global_ledger.md
+# Usage: h-log <action> <file> <description>
+# Example: h-log CREATE bin/h-log "Created dual-log script"
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+ACTION="${1:-}"
+FILE="${2:-}"
+DESC="${3:-}"
+
+if [[ -z "$ACTION" || -z "$DESC" ]]; then
+  die "Usage: h-log <action> <file> <description>"
+fi
+
+ANAME="$(agent_name)"
+NOW="$(ts)"
+AGENT_LOG="$PAOS_HOME/logs/$ANAME/events.md"
+GLOBAL_LOG="$PAOS_HOME/memory/global_ledger.md"
+
+mkdir -p "$(dirname "$AGENT_LOG")"
+
+# 1. Agent events.md
+echo "[$NOW] | $ACTION | $FILE | $DESC" >> "$AGENT_LOG"
+
+# 2. Global ledger
+echo "| $NOW | $ANAME | $ACTION | $FILE | $DESC | - | - |" >> "$GLOBAL_LOG"
+
+ok "Logged: $ACTION $DESC"

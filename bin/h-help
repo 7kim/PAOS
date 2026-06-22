@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# h-help — List all available /h-* commands
+# Usage: h-help
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+echo -e "${H_BOLD}PAOS /h-* Commands${H_RESET}"
+echo ""
+
+for cmd in "$PAOS_HOME"/bin/h-*; do
+  name="$(basename "$cmd")"
+  # Try bash comment first (# ), then Python docstring (""")
+  desc="$(sed -n 's/^# //p' "$cmd" 2>/dev/null | head -1)"
+  if [[ -z "$desc" ]]; then
+    desc="$(sed -n 's/^"""//p; s/^# //p' "$cmd" 2>/dev/null | head -1)"
+    [[ -z "$desc" ]] && desc="$(sed -n '3s/^# //p' "$cmd" 2>/dev/null | head -1)"
+  fi
+  printf "  ${H_INFO}%-20s${H_RESET} %s\n" "$name" "${desc:-}"
+done
+
+echo ""
+
+# Try live pipeline status from dashboard if available
+if curl -sf http://localhost:3333/api/pipelines >/dev/null 2>&1; then
+  echo -e "${H_BOLD}Live Pipelines (from dashboard):${H_RESET}"
+  curl -sf http://localhost:3333/api/pipelines 2>/dev/null | \
+    python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+for p in data.get('pipelines', []):
+    pid = p.get('pipeline_id','?')
+    status = p.get('status','?')
+    prompt = (p.get('prompt','') or '')[:60]
+    print(f'  {pid:<35} {status:<12} {prompt}')
+" 2>/dev/null || echo "  (parse error)"
+else
+  echo -e "(dashboard not running — pipeline status unavailable)"
+fi

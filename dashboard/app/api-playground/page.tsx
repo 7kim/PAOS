@@ -19,6 +19,7 @@ interface ApiEndpoint {
 }
 
 const endpoints: ApiEndpoint[] = [
+  // ── Dashboard ──
   { path: "/api/overview", method: "GET", description: "Dashboard overview stats — agents, ledger, tasks, recent activity" },
   { path: "/api/agents", method: "GET", description: "List all registered PAOS agents" },
   { path: "/api/agents/[id]/health", method: "GET", description: "Health check for a specific agent", dynamic: { param: "id", options: [] } },
@@ -26,10 +27,22 @@ const endpoints: ApiEndpoint[] = [
   { path: "/api/handoff", method: "GET", description: "Get the current HANDOFF.md state" },
   { path: "/api/ledger", method: "GET", description: "Get global audit ledger entries" },
   { path: "/api/inbox", method: "GET", description: "Get inbox messages for all agents" },
-  { path: "/api/pipelines", method: "GET", description: "List all active pipelines" },
   { path: "/api/plans", method: "GET", description: "List all PM plans" },
   { path: "/api/gitview", method: "GET", description: "Git log and repository view" },
   { path: "/api/system/doctor", method: "GET", description: "Full system diagnostics — checks every agent" },
+  { path: "/api/admin/code-srs", method: "GET", description: "Code-SRS admin settings" },
+
+  // ── Pipelines ──
+  { path: "/api/pipelines", method: "GET", description: "List all pipelines with status, progress, and phases" },
+  { path: "/api/pipelines/[id]", method: "GET", description: "Pipeline detail — phases, artifacts, tasks, diffs", dynamic: { param: "id", options: [] } },
+  { path: "/api/pipelines/[id]/execute", method: "POST", description: "Execute a pipeline — spawns opencode run in background", dynamic: { param: "id", options: [] }, bodyPlaceholder: "{}" },
+
+  // ── Projects ──
+  { path: "/api/projects", method: "GET", description: "List all projects (current + previous) with status and activity" },
+  { path: "/api/projects/[name]", method: "GET", description: "Project detail — metadata + last 10 ledger entries", dynamic: { param: "name", options: [] } },
+  { path: "/api/projects/[name]/tree", method: "GET", description: "Project directory tree (max depth 3, skips build artifacts)", dynamic: { param: "name", options: [] } },
+
+  // ── Messaging ──
   { path: "/api/send-message", method: "POST", description: "Send a message to an agent's inbox", bodyPlaceholder: '{"targetAgent":"...", "sender":"...", "subject":"...", "body":"..."}' },
 ];
 
@@ -52,31 +65,57 @@ export default function ApiPlaygroundPage() {
   const [results, setResults] = useState<Record<string, { status: number; body: unknown; error?: string }>>({});
   const [loading, setLoading] = useState<string | null>(null);
   const [agentIds, setAgentIds] = useState<string[]>([]);
-  const [selectedAgent, setSelectedAgent] = useState<string>("");
+  const [pipelineIds, setPipelineIds] = useState<string[]>([]);
+  const [projectNames, setProjectNames] = useState<string[]>([]);
+  const [selectedValues, setSelectedValues] = useState<Record<string, string>>({});
   const [requestBody, setRequestBody] = useState<string>("");
   const [copied, setCopied] = useState<string | null>(null);
 
-  // Load agent IDs for the dynamic endpoint
+  // Load dynamic options
   useEffect(() => {
+    // Agents
     fetch("/api/agents")
       .then((r) => r.json())
       .then((d) => {
         const ids = (d.agents ?? []).map((a: { id: string }) => a.id).sort();
         setAgentIds(ids);
-        // Update the options in the endpoint
-        const ep = endpoints.find((e) => e.path === "/api/agents/[id]/health");
-        if (ep && ep.dynamic) ep.dynamic.options = ids;
+      })
+      .catch(() => {});
+    // Pipelines
+    fetch("/api/pipelines")
+      .then((r) => r.json())
+      .then((d) => {
+        const ids = (d.pipelines ?? []).map((p: { id: string }) => p.id);
+        setPipelineIds(ids);
+      })
+      .catch(() => {});
+    // Projects
+    fetch("/api/projects")
+      .then((r) => r.json())
+      .then((d) => {
+        const names: string[] = [];
+        for (const list of [d.current ?? [], d.previous ?? []]) {
+          for (const p of list) names.push(p.name);
+        }
+        setProjectNames(names);
       })
       .catch(() => {});
   }, []);
 
+  const getOptions = useCallback((ep: ApiEndpoint): string[] => {
+    if (ep.dynamic?.param === "id") return pipelineIds.length > 0 ? pipelineIds : agentIds;
+    if (ep.dynamic?.param === "name") return projectNames;
+    return [];
+  }, [pipelineIds, agentIds, projectNames]);
+
   const buildUrl = useCallback(
     (ep: ApiEndpoint) => {
       if (!ep.dynamic) return ep.path;
-      const agent = selectedAgent || agentIds[0] || "";
-      return ep.path.replace("[id]", agent);
+      const options = getOptions(ep);
+      const val = selectedValues[ep.path] || options[0] || "";
+      return ep.path.replace(/\[(id|name)\]/, val);
     },
-    [selectedAgent, agentIds]
+    [selectedValues, getOptions]
   );
 
   const sendRequest = useCallback(
@@ -202,8 +241,8 @@ export default function ApiPlaygroundPage() {
                         {ep.dynamic.param}:
                       </span>
                       <select
-                        value={selectedAgent}
-                        onChange={(e) => setSelectedAgent(e.target.value)}
+                        value={selectedValues[ep.path] || ""}
+                        onChange={(e) => setSelectedValues((prev) => ({ ...prev, [ep.path]: e.target.value }))}
                         className="text-xs font-mono rounded px-2 py-1 border"
                         style={{
                           background: "var(--card-bg)",
@@ -211,10 +250,9 @@ export default function ApiPlaygroundPage() {
                           borderColor: "var(--border)",
                         }}
                       >
-                        {agentIds.length === 0 && <option value="">(loading agents...)</option>}
-                        {agentIds.map((id) => (
-                          <option key={id} value={id}>
-                            {id}
+                        {getOptions(ep).map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
                           </option>
                         ))}
                       </select>

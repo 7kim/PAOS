@@ -85,3 +85,22 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - Plan + tasks stored in pipeline dir under memory/pipelines/
 
 **Handoff Notes**: Pipeline PIPE-20260622-174508-pia2ix is in opencode-developer's inbox. Hermes also knows about it. 19 tasks, build order in TASKS.md. Standard Antigravity Review Loop applies: produce artifacts → user review → execute → walkthrough.
+
+---
+
+## 2026-06-22 18:18 @opencode-developer — Task: CROSS-AGENT-EXEC
+
+**Thinking**: User wants real-time cross-agent execution without over-engineering. Current system is file-queue based (pull). User asked if we want Kafka or a daemon. Ponytail assessment: both are overkill. The minimal solution is a systemd path unit — 8 lines total, zero dependencies, built into Linux. Triggers on inbox file creation. Can notify or auto-execute opencode in tmux.
+
+But the user wants a multi-agent conversation: share this idea with Hermes, get Hermes' enhanced ideas back, then combine into a final implementation plan that Hermes passes to opencode-developer for execution.
+
+**Decisions**:
+- Kafka is wrong scale (single machine, simple files)
+- Custom daemon is premature automation (more code to debug)
+- systemd path unit is the native solution: 4-line .path + 4-line .service, zero deps
+- Two modes: notification-only vs auto-execution
+- Notification via notify-send or terminal bell
+- Auto-execution via tmux session
+- This needs agent coordination: share → enhance → finalize → execute
+
+**Handoff Notes**: Hermes should read this, refine the idea from an infrastructure/always-on perspective, then pass the combined plan back to opencode-developer for implementation.
