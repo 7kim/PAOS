@@ -40,19 +40,25 @@
       }
     },
     "hostinger-domains": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "/home/dev/AI_Workflow/mcp/hostinger/node_modules/hostinger-api-mcp/src/servers/domains.js"
+        "--package=hostinger-api-mcp@latest",
+        "hostinger-domains-mcp"
       ],
-      "env": {},
+      "env": {
+        "HOSTINGER_API_TOKEN": "cD9NlSvKkO7GhBrOmag56lhZ1x72yDd8LTElx7fz5742c829"
+      },
       "enabled": true
     },
     "hostinger-dns": {
-      "command": "node",
+      "command": "npx",
       "args": [
-        "/home/dev/AI_Workflow/mcp/hostinger/node_modules/hostinger-api-mcp/src/servers/dns.js"
+        "--package=hostinger-api-mcp@latest",
+        "hostinger-dns-mcp"
       ],
-      "env": {},
+      "env": {
+        "HOSTINGER_API_TOKEN": "cD9NlSvKkO7GhBrOmag56lhZ1x72yDd8LTElx7fz5742c829"
+      },
       "enabled": true
     },
     "agent-browser": {

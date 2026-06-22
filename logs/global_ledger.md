@@ -9,3 +9,6 @@
 | 2026-06-22T15:00:00Z | hermes-nous | MCP_WIRING | mcp/mcp-config.json, config/*/mcp* | Wired all 7 agents (Claude, Gemini, Codex, OpenClaw, Antigravity2, Hermes-nous, Signal) to unified MCP config via symlinks | PAOS-CONSTITUTION | 9cdd179 |
 | 2026-06-22T15:10:00Z | hermes-nous | MCP_INSTALL | mcp/mcp-config.json, skills/context7-mcp/ | Installed Context7 as shared MCP server (HTTP, docs querying) + added skill to PAOS shared skills | PAOS-SHARED | c2ab0ee |
 | 2026-06-22T15:15:00Z | hermes-nous | MCP_INSTALL | mcp/hostinger/, mcp/mcp-config.json | Installed Hostinger as shared MCP server (9 domains: VPS, DNS, domains, hosting, billing, e-commerce, horizons, reach) | PAOS-SHARED | dcb57cb |
+| 2026-06-22T15:25:00Z | hermes-nous | MCP_INSTALL | mcp/mcp-config.json, agent-browser | Installed agent-browser (Vercel Labs browser automation) as shared MCP server | PAOS-SHARED | 4502698 |
+| 2026-06-22T16:10:00Z | hermes-nous | SYSADMIN | systemd, tailscale, docker, .env | Set up PAOS Docker container → switched to host dev mode, Tailscale Serve at dev.anaconda.notothen.ts.net, paos-hub systemd service for boot start | PAOS-SYSADMIN | - |
+| 2026-06-22T16:10:00Z | hermes-nous | SESSION_END | HANDOFF.md, context.md, global_ledger.md | Session end — full PAOS infrastructure setup complete | PAOS-SESSION | - |
