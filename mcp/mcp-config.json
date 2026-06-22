@@ -39,10 +39,18 @@
         "CONTEXT7_API_KEY": "ctx7sk-d67b84ab-9990-4b5b-b701-4734c64bfa75"
       }
     },
-    "hostinger": {
+    "hostinger-domains": {
       "command": "node",
       "args": [
-        "/home/dev/AI_Workflow/mcp/hostinger/node_modules/hostinger-api-mcp/src/servers/all.js"
+        "/home/dev/AI_Workflow/mcp/hostinger/node_modules/hostinger-api-mcp/src/servers/domains.js"
+      ],
+      "env": {},
+      "enabled": true
+    },
+    "hostinger-dns": {
+      "command": "node",
+      "args": [
+        "/home/dev/AI_Workflow/mcp/hostinger/node_modules/hostinger-api-mcp/src/servers/dns.js"
       ],
       "env": {},
       "enabled": true
