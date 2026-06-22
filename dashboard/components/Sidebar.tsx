@@ -15,6 +15,7 @@ import {
   Zap,
   GitBranch,
   GitCommit,
+  TestTube,
 } from "lucide-react";
 
 const nav = [
@@ -27,6 +28,10 @@ const nav = [
   { href: "/gitview", label: "Git View", icon: GitCommit },
   { href: "/plans", label: "Plans", icon: FileText },
   { href: "/inbox", label: "Inbox", icon: Inbox },
+];
+
+const devNav = [
+  { href: "/api-playground", label: "API Playground", icon: TestTube },
 ];
 
 const codeSrsNav = [
@@ -113,6 +118,30 @@ export default function Sidebar() {
           Dashboard
         </p>
         {nav.map(({ href, label, icon: Icon }) => {
+          const active = isActive(href);
+          return (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
+              style={{
+                background: active ? "rgba(252,213,53,0.1)" : "transparent",
+                color: active ? "var(--accent)" : "var(--foreground)",
+                fontWeight: active ? 600 : 400,
+              }}
+            >
+              <Icon size={14} style={{ color: active ? "var(--accent)" : "var(--muted)" }} />
+              {label}
+            </Link>
+          );
+        })}
+
+        <div className="pt-3 pb-1">
+          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted)" }}>
+            Developer
+          </p>
+        </div>
+        {devNav.map(({ href, label, icon: Icon }) => {
           const active = isActive(href);
           return (
             <Link

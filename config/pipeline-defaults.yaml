@@ -3,9 +3,10 @@
 version: "1.0"
 
 defaults:
-  executor: opencode-developer
-  review_mode: auto          # auto = submit directly, manual = wait for approval, skip = no review
-  plan_format: antigravity   # antigravity = TASKS.md + IMPLEMENTATION_PLAN.md
+  executor: opencode-developer    # Always routes to developer agent running deepseek-v4-flash-free
+  executor_model: opencode/deepseek-v4-flash-free  # Pinned model — never overridden by planner
+  review_mode: auto               # auto = submit directly, manual = wait for approval, skip = no review
+  plan_format: antigravity        # antigravity = TASKS.md + IMPLEMENTATION_PLAN.md
   auto_commit: true
   notify_on_complete: true
 

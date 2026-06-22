@@ -33,6 +33,7 @@
       "/home/dev/AI_Workflow"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "Stop": [
       {
@@ -65,6 +66,6 @@
     }
   },
   "effortLevel": "medium",
-  "autoUpdaterStatus": "enabled",
-  "model": "sonnet"
+  "theme": "dark",
+  "autoUpdaterStatus": "enabled"
 }

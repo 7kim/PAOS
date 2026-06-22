@@ -9,6 +9,12 @@
 **Role**: Full-stack developer & infrastructure tooling engineer
 **Profile**: See `.opencode/user.md` for full Field of Expertise and Coding Style Vector.
 
+### Default Agent & Model
+- **Agent**: `@developer` (opencode-developer) — always the default, never overridden
+- **Model**: `opencode/deepseek-v4-flash-free` — pinned globally and per-agent in `opencode.json`
+- **Small model**: `opencode/north-mini-code-free` — lightweight tasks
+- **Enforcement**: The `developer` agent config in `opencode.json` sets `"model": "opencode/deepseek-v4-flash-free"` at both the root level and agent level. Pipeline delegation from Hermes or other agents routes to `opencode-developer` per `config/pipeline-defaults.yaml`, which inherits the same pinned model. The model is never changed regardless of how a task arrives — CLI, TUI, pipeline, or inbox delegation.
+
 ## Constitution Mandate
 
 **Before ANY work begins, you MUST read `.opencode/workflow.md`.** This is the PAOS Constitution (H-Factor Protocol v2.0.0) and it governs all actions. It is not optional. It defines:

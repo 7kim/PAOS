@@ -1,5 +1,6 @@
-# Developer Events Log — developer@paos.nodealgo.com
+# Developer Events
 
-| Timestamp (UTC) | Agent | Action | File | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| 2026-06-22T14:39:47Z | paos-init | INIT | - | Log initialized fresh via bin/init-paos.sh |
+[2026-06-22 16:45] | AGENT: opencode-developer | ACTION: CONFIG_UPDATE
+THINKING: "User requested to pin opencode/deepseek-v4-flash-free as the immutable default model for the Developer agent. Needed to set it in all config layers: opencode.json (global default + agent-level), AGENTS.md (declarative enforcement), registry.json (PAOS registry metadata), soul.md (agent identity), and pipeline-defaults.yaml (pipeline routing). This ensures the model survives pipeline/inbox delegation from Hermes or any other agent."
+EXECUTION: "Edited 5 files: config/opencode/opencode.json (added model + small_model at root and agent.developer.model), agents/developer/soul.md (added Runtime section with model identity), config/opencode/AGENTS.md (added Default Agent & Model section with enforcement notes), agents/registry.json (added defaultModel + defaultSmallModel to opencode-developer and opencode entries), config/pipeline-defaults.yaml (added executor_model field)"
+IMPACT: "5 files updated. Model is now pinned at global, agent, registry, pipeline, and soul levels. Any delegation path (CLI, TUI, pipeline, inbox, Hermes-triggered) resolves to opencode-developer running deepseek-v4-flash-free."
