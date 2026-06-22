@@ -18,6 +18,12 @@
 |-------|-------------|----------|-------------|
 | [vps-kit](vps-kit/SKILL.md) | AWS EC2 VPS connection and management (13.233.237.221, Ubuntu 26.04, ap-south-1). SSH, server info, quick commands. | infrastructure | all agents |
 
+## Software Development Skills
+
+| Skill | Description | Category | Agent Access |
+|-------|-------------|----------|-------------|
+| [ponytail](ponytail/SKILL.md) | Minimal-essential coding philosophy — lazy senior dev mode. ~54% less code, ~20% cheaper, ~27% faster, 100% safe. Before writing code: YAGNI → stdlib → native → installed dep → one line → minimum. | software-development | all agents |
+
 ## Documentation Skills
 
 | Skill | Description | Category | Agent Access |

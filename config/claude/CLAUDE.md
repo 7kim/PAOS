@@ -92,6 +92,7 @@ Invoke these when the trigger condition is met. Read the `SKILL.md` inside each 
 | **System Analysis & Design** | `skills/system-analysis-and-design/SKILL.md` | User says "SRS", "system design", "architecture document", "design X", or `@architect design` — runs 14-section SRS + Mermaid diagrams |
 | **Project Scaffolder** | `skills/project-scaffolder/SKILL.md` | User says "scaffold", "new project", "initialize project", or `@scaffold` — runs 10-point discovery survey then generates project harness via `scaffold` MCP |
 | **Skill Creator** | `skills/skill-creator-elicitation/SKILL.md` | User asks to create a new skill or agent capability |
+| **Ponytail** | `skills/ponytail/SKILL.md` | Active by default — lazy senior dev mode. Before writing code: YAGNI → stdlib → native → installed dep → one line → minimum. Cuts ~54% code safely. Also installed as a Claude Code plugin. |
 
 ---
 

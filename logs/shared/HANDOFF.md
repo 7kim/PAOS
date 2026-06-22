@@ -1,34 +1,23 @@
 # HANDOFF — Current PAOS State
 
-> This file is **rewritten** each session. It is the first thing every agent reads.
-> Always current. Max 60 lines.
+> This file is **rewritten** (not appended) each session. It is the first thing every agent reads.
+> Always current. Max 60 lines. For full history see: `shared/context.md` and `vault/chats/`.
 
 ---
 
 ## Last Agent
 - **Agent**: hermes-nous
-- **Tool**: Hermes Agent (Nous Research)
-- **Timestamp**: 2026-06-22T16:10:00Z
-- **Session**: PAOS infrastructure setup + Docker → Host dev mode
+- **Tool**: Hermes (Nous Research)
+- **Timestamp**: 2026-06-22T16:20:07.649Z
 
 ## Active Task
-PAOS is running in host dev mode. Dashboard accessible via Tailscale at `https://dev.anaconda-notothen.ts.net`.
+Installed ponytail (DietrichGebert/ponytail) — lazy senior dev coding philosophy for PAOS agents
 
 ## What Was Just Done
-- Installed Hermes fully into PAOS (`~/AI_Workflow/hermes/`, symlinked from `~/.hermes`)
-- Added Article X (Shared Infrastructure Convention) to constitution
-- Wired all 7 agents to unified MCP config (`mcp/mcp-config.json`)
-- Installed 3 shared MCP servers: Context7 (docs), Hostinger (domains + DNS), agent-browser (Vercel Labs)
-- Built, ran PAOS Docker container, then switched to host dev mode for instant refresh
-- Set up Tailscale Serve at `https://dev.anaconda-notothen.ts.net` (tailnet only)
-- Created `paos-hub` systemd service for boot auto-start
-- Changed user to docker group for non-sudo docker access
-- Session focus: PAOS is the only active project
+- Installed Claude Code CLI (npm -g to ~/.local/bin)\n- Installed ponytail plugin for Claude Code via marketplace (v4.7.0, enabled)\n- Configured ponytail for OpenCode: plugin ref in global + PAOS-level opencode.json, 6 command symlinks in ~/.config/opencode/command/\n- Created PAOS shared skill at skills/ponytail/SKILL.md with full ladder, rules, and not-lazy-about section\n- Registered ponytail in skills/INDEX.md under new Software Development Skills section\n- Referenced in config/claude/CLAUDE.md and config/opencode/AGENTS.md\n- Set defaultMode=full in ~/.config/ponytail/config.json\n- Fixed pre-existing trailing comma + missing root close-brace in PAOS opencode.json\n- Cloned repo to skills/ponytail-repo/ for reference
 
 ## What Is NOT Done Yet
-- Dokploy setup on VPS + nodealgo.com domain (deferred)
-- Dashboard health check needs fix (registry.json path in container build)
-- Other agents may need home-in-PAOS treatment like Hermes
+- OpenClaw: can install via `clawhub install ponytail` if ClawHub is configured
 
 ## Active Projects
 
@@ -46,5 +35,6 @@ PAOS is running in host dev mode. Dashboard accessible via Tailscale at `https:/
 
 ## How to Pick Up
 1. Read this file (done)
-2. Dashboard: `https://dev.anaconda-notothen.ts.net`
-3. Next operator: ask "Continuing from fresh PAOS — what's next?"
+2. Call `shared-memory: read_ledger` — last 20 rows
+3. Read `vault/chats/` — most recent chat summary
+4. Ask the operator: "Continuing from HANDOFF — what's next?"

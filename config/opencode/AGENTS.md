@@ -53,6 +53,7 @@
 | `skill-creator-elicitation` | Bootstrapping operator identity from git history, file headers, directory tree |
 | `system-analysis-and-design` | Writing SRS documents, system design docs, UML diagrams, technical specs |
 | `antigravity-review-loop` | Any multi-step feature work requiring structured user review via .md artifacts |
+| `ponytail` | **Active by default** — lazy senior dev mode. Before writing code: YAGNI → stdlib → native → installed dep → one line → minimum. Cuts ~54% code while keeping 100% safety. |
 
 ## Knowledge Base
 
