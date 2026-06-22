@@ -1,4 +1,5 @@
-# Hermes-Nous Agent Log
-| Timestamp (UTC) | Task ID | Action | File | Description | Commit |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-[2026-05-21T06:20:00Z] | PAOS-CONFIGURE | CONFIGURE | - | Full configuration: created PAOS skill (89th skill), added MCP servers (shared-memory + scaffold), created AGENTS.md for auto-injection, configured API keys and model provider | -
+# Hermes-nous Events Log — hermes-nous@paos.nodealgo.com
+
+| Timestamp (UTC) | Agent | Action | File | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 2026-06-22T14:39:47Z | paos-init | INIT | - | Log initialized fresh via bin/init-paos.sh |

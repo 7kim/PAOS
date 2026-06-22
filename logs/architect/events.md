@@ -1,12 +1,5 @@
-# Architect — Agent Events Log
+# Architect Events Log — architect@paos.nodealgo.com
 
-Structured log format (Article III §3.1):
-```
-[TIMESTAMP] | AGENT: architect | ACTION: <type>
-THINKING: "<why>"
-EXECUTION: "<what>"
-IMPACT: "<what changed>"
-```
-
----
-
+| Timestamp (UTC) | Agent | Action | File | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 2026-06-22T14:39:47Z | paos-init | INIT | - | Log initialized fresh via bin/init-paos.sh |

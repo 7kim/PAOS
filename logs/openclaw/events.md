@@ -1,4 +1,5 @@
-# openclaw Events Log
+# Openclaw Events Log — openclaw@paos.nodealgo.com
 
-[2026-05-17T01:22:12Z] | PAOS_TEST | test-agents.sh | Agent commit test — identity verified
-[2026-05-17T01:58:21Z] | PAOS_TEST | test-agents.sh | Agent commit test — identity verified
+| Timestamp (UTC) | Agent | Action | File | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| 2026-06-22T14:39:47Z | paos-init | INIT | - | Log initialized fresh via bin/init-paos.sh |
