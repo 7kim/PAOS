@@ -50,7 +50,7 @@ if ! $AUTO_YES; then
   echo "  • Clear vault chat history and daily notes (templates kept)"
   echo "  • Update projects.md to focus only on PAOS itself"
   echo "  • Install MCP server and dashboard dependencies"
-  echo "  • Keep your config/secrets/.env file intact"
+  echo "  • Create fresh config/secrets/.env from template (old one overwritten)"
   echo ""
   read -r -p "Continue? [Y/n] " reply
   case "$reply" in
@@ -61,16 +61,30 @@ fi
 
 cd "$REPO_ROOT"
 
-# ═══════════════════════════════════════════════════════════════════════════════
-# 1. KEEP secrets/.env — verify it exists
-# ═══════════════════════════════════════════════════════════════════════════════
-header "Secrets Check"
-if [[ -f "${REPO_ROOT}/config/secrets/.env" ]]; then
-  success "config/secrets/.env preserved"
+# ── Platform detection (used by secrets and paths sections) ────────────────────
+if [[ "$(uname -s)" == "Linux" ]]; then
+  SED_CMD=(sed -i)
 else
-  warn "config/secrets/.env not found — copying from template"
-  cp "${REPO_ROOT}/config/secrets/.env.template" "${REPO_ROOT}/config/secrets/.env"
-  echo -e "${YELLOW}  → Edit config/secrets/.env and add your API keys later${NC}"
+  SED_CMD=(sed -i '')
+fi
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 1. Create fresh .env from template (never keep old secrets)
+# ═══════════════════════════════════════════════════════════════════════════════
+header "Secrets File"
+
+TEMPLATE="${REPO_ROOT}/config/secrets/.env.template"
+ENV_FILE="${REPO_ROOT}/config/secrets/.env"
+
+if [[ -f "$TEMPLATE" ]]; then
+  cp "$TEMPLATE" "$ENV_FILE"
+  # Update default paths in .env to current user's home
+  "${SED_CMD[@]}" "s|/home/YOUR_USER|${CURRENT_HOME}|g" "$ENV_FILE" 2>/dev/null || true
+  "${SED_CMD[@]}" "s|/home/dev/AI_Workflow|${CURRENT_HOME}/AI_Workflow|g" "$ENV_FILE" 2>/dev/null || true
+  success "Fresh config/secrets/.env created from template"
+  echo -e "${YELLOW}  → Edit config/secrets/.env and add your API keys${NC}"
+else
+  warn ".env.template not found — skipping secrets setup"
 fi
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -502,14 +516,8 @@ success "vault/dashboard.md — updated"
 # ═══════════════════════════════════════════════════════════════════════════════
 header "Updating Paths"
 
-if [[ "$(uname -s)" == "Linux" ]]; then
-  SED_CMD=(sed -i)
-else
-  SED_CMD=(sed -i '')
-fi
-
-# Get the current home directory
 CURRENT_HOME="$HOME"
+
 # Only update if the paths don't already match
 if grep -rq "/home/dev/AI_Workflow" "${REPO_ROOT}" --include='*.json' --include='*.js' --include='*.md' --exclude-dir=.git --exclude-dir=node_modules 2>/dev/null; then
   info "Updating hardcoded /home/dev/AI_Workflow paths to ${CURRENT_HOME}/AI_Workflow..."
