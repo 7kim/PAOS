@@ -38,6 +38,16 @@
       "headers": {
         "CONTEXT7_API_KEY": "ctx7sk-d67b84ab-9990-4b5b-b701-4734c64bfa75"
       }
+    },
+    "hostinger": {
+      "command": "node",
+      "args": [
+        "/home/dev/AI_Workflow/mcp/hostinger/node_modules/hostinger-api-mcp/src/servers/all.js"
+      ],
+      "env": {
+        "HOSTINGER_API_TOKEN": ""
+      },
+      "enabled": true
     }
   }
 }

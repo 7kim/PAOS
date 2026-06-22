@@ -11,6 +11,7 @@
 | **scaffold** | 2 | Project scaffolding from templates: scaffold_project, list_templates | active |
 | **gitkraken** | read-only | Git context via `gk mcp --readonly`: PRs, issues, repos, commits | active |
 | **context7** | 2 | Library documentation: `resolve-library-id`, `query-docs` — fetch current docs for React, Next.js, Prisma, etc. | active |
+| **hostinger** | 9 domains | Hostinger API umbrella: VPS, DNS, domains, hosting, billing, e-commerce, horizons, reach | active (needs HOSTINGER_API_TOKEN) |
 
 ## How It Works
 
