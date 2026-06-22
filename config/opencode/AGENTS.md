@@ -1,5 +1,8 @@
 # PAOS — Personal Agent Operating System
 
+> **Config home**: `~/AI_Workflow/config/opencode/` — fully integrated into PAOS.
+> `~/.config/opencode/` → `config/opencode/` (symlink). CLI at `~/.opencode/bin/opencode`.
+
 ## Identity First (H-Factor §I3)
 
 **Operator**: Abdullah Abdul Hakim — NodeAlgo (nodealgo.com)

@@ -47,13 +47,20 @@
     ]
   },
   "enabledPlugins": {
-    "gitkraken-hooks@gitkraken": true
+    "gitkraken-hooks@gitkraken": true,
+    "ponytail@ponytail": true
   },
   "extraKnownMarketplaces": {
     "gitkraken": {
       "source": {
         "source": "directory",
         "path": "/home/dev/.claude/plugins/marketplaces/gitkraken"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
       }
     }
   },

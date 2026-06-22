@@ -14,5 +14,13 @@
       "path": "/home/dev/.claude/plugins/marketplaces/gitkraken",
       "source": "directory"
     }
+  },
+  "ponytail": {
+    "source": {
+      "source": "github",
+      "repo": "DietrichGebert/ponytail"
+    },
+    "installLocation": "/home/dev/.claude/plugins/marketplaces/ponytail",
+    "lastUpdated": "2026-06-22T16:18:00.527Z"
   }
 }

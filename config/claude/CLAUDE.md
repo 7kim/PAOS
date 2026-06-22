@@ -1,6 +1,9 @@
 # Claude Code — User-Level Configuration
 # PAOS H-Factor Protocol v2.1.0
 
+> **Config home**: `~/AI_Workflow/config/claude/` — fully integrated into PAOS.
+> `~/.claude/` → `config/claude/` (symlink). CLI at `~/.local/bin/claude`.
+
 This file applies to **every project and every session**. Project-specific rules live in each project's own CLAUDE.md.
 
 ## Identity
@@ -109,10 +112,10 @@ Invoke these when the trigger condition is met. Read the `SKILL.md` inside each 
 
 ## Active AI Agents (PAOS Roster)
 
-| Agent | Tool | Config | Inbox |
-|-------|------|--------|-------|
-| Claude Code | `~/.claude` → `config/claude/` | This file | `memory/inbox/claude/` |
-| OpenCode developer | `~/.opencode` → `AI_Workflow/` | `config/opencode/opencode.json` | `memory/inbox/developer/` |
+| Agent | Tool / Binary | Config Home | Inbox |
+|-------|--------------|-------------|-------|
+| Claude Code | `~/.local/bin/claude` | `~/.claude` → `config/claude/` ✅ integrated | `memory/inbox/claude/` |
+| OpenCode developer | `~/.opencode/bin/opencode` | `~/.config/opencode/` → `config/opencode/` ✅ integrated | `memory/inbox/developer/` |
 | OpenCode plan (PM) | same | same | `memory/inbox/developer/` |
 | OpenCode architect | same | same | `memory/inbox/architect/` |
 | OpenCode coordinator | same | same | `memory/inbox/coordinator/` |

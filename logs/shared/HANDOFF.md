@@ -8,16 +8,16 @@
 ## Last Agent
 - **Agent**: hermes-nous
 - **Tool**: Hermes (Nous Research)
-- **Timestamp**: 2026-06-22T16:20:07.649Z
+- **Timestamp**: 2026-06-22T16:25:06.747Z
 
 ## Active Task
-Installed ponytail (DietrichGebert/ponytail) — lazy senior dev coding philosophy for PAOS agents
+Full PAOS integration of Claude Code and OpenCode
 
 ## What Was Just Done
-- Installed Claude Code CLI (npm -g to ~/.local/bin)\n- Installed ponytail plugin for Claude Code via marketplace (v4.7.0, enabled)\n- Configured ponytail for OpenCode: plugin ref in global + PAOS-level opencode.json, 6 command symlinks in ~/.config/opencode/command/\n- Created PAOS shared skill at skills/ponytail/SKILL.md with full ladder, rules, and not-lazy-about section\n- Registered ponytail in skills/INDEX.md under new Software Development Skills section\n- Referenced in config/claude/CLAUDE.md and config/opencode/AGENTS.md\n- Set defaultMode=full in ~/.config/ponytail/config.json\n- Fixed pre-existing trailing comma + missing root close-brace in PAOS opencode.json\n- Cloned repo to skills/ponytail-repo/ for reference
+- Claude Code: merged ~/.claude/ runtime data into AI_Workflow/config/claude/ (plugins, skills, rules, sessions, projects, backups, settings)\n- Claude Code: symlinked ~/.claude/ → config/claude/ ✅\n- Claude Code: ponytail plugin survives the move (v4.7.0, enabled)\n- OpenCode: installed CLI (v1.17.9 via install script, binary at ~/.opencode/bin/opencode)\n- OpenCode: merged global ~/.config/opencode/ into AI_Workflow/config/opencode/ (incl context7 MCP, ponytail commands)\n- OpenCode: symlinked ~/.config/opencode/ → config/opencode/ ✅\n- Updated CLAUDE.md agent roster with integration status\n- Updated AGENTS.md with integration banner\n- Cleaned up backup dirs
 
 ## What Is NOT Done Yet
-- OpenClaw: can install via `clawhub install ponytail` if ClawHub is configured
+- Codex could also be integrated into PAOS if desired
 
 ## Active Projects
 
