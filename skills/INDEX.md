@@ -18,6 +18,12 @@
 |-------|-------------|----------|-------------|
 | [vps-kit](vps-kit/SKILL.md) | AWS EC2 VPS connection and management (13.233.237.221, Ubuntu 26.04, ap-south-1). SSH, server info, quick commands. | infrastructure | all agents |
 
+## Documentation Skills
+
+| Skill | Description | Category | Agent Access |
+|-------|-------------|----------|-------------|
+| [context7-mcp](context7-mcp/SKILL.md) | Fetch current library/framework documentation via Context7 MCP. Use for API refs, setup questions, code examples for React, Next.js, Prisma, etc. | documentation | all agents |
+
 ## Adding a New Skill
 
 1. Create `~/AI_Workflow/skills/<skill-name>/SKILL.md` with YAML frontmatter

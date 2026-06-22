@@ -31,6 +31,13 @@
         "NO_TELEMETRY": "1"
       },
       "disabled": false
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-d67b84ab-9990-4b5b-b701-4734c64bfa75"
+      }
     }
   }
 }

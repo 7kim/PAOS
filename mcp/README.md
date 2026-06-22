@@ -10,6 +10,7 @@
 | **shared-memory** | 14 | PAOS memory operations: ledger, inbox, context, tasks, pipelines, handoff, agent commit, process_notes, process_questions, submit_pipeline | active |
 | **scaffold** | 2 | Project scaffolding from templates: scaffold_project, list_templates | active |
 | **gitkraken** | read-only | Git context via `gk mcp --readonly`: PRs, issues, repos, commits | active |
+| **context7** | 2 | Library documentation: `resolve-library-id`, `query-docs` — fetch current docs for React, Next.js, Prisma, etc. | active |
 
 ## How It Works
 
