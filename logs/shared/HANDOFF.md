@@ -6,18 +6,26 @@
 ---
 
 ## Last Agent
-- **Agent**: hermes-nous
-- **Tool**: Hermes (Nous Research)
-- **Timestamp**: 2026-06-22T16:25:06.747Z
+- **Agent**: opencode-developer
+- **Tool**: OpenCode Developer
+- **Timestamp**: 2026-06-22T17:45:22.177Z
+- **Session**: PAOS Commands pipeline designed and submitted
 
 ## Active Task
-Full PAOS integration of Claude Code and OpenCode
+Pipeline PIPE-20260622-174508-pia2ix — PAOS Commands (16 /h-* scripts)
 
 ## What Was Just Done
-- Claude Code: merged ~/.claude/ runtime data into AI_Workflow/config/claude/ (plugins, skills, rules, sessions, projects, backups, settings)\n- Claude Code: symlinked ~/.claude/ → config/claude/ ✅\n- Claude Code: ponytail plugin survives the move (v4.7.0, enabled)\n- OpenCode: installed CLI (v1.17.9 via install script, binary at ~/.opencode/bin/opencode)\n- OpenCode: merged global ~/.config/opencode/ into AI_Workflow/config/opencode/ (incl context7 MCP, ponytail commands)\n- OpenCode: symlinked ~/.config/opencode/ → config/opencode/ ✅\n- Updated CLAUDE.md agent roster with integration status\n- Updated AGENTS.md with integration banner\n- Cleaned up backup dirs
+- Designed 16 PAOS /h-* commands covering full session lifecycle (start → work → end → governance)
+- Produced IMPLEMENTATION_PLAN.md + TASKS.md with 19 tasks
+- Submitted pipeline to opencode-developer's inbox via submit_pipeline
+- Sent notification to Hermes inbox about the new pipeline
+- Cleaned up stray artifact files from AI_Workflow root
 
 ## What Is NOT Done Yet
-- Codex could also be integrated into PAOS if desired
+- Pipeline needs an executor to pick it up and execute the 19 tasks
+- Each script needs writing, testing, chmod +x
+- OpenCode wrappers (16 .md files) need creation
+- Agent documentation (CLAUDE.md, INDEX.md, soul.md) needs updating
 
 ## Active Projects
 

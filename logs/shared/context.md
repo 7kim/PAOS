@@ -56,3 +56,32 @@ This is the append-only thinking context shared by all agents. Each agent writes
 - ~/.claude/ → config/claude/ symlink (merged all runtime data first)\n- ~/.config/opencode/ → config/opencode/ symlink (installed CLI, merged configs)\n- settings.json merged across both agents (kept permissions, hooks, marketplaces, plugins)\n- OpenCode commands linked from ponytail-repo into config/opencode/commands/\n- Updated CLAUDE.md and AGENTS.md with integration banners and updated agent roster\n- Old ~/.claude.backup and ~/.config/opencode.backup kept in case rollback needed
 
 **Handoff Notes**: Both agents fully integrated into PAOS. Claude Code and OpenCode CLI binaries are on PATH (via ~/.bashrc). Their config homes are symlinked into ~/AI_Workflow/config/. Old backup dirs exist as ~/.claude.backup and ~/.config/opencode.backup if rollback needed.
+
+---
+
+## 2026-06-22 17:02 @opencode-developer — Task: MODEL-PIN
+
+**Thinking**: User asked to permanently pin opencode/deepseek-v4-flash-free as the Developer agent's model, with protection against overrides when Hermes delegates via pipeline or inbox. This required updating all configuration layers that could influence model selection. OpenCode supports agent-level model pinning via agent.<name>.model in opencode.json, and the OpenCode docs confirm this overrides the global default. The registry.json defaultModel field documents the intent for PAOS-level metadata even though OpenCode itself doesn't read it — it's for dashboard display and agent health checks.
+
+**Decisions**:
+- Model pinned in 5 layers: opencode.json (global default + agent), AGENTS.md (declarative), registry.json (PAOS metadata), soul.md (agent identity), pipeline-defaults.yaml (pipeline routing)
+- small_model set to north-mini-code-free for lightweight tasks
+- The pipeline-defaults.yaml executor_model field is documentation-level — the actual enforcement is in opencode.json's agent.developer.model which OpenCode reads directly
+- Hermes-triggered delegation routes through pipeline-defaults.yaml → opencode-developer → inherits the pinned model from the developer agent config
+
+**Handoff Notes**: Model pinning is complete. Next sessions will see the model as opencode/deepseek-v4-flash-free by default. The system prompt now reflects this in AGENTS.md.
+
+---
+
+## 2026-06-22 17:45 @opencode-developer — Task: PIPE-20260622-174508-pia2ix
+
+**Thinking**: Designed 16 PAOS /h-* commands covering the full session lifecycle. User wanted a pipeline routed through Hermes to opencode-developer. Created pipeline PIPE-20260622-174508-pia2ix with 19 tasks, submitted to opencode-developer inbox, and notified Hermes via inbox message. Stray IMPLEMENTATION_PLAN.md and TASKS.md deleted from AI_Workflow root — pipeline artifacts live in memory/pipelines/.
+
+**Decisions**:
+- Commands are bash scripts in bin/, not MCP tools — work without the server running
+- 16 commands: enough to cover Article IX lifecycle, not so many it's bloat
+- h- prefix avoids collision with agent-native commands
+- Pipeline routed to opencode-developer per PAOS standard; Hermes notified for visibility
+- Plan + tasks stored in pipeline dir under memory/pipelines/
+
+**Handoff Notes**: Pipeline PIPE-20260622-174508-pia2ix is in opencode-developer's inbox. Hermes also knows about it. 19 tasks, build order in TASKS.md. Standard Antigravity Review Loop applies: produce artifacts → user review → execute → walkthrough.

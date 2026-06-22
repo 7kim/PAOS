@@ -165,6 +165,23 @@ When the user types `/h-pipeline <prompt>`, follow this protocol:
 
 The MCP tool handles: creating `memory/pipelines/PIPE-xxx/` with PLAN.md + TASKS.md + META.json, creating a task card, sending the plan to the executor's inbox, and logging to the global ledger.
 
+### Pipeline Execution Protocol (when acting as executor)
+
+When you receive a pipeline task (your inbox says "pipeline PIPE-xxx"):
+
+1. **Write pipeline.json** at `memory/pipelines/<PIPE-ID>/pipeline.json` with live status:
+   - On start: `{"status": "executing", "currentTask": "...", "progress": "0/N"}`
+   - Per task: update `currentTask` and `progress` (`"3/8"`)  
+   - On error: `{"status": "failed", "error": "..."}`
+   - On complete: `{"status": "completed", "completedAt": "UTC timestamp"}
+
+2. **Write WALKTHROUGH.md** at `memory/pipelines/<PIPE-ID>/WALKTHROUGH.md` after finishing all tasks:
+   - Summary, files changed, commands run, verification steps
+
+3. **Update TASKS.md** markers: `[ ]` → `[~]` → `[x]` as you progress
+
+4. **Update META.json**: set `status: "completed"` and `completed_at`
+
 ### Pipeline Settings (default — override in config/pipeline-defaults.yaml)
 
 ```yaml

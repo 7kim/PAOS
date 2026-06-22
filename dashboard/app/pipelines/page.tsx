@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { CheckCircle2, ChevronDown, ChevronRight, Clock, GitBranch, Play, XCircle } from "lucide-react";
+import Link from "next/link";
+import { CheckCircle2, ChevronDown, ChevronRight, Clock, GitBranch, Play, XCircle, Eye, Loader2 } from "lucide-react";
 
 interface Phase {
   name: string;
@@ -46,12 +47,23 @@ function timeAgo(iso: string) {
 export default function PipelinesPage() {
   const [pipelines, setPipelines] = useState<Pipeline[]>([]);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [executingId, setExecutingId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const res = await fetch("/api/pipelines");
     const data = await res.json();
     setPipelines(data.pipelines ?? []);
   }, []);
+
+  const executePipeline = useCallback(async (id: string) => {
+    setExecutingId(id);
+    try {
+      await fetch(`/api/pipelines/${id}/execute`, { method: "POST" });
+      setTimeout(() => { load(); setExecutingId(null); }, 2000);
+    } catch {
+      setExecutingId(null);
+    }
+  }, [load]);
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -93,8 +105,17 @@ export default function PipelinesPage() {
                 <CheckCircle2 size={16} style={{ color: statusColor }} />
               ) : p.status === "failed" ? (
                 <XCircle size={16} style={{ color: statusColor }} />
+              ) : executingId === p.id ? (
+                <Loader2 size={14} className="animate-spin" style={{ color: statusColor }} />
               ) : (
-                <Play size={14} style={{ color: statusColor }} />
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); executePipeline(p.id); }}
+                  className="flex items-center justify-center w-full h-full rounded-full transition-colors hover:opacity-80"
+                  title="Execute pipeline"
+                >
+                  <Play size={14} style={{ color: statusColor }} />
+                </button>
               )}
             </div>
             {/* Vertical line to next */}
@@ -138,6 +159,14 @@ export default function PipelinesPage() {
                 <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>
                   {timeAgo(p.created_at)}
                 </span>
+                <Link
+                  href={`/pipelines/${p.id}/visualize`}
+                  className="flex items-center gap-1 text-[10px] px-2 py-1 rounded-md border transition-colors hover:opacity-70 shrink-0"
+                  style={{ borderColor: "var(--border)", color: "var(--muted)" }}
+                >
+                  <Eye size={11} />
+                  Visualize
+                </Link>
               </div>
 
               {/* Prompt */}

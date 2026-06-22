@@ -1,0 +1,11 @@
+{
+  "pipeline_id": "PIPE-20260622-170843-pgz8kg",
+  "planner": "hermes-nous",
+  "executor": "opencode-developer",
+  "prompt": "Build a Projects page on the PAOS dashboard with file-explorer layout, two tabs (Current / Previous), and three API endpoints. Keep it lightweight — zero new npm dependencies.",
+  "status": "executing",
+  "created_at": "2026-06-22T17:08:43.168Z",
+  "completed_at": null,
+  "project_path": null,
+  "review_mode": "auto"
+}

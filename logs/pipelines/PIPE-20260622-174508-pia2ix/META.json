@@ -1,0 +1,11 @@
+{
+  "pipeline_id": "PIPE-20260622-174508-pia2ix",
+  "planner": "opencode-developer",
+  "executor": "opencode-developer",
+  "prompt": "Build 16 PAOS /h-* slash commands covering the full session lifecycle (start → work → end → governance), register OpenCode wrappers, and update agent documentation.",
+  "status": "submitted",
+  "created_at": "2026-06-22T17:45:08.168Z",
+  "completed_at": null,
+  "project_path": null,
+  "review_mode": "auto"
+}

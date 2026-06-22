@@ -79,3 +79,40 @@
 3. **Never invent facts.** If the brief doesn't specify a detail, elicit it or flag it as an assumption.
 4. **Never auto-proceed in the Antigravity loop.** Wait for explicit user approval (`## APPROVED` or verbal).
 5. **Read `workflow.md` first.** It is the source of truth for all PAOS behavior.
+
+## Pipeline Protocol (Mandatory for Inbox Tasks)
+
+When you receive a task via inbox that references a pipeline directory (`memory/pipelines/PIPE-*`):
+
+### 1. Pipeline Status File
+Write a `pipeline.json` file inside the pipeline directory to report live status:
+```json
+{ "status": "executing", "currentTask": "Task 1 description", "progress": "1/8", "startedAt": "..." }
+```
+
+Update this file whenever you:
+- Start a new task → change `currentTask`
+- Complete a task → update `progress`
+- Hit an error → set `status: "failed"` with `error` field
+- Finish all → set `status: "completed"`, `completedAt: "..."`
+
+Path: `memory/pipelines/<PIPE-ID>/pipeline.json`
+
+### 2. Walkthrough.md
+After completing ALL tasks, write `WALKTHROUGH.md` in the same pipeline directory with:
+- Summary of what was built/changed
+- Files created/modified (with paths)
+- Commands run
+- Verification steps taken
+- Any known issues or deviations from plan
+
+Path: `memory/pipelines/<PIPE-ID>/WALKTHROUGH.md`
+
+### 3. Update META.json
+Read `memory/pipelines/<PIPE-ID>/META.json`, update `status` and `completed_at`, then write it back.
+
+### 4. Progress Markers in TASKS.md
+Keep TASKS.md task markers up to date as you work:
+- `[ ]` pending → `[~]` in progress → `[x]` completed
+
+This powers the dashboard's progress bar and visualization.
