@@ -13,6 +13,7 @@
 | **context7** | 2 | Library documentation: `resolve-library-id`, `query-docs` — fetch current docs for React, Next.js, Prisma, etc. | active |
 | **hostinger-domains** | 18 | Domains + domain verification (DNS auth): check, purchase, WHOIS, forwarding, lock, privacy, nameservers | active |
 | **hostinger-dns** | 9 | DNS zone management: records, snapshots, validation | active |
+| **agent-browser** | 20+ | Browser automation: open, snapshot, click, fill, screenshot, JavaScript eval, tabs, navigation | active |
 
 ## How It Works
 

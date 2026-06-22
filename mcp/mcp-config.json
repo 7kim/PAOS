@@ -54,6 +54,15 @@
       ],
       "env": {},
       "enabled": true
+    },
+    "agent-browser": {
+      "command": "/home/dev/.local/bin/agent-browser",
+      "args": [
+        "mcp",
+        "--tools",
+        "core"
+      ],
+      "enabled": true
     }
   }
 }
