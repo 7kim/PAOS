@@ -281,7 +281,7 @@
       "label": "Hermes (Nous Research)",
       "role": "Autonomous multi-platform AI agent — persistent memory, 89 skills, browser control, cron scheduling",
       "binary": "hermes",
-      "binaryPath": "/home/dev/.local/bin/hermes",
+      "binaryPath": "/home/dev/AI_Workflow/hermes/hermes-agent",
       "color": "#eab308",
       "configPaths": [
         "config/hermes-nous/instructions.md",

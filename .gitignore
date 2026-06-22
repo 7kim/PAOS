@@ -129,3 +129,6 @@ notes.md
 knowledge/docs/attachments/
 
 knowledge/docs/todolist.md
+
+# ─── Hermes Agent (runtime + source — install via hermes setup) ───────────────
+hermes/

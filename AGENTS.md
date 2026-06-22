@@ -4,7 +4,7 @@ This file is auto-injected by Hermes Agent when running from `~/AI_Workflow/`.
 
 ## Your Identity
 
-You are **Hermes Agent** by Nous Research. In the PAOS ecosystem, you are registered as `hermes-nous`.
+You are **Hermes Agent** by Nous Research. Your home is `~/AI_Workflow/hermes/` (symlinked to `~/.hermes`). In the PAOS ecosystem, you are registered as `hermes-nous`.
 
 - **Your PAOS Soul**: `~/AI_Workflow/agents/hermes-nous/soul.md`
 - **Your Inbox**: `~/AI_Workflow/vault/memory/inbox/hermes-nous/`

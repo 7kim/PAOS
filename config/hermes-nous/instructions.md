@@ -8,13 +8,13 @@ This file documents how the Nous Research Hermes Agent is integrated into PAOS.
 | Resource | Path |
 |----------|------|
 | Binary | `~/.local/bin/hermes` |
-| Home | `~/.hermes/` |
-| Config | `~/.hermes/config.yaml` |
-| Env | `~/.hermes/.env` |
-| SOUL | `~/.hermes/SOUL.md` |
-| Skills | `~/.hermes/skills/` (89 skills) |
-| Logs | `~/.hermes/logs/` |
-| Sessions | `~/.hermes/sessions/` |
+| Home | `~/AI_Workflow/hermes/` (→ `~/.hermes` symlink) |
+| Config | `~/AI_Workflow/hermes/config.yaml` |
+| Env | `~/AI_Workflow/hermes/.env` |
+| SOUL | `~/AI_Workflow/hermes/SOUL.md` |
+| Skills | `~/AI_Workflow/hermes/skills/` (89 skills) |
+| Logs | `~/AI_Workflow/hermes/logs/` |
+| Sessions | `~/AI_Workflow/hermes/sessions/` |
 | PAOS Soul | `~/AI_Workflow/agents/hermes-nous/soul.md` |
 | PAOS Inbox | `~/AI_Workflow/vault/memory/inbox/hermes-nous/` |
 | PAOS Events | `~/AI_Workflow/vault/memory/hermes-nous/events.md` |
@@ -48,7 +48,7 @@ hermes dashboard       # port 9119
 ```
 
 ## Default Model
-The default model is configured in `~/.hermes/config.yaml`:
+The default model is configured in `~/AI_Workflow/hermes/config.yaml`:
 ```yaml
 model:
   default: "anthropic/claude-opus-4.6"
@@ -56,7 +56,7 @@ model:
 Change with: `hermes model` or `hermes config set model <model>`
 
 ## Available Providers
-Configured via `~/.hermes/.env`:
+Configured via `~/AI_Workflow/hermes/.env`:
 - OpenRouter (`OPENROUTER_API_KEY`)
 - Anthropic (`ANTHROPIC_API_KEY`)
 - Google Gemini (`GOOGLE_API_KEY`)
