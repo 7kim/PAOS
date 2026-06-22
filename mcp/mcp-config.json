@@ -44,9 +44,7 @@
       "args": [
         "/home/dev/AI_Workflow/mcp/hostinger/node_modules/hostinger-api-mcp/src/servers/all.js"
       ],
-      "env": {
-        "HOSTINGER_API_TOKEN": ""
-      },
+      "env": {},
       "enabled": true
     }
   }
