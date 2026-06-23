@@ -459,4 +459,64 @@ To add a new shared skill:
 
 ---
 
-*PAOS Constitution v2.1.0 — Article X: Shared Infrastructure. Established 2026-06-22.*
+*PAOS Constitution v2.2.0 — Article X: Shared Infrastructure + Article XI: Project Workspaces. Established 2026-06-22.*
+
+---
+
+## Article XI — Project Workspace Architecture
+
+PAOS organizes work into **project workspaces**. Each workspace is a `.code-workspace` file (VS Code-compatible) that scopes agents, pipelines, data, and git identities to a single project.
+
+### Section 11.1 — Workspace File
+
+Workspaces live at `workspaces/{name}.code-workspace`. They define:
+- `folders[]` — source repo paths on disk
+- `settings.paos.project` — project name
+- `settings.paos.pipelinesDir` — pipeline storage path
+- `settings.paos.gitIdentities` — per-agent git commit identities scoped to this project
+- `settings.paos.sourcePath` — optional source repo path
+
+### Section 11.2 — Per-Project Data
+
+Each project has its own isolated sandbox under `memory/pipelines/{project}/`:
+
+| Resource | Path | Purpose |
+|----------|------|---------|
+| Pipelines | `memory/pipelines/{project}/PIPE-*/` | Pipeline artifacts (META, PLAN, TASKS, WALKTHROUGH) |
+| Ledger | `memory/pipelines/{project}/ledger.md` | Per-project audit trail |
+| Events | `memory/pipelines/{project}/events.md` | Per-project event log |
+| Handoff | `memory/pipelines/{project}/handoff.md` | Per-project session handoff |
+| Shared Context | `memory/pipelines/{project}/shared-context.md` | Per-project agent thinking context |
+| Inbox | `memory/pipelines/{project}/inbox/{Agent}/` | Per-project agent inboxes |
+| Vault | `memory/pipelines/{project}/vault/{daily\|chats}/` | Per-project daily notes and chats |
+| Secrets | `memory/pipelines/{project}/secrets/.env` | Per-project secret key-value store |
+
+### Section 11.3 — Global vs Project Scope
+
+| Resource | Scope | Location |
+|----------|-------|----------|
+| Agents | Global | `agents/{name}/soul.md` |
+| Git Identity | Per-project | In workspace file `settings.paos.gitIdentities` |
+| Global Ledger | Global | `memory/global_ledger.md` |
+| Project Ledger | Per-project | `memory/pipelines/{project}/ledger.md` |
+| Skills | Global | `skills/` |
+| MCP Servers | Global | `mcp/mcp-config.json` |
+| Secrets | Both | Global: `config/secrets/.env` · Project: `memory/pipelines/{project}/secrets/.env` |
+| Daily Notes | Both | Global: `vault/daily/` · Project: `memory/pipelines/{project}/vault/daily/` |
+
+### Section 11.4 — Git Commit Identities
+
+When `PAOS_WORKSPACE` is set, `agent-commit.sh` reads the project-scoped git identity from the workspace file:
+
+```
+Without workspace:  Claude <claude@paos.com>
+With workspace:     PAOS_Claude <claude+PAOS@paos.com>
+```
+
+This ensures the git audit trail shows which project each commit belongs to, while agents themselves remain global.
+
+### Section 11.5 — View All Toggle
+
+The Projects page has a "View All Projects" toggle:
+- **ON** (default): Dashboard pages show data from all projects. Use filter chips to scope down.
+- **OFF**: Dashboard pages show nothing by default. Must select a project or add `?project=` to the URL.

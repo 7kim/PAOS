@@ -3,6 +3,7 @@ import { readFile } from "fs/promises";
 import { join } from "path";
 
 const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+const PROJECTS_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "projects");
 
 function parseTimestamp(raw: string): number {
   // Try ISO 8601: "2026-05-21T09:30:00Z"
@@ -17,9 +18,25 @@ function parseTimestamp(raw: string): number {
   return 0;
 }
 
-export async function GET() {
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const project = searchParams.get("project") || "";
+
   try {
-    const raw = await readFile(join(MEMORY_DIR, "global_ledger.md"), "utf-8");
+    let ledgerPath: string;
+    if (project) {
+      // Try projects/{name}/ledger.md first
+      const projectsPath = join(PROJECTS_DIR, project, "ledger.md");
+      try {
+        await import("fs/promises").then(m => m.stat(projectsPath));
+        ledgerPath = projectsPath;
+      } catch {
+        ledgerPath = join(MEMORY_DIR, "pipelines", project, "ledger.md");
+      }
+    } else {
+      ledgerPath = join(MEMORY_DIR, "global_ledger.md");
+    }
+    const raw = await readFile(ledgerPath, "utf-8");
     const lines = raw.split("\n").filter(Boolean);
 
     // Parse markdown table rows (skip header and separator)

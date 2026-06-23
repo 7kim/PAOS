@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile, readdir } from "fs/promises";
 import { exec } from "child_process";
 import { join } from "path";
 
@@ -12,7 +12,22 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const dir = join(PIPELINES_DIR, id);
+
+  // Search for pipeline across all project directories
+  const projects = await readdir(PIPELINES_DIR).catch(() => [] as string[]);
+  let dir = "";
+  for (const project of projects) {
+    if (project.startsWith(".")) continue;
+    const candidate = join(PIPELINES_DIR, project, id);
+    try {
+      await readFile(join(candidate, "META.json"), "utf-8");
+      dir = candidate;
+      break;
+    } catch { /* not this project */ }
+  }
+  if (!dir) {
+    return NextResponse.json({ error: `Pipeline ${id} not found` }, { status: 404 });
+  }
 
   // Queue management: move pending → running
   const queueDir = join(MEMORY_DIR, "queue");

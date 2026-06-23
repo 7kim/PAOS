@@ -52,24 +52,49 @@ fi
 mkdir -p "$RATE_LIMIT_DIR"
 
 # ── Scan pipeline directories ───────────────────────────────────────────────
-# Only process pipelines with pipeline.json status == "submitted"
-for pipeline_dir in "$PAOS_HOME"/memory/pipelines/PIPE-*; do
-    [[ -d "$pipeline_dir" ]] || continue
-
-    pipeline_id="$(basename "$pipeline_dir")"
-    pipe_json="$pipeline_dir/pipeline.json"
-    meta="$pipeline_dir/META.json"
-
-    # Must have pipeline.json and META.json
+found_pipeline=""
+found_dir=""
+for dir in "$PAOS_HOME"/memory/pipelines/PIPE-* "$PAOS_HOME"/memory/pipelines/AI_Workflow-PIPE-*; do
+    [[ -d "$dir" ]] || continue
+    pipe_json="$dir/pipeline.json"
+    meta="$dir/META.json"
     [[ -f "$pipe_json" && -f "$meta" ]] || continue
-
-    # Only process "submitted" pipelines
     status="$(json_get "$pipe_json" "['status']")"
-    [[ "$status" == "submitted" ]] || continue
+    if [[ "$status" == "submitted" ]]; then
+        found_pipeline="$(basename "$dir")"
+        found_dir="$dir"
+        break
+    fi
+done
+# Also scan inside project folders if not found
+if [[ -z "$found_pipeline" ]]; then
+    for project_dir in "$PAOS_HOME"/memory/pipelines/*/; do
+        project_name="$(basename "$project_dir")"
+        [[ "$project_name" == PIPE-* || "$project_name" == AI_Workflow-PIPE-* || "$project_name" == .* ]] && continue
+        for dir in "$project_dir"PIPE-* "$project_dir"AI_Workflow-PIPE-*; do
+            [[ -d "$dir" ]] || continue
+            pipe_json="$dir/pipeline.json"
+            meta="$dir/META.json"
+            [[ -f "$pipe_json" && -f "$meta" ]] || continue
+            status="$(json_get "$pipe_json" "['status']")"
+            if [[ "$status" == "submitted" ]]; then
+                found_pipeline="$(basename "$dir")"
+                found_dir="$dir"
+                break 2
+            fi
+        done
+    done
+fi
+if [[ -z "$found_pipeline" ]]; then
+    exit 0
+fi
+pipeline_id="$found_pipeline"
+pipeline_dir="$found_dir"
+pipe_json="$pipeline_dir/pipeline.json"
+meta="$pipeline_dir/META.json"
+echo "paos-pipeline: detected new pipeline $pipeline_id"
 
-    echo "paos-pipeline: detected new pipeline $pipeline_id"
-
-    # ── Find executor from META.json phases ─────────────────────────────────
+# ── Find executor from META.json phases ─────────────────────────────────
     executor="$(json_get "$meta" "['phases'][0]['agent']")"  # fallback: first phase
     # Find the first phase with status "submitted" — that's the one needing execution
     submitted_agent="$(python3 -c "

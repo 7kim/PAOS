@@ -13,6 +13,20 @@ fi
 ANAME="$(agent_name)"
 COMMIT_SCRIPT="$PAOS_HOME/bin/agent-commit.sh"
 
+# Auto-detect workspace from git repo
+if [[ -z "${PAOS_WORKSPACE:-}" ]]; then
+  REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+  if [[ -n "$REPO_ROOT" ]]; then
+    for f in "$PAOS_HOME/workspaces"/*.code-workspace; do
+      if node -e "const ws=JSON.parse(require('fs').readFileSync('$f','utf8')); const folders=ws.folders||[]; process.exit(folders.some(f=>(f.path||'').startsWith('$REPO_ROOT'))?0:1)" 2>/dev/null; then
+        BASENAME="$(basename "$f" .code-workspace)"
+        export PAOS_WORKSPACE="$BASENAME"
+        break
+      fi
+    done
+  fi
+fi
+
 if [[ ! -x "$COMMIT_SCRIPT" ]]; then
   die "agent-commit.sh not found at $COMMIT_SCRIPT"
 fi

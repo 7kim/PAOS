@@ -1,12 +1,15 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, ChevronDown, ChevronRight, Clock, GitBranch, Play, XCircle, Eye, Loader2 } from "lucide-react";
+import { useSearchParams, useRouter } from "next/navigation";
+import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { getViewAll } from "@/lib/viewAll";
+import { getActiveProject } from "@/lib/activeProject";
 
 interface Phase {
   name: string;
@@ -18,6 +21,7 @@ interface Pipeline {
   id: string;
   status: string;
   queue?: string;
+  project?: string;
   planner: string;
   executor: string;
   prompt: string;
@@ -77,15 +81,25 @@ function QueueItem({ p }: { p: Pipeline }) {
   }
 
 export default function PipelinesPage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const urlProject = searchParams?.get("project") || "";
+  const viewAll = getViewAll();
+  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || "__none__"));
   const [pipelines, setPipelines] = useState<Pipeline[]>([]);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [executingId, setExecutingId] = useState<string | null>(null);
 
+  const filteredPipelines = projectFilter
+    ? pipelines.filter((p) => p.project === projectFilter)
+    : pipelines;
+
   const load = useCallback(async () => {
-    const res = await fetch("/api/pipelines");
+    const params = projectFilter && projectFilter !== "__none__" ? `?project=${encodeURIComponent(projectFilter)}` : "";
+    const res = await fetch(`/api/pipelines${params}`);
     const data = await res.json();
     setPipelines(data.pipelines ?? []);
-  }, []);
+  }, [projectFilter]);
 
   const executePipeline = useCallback(async (id: string) => {
     setExecutingId(id);
@@ -176,7 +190,7 @@ export default function PipelinesPage() {
             <Card
               size="sm"
               onClick={() => toggle(p.id)}
-              className={`cursor-pointer transition-colors ${isExpanded ? "ring-2 ring-[var(--accent)]" : ""}`}
+              className={`cursor-pointer transition-colors ${isExpanded ? "ring-2 ring-[var(--primary)]" : ""}`}
               style={{
                 background: isExpanded ? "rgba(252,213,53,0.05)" : "var(--card-bg)",
               }}
@@ -260,7 +274,7 @@ export default function PipelinesPage() {
                         />
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-medium truncate">{phase.name}</span>
+                            <span className="text-xs font-medium truncate" style={{ color: "var(--foreground)" }}>{phase.name}</span>
                             <span className="text-xs font-mono shrink-0 ml-2 text-muted-foreground">
                               {phase.completed}/{phase.total}
                             </span>
@@ -317,30 +331,63 @@ export default function PipelinesPage() {
         <GitBranch size={18} style={{ color: "var(--accent)" }} />
         <h1 className="text-xl font-semibold">Pipeline GitGraph</h1>
       </div>
-      <p className="text-sm mb-6 text-muted-foreground">
+      <p className="text-sm mb-4 text-muted-foreground">
         Visual DAG of all PAOS pipelines — click to expand phases and details
       </p>
 
-      <div className="flex gap-6 items-start">
+      {/* Project filter */}
+      <div className="flex items-center gap-2 mb-4">
+        {["", ...new Set(pipelines.map((p) => p.project || ""))].filter(Boolean).map((proj) => (
+          <button
+            key={proj}
+            type="button"
+            onClick={() => router.push(proj === projectFilter ? "/pipelines" : `/pipelines?project=${encodeURIComponent(proj)}`)}
+            className="text-xs px-3 py-1.5 rounded-md border transition-colors"
+            style={{
+              borderColor: projectFilter === proj ? "var(--primary)" : "var(--border)",
+              color: projectFilter === proj ? "var(--primary)" : "var(--muted-foreground)",
+              background: projectFilter === proj ? "rgba(240,185,11,0.08)" : "transparent",
+            }}
+          >
+            {proj}
+          </button>
+        ))}
+        {projectFilter && (
+          <button
+            type="button"
+            onClick={() => router.push("/pipelines")}
+            className="text-xs px-3 py-1.5 rounded-md border transition-colors text-muted-foreground"
+            style={{ borderColor: "var(--border)" }}
+          >
+            View All
+          </button>
+        )}
+        <span className="text-xs text-muted-foreground ml-auto">
+          {filteredPipelines.length} pipeline{filteredPipelines.length !== 1 ? "s" : ""}
+        </span>
+      </div>
+
+      <div className="flex gap-6 items-stretch">
         {/* Pipeline list — scrollable card */}
-        <Card className="flex-1 min-w-0 max-w-3xl max-h-[40rem] overflow-y-auto">
+        <Card className="flex-1 min-w-0 max-w-4xl max-h-[calc(100vh-14rem)] overflow-y-auto">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xs font-semibold">
               <GitBranch size={13} />
-              All Pipelines
-              <span className="ml-auto text-xs font-normal text-muted-foreground">
-                {pipelines.length} pipeline{pipelines.length !== 1 ? "s" : ""}
-              </span>
+              {projectFilter ? projectFilter : "All Pipelines"}
             </CardTitle>
           </CardHeader>
           <CardContent className="p-3">
-            {pipelines.length === 0 ? (
+            {filteredPipelines.length === 0 ? (
               <div className="text-sm py-12 text-center text-muted-foreground">
                 <GitBranch size={24} className="mx-auto mb-3 opacity-30" />
-                No pipelines yet
+                {projectFilter === "__none__"
+                  ? "View All is disabled. Select a project from Settings or add ?project= to the URL."
+                  : projectFilter
+                  ? `No pipelines in "${projectFilter}"`
+                  : "No pipelines yet"}
               </div>
             ) : (
-              pipelines.map((p, i) => (
+              filteredPipelines.map((p, i) => (
                 <PipelineNode key={p.id} p={p} index={i} />
               ))
             )}
@@ -386,7 +433,7 @@ export default function PipelinesPage() {
           <div className="flex justify-center transition-opacity duration-300" style={{
             opacity: pipelines.filter(p => p.queue === "running").length > 0 ? 1 : 0.3,
           }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: "var(--muted)" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: "var(--muted-foreground)" }}>
               <path d="M12 5v14M19 12l-7 7-7-7"/>
             </svg>
           </div>
@@ -418,7 +465,7 @@ export default function PipelinesPage() {
           <div className="flex justify-center transition-opacity duration-300" style={{
             opacity: pipelines.filter(p => p.queue === "pending").length > 0 ? 1 : 0.3,
           }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: "var(--muted)" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: "var(--muted-foreground)" }}>
               <path d="M12 5v14M19 12l-7 7-7-7"/>
             </svg>
           </div>

@@ -1,6 +1,9 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Send } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { Send, FolderKanban } from "lucide-react";
+import { getViewAll } from "@/lib/viewAll";
+import { getActiveProject } from "@/lib/activeProject";
 
 interface Message {
   id: string;
@@ -36,6 +39,10 @@ function inboxColor(name: string) {
 }
 
 export default function InboxPage() {
+  const searchParams = useSearchParams();
+  const urlProject = searchParams?.get("project") || "";
+  const viewAll = getViewAll();
+  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || "__none__"));
   const [messages, setMessages] = useState<Message[]>([]);
   const [inboxDirs, setInboxDirs] = useState<string[]>([]);
   const [activeInbox, setActiveInbox] = useState("all");
@@ -49,12 +56,14 @@ export default function InboxPage() {
   const inboxes = ["all", ...inboxDirs];
 
   const load = useCallback(async () => {
-    const params = activeInbox !== "all" ? `?agent=${activeInbox}` : "";
-    const res = await fetch(`/api/inbox${params}`);
+    const params = new URLSearchParams();
+    if (activeInbox !== "all") params.set("agent", activeInbox);
+    if (projectFilter) params.set("project", projectFilter);
+    const res = await fetch(`/api/inbox?${params}`);
     const data = await res.json();
     setMessages(data.messages ?? []);
     if (data.inboxes?.length) setInboxDirs(data.inboxes);
-  }, [activeInbox]);
+  }, [activeInbox, projectFilter]);
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -81,7 +90,7 @@ export default function InboxPage() {
       <div className="flex items-center justify-between mb-4">
         <div>
           <h1 className="text-xl font-semibold mb-1">Inbox</h1>
-          <p className="text-sm" style={{ color: "var(--muted)" }}>Agent message inbox</p>
+          <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>Agent message inbox</p>
         </div>
         <button
           onClick={() => setShowCompose(!showCompose)}
@@ -99,7 +108,7 @@ export default function InboxPage() {
         >
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-xs block mb-1" style={{ color: "var(--muted)" }}>To (inbox)</label>
+              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>To (inbox)</label>
               <select
                 value={composeTo}
                 onChange={(e) => setComposeTo(e.target.value)}
@@ -114,7 +123,7 @@ export default function InboxPage() {
               </select>
             </div>
             <div>
-              <label className="text-xs block mb-1" style={{ color: "var(--muted)" }}>Subject</label>
+              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Subject</label>
               <input
                 value={composeSubject}
                 onChange={(e) => setComposeSubject(e.target.value)}
@@ -125,7 +134,7 @@ export default function InboxPage() {
             </div>
           </div>
           <div>
-            <label className="text-xs block mb-1" style={{ color: "var(--muted)" }}>Message</label>
+            <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Message</label>
             <textarea
               value={composeBody}
               onChange={(e) => setComposeBody(e.target.value)}
@@ -154,7 +163,7 @@ export default function InboxPage() {
             className="px-3 py-1 rounded-full text-xs transition-colors"
             style={{
               background: activeInbox === inbox ? "var(--accent)" : "var(--card-bg)",
-              color: activeInbox === inbox ? "var(--accent-on)" : "var(--muted)",
+              color: activeInbox === inbox ? "var(--accent-on)" : "var(--muted-foreground)",
               border: `1px solid ${activeInbox === inbox ? "var(--accent)" : "var(--border)"}`,
             }}
           >
@@ -167,7 +176,7 @@ export default function InboxPage() {
         {messages.length === 0 && (
           <div
             className="col-span-3 rounded-lg border p-8 text-center text-sm"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}
+            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted-foreground)" }}
           >
             No messages in this inbox
           </div>
@@ -189,10 +198,10 @@ export default function InboxPage() {
               >
                 {msg.from}
               </span>
-              <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>→ {msg.inbox}</span>
+              <span className="text-xs ml-auto" style={{ color: "var(--muted-foreground)" }}>→ {msg.inbox}</span>
             </div>
             <div className="font-medium text-sm truncate mb-1">{msg.title}</div>
-            <div className="text-xs truncate" style={{ color: "var(--muted)" }}>
+            <div className="text-xs truncate" style={{ color: "var(--muted-foreground)" }}>
               {msg.body.slice(0, 80)}
             </div>
           </button>
@@ -206,7 +215,7 @@ export default function InboxPage() {
         >
           <div className="flex items-center gap-2 mb-3">
             <h2 className="font-medium">{selected.title}</h2>
-            <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>{selected.timestamp}</span>
+            <span className="text-xs ml-auto" style={{ color: "var(--muted-foreground)" }}>{selected.timestamp}</span>
           </div>
           <pre
             className="text-sm whitespace-pre-wrap leading-relaxed"

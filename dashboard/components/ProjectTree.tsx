@@ -47,14 +47,14 @@ function TreeNodeItem({
         }}
       >
         {/* Expand/collapse chevron for dirs */}
-        <span className="w-4 shrink-0 flex items-center justify-center" style={{ color: "var(--muted)" }}>
+        <span className="w-4 shrink-0 flex items-center justify-center" style={{ color: "var(--muted-foreground)" }}>
           {isDir && hasChildren ? (
             expanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />
           ) : null}
         </span>
 
         {/* Icon */}
-        <span className="shrink-0" style={{ color: isDir ? "var(--accent)" : "var(--muted)", opacity: 0.7 }}>
+        <span className="shrink-0" style={{ color: isDir ? "var(--accent)" : "var(--muted-foreground)", opacity: 0.7 }}>
           {isDir ? <Folder size={14} /> : <FileText size={14} />}
         </span>
 
@@ -65,7 +65,7 @@ function TreeNodeItem({
         {isDir && hasChildren && (
           <span
             className="text-[10px] px-1 rounded ml-auto"
-            style={{ color: "var(--muted)", background: "rgba(255,255,255,0.05)" }}
+            style={{ color: "var(--muted-foreground)", background: "rgba(255,255,255,0.05)" }}
           >
             {node.children!.length}
           </span>
@@ -93,7 +93,7 @@ function TreeNodeItem({
 export default function ProjectTree({ tree, onSelect, selectedPath }: ProjectTreeProps) {
   if (tree.length === 0) {
     return (
-      <div className="text-sm py-8 text-center" style={{ color: "var(--muted)" }}>
+      <div className="text-sm py-8 text-center" style={{ color: "var(--muted-foreground)" }}>
         <Folder size={20} className="mx-auto mb-2 opacity-30" />
         Empty project
       </div>

@@ -1,138 +1,61 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile, stat } from "fs/promises";
+import { mkdir, readdir, rm, stat, readFile, writeFile } from "fs/promises";
 import { join } from "path";
 
 const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
-const REPO_ROOT = process.env.PAOS_ROOT || "/home/dev/AI_Workflow";
-
-interface ProjectEntry {
-  name: string;
-  path?: string;
-  stack?: string;
-  status?: string;
-  notes?: string;
-  lastActivity?: string;
-  ledgerCount: number;
-  isPrevious: boolean;
-}
-
-// 30s TTL cache
-let cache: { data: { current: ProjectEntry[]; previous: ProjectEntry[] }; ts: number } | null = null;
-const CACHE_TTL = 30_000;
-
-function parseProjectsMd(raw: string): ProjectEntry[] {
-  const lines = raw.split("\n");
-  const projects: ProjectEntry[] = [];
-  let inTable = false;
-
-  for (const line of lines) {
-    if (line.startsWith("|--")) { inTable = true; continue; }
-    if (!inTable || !line.startsWith("|")) continue;
-    const cells = line.split("|").map((c) => c.trim()).filter(Boolean);
-    if (cells.length < 2) continue;
-    const name = cells[0].replace(/\*\*/g, "").trim();
-    if (!name) continue;
-    projects.push({
-      name,
-      path: cells[1] || undefined,
-      stack: cells[2] || undefined,
-      status: cells[3] || undefined,
-      notes: cells[4] || undefined,
-      isPrevious: false,
-      ledgerCount: 0,
-    });
-  }
-  return projects;
-}
-
-async function scanMemoryProjects(): Promise<ProjectEntry[]> {
-  const dirs = await readdir(join(MEMORY_DIR, "projects")).catch(() => []);
-  const projects: ProjectEntry[] = [];
-
-  for (const d of dirs) {
-    if (d.startsWith("_") || d === "index.md") continue;
-    const statRes = await stat(join(MEMORY_DIR, "projects", d)).catch(() => null);
-    if (!statRes?.isDirectory()) continue;
-
-    // Read ledger.md if present
-    const ledgerRaw = await readFile(join(MEMORY_DIR, "projects", d, "ledger.md"), "utf-8").catch(() => "");
-    const ledgerCount = ledgerRaw ? ledgerRaw.split("\n").filter((l) => l.startsWith("|") && !l.includes(":---")).length - 1 : 0;
-
-    // Get last activity from ledger or dir mtime
-    const lastActivity = ledgerCount > 0
-      ? findLastTimestamp(ledgerRaw) || statRes.mtime.toISOString()
-      : statRes.mtime.toISOString();
-
-    projects.push({
-      name: d,
-      path: `~/AI_Workflow/memory/projects/${d}`,
-      status: ledgerCount > 0 ? "Active" : "Empty",
-      lastActivity,
-      ledgerCount: Math.max(0, ledgerCount),
-      isPrevious: false,
-    });
-  }
-  return projects;
-}
-
-function findLastTimestamp(raw: string): string | null {
-  const lines = raw.split("\n").filter((l) => l.startsWith("|") && !l.includes(":---")).reverse();
-  for (const line of lines) {
-    const cells = line.split("|").map((c) => c.trim()).filter(Boolean);
-    if (cells[0] && !cells[0].includes("Timestamp")) return cells[0];
-  }
-  return null;
-}
-
-async function scanPreviousProjects(): Promise<ProjectEntry[]> {
-  const dirs = await readdir(join(REPO_ROOT, "knowledge", "previous-projects")).catch(() => []);
-  const projects: ProjectEntry[] = [];
-
-  for (const entry of dirs) {
-    if (entry === "README.md") continue;
-    const fullPath = join(REPO_ROOT, "knowledge", "previous-projects", entry);
-    const statRes = await stat(fullPath).catch(() => null);
-    if (!statRes) continue;
-
-    projects.push({
-      name: entry,
-      path: `~/AI_Workflow/knowledge/previous-projects/${entry}`,
-      lastActivity: statRes.mtime.toISOString(),
-      ledgerCount: 0,
-      isPrevious: true,
-    });
-  }
-  return projects;
-}
+const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
 
 export async function GET() {
-  // Check cache
-  if (cache && Date.now() - cache.ts < CACHE_TTL) {
-    return NextResponse.json(cache.data);
+  try {
+    const entries = await readdir(PIPELINES_DIR).catch(() => []);
+    const projects: { name: string; pipelineCount: number; created_at: string }[] = [];
+
+    for (const entry of entries) {
+      if (entry.startsWith(".") || entry === ".gitkeep") continue;
+      const entryPath = join(PIPELINES_DIR, entry);
+      const entryStat = await stat(entryPath).catch(() => null);
+      if (!entryStat?.isDirectory()) continue;
+      if (entry.startsWith("PIPE-") || entry.startsWith("AI_Workflow-PIPE")) continue; // skip loose pipelines
+
+      // It's a project directory — count pipelines inside
+      const pipelineDirs = await readdir(entryPath).catch(() => []);
+      const pipelineCount = pipelineDirs.filter(
+        (d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE")
+      ).length;
+
+      // Try to read project meta
+      let createdAt = "";
+      try {
+        const meta = JSON.parse(await readFile(join(entryPath, ".project-meta.json"), "utf-8"));
+        createdAt = String(meta.created_at ?? "");
+      } catch { /* no meta */ }
+
+      projects.push({ name: entry, pipelineCount, created_at: createdAt });
+    }
+
+    projects.sort((a, b) => b.pipelineCount - a.pipelineCount);
+    return NextResponse.json({ projects });
+  } catch (e) {
+    return NextResponse.json({ projects: [], error: String(e) });
   }
+}
 
-  // 1. Parse projects.md for active projects
-  const projectsMdRaw = await readFile(join(REPO_ROOT, "projects.md"), "utf-8").catch(() => "");
-  const activeFromMd = parseProjectsMd(projectsMdRaw);
+export async function POST(req: Request) {
+  try {
+    const { name } = await req.json();
+    if (!name || typeof name !== "string" || !/^[a-zA-Z0-9_-]+$/.test(name)) {
+      return NextResponse.json({ error: "Invalid project name. Use letters, numbers, hyphens, underscores." }, { status: 400 });
+    }
 
-  // 2. Scan memory/projects/ for all project dirs with ledgers
-  const memoryProjects = await scanMemoryProjects();
+    const projectDir = join(PIPELINES_DIR, name);
+    await mkdir(projectDir, { recursive: true });
 
-  // 3. Merge — memory projects override md entries with same name
-  const nameSet = new Set<string>();
-  const current: ProjectEntry[] = [];
+    // Write project meta
+    const meta = { name, created_at: new Date().toISOString() };
+    await writeFile(join(projectDir, ".project-meta.json"), JSON.stringify(meta, null, 2));
 
-  for (const p of [...memoryProjects, ...activeFromMd]) {
-    if (nameSet.has(p.name)) continue;
-    nameSet.add(p.name);
-    current.push(p);
+    return NextResponse.json({ ok: true, name });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 });
   }
-
-  // 4. Scan previous-projects/
-  const previous = await scanPreviousProjects();
-
-  const data = { current, previous };
-  cache = { data, ts: Date.now() };
-
-  return NextResponse.json(data);
 }

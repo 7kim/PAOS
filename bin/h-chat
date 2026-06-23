@@ -1,14 +1,29 @@
 #!/usr/bin/env bash
 # h-chat — Write structured chat summary to vault/chats/
-# Usage: h-chat <title> [summary]
+# Usage: h-chat <title> [summary] [--project <name>]
 
 source "$(dirname "$0")/lib/h-common.sh"
 
-TITLE="${1:-}"
-SUMMARY="${2:-}"
+TITLE=""
+SUMMARY=""
+PROJECT=""
+
+# Parse args
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --project|-p) PROJECT="$2"; shift 2 ;;
+    *)
+      if [[ -z "$TITLE" ]]; then
+        TITLE="$1"
+      elif [[ -z "$SUMMARY" ]]; then
+        SUMMARY="$1"
+      fi
+      shift
+      ;;
+  esac
+done
 
 if [[ -z "$TITLE" ]]; then
-  # Interactive mode
   echo "Enter chat title:"
   read -r TITLE
   echo "Enter summary (Ctrl+D when done):"
@@ -19,7 +34,13 @@ ANAME="$(agent_name)"
 NOW="$(ts)"
 DATE="$(date -u '+%Y-%m-%d')"
 SLUG="$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9' '-' | sed 's/-$//' | cut -c1-40)"
-CHATS_DIR="$PAOS_HOME/vault/chats"
+
+if [[ -n "$PROJECT" ]]; then
+  CHATS_DIR="$PAOS_HOME/memory/pipelines/$PROJECT/vault/chats"
+else
+  CHATS_DIR="$PAOS_HOME/vault/chats"
+fi
+
 CHAT_FILE="$CHATS_DIR/$DATE-$SLUG.md"
 
 mkdir -p "$CHATS_DIR"
@@ -30,6 +51,7 @@ cat > "$CHAT_FILE" <<- CHAT
 **Date**: $DATE
 **Agent**: $ANAME
 **Created**: $NOW
+$( [[ -n "$PROJECT" ]] && echo "**Project**: $PROJECT" || true )
 
 ## Summary
 

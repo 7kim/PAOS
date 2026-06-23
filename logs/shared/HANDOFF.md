@@ -6,26 +6,42 @@
 ---
 
 ## Last Agent
-- **Agent**: opencode-developer
-- **Tool**: OpenCode Developer
-- **Timestamp**: 2026-06-22T19:48:57.002Z
+- **Agent**: hermes-nous
+- **Tool**: Hermes (Nous Research)
+- **Timestamp**: 2026-06-23T01:10:41.362Z
+- **Session**: Session 2026-06-22 — Full PAOS architecture implementation
 
 ## Active Task
-PIPE-20260622-185724-pia2ix — verified and finalized
+PAOS architecture completion — all core features built and tested
 
 ## What Was Just Done
-- Verified all 13 tasks of PIPE-20260622-185724-pia2ix are complete
-- Confirmed systemd units (paos-pipeline.path, paos-pipeline.service) are active/enabled
-- Confirmed handler script (bin/paos-pipeline-handler.sh) and fallback watcher (bin/paos-pipeline-watch.sh) installed
-- Confirmed whitelist config (~/.config/paos/pipeline-whitelist.txt) exists
-- Confirmed documentation updated in CLAUDE.md, INDEX.md, developer/soul.md, hermes-nous/soul.md
-- Confirmed WALKTHROUGH.md written with full summary
-- Fixed pipeline.json status from 'failed' to 'completed' (remnant from truncated execution attempt)
-- Logged to global_ledger
+- Complete dark theme overhaul (gold primary, proper contrast, all text-xs fixed)
+- Pipeline data mapping fixed (phase names, task parsing)
+- GitView clickable tree view with scroll-to-diff
+- Kanban board for plans with bulk download mode
+- Project-scoped architecture: projects/, workspaces/, memory/pipelines/
+- Workspace file system (.code-workspace) with PAOS settings extension
+- Vault (daily + chats) per project
+- Events, handoff, ledger, context, inbox per project
+- Scoped git identities per project (stored in workspace file)
+- Delete confirmation with text verification
+- Active project state with View All toggle across all pages
+- Server-side filtering for plans, tasks, pipelines APIs
+- Refresh buttons on events, handoff, ledger pages
+- GitHub import with git clone
+- Project secrets UI with masked values
+- Constitution (workflow.md) updated with Article XI
 
 ## What Is NOT Done Yet
-- No pending tasks for this pipeline
-- User may want to review the walkthrough at memory/pipelines/PIPE-20260622-185724-pia2ix/WALKTHROUGH.md
+- Events page only showing 1 entry instead of full content (needs investigation)
+- Intervene: restrict to read/write only intervene.md file
+- Delete pipelines from pipelines page with queue cleanup
+- Pipeline builder UI (n8n-style layers)
+- PID tracking + terminal view per pipeline execution
+- Sort inbox by date/time
+- Clean Setup in Settings
+- Tokens usage page with calendar histogram
+- Additional themes (Claude, Supabase, Clickhouse)
 
 ## Active Projects
 

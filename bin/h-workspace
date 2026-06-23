@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+# h-workspace — PAOS workspace manager
+# Usage: h-workspace [list|create|open|show|delete] [name] [sourcePath]
+
+source "$(dirname "$0")/lib/h-common.sh"
+
+PAOS_HOME="${PAOS_HOME:-$HOME/AI_Workflow}"
+WORKSPACES_DIR="$PAOS_HOME/workspaces"
+
+mkdir -p "$WORKSPACES_DIR"
+
+case "${1:-list}" in
+  list)
+    echo -e "${H_BOLD}PAOS Workspaces${H_RESET}"
+    echo ""
+    for f in "$WORKSPACES_DIR"/*.code-workspace; do
+      [ -f "$f" ] || continue
+      name=$(basename "$f" .code-workspace)
+      # Extract display name and source path from JSON
+      display=$(python3 -c "
+import json
+with open('$f') as fh:
+    w = json.load(fh)
+print(w.get('name', '$name'))
+src = w.get('settings', {}).get('paos', {}).get('sourcePath', '')
+print(src)
+" 2>/dev/null)
+      display_name=$(echo "$display" | head -1)
+      src_path=$(echo "$display" | tail -1)
+      if [ -n "$src_path" ]; then
+        echo -e "  ${H_INFO}$name${H_RESET}  →  $src_path"
+      else
+        echo -e "  ${H_INFO}$name${H_RESET}"
+      fi
+    done
+    ;;
+
+  create)
+    name="$2"
+    src_path="${3:-}"
+    if [ -z "$name" ]; then
+      echo "Usage: h-workspace create <name> [source-path]"
+      exit 1
+    fi
+    cat > "$WORKSPACES_DIR/$name.code-workspace" <<WORKSPACE
+{
+  "name": "$name",
+  "folders": [],
+  "settings": {
+    "paos": {
+      "version": 1,
+      "project": "$name",
+      "createdAt": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
+      "pipelinesDir": "memory/pipelines/$name"
+    }
+  }
+}
+WORKSPACE
+    # Add source path if provided
+    if [ -n "$src_path" ]; then
+      python3 -c "
+import json
+with open('$WORKSPACES_DIR/$name.code-workspace') as fh:
+    w = json.load(fh)
+w['folders'] = [{'path': '$src_path'}]
+w['settings']['paos']['sourcePath'] = '$src_path'
+w['settings']['paos']['importedAt'] = '$(date -u +%Y-%m-%dT%H:%M:%S.000Z)'
+with open('$WORKSPACES_DIR/$name.code-workspace', 'w') as fh:
+    json.dump(w, fh, indent=2)
+"
+    fi
+    # Ensure pipelines directory
+    mkdir -p "$PAOS_HOME/memory/pipelines/$name"
+    echo "Created workspace: $name"
+    ;;
+
+  open)
+    name="$2"
+    if [ -z "$name" ]; then
+      echo "Usage: h-workspace open <name>"
+      exit 1
+    fi
+    if [ ! -f "$WORKSPACES_DIR/$name.code-workspace" ]; then
+      echo "Workspace '$name' not found"
+      exit 1
+    fi
+    export PAOS_WORKSPACE="$name"
+    export PAOS_WORKSPACE_FILE="$WORKSPACES_DIR/$name.code-workspace"
+    echo "Switched to workspace: $name"
+    echo "PAOS_WORKSPACE=$name"
+    # Try to open in VS Code if available
+    if command -v code &>/dev/null; then
+      code "$WORKSPACES_DIR/$name.code-workspace"
+    fi
+    ;;
+
+  show)
+    name="${2:-${PAOS_WORKSPACE:-}}"
+    if [ -z "$name" ]; then
+      echo "No workspace active. Set PAOS_WORKSPACE or pass a name."
+      exit 1
+    fi
+    if [ ! -f "$WORKSPACES_DIR/$name.code-workspace" ]; then
+      echo "Workspace '$name' not found"
+      exit 1
+    fi
+    cat "$WORKSPACES_DIR/$name.code-workspace" | python3 -m json.tool 2>/dev/null || cat "$WORKSPACES_DIR/$name.code-workspace"
+    ;;
+
+  delete)
+    name="$2"
+    if [ -z "$name" ]; then
+      echo "Usage: h-workspace delete <name>"
+      exit 1
+    fi
+    rm -f "$WORKSPACES_DIR/$name.code-workspace"
+    echo "Deleted workspace: $name"
+    ;;
+
+  *)
+    echo "Usage: h-workspace [list|create|open|show|delete] [name] [source-path]"
+    ;;
+esac

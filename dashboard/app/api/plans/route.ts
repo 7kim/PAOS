@@ -1,72 +1,103 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile } from "fs/promises";
+import { readdir, readFile, stat } from "fs/promises";
 import { join } from "path";
 
 const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+const PROJECTS_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "projects");
 const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
 const PM_LOGS_DIR = join(MEMORY_DIR, "pm-logs");
 
-export async function GET() {
-  const plans: {
-    id: string;
-    title: string;
-    preview: string;
-    plan: string;
-    tasks: string;
-    walkthrough: string;
-    hasWalkthrough: boolean;
-    source: string;
-  }[] = [];
+interface PlanData {
+  id: string;
+  title: string;
+  preview: string;
+  plan: string;
+  tasks: string;
+  walkthrough: string;
+  hasWalkthrough: boolean;
+  source: string;
+  path: string;
+  project?: string;
+}
 
-  // ── Source 1: memory/pipelines/ (primary) ────────────────────────────────
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const filterProject = searchParams.get("project") || "";
+
+  const plans: PlanData[] = [];
+
+  // ── Source 1: memory/pipelines/ (project-scoped) ──────────────────────
   try {
-    const dirs = await readdir(PIPELINES_DIR).catch(() => []);
-    const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE"));
+    const projects = await readdir(PIPELINES_DIR).catch(() => []);
+    for (const project of projects) {
+      if (project.startsWith(".")) continue;
 
-    for (const dir of pipelineDirs) {
-      const pipelineDir = join(PIPELINES_DIR, dir);
+      // Apply project filter if specified
+      if (filterProject && project !== filterProject) continue;
 
-      // Read META for title and prompt
-      let meta: Record<string, unknown> = {};
-      try {
-        meta = JSON.parse(await readFile(join(pipelineDir, "META.json"), "utf-8"));
-      } catch { /* no meta */ }
+      // Determine base dir: prefer projects/{project}/pipelines/, fall back to memory/pipelines/{project}/
+      let baseDir = join(PROJECTS_DIR, project, "pipelines");
+      let baseExists = await stat(baseDir).then(() => true).catch(() => false);
+      if (!baseExists) {
+        baseDir = join(PIPELINES_DIR, project);
+        baseExists = await stat(baseDir).then(() => true).catch(() => false);
+      }
+      if (!baseExists) continue;
 
-      // Read PLAN.md
-      let plan = "";
-      try {
-        plan = await readFile(join(pipelineDir, "PLAN.md"), "utf-8");
-      } catch { /* no plan */ }
+      const dirs = await readdir(baseDir).catch(() => []);
+      const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE"));
 
-      // Read TASKS.md
-      let tasks = "";
-      try {
-        tasks = await readFile(join(pipelineDir, "TASKS.md"), "utf-8");
-      } catch { /* no tasks */ }
+      for (const dir of pipelineDirs) {
+        const pipelineDir = join(baseDir, dir);
 
-      // Read WALKTHROUGH.md
-      let walkthrough = "";
-      try {
-        walkthrough = await readFile(join(pipelineDir, "WALKTHROUGH.md"), "utf-8");
-      } catch { /* no walkthrough */ }
+        // Read META for title and prompt
+        let meta: Record<string, unknown> = {};
+        try {
+          meta = JSON.parse(await readFile(join(pipelineDir, "META.json"), "utf-8"));
+        } catch { /* no meta */ }
 
-      if (plan || tasks) {
-        const lines = plan.split("\n");
-        const title = lines.find((l) => l.startsWith("# "))?.replace("# ", "").trim()
-          || (meta.prompt as string)?.slice(0, 80)
-          || dir;
-        const preview = lines.slice(1, 8).join("\n").trim();
+        // Read PLAN.md
+        let plan = "";
+        try {
+          plan = await readFile(join(pipelineDir, "PLAN.md"), "utf-8");
+        } catch { /* no plan */ }
 
-        plans.push({
-          id: dir,
-          title,
-          preview,
-          plan,
-          tasks,
-          walkthrough,
-          hasWalkthrough: !!walkthrough,
-          source: "pipeline",
-        });
+        // Read TASKS.md — prefer enhanced version if exists
+        let tasks = "";
+        const tasksFiles = ["TASKS-hermes-nous.md", "TASKS.md"];
+        for (const tf of tasksFiles) {
+          try {
+            tasks = await readFile(join(pipelineDir, tf), "utf-8");
+            if (tasks) break;
+          } catch { /* try next */ }
+        }
+
+        // Read WALKTHROUGH.md
+        let walkthrough = "";
+        try {
+          walkthrough = await readFile(join(pipelineDir, "WALKTHROUGH.md"), "utf-8");
+        } catch { /* no walkthrough */ }
+
+        if (plan || tasks) {
+          const lines = plan.split("\n");
+          const title = lines.find((l) => l.startsWith("# "))?.replace("# ", "").trim()
+            || (meta.prompt as string)?.slice(0, 80)
+            || dir;
+          const preview = lines.slice(1, 8).join("\n").trim();
+
+          plans.push({
+            id: dir,
+            title,
+            preview,
+            plan,
+            tasks,
+            walkthrough,
+            hasWalkthrough: !!walkthrough,
+            source: "pipeline",
+            project,
+            path: `memory/pipelines/${project}/${dir}`,
+          });
+        }
       }
     }
   } catch { /* no pipelines dir */ }
@@ -83,19 +114,16 @@ export async function GET() {
       const taskId = f.replace("-IMPLEMENTATION_PLAN.md", "");
       const preview = lines.slice(1, 8).join("\n").trim();
 
-      // Find matching TASKS.md
       let tasksRaw = "";
       try {
         tasksRaw = await readFile(join(PM_LOGS_DIR, `${taskId}-TASKS.md`), "utf-8");
       } catch { /* no tasks file */ }
 
-      // Find matching WALKTHROUGH.md
       let walkthroughRaw = "";
       try {
         walkthroughRaw = await readFile(join(PM_LOGS_DIR, `${taskId}-WALKTHROUGH.md`), "utf-8");
       } catch { /* no walkthrough yet */ }
 
-      // Avoid duplicates (if same ID already added from pipelines/)
       if (!plans.some((p) => p.id === taskId)) {
         plans.push({
           id: taskId,
@@ -106,12 +134,12 @@ export async function GET() {
           walkthrough: walkthroughRaw,
           hasWalkthrough: !!walkthroughRaw,
           source: "pm-logs",
+          path: `memory/pm-logs/${f}`,
         });
       }
     }
   } catch { /* no pm-logs dir */ }
 
-  // Sort: pipeline sources first (newest), then legacy
   plans.sort((a, b) => {
     if (a.source !== b.source) return a.source === "pipeline" ? -1 : 1;
     return 0;

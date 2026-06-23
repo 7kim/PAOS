@@ -1,0 +1,42 @@
+{
+  "name": "PAOS",
+  "folders": [],
+  "settings": {
+    "paos": {
+      "version": 1,
+      "project": "PAOS",
+      "createdAt": "2026-06-22T23:29:14.000Z",
+      "pipelinesDir": "memory/pipelines/PAOS",
+      "agents": {
+        "opencode-developer": "PAOS_opencode-developer",
+        "hermes-nous": "PAOS_hermes-nous",
+        "architect": "PAOS_architect",
+        "coordinator": "PAOS_coordinator",
+        "claude": "PAOS_claude"
+      },
+      "identitiesCreatedAt": "2026-06-22T23:46:15.097Z",
+      "gitIdentities": {
+        "opencode-developer": {
+          "name": "PAOS_OpenCode Developer",
+          "email": "opencode-developer+PAOS@paos.com"
+        },
+        "hermes-nous": {
+          "name": "PAOS_Hermes Agent",
+          "email": "hermes-nous+PAOS@paos.com"
+        },
+        "architect": {
+          "name": "PAOS_Architect",
+          "email": "architect+PAOS@paos.com"
+        },
+        "coordinator": {
+          "name": "PAOS_Coordinator",
+          "email": "coordinator+PAOS@paos.com"
+        },
+        "claude": {
+          "name": "PAOS_Claude",
+          "email": "claude+PAOS@paos.com"
+        }
+      }
+    }
+  }
+}

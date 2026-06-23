@@ -106,7 +106,7 @@ function Toggle({ open, onToggle, icon, label, badge, color }: {
       {open ? <ChevronDown size={12} style={{ color }} /> : <ChevronRight size={12} style={{ color }} />}
       {icon}
       <span className="font-medium" style={{ color: "var(--foreground)" }}>{label}</span>
-      {badge && <span className="ml-auto text-[10px] font-mono" style={{ color: "var(--muted)" }}>{badge}</span>}
+      {badge && <span className="ml-auto text-[10px] font-mono" style={{ color: "var(--muted-foreground)" }}>{badge}</span>}
     </button>
   );
 }
@@ -227,7 +227,7 @@ export default function PipelineVisualizePage() {
     return (
       <div className="text-center py-20">
         <AlertCircle size={24} className="mx-auto mb-3" style={{ color: "#ef4444" }} />
-        <p className="text-sm" style={{ color: "var(--muted)" }}>{error || "Pipeline not found"}</p>
+        <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>{error || "Pipeline not found"}</p>
       </div>
     );
   }
@@ -243,7 +243,7 @@ export default function PipelineVisualizePage() {
           {data.stats.progress}%
         </span>
       </div>
-      <p className="text-sm mb-6" style={{ color: "var(--muted)" }}>
+      <p className="text-sm mb-6" style={{ color: "var(--muted-foreground)" }}>
         {String(data.meta.prompt ?? "")}
       </p>
 
@@ -295,7 +295,7 @@ export default function PipelineVisualizePage() {
                       </div>
                     </div>
                     <div className="ml-auto flex items-center gap-2">
-                      <span className="text-[10px]" style={{ color: "var(--muted)" }}>
+                      <span className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
                         Phase {idx + 1}/{data.phases.length}
                       </span>
                       {data.stats.progress < 100 && !isIntervening && (
@@ -303,7 +303,7 @@ export default function PipelineVisualizePage() {
                           type="button"
                           onClick={() => handleIntervene(idx + 1, phase.label)}
                           className="flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded border transition-colors hover:opacity-70"
-                          style={{ borderColor: "var(--border)", color: "var(--muted)" }}
+                          style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
                           title="Intervene — add intervene note to this phase"
                         >
                           <HandMetal size={10} />
@@ -320,7 +320,7 @@ export default function PipelineVisualizePage() {
                   </div>
 
                   {phase.artifacts.length === 0 && phase.status === "pending" && (
-                    <div className="text-xs text-center py-3 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", color: "var(--muted)" }}>
+                    <div className="text-xs text-center py-3 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", color: "var(--muted-foreground)" }}>
                       Waiting for agent...
                     </div>
                   )}
@@ -401,7 +401,7 @@ export default function PipelineVisualizePage() {
           <div className="px-4 py-3 border-b flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
             <ListTodo size={14} style={{ color: "#3b82f6" }} />
             <span className="text-sm font-medium">Task Summary</span>
-            <span className="ml-auto text-xs" style={{ color: "var(--muted)" }}>
+            <span className="ml-auto text-xs" style={{ color: "var(--muted-foreground)" }}>
               {data.stats.completedTasks}/{data.stats.totalTasks}
             </span>
           </div>
@@ -416,7 +416,7 @@ export default function PipelineVisualizePage() {
               >
                 {t.status === "done" ? <CheckCircle2 size={11} style={{ color: "#22c55e" }} /> : t.status === "doing" ? <Loader2 size={11} className="animate-spin" style={{ color: "#3b82f6" }} /> : <Clock size={11} style={{ color: "#64748b" }} />}
                 <span className="flex-1" style={{ color: "var(--foreground)" }}>{t.label}</span>
-                <span className="text-[10px] font-mono" style={{ color: "var(--muted)" }}>[{t.complexity}]</span>
+                <span className="text-[10px] font-mono" style={{ color: "var(--muted-foreground)" }}>[{t.complexity}]</span>
               </div>
             ))}
           </div>
@@ -433,7 +433,7 @@ export default function PipelineVisualizePage() {
               <Loader2 size={14} className="animate-spin" />
             )}
             <span className="text-sm font-medium">pipeline.json</span>
-            <span className="ml-auto text-[10px] font-mono" style={{ color: "var(--muted)" }}>
+            <span className="ml-auto text-[10px] font-mono" style={{ color: "var(--muted-foreground)" }}>
               {data.stats.progress === 100 ? "completed" : "auto-refresh 5s"}
             </span>
           </div>
@@ -449,7 +449,7 @@ export default function PipelineVisualizePage() {
           <div className="px-4 py-3 flex items-center gap-2" style={{ color: "#22c55e" }}>
             <ExternalLink size={14} />
             <span className="text-sm font-medium">WALKTHROUGH.md</span>
-            <span className="ml-auto text-[10px]" style={{ color: "var(--muted)" }}>completed</span>
+            <span className="ml-auto text-[10px]" style={{ color: "var(--muted-foreground)" }}>completed</span>
           </div>
         </div>
       )}

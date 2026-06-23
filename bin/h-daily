@@ -1,22 +1,41 @@
 #!/usr/bin/env bash
 # h-daily — Read or create today's daily note
-# Usage: h-daily [date]
+# Usage: h-daily [date] [--project <name>]
 
 source "$(dirname "$0")/lib/h-common.sh"
 
-DATE="${1:-$(date -u '+%Y-%m-%d')}"
-DAILY_DIR="$PAOS_HOME/vault/daily"
+DATE=""
+PROJECT=""
+
+# Parse args
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --project|-p) PROJECT="$2"; shift 2 ;;
+    *) DATE="$1"; shift ;;
+  esac
+done
+
+DATE="${DATE:-$(date -u '+%Y-%m-%d')}"
+
+if [[ -n "$PROJECT" ]]; then
+  DAILY_DIR="$PAOS_HOME/memory/pipelines/$PROJECT/vault/daily"
+else
+  DAILY_DIR="$PAOS_HOME/vault/daily"
+fi
+
 DAILY_FILE="$DAILY_DIR/$DATE.md"
 
 mkdir -p "$DAILY_DIR"
 
 if [[ -f "$DAILY_FILE" ]]; then
   echo -e "${H_BOLD}Daily Note — $DATE${H_RESET}"
+  [[ -n "$PROJECT" ]] && echo -e "${H_INFO}Project: $PROJECT${H_RESET}"
   echo ""
   cat "$DAILY_FILE"
 else
   cat > "$DAILY_FILE" <<- NOTE
 # Daily — $DATE
+$( [[ -n "$PROJECT" ]] && echo "**Project**: $PROJECT" || true )
 
 ## Tasks
 

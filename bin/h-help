@@ -18,6 +18,12 @@ for cmd in "$PAOS_HOME"/bin/h-*; do
   printf "  ${H_INFO}%-20s${H_RESET} %s\n" "$name" "${desc:-}"
 done
 
+# If workspace is active, show it
+if [[ -n "${PAOS_WORKSPACE:-}" ]]; then
+  echo ""
+  echo -e "${H_BOLD}Active Workspace:${H_RESET} ${H_INFO}$PAOS_WORKSPACE${H_RESET}"
+fi
+
 echo ""
 
 # Try live pipeline status from dashboard if available

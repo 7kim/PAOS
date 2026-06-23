@@ -4,11 +4,17 @@ import {
   Play,
   Check,
   AlertCircle,
-  ChevronDown,
   ChevronRight,
   Copy,
   RefreshCw,
 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ApiEndpoint {
   path: string;
@@ -163,7 +169,7 @@ export default function ApiPlaygroundPage() {
   return (
     <div>
       <h1 className="text-xl font-semibold mb-1">API Playground</h1>
-      <p className="text-sm mb-6" style={{ color: "var(--muted)" }}>
+      <p className="text-sm mb-6 text-muted-foreground">
         Browse and test PAOS API endpoints. Click any endpoint to expand and send requests.
       </p>
 
@@ -173,63 +179,59 @@ export default function ApiPlaygroundPage() {
           const result = results[ep.path];
           const isLoading = loading === ep.path;
           const url = buildUrl(ep);
+          const options = getOptions(ep);
 
           return (
-            <div
-              key={ep.path}
-              className="rounded-lg border overflow-hidden"
-              style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-            >
+            <Card key={ep.path} className="overflow-hidden">
               {/* Header — clickable */}
               <button
                 type="button"
                 onClick={() => setExpanded(isOpen ? null : ep.path)}
-                className="w-full text-left flex items-center gap-3 px-4 py-3 transition-colors hover:opacity-80"
+                className="w-full text-left"
               >
-                {isOpen ? <ChevronDown size={14} style={{ color: "var(--muted)" }} /> : <ChevronRight size={14} style={{ color: "var(--muted)" }} />}
-                <span
-                  className="text-xs font-mono font-bold px-2 py-0.5 rounded shrink-0"
-                  style={{
-                    background: ep.method === "GET" ? "rgba(34,197,94,0.15)" : "rgba(234,179,8,0.15)",
-                    color: ep.method === "GET" ? "var(--green)" : "var(--accent)",
-                  }}
-                >
-                  {ep.method}
-                </span>
-                <span className="text-sm font-mono flex-1" style={{ color: "var(--foreground)" }}>
-                  {ep.path}
-                </span>
-                {result && (
-                  <span
-                    className="text-xs font-mono px-1.5 py-0.5 rounded"
-                    style={{ background: `${statusColor(result.status)}20`, color: statusColor(result.status) }}
+                <CardHeader className="flex flex-row items-center gap-3 py-3 px-4">
+                  <Badge
+                    variant={ep.method === "GET" ? "default" : "secondary"}
+                    className="font-mono text-[10px]"
                   >
-                    {result.status}
+                    {ep.method}
+                  </Badge>
+                  <code className="text-xs font-mono">{ep.path}</code>
+                  <span className="text-xs text-muted-foreground flex-1 text-left truncate">
+                    {ep.description}
                   </span>
-                )}
+                  {result && (
+                    <span
+                      className="text-xs font-mono px-1.5 py-0.5 rounded shrink-0"
+                      style={{ background: `${statusColor(result.status)}20`, color: statusColor(result.status) }}
+                    >
+                      {result.status}
+                    </span>
+                  )}
+                  <ChevronRight size={14} className={`shrink-0 transition-transform text-muted-foreground ${isOpen ? "rotate-90" : ""}`} />
+                </CardHeader>
               </button>
 
               {/* Expanded content */}
               {isOpen && (
-                <div className="px-4 pb-4 border-t pt-3 space-y-3" style={{ borderColor: "var(--border)" }}>
-                  <p className="text-xs" style={{ color: "var(--muted)" }}>{ep.description}</p>
+                <CardContent className="border-t pt-4 px-4 pb-4 space-y-3">
+                  <p className="text-xs text-muted-foreground">{ep.description}</p>
 
                   {/* URL bar */}
-                  <div
-                    className="flex items-center gap-2 rounded px-3 py-2 text-sm font-mono"
-                    style={{ background: "rgba(255,255,255,0.03)", color: "var(--foreground)" }}
-                  >
-                    <span className="text-xs font-bold" style={{ color: ep.method === "GET" ? "var(--green)" : "var(--accent)" }}>
+                  <div className="flex items-center gap-2 rounded bg-muted/30 px-3 py-2 text-sm font-mono">
+                    <span
+                      className="text-xs font-bold shrink-0"
+                      style={{ color: ep.method === "GET" ? "var(--green)" : "var(--accent)" }}
+                    >
                       {ep.method}
                     </span>
-                    <span style={{ opacity: 0.6 }}>/</span>
+                    <span className="text-muted-foreground/60">/</span>
                     <span className="truncate flex-1">{url.replace("/api/", "")}</span>
                     <button
                       type="button"
                       title="Copy URL"
                       onClick={() => navigator.clipboard.writeText(url)}
-                      className="p-1 rounded hover:opacity-70"
-                      style={{ color: "var(--muted)" }}
+                      className="p-1 rounded hover:opacity-70 text-muted-foreground shrink-0"
                     >
                       <Copy size={12} />
                     </button>
@@ -238,25 +240,27 @@ export default function ApiPlaygroundPage() {
                   {/* Dynamic param selector */}
                   {ep.dynamic && (
                     <div className="flex items-center gap-2">
-                      <span className="text-xs" style={{ color: "var(--muted)" }}>
+                      <span className="text-xs text-muted-foreground">
                         {ep.dynamic.param}:
                       </span>
-                      <select
+                      <Select
                         value={selectedValues[ep.path] || ""}
-                        onChange={(e) => setSelectedValues((prev) => ({ ...prev, [ep.path]: e.target.value }))}
-                        className="text-xs font-mono rounded px-2 py-1 border"
-                        style={{
-                          background: "var(--card-bg)",
-                          color: "var(--foreground)",
-                          borderColor: "var(--border)",
+                        onValueChange={(val) => {
+                          const v = val ?? "";
+                          setSelectedValues((prev) => ({ ...prev, [ep.path]: v }));
                         }}
                       >
-                        {getOptions(ep).map((opt) => (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        ))}
-                      </select>
+                        <SelectTrigger className="w-auto text-xs font-mono">
+                          <SelectValue placeholder="Select..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {options.map((opt) => (
+                            <SelectItem key={opt} value={opt}>
+                              {opt}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                   )}
 
@@ -267,39 +271,28 @@ export default function ApiPlaygroundPage() {
                       onChange={(e) => setRequestBody(e.target.value)}
                       placeholder={ep.bodyPlaceholder}
                       rows={3}
-                      className="w-full text-xs font-mono rounded px-3 py-2 border"
-                      style={{
-                        background: "rgba(255,255,255,0.03)",
-                        color: "var(--foreground)",
-                        borderColor: "var(--border)",
-                        resize: "vertical",
-                      }}
+                      className="w-full text-xs font-mono rounded px-3 py-2 border border-input bg-muted/30 text-foreground resize-vertical"
                     />
                   )}
 
                   {/* Send button */}
                   <div className="flex items-center gap-2">
-                    <button
-                      type="button"
+                    <Button
                       onClick={() => sendRequest(ep)}
                       disabled={isLoading}
-                      className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded transition-colors"
-                      style={{
-                        background: "var(--accent)",
-                        color: "var(--accent-on)",
-                        opacity: isLoading ? 0.6 : 1,
-                      }}
+                      size="sm"
+                      className="gap-1.5"
                     >
                       {isLoading ? <RefreshCw size={12} className="animate-spin" /> : <Play size={12} />}
                       {isLoading ? "Sending..." : "Send Request"}
-                    </button>
+                    </Button>
                   </div>
 
                   {/* Response */}
                   {result && (
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-semibold" style={{ color: "var(--muted)" }}>
+                        <span className="text-xs font-semibold text-muted-foreground">
                           Response {result.status > 0 && (
                             <span style={{ color: statusColor(result.status) }}>
                               ({result.status})
@@ -309,33 +302,28 @@ export default function ApiPlaygroundPage() {
                         <button
                           type="button"
                           onClick={() => copyResult(ep.path)}
-                          className="flex items-center gap-1 text-xs rounded px-2 py-1 transition-colors"
-                          style={{ color: "var(--muted)" }}
+                          className="flex items-center gap-1 text-xs rounded px-2 py-1 transition-colors text-muted-foreground hover:bg-muted"
                         >
                           {copied === ep.path ? <Check size={11} /> : <Copy size={11} />}
                           {copied === ep.path ? "Copied" : "Copy"}
                         </button>
                       </div>
                       {result.error ? (
-                        <div
-                          className="text-xs font-mono rounded p-3 overflow-auto max-h-96 whitespace-pre-wrap"
-                          style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444" }}
-                        >
+                        <div className="text-xs font-mono rounded p-3 overflow-auto max-h-96 whitespace-pre-wrap bg-destructive/10 text-destructive">
                           {result.error}
                         </div>
                       ) : (
-                        <pre
-                          className="text-xs font-mono rounded p-3 overflow-auto max-h-96 leading-relaxed"
-                          style={{ background: "rgba(255,255,255,0.03)", color: "var(--foreground)" }}
-                        >
-                          {formatJson(result.body)}
-                        </pre>
+                        <ScrollArea className="h-48 rounded bg-muted/30">
+                          <pre className="text-xs font-mono p-3 leading-relaxed">
+                            {formatJson(result.body)}
+                          </pre>
+                        </ScrollArea>
                       )}
                     </div>
                   )}
-                </div>
+                </CardContent>
               )}
-            </div>
+            </Card>
           );
         })}
       </div>

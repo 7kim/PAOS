@@ -29,6 +29,28 @@ fi
 REPO_ROOT="$(git -C "$(dirname "$0")" rev-parse --show-toplevel)"
 cd "$REPO_ROOT"
 
+# ── Check for project-scoped git identity from workspace ────────────────────
+SCOPED_NAME=""
+SCOPED_EMAIL=""
+if [[ -n "${PAOS_WORKSPACE:-}" ]]; then
+  WS_FILE="$PAOS_HOME/workspaces/$PAOS_WORKSPACE.code-workspace"
+  if [[ -f "$WS_FILE" ]]; then
+    SCOPED_IDENTITY="$(node -e '
+const fs = require("fs");
+const ws = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+const paos = ws.settings?.paos || {};
+const identities = paos.gitIdentities || {};
+const agentId = process.argv[2];
+const entry = identities[agentId];
+if (entry) process.stdout.write(JSON.stringify(entry));
+' "$WS_FILE" "$AGENT_ID" || true)"
+    if [[ -n "$SCOPED_IDENTITY" ]]; then
+      SCOPED_NAME="$(node -e 'const d=JSON.parse(process.argv[1]); process.stdout.write(d.name)' "$SCOPED_IDENTITY")"
+      SCOPED_EMAIL="$(node -e 'const d=JSON.parse(process.argv[1]); process.stdout.write(d.email)' "$SCOPED_IDENTITY")"
+    fi
+  fi
+fi
+
 # ── Resolve identity from canonical registry ──────────────────────────────────
 IDENTITY_JSON="$(node -e '
 const fs = require("fs");
@@ -45,8 +67,8 @@ if [[ -z "$IDENTITY_JSON" ]]; then
   exit 1
 fi
 
-NAME="$(node -e 'const data = JSON.parse(process.argv[1]); process.stdout.write(data.name)' "$IDENTITY_JSON")"
-EMAIL="$(node -e 'const data = JSON.parse(process.argv[1]); process.stdout.write(data.email)' "$IDENTITY_JSON")"
+NAME="${SCOPED_NAME:-$(node -e 'const data = JSON.parse(process.argv[1]); process.stdout.write(data.name)' "$IDENTITY_JSON")}"
+EMAIL="${SCOPED_EMAIL:-$(node -e 'const data = JSON.parse(process.argv[1]); process.stdout.write(data.email)' "$IDENTITY_JSON")}"
 
 # ── Stage all changes unless --no-stage ───────────────────────────────────────
 if [[ "$NO_STAGE" != "--no-stage" ]]; then

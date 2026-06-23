@@ -16,11 +16,15 @@ import {
   GitCommit,
   TestTube,
   FolderKanban,
+  BookOpen,
+  Activity,
 } from "lucide-react";
 
 const nav = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
   { href: "/projects", label: "Projects", icon: FolderKanban },
+  { href: "/vault", label: "Vault", icon: BookOpen },
+  { href: "/events", label: "Events", icon: Activity },
   { href: "/handoff", label: "Handoff", icon: HandMetal },
   { href: "/ledger", label: "Audit Ledger", icon: ScrollText },
   { href: "/agents", label: "Agents", icon: Bot },
@@ -102,21 +106,21 @@ export default function Sidebar() {
       >
         <div
           className="w-7 h-7 rounded flex items-center justify-center shrink-0"
-          style={{ background: "var(--accent)" }}
+          style={{ background: "var(--primary)" }}
         >
-          <Zap size={14} style={{ color: "var(--accent-on)" }} />
+          <Zap size={14} style={{ color: "var(--primary-foreground)" }} />
         </div>
         <div>
           <div className="font-bold text-sm tracking-tight" style={{ color: "var(--foreground)" }}>
             AI Workflow
           </div>
-          <div className="text-xs" style={{ color: "var(--muted)" }}>PAOS Hub</div>
+          <div className="text-xs" style={{ color: "var(--muted-foreground)" }}>PAOS Hub</div>
         </div>
       </div>
 
       {/* Main nav */}
       <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
-        <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted)" }}>
+        <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>
           Dashboard
         </p>
         {nav.map(({ href, label, icon: Icon }) => {
@@ -128,18 +132,18 @@ export default function Sidebar() {
               className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
               style={{
                 background: active ? "rgba(252,213,53,0.1)" : "transparent",
-                color: active ? "var(--accent)" : "var(--foreground)",
+                color: active ? "var(--primary)" : "var(--foreground)",
                 fontWeight: active ? 600 : 400,
               }}
             >
-              <Icon size={14} style={{ color: active ? "var(--accent)" : "var(--muted)" }} />
+              <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
               {label}
             </Link>
           );
         })}
 
         <div className="pt-3 pb-1">
-          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted)" }}>
+          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>
             Developer
           </p>
         </div>
@@ -152,18 +156,18 @@ export default function Sidebar() {
               className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
               style={{
                 background: active ? "rgba(252,213,53,0.1)" : "transparent",
-                color: active ? "var(--accent)" : "var(--foreground)",
+                color: active ? "var(--primary)" : "var(--foreground)",
                 fontWeight: active ? 600 : 400,
               }}
             >
-              <Icon size={14} style={{ color: active ? "var(--accent)" : "var(--muted)" }} />
+              <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
               {label}
             </Link>
           );
         })}
 
         <div className="pt-3 pb-1">
-          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted)" }}>
+          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>
             Code-SRS
           </p>
         </div>
@@ -176,11 +180,11 @@ export default function Sidebar() {
               className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
               style={{
                 background: active ? "rgba(252,213,53,0.1)" : "transparent",
-                color: active ? "var(--accent)" : "var(--foreground)",
+                color: active ? "var(--primary)" : "var(--foreground)",
                 fontWeight: active ? 600 : 400,
               }}
             >
-              <Icon size={14} style={{ color: active ? "var(--accent)" : "var(--muted)" }} />
+              <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
               {label}
             </Link>
           );
@@ -192,7 +196,7 @@ export default function Sidebar() {
         className="px-4 py-4 border-t"
         style={{ borderColor: "var(--border)", background: "var(--elevated)" }}
       >
-        <p className="text-xs font-semibold uppercase tracking-wider mb-2.5" style={{ color: "var(--muted)" }}>
+        <p className="text-xs font-semibold uppercase tracking-wider mb-2.5" style={{ color: "var(--muted-foreground)" }}>
           Agents
         </p>
         <div className="space-y-2">

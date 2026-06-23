@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { applyTheme, getAppliedTheme } from "@/lib/themes";
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -19,6 +20,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     }
     document.documentElement.setAttribute("data-theme", theme);
     document.documentElement.classList.toggle("dark", theme === "dark");
+    applyTheme(getAppliedTheme());
 
     // Listen for settings changes from other tabs
     const handler = () => {
@@ -32,6 +34,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
           }
           document.documentElement.setAttribute("data-theme", t);
           document.documentElement.classList.toggle("dark", t === "dark");
+          applyTheme(getAppliedTheme()); // re-apply theme with new dark/light mode
         } catch {}
       }
     };

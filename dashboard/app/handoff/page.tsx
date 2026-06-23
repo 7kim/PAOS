@@ -1,12 +1,19 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { RefreshCw, Edit3, Save, X, Loader2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { RefreshCw, Edit3, Save, X, Loader2, FolderKanban } from "lucide-react";
 import { formatTime } from "@/lib/settings";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { getViewAll } from "@/lib/viewAll";
+import { getActiveProject } from "@/lib/activeProject";
 
 export default function HandoffPage() {
+  const searchParams = useSearchParams();
+  const urlProject = searchParams?.get("project") || "";
+  const viewAll = getViewAll();
+  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || "__none__"));
   const [content, setContent] = useState("");
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -15,12 +22,13 @@ export default function HandoffPage() {
   const [saving, setSaving] = useState(false);
 
   const load = useCallback(async () => {
-    const res = await fetch("/api/handoff");
+    const params = projectFilter ? `?project=${encodeURIComponent(projectFilter)}` : "";
+    const res = await fetch(`/api/handoff${params}`);
     const data = await res.json();
     setContent(data.content ?? "");
     setUpdatedAt(data.updatedAt ?? null);
     setLoading(false);
-  }, []);
+  }, [projectFilter]);
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -126,7 +134,7 @@ export default function HandoffPage() {
           style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
         >
           {loading ? (
-            <p className="text-sm" style={{ color: "var(--muted)" }}>Loading…</p>
+            <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>Loading…</p>
           ) : editing ? (
             <textarea
               value={editContent}

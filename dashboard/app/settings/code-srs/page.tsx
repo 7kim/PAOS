@@ -90,7 +90,7 @@ export default function CodeSRSSettingsPage() {
       <h1 className="text-xl font-semibold mb-1" style={{ color: "var(--foreground)" }}>
         Code-SRS Settings
       </h1>
-      <p className="text-sm mb-8" style={{ color: "var(--muted)" }}>
+      <p className="text-sm mb-8" style={{ color: "var(--muted-foreground)" }}>
         Manage Code-SRS platform configuration and model aliases.
       </p>
 
@@ -102,8 +102,8 @@ export default function CodeSRSSettingsPage() {
               ? "rgba(239,68,68,0.1)"
               : "rgba(34,197,94,0.1)",
             color: message.includes("Failed")
-              ? "var(--accent-red)"
-              : "var(--accent-green)",
+              ? "var(--red)"
+              : "var(--green)",
           }}
         >
           {message}
@@ -131,7 +131,7 @@ export default function CodeSRSSettingsPage() {
                   <p className="font-mono text-sm" style={{ color: "var(--foreground)" }}>
                     {key}
                   </p>
-                  <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>
+                  <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
                     {flag.description}
                   </p>
                 </div>
@@ -141,7 +141,7 @@ export default function CodeSRSSettingsPage() {
                   className="relative w-12 h-6 rounded-full transition-colors disabled:opacity-50"
                   style={{
                     background: flag.enabled
-                      ? "var(--accent-green)"
+                      ? "var(--green)"
                       : "var(--border)",
                   }}
                 >
@@ -172,19 +172,19 @@ export default function CodeSRSSettingsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr style={{ background: "var(--sidebar-bg)" }}>
-                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted)" }}>
+                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted-foreground)" }}>
                   Alias
                 </th>
-                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted)" }}>
+                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted-foreground)" }}>
                   Provider
                 </th>
-                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted)" }}>
+                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted-foreground)" }}>
                   Model ID
                 </th>
-                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted)" }}>
+                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted-foreground)" }}>
                   Tier
                 </th>
-                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted)" }}>
+                <th className="text-left px-4 py-3 font-medium" style={{ color: "var(--muted-foreground)" }}>
                   Description
                 </th>
               </tr>
@@ -201,7 +201,7 @@ export default function CodeSRSSettingsPage() {
                   <td className="px-4 py-3" style={{ color: "var(--foreground)" }}>
                     {model.provider}
                   </td>
-                  <td className="px-4 py-3 font-mono text-xs" style={{ color: "var(--muted)" }}>
+                  <td className="px-4 py-3 font-mono text-xs" style={{ color: "var(--muted-foreground)" }}>
                     {model.model_id}
                   </td>
                   <td className="px-4 py-3">
@@ -214,14 +214,14 @@ export default function CodeSRSSettingsPage() {
                             : "rgba(34,197,94,0.15)",
                         color:
                           model.tier === "pro"
-                            ? "var(--accent-purple)"
-                            : "var(--accent-green)",
+                            ? "var(--purple)"
+                            : "var(--green)",
                       }}
                     >
                       {model.tier}
                     </span>
                   </td>
-                  <td className="px-4 py-3" style={{ color: "var(--muted)" }}>
+                  <td className="px-4 py-3" style={{ color: "var(--muted-foreground)" }}>
                     {model.description}
                   </td>
                 </tr>
@@ -231,7 +231,7 @@ export default function CodeSRSSettingsPage() {
         </div>
 
         {(!models?.models || models.models.length === 0) && (
-          <p className="text-sm mt-4" style={{ color: "var(--muted)" }}>
+          <p className="text-sm mt-4" style={{ color: "var(--muted-foreground)" }}>
             No models configured. Run the Code-SRS Phase 0 setup first.
           </p>
         )}

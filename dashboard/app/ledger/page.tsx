@@ -1,10 +1,13 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { X, ArrowUpDown } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { X, ArrowUpDown, FolderKanban, RefreshCw } from "lucide-react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { getViewAll } from "@/lib/viewAll";
+import { getActiveProject } from "@/lib/activeProject";
 
 interface LedgerEntry {
   timestamp: string;
@@ -42,15 +45,20 @@ function agentColor(agent: string) {
 }
 
 export default function LedgerPage() {
+  const searchParams = useSearchParams();
+  const urlProject = searchParams?.get("project") || "";
+  const viewAll = getViewAll();
+  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || "__none__"));
   const [entries, setEntries] = useState<LedgerEntry[]>([]);
   const [selected, setSelected] = useState<LedgerEntry | null>(null);
   const [sortAsc, setSortAsc] = useState(false);
 
   const load = useCallback(async () => {
-    const res = await fetch("/api/ledger");
+    const params = projectFilter ? `?project=${encodeURIComponent(projectFilter)}` : "";
+    const res = await fetch(`/api/ledger${params}`);
     const data = await res.json();
     setEntries(data.entries ?? []);
-  }, []);
+  }, [projectFilter]);
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -72,7 +80,13 @@ export default function LedgerPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Audit Ledger</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>Audit Ledger</CardTitle>
+          <Button variant="outline" size="sm" onClick={() => load()} className="gap-1.5 text-xs">
+            <RefreshCw size={12} />
+            Refresh
+          </Button>
+        </div>
         <CardDescription>
           All agent actions — click any row to expand · {entries.length} entries
         </CardDescription>
@@ -151,7 +165,7 @@ export default function LedgerPage() {
                           style={{ background: "rgba(252,213,53,0.04)", borderColor: "var(--border)" }}
                         >
                           <div className="flex items-center justify-between mb-3">
-                            <span className="text-xs font-semibold" style={{ color: "var(--accent)" }}>
+                            <span className="text-xs font-semibold" style={{ color: "var(--primary)" }}>
                               Entry Detail
                             </span>
                             <Button

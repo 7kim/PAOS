@@ -1,12 +1,13 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Clock, RefreshCw, Monitor, Save, Palette, Globe } from "lucide-react";
+import { Clock, RefreshCw, Monitor, Save, Palette, Globe, Eye, Users, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
+import { themePresets, applyTheme, getAppliedTheme } from "@/lib/themes";
 
 interface Settings {
   timezone: string;
@@ -14,6 +15,7 @@ interface Settings {
   timestampFormat: "relative" | "absolute";
   timeFormat: "12h" | "24h";
   theme: "system" | "dark" | "light";
+  viewAll: boolean;
 }
 
 const DEFAULT_SETTINGS: Settings = {
@@ -22,6 +24,7 @@ const DEFAULT_SETTINGS: Settings = {
   timestampFormat: "relative",
   timeFormat: "24h",
   theme: "system",
+  viewAll: true,
 };
 
 const TIMEZONES = [
@@ -63,8 +66,10 @@ const TIMEZONES = [
 export default function SettingsPage() {
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
   const [saved, setSaved] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     try {
       const stored = localStorage.getItem("paos-settings");
       if (stored) setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(stored) });
@@ -113,7 +118,7 @@ export default function SettingsPage() {
                 ))}
               </SelectContent>
             </Select>
-            {typeof window !== "undefined" && (
+            {mounted && (
               <p className="mt-2 text-[10px] font-mono text-muted-foreground">
                 Current time: {new Date().toLocaleString("en-US", { timeZone: settings.timezone, timeStyle: "medium", dateStyle: "medium" })}
               </p>
@@ -142,7 +147,6 @@ export default function SettingsPage() {
                 value={settings.refreshInterval}
                 onChange={(e) => update("refreshInterval", parseInt(e.target.value))}
                 className="flex-1"
-                style={{ accentColor: "var(--accent)" }}
               />
               <span className="text-xs font-mono w-12 text-right">
                 {settings.refreshInterval}s
@@ -251,7 +255,51 @@ export default function SettingsPage() {
           </CardContent>
         </Card>
 
-        {/* Save */}
+        {/* Theme Presets */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Palette size={14} />
+              Theme Preset
+            </CardTitle>
+            <CardDescription className="text-xs">
+              Color scheme preset for the entire dashboard. Applies instantly.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-3 gap-2">
+              {themePresets.map((preset) => {
+                const isActive = getAppliedTheme() === preset.name;
+                return (
+                  <button
+                    key={preset.name}
+                    type="button"
+                    onClick={() => {
+                      applyTheme(preset.name);
+                      window.location.reload();
+                    }}
+                    className="rounded-lg border p-3 text-left transition-all hover:border-primary/50"
+                    style={{
+                      borderColor: isActive ? "var(--primary)" : "var(--border)",
+                      background: isActive ? "rgba(255,255,255,0.03)" : "transparent",
+                    }}
+                  >
+                    <div className="flex gap-1 mb-2">
+                      <div className="w-4 h-4 rounded-sm" style={{ background: preset.vars["--primary"] }} />
+                      <div className="w-4 h-4 rounded-sm" style={{ background: preset.vars["--background"] }} />
+                      <div className="w-4 h-4 rounded-sm" style={{ background: preset.vars["--card"] }} />
+                    </div>
+                    <div className="text-xs font-medium">{preset.label}</div>
+                    <div className="text-[10px] text-muted-foreground mt-0.5 line-clamp-2">
+                      {preset.description}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
         <Button onClick={save} className="gap-2">
           <Save size={14} /> {saved ? "Saved!" : "Save Settings"}
         </Button>
@@ -268,5 +316,75 @@ export default function SettingsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function ScopedAgentStatus() {
+  const [data, setData] = useState<{ project: string; agents: string[] }[]>([]);
+  const [generating, setGenerating] = useState<string | null>(null);
+  const [projects, setProjects] = useState<{ name: string }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/agents/scoped").then((r) => r.json()).then((d) => setData(d.scopedProjects ?? [])).catch(() => {});
+    fetch("/api/workspaces").then((r) => r.json()).then((d) => setProjects(d.workspaces ?? [])).catch(() => {});
+  }, []);
+
+  async function generateFor(project: string) {
+    setGenerating(project);
+    await fetch("/api/agents/scoped", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ project }),
+    });
+    const res = await fetch("/api/agents/scoped");
+    const d = await res.json();
+    setData(d.scopedProjects ?? []);
+    setGenerating(null);
+  }
+
+  const scopedProjectNames = new Set(data.map((d) => d.project));
+  const unscoped = projects.filter((p) => !scopedProjectNames.has(p.name));
+
+  return (
+    <>
+      {data.length === 0 && (
+        <p className="text-xs text-muted-foreground">No scoped agent identities created yet.</p>
+      )}
+      {data.map((s) => (
+        <div key={s.project} className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
+          <div className="text-xs font-medium mb-1 flex items-center gap-2">
+            {s.project}
+            <span className="text-[10px] text-muted-foreground font-normal">git identities</span>
+          </div>
+          <div className="flex flex-wrap gap-1">
+            {s.agents.map((a) => (
+              <span key={a} className="text-[10px] px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(240,185,11,0.1)", color: "var(--primary)" }}>
+                {a}@paos.com
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+      {unscoped.length > 0 && (
+        <div className="pt-2">
+          <div className="text-xs text-muted-foreground mb-2">Generate git identities for:</div>
+          <div className="flex flex-wrap gap-2">
+            {unscoped.map((p) => (
+              <Button
+                key={p.name}
+                size="sm"
+                variant="outline"
+                disabled={generating === p.name}
+                onClick={() => generateFor(p.name)}
+                className="text-[10px] gap-1"
+              >
+                {generating === p.name ? <Loader2 size={10} className="animate-spin" /> : <Users size={10} />}
+                {p.name}
+              </Button>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

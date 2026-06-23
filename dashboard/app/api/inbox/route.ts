@@ -2,19 +2,33 @@ import { NextResponse } from "next/server";
 import { readdir, readFile, stat } from "fs/promises";
 import { join } from "path";
 
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+const HOME = process.env.HOME || "/home/dev";
+const MEMORY_DIR = join(HOME, "AI_Workflow", "memory");
+const PROJECTS_DIR = join(HOME, "AI_Workflow", "projects");
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const agent = searchParams.get("agent");
+  const project = searchParams.get("project");
+
+  // Global or project-scoped inbox base
+  // For projects: try projects/{name}/inbox/ first, fall back to memory/pipelines/{name}/inbox/
+  const inboxBase = await (async () => {
+    if (!project) return join(MEMORY_DIR, "inbox");
+    const projectsInbox = join(PROJECTS_DIR, project, "inbox");
+    try {
+      await stat(projectsInbox);
+      return projectsInbox;
+    } catch {
+      return join(MEMORY_DIR, "pipelines", project, "inbox");
+    }
+  })();
 
   try {
-    const inboxDir = join(MEMORY_DIR, "inbox");
-    const allEntries = await readdir(inboxDir).catch(() => []);
-    // Filter to actual directories only (exclude stray .md files)
+    const allEntries = await readdir(inboxBase).catch(() => []);
     const agentDirs: string[] = [];
     for (const entry of allEntries) {
-      const s = await stat(join(inboxDir, entry)).catch(() => null);
+      const s = await stat(join(inboxBase, entry)).catch(() => null);
       if (s?.isDirectory()) agentDirs.push(entry);
     }
 
@@ -22,7 +36,7 @@ export async function GET(request: Request) {
 
     const messages = await Promise.all(
       targetDirs.map(async (dir) => {
-        const dirPath = join(inboxDir, dir);
+        const dirPath = join(inboxBase, dir);
         const files = await readdir(dirPath).catch(() => []);
         const mdFiles = files.filter((f) => f.endsWith(".md")).sort().reverse();
 
@@ -51,8 +65,12 @@ export async function GET(request: Request) {
       })
     );
 
-    return NextResponse.json({ messages: messages.flat(), inboxes: agentDirs });
+    return NextResponse.json({
+      messages: messages.flat(),
+      inboxes: agentDirs,
+      project: project || "global",
+    });
   } catch {
-    return NextResponse.json({ messages: [], inboxes: [] });
+    return NextResponse.json({ messages: [], inboxes: [], project: project || "global" });
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ChevronRight, ExternalLink, FileCode, GitCommit, GitGraph,
   Search, Terminal, Layout, FolderTree, Eye, Layers
@@ -40,6 +40,23 @@ interface CommitDetail {
 }
 
 const GK_COLOR = "#289473";
+
+const agentColors: Record<string, string> = {
+  claude: "#f97316",
+  "opencode-developer": "#3b82f6",
+  "opencode-plan": "#60a5fa",
+  openclaw: "#8b5cf6",
+  ollama: "#22c55e",
+  antigravity: "#ec4899",
+  dashboard: "#64748b",
+};
+
+function agentColor(agent: string) {
+  for (const [key, color] of Object.entries(agentColors)) {
+    if (agent.toLowerCase().includes(key)) return color;
+  }
+  return "#64748b";
+}
 
 const statusColors: Record<string, string> = {
   A: "var(--green)",
@@ -106,6 +123,7 @@ function GitViewPage({
   const [detail, setDetail] = useState<CommitDetail | null>(null);
   const [loading, setLoading] = useState(false);
   const [detailTab, setDetailTab] = useState<"diff" | "files" | "details">("diff");
+  const [selectedTreeFile, setSelectedTreeFile] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -133,6 +151,16 @@ function GitViewPage({
       .catch(() => setDetail(null));
   }, [selectedHash]);
 
+  // Scroll diff to selected tree file
+  useEffect(() => {
+    if (!selectedTreeFile || detailTab !== "diff") return;
+    const id = `diff-${selectedTreeFile.replace(/[^a-zA-Z0-9]/g, "-")}`;
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [selectedTreeFile, detailTab]);
+
   function shortHash(h: string) {
     return h?.substring(0, 8) ?? "";
   }
@@ -143,7 +171,7 @@ function GitViewPage({
 
   return (
     <div className="flex gap-4 h-full overflow-hidden">
-      <div className="w-80 shrink-0 flex flex-col gap-3">
+      <div className="w-96 shrink-0 flex flex-col gap-3">
         {/* Agent selector + repo info header */}
         <div className="flex items-center gap-2">
           <Select
@@ -204,18 +232,20 @@ function GitViewPage({
                 <button
                   key={c.hash}
                   onClick={() => setSelectedHash(c.hash)}
-                  className="w-full text-left p-3 border-b hover:bg-muted/50 transition-colors"
+                  className="w-full text-left p-2 border-b hover:bg-muted/50 transition-colors"
                   style={{
                     borderLeft: selectedHash === c.hash ? `2px solid ${GK_COLOR}` : "2px solid transparent",
                     background: selectedHash === c.hash ? `${GK_COLOR}0d` : undefined,
                   }}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs">{shortHash(c.hash)}</span>
-                    <Badge variant="outline" className="text-[10px]">{timeAgo(c.date)}</Badge>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-[10px] shrink-0">{shortHash(c.hash)}</span>
+                    <Badge variant="outline" className="text-[9px] px-1 py-0">{timeAgo(c.date)}</Badge>
                   </div>
-                  <p className="text-xs mt-1 line-clamp-2">{c.message}</p>
-                  <p className="text-[10px] text-muted-foreground mt-0.5">{c.author_name}</p>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-[10px] shrink-0" style={{ color: agentColor(c.author_name) }}>{c.author_name}</span>
+                    <p className="text-xs truncate text-foreground/70">{c.message}</p>
+                  </div>
                 </button>
               ))}
             </ScrollArea>
@@ -259,7 +289,14 @@ function GitViewPage({
                   </div>
                   <div className="flex-1 overflow-y-auto p-2 space-y-1">
                     {detail.tree.map((f) => (
-                      <div key={f.path} className="text-[10px] font-mono truncate px-2 py-0.5 rounded hover:bg-muted cursor-default text-muted-foreground">
+                      <div
+                        key={f.path}
+                        className="text-[10px] font-mono truncate px-2 py-0.5 rounded hover:bg-muted cursor-pointer text-muted-foreground"
+                        onClick={() => {
+                          setSelectedTreeFile(f.path);
+                          setDetailTab("diff");
+                        }}
+                      >
                         {f.path}
                       </div>
                     ))}
@@ -276,7 +313,7 @@ function GitViewPage({
                           onClick={() => setDetailTab(t)}
                           className="px-4 py-2 text-xs capitalize transition-colors"
                           style={{
-                            color: detailTab === t ? "var(--accent)" : undefined,
+                            color: detailTab === t ? "var(--primary)" : undefined,
                             borderBottom: detailTab === t ? "2px solid var(--accent)" : "2px solid transparent",
                           }}
                         >
@@ -289,7 +326,7 @@ function GitViewPage({
                         <div className="font-mono text-[11px] leading-tight">
                           {parseDiff(detail.diff).map((chunk, i) => (
                             <div key={i} className="mb-4">
-                              <div className="px-3 py-1 bg-black/30 border-b text-[10px] font-bold flex items-center gap-2">
+                              <div id={`diff-${chunk.file.replace(/[^a-zA-Z0-9]/g, "-")}`} className="px-3 py-1 bg-black/30 border-b text-[10px] font-bold flex items-center gap-2">
                                 <FileCode size={10} />
                                 {chunk.file}
                               </div>

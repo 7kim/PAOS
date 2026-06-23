@@ -1,6 +1,9 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
+import { getViewAll } from "@/lib/viewAll";
+import { getActiveProject } from "@/lib/activeProject";
 
 interface Task {
   id: string;
@@ -26,14 +29,19 @@ function statusStyle(status: string) {
 }
 
 export default function TasksPage() {
+  const searchParams = useSearchParams();
+  const urlProject = searchParams?.get("project") || "";
+  const viewAll = getViewAll();
+  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || "__none__"));
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selected, setSelected] = useState<Task | null>(null);
 
   const load = useCallback(async () => {
-    const res = await fetch("/api/tasks");
+    const params = projectFilter && projectFilter !== "__none__" ? `?project=${encodeURIComponent(projectFilter)}` : "";
+    const res = await fetch(`/api/tasks${params}`);
     const data = await res.json();
     setTasks(data.tasks ?? []);
-  }, []);
+  }, [projectFilter]);
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -46,7 +54,7 @@ export default function TasksPage() {
       <div className={`flex-1 min-w-0 flex flex-col`}>
         <div className="mb-6">
           <h1 className="text-xl font-semibold mb-1">Tasks</h1>
-          <p className="text-sm" style={{ color: "var(--muted)" }}>
+          <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>
             Task cards from <span className="font-mono">memory/tasks/</span> — click to inspect
           </p>
         </div>
@@ -54,7 +62,7 @@ export default function TasksPage() {
         {tasks.length === 0 ? (
           <div
             className="rounded-lg border p-12 text-center text-sm"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted)" }}
+            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted-foreground)" }}
           >
             No task cards found in <span className="font-mono">memory/tasks/</span>
           </div>
@@ -83,7 +91,7 @@ export default function TasksPage() {
                   </span>
                   <div className="flex-1 min-w-0">
                     <div className="font-medium text-sm truncate">{task.title}</div>
-                    <div className="text-xs mt-0.5" style={{ color: "var(--muted)" }}>
+                    <div className="text-xs mt-0.5" style={{ color: "var(--muted-foreground)" }}>
                       {task.id}
                       {task.project && ` · ${task.project}`}
                       {task.agent && ` · ${task.agent}`}
@@ -107,14 +115,14 @@ export default function TasksPage() {
           >
             <div>
               <span className="font-medium text-sm">{selected.title}</span>
-              <div className="text-xs mt-0.5 font-mono" style={{ color: "var(--muted)" }}>{selected.id}</div>
+              <div className="text-xs mt-0.5 font-mono" style={{ color: "var(--muted-foreground)" }}>{selected.id}</div>
             </div>
             <button
               type="button"
               title="Close"
               onClick={() => setSelected(null)}
               className="p-1 rounded ml-2 shrink-0"
-              style={{ color: "var(--muted)" }}
+              style={{ color: "var(--muted-foreground)" }}
             >
               <X size={14} />
             </button>
