@@ -1,48 +1,19 @@
-# ─────────────────────────────────────────────────────────────────────────────
-# PAOS Hub — Docker Compose (root — run from repo root)
-#
-# Quick start:
-#   cp docker/secrets.env.template docker/secrets.env
-#   nano docker/secrets.env          # add your API keys
-#   docker compose up -d
-#
-# Dashboard → http://localhost:3333
-# ─────────────────────────────────────────────────────────────────────────────
+version: '3.8'
 
 services:
-  paos-hub:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    image: paos-hub:latest
-    container_name: paos-hub
+  dashboard:
+    build: .
     ports:
-      - "${PAOS_PORT:-3333}:3333"
+      - "3333:3333"
     volumes:
-      # Live-mount shared state — agents on the host write here and the
-      # container's dashboard/MCP server reads it in real time.
-      - ./memory:/paos/memory
-      - ./logs:/paos/logs
-      - ./vault:/paos/vault
-      - ./knowledge:/paos/knowledge
-      - ./agents:/paos/agents
-      - ./skills:/paos/skills
-      # Secrets (read-only inside container)
-      - ./docker/secrets.env:/paos/.env:ro
+      - ~/AI_Workflow:/home/dev/AI_Workflow
+      - ~/.hermes:/home/dev/.hermes
+      - paos_data:/data
     environment:
+      - MEMORY_DIR=/data/memory
+      - WORKSPACES_DIR=/data/workspaces
       - NODE_ENV=production
-      - PORT=3333
-      - MEMORY_DIR=/paos/memory
-      - KNOWLEDGE_DIR=/paos/knowledge
-      - LOGS_DIR=/paos/logs
-      - REPO_ROOT=/paos
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3333/api/overview"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 20s
-    labels:
-      - "paos.role=hub"
-      - "paos.version=1.0.0"
+
+volumes:
+  paos_data:
