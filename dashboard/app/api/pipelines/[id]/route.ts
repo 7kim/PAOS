@@ -90,13 +90,32 @@ export async function GET(
 
     // Assign files to phases based on the META.json artifacts list
     for (const phase of phases) {
-      const phaseMeta = (meta.phases ?? []).find(
+      const metaPhases = (meta.phases as Array<Record<string, unknown>> | undefined) ?? [];
+      const phaseMeta = metaPhases.find(
         (p: Record<string, unknown>) => p.agent === phase.agent && p.role === phase.role
       );
-      const expectedFiles: string[] = phaseMeta?.artifacts ?? [];
+      const rawArtifacts = phaseMeta?.artifacts;
+      const expectedFiles: string[] = Array.isArray(rawArtifacts) ? rawArtifacts : [];
       for (const filename of expectedFiles) {
         if (fileContents[filename] !== undefined) {
           phase.artifacts.push({
+            filename,
+            content: fileContents[filename],
+            lines: fileContents[filename].split("\n").length,
+          });
+        }
+      }
+    }
+
+    // Fallback: assign any .md files on disk not listed in any phase's artifacts
+    const allAssigned = new Set(phases.flatMap(p => p.artifacts.map(a => a.filename)));
+    for (const filename of artifactFiles) {
+      if (!allAssigned.has(filename) && !filename.endsWith(".json")) {
+        // Find the last phase that hasn't started yet, or the last phase overall
+        const targetPhase = phases.find(p => p.status === "pending" || p.status === "submitted")
+          ?? phases[phases.length - 1];
+        if (targetPhase && !targetPhase.artifacts.some(a => a.filename === filename)) {
+          targetPhase.artifacts.push({
             filename,
             content: fileContents[filename],
             lines: fileContents[filename].split("\n").length,
@@ -123,7 +142,9 @@ export async function GET(
         if (!versionedArtifacts[base]) versionedArtifacts[base] = [];
         const isV2 = art.filename !== `${base}.md`;
         versionedArtifacts[base].push({
-          ...art,
+          filename: art.filename,
+          content: art.content,
+          lines: art.lines ?? 0,
           version: isV2 ? 2 : 1,
         });
       }
@@ -195,5 +216,36 @@ export async function GET(
     });
   } catch (e) {
     return NextResponse.json({ error: `Pipeline ${id} not found: ${String(e)}` }, { status: 404 });
+  }
+}
+
+export async function DELETE(
+  _req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+
+  // Search across all project directories
+  const { readdir, rm } = await import("fs/promises");
+  const projects = await readdir(PIPELINES_DIR).catch(() => [] as string[]);
+  let dir = "";
+  for (const project of projects) {
+    if (project.startsWith(".")) continue;
+    const candidate = join(PIPELINES_DIR, project, id);
+    try {
+      await readFile(join(candidate, "META.json"), "utf-8");
+      dir = candidate;
+      break;
+    } catch { /* not this project */ }
+  }
+  if (!dir) {
+    return NextResponse.json({ error: `Pipeline ${id} not found` }, { status: 404 });
+  }
+
+  try {
+    await rm(dir, { recursive: true, force: true });
+    return NextResponse.json({ ok: true, message: `Pipeline ${id} deleted` });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 });
   }
 }

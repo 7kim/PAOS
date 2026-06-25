@@ -3,7 +3,7 @@ import { readdir, readFile } from "fs/promises";
 import { join } from "path";
 import { systemDoctor } from "@/lib/paos";
 
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+import { MEMORY_DIR } from "@/lib/global-config";
 
 async function countFiles(dir: string, ext = ".md"): Promise<number> {
   const files = await readdir(dir).catch(() => []);

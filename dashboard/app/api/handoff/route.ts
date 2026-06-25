@@ -2,10 +2,7 @@ import { NextResponse } from "next/server";
 import { readFile, writeFile, stat } from "fs/promises";
 import { join } from "path";
 
-const HOME = process.env.HOME || "/home/dev";
-const PROJECTS_DIR = join(HOME, "AI_Workflow", "projects");
-const PIPELINES_DIR = join(HOME, "AI_Workflow", "memory", "pipelines");
-const MEMORY_DIR = join(HOME, "AI_Workflow", "memory");
+import { PROJECTS_DIR, PIPELINES_DIR, MEMORY_DIR } from "@/lib/global-config";
 
 function projectHandoffPath(project: string): string {
   // Try projects/{name}/handoff.md first, fall back to memory/pipelines/{name}/handoff.md

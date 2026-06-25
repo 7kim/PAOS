@@ -1,24 +1,62 @@
 import { NextResponse } from "next/server";
-import { readFile, writeFile, mkdir } from "fs/promises";
+import { readFile, writeFile, mkdir, readdir, stat } from "fs/promises";
 import { join } from "path";
 
-const HOME = process.env.HOME || "/home/dev";
-const PIPELINES_DIR = join(HOME, "AI_Workflow", "memory", "pipelines");
+import { PIPELINES_DIR, PROJECTS_DIR } from "@/lib/global-config";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const project = searchParams.get("project") || "";
 
+  // If no project specified, fetch ALL project events
   if (!project) {
-    return NextResponse.json({ error: "project parameter is required" }, { status: 400 });
+    const allEvents: Record<string, string> = {};
+    const projects = new Set<string>();
+
+    // Scan pipelines dir
+    try {
+      const pipelineDirs = await readdir(PIPELINES_DIR);
+      for (const d of pipelineDirs) {
+        if (d.startsWith(".")) continue;
+        projects.add(d);
+      }
+    } catch { /* ignore */ }
+
+    // Scan projects dir
+    try {
+      const projectDirs = await readdir(PROJECTS_DIR);
+      for (const d of projectDirs) {
+        if (d.startsWith(".")) continue;
+        projects.add(d);
+      }
+    } catch { /* ignore */ }
+
+    for (const p of projects) {
+      const eventsPath = join(PIPELINES_DIR, p, "events.md");
+      try {
+        await stat(eventsPath);
+        const content = await readFile(eventsPath, "utf-8");
+        allEvents[p] = content;
+      } catch {
+        allEvents[p] = "# Events — " + p + "\n\n| Timestamp | Agent | Action | Description |\n|-----------|-------|--------|-------------|\n";
+      }
+    }
+
+    return NextResponse.json({ projects: allEvents });
   }
 
-  const eventsPath = join(PIPELINES_DIR, project, "events.md");
+  // Single project mode
+  let eventsPath = join(PROJECTS_DIR, project, "events.md");
+  try {
+    await stat(eventsPath);
+  } catch {
+    eventsPath = join(PIPELINES_DIR, project, "events.md");
+  }
+
   try {
     const content = await readFile(eventsPath, "utf-8");
     return NextResponse.json({ project, content });
   } catch {
-    // Auto-create if missing
     const defaultContent = [
       `# Events — ${project}`,
       ``,
@@ -42,9 +80,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "project and entry are required" }, { status: 400 });
     }
 
-    const eventsPath = join(PIPELINES_DIR, project, "events.md");
+    let eventsPath = join(PROJECTS_DIR, project, "events.md");
+    try {
+      await stat(eventsPath);
+    } catch {
+      eventsPath = join(PIPELINES_DIR, project, "events.md");
+    }
 
-    // Ensure file exists
     let content = "";
     try {
       content = await readFile(eventsPath, "utf-8");
@@ -58,7 +100,6 @@ export async function POST(req: Request) {
       await mkdir(join(PIPELINES_DIR, project), { recursive: true }).catch(() => {});
     }
 
-    // Append entry
     const line = `| ${entry.timestamp || new Date().toISOString()} | ${entry.agent} | ${entry.action} | ${entry.description} |`;
     await writeFile(eventsPath, content.trimEnd() + "\n" + line + "\n", "utf-8");
 

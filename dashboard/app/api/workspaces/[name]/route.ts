@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 import { rm, stat, readFile } from "fs/promises";
 import { join } from "path";
 
-const WORKSPACES_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "workspaces");
-const PROJECTS_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "projects");
-const PIPELINES_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "memory", "pipelines");
+import { WORKSPACES_DIR, PROJECTS_DIR, PIPELINES_DIR } from "@/lib/global-config";
 
 export async function DELETE(
   _req: Request,

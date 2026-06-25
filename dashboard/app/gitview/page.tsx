@@ -170,13 +170,13 @@ function GitViewPage({
   }
 
   return (
-    <div className="flex gap-4 h-full overflow-hidden">
-      <div className="w-96 shrink-0 flex flex-col gap-3">
+    <div className="flex flex-col md:flex-row gap-4 h-full overflow-hidden">
+      <div className="w-full md:w-96 shrink-0 flex flex-col gap-3">
         {/* Agent selector + repo info header */}
         <div className="flex items-center gap-2">
           <Select
             value={selectedAgent}
-            onValueChange={(v) => { setSelectedAgent(v); setSelectedHash(null); }}
+            onValueChange={(v: string | null) => { if (v !== null) { setSelectedAgent(v); setSelectedHash(null); } }}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="All agents" />

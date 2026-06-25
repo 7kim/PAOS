@@ -3,7 +3,7 @@ import { readFile, readdir } from "fs/promises";
 import { join } from "path";
 import { agentHealth, readRegistry, repoPath } from "@/lib/paos";
 
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+import { MEMORY_DIR } from "@/lib/global-config";
 
 async function recentLog(logPath: string) {
   const raw = await readFile(repoPath(logPath), "utf-8").catch(() => "");

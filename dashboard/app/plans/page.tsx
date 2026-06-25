@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState , Suspense} from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { CheckCircle, Clock, Download, FolderKanban, GitBranch, Layers, ListTodo } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -36,7 +36,23 @@ const columns: { id: PlanStatus; label: string; color: string }[] = [
   { id: "complete", label: "Complete", color: "#0ecb81" },
 ];
 
-export default function PlansPage() {
+export default function PlansPageWrapperWrapper() {
+  return (
+    <Suspense fallback={"Loading..."}>
+      <PlansPageWrapper />
+    </Suspense>
+  );
+}
+
+function PlansPageWrapper() {
+  return (
+    <Suspense fallback={<div className="text-xs text-center py-12 text-muted-foreground">Loading...</div>}>
+      <PlansPage />
+    </Suspense>
+  );
+}
+
+function PlansPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const urlProject = searchParams?.get("project") || "";

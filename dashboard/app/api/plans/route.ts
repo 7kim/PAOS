@@ -2,10 +2,7 @@ import { NextResponse } from "next/server";
 import { readdir, readFile, stat } from "fs/promises";
 import { join } from "path";
 
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
-const PROJECTS_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "projects");
-const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
-const PM_LOGS_DIR = join(MEMORY_DIR, "pm-logs");
+import { MEMORY_DIR, PROJECTS_DIR, PIPELINES_DIR, LOGS_DIR, PM_LOGS_DIR } from "@/lib/global-config";
 
 interface PlanData {
   id: string;
@@ -45,7 +42,7 @@ export async function GET(req: Request) {
       if (!baseExists) continue;
 
       const dirs = await readdir(baseDir).catch(() => []);
-      const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE"));
+      const pipelineDirs = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE") || d.startsWith("TEST-PIPE"));
 
       for (const dir of pipelineDirs) {
         const pipelineDir = join(baseDir, dir);

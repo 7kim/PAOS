@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { RefreshCw, Edit3, Save, X, Loader2, FolderKanban } from "lucide-react";
 import { formatTime } from "@/lib/settings";
@@ -9,7 +9,23 @@ import { Badge } from "@/components/ui/badge";
 import { getViewAll } from "@/lib/viewAll";
 import { getActiveProject } from "@/lib/activeProject";
 
-export default function HandoffPage() {
+export default function HandoffPageWrapperWrapper() {
+  return (
+    <Suspense fallback={"Loading..."}>
+      <HandoffPageWrapper />
+    </Suspense>
+  );
+}
+
+function HandoffPageWrapper() {
+  return (
+    <Suspense fallback={<div className="text-xs text-center py-12 text-muted-foreground">Loading...</div>}>
+      <HandoffPage />
+    </Suspense>
+  );
+}
+
+function HandoffPage() {
   const searchParams = useSearchParams();
   const urlProject = searchParams?.get("project") || "";
   const viewAll = getViewAll();

@@ -15,12 +15,12 @@ export async function GET() {
       const entryPath = join(PIPELINES_DIR, entry);
       const entryStat = await stat(entryPath).catch(() => null);
       if (!entryStat?.isDirectory()) continue;
-      if (entry.startsWith("PIPE-") || entry.startsWith("AI_Workflow-PIPE")) continue; // skip loose pipelines
+      if (entry.startsWith("PIPE-") || entry.startsWith("AI_Workflow-PIPE") || entry.startsWith("TEST-PIPE")) continue; // skip loose pipelines
 
       // It's a project directory — count pipelines inside
       const pipelineDirs = await readdir(entryPath).catch(() => []);
       const pipelineCount = pipelineDirs.filter(
-        (d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE")
+        (d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE") || d.startsWith("TEST-PIPE")
       ).length;
 
       // Try to read project meta

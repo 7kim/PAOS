@@ -18,7 +18,14 @@ import {
   FolderKanban,
   BookOpen,
   Activity,
+  PanelLeftClose,
+  PanelLeft,
 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const nav = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
@@ -76,9 +83,90 @@ interface Agent {
   color: string;
 }
 
+function NavLink({
+  href,
+  label,
+  icon: Icon,
+  collapsed,
+  active,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  icon: React.ComponentType<{ size?: number; style?: React.CSSProperties }>;
+  collapsed: boolean;
+  active: boolean;
+  onClick: () => void;
+}) {
+  const link = (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
+      style={{
+        background: active ? "rgba(252,213,53,0.1)" : "transparent",
+        color: active ? "var(--primary)" : "var(--foreground)",
+        fontWeight: active ? 600 : 400,
+        justifyContent: collapsed ? "center" : "flex-start",
+      }}
+    >
+      <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
+      {!collapsed && label}
+    </Link>
+  );
+
+  if (collapsed) {
+    return (
+      <Tooltip>
+        <TooltipTrigger>
+          <Link
+            href={href}
+            onClick={onClick}
+            className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
+            style={{
+              background: active ? "rgba(252,213,53,0.1)" : "transparent",
+              color: active ? "var(--primary)" : "var(--foreground)",
+              fontWeight: active ? 600 : 400,
+              justifyContent: "center",
+            }}
+          >
+            <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
+          </Link>
+        </TooltipTrigger>
+        <TooltipContent side="right" className="text-xs">
+          {label}
+        </TooltipContent>
+      </Tooltip>
+    );
+  }
+  return link;
+}
+
+function NavSectionLabel({ label, collapsed }: { label: string; collapsed: boolean }) {
+  if (collapsed) return null;
+  return (
+    <p
+      className="text-xs font-semibold px-3 py-2 uppercase tracking-wider"
+      style={{ color: "var(--muted-foreground)" }}
+    >
+      {label}
+    </p>
+  );
+}
+
 export default function Sidebar() {
   const pathname = usePathname();
   const [agents, setAgents] = useState<Agent[]>([]);
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Auto-collapse on mobile (< 768px) via media query
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setCollapsed(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setCollapsed(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const loadAgents = useCallback(async () => {
     const res = await fetch("/api/agents");
@@ -94,15 +182,29 @@ export default function Sidebar() {
     return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
   }
 
+  function toggleCollapsed() {
+    setCollapsed((c) => !c);
+  }
+
+  function expand() {
+    setCollapsed(false);
+  }
+
   return (
     <aside
-      className="w-56 flex flex-col border-r shrink-0"
-      style={{ background: "var(--sidebar-bg)", borderColor: "var(--border)" }}
+      className="flex flex-col border-r shrink-0 transition-all duration-200 ease-in-out"
+      style={{
+        width: collapsed ? "56px" : "224px",
+        background: "var(--sidebar-bg)",
+        borderColor: "var(--border)",
+      }}
     >
-      {/* Logo */}
+      {/* Logo — click to toggle collapse */}
       <div
-        className="px-4 py-5 border-b flex items-center gap-2.5"
+        className="px-4 py-5 border-b flex items-center gap-2.5 cursor-pointer"
         style={{ borderColor: "var(--border)" }}
+        onClick={toggleCollapsed}
+        title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
         <div
           className="w-7 h-7 rounded flex items-center justify-center shrink-0"
@@ -110,105 +212,96 @@ export default function Sidebar() {
         >
           <Zap size={14} style={{ color: "var(--primary-foreground)" }} />
         </div>
-        <div>
-          <div className="font-bold text-sm tracking-tight" style={{ color: "var(--foreground)" }}>
-            AI Workflow
-          </div>
-          <div className="text-xs" style={{ color: "var(--muted-foreground)" }}>PAOS Hub</div>
-        </div>
+        {!collapsed && (
+          <>
+            <div className="flex-1 min-w-0">
+              <div className="font-bold text-sm tracking-tight truncate" style={{ color: "var(--foreground)" }}>
+                AI Workflow
+              </div>
+              <div className="text-xs truncate" style={{ color: "var(--muted-foreground)" }}>PAOS Hub</div>
+            </div>
+            <PanelLeftClose size={14} style={{ color: "var(--muted-foreground)", opacity: 0.5 }} />
+          </>
+        )}
       </div>
 
       {/* Main nav */}
       <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
-        <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>
-          Dashboard
-        </p>
+        <NavSectionLabel label="Dashboard" collapsed={collapsed} />
         {nav.map(({ href, label, icon: Icon }) => {
           const active = isActive(href);
           return (
-            <Link
+            <NavLink
               key={href}
               href={href}
-              className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
-              style={{
-                background: active ? "rgba(252,213,53,0.1)" : "transparent",
-                color: active ? "var(--primary)" : "var(--foreground)",
-                fontWeight: active ? 600 : 400,
-              }}
-            >
-              <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
-              {label}
-            </Link>
+              label={label}
+              icon={Icon}
+              collapsed={collapsed}
+              active={active}
+              onClick={expand}
+            />
           );
         })}
 
         <div className="pt-3 pb-1">
-          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>
-            Developer
-          </p>
+          <NavSectionLabel label="Developer" collapsed={collapsed} />
         </div>
         {devNav.map(({ href, label, icon: Icon }) => {
           const active = isActive(href);
           return (
-            <Link
+            <NavLink
               key={href}
               href={href}
-              className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
-              style={{
-                background: active ? "rgba(252,213,53,0.1)" : "transparent",
-                color: active ? "var(--primary)" : "var(--foreground)",
-                fontWeight: active ? 600 : 400,
-              }}
-            >
-              <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
-              {label}
-            </Link>
+              label={label}
+              icon={Icon}
+              collapsed={collapsed}
+              active={active}
+              onClick={expand}
+            />
           );
         })}
 
         <div className="pt-3 pb-1">
-          <p className="text-xs font-semibold px-3 py-2 uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>
-            Code-SRS
-          </p>
+          <NavSectionLabel label="Code-SRS" collapsed={collapsed} />
         </div>
         {codeSrsNav.map(({ href, label, icon: Icon }) => {
           const active = isActive(href);
           return (
-            <Link
+            <NavLink
               key={href}
               href={href}
-              className="flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors"
-              style={{
-                background: active ? "rgba(252,213,53,0.1)" : "transparent",
-                color: active ? "var(--primary)" : "var(--foreground)",
-                fontWeight: active ? 600 : 400,
-              }}
-            >
-              <Icon size={14} style={{ color: active ? "var(--primary)" : "var(--muted-foreground)" }} />
-              {label}
-            </Link>
+              label={label}
+              icon={Icon}
+              collapsed={collapsed}
+              active={active}
+              onClick={expand}
+            />
           );
         })}
       </nav>
 
       {/* Agent status strip */}
       <div
-        className="px-4 py-4 border-t"
+        className="px-4 py-4 border-t transition-all"
         style={{ borderColor: "var(--border)", background: "var(--elevated)" }}
       >
-        <p className="text-xs font-semibold uppercase tracking-wider mb-2.5" style={{ color: "var(--muted-foreground)" }}>
-          Agents
-        </p>
-        <div className="space-y-2">
+        {!collapsed && (
+          <p className="text-xs font-semibold uppercase tracking-wider mb-2.5" style={{ color: "var(--muted-foreground)" }}>
+            Agents
+          </p>
+        )}
+        <div className="space-y-2" style={{ textAlign: collapsed ? "center" : "left" }}>
           {agents.map((a) => (
-            <div key={a.id} className="flex items-center gap-2 text-xs">
+            <div key={a.id} className="flex items-center gap-2 text-xs" style={{ justifyContent: collapsed ? "center" : "flex-start" }}>
               <span
                 className="w-1.5 h-1.5 rounded-full shrink-0"
                 style={{ background: resolveColor(a.id) }}
               />
-              <span className="truncate" style={{ color: "var(--foreground)", opacity: 0.8 }}>
-                {a.label}
-              </span>
+              {!collapsed && (
+                <span className="truncate" style={{ color: "var(--foreground)", opacity: 0.8 }}>
+                  {a.label}
+                </span>
+              )}
             </div>
           ))}
         </div>

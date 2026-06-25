@@ -19,7 +19,16 @@ import {
   Eye,
   EyeOff,
   HandMetal,
+  Play,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface PhaseArtifact {
   filename: string;
@@ -153,6 +162,15 @@ export default function PipelineVisualizePage() {
   const [openArtifacts, setOpenArtifacts] = useState<Set<string>>(new Set());
   const [showDiff, setShowDiff] = useState<Set<string>>(new Set());
   const [isIntervening, setIsIntervening] = useState(false);
+  const [editingIntervene, setEditingIntervene] = useState(false);
+  const [interveneContent, setInterveneContent] = useState("");
+  const [interveneSaving, setInterveneSaving] = useState(false);
+
+  // Execute modal state
+  const [showExecuteModal, setShowExecuteModal] = useState(false);
+  const [executePrompt, setExecutePrompt] = useState("");
+  const [executingPhase, setExecutingPhase] = useState(0);
+  const [executingLabel, setExecutingLabel] = useState("");
 
   const load = useCallback(async () => {
     if (!id) return;
@@ -213,6 +231,31 @@ export default function PipelineVisualizePage() {
     } catch {
       setIsIntervening(false);
     }
+  }
+
+  function buildExecutePrompt(phaseNum: number, phaseLabel: string): string {
+    const pipeDir = `${id}`;
+    return `You have been assigned pipeline ${id} in PAOS project. Read ~/AI_Workflow/memory/pipelines/PAOS/${pipeDir}/META.json, PLAN.md, and TASKS.md. Execute ALL tasks in order. Update TASKS.md task markers ([ ] → [~] → [x]) as you complete each one. Update ~/AI_Workflow/memory/pipelines/PAOS/${pipeDir}/pipeline.json with your progress (status, currentTask, progress e.g. "3/8"). When ALL tasks are done, write ~/AI_Workflow/memory/pipelines/PAOS/${pipeDir}/WALKTHROUGH.md with a full summary of what was built, files modified, commands run, and verification steps. Then update ~/AI_Workflow/memory/pipelines/PAOS/${pipeDir}/META.json status to "completed" with the completed_at timestamp.`;
+  }
+
+  function openExecuteModal(phaseNum: number, phaseLabel: string) {
+    setExecutingPhase(phaseNum);
+    setExecutingLabel(phaseLabel);
+    setExecutePrompt(buildExecutePrompt(phaseNum, phaseLabel));
+    setShowExecuteModal(true);
+  }
+
+  async function handleExecute() {
+    if (!data?.id) return;
+    setShowExecuteModal(false);
+    try {
+      await fetch(`/api/pipelines/${data.id}/execute`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: executePrompt }),
+      });
+      window.location.reload();
+    } catch {}
   }
 
   if (loading) {
@@ -349,6 +392,86 @@ export default function PipelineVisualizePage() {
                               <div style={{ borderTop: "1px solid var(--border)" }}>
                                 {showingDiff && hasV2 ? (
                                   <DiffView v1={versions[0].content} v2={art.content} />
+                                ) : art.filename === "INTERVENE.md" && !showingDiff ? (
+                                  <div className="p-3 space-y-2">
+                                    {editingIntervene ? (
+                                      <>
+                                        <textarea
+                                          value={interveneContent}
+                                          onChange={(e) => setInterveneContent(e.target.value)}
+                                          className="w-full text-xs font-mono rounded border p-2"
+                                          rows={12}
+                                          style={{ background: "rgba(0,0,0,0.15)", borderColor: "var(--border)", color: "var(--foreground)" }}
+                                        />
+                                        <div className="flex items-center gap-2">
+                                          <button
+                                            type="button"
+                                            onClick={async () => {
+                                              setInterveneSaving(true);
+                                              try {
+                                                await fetch(`/api/pipelines/${data.id}/intervene`, {
+                                                  method: "PUT",
+                                                  headers: { "Content-Type": "application/json" },
+                                                  body: JSON.stringify({ content: interveneContent }),
+                                                });
+                                                setEditingIntervene(false);
+                                                load();
+                                              } catch {}
+                                              setInterveneSaving(false);
+                                            }}
+                                            disabled={interveneSaving}
+                                            className="text-xs px-3 py-1 rounded"
+                                            style={{ background: "var(--primary)", color: "var(--primary-foreground)" }}
+                                          >
+                                            {interveneSaving ? "Saving..." : "Save"}
+                                          </button>
+                                          <button
+                                            type="button"
+                                            onClick={() => setEditingIntervene(false)}
+                                            className="text-xs px-3 py-1 rounded border"
+                                            style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+                                          >
+                                            Cancel
+                                          </button>
+                                          <button
+                                            type="button"
+                                            onClick={async () => {
+                                              if (!confirm("Delete intervene note and reset pipeline?")) return;
+                                              await fetch(`/api/pipelines/${data.id}/intervene`, { method: "DELETE" });
+                                              window.location.reload();
+                                            }}
+                                            className="text-xs px-3 py-1 rounded ml-auto"
+                                            style={{ background: "#ef4444", color: "#fff" }}
+                                          >
+                                            Delete
+                                          </button>
+                                        </div>
+                                      </>
+                                    ) : (
+                                      <div>
+                                        <pre className="text-[11px] p-3 overflow-auto leading-relaxed font-mono"
+                                          style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)" }}
+                                        >
+                                          {(art.content as string) || "(empty)"}
+                                        </pre>
+                                        <button
+                                          type="button"
+                                          onClick={async () => {
+                                            try {
+                                              const res = await fetch(`/api/pipelines/${data.id}/intervene`);
+                                              const d = await res.json();
+                                              setInterveneContent(d.content || "");
+                                              setEditingIntervene(true);
+                                            } catch {}
+                                          }}
+                                          className="text-xs px-2 py-1 rounded mt-2 border"
+                                          style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+                                        >
+                                          Edit intervene note
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
                                 ) : (
                                   <pre className="text-[11px] p-3 overflow-auto leading-relaxed font-mono"
                                     style={{ background: "rgba(0,0,0,0.12)", color: "var(--foreground)" }}
@@ -372,12 +495,7 @@ export default function PipelineVisualizePage() {
                   disabled={phase.status === "completed"}
                   onClick={() => {
                     if (phase.status === "completed") return;
-                    const confirmed = confirm(`Advance pipeline to the next phase?\n\nCurrent: ${phase.label} (${phase.status})`);
-                    if (confirmed) {
-                      fetch(`/api/pipelines/${data.id}/execute`, { method: "POST" })
-                        .then(() => window.location.reload())
-                        .catch(() => {});
-                    }
+                    openExecuteModal(idx + 1, phase.label);
                   }}
                   className="relative z-10 flex justify-center py-2 w-full transition-opacity"
                   style={{ opacity: phase.status === "completed" ? 0.4 : 1, cursor: phase.status === "completed" ? "default" : "pointer" }}
@@ -453,6 +571,35 @@ export default function PipelineVisualizePage() {
           </div>
         </div>
       )}
+
+      {/* Execute modal */}
+      <Dialog open={showExecuteModal} onOpenChange={(open) => { if (!open) setShowExecuteModal(false); }}>
+        <DialogContent className="max-w-[55vw] w-full">
+          <DialogHeader>
+            <DialogTitle className="text-sm flex items-center gap-2">
+              <Play size={13} />
+              Execute Pipeline — Phase {executingPhase}: {executingLabel}
+            </DialogTitle>
+            <DialogDescription className="text-xs">
+              This prompt will be sent to OpenCode. Edit it before executing if needed.
+            </DialogDescription>
+          </DialogHeader>
+          <textarea
+            value={executePrompt}
+            onChange={(e) => setExecutePrompt(e.target.value)}
+            className="w-full text-xs font-mono rounded border p-3"
+            rows={12}
+            style={{ background: "rgba(0,0,0,0.15)", borderColor: "var(--border)", color: "var(--foreground)" }}
+          />
+          <div className="flex items-center gap-2 justify-end">
+            <Button variant="outline" size="sm" onClick={() => setShowExecuteModal(false)}>Cancel</Button>
+            <Button size="sm" onClick={handleExecute} className="gap-1.5">
+              <Play size={12} />
+              Execute
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

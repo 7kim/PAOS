@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { rm, readdir, readFile, writeFile, mkdir, stat } from "fs/promises";
 import { join } from "path";
 
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
-const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
+import { MEMORY_DIR, PIPELINES_DIR } from "@/lib/global-config";
 
 export async function DELETE(
   _req: Request,

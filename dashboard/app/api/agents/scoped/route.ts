@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { readFile, writeFile, readdir } from "fs/promises";
 import { join } from "path";
 
-const HOME = process.env.HOME || "/home/dev";
-const WORKSPACES_DIR = join(HOME, "AI_Workflow", "workspaces");
+import { WORKSPACES_DIR, HOME_DIR } from "@/lib/global-config";
+const HOME = HOME_DIR;
 
 const GIT_IDENTITIES: Record<string, { name: string; role: string }> = {
   "opencode-developer": { name: "OpenCode Developer", role: "executor" },

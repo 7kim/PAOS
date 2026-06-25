@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
 import { getViewAll } from "@/lib/viewAll";
@@ -28,7 +28,23 @@ function statusStyle(status: string) {
   return STATUS_STYLES[status] ?? STATUS_STYLES.unknown;
 }
 
-export default function TasksPage() {
+export default function TasksPageWrapperWrapper() {
+  return (
+    <Suspense fallback={"Loading..."}>
+      <TasksPageWrapper />
+    </Suspense>
+  );
+}
+
+function TasksPageWrapper() {
+  return (
+    <Suspense fallback={<div className="text-xs text-center py-12 text-muted-foreground">Loading...</div>}>
+      <TasksPage />
+    </Suspense>
+  );
+}
+
+function TasksPage() {
   const searchParams = useSearchParams();
   const urlProject = searchParams?.get("project") || "";
   const viewAll = getViewAll();

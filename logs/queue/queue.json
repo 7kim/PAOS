@@ -1,0 +1,39 @@
+{
+  "pending": [],
+  "running": null,
+  "done": [
+    {
+      "id": "PIPE-24-06-2026---16-00",
+      "project": "PAOS",
+      "startedAt": "2026-06-24T16:00:32.154Z",
+      "completedAt": "2026-06-24T16:02:59.258Z",
+      "status": "completed"
+    },
+    {
+      "id": "TEST-PIPE-1",
+      "project": "PAOS",
+      "startedAt": "2026-06-24T15:57:48.394Z",
+      "completedAt": "2026-06-24T15:57:48.415Z",
+      "status": "completed"
+    },
+    {
+      "id": "AI_Workflow-PIPE_3-22-06-2026---18-57",
+      "project": "PAOS",
+      "completedAt": "2026-06-22T19:43:55.990002+00:00",
+      "status": "completed"
+    },
+    {
+      "id": "AI_Workflow-PIPE_2-22-06-2026---17-45",
+      "project": "PAOS",
+      "completedAt": "2026-06-22T18:46:01.989889+00:00",
+      "status": "completed"
+    },
+    {
+      "id": "AI_Workflow-PIPE_1-22-06-2026---17-08",
+      "project": "PAOS",
+      "completedAt": "2026-06-22T17:58:13.070036+00:00",
+      "status": "completed"
+    }
+  ],
+  "maxDone": 20
+}

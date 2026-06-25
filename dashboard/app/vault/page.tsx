@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { BookOpen, MessageSquare, Calendar, FolderKanban, ChevronRight, Eye } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -20,7 +20,23 @@ interface ChatEntry {
   path: string;
 }
 
-export default function VaultPage() {
+export default function VaultPageWrapperWrapper() {
+  return (
+    <Suspense fallback={"Loading..."}>
+      <VaultPageWrapper />
+    </Suspense>
+  );
+}
+
+function VaultPageWrapper() {
+  return (
+    <Suspense fallback={<div className="text-xs text-center py-12 text-muted-foreground">Loading...</div>}>
+      <VaultPage />
+    </Suspense>
+  );
+}
+
+function VaultPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const projectFilter = searchParams?.get("project") || "";
@@ -69,9 +85,9 @@ export default function VaultPage() {
   }
 
   return (
-    <div className="flex gap-4 h-full">
+    <div className="flex flex-col md:flex-row gap-4 h-full">
       {/* Left: list */}
-      <div className="w-80 shrink-0 flex flex-col gap-3">
+      <div className="w-full md:w-80 shrink-0 flex flex-col gap-3">
         <div className="flex items-center gap-2 mb-1">
           <BookOpen size={18} style={{ color: "var(--primary)" }} />
           <h1 className="text-xl font-semibold">Vault</h1>

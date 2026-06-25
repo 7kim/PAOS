@@ -1,8 +1,8 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState , Suspense} from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2 } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2, Trash2, Plus } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +10,14 @@ import { Progress } from "@/components/ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { getViewAll } from "@/lib/viewAll";
 import { getActiveProject } from "@/lib/activeProject";
+import { formatTime } from "@/lib/settings";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 interface Phase {
   name: string;
@@ -40,8 +48,6 @@ const statusColors: Record<string, string> = {
   failed: "var(--red)",
   submitted: "var(--orange)",
 };
-
-import { formatTime } from "@/lib/settings";
 
 function timeAgo(iso: string) {
   return formatTime(iso);
@@ -80,36 +86,66 @@ function QueueItem({ p }: { p: Pipeline }) {
     );
   }
 
-export default function PipelinesPage() {
+export default function PipelinesPageWrapper() {
+  return (
+    <Suspense fallback={"Loading..."}>
+      <PipelinesPage />
+    </Suspense>
+  );
+}
+
+function PipelinesPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const urlProject = searchParams?.get("project") || "";
   const viewAll = getViewAll();
-  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || "__none__"));
+  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || ""));
   const [pipelines, setPipelines] = useState<Pipeline[]>([]);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [executingId, setExecutingId] = useState<string | null>(null);
+  const [showExecuteModal, setShowExecuteModal] = useState(false);
+  const [executePrompt, setExecutePrompt] = useState("");
+  const [executeTargetId, setExecuteTargetId] = useState("");
+  const [showCreateDialog, setShowCreateDialog] = useState(false);
+  const [createProject, setCreateProject] = useState("PAOS");
+  const [createPrompt, setCreatePrompt] = useState("");
+  const [createPlan, setCreatePlan] = useState("");
+  const [createTasks, setCreateTasks] = useState("");
+  const [creating, setCreating] = useState(false);
 
   const filteredPipelines = projectFilter
     ? pipelines.filter((p) => p.project === projectFilter)
     : pipelines;
 
   const load = useCallback(async () => {
-    const params = projectFilter && projectFilter !== "__none__" ? `?project=${encodeURIComponent(projectFilter)}` : "";
+    const params = projectFilter ? `?project=${encodeURIComponent(projectFilter)}` : "";
     const res = await fetch(`/api/pipelines${params}`);
     const data = await res.json();
     setPipelines(data.pipelines ?? []);
   }, [projectFilter]);
 
   const executePipeline = useCallback(async (id: string) => {
-    setExecutingId(id);
+    const prompt = `You have been assigned pipeline ${id}. Read ~/AI_Workflow/memory/pipelines/PAOS/${id}/META.json, PLAN.md, and TASKS.md. Execute ALL tasks in order. Update TASKS.md task markers ([ ] → [~] → [x]) as you complete each one. Update ~/AI_Workflow/memory/pipelines/PAOS/${id}/pipeline.json with your progress. When ALL tasks are done, write WALKTHROUGH.md and update META.json status to "completed".`;
+    setExecuteTargetId(id);
+    setExecutePrompt(prompt);
+    setShowExecuteModal(true);
+  }, []);
+
+  async function handleExecuteFromModal() {
+    if (!executeTargetId) return;
+    setShowExecuteModal(false);
+    setExecutingId(executeTargetId);
     try {
-      await fetch(`/api/pipelines/${id}/execute`, { method: "POST" });
+      await fetch(`/api/pipelines/${executeTargetId}/execute`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: executePrompt }),
+      });
       setTimeout(() => { load(); setExecutingId(null); }, 2000);
     } catch {
       setExecutingId(null);
     }
-  }, [load]);
+  }
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -195,7 +231,7 @@ export default function PipelinesPage() {
                 background: isExpanded ? "rgba(252,213,53,0.05)" : "var(--card-bg)",
               }}
             >
-              <CardHeader className="flex flex-row items-center gap-3 px-4 py-3">
+              <CardHeader className="flex flex-row flex-wrap items-center gap-x-3 gap-y-1 px-4 py-3">
                 {isExpanded ? (
                   <ChevronDown size={14} className="text-muted-foreground shrink-0" />
                 ) : (
@@ -220,6 +256,21 @@ export default function PipelinesPage() {
                     Visualize
                   </Button>
                 </Link>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[10px] text-red-400 hover:text-red-300"
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    if (!confirm(`Delete pipeline "${p.id}"? This cannot be undone.`)) return;
+                    try {
+                      await fetch(`/api/pipelines/${encodeURIComponent(p.id)}`, { method: "DELETE" });
+                      load();
+                    } catch { /* ignore */ }
+                  }}
+                >
+                  <Trash2 size={11} />
+                </Button>
               </CardHeader>
 
               <CardContent className="px-4 pb-2 space-y-3">
@@ -327,21 +378,27 @@ export default function PipelinesPage() {
 
   return (
     <div>
-      <div className="flex items-center gap-3 mb-1">
-        <GitBranch size={18} style={{ color: "var(--accent)" }} />
-        <h1 className="text-xl font-semibold">Pipeline GitGraph</h1>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-1">
+        <div className="flex items-center gap-3">
+          <GitBranch size={18} style={{ color: "var(--accent)" }} />
+          <h1 className="text-xl font-semibold">Pipeline GitGraph</h1>
+        </div>
+        <Button size="sm" onClick={() => setShowCreateDialog(true)} className="gap-1.5">
+          <Plus size={13} />
+          New Pipeline
+        </Button>
       </div>
       <p className="text-sm mb-4 text-muted-foreground">
         Visual DAG of all PAOS pipelines — click to expand phases and details
       </p>
 
       {/* Project filter */}
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex flex-wrap items-center gap-2 mb-4">
         {["", ...new Set(pipelines.map((p) => p.project || ""))].filter(Boolean).map((proj) => (
           <button
             key={proj}
             type="button"
-            onClick={() => router.push(proj === projectFilter ? "/pipelines" : `/pipelines?project=${encodeURIComponent(proj)}`)}
+            onClick={() => window.location.href = proj === projectFilter ? "/pipelines" : `/pipelines?project=${encodeURIComponent(proj)}`}
             className="text-xs px-3 py-1.5 rounded-md border transition-colors"
             style={{
               borderColor: projectFilter === proj ? "var(--primary)" : "var(--border)",
@@ -355,7 +412,7 @@ export default function PipelinesPage() {
         {projectFilter && (
           <button
             type="button"
-            onClick={() => router.push("/pipelines")}
+            onClick={() => window.location.href = "/pipelines"}
             className="text-xs px-3 py-1.5 rounded-md border transition-colors text-muted-foreground"
             style={{ borderColor: "var(--border)" }}
           >
@@ -367,7 +424,7 @@ export default function PipelinesPage() {
         </span>
       </div>
 
-      <div className="flex gap-6 items-stretch">
+      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
         {/* Pipeline list — scrollable card */}
         <Card className="flex-1 min-w-0 max-w-4xl max-h-[calc(100vh-14rem)] overflow-y-auto">
           <CardHeader>
@@ -378,14 +435,14 @@ export default function PipelinesPage() {
           </CardHeader>
           <CardContent className="p-3">
             {filteredPipelines.length === 0 ? (
-              <div className="text-sm py-12 text-center text-muted-foreground">
-                <GitBranch size={24} className="mx-auto mb-3 opacity-30" />
-                {projectFilter === "__none__"
-                  ? "View All is disabled. Select a project from Settings or add ?project= to the URL."
-                  : projectFilter
-                  ? `No pipelines in "${projectFilter}"`
-                  : "No pipelines yet"}
-              </div>
+            <div className="text-sm py-12 text-center text-muted-foreground">
+              <GitBranch size={24} className="mx-auto mb-3 opacity-30" />
+              {projectFilter
+                ? `No pipelines in "${projectFilter}"`
+                : !viewAll && !urlProject
+                ? "No active project selected. Enable View All in Settings or add ?project= to the URL."
+                : "No pipelines yet"}
+            </div>
             ) : (
               filteredPipelines.map((p, i) => (
                 <PipelineNode key={p.id} p={p} index={i} />
@@ -395,7 +452,7 @@ export default function PipelinesPage() {
         </Card>
 
         {/* Queue panel — cards with flow arrows */}
-        <div className="w-[36rem] shrink-0 sticky top-4 space-y-3"
+        <div className="w-full max-w-xl lg:w-[36rem] shrink-0 sticky top-4 space-y-3"
           style={{ minHeight: "36rem" }}
         >
           <div className="flex items-center gap-2 text-xs font-semibold px-1 mb-2">
@@ -503,6 +560,122 @@ export default function PipelinesPage() {
           </Card>
         </div>
       </div>
+
+      {/* Create Pipeline dialog */}
+      <Dialog open={showCreateDialog} onOpenChange={(open) => { if (!open) setShowCreateDialog(false); }}>
+        <DialogContent className="max-w-[55vw] w-full">
+          <DialogHeader>
+            <DialogTitle className="text-sm flex items-center gap-2">
+              <Plus size={13} />
+              New Pipeline
+            </DialogTitle>
+            <DialogDescription className="text-xs">
+              Create a new pipeline. A unique ID will be auto-generated.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div>
+              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Project</label>
+              <input
+                value={createProject}
+                onChange={(e) => setCreateProject(e.target.value)}
+                className="w-full text-sm rounded px-2 py-1.5 border"
+                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
+              />
+            </div>
+            <div>
+              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Prompt (what should the pipeline do)</label>
+              <textarea
+                value={createPrompt}
+                onChange={(e) => setCreatePrompt(e.target.value)}
+                className="w-full text-sm rounded px-2 py-1.5 border resize-none"
+                rows={3}
+                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
+              />
+            </div>
+            <div>
+              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>PLAN.md <span className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>(optional)</span></label>
+              <textarea
+                value={createPlan}
+                onChange={(e) => setCreatePlan(e.target.value)}
+                className="w-full text-xs font-mono rounded px-2 py-1.5 border resize-none"
+                rows={4}
+                style={{ background: "rgba(0,0,0,0.12)", borderColor: "var(--border)", color: "var(--foreground)" }}
+              />
+            </div>
+            <div>
+              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>TASKS.md <span className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>(optional)</span></label>
+              <textarea
+                value={createTasks}
+                onChange={(e) => setCreateTasks(e.target.value)}
+                className="w-full text-xs font-mono rounded px-2 py-1.5 border resize-none"
+                rows={4}
+                style={{ background: "rgba(0,0,0,0.12)", borderColor: "var(--border)", color: "var(--foreground)" }}
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-2 justify-end">
+            <Button variant="outline" size="sm" onClick={() => setShowCreateDialog(false)}>Cancel</Button>
+            <Button
+              size="sm"
+              disabled={creating || !createPrompt.trim()}
+              onClick={async () => {
+                setCreating(true);
+                try {
+                  await fetch("/api/pipelines", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      project: createProject || "PAOS",
+                      prompt: createPrompt,
+                      planMd: createPlan,
+                      tasksMd: createTasks,
+                    }),
+                  });
+                  setShowCreateDialog(false);
+                  setCreatePrompt("");
+                  setCreatePlan("");
+                  setCreateTasks("");
+                  load();
+                } catch {}
+                setCreating(false);
+              }}
+              className="gap-1.5"
+            >
+              {creating ? "Creating..." : "Create"}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Execute modal */}
+      <Dialog open={showExecuteModal} onOpenChange={(open) => { if (!open) setShowExecuteModal(false); }}>
+        <DialogContent className="max-w-[55vw] w-full">
+          <DialogHeader>
+            <DialogTitle className="text-sm flex items-center gap-2">
+              <Play size={13} />
+              Execute Pipeline — {executeTargetId}
+            </DialogTitle>
+            <DialogDescription className="text-xs">
+              This prompt will be sent to OpenCode. Edit it before executing if needed.
+            </DialogDescription>
+          </DialogHeader>
+          <textarea
+            value={executePrompt}
+            onChange={(e) => setExecutePrompt(e.target.value)}
+            className="w-full text-xs font-mono rounded border p-3"
+            rows={12}
+            style={{ background: "rgba(0,0,0,0.15)", borderColor: "var(--border)", color: "var(--foreground)" }}
+          />
+          <div className="flex items-center gap-2 justify-end">
+            <Button variant="outline" size="sm" onClick={() => setShowExecuteModal(false)}>Cancel</Button>
+            <Button size="sm" onClick={handleExecuteFromModal} className="gap-1.5">
+              <Play size={12} />
+              Execute
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -1,17 +1,29 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { Send, FolderKanban } from "lucide-react";
+import { Send, FolderKanban, ChevronRight } from "lucide-react";
+import { formatTime } from "@/lib/settings";
 import { getViewAll } from "@/lib/viewAll";
 import { getActiveProject } from "@/lib/activeProject";
+
+// Safe search params — works during prerendering on Next.js without Suspense
+function useSearchParam(key: string): string {
+  const [val, setVal] = useState("");
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    setVal(url.searchParams.get(key) || "");
+  }, [key]);
+  return val;
+}
 
 interface Message {
   id: string;
   inbox: string;
   title: string;
   from: string;
+  to?: string;
   timestamp: string;
   body: string;
+  source?: string;
 }
 
 const INBOX_COLORS: Record<string, string> = {
@@ -39,10 +51,9 @@ function inboxColor(name: string) {
 }
 
 export default function InboxPage() {
-  const searchParams = useSearchParams();
-  const urlProject = searchParams?.get("project") || "";
+  const urlProject = useSearchParam("project");
   const viewAll = getViewAll();
-  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || "__none__"));
+  const projectFilter = urlProject || (viewAll ? "" : (getActiveProject() || ""));
   const [messages, setMessages] = useState<Message[]>([]);
   const [inboxDirs, setInboxDirs] = useState<string[]>([]);
   const [activeInbox, setActiveInbox] = useState("all");
@@ -85,9 +96,12 @@ export default function InboxPage() {
     void load();
   }
 
+  const agColor = inboxColor;
+
   return (
-    <div>
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-full">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4 shrink-0">
         <div>
           <h1 className="text-xl font-semibold mb-1">Inbox</h1>
           <p className="text-sm" style={{ color: "var(--muted-foreground)" }}>Agent message inbox</p>
@@ -101,21 +115,16 @@ export default function InboxPage() {
         </button>
       </div>
 
+      {/* Compose form */}
       {showCompose && (
-        <div
-          className="rounded-lg border p-4 mb-4 space-y-3"
-          style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-        >
+        <div className="rounded-lg border p-4 mb-4 space-y-3 shrink-0"
+          style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>To (inbox)</label>
-              <select
-                value={composeTo}
-                onChange={(e) => setComposeTo(e.target.value)}
-                title="Select recipient inbox"
+              <select value={composeTo} onChange={(e) => setComposeTo(e.target.value)}
                 className="w-full text-sm rounded px-2 py-1.5 border"
-                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
-              >
+                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}>
                 <option value="">Select agent...</option>
                 {inboxes.filter((i) => i !== "all").map((i) => (
                   <option key={i} value={i}>{i}</option>
@@ -124,107 +133,125 @@ export default function InboxPage() {
             </div>
             <div>
               <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Subject</label>
-              <input
-                value={composeSubject}
-                onChange={(e) => setComposeSubject(e.target.value)}
+              <input value={composeSubject} onChange={(e) => setComposeSubject(e.target.value)}
                 placeholder="Optional subject"
                 className="w-full text-sm rounded px-2 py-1.5 border"
-                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
-              />
+                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }} />
             </div>
           </div>
           <div>
             <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Message</label>
-            <textarea
-              value={composeBody}
-              onChange={(e) => setComposeBody(e.target.value)}
-              rows={3}
-              title="Message body"
+            <textarea value={composeBody} onChange={(e) => setComposeBody(e.target.value)} rows={3}
               className="w-full text-sm rounded px-2 py-1.5 border resize-none"
-              style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
-            />
+              style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }} />
           </div>
-          <button
-            onClick={send}
-            disabled={sending || !composeTo || !composeBody}
+          <button onClick={send} disabled={sending || !composeTo || !composeBody}
             className="px-4 py-1.5 text-sm rounded"
-            style={{ background: "var(--accent)", color: "var(--accent-on)", opacity: (sending || !composeTo || !composeBody) ? 0.5 : 1 }}
-          >
+            style={{ background: "var(--accent)", color: "var(--accent-on)", opacity: (sending || !composeTo || !composeBody) ? 0.5 : 1 }}>
             {sending ? "Sending..." : "Send"}
           </button>
         </div>
       )}
 
-      <div className="flex gap-1 mb-4 flex-wrap">
-        {inboxes.map((inbox) => (
-          <button
-            key={inbox}
-            onClick={() => setActiveInbox(inbox)}
+      {/* Agent filter pills */}
+      <div className="flex gap-1 mb-3 flex-wrap shrink-0">
+        {inboxes.map((inbox) => {
+          const col = agColor(inbox);
+          return (
+          <button key={inbox} onClick={() => { setActiveInbox(inbox); setSelected(null); }}
             className="px-3 py-1 rounded-full text-xs transition-colors"
             style={{
-              background: activeInbox === inbox ? "var(--accent)" : "var(--card-bg)",
-              color: activeInbox === inbox ? "var(--accent-on)" : "var(--muted-foreground)",
-              border: `1px solid ${activeInbox === inbox ? "var(--accent)" : "var(--border)"}`,
-            }}
-          >
+              background: activeInbox === inbox ? col : "transparent",
+              color: activeInbox === inbox ? "#fff" : col,
+              border: `1px solid ${activeInbox === inbox ? col : col + "44"}`,
+            }}>
             {inbox}
           </button>
-        ))}
+          );
+        })}
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+      {/* Email list header */}
+      {messages.length > 0 && (
+        <div className="flex items-center gap-2 px-3 py-1.5 text-[10px] uppercase tracking-wider shrink-0"
+          style={{ color: "var(--muted-foreground)", borderBottom: "1px solid var(--border)" }}>
+          <span className="flex-[2]">From → To</span>
+          <span className="flex-[3]">Subject</span>
+          <span className="w-[7rem] text-right">Date</span>
+        </div>
+      )}
+
+      {/* Email list */}
+      <div className="flex-1 overflow-y-auto border rounded-lg" style={{ borderColor: "var(--border)" }}>
         {messages.length === 0 && (
-          <div
-            className="col-span-3 rounded-lg border p-8 text-center text-sm"
-            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted-foreground)" }}
-          >
+          <div className="py-12 text-center text-sm" style={{ color: "var(--muted-foreground)" }}>
             No messages in this inbox
           </div>
         )}
-        {messages.map((msg) => (
-          <button
-            key={`${msg.inbox}-${msg.id}`}
-            onClick={() => setSelected(selected?.id === msg.id ? null : msg)}
-            className="text-left rounded-lg border p-4 transition-colors"
-            style={{
-              background: selected?.id === msg.id ? "rgba(252,213,53,0.07)" : "var(--card-bg)",
-              borderColor: selected?.id === msg.id ? "var(--accent)" : "var(--border)",
-            }}
-          >
-            <div className="flex items-center gap-2 mb-2">
-              <span
-                className="text-xs px-1.5 py-0.5 rounded"
-                style={{ background: `${inboxColor(msg.from)}22`, color: inboxColor(msg.from) }}
-              >
-                {msg.from}
-              </span>
-              <span className="text-xs ml-auto" style={{ color: "var(--muted-foreground)" }}>→ {msg.inbox}</span>
+        {messages.map((msg, idx) => {
+          const isSelected = selected?.id === msg.id;
+          const senderCol = agColor(msg.from);
+          const receiverCol = agColor(msg.to || msg.inbox);
+          return (
+            <div key={`${msg.inbox}-${msg.id}`}>
+              <button
+                onClick={() => setSelected(isSelected ? null : msg)}
+                className="w-full text-left transition-colors flex items-center gap-2 px-3 py-2.5 hover:opacity-90"
+                style={{
+                  background: isSelected ? "rgba(252,213,53,0.06)" : (idx % 2 === 0 ? "rgba(255,255,255,0.01)" : "transparent"),
+                  borderLeft: isSelected ? `3px solid ${agColor(msg.from)}` : "3px solid transparent",
+                }}>
+                <div className="flex-[2] flex items-center gap-1 min-w-0">
+                  <span className="text-[10px] px-1 py-0.5 rounded font-mono truncate max-w-[6rem]"
+                    style={{ background: `${senderCol}22`, color: senderCol }}>
+                    {msg.from}
+                  </span>
+                  <ChevronRight size={10} className="shrink-0" style={{ color: "var(--muted-foreground)" }} />
+                  <span className="text-[10px] px-1 py-0.5 rounded font-mono truncate max-w-[6rem]"
+                    style={{ background: `${receiverCol}22`, color: receiverCol }}>
+                    {msg.to || msg.inbox}
+                  </span>
+                </div>
+                <div className="flex-[3] min-w-0">
+                  <div className="text-xs font-medium truncate">{msg.title}</div>
+                  <div className="text-[10px] truncate" style={{ color: "var(--muted-foreground)" }}>
+                    {msg.body.slice(0, 60)}
+                  </div>
+                </div>
+                <div className="w-[7rem] text-right shrink-0">
+                  <span className="text-[10px] font-mono" style={{ color: "var(--muted-foreground)" }}>
+                    {formatTime(msg.timestamp)}
+                  </span>
+                </div>
+              </button>
+              {isSelected && (
+                <div className="px-3 py-4 border-t" style={{
+                  background: "var(--card-bg)",
+                  borderColor: "var(--border)",
+                  borderLeft: `3px solid ${agColor(msg.from)}`,
+                }}>
+                  <div className="flex items-center gap-2 text-xs mb-3 flex-wrap" style={{ color: "var(--muted-foreground)" }}>
+                    <span>From:</span>
+                    <span className="px-1.5 py-0.5 rounded font-mono" style={{ background: `${senderCol}22`, color: senderCol }}>{msg.from}</span>
+                    <span className="ml-2">To:</span>
+                    <span className="px-1.5 py-0.5 rounded font-mono" style={{ background: `${receiverCol}22`, color: receiverCol }}>{msg.to || msg.inbox}</span>
+                    {msg.source && msg.source !== "global" && (
+                      <span className="px-1 py-0.5 rounded font-mono ml-2" style={{ background: "rgba(240,185,11,0.1)", color: "var(--primary)" }}>
+                        {msg.source}
+                      </span>
+                    )}
+                    <span className="ml-auto font-mono">{formatTime(msg.timestamp)}</span>
+                  </div>
+                  <h2 className="text-sm font-medium mb-2">{msg.title}</h2>
+                  <pre className="text-sm whitespace-pre-wrap leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.85 }}>
+                    {msg.body}
+                  </pre>
+                </div>
+              )}
             </div>
-            <div className="font-medium text-sm truncate mb-1">{msg.title}</div>
-            <div className="text-xs truncate" style={{ color: "var(--muted-foreground)" }}>
-              {msg.body.slice(0, 80)}
-            </div>
-          </button>
-        ))}
+          );
+        })}
       </div>
-
-      {selected && (
-        <div
-          className="mt-4 rounded-lg border p-4"
-          style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
-        >
-          <div className="flex items-center gap-2 mb-3">
-            <h2 className="font-medium">{selected.title}</h2>
-            <span className="text-xs ml-auto" style={{ color: "var(--muted-foreground)" }}>{selected.timestamp}</span>
-          </div>
-          <pre
-            className="text-sm whitespace-pre-wrap leading-relaxed"
-            style={{ color: "var(--foreground)", opacity: 0.85 }}
-          >
-            {selected.body}
-          </pre>
-        </div>
-      )}
     </div>
   );
 }

@@ -1,13 +1,21 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Clock, RefreshCw, Monitor, Save, Palette, Globe, Eye, Users, Loader2 } from "lucide-react";
+import { Clock, RefreshCw, Monitor, Save, Palette, Globe, Eye, Users, Loader2, Lock, EyeOff, X, FileJson } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { themePresets, applyTheme, getAppliedTheme } from "@/lib/themes";
+import { DATE_FORMATS } from "@/lib/settings";
 
 interface Settings {
   timezone: string;
@@ -16,6 +24,7 @@ interface Settings {
   timeFormat: "12h" | "24h";
   theme: "system" | "dark" | "light";
   viewAll: boolean;
+  dateFormat: string;
 }
 
 const DEFAULT_SETTINGS: Settings = {
@@ -25,6 +34,7 @@ const DEFAULT_SETTINGS: Settings = {
   timeFormat: "24h",
   theme: "system",
   viewAll: true,
+  dateFormat: "DD-MM-YYYY--HH-MM",
 };
 
 const TIMEZONES = [
@@ -68,6 +78,13 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  // Global secrets state
+  const [globalSecrets, setGlobalSecrets] = useState<Record<string, { value: string; note: string }>>({});
+  const [globalSecretsLoading, setGlobalSecretsLoading] = useState(false);
+  const [globalSecretsDirty, setGlobalSecretsDirty] = useState(false);
+  const [globalRevealedKeys, setGlobalRevealedKeys] = useState<Set<string>>(new Set());
+  const [globalShowTemplates, setGlobalShowTemplates] = useState(false);
+
   useEffect(() => {
     setMounted(true);
     try {
@@ -89,6 +106,41 @@ export default function SettingsPage() {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   }, [settings]);
+
+  async function loadGlobalSecrets() {
+    setGlobalSecretsLoading(true);
+    try {
+      const res = await fetch("/api/global-secrets");
+      const data = await res.json();
+      const secrets = data.secrets ?? {};
+      const normalized: Record<string, { value: string; note: string }> = {};
+      for (const [k, v] of Object.entries(secrets)) {
+        if (typeof v === "object" && v !== null && "value" in v) {
+          normalized[k] = v as { value: string; note: string };
+        } else {
+          normalized[k] = { value: String(v ?? ""), note: "" };
+        }
+      }
+      setGlobalSecrets(normalized);
+    } catch { /* ignore */ }
+    setGlobalSecretsLoading(false);
+    setGlobalSecretsDirty(false);
+  }
+
+  async function saveGlobalSecrets() {
+    const cleaned: Record<string, { value: string; note: string }> = {};
+    for (const [k, v] of Object.entries(globalSecrets)) {
+      if (k.trim() && v.value.trim()) cleaned[k.trim()] = { value: v.value.trim(), note: v.note.trim() };
+    }
+    await fetch("/api/global-secrets", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ secrets: cleaned }),
+    });
+    setGlobalSecretsDirty(false);
+  }
+
+  useEffect(() => { loadGlobalSecrets(); }, []);
 
   return (
     <div>
@@ -225,6 +277,42 @@ export default function SettingsPage() {
           </CardContent>
         </Card>
 
+        {/* Date Format */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Clock size={14} />
+              Date Format
+            </CardTitle>
+            <CardDescription className="text-xs">
+              How dates appear in absolute mode. Relative times are shown for entries less than 24h old.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-2">
+              {DATE_FORMATS.map((fmt) => (
+                <button
+                  key={fmt.value}
+                  type="button"
+                  onClick={() => update("dateFormat", fmt.value)}
+                  className="rounded-lg border p-3 text-left transition-all"
+                  style={{
+                    borderColor: settings.dateFormat === fmt.value ? "var(--primary)" : "var(--border)",
+                    background: settings.dateFormat === fmt.value ? "rgba(240,185,11,0.06)" : "transparent",
+                  }}
+                >
+                  <div className="text-xs font-medium" style={{ color: settings.dateFormat === fmt.value ? "var(--primary)" : "var(--foreground)" }}>
+                    {fmt.label}
+                  </div>
+                  <div className="text-[10px] mt-0.5" style={{ color: "var(--muted-foreground)" }}>
+                    {fmt.desc}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Theme */}
         <Card>
           <CardHeader className="pb-3">
@@ -299,6 +387,207 @@ export default function SettingsPage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Global Secrets */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              <Lock size={14} />
+              Global Secrets
+            </CardTitle>
+            <CardDescription className="text-xs">
+              Shared environment variables for all projects and agents. Stored at <code className="font-mono">config/secrets/.env</code>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {globalSecretsLoading ? (
+              <div className="flex items-center gap-2 py-4 justify-center text-xs text-muted-foreground">
+                <Loader2 size={12} className="animate-spin" />
+                Loading secrets...
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {Object.keys(globalSecrets).length === 0 && (
+                  <p className="text-xs text-muted-foreground py-2 text-center">No global secrets yet.</p>
+                )}
+                {Object.entries(globalSecrets).map(([key, entry], idx) => {
+                  const isRevealed = globalRevealedKeys.has(key);
+                  const lastTwo = entry.value.length >= 2 ? entry.value.slice(-2) : entry.value;
+                  return (
+                    <div key={idx} className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <input
+                          value={key}
+                          onChange={(e) => {
+                            const newVal = e.target.value;
+                            setGlobalSecrets((prev) => {
+                              const next = { ...prev };
+                              delete next[key];
+                              if (newVal) next[newVal] = entry;
+                              return next;
+                            });
+                            setGlobalSecretsDirty(true);
+                          }}
+                          className="flex-[2.5] text-xs font-mono rounded border px-2 py-1"
+                          style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--foreground)" }}
+                          placeholder="KEY"
+                        />
+                        <span className="text-muted-foreground shrink-0">=</span>
+                        <div className="flex-[4] flex items-center gap-1 rounded border px-2 py-1" style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
+                          <input
+                            type={isRevealed ? "text" : "password"}
+                            value={entry.value}
+                            onChange={(e) => {
+                              setGlobalSecrets((prev) => ({ ...prev, [key]: { value: e.target.value, note: entry.note } }));
+                              setGlobalSecretsDirty(true);
+                            }}
+                            className="flex-1 text-xs font-mono bg-transparent border-none outline-none"
+                            style={{ color: "var(--foreground)" }}
+                            placeholder="value"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setGlobalRevealedKeys((prev) => {
+                                const next = new Set(prev);
+                                if (next.has(key)) next.delete(key); else next.add(key);
+                                return next;
+                              });
+                            }}
+                            className="p-0.5 shrink-0"
+                            style={{ color: "var(--muted-foreground)" }}
+                          >
+                            {isRevealed ? <EyeOff size={12} /> : <Eye size={12} />}
+                          </button>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setGlobalSecrets((prev) => {
+                              const next = { ...prev };
+                              delete next[key];
+                              return next;
+                            });
+                            setGlobalSecretsDirty(true);
+                          }}
+                          className="p-1 rounded hover:bg-white/5 shrink-0"
+                          style={{ color: "var(--muted-foreground)" }}
+                        >
+                          <X size={13} />
+                        </button>
+                      </div>
+                      <input
+                        value={entry.note}
+                        onChange={(e) => {
+                          setGlobalSecrets((prev) => ({ ...prev, [key]: { value: entry.value, note: e.target.value } }));
+                          setGlobalSecretsDirty(true);
+                        }}
+                        className="w-full text-[10px] rounded border px-2 py-1"
+                        style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+                        placeholder="note — e.g. Supabase, GitHub, OpenAI..."
+                      />
+                    </div>
+                  );
+                })}
+                <div className="flex items-center gap-2 pt-1 flex-wrap">
+                  <Button size="sm" variant="outline" className="text-xs gap-1"
+                    onClick={() => setGlobalSecrets({})}>
+                    <X size={11} /> Clear All
+                  </Button>
+                  <Button size="sm" variant="outline" className="text-xs gap-1"
+                    onClick={() => setGlobalSecrets((prev) => ({ ...prev, "": { value: "", note: "" } }))}>
+                    + Add Secret
+                  </Button>
+                  <Button size="sm" variant="outline" className="text-xs gap-1"
+                    onClick={() => setGlobalShowTemplates(true)}>
+                    <FileJson size={11} /> Templates
+                  </Button>
+                  <div className="ml-auto">
+                    <Button size="sm" onClick={saveGlobalSecrets} disabled={!globalSecretsDirty} className="gap-1.5">
+                      <Save size={12} /> Save Secrets
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Global Secrets Templates Dialog */}
+        <Dialog open={globalShowTemplates} onOpenChange={(open) => { if (!open) setGlobalShowTemplates(false); }}>
+          <DialogContent className="max-w-[55vw] sm:max-w-[55vw] w-full max-h-[85vh] flex flex-col overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-sm flex items-center gap-2">
+                <FileJson size={13} />
+                Secret Templates
+              </DialogTitle>
+              <DialogDescription className="text-xs">
+                Click a template to add standardized environment variables.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              {(() => {
+                const logos: Record<string, string> = {
+                  OpenAI: `<svg viewBox="0 0 24 24" fill="none"><path d="M12 2l7 4v8l-7 4-7-4V6l7-4z" fill="#10a37f"/><path d="M12 6l3.5 2v4L12 14l-3.5-2V8L12 6z" fill="#fff"/></svg>`,
+                  Stripe: `<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3" fill="#635BFF"/><text x="12" y="16" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="7" fill="#fff">ST</text></svg>`,
+                  GitHub: `<svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.09.68-.217.68-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.635-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="#181717"/></svg>`,
+                  Anthropic: `<svg viewBox="0 0 24 24"><text x="2" y="19" font-family="Arial" font-weight="bold" font-size="18" fill="#d97757">C</text></svg>`,
+                  Supabase: `<svg viewBox="0 0 24 24"><path d="M6 14l6-12v8h6l-6 12v-8H6z" fill="#3ECF8E"/></svg>`,
+                };
+                const cats = [
+                  { icon: "🤖", name: "AI / LLM APIs", items: [
+                    { l: "OpenAI", d: "sk-...", grp: "OpenAI Platform" },
+                    { l: "Anthropic", d: "sk-ant-...", grp: "Anthropic" },
+                  ]},
+                  { icon: "🗄️", name: "Databases", items: [
+                    { l: "Supabase", d: "eyJ...", grp: "Supabase" },
+                  ]},
+                  { icon: "💳", name: "Payments", items: [
+                    { l: "Stripe", d: "sk_live_...", grp: "Stripe" },
+                  ]},
+                  { icon: "🚀", name: "DevOps", items: [
+                    { l: "GitHub", d: "ghp_...", grp: "GitHub" },
+                  ]},
+                  { icon: "⚙️", name: "General", items: [
+                    { l: "App Config", d: "development", grp: "App Config" },
+                    { l: "JWT Auth", d: "openssl rand...", grp: "JWT" },
+                  ]},
+                ];
+                return cats.map((cat) => (
+                  <div key={cat.name}>
+                    <h4 className="text-xs font-semibold mb-2 flex items-center gap-1.5" style={{ color: "var(--muted-foreground)" }}>
+                      <span>{cat.icon}</span>{cat.name}
+                    </h4>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {cat.items.map((item) => (
+                        <button key={item.l} type="button"
+                          onClick={() => {
+                            setGlobalSecrets((prev) => {
+                              const next = { ...prev };
+                              const key = item.l === "App Config" ? "NODE_ENV" : item.l === "JWT Auth" ? "JWT_SECRET" : `${item.l.replace(/\s+/g, "_").toUpperCase()}_API_KEY`;
+                              if (!(key in prev)) next[key] = { value: item.d, note: item.grp };
+                              return next;
+                            });
+                            setGlobalSecretsDirty(true);
+                            setGlobalShowTemplates(false);
+                          }}
+                          className="text-left text-[10px] p-2 rounded border transition-all hover:border-primary/40 flex items-start gap-2"
+                          style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}>
+                          <span className="shrink-0 w-6 h-6 rounded flex items-center justify-center overflow-hidden"
+                            dangerouslySetInnerHTML={{ __html: logos[item.l] || `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" fill="var(--muted-foreground)"/><text x="12" y="17" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="var(--card-bg)">${item.l[0]}</text></svg>` }} />
+                          <div className="min-w-0">
+                            <div className="font-medium text-xs" style={{ color: "var(--foreground)" }}>{item.l}</div>
+                            <div className="mt-0.5 text-[9px] leading-tight" style={{ color: "var(--muted-foreground)" }}>1 variable</div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ));
+              })()}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         <Button onClick={save} className="gap-2">
           <Save size={14} /> {saved ? "Saved!" : "Save Settings"}

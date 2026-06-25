@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 import { readdir, readFile, stat } from "fs/promises";
 import { join } from "path";
 
-const HOME = process.env.HOME || "/home/dev";
-const PROJECTS_DIR = join(HOME, "AI_Workflow", "projects");
-const MEMORY_DIR = join(HOME, "AI_Workflow", "memory");
+import { PROJECTS_DIR, MEMORY_DIR } from "@/lib/global-config";
 
 interface Task {
   id: string;

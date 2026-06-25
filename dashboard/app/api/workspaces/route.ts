@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 import { readdir, readFile, writeFile, rm, stat, mkdir, symlink } from "fs/promises";
 import { join } from "path";
 
-const WORKSPACES_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "workspaces");
-const PIPELINES_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "memory", "pipelines");
-const PROJECTS_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "projects");
+import { WORKSPACES_DIR, PIPELINES_DIR, PROJECTS_DIR } from "@/lib/global-config";
 
 interface PaosSettings {
   version: number;
@@ -66,7 +64,7 @@ export async function GET() {
         let pipelineCount = 0;
         try {
           const dirs = await readdir(projectPipelinesDir);
-          pipelineCount = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE")).length;
+          pipelineCount = dirs.filter((d) => d.startsWith("PIPE-") || d.startsWith("AI_Workflow-PIPE") || d.startsWith("TEST-PIPE")).length;
         } catch { /* no pipelines dir */ }
 
         return {

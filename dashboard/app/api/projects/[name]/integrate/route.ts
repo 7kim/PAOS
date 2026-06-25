@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { readFile, writeFile, mkdir, readdir, stat } from "fs/promises";
 import { join } from "path";
 
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
-const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
+import { MEMORY_DIR, PIPELINES_DIR } from "@/lib/global-config";
 
 export async function POST(
   _req: Request,
@@ -51,8 +50,8 @@ export async function POST(
     if (entry === "package.json") {
       analysis.languages.push("TypeScript/JavaScript");
       try {
-        const pkg = JSON.parse(await readFile(join(sourcePath, "package.json"), "utf-8"));
-        const deps = { ...pkg.dependencies, ...pkg.devDependencies } || {};
+        const pkg = JSON.parse(await readFile(join(sourcePath, "package.json"), "utf-8")) as Record<string, any>;
+        const deps = { ...(pkg.dependencies || {}), ...(pkg.devDependencies || {}) };
         if (deps.next) analysis.frameworks.push("Next.js");
         if (deps.react) analysis.frameworks.push("React");
         if (deps.vue) analysis.frameworks.push("Vue");

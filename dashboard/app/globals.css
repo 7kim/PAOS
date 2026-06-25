@@ -207,6 +207,9 @@ input[type="range"] {
   * {
     @apply border-border outline-ring/50;
   }
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[var(--primary)];
+  }
   body {
     @apply bg-background text-foreground;
   }

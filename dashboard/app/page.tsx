@@ -91,8 +91,8 @@ export default function OverviewPage() {
   const visibleAlerts = alerts.filter(a => !dismissedAlerts.includes(a.id));
 
   // Severity-ordered stat cards
-  const severityColor = (severity: "error" | "warning" | "success" | "info") => {
-    const map = { error: "var(--error)", warning: "var(--warning)", success: "var(--success)", info: "var(--info)" };
+  const severityColor = (severity: string) => {
+    const map: Record<string, string> = { error: "var(--error)", warning: "var(--warning)", success: "var(--success)", info: "var(--info)" };
     return map[severity];
   };
 
