@@ -23,76 +23,51 @@ export async function GET(
         break;
       } catch { /* not this project */ }
     }
-    if (!dir) {
-      return NextResponse.json({ error: `Pipeline ${id} not found` }, { status: 404 });
-    }
+    if (!dir) return NextResponse.json({ error: "Pipeline not found" }, { status: 404 });
 
-    // Read flow status
-    const flowRaw = await readFile(join(dir, "pipeline-flow.json"), "utf-8").catch(() => "");
-    if (!flowRaw) {
-      return NextResponse.json({ flowStatus: null, message: "No flow execution in progress" });
-    }
+    // Try reading pipeline-flow.json
+    const flowRaw = await readFile(join(dir, "pipeline-flow.json"), "utf-8").catch(() => "{}");
+    const flowData = JSON.parse(flowRaw);
 
-    const flowStatus = JSON.parse(flowRaw);
+    // If no pipeline-flow.json, synthesize from META.json phases
+    if (!flowData.phases) {
+      const metaRaw = await readFile(join(dir, "META.json"), "utf-8").catch(() => "{}");
+      const meta = JSON.parse(metaRaw);
+      const metaPhases = meta.phases || [];
 
-    // Read builder layout for prompt/file refs per node
-    const layoutRaw = await readFile(join(dir, "builder-layout.json"), "utf-8").catch(() => "{}");
-    const layout = JSON.parse(layoutRaw);
-    const layoutNodes = (layout.nodes || []).reduce((map: any, n: any) => {
-      map[n.id] = n.data || {};
-      return map;
-    }, {});
-
-    // Enrich with phase artifacts and content
-    const phasesDir = join(dir, "phases");
-    const phaseDirs = await readdir(phasesDir).catch(() => [] as string[]);
-
-    for (const phaseId of phaseDirs) {
-      if (phaseId.startsWith(".")) continue;
-      const phaseDir = join(phasesDir, phaseId);
-      const files = await readdir(phaseDir).catch(() => [] as string[]);
-
-      if (flowStatus.phases?.[phaseId]) {
-        const phase = flowStatus.phases[phaseId] as any;
-        phase.artifacts = files;
-
-        // Merge layout data (prompt, fileRefs, skills, MCPs)
-        const layoutData = layoutNodes[phaseId] || {};
-        phase.prompt = layoutData.prompt || "";
-        phase.fileRefs = layoutData.fileRefs || [];
-        phase.selectedSkills = layoutData.selectedSkills || [];
-        phase.selectedMcps = layoutData.selectedMcps || [];
-
-        // Read IMPLEMENTATION.md
-        if (files.includes("IMPLEMENTATION.md")) {
-          try {
-            phase.implementation = await readFile(join(phaseDir, "IMPLEMENTATION.md"), "utf-8");
-          } catch { phase.implementation = ""; }
+      if (metaPhases.length > 0) {
+        const syntheticPhases: Record<string, any> = {};
+        const order = metaPhases.map((p: any) => p.id || p.role || "phase-0");
+        for (const phase of metaPhases) {
+          const pid = phase.id || phase.role || "phase-0";
+          syntheticPhases[pid] = {
+            status: phase.status || "pending",
+            prompt: phase.prompt || "",
+            pid: null,
+            order: 0,
+          };
+          // Also read per-phase files if they exist
+          const phaseDir = join(dir, "phases", pid);
+          const reasoning = await readFile(join(phaseDir, "REASONING.md"), "utf-8").catch(() => "");
+          const tasksMd = await readFile(join(phaseDir, "TASKS.md"), "utf-8").catch(() => "");
+          const walkthrough = await readFile(join(phaseDir, "WALKTHROUGH.md"), "utf-8").catch(() => "");
+          const output = await readFile(join(phaseDir, "output.log"), "utf-8").catch(() => "");
+          if (reasoning) syntheticPhases[pid].reasoning = reasoning;
+          if (tasksMd) syntheticPhases[pid].tasksMd = tasksMd;
+          if (walkthrough) syntheticPhases[pid].walkthroughMd = walkthrough;
+          if (output) syntheticPhases[pid].outputPreview = output.slice(0, 1000);
         }
 
-        // Read REASONING.md
-        if (files.includes("REASONING.md")) {
-          try {
-            phase.reasoning = await readFile(join(phaseDir, "REASONING.md"), "utf-8");
-          } catch { phase.reasoning = ""; }
-        }
-
-        // Read output.log (last 2000 chars)
-        if (files.includes("output.log")) {
-          try {
-            const log = await readFile(join(phaseDir, "output.log"), "utf-8");
-            phase.outputPreview = log.length > 2000 ? log.slice(-2000) : log;
-          } catch { phase.outputPreview = ""; }
-        }
-
-        // Check for walkthrough
-        if (files.some((f: string) => f.toLowerCase().includes("walkthrough"))) {
-          phase.hasWalkthrough = true;
-        }
+        return NextResponse.json({
+          pipelineId: id,
+          status: meta.status || "completed",
+          phases: syntheticPhases,
+          order,
+        });
       }
     }
 
-    return NextResponse.json({ flowStatus });
+    return NextResponse.json(flowData);
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }

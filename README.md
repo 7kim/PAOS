@@ -3,7 +3,7 @@
 > **Self-hosted multi-agent AI orchestration.**  
 > Claude Code, OpenCode, Codex, Gemini, Antigravity, Nous Hermes, OpenClaw, Signal, and Ollama — 9 agents unified through shared memory, a messaging bus, cross-agent continuity, a plan-then-execute pipeline, and a governance framework.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Node.js](https://img.shields.io/badge/Node.js-20+-green.svg)](https://nodejs.org) [![Docker](https://img.shields.io/badge/Docker-ready-blue.svg)](docker-compose.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Node.js](https://img.shields.io/badge/Node.js-20+-green.svg)](https://nodejs.org) [![Docker](https://img.shields.io/badge/Docker-ready-blue.svg)](docker/docker-compose.yaml) [![Docs](https://img.shields.io/badge/docs-docs%2F-blueviolet)](docs/README.md)
 
 ---
 
@@ -807,6 +807,20 @@ chmod +x ~/AI_Workflow/bin/agent-commit.sh
 6. (Optional) Install Nous Hermes: `curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash`
 7. Set up OpenClaw channels: `openclaw onboard`
 8. Push your first agent commit: `./bin/agent-commit.sh claude "Agent[claude]: personalised PAOS for <yourname>"`
+
+---
+
+## Documentation
+
+Full documentation lives in the [`docs/`](docs/README.md) directory:
+
+| Document | Description |
+|----------|-------------|
+| [API Reference](docs/api.md) | 56 REST endpoints — request/response specs for every dashboard route |
+| [Usage Examples](docs/examples.md) | CLI, API, MCP, pipeline workflows with runnable commands |
+| [Architecture](docs/architecture.md) | Two-layer system model: global fabric and per-project sandboxes |
+| [Dashboard Guide](dashboard/README.md) | Next.js orchestration UI — pages, endpoints, development |
+| [Workspace Format](docs/workspace-format.md) | `.code-workspace` file schema for project definitions |
 
 ---
 

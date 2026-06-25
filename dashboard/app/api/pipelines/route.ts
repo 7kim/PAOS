@@ -25,6 +25,7 @@ async function scanPipelines(baseDir: string, projectName: string) {
       const planPath = join(pipelineDir, "PLAN.md");
       const tasksPath = join(pipelineDir, "TASKS.md");
       const walkthroughPath = join(pipelineDir, "WALKTHROUGH.md");
+    const builderLayoutPath = join(pipelineDir, "builder-layout.json");
 
       let meta: Record<string, unknown> = {};
       try {
@@ -62,11 +63,18 @@ async function scanPipelines(baseDir: string, projectName: string) {
         }
       } catch { /* no pipeline.json */ }
 
+      let hasBuilderLayout = false;
+      try {
+        await readFile(builderLayoutPath, "utf-8");
+        hasBuilderLayout = true;
+      } catch { /* no builder layout */ }
+
       return {
         id: dir,
         project: projectName,
         status: meta.status ?? "unknown",
         queue: queueMap[dir] ?? "none",
+        builder: hasBuilderLayout,
         phases: Array.isArray(meta.phases) ? meta.phases.map((p: Record<string, unknown>) => ({
           name: String(p.label || p.role || "Phase"),
           completed: p.status === "completed" ? 1 : 0,
@@ -190,17 +198,53 @@ export async function POST(req: Request) {
 
     // builder-layout.json (from Flow Builder)
     if (builderLayout) {
-      // Generate phases from builder nodes
-      const phases = (builderLayout.nodes || []).map((node: Record<string, unknown>) => ({
-        agent: (node.data as Record<string, unknown>)?.agentId || "",
-        role: "agent",
-        label: (node.data as Record<string, unknown>)?.label || "Agent",
-        status: "pending",
-        prompt: (node.data as Record<string, unknown>)?.prompt || "",
-        selectedSkills: (node.data as Record<string, unknown>)?.selectedSkills || [],
-        selectedMcps: (node.data as Record<string, unknown>)?.selectedMcps || [],
-        fileRefs: (node.data as Record<string, unknown>)?.fileRefs || [],
-      }));
+      // Topological sort for phases
+      const nodes = builderLayout.nodes || [];
+      const edges = builderLayout.edges || [];
+      const nodeMap = new Map<string, { id: string; data: any }>();
+      const inDegree = new Map<string, number>();
+      const adj = new Map<string, string[]>();
+
+      for (const n of nodes) {
+        nodeMap.set(n.id, n);
+        inDegree.set(n.id, 0);
+        adj.set(n.id, []);
+      }
+      for (const e of edges) {
+        adj.get(e.source)?.push(e.target);
+        inDegree.set(e.target, (inDegree.get(e.target) || 0) + 1);
+      }
+
+      const queue: string[] = [];
+      for (const [id, deg] of inDegree) {
+        if (deg === 0) queue.push(id);
+      }
+      const topoOrder: string[] = [];
+      while (queue.length > 0) {
+        const id = queue.shift()!;
+        topoOrder.push(id);
+        for (const next of adj.get(id) || []) {
+          const newDeg = (inDegree.get(next) || 0) - 1;
+          inDegree.set(next, newDeg);
+          if (newDeg === 0) queue.push(next);
+        }
+      }
+
+      const phases = topoOrder.map((nodeId) => {
+        const node = nodeMap.get(nodeId);
+        const nd = (node as any)?.data || {};
+        return {
+          id: nodeId,
+          agent: nd.agentId || "",
+          role: nd.label || "Agent",
+          label: nd.label || nd.agentId || "Agent",
+          status: "pending",
+          prompt: nd.prompt || "",
+          selectedSkills: nd.selectedSkills || [],
+          selectedMcps: nd.selectedMcps || [],
+          fileRefs: nd.fileRefs || [],
+        };
+      });
 
       // Update META.json phases with builder data
       const updatedMeta = { ...meta, phases, builder: true };
@@ -208,6 +252,29 @@ export async function POST(req: Request) {
 
       // Save layout for rendering
       await writeFile(join(dir, "builder-layout.json"), JSON.stringify(builderLayout, null, 2));
+
+      // Generate initial phase files so enrichment has data immediately
+      const phasesDir = join(dir, "phases");
+      await mkdir(phasesDir, { recursive: true });
+      for (const phase of phases) {
+        if (!phase.id) continue;
+        const phaseDir = join(phasesDir, phase.id);
+        await mkdir(phaseDir, { recursive: true });
+
+        // IMPLEMENTATION.md
+        const skillsStr = phase.selectedSkills?.length > 0 ? `\n\n## Skills\n${phase.selectedSkills.map((s: string) => `- ${s}`).join("\n")}` : "";
+        const mcpsStr = phase.selectedMcps?.length > 0 ? `\n\n## MCPs\n${phase.selectedMcps.map((m: string) => `- ${m}`).join("\n")}` : "";
+        const filesStr = phase.fileRefs?.length > 0 ? `\n\n## Reference Files\n${phase.fileRefs.map((f: any) => `- ${f.type === "folder" ? "📁" : "📄"} ${f.name}${f.path ? " (" + f.path + ")" : ""}`).join("\n")}` : "";
+        await writeFile(join(phaseDir, "IMPLEMENTATION.md"),
+          `# ${phase.label}\n\n## Agent\n${phase.agent}\n\n## Implementation Instructions\n${phase.prompt || "Follow the plan and implement accordingly."}${skillsStr}${mcpsStr}${filesStr}`
+        );
+
+        // TASKS.md
+        await writeFile(join(phaseDir, "TASKS.md"), `# ${phase.label} — Tasks\n\n- [ ] Implement ${phase.label}\n- [ ] Verify implementation\n- [ ] Document changes\n`);
+
+        // REASONING.md
+        await writeFile(join(phaseDir, "REASONING.md"), `# ${phase.label} — Reasoning\n\n## What I understand\n\n## Key decisions\n\n## Trade-offs considered\n\n## Why this approach\n`);
+      }
     }
 
     // Enqueue automatically

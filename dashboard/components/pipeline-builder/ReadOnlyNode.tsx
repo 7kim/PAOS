@@ -103,8 +103,8 @@ function ReadOnlyNodeComponent(props: Record<string, unknown>) {
           </span>
         )}
         {!flowStatus && (
-          <span className="text-[7px] px-1 py-0.5 rounded opacity-40" style={{ color: "var(--muted-foreground)" }}>
-            Configuring...
+          <span className="text-[7px] px-1 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "var(--muted-foreground)" }}>
+            Pending
           </span>
         )}
       </div>

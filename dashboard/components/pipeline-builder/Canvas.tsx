@@ -245,28 +245,35 @@ function FlowCanvas({ initialLayout, onSave, settings, liveZoom, templateToLoad,
         try {
           const statusRes = await fetch(`/api/pipelines/${pipelineId}/flow-status`);
           const statusData = await statusRes.json();
-          if (statusData.flowStatus) {
-            setFlowStatus(statusData.flowStatus);
-            // Update node data with status
-            const phases = statusData.flowStatus.phases || {};
-            setNodes((nds) =>
-              nds.map((n) => {
-                const phase = phases[n.id];
-                if (phase) {
-                  return { ...n, data: { ...n.data, flowStatus: phase.status, flowPid: phase.pid, flowProgress: phase.progress } };
-                }
-                return n;
-              })
-            );
+          const phases = statusData.phases || {};
+          setFlowStatus(phases);
+          // Update node data with status, pid, output preview
+          setNodes((nds) =>
+            nds.map((n) => {
+              const phase = phases[n.id];
+              if (phase) {
+                return {
+                  ...n,
+                  data: {
+                    ...n.data,
+                    flowStatus: phase.status,
+                    flowPid: phase.pid,
+                    flowProgress: phase.progress,
+                    flowOutput: phase.outputPreview || "",
+                  },
+                };
+              }
+              return n;
+            })
+          );
 
-            // Check if all done
-            const allDone = Object.values(phases).every((p: any) =>
-              p.status === "completed" || p.status === "failed"
-            );
-            if (allDone) {
-              clearInterval(interval);
-              setExecuting(false);
-            }
+          // Check if all done
+          const allDone = Object.values(phases).every((p: any) =>
+            p.status === "completed" || p.status === "failed" || p.status === "skipped"
+          );
+          if (allDone) {
+            clearInterval(interval);
+            setExecuting(false);
           }
         } catch { /* poll failed, retry */ }
       }, 2000);

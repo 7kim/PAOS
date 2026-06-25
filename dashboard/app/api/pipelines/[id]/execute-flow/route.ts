@@ -263,6 +263,7 @@ export async function POST(
       if (!node) return;
       const phaseDir = join(phasesDir, nodeId);
       const agentId = (node as any).data?.agentId || "opencode-developer";
+      const nodeLabel = (node as any).data?.label || nodeId;
 
       // Read current flow status
       const flowNow = JSON.parse(await readFile(join(dir, "pipeline-flow.json"), "utf-8").catch(() => "{}"));
@@ -308,9 +309,23 @@ export async function POST(
           flowLatest.phases[nodeId].completedAt = new Date().toISOString();
           flowLatest.phases[nodeId].pid = null;
 
-          // Check if this node has walkthrough in its output
-          if (output.toLowerCase().includes("walkthrough")) {
-            await writeFile(join(phaseDir, "WALKTHROUGH.md"), output);
+          // Always write WALKTHROUGH.md from output
+          await writeFile(join(phaseDir, "WALKTHROUGH.md"), `# ${nodeLabel} Walkthrough\n\n## Output Summary\n\`\`\`\n${output.slice(0, 2000)}\n\`\`\`\n\n## Full Output\n\`\`\`\n${output}\n\`\`\`\n`);
+
+          // Write REASONING.md if not yet created
+          try {
+            await readFile(join(phaseDir, "REASONING.md"), "utf-8");
+          } catch {
+            // Default reasoning template
+            await writeFile(join(phaseDir, "REASONING.md"), `# ${nodeLabel} — Reasoning\n\n## What I understand\n\n## Key decisions\n\n## Trade-offs considered\n\n## Why this approach\n`);
+          }
+
+          // Enrich flow status with output, reasoning, tasks, walkthrough
+          if (flowLatest.phases) {
+            flowLatest.phases[nodeId].outputPreview = output.slice(0, 1000);
+            flowLatest.phases[nodeId].walkthroughMd = `# ${nodeLabel} Walkthrough\n\n${output.slice(0, 2000)}`;
+            flowLatest.phases[nodeId].reasoning = flowLatest.phases[nodeId].reasoning || "";
+            flowLatest.phases[nodeId].tasksMd = flowLatest.phases[nodeId].tasksMd || "";
           }
 
           await writeFile(join(dir, "pipeline-flow.json"), JSON.stringify(flowLatest, null, 2));

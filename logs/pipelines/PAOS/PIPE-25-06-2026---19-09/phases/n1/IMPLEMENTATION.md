@@ -4,6 +4,13 @@
 ## Instructions
 Analyze the codebase and identify what needs documentation.
 
+## Skills to Load
+- ponytail
+- plan
+
+## MCPs to Use
+- context7
+
 ## Tasks
 - [ ] Execute the instructions above
 - [ ] Create necessary files and modifications

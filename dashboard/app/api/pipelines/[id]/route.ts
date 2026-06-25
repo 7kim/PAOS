@@ -17,6 +17,13 @@ interface Phase {
   label: string;
   status: string;
   artifacts: PhaseArtifact[];
+  id?: string;
+  prompt?: string;
+  reasoning?: string;
+  tasksMd?: string;
+  walkthroughMd?: string;
+  outputPreview?: string;
+  pid?: number | null;
 }
 
 export async function GET(
@@ -190,6 +197,42 @@ export async function GET(
         if (maxCompleted < taskList.length && !taskList.some((t) => t.status === "doing")) {
           taskList[maxCompleted].status = "doing";
         }
+      }
+    }
+
+    // Enrich phases with flow-status data (prompts, reasoning, tasks, walkthrough)
+    const flowRaw = await readFile(join(dir, "pipeline-flow.json"), "utf-8").catch(() => "{}");
+    let flowData = JSON.parse(flowRaw);
+
+    // If no pipeline-flow.json exists, synthesize from META.json phases
+    if (!flowData.phases && phases.length > 0) {
+      flowData = {
+        pipelineId: id,
+        status: "completed",
+        phases: {} as Record<string, any>,
+        order: phases.map((p) => p.id || p.role),
+      };
+      for (const phase of phases) {
+        const pid = phase.id || phase.role;
+        flowData.phases[pid] = {
+          status: phase.status || "completed",
+          prompt: phase.prompt || "",
+          pid: null,
+          order: 0,
+        };
+      }
+    }
+
+    if (flowData.phases) {
+      for (const phase of phases) {
+        const pid = phase.id || phase.role;
+        const fp = flowData.phases[pid] || {};
+        phase.prompt = phase.prompt || fp.prompt || "";
+        phase.reasoning = fp.reasoning || "";
+        phase.tasksMd = fp.tasksMd || "";
+        phase.walkthroughMd = fp.walkthroughMd || "";
+        phase.outputPreview = fp.outputPreview || "";
+        phase.pid = fp.pid || null;
       }
     }
 

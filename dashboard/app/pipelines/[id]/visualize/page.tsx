@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState, useMemo } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2, Trash2, Plus, Workflow, Brain, Zap, AlertCircle, ArrowDown, FileText, ListTodo, FileCode, ExternalLink, EyeOff, HandMetal } from "lucide-react";
 import MiniDagView from "@/components/pipeline-builder/MiniDagView";
 import { VisualToolbar } from "@/components/pipeline-builder/VisualToolbar";
@@ -26,6 +26,13 @@ interface Phase {
   label: string;
   status: string;
   artifacts: PhaseArtifact[];
+  id?: string;
+  prompt?: string;
+  reasoning?: string;
+  tasksMd?: string;
+  walkthroughMd?: string;
+  outputPreview?: string;
+  pid?: number | null;
 }
 
 interface PipelineData {
@@ -140,6 +147,7 @@ function DiffView({ v1, v2 }: { v1: string; v2: string }) {
 export default function PipelineVisualizePage() {
   const params = useParams();
   const id = params?.id as string;
+  const router = useRouter();
   const [data, setData] = useState<PipelineData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -308,9 +316,38 @@ export default function PipelineVisualizePage() {
           {id}
         </span>
       </div>
-      <p className="text-sm mb-6" style={{ color: "var(--muted-foreground)" }}>
+      <p className="text-sm mb-4" style={{ color: "var(--muted-foreground)" }}>
         {String(data.meta.prompt ?? "")}
       </p>
+
+      {/* Execute / Open buttons */}
+      <div className="flex items-center gap-2 mb-6">
+        {data.meta.status !== "completed" && (
+          <button
+            type="button"
+            onClick={async () => {
+              try {
+                await fetch(`/api/pipelines/${encodeURIComponent(id)}/execute-flow`, { method: "POST" });
+                load();
+              } catch {}
+            }}
+            className="text-xs px-3 py-1.5 rounded-lg border transition-all hover:opacity-80 flex items-center gap-1.5 font-medium"
+            style={{ borderColor: "#22c55e", color: "#22c55e", background: "#22c55e10" }}
+          >
+            <Play size={12} /> Execute Flow
+          </button>
+        )}
+        {data.builderLayout && (
+          <button
+            type="button"
+            onClick={() => router.push(`/pipelines/builder?load=${encodeURIComponent(id)}`)}
+            className="text-xs px-3 py-1.5 rounded-lg border transition-all hover:opacity-80 flex items-center gap-1.5"
+            style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+          >
+            <GitBranch size={12} /> Open in Builder
+          </button>
+        )}
+      </div>
 
       {/* Builder DAG — React Flow */}
       {data.builderLayout && data.builderLayout.nodes && data.builderLayout.nodes.length > 0 && (
@@ -411,6 +448,42 @@ export default function PipelineVisualizePage() {
                   {phase.artifacts.length === 0 && phase.status === "pending" && (
                     <div className="text-xs text-center py-3 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", color: "var(--muted-foreground)" }}>
                       Waiting for agent...
+                    </div>
+                  )}
+
+                  {/* Phase enrichment: prompt, reasoning, tasks, walkthrough */}
+                  {(phase.prompt || phase.reasoning || phase.tasksMd || phase.walkthroughMd || phase.outputPreview) && (
+                    <div className="space-y-2 mb-3">
+                      {phase.prompt && (
+                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
+                          <div className="text-[9px] font-semibold mb-1" style={{ color: "var(--primary)" }}>Prompt</div>
+                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.prompt}</pre>
+                        </div>
+                      )}
+                      {phase.reasoning && (
+                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
+                          <div className="text-[9px] font-semibold mb-1 flex items-center gap-1" style={{ color: "#8b5cf6" }}><Brain size={9} /> Reasoning</div>
+                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.reasoning}</pre>
+                        </div>
+                      )}
+                      {phase.tasksMd && (
+                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
+                          <div className="text-[9px] font-semibold mb-1 flex items-center gap-1" style={{ color: "#3b82f6" }}><ListTodo size={9} /> Tasks</div>
+                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.tasksMd}</pre>
+                        </div>
+                      )}
+                      {phase.walkthroughMd && (
+                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
+                          <div className="text-[9px] font-semibold mb-1 flex items-center gap-1" style={{ color: "#22c55e" }}><FileText size={9} /> Walkthrough</div>
+                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.walkthroughMd}</pre>
+                        </div>
+                      )}
+                      {phase.outputPreview && (
+                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
+                          <div className="text-[9px] font-semibold mb-1" style={{ color: "var(--muted-foreground)" }}>Output</div>
+                          <pre className="text-[9px] whitespace-pre-wrap max-h-24 overflow-y-auto font-mono" style={{ color: "var(--muted-foreground)" }}>{phase.outputPreview}</pre>
+                        </div>
+                      )}
                     </div>
                   )}
 

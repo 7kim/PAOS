@@ -43,3 +43,28 @@ IMPACT: "5 files updated. Model is now pinned at global, agent, registry, pipeli
 **Verification:** h-help lists 14 commands, h-pipeline list shows pipelines, h-audit passes.
 [2026-06-25T18:30:00Z] | #TASK-DOC-001 | CREATE | dashboard/README.md, docs/api.md, docs/examples.md | Created 2,245 lines of comprehensive documentation: dashboard README (218 lines), API reference (1,018 lines, 56 endpoints), usage examples (1,009 lines)
 [2026-06-25T18:30:01Z] | #TASK-DOC-001 | UPDATE | pipeline.json, META.json, TASKS.md | Marked pipeline phase n2 as completed, wrote WALKTHROUGH.md
+
+## 2026-06-25 19:45 @opencode-developer — PIPE-25-06-2026---19-09
+
+### COMPLETED: Documentation Audit and Enhancement — 5/5 tasks
+
+**Files created (2):**
+- LICENSE — MIT license file matching README declaration (21 lines)
+- docs/README.md — Documentation hub index linking to all docs, screenshots, and reference files (52 lines)
+
+**Files modified (6):**
+- README.md — Added Documentation section referencing docs/ hub, fixed Docker badge link, added docs badge
+- META.json — Updated status to completed, added completed_at timestamp
+- pipeline.json — Updated progress, added completedAt
+- phases/n2/TASKS.md — Marked all 5 tasks [x]
+- TASKS.md — Updated task marker
+
+**Files verified (no changes needed):**
+- docs/api.md (1,018 lines) — 56 endpoints complete
+- docs/examples.md (1,009 lines) — 9 sections complete
+- docs/architecture.md (183 lines) — 2-layer architecture complete
+- docs/workspace-format.md (80 lines) — workspace spec complete
+- docs/screenshots/README.md (28 lines) — 8 screenshots documented
+- dashboard/README.md (218 lines) — full dashboard guide complete
+
+**Artifacts:** WALKTHROUGH.md in pipeline dir.

@@ -2,11 +2,12 @@
 
 import { useCallback, useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Loader2, Settings2, LayoutTemplate } from "lucide-react";
+import { ArrowLeft, Loader2, Settings2, LayoutTemplate, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PipelineCanvas } from "@/components/pipeline-builder/Canvas";
 import { BuilderSettingsDialog, loadSettings, saveSettings, type BuilderSettings } from "@/components/pipeline-builder/BuilderSettings";
 import { TemplateBrowser } from "@/components/pipeline-builder/TemplateBrowser";
+import { LoadPipelineDialog } from "@/components/pipeline-builder/LoadPipelineDialog";
 import type { BuilderLayout, PipelineTemplate } from "@/components/pipeline-builder/types";
 
 function BuilderPage() {
@@ -15,6 +16,7 @@ function BuilderPage() {
   const [saving, setSaving] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
+  const [showLoadPipeline, setShowLoadPipeline] = useState(false);
   const [settings, setSettings] = useState<BuilderSettings>(loadSettings);
   const [liveZoom, setLiveZoom] = useState<number | undefined>(undefined);
   const [templateToLoad, setTemplateToLoad] = useState<PipelineTemplate | null>(null);
@@ -29,6 +31,11 @@ function BuilderPage() {
 
   const handleLoadTemplate = useCallback((t: PipelineTemplate) => {
     setTemplateToLoad(t);
+  }, []);
+
+  const handleLoadFromPipeline = useCallback((layout: any) => {
+    // Convert the builder layout into a template-like object for the canvas
+    setTemplateToLoad({ id: "pipeline", name: "Pipeline", description: "", category: "", tags: [], nodes: layout.nodes || [], edges: layout.edges || [], createdAt: "", updatedAt: "" } as PipelineTemplate);
   }, []);
 
   const handleSave = useCallback(
@@ -92,6 +99,15 @@ function BuilderPage() {
           <Button
             variant="ghost"
             size="sm"
+            onClick={() => setShowLoadPipeline(true)}
+            className="text-xs gap-1.5"
+          >
+            <Download size={12} />
+            Load Pipeline
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setShowSettings(true)}
             className="text-xs gap-1.5"
           >
@@ -130,6 +146,13 @@ function BuilderPage() {
         onLoadTemplate={handleLoadTemplate}
         currentNodes={[]}
         currentEdges={[]}
+      />
+
+      {/* Load Pipeline dialog */}
+      <LoadPipelineDialog
+        open={showLoadPipeline}
+        onOpenChange={setShowLoadPipeline}
+        onLoad={handleLoadFromPipeline}
       />
 
       {/* Settings dialog */}
