@@ -20,12 +20,15 @@ export type FileRef = {
   path: string;
   type: "file" | "folder";
   name: string;
+  mode?: "read" | "edit";
 };
 
 export type AgentNodeData = {
   label: string;
   agentId: string;
   prompt: string;
+  defaultPrompt?: string;
+  role?: string;
   selectedSkills: string[];
   selectedMcps: string[];
   fileRefs: FileRef[];

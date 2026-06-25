@@ -1,229 +1,197 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
-import { CheckCircle2, Clock, Inbox, Search, TriangleAlert, XCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
-import { Skeleton } from "@/components/ui/skeleton";
 
-interface Check {
-  name: string;
-  ok: boolean;
-  detail: unknown;
-}
+import { useState, useEffect, useCallback } from "react";
+import {
+  Loader2, CheckCircle2, XCircle, ExternalLink,
+  Terminal, RefreshCw, ChevronDown, ChevronRight, Copy,
+} from "lucide-react";
 
-interface Agent {
+interface AgentInfo {
   id: string;
   label: string;
-  role: string;
-  color: string;
-  inbox: number;
-  lastActivity: string | null;
-  recentLog: string;
-  status: string;
-  riskLevel: string;
-  binary: string;
-  mcpServers: string[];
-  checks: Check[];
-}
-
-import { formatTime } from "@/lib/settings";
-
-function timeAgo(iso: string | null) {
-  return formatTime(iso ?? "");
+  package: string;
+  checkCmd: string;
+  installCmd: string;
+  url: string;
+  available: boolean;
+  version: string;
+  error: string;
 }
 
 export default function AgentsPage() {
-  const [agents, setAgents] = useState<Agent[]>([]);
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [query, setQuery] = useState("");
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [agents, setAgents] = useState<AgentInfo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    const res = await fetch("/api/agents");
-    const data = await res.json();
-    setAgents(data.agents ?? []);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/agents");
+      const data = await res.json();
+      setAgents(data.agents || []);
+    } catch { /* ignore */ }
+    setLoading(false);
   }, []);
 
-  useEffect(() => {
-    queueMicrotask(() => void load());
-    const id = setInterval(() => void load(), 30000);
-    return () => clearInterval(id);
-  }, [load]);
+  useEffect(() => { load(); }, [load]);
 
-  const filtered = agents.filter((agent) => {
-    const matchesStatus = statusFilter === "all" || agent.status === statusFilter;
-    const haystack = `${agent.id} ${agent.label} ${agent.role} ${agent.binary}`.toLowerCase();
-    return matchesStatus && haystack.includes(query.toLowerCase());
-  });
-  const selected = agents.find((agent) => agent.id === selectedId) ?? filtered[0] ?? null;
-  const healthyCount = agents.filter((agent) => agent.status === "healthy").length;
+  const copyToClipboard = (text: string, id: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <Loader2 size={20} className="animate-spin opacity-50" />
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <div className="flex flex-col gap-4 mb-6 lg:flex-row lg:items-end lg:justify-between">
+    <div className="p-6 space-y-4">
+      {/* Header */}
+      <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold mb-1">Agents</h1>
-          <p className="text-sm text-muted-foreground">
-            Registry-backed health, identity, MCP, inbox, and runtime checks
+          <h1 className="text-lg font-bold flex items-center gap-2" style={{ color: "var(--foreground)" }}>
+            <Terminal size={16} /> Agents
+          </h1>
+          <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+            Detected agents on this system · {agents.filter(a => a.available).length} available
           </p>
         </div>
-        <div className="flex gap-2 flex-wrap">
-          {["all", "healthy", "configured", "mcp_missing", "binary_missing"].map((status) => (
-            <Button
-              key={status}
-              onClick={() => setStatusFilter(status)}
-              variant={statusFilter === status ? "default" : "outline"}
-              size="sm"
-              className="text-xs"
-            >
-              {status.replace("_", " ")}
-            </Button>
-          ))}
-        </div>
+        <button
+          onClick={load}
+          className="text-xs px-2 py-1 rounded border flex items-center gap-1"
+          style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+        >
+          <RefreshCw size={10} /> Refresh
+        </button>
       </div>
 
-      <div className="grid gap-4 mb-4 md:grid-cols-3">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs text-muted-foreground font-normal">Registered</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-semibold">{agents.length}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs text-muted-foreground font-normal">Healthy</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-semibold text-green-600">{healthyCount}</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs text-muted-foreground font-normal">Degraded</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className={`text-2xl font-semibold font-mono ${agents.length === healthyCount ? "text-green-600" : "text-red-600"}`}>
-              {agents.length - healthyCount}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="relative mb-4">
-        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search agents, roles, binaries..."
-          className="w-full pl-9"
-        />
-      </div>
-
-      {agents.length === 0 ? (
-        <Skeleton className="h-32 w-full" />
-      ) : (
-        <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="grid gap-3 md:grid-cols-2">
-            {filtered.map((agent) => (
-              <Card
-                key={agent.id}
-                className={`cursor-pointer transition-colors ${selected?.id === agent.id ? "border-yellow-500" : "hover:border-primary/50"}`}
-                onClick={() => setSelectedId(agent.id)}
+      <div className="grid gap-3">
+        {agents.map((agent) => (
+          <div
+            key={agent.id}
+            className="rounded-xl border overflow-hidden"
+            style={{ borderColor: "var(--border)" }}
+          >
+            {/* Header */}
+            <div className="flex items-center gap-3 p-3">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
+                style={{
+                  background: agent.available ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.1)",
+                }}
               >
-                <CardHeader className="flex flex-row items-center gap-3 pb-3">
-                  <div className="w-3 h-3 rounded-full shrink-0" style={{ background: agent.color }} />
-                  <div className="min-w-0">
-                    <CardTitle className="text-sm font-medium">{agent.label}</CardTitle>
-                    <CardDescription className="text-xs font-mono">{agent.id}</CardDescription>
-                  </div>
-                  {agent.status === "healthy" ? (
-                    <CheckCircle2 size={15} className="ml-auto text-green-600" />
+                {agent.available ? (
+                  <CheckCircle2 size={14} style={{ color: "#22c55e" }} />
+                ) : (
+                  <XCircle size={14} style={{ color: "#ef4444" }} />
+                )}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="text-sm font-medium" style={{ color: "var(--foreground)" }}>
+                  {agent.label}
+                </div>
+                <div className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
+                  <span className="font-mono">{agent.package}</span>
+                  {agent.available && agent.version && (
+                    <span className="ml-2 opacity-60">v{agent.version}</span>
+                  )}
+                </div>
+              </div>
+              <button
+                onClick={() => setExpandedId(expandedId === agent.id ? null : agent.id)}
+                className="text-xs px-2 py-1 rounded border flex items-center gap-1"
+                style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+              >
+                {expandedId === agent.id ? "Hide" : "Details"}
+              </button>
+            </div>
+
+            {/* Expanded details */}
+            {expandedId === agent.id && (
+              <div className="border-t p-3 space-y-2" style={{ borderColor: "var(--border)" }}>
+                {/* Status indicator */}
+                <div className="flex items-center gap-2 text-[10px]">
+                  <span style={{ color: "var(--muted-foreground)" }}>Status:</span>
+                  {agent.available ? (
+                    <span className="flex items-center gap-1" style={{ color: "#22c55e" }}>
+                      <CheckCircle2 size={10} /> Installed
+                    </span>
                   ) : (
-                    <TriangleAlert size={15} className="ml-auto text-yellow-500" />
+                    <span className="flex items-center gap-1" style={{ color: "#ef4444" }}>
+                      <XCircle size={10} /> Not Installed
+                    </span>
                   )}
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-xs line-clamp-2 text-muted-foreground">{agent.role}</p>
+                </div>
 
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <Inbox size={12} />
-                      <span>{agent.inbox} inbox {agent.inbox === 1 ? "message" : "messages"}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <Clock size={12} />
-                      <span>Last active: {timeAgo(agent.lastActivity)}</span>
-                    </div>
-                    <div className={`text-xs ${agent.status === "healthy" ? "text-green-600" : "text-red-600"}`}>
-                      {agent.status} · {agent.riskLevel} risk
-                    </div>
+                {/* Version info */}
+                {agent.available && agent.version && (
+                  <div className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
+                    Version: <span className="font-mono">{agent.version}</span>
                   </div>
+                )}
 
-                  {agent.recentLog && (
-                    <div className="pt-3 border-t text-xs truncate text-muted-foreground border-border">
-                      {agent.recentLog}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <Card className="h-fit">
-            <CardContent className="p-4">
-              {!selected ? (
-                <div className="text-sm text-muted-foreground">No agent selected</div>
-              ) : (
-                <>
-                  <div className="flex items-start gap-3 mb-4">
-                    <span className="w-3 h-3 rounded-full mt-1 shrink-0" style={{ background: selected.color }} />
-                    <div>
-                      <h2 className="font-semibold">{selected.label}</h2>
-                      <p className="text-xs mt-1 text-muted-foreground">{selected.role}</p>
-                    </div>
+                {/* Error if unavailable */}
+                {!agent.available && agent.error && (
+                  <div className="text-[10px] p-2 rounded" style={{ background: "rgba(239,68,68,0.05)", color: "#ef4444" }}>
+                    {agent.error}
                   </div>
+                )}
 
-                  <div className="grid grid-cols-2 gap-3 mb-4 text-xs">
-                    <div>
-                      <div className="text-muted-foreground">Binary</div>
-                      <div className="font-mono mt-1">{selected.binary}</div>
-                    </div>
-                    <div>
-                      <div className="text-muted-foreground">MCP</div>
-                      <div className="font-mono mt-1">{selected.mcpServers.join(", ") || "none"}</div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    {selected.checks.map((check) => (
-                      <div
-                        key={check.name}
-                        className="flex items-center gap-2 rounded-md border px-3 py-2 border-border"
+                {/* Install snippet (21st.dev style) */}
+                <div className="rounded-lg border overflow-hidden" style={{ borderColor: "var(--border)" }}>
+                  <div
+                    className="flex items-center justify-between px-3 py-2 text-[10px] font-medium"
+                    style={{ background: "rgba(255,255,255,0.03)", color: "var(--muted-foreground)" }}
+                  >
+                    <span className="flex items-center gap-1">
+                      <Terminal size={10} /> Install
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => copyToClipboard(agent.installCmd, agent.id)}
+                        className="flex items-center gap-1 px-2 py-0.5 rounded hover:bg-white/5"
                       >
-                        {check.ok ? (
-                          <CheckCircle2 size={14} className="text-green-600" />
+                        {copiedId === agent.id ? (
+                          <span style={{ color: "#22c55e" }}>Copied!</span>
                         ) : (
-                          <XCircle size={14} className="text-red-600" />
+                          <><Copy size={9} /> Copy</>
                         )}
-                        <span className="text-sm">{check.name}</span>
-                        <span className={`text-xs ml-auto ${check.ok ? "text-green-600" : "text-red-600"}`}>
-                          {check.ok ? "pass" : "fail"}
-                        </span>
-                      </div>
-                    ))}
+                      </button>
+                      <a
+                        href={agent.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 px-2 py-0.5 rounded hover:bg-white/5"
+                      >
+                        <ExternalLink size={9} /> Docs
+                      </a>
+                    </div>
                   </div>
-                </>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      )}
+                  <pre
+                    className="px-3 py-2 text-[10px] font-mono whitespace-pre-wrap select-all"
+                    style={{ color: "var(--foreground)" }}
+                  >
+                    {agent.installCmd}
+                  </pre>
+                </div>
+
+                {/* Check command */}
+                {!agent.available && (
+                  <div className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>
+                    After installing, run <code className="font-mono" style={{ color: "var(--foreground)" }}>{agent.checkCmd}</code> to verify.
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

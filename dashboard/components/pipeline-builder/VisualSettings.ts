@@ -12,6 +12,8 @@ export type VisualSettings = {
   showMinimap: boolean;
   dagHeight: number;
   defaultZoom: number;
+  phaseCardWidth: number;
+  phaseCardHeight: number;
 };
 
 const STORAGE_KEY = "paos-visual-settings";
@@ -28,6 +30,8 @@ export const defaultVisualSettings: VisualSettings = {
   showMinimap: true,
   dagHeight: 300,
   defaultZoom: 0.75,
+  phaseCardWidth: 100,
+  phaseCardHeight: 0,
 };
 
 export function loadVisualSettings(): VisualSettings {

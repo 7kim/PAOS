@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { ChevronRight, ChevronDown, File, Folder, FolderOpen, Search, Loader2 } from "lucide-react";
+import { ChevronRight, ChevronDown, File, Folder, FolderOpen, Search, Loader2, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FileRef } from "./types";
 
@@ -17,14 +17,24 @@ interface FileTreeExplorerProps {
   selectedFiles: FileRef[];
   onToggleFile: (file: FileRef) => void;
   onClose: () => void;
+  pipelineId?: string;
+  benchmarkId?: string;
 }
 
-export function FileTreeExplorer({ projectPath, selectedFiles, onToggleFile, onClose }: FileTreeExplorerProps) {
+export function FileTreeExplorer({
+  projectPath,
+  selectedFiles,
+  onToggleFile,
+  onClose,
+  pipelineId,
+  benchmarkId,
+}: FileTreeExplorerProps) {
   const [tree, setTree] = useState<TreeNode[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<Set<string>>(new Set(["/"]));
   const [search, setSearch] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [pipelineFiles, setPipelineFiles] = useState<{ name: string; path: string }[]>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -41,6 +51,50 @@ export function FileTreeExplorer({ projectPath, selectedFiles, onToggleFile, onC
       .catch((e) => setError(String(e)))
       .finally(() => setLoading(false));
   }, [projectPath]);
+
+  // Fetch pipeline phase files if pipelineId is provided
+  useEffect(() => {
+    if (!pipelineId) return;
+    fetch(`/api/pipelines/${encodeURIComponent(pipelineId)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        const files: { name: string; path: string }[] = [];
+        if (data.phases) {
+          for (const phase of data.phases) {
+            if (phase.artifacts) {
+              for (const art of phase.artifacts) {
+                files.push({ name: art.filename, path: art.filename });
+              }
+            }
+          }
+        }
+        setPipelineFiles(files);
+      })
+      .catch(() => {});
+  }, [pipelineId]);
+
+  // Fetch benchmark files if benchmarkId is provided
+  const [benchmarkFiles, setBenchmarkFiles] = useState<{ name: string; path: string }[]>([]);
+  useEffect(() => {
+    if (!benchmarkId) { setBenchmarkFiles([]); return; }
+    fetch(`/api/benchmarks/${encodeURIComponent(benchmarkId)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        const files: { name: string; path: string }[] = [];
+        if (data.srsAsIs) files.push({ name: "SRS-as-is.md", path: `benchmarks/${benchmarkId}/SRS-as-is.md` });
+        if (data.srsToBe) files.push({ name: "SRS-to-be.md", path: `benchmarks/${benchmarkId}/SRS-to-be.md` });
+        if (data.gapsCombined) files.push({ name: "gaps.md", path: `benchmarks/${benchmarkId}/gaps.md` });
+        if (data.implementationDoc) files.push({ name: "implementation.md", path: `benchmarks/${benchmarkId}/implementation.md` });
+        if (data.audit) files.push({ name: "full-audit.md", path: `benchmarks/${benchmarkId}/full-audit.md` });
+        if (data.gaps) {
+          for (const g of data.gaps) {
+            files.push({ name: `gap-${String(g.number).padStart(2, "0")}.md`, path: `benchmarks/${benchmarkId}/gaps/gap-${String(g.number).padStart(2, "0")}.md` });
+          }
+        }
+        setBenchmarkFiles(files);
+      })
+      .catch(() => {});
+  }, [benchmarkId]);
 
   const toggleExpand = useCallback((path: string) => {
     setExpanded((prev) => {
@@ -162,6 +216,54 @@ export function FileTreeExplorer({ projectPath, selectedFiles, onToggleFile, onC
 
       {/* Tree */}
       <div className="flex-1 overflow-y-auto px-1">
+        {pipelineFiles.length > 0 && (
+          <div className="mb-2">
+            <div className="text-[9px] font-semibold px-2 py-1 flex items-center gap-1" style={{ color: "var(--primary)" }}>
+              <Folder size={10} /> Pipeline Files
+            </div>
+            {pipelineFiles.map((pf) => {
+              const selected = isSelected(pf.path);
+              return (
+                <button key={pf.path} type="button" onClick={() => onToggleFile({ path: pf.path, type: "file", name: pf.name })}
+                  className="w-full flex items-center gap-1.5 px-2 py-1 rounded-md text-xs transition-colors text-left"
+                  style={{
+                    paddingLeft: 24,
+                    background: selected ? "rgba(240,185,11,0.1)" : "transparent",
+                    color: selected ? "var(--primary)" : "var(--foreground)",
+                  }}
+                >
+                  <File size={12} className="shrink-0 opacity-60" />
+                  <span className="truncate">{pf.name}</span>
+                  {selected && <span className="ml-auto text-[9px]" style={{ color: "var(--primary)" }}>✓</span>}
+                </button>
+              );
+            })}
+          </div>
+        )}
+        {benchmarkFiles.length > 0 && (
+          <div className="mb-2">
+            <div className="text-[9px] font-semibold px-2 py-1 flex items-center gap-1" style={{ color: "#8b5cf6" }}>
+              <FileText size={10} /> Benchmark Files
+            </div>
+            {benchmarkFiles.map((bf) => {
+              const selected = isSelected(bf.path);
+              return (
+                <button key={bf.path} type="button" onClick={() => onToggleFile({ path: bf.path, type: "file", name: bf.name })}
+                  className="w-full flex items-center gap-1.5 px-2 py-1 rounded-md text-xs transition-colors text-left"
+                  style={{
+                    paddingLeft: 24,
+                    background: selected ? "rgba(139,92,246,0.1)" : "transparent",
+                    color: selected ? "#8b5cf6" : "var(--foreground)",
+                  }}
+                >
+                  <File size={12} className="shrink-0 opacity-60" />
+                  <span className="truncate">{bf.name}</span>
+                  {selected && <span className="ml-auto text-[9px]" style={{ color: "#8b5cf6" }}>✓</span>}
+                </button>
+              );
+            })}
+          </div>
+        )}
         {loading ? (
           <div className="flex items-center justify-center py-8">
             <Loader2 size={14} className="animate-spin opacity-50" />

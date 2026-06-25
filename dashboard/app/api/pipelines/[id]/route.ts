@@ -24,6 +24,7 @@ interface Phase {
   walkthroughMd?: string;
   outputPreview?: string;
   pid?: number | null;
+  extraFiles?: PhaseArtifact[];
 }
 
 export async function GET(
@@ -97,7 +98,29 @@ export async function GET(
       fileContents[file] = await readFile(join(dir, file), "utf-8").catch(() => "");
     }
 
-    // Assign files to phases based on the META.json artifacts list
+    // Also scan phase subdirectories for agent-created files
+    const phasesDir = join(dir, "phases");
+    try {
+      const phaseSubDirs = await readdir(phasesDir);
+      for (const subDir of phaseSubDirs) {
+        const subDirPath = join(phasesDir, subDir);
+        try {
+          const subFiles = await readdir(subDirPath);
+          for (const sf of subFiles) {
+            if (sf.endsWith(".md") || sf.endsWith(".log")) {
+              const fullPath = join(subDirPath, sf);
+              const relPath = `phases/${subDir}/${sf}`;
+              if (!fileContents[relPath]) {
+                fileContents[relPath] = await readFile(fullPath, "utf-8").catch(() => "");
+                artifactFiles.push(relPath);
+              }
+            }
+          }
+        } catch { /* skip unreadable subdirs */ }
+      }
+    } catch { /* no phases dir */ }
+
+    // Convert META.json phase agent/role to front-end Phase objects
     for (const phase of phases) {
       const metaPhases = (meta.phases as Array<Record<string, unknown>> | undefined) ?? [];
       const phaseMeta = metaPhases.find(
@@ -117,12 +140,21 @@ export async function GET(
     }
 
     // Fallback: assign any .md files on disk not listed in any phase's artifacts
+    // Match phase subdirectory files to the correct phase by directory name
     const allAssigned = new Set(phases.flatMap(p => p.artifacts.map(a => a.filename)));
     for (const filename of artifactFiles) {
       if (!allAssigned.has(filename) && !filename.endsWith(".json")) {
-        // Find the last phase that hasn't started yet, or the last phase overall
-        const targetPhase = phases.find(p => p.status === "pending" || p.status === "submitted")
-          ?? phases[phases.length - 1];
+        // Try to match by phase subdirectory (e.g. phases/n1/REASONING.md → phase with id=n1)
+        let targetPhase = null;
+        const phaseMatch = filename.match(/^phases\/([^/]+)\//);
+        if (phaseMatch) {
+          const phaseId = phaseMatch[1];
+          targetPhase = phases.find(p => p.id === phaseId);
+        }
+        if (!targetPhase) {
+          targetPhase = phases.find(p => p.status === "pending" || p.status === "submitted")
+            ?? phases[phases.length - 1];
+        }
         if (targetPhase && !targetPhase.artifacts.some(a => a.filename === filename)) {
           targetPhase.artifacts.push({
             filename,
@@ -187,8 +219,9 @@ export async function GET(
       }
       if (current) taskList.push(current);
 
-      // Enrich task status from pipeline.json (capped to actual task count)
-      if (liveTotal > 0) {
+      // Enrich task status from pipeline.json — only if TASKS.md isn't already fully marked
+      const allDone = taskList.every((t) => t.status === "done");
+      if (!allDone && liveTotal > 0) {
         const maxCompleted = Math.min(liveCompleted, taskList.length);
         taskList.forEach((t, i) => {
           if (i < maxCompleted) t.status = "done";
@@ -210,29 +243,96 @@ export async function GET(
         pipelineId: id,
         status: "completed",
         phases: {} as Record<string, any>,
-        order: phases.map((p) => p.id || p.role),
+        order: phases.map((p) => p.id || p.role || `phase-${phases.indexOf(p)}`),
       };
-      for (const phase of phases) {
-        const pid = phase.id || phase.role;
+      for (const [i, phase] of phases.entries()) {
+        const pid = phase.id || phase.role || `phase-${i}`;
         flowData.phases[pid] = {
           status: phase.status || "completed",
           prompt: phase.prompt || "",
           pid: null,
-          order: 0,
+          order: i,
         };
+        // Read per-phase files by position as fallback
+        const phasesDir = join(dir, "phases");
+        // Try matching by node ID first, then by label/role
+        const possibleDirs = [pid, `phase-${i}`, phase.label, phase.role].filter(Boolean);
+        for (const subDir of possibleDirs) {
+          try {
+            const phaseDir = join(phasesDir, subDir);
+            const reasoning = await readFile(join(phaseDir, "REASONING.md"), "utf-8").catch(() => "");
+            const tasksMd = await readFile(join(phaseDir, "TASKS.md"), "utf-8").catch(() => "");
+            const walkthrough = await readFile(join(phaseDir, "WALKTHROUGH.md"), "utf-8").catch(() => "");
+            const output = await readFile(join(phaseDir, "output.log"), "utf-8").catch(() => "");
+            if (reasoning) flowData.phases[pid].reasoning = reasoning;
+            if (tasksMd) flowData.phases[pid].tasksMd = tasksMd;
+            if (walkthrough) flowData.phases[pid].walkthroughMd = walkthrough;
+            if (output) flowData.phases[pid].outputPreview = output.slice(0, 1000);
+            break; // Found something, stop looking
+          } catch { /* try next */ }
+        }
       }
     }
 
+    // Enrich phases, trying multiple key strategies
     if (flowData.phases) {
-      for (const phase of phases) {
-        const pid = phase.id || phase.role;
-        const fp = flowData.phases[pid] || {};
+      for (const [i, phase] of phases.entries()) {
+        // Try: id, role, label, phase-N index, then position in order array
+        const keys = [phase.id, phase.role, phase.label, `phase-${i}`];
+        // Also add the order-mapped key if order exists
+        if (flowData.order?.[i]) keys.push(flowData.order[i]);
+        let fp = null;
+        for (const key of keys) {
+          if (key && flowData.phases[key]) {
+            fp = flowData.phases[key];
+            break;
+          }
+        }
+        fp = fp || {};
         phase.prompt = phase.prompt || fp.prompt || "";
         phase.reasoning = fp.reasoning || "";
         phase.tasksMd = fp.tasksMd || "";
         phase.walkthroughMd = fp.walkthroughMd || "";
         phase.outputPreview = fp.outputPreview || "";
         phase.pid = fp.pid || null;
+
+        // Fallback: read phase files directly from disk (try multiple subdir names)
+        if (!phase.reasoning || !phase.tasksMd || !phase.walkthroughMd || !phase.extraFiles || (phase.extraFiles && phase.extraFiles.length === 0)) {
+          for (const tryKey of keys) {
+            if (!tryKey) continue;
+            const phaseDir = join(dir, "phases", tryKey);
+            try {
+              await readFile(join(phaseDir, "REASONING.md"), "utf-8");
+              // This dir exists, read all files
+              if (!phase.reasoning) {
+                phase.reasoning = await readFile(join(phaseDir, "REASONING.md"), "utf-8").catch(() => "");
+              }
+              if (!phase.tasksMd) {
+                phase.tasksMd = await readFile(join(phaseDir, "TASKS.md"), "utf-8").catch(() => "");
+              }
+              if (!phase.walkthroughMd) {
+                phase.walkthroughMd = await readFile(join(phaseDir, "WALKTHROUGH.md"), "utf-8").catch(() => "");
+              }
+              // Scan for any extra .md files the agent created
+              const allFiles = await readdir(phaseDir).catch(() => [] as string[]);
+              const extra = allFiles.filter((f) =>
+                f.endsWith(".md") &&
+                f !== "IMPLEMENTATION.md" &&
+                f !== "REASONING.md" &&
+                f !== "TASKS.md" &&
+                f !== "WALKTHROUGH.md"
+              );
+              if (extra.length > 0) {
+                phase.extraFiles = await Promise.all(extra.map(async (f) => ({
+                  filename: f,
+                  content: await readFile(join(phaseDir, f), "utf-8").catch(() => ""),
+                  lines: 0,
+                })));
+              }
+              break; // Found the matching dir
+            } catch { /* try next */ }
+          }
+        }
       }
     }
 

@@ -209,7 +209,8 @@ export default function ProjectsPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        setImportResult(`Imported "${importName}" successfully`);
+        setShowImport(false);
+        setImportResult(null);
         setImportName("");
         setImportPath("");
         setImportGitUrl("");

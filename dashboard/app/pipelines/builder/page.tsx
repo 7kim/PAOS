@@ -1,25 +1,69 @@
 "use client";
 
-import { useCallback, useState, Suspense } from "react";
-import { useRouter } from "next/navigation";
-import { ArrowLeft, Loader2, Settings2, LayoutTemplate, Download } from "lucide-react";
+import { useCallback, useState, Suspense, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeft, Loader2, Settings2, LayoutTemplate, Download, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
+} from "@/components/ui/dialog";
 import { PipelineCanvas } from "@/components/pipeline-builder/Canvas";
 import { BuilderSettingsDialog, loadSettings, saveSettings, type BuilderSettings } from "@/components/pipeline-builder/BuilderSettings";
 import { TemplateBrowser } from "@/components/pipeline-builder/TemplateBrowser";
 import { LoadPipelineDialog } from "@/components/pipeline-builder/LoadPipelineDialog";
+import { BenchmarkBrowser } from "@/components/pipeline-builder/BenchmarkBrowser";
 import type { BuilderLayout, PipelineTemplate } from "@/components/pipeline-builder/types";
 
 function BuilderPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [project, setProject] = useState("PAOS");
   const [saving, setSaving] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
   const [showLoadPipeline, setShowLoadPipeline] = useState(false);
+  const [showBenchmarks, setShowBenchmarks] = useState(false);
   const [settings, setSettings] = useState<BuilderSettings>(loadSettings);
   const [liveZoom, setLiveZoom] = useState<number | undefined>(undefined);
   const [templateToLoad, setTemplateToLoad] = useState<PipelineTemplate | null>(null);
+  const [pipelineName, setPipelineName] = useState<string | null>(null);
+
+  // Generate default pipeline name on mount
+  useEffect(() => {
+    fetch(`/api/pipelines/generate-name?project=${encodeURIComponent(project)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.name) setPipelineName(data.name);
+      })
+      .catch(() => setPipelineName(`New Pipeline ${new Date().toLocaleString()}`));
+  }, [project]);
+
+  // Load pipeline from ?load= query param
+  useEffect(() => {
+    const loadId = searchParams.get("load");
+    if (!loadId) return;
+    fetch(`/api/pipelines/${encodeURIComponent(loadId)}`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.builderLayout) {
+          setTemplateToLoad({
+            id: loadId,
+            name: loadId,
+            description: "Loaded from pipeline",
+            category: "",
+            tags: [],
+            nodes: data.builderLayout.nodes || [],
+            edges: data.builderLayout.edges || [],
+            createdAt: "",
+            updatedAt: "",
+          } as PipelineTemplate);
+          // Set the pipeline name from the prompt or ID
+          const prompt = String(data.meta?.prompt || "");
+          setPipelineName(prompt ? prompt.slice(0, 60) : loadId);
+        }
+      })
+      .catch(() => {});
+  }, [searchParams]);
 
   const handleSettingsChange = useCallback((next: BuilderSettings) => {
     setSettings(next);
@@ -86,6 +130,15 @@ function BuilderPage() {
         <h1 className="text-sm font-semibold" style={{ color: "var(--foreground)" }}>
           Pipeline Flow Builder
         </h1>
+        <div className="flex items-center gap-2 ml-2">
+          <input
+            value={pipelineName || ""}
+            onChange={(e) => setPipelineName(e.target.value)}
+            placeholder={pipelineName === null ? "Generating name..." : "Pipeline name..."}
+            className="text-xs rounded-md px-2 py-1 border w-48"
+            style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
+          />
+        </div>
         <div className="flex items-center gap-2 ml-auto">
           <Button
             variant="ghost"
@@ -95,6 +148,15 @@ function BuilderPage() {
           >
             <LayoutTemplate size={12} />
             Templates
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowBenchmarks(true)}
+            className="text-xs gap-1.5"
+          >
+            <BarChart3 size={12} />
+            Benchmarks
           </Button>
           <Button
             variant="ghost"
@@ -136,7 +198,7 @@ function BuilderPage() {
 
       {/* Canvas */}
       <div className="flex-1 overflow-hidden">
-        <PipelineCanvas onSave={handleSave} settings={settings} liveZoom={liveZoom} templateToLoad={templateToLoad} />
+        <PipelineCanvas onSave={handleSave} settings={settings} liveZoom={liveZoom} templateToLoad={templateToLoad} projectPath={project} />
       </div>
 
       {/* Template browser */}
@@ -154,6 +216,52 @@ function BuilderPage() {
         onOpenChange={setShowLoadPipeline}
         onLoad={handleLoadFromPipeline}
       />
+
+      {/* Benchmarks browser */}
+      <Dialog open={showBenchmarks} onOpenChange={setShowBenchmarks}>
+        <DialogContent className="max-w-md max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-sm flex items-center gap-2">
+              <BarChart3 size={14} /> Benchmarks
+            </DialogTitle>
+            <DialogDescription className="text-[10px]">
+              Select a benchmark to view its gaps. Click a gap to create a pipeline.
+            </DialogDescription>
+          </DialogHeader>
+          <BenchmarkBrowser
+            onSelect={(benchmarkId, gapNumber) => {
+              setShowBenchmarks(false);
+              if (gapNumber) {
+                // Trigger create pipeline for this gap
+                fetch(`/api/benchmarks/${encodeURIComponent(benchmarkId)}/gaps/${gapNumber}/create-pipeline`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ project }),
+                })
+                  .then((r) => r.json())
+                  .then((data) => {
+                    if (data.layout) {
+                      setTemplateToLoad({
+                        id: `benchmark-gap-${benchmarkId}-${gapNumber}`,
+                        name: `Gap ${gapNumber} Fix Pipeline`,
+                        description: `Fix for gap ${gapNumber} from ${benchmarkId}`,
+                        category: "benchmark",
+                        tags: ["benchmark", `gap-${gapNumber}`],
+                        nodes: data.layout.nodes,
+                        edges: data.layout.edges,
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString(),
+                      });
+                    } else if (data.small) {
+                      alert(data.message);
+                    }
+                  })
+                  .catch(() => {});
+              }
+            }}
+          />
+        </DialogContent>
+      </Dialog>
 
       {/* Settings dialog */}
       <BuilderSettingsDialog

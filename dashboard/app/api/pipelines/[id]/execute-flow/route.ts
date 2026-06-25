@@ -6,22 +6,35 @@ import { spawn } from "child_process";
 const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
 const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
 
-// Walk DAG in topological order
+// Walk DAG in topological order using Kahn's algorithm (BFS)
 function topoSort(nodes: any[], edges: any[]): string[] {
-  const hasIncoming = new Set(edges.map((e: any) => e.target));
-  const roots = nodes.filter((n: any) => !hasIncoming.has(n.id));
-  const visited = new Set<string>();
-  const order: string[] = [];
+  const inDegree = new Map<string, number>();
+  const adj = new Map<string, string[]>();
 
-  function visit(nodeId: string) {
-    if (visited.has(nodeId)) return;
-    visited.add(nodeId);
-    const deps = edges.filter((e: any) => e.source === nodeId);
-    for (const dep of deps) visit(dep.target);
-    order.push(nodeId);
+  for (const n of nodes) {
+    inDegree.set(n.id, 0);
+    adj.set(n.id, []);
+  }
+  for (const e of edges) {
+    adj.get(e.source)?.push(e.target);
+    inDegree.set(e.target, (inDegree.get(e.target) || 0) + 1);
   }
 
-  for (const root of roots) visit(root.id);
+  const queue: string[] = [];
+  for (const [id, deg] of inDegree) {
+    if (deg === 0) queue.push(id);
+  }
+
+  const order: string[] = [];
+  while (queue.length > 0) {
+    const id = queue.shift()!;
+    order.push(id);
+    for (const next of adj.get(id) || []) {
+      const newDeg = (inDegree.get(next) || 0) - 1;
+      inDegree.set(next, newDeg);
+      if (newDeg === 0) queue.push(next);
+    }
+  }
   return order;
 }
 
@@ -42,7 +55,9 @@ function generateNodeImplementation(node: any, taskNum: number, totalTasks: numb
   const nd = node.data || {};
   const agentId = nd.agentId || "unknown";
   const label = nd.label || agentId;
-  const prompt = nd.prompt || "";
+  const userPrompt = nd.prompt || "";
+  const defaultPrompt = nd.defaultPrompt || "";
+  const prompt = defaultPrompt ? `${defaultPrompt}\n\n---\n\n${userPrompt}` : userPrompt;
   const skills = nd.selectedSkills || [];
   const mcps = nd.selectedMcps || [];
   const fileRefs = nd.fileRefs || [];
@@ -235,8 +250,9 @@ export async function POST(
       const node = nodeMap.get(nodeId);
       const nd = (node as any)?.data || {};
       return {
+        id: nodeId,
         agent: nd.agentId || "unknown",
-        role: "agent",
+        role: nd.label || "Agent",
         label: nd.label || nd.agentId || "Agent",
         status: nodeId === order[0] ? "executing" : "pending",
         artifacts: [`phases/${nodeId}/IMPLEMENTATION.md`],
@@ -324,8 +340,14 @@ export async function POST(
           if (flowLatest.phases) {
             flowLatest.phases[nodeId].outputPreview = output.slice(0, 1000);
             flowLatest.phases[nodeId].walkthroughMd = `# ${nodeLabel} Walkthrough\n\n${output.slice(0, 2000)}`;
-            flowLatest.phases[nodeId].reasoning = flowLatest.phases[nodeId].reasoning || "";
-            flowLatest.phases[nodeId].tasksMd = flowLatest.phases[nodeId].tasksMd || "";
+
+            // Read reasoning, tasks, walkthrough from phase files
+            const reasoningFile = await readFile(join(phaseDir, "REASONING.md"), "utf-8").catch(() => "");
+            const tasksFile = await readFile(join(phaseDir, "TASKS.md"), "utf-8").catch(() => "");
+            const walkthroughFile = await readFile(join(phaseDir, "WALKTHROUGH.md"), "utf-8").catch(() => "");
+            if (reasoningFile) flowLatest.phases[nodeId].reasoning = reasoningFile;
+            if (tasksFile) flowLatest.phases[nodeId].tasksMd = tasksFile;
+            if (walkthroughFile) flowLatest.phases[nodeId].walkthroughMd = walkthroughFile;
           }
 
           await writeFile(join(dir, "pipeline-flow.json"), JSON.stringify(flowLatest, null, 2));
@@ -369,6 +391,19 @@ export async function POST(
               metaFinal.status = hasFailures ? "completed_with_errors" : "completed";
               metaFinal.completed_at = new Date().toISOString();
               await writeFile(join(dir, "META.json"), JSON.stringify(metaFinal, null, 2));
+
+              // Update queue: remove from pending, add to done
+              try {
+                const qPath = join(MEMORY_DIR, "queue", "queue.json");
+                const qRaw = await readFile(qPath, "utf-8").catch(() => "{}");
+                const q = JSON.parse(qRaw);
+                if (!q.pending) q.pending = [];
+                if (!q.done) q.done = [];
+                q.pending = q.pending.filter((i: any) => i.id !== id);
+                q.done.unshift({ id, project: "PAOS", completedAt: new Date().toISOString(), status: hasFailures ? "completed_with_errors" : "completed" });
+                q.done = q.done.slice(0, (q.maxDone || 20));
+                await writeFile(qPath, JSON.stringify(q, null, 2));
+              } catch {}
             }
           }
         } else {

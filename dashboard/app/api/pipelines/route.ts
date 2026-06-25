@@ -73,7 +73,7 @@ async function scanPipelines(baseDir: string, projectName: string) {
         id: dir,
         project: projectName,
         status: meta.status ?? "unknown",
-        queue: queueMap[dir] ?? "none",
+        queue: (meta.status === "completed" || meta.status === "failed") ? "none" : (queueMap[dir] ?? "none"),
         builder: hasBuilderLayout,
         phases: Array.isArray(meta.phases) ? meta.phases.map((p: Record<string, unknown>) => ({
           name: String(p.label || p.role || "Phase"),

@@ -245,6 +245,31 @@ export function VisualToolbar({ open, onOpenChange, settings, onSettingsChange, 
             </div>
           )}
         </div>
+
+        <div className="h-px" style={{ background: "var(--border)" }} />
+
+        {/* Phase Card Size */}
+        <div className="space-y-2">
+          <div className="flex items-center gap-1.5 mb-1.5 font-medium" style={{ color: "var(--muted-foreground)" }}>
+            <LayoutTemplate size={9} /> Phase Cards
+          </div>
+          <div>
+            <label className="text-[9px] flex items-center gap-1 mb-0.5" style={{ color: "var(--muted-foreground)" }}>
+              <Minus size={8} /> Width (%)
+            </label>
+            <SliderWithScroll value={settings.phaseCardWidth} min={50} max={100} step={5}
+              onChange={(v) => update({ phaseCardWidth: v })} format={(v) => v + "%"}
+            />
+          </div>
+          <div>
+            <label className="text-[9px] flex items-center gap-1 mb-0.5" style={{ color: "var(--muted-foreground)" }}>
+              <Minus size={8} /> Max Height
+            </label>
+            <SliderWithScroll value={settings.phaseCardHeight} min={0} max={2000} step={50}
+              onChange={(v) => update({ phaseCardHeight: v })} format={(v) => v === 0 ? "Auto" : v + "px"}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

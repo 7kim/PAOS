@@ -11,6 +11,7 @@
 | [Examples](examples.md) | CLI, API, MCP, and pipeline workflows with runnable commands |
 | [Architecture](architecture.md) | System model: global fabric, per-project sandboxes, cross-cutting concerns |
 | [Workspace Format](workspace-format.md) | `.code-workspace` file schema for PAOS project definitions |
+| [Pipeline System](pipelines.md) | Pipeline lifecycle, DAG phases, directory structure, known issues |
 | [Dashboard Guide](../dashboard/README.md) | Next.js orchestration UI — pages, endpoints, development |
 
 ## Reference Files

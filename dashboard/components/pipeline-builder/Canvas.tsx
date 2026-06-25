@@ -42,9 +42,10 @@ interface FlowBuilderProps {
   liveZoom?: number;
   templateToLoad?: PipelineTemplate | null;
   visualSettings?: VisualSettings;
+  projectPath?: string;
 }
 
-function FlowCanvas({ initialLayout, onSave, settings, liveZoom, templateToLoad, visualSettings }: FlowBuilderProps) {
+function FlowCanvas({ initialLayout, onSave, settings, liveZoom, templateToLoad, visualSettings, projectPath }: FlowBuilderProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [nodes, setNodes, onNodesChange] = useNodesState(initialLayout?.nodes as any || []);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialLayout?.edges || []);
@@ -78,6 +79,13 @@ function FlowCanvas({ initialLayout, onSave, settings, liveZoom, templateToLoad,
       reactFlowInstance.zoomTo(liveZoom, { duration: 150 });
     }
   }, [liveZoom, reactFlowInstance]);
+
+  // Set savedPipelineId from loaded template
+  useEffect(() => {
+    if (initialLayout && (templateToLoad as any)?.id?.startsWith("PIPE-")) {
+      setSavedPipelineId((templateToLoad as any).id);
+    }
+  }, [initialLayout, templateToLoad]);
 
   // Load template onto canvas
   useEffect(() => {
@@ -469,6 +477,8 @@ function FlowCanvas({ initialLayout, onSave, settings, liveZoom, templateToLoad,
         onDelete={deleteNode}
         availableSkills={availableSkills}
         availableMcps={availableMcps}
+        pipelineId={savedPipelineId || undefined}
+        projectPath={projectPath}
       />
     </div>
   );

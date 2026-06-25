@@ -1,0 +1,379 @@
+<html><body style="background:#0a0a0a;color:#e0e0e0;font-family:sans-serif;padding:20px"><h1>PAOS AI_Workflow — Benchmark Audit Results</h1>
+<p><strong>Raw Score:</strong> 148/220  |  <strong>Normalized:</strong> 67/100  |  <strong>Grade:</strong> C
+<strong>Auto-grade penalty:</strong> 2 ★ questions failed (Q56, Q81)</p>
+<h2>Category Breakdown</h2>
+<p>| # | Category | Raw | Max | % |
+|---|----------|----:|----:|---:|
+| 1. OOP | 33 | 36 | 92% |
+| 2. Data Structures | 12 | 18 | 67% |
+| 3. Graph Theory | 11 | 12 | 92% |
+| 4. Linear Algebra | 6 | 8 | 75% |
+| 5. Digital Logic | 8 | 8 | 100% |
+| 6. Numerical Analysis | 7 | 8 | 88% |
+| 7. System Analysis | 14 | 14 | 100% |
+| 8. Database | 10 | 16 | 62% |
+| 9. Calculus | 4 | 10 | 40% |
+| 10. UX/UI | 20 | 20 | 100% |
+| 11. Security | 10 | 30 | 33% |
+| 12. API Endpoints | 17 | 20 | 85% |
+| 13. Code Quality | 14 | 20 | 70% |
+| <strong>TOTAL</strong> | <strong>148</strong> | <strong>220</strong> | <strong>67%</strong> |</p>
+<h2>Weight Tiers</h2>
+<p>| Tier | Categories | Raw | Max | % |
+|------|------------|----:|----:|---:|
+| <strong>Heavy (48%)</strong> | OOP, Data Structures, System Analysis, Digital Logic, Security | 77 | 106 | 73% |
+| <strong>Medium (25%)</strong> | Code Quality, API Endpoints, Database | 41 | 56 | 73% |
+| <strong>Moderate (18%)</strong> | UX/UI, Linear Algebra | 26 | 28 | 93% |
+| <strong>Supporting (9%)</strong> | Graph Theory, Calculus, Numerical Analysis | 22 | 30 | 73% |</p>
+<h2>Detailed Results</h2>
+<h3>✅ ★ Q1: 2/2</h3>
+<p>✅ Canvas.tsx uses useNodesState/useEdgesState hooks — internal state hidden behind onSave callback</p>
+<h3>✅ ★ Q2: 2/2</h3>
+<p>✅ No filesystem paths in API responses</p>
+<h3>⚠️ Q3: 1/2</h3>
+<p>✅ onUpdate dispatched but no input validation before dispatch</p>
+<h3>⚠️ Q4: 1/2</h3>
+<p>✅ Props are typed interfaces. ⚠️ Canvas receives 8+ props</p>
+<h3>✅ ★ Q5: 2/2</h3>
+<p>✅ Frontend never constructs filesystem paths</p>
+<h3>✅ Q6: 2/2</h3>
+<p>✅ Shared utilities in lib/</p>
+<h3>✅ Q7: 2/2</h3>
+<p>✅ No class inheritance — all composition via hooks+props</p>
+<h3>✅ Q8: 2/2</h3>
+<p>✅ nodeTypes registry pattern</p>
+<h3>✅ ★ Q9: 2/2</h3>
+<p>✅ AVAILABLE_AGENTS array — all agents share same shape</p>
+<h3>✅ ★ Q10: 2/2</h3>
+<p>✅ execute-flow never checks agentId — polymorphic execution</p>
+<h3>✅ Q11: 2/2</h3>
+<p>✅ Adding to AVAILABLE_AGENTS is sufficient</p>
+<h3>✅ Q12: 2/2</h3>
+<p>✅ Multiple interfaces — each a coherent concept</p>
+<h3>✅ Q13: 2/2</h3>
+<p>✅ Route files, resource-named</p>
+<h3>✅ Q14: 2/2</h3>
+<p>✅ Each file has clear purpose</p>
+<h3>✅ Q15: 2/2</h3>
+<p>✅ Template system with categories and presets</p>
+<h3>✅ Q16: 2/2</h3>
+<p>✅ ReadOnlyNode replaces AgentNode — same data interface</p>
+<h3>⚠️ Q17: 1/2</h3>
+<p>✅ FlowBuilderProps has 8 fields — could be split</p>
+<h3>✅ Q18: 2/2</h3>
+<p>✅ Canvas depends on onSave(layout) abstraction</p>
+<h3>✅ ★ Q19: 2/2</h3>
+<p>✅ DAG stored as nodes[] + edges[] — proper graph structure</p>
+<h3>✅ ★ Q20: 2/2</h3>
+<p>✅ Kahn's algorithm (inDegree + shift) — correct BFS topological sort</p>
+<h3>❌ Q21: 0/2</h3>
+<p>❌ No cycle detection — Kahn's silently truncates cyclic DAGs</p>
+<h3>✅ Q22: 2/2</h3>
+<p>✅ Queue with enqueue/dequeue/done + cleanup on GET</p>
+<h3>⚠️ Q23: 1/2</h3>
+<p>⚠️ Some .find() calls — acceptable for small arrays</p>
+<h3>⚠️ Q24: 1/2</h3>
+<p>⚠️ Some .includes() calls — some should be Set.has()</p>
+<h3>✅ Q25: 2/2</h3>
+<p>✅ Recursive renderNode — proper tree rendering</p>
+<h3>⚠️ Q26: 1/2</h3>
+<p>⚠️ selectedSkills is array but skills unique — should use Set</p>
+<h3>❌ Q27: 0/2</h3>
+<p>❌ No DAG validation on read</p>
+<h3>✅ Q28: 2/2</h3>
+<p>✅ Branching handled — cascade spawns all ready nodes</p>
+<h3>✅ Q29: 2/2</h3>
+<p>✅ Join nodes wait for all predecessors</p>
+<h3>✅ Q30: 2/2</h3>
+<p>✅ All FSM states present in ReadOnlyNode</p>
+<h3>✅ Q31: 2/2</h3>
+<p>✅ Topological sort is deterministic</p>
+<h3>⚠️ Q32: 1/2</h3>
+<p>⚠️ Some permission checks use .filter/.includes</p>
+<h3>✅ Q33: 2/2</h3>
+<p>✅ Same pipeline always produces same execution order</p>
+<h3>✅ Q34: 2/2</h3>
+<p>✅ Viewport transforms saved/restored</p>
+<h3>✅ Q35: 2/2</h3>
+<p>✅ DAG coordinates preserved across sessions</p>
+<h3>✅ Q36: 2/2</h3>
+<p>✅ Consistent node spacing</p>
+<h3>❌ Q37: 0/2</h3>
+<p>❌ No similarity metrics — exact-match only</p>
+<h3>✅ Q38: 2/2</h3>
+<p>✅ All visibility conditions combinatorial</p>
+<h3>✅ Q39: 2/2</h3>
+<p>✅ Cascade is sequential circuit — depends on stored state</p>
+<h3>✅ Q40: 2/2</h3>
+<p>✅ Permission checks are pure</p>
+<h3>✅ Q41: 2/2</h3>
+<p>✅ pipeline-flow.json enables crash recovery</p>
+<h3>✅ Q42: 2/2</h3>
+<p>✅ No float equality comparisons</p>
+<h3>✅ Q43: 2/2</h3>
+<p>✅ Slider values rounded to nearest step</p>
+<h3>✅ Q44: 2/2</h3>
+<p>✅ Progress is monotonic</p>
+<h3>⚠️ Q45: 1/2</h3>
+<p>⚠️ Basic edge cases handled, no explicit NaN/Infinity guards</p>
+<h3>✅ ★ Q46: 2/2</h3>
+<p>✅ Frontend uses API exclusively</p>
+<h3>✅ Q47: 2/2</h3>
+<p>✅ Clean 4-layer architecture</p>
+<h3>✅ Q48: 2/2</h3>
+<p>✅ Moderate coupling</p>
+<h3>✅ Q49: 2/2</h3>
+<p>✅ High cohesion</p>
+<h3>✅ Q50: 2/2</h3>
+<p>✅ UI never mixed with business logic</p>
+<h3>✅ Q51: 2/2</h3>
+<p>✅ Queue fully separate from pipeline data</p>
+<h3>✅ Q52: 2/2</h3>
+<p>✅ Execute-flow works without queue</p>
+<h3>✅ ★ Q53: 2/2</h3>
+<p>✅ Atomic write order: artifacts → flow → META</p>
+<h3>✅ ★ Q54: 2/2</h3>
+<p>✅ Crash recoverable with fallback defaults</p>
+<h3>✅ Q55: 2/2</h3>
+<p>✅ Schema validation at read time</p>
+<h3>❌ ★ Q56: 0/2</h3>
+<p>❌ No caching — same file read multiple times per request</p>
+<h3>✅ Q57: 2/2</h3>
+<p>✅ Directory structure as index</p>
+<h3>✅ Q58: 2/2</h3>
+<p>✅ All JSON.parse calls have try/catch defaults</p>
+<h3>❌ Q59: 0/2</h3>
+<p>❌ No concurrent write prevention</p>
+<h3>✅ ★ Q60: 2/2</h3>
+<p>✅ Correct write order verified</p>
+<h3>✅ Q61: 2/2</h3>
+<p>✅ Progress as absolute counter</p>
+<h3>❌ Q62: 0/2</h3>
+<p>❌ No velocity tracking</p>
+<h3>✅ Q63: 2/2</h3>
+<p>✅ Cumulative totals correct</p>
+<h3>❌ Q64: 0/2</h3>
+<p>❌ No moving averages</p>
+<h3>❌ Q65: 0/2</h3>
+<p>❌ No multi-variable optimization</p>
+<h3>✅ ★ Q66: 2/2</h3>
+<p>✅ 2s polling, spinners, progress bars, PID display</p>
+<h3>✅ ★ Q67: 2/2</h3>
+<p>✅ 4 recovery paths: Retry, Skip, Cancel, Intervene</p>
+<h3>✅ Q68: 2/2</h3>
+<p>✅ Type confirmation to delete</p>
+<h3>✅ Q69: 2/2</h3>
+<p>✅ Responsive at 390px</p>
+<h3>✅ Q70: 2/2</h3>
+<p>✅ Responsive at 3840px</p>
+<h3>✅ Q71: 2/2</h3>
+<p>✅ Scroll-wheel on all sliders</p>
+<h3>✅ Q72: 2/2</h3>
+<p>✅ Specific error messages</p>
+<h3>✅ Q73: 2/2</h3>
+<p>✅ Gold primary, dark theme consistent</p>
+<h3>✅ Q74: 2/2</h3>
+<p>✅ Progressive disclosure</p>
+<h3>✅ Q75: 2/2</h3>
+<p>✅ Affordances clear</p>
+<h3>✅ ★ Q76: 2/2</h3>
+<p>✅ API keys in .env only</p>
+<h3>✅ ★ Q77: 2/2</h3>
+<p>✅ .env in .gitignore</p>
+<h3>✅ ★ Q78: 2/2</h3>
+<p>✅ spawn() with fixed commands, no unsanitized input</p>
+<h3>⚠️ Q79: 1/2</h3>
+<p>⚠️ path traversal audit needed for join() calls</p>
+<h3>⚠️ Q80: 1/2</h3>
+<p>⚠️ Basic input validation, no comprehensive type checking</p>
+<h3>❌ ★ Q81: 0/2</h3>
+<p>❌ No rate limiting — any endpoint can be hammered</p>
+<h3>❌ Q82: 0/2</h3>
+<p>❌ No CORS configuration</p>
+<h3>✅ Q83: 2/2</h3>
+<p>✅ No secrets in console.log</p>
+<h3>⚠️ Q84: 1/2</h3>
+<p>⚠️ No sandbox for agents, acceptable for dev</p>
+<h3>❌ ★ Q85: 0/2</h3>
+<p>❌ No authentication on any endpoint</p>
+<h3>✅ Q86: 2/2</h3>
+<p>✅ No dangerouslySetInnerHTML</p>
+<h3>❌ Q87: 0/2</h3>
+<p>❌ No CSRF protection</p>
+<h3>✅ Q88: 2/2</h3>
+<p>✅ npm audit: 0 critical vulnerabilities</p>
+<h3>✅ Q89: 2/2</h3>
+<p>✅ No hardcoded tokens</p>
+<h3>❌ Q90: 0/2</h3>
+<p>❌ No HTTPS cookies or HSTS</p>
+<h3>✅ Q91: 2/2</h3>
+<p>✅ No duplicate resources</p>
+<h3>✅ Q92: 2/2</h3>
+<p>✅ Consistent HTTP methods</p>
+<h3>✅ Q93: 2/2</h3>
+<p>✅ Consistent response envelope</p>
+<h3>⚠️ Q94: 1/2</h3>
+<p>⚠️ Some 500s instead of 404s for missing resources</p>
+<h3>✅ Q95: 2/2</h3>
+<p>✅ No redundant CRUD</p>
+<h3>❌ Q96: 0/2</h3>
+<p>❌ No pagination — will break &gt;1000 pipelines</p>
+<h3>✅ Q97: 2/2</h3>
+<p>✅ kebab-case, plural</p>
+<h3>✅ Q98: 2/2</h3>
+<p>✅ No orphaned endpoints</p>
+<h3>✅ Q99: 2/2</h3>
+<p>✅ Reasonable surface area</p>
+<h3>✅ Q100: 2/2</h3>
+<p>✅ Full CRUD on most resources</p>
+<h3>✅ Q101: 2/2</h3>
+<p>✅ TypeScript strict mode</p>
+<h3>❌ Q102: 0/2</h3>
+<p>❌ ~13 <code>any</code> types found — should be zero</p>
+<h3>✅ ★ Q103: 2/2</h3>
+<p>✅ All API routes in try/catch</p>
+<h3>⚠️ Q104: 1/2</h3>
+<p>⚠️ Some .then() chains — prefer async/await</p>
+<h3>✅ Q105: 2/2</h3>
+<p>✅ No barrel re-exports</p>
+<h3>⚠️ Q106: 1/2</h3>
+<p>⚠️ Some PascalCase non-component files</p>
+<h3>✅ Q107: 2/2</h3>
+<p>✅ Single source of truth</p>
+<h3>❌ Q108: 0/2</h3>
+<p>❌ Hardcoded /home/dev/ paths in routes</p>
+<h3>✅ Q109: 2/2</h3>
+<p>✅ Hooks at top level</p>
+<h3>❌ Q110: 0/2</h3>
+<p>❌ Components without React.memo causing re-renders</p>
+<h2>Gaps Found</h2>
+<p>Gaps are questions scored &lt; 2. Each has an implementation plan in <code>.hermes/plans/</code> (user-triggered only).</p>
+<h3>Gap 1 — Q21</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-1.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 2 — Q27</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-2.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 3 — Q37</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> Medium</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-3.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 4 — Q56</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> Critical ★</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-4.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 5 — Q59</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-5.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 6 — Q62</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> Medium</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-6.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 7 — Q64</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> Medium</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-7.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 8 — Q65</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> Medium</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-8.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 9 — Q81</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> Critical ★</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-9.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 10 — Q82</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-10.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 11 — Q85</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> Critical ★</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-11.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 12 — Q87</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-12.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 13 — Q90</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-13.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 14 — Q96</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-14.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 15 — Q102</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-15.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 16 — Q108</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-16.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h3>Gap 17 — Q110</h3>
+<ul>
+<li><strong>Score:</strong> 0/2</li>
+<li><strong>Severity:</strong> High</li>
+<li><strong>Plan:</strong> <code>.hermes/plans/benchmark-gap-17.md</code></li>
+<li><strong>Status:</strong> ⏳ Pending</li>
+</ul>
+<h2>Summary</h2>
+<p><strong>17 gaps found.</strong> Top 3 priorities:</p>
+<ol>
+<li><strong>Rate limiting (Q81)</strong> — no DOS protection at all. Critical security gap.</li>
+<li><strong>No authentication (Q85)</strong> — anyone with network access can delete pipelines.</li>
+<li><strong>File caching (Q56)</strong> — same files read multiple times per request.</li>
+</ol>
+<hr />
+<p><em>Audited: 25 June 2026 | Benchmark: Coding-Principles-Benchmark v2.0</em></p>
+</body></html>

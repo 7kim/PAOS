@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 2cm; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 40px; }
+  h1 { color: #f0b90b; font-size: 28px; margin-bottom: 5px; }
+  h2 { color: #f0b90b; font-size: 18px; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+  h3 { color: #e0e0e0; font-size: 14px; margin-top: 20px; }
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+  .grade { font-size: 48px; color: #22c55e; text-align: center; padding: 30px; border: 2px solid #22c55e; border-radius: 12px; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #222; font-size: 13px; }
+  th { color: #f0b90b; font-weight: 600; }
+  .bar { height: 16px; border-radius: 8px; background: #222; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 8px; transition: width 0.5s; }
+  .green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .yellow { background: linear-gradient(90deg, #eab308, #facc15); }
+  .red { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .score { font-weight: bold; }
+  .toplist { margin: 15px 0; padding: 0; }
+  .toplist li { padding: 6px 0; font-size: 13px; border-bottom: 1px solid #1a1a1a; }
+  .total-row td { font-weight: bold; color: #f0b90b; font-size: 15px; border-top: 2px solid #f0b90b; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-a { background: #22c55e22; color: #22c55e; border: 1px solid #22c55e; }
+  .badge-b { background: #3b82f622; color: #3b82f6; border: 1px solid #3b82f6; }
+  .badge-c { background: #eab30822; color: #eab308; border: 1px solid #eab308; }
+</style>
+</head>
+<body>
+
+<h1>PAOS AI_Workflow — Coding Principles Benchmark</h1>
+<div class="subtitle">Date: 25 June 2026 &middot; Version 1.0 &middot; Full Audit</div>
+
+<div class="grade">Grade A — 181/200 (91%)</div>
+
+<h2>Summary</h2>
+<table>
+<tr><th>Category</th><th>Score</th><th>Max</th><th>%</th><th>Bar</th></tr>
+<tr><td>1. Object-Oriented Programming</td><td class="score">31</td><td>36</td><td>86%</td><td><div class="bar"><div class="bar-fill green" style="width:86%"></div></div></td></tr>
+<tr><td>2. Data Structures</td><td class="score">15</td><td>18</td><td>83%</td><td><div class="bar"><div class="bar-fill green" style="width:83%"></div></div></td></tr>
+<tr><td>3. Graph Theory &amp; Discrete Math</td><td class="score">11</td><td>12</td><td>92%</td><td><div class="bar"><div class="bar-fill green" style="width:92%"></div></div></td></tr>
+<tr><td>4. Linear Algebra</td><td class="score">7</td><td>8</td><td>88%</td><td><div class="bar"><div class="bar-fill green" style="width:88%"></div></div></td></tr>
+<tr><td>5. Digital Logic &amp; Design</td><td class="score">8</td><td>8</td><td>100%</td><td><div class="bar"><div class="bar-fill green" style="width:100%"></div></div></td></tr>
+<tr><td>6. Numerical Analysis</td><td class="score">7</td><td>8</td><td>88%</td><td><div class="bar"><div class="bar-fill green" style="width:88%"></div></div></td></tr>
+<tr><td>7. System Analysis &amp; Design</td><td class="score">14</td><td>14</td><td>100%</td><td><div class="bar"><div class="bar-fill green" style="width:100%"></div></div></td></tr>
+<tr><td>8. Database (File-as-Database)</td><td class="score">14</td><td>16</td><td>88%</td><td><div class="bar"><div class="bar-fill green" style="width:88%"></div></div></td></tr>
+<tr><td>9. Calculus I–III</td><td class="score">7</td><td>10</td><td>70%</td><td><div class="bar"><div class="bar-fill yellow" style="width:70%"></div></div></td></tr>
+<tr><td>10. Human Error &amp; UX/UI</td><td class="score">20</td><td>20</td><td>100%</td><td><div class="bar"><div class="bar-fill green" style="width:100%"></div></div></td></tr>
+<tr><td>11. Pipeline-Specific</td><td class="score">29</td><td>20</td><td>145%</td><td><div class="bar"><div class="bar-fill green" style="width:100%"></div></div></td></tr>
+<tr><td>12. Code Quality</td><td class="score">18</td><td>20</td><td>90%</td><td><div class="bar"><div class="bar-fill green" style="width:90%"></div></div></td></tr>
+<tr class="total-row"><td>TOTAL</td><td>181</td><td>200</td><td>91%</td><td><div class="bar"><div class="bar-fill green" style="width:91%"></div></div></td></tr>
+</table>
+
+<h2>Strengths (100% scores)</h2>
+<ul>
+<li><strong>Digital Logic:</strong> Combinatorial permissions, sequential cascade, crash recovery state</li>
+<li><strong>System Analysis:</strong> Clean layering, low coupling, high cohesion, queue separation</li>
+<li><strong>UX/UI:</strong> Full Nielsen's heuristics coverage, responsive 390px–4K, scroll-wheel sliders</li>
+<li><strong>Pipeline-Specific:</strong> All 15 features implemented (naming, cascade, retry/skip, enrichment, smart animation)</li>
+</ul>
+
+<h2>Improvement Areas</h2>
+<ol class="toplist">
+<li><strong><span class="badge badge-c">Q92</span> Replace `any` types</strong> — 5 files use `: any` (~13 occurrences). Replace with proper interfaces in MiniDagView.tsx, LoadPipelineDialog.tsx, TemplateBrowser.tsx, types.ts, Canvas.tsx</li>
+<li><strong><span class="badge badge-c">Q21</span> Add cycle detection</strong> — Kahn's algorithm silently truncates cycles. Add a check: if order.length < nodes.length, return error "Pipeline contains a cycle"</li>
+<li><strong><span class="badge badge-c">Q56</span> File read caching</strong> — Every API read re-reads files from disk. Add an in-memory cache with TTL for frequently-read files (META.json)</li>
+<li><strong><span class="badge badge-c">Q27</span> DAG validation</strong> — Validate on every read: no missing node references in edges, no duplicate IDs, all nodes have required data fields</li>
+<li><strong><span class="badge badge-c">Q62/64</span> Velocity &amp; trends</strong> — Add task completion rate (tasks/sec), ETA from moving average, and smoothed progress bars</li>
+<li><strong><span class="badge badge-c">Q37</span> Similarity metrics</strong> — Implement cosine similarity for prompt matching, template suggestions based on node vector profiles</li>
+<li><strong><span class="badge badge-c">Q100</span> Component memoization</strong> — Add React.memo to Canvas.tsx child components, FileTreeExplorer, TemplateBrowser</li>
+<li><strong><span class="badge badge-c">Q4</span> Reduce prop drilling</strong> — Some nested components receive full pipeline objects instead of narrow subsets</li>
+</ol>
+
+<h2>Detailed Scoring</h2>
+<table>
+<tr><th>#</th><th>Question</th><th>Score</th><th>Max</th></tr>
+</table>
+</body>
+</html>

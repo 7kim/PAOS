@@ -51,19 +51,28 @@ function MiniDagCanvas({
 }) {
   const vs = visualSettings;
 
-  // Override edge styles with visual settings
+  // Override edge styles with visual settings and smart animation
   const overriddenEdges: Edge[] = useMemo(() => {
-    return (inputEdges || []).map((e: any) => ({
-      ...e,
-      type: vs?.connectorShape || e.type || "smoothstep",
-      animated: vs?.edgeAnimation ?? e.animated ?? true,
-      style: {
-        ...(e.style || {}),
-        stroke: vs?.connectorColor || e.style?.stroke || "var(--border)",
-        strokeWidth: vs?.connectorThickness || e.style?.strokeWidth || 1.5,
-      },
-    }));
-  }, [inputEdges, vs?.connectorShape, vs?.connectorColor, vs?.connectorThickness, vs?.edgeAnimation]);
+    return (inputEdges || []).map((e: any) => {
+      const srcPhase = flowStatus?.phases?.[e.source];
+      const tgtPhase = flowStatus?.phases?.[e.target];
+      // Animate only if source is complete and target is not yet complete (active flow)
+      const shouldAnimate = vs?.edgeAnimation !== false && (
+        (srcPhase?.status === "completed" && tgtPhase?.status !== "completed") ||
+        (srcPhase?.status === "running" && tgtPhase?.status !== "completed")
+      );
+      return {
+        ...e,
+        type: vs?.connectorShape || e.type || "smoothstep",
+        animated: shouldAnimate,
+        style: {
+          ...(e.style || {}),
+          stroke: vs?.connectorColor || e.style?.stroke || "var(--border)",
+          strokeWidth: vs?.connectorThickness || e.style?.strokeWidth || 1.5,
+        },
+      };
+    });
+  }, [inputEdges, vs?.connectorShape, vs?.connectorColor, vs?.connectorThickness, vs?.edgeAnimation, flowStatus]);
 
   // Enrich nodes with flow status
   const enrichedNodes: Node[] = useMemo(() => {

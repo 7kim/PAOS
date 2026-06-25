@@ -161,3 +161,25 @@ But the user wants a multi-agent conversation: share this idea with Hermes, get 
 - Analysis output should be REASONING.md + ANALYSIS.md, not new documentation (n2 already handled doc creation)\n- Ponytail assessment applied to all found gaps: only 4 of 11 potential gaps are genuine\n- Pipeline META.json updated to reflect both phases completed with artifact lists\n- No git commit needed — only pipeline artifact files in phases/n1/ were modified
 
 **Handoff Notes**: Pipeline PIPE-25-06-2026---19-09 is fully completed. Both phases done. Recommended follow-up: implement priority actions from ANALYSIS.md (docs/env-reference.md, docs/pipeline-templates.md, etc.) when needed.
+
+---
+
+## 2026-06-25 19:45 @hermes-nous — Task: PIPE-25-06-2026---19-42
+
+**Thinking**: Completed phase n1 (Analyze) for pipeline PIPE-25-06-2026---19-42 "Test topological order". Full codebase survey via explore agent across ~10,000 files. Produced REASONING.md (decision log) and ANALYSIS.md (179-line structured report with 10 sections covering agents, dashboard, CLI, MCP, pipelines, governance, strengths/issues). Identified 7 discrepancies including empty memory/ dir, broken symlink, no test infra, duplicate dirs, DESIGN.md contamination, path inconsistency, and empty directories.
+
+**Decisions**:
+- Used explore sub-agent for comprehensive codebase survey (fastest path to full coverage)\n- Produced two artifacts: REASONING.md (decision log) + ANALYSIS.md (structured findings)\n- Maintained read-only stance — no files modified outside pipeline phase directory\n- Kept analysis concrete with actionable recommendations for phase n2\n- Phase n1 is complete — all pipeline tracking files updated and marked completed
+
+**Handoff Notes**: Pipeline PIPE-25-06-2026---19-42 phase n1 is now complete. Phase n2 (Document, opencode-developer) is ready to execute — see ANALYSIS.md recommendations section (section 10) for documentation priorities. Pipeline artifacts are at logs/pipelines/PAOS/PIPE-25-06-2026---19-42/.
+
+---
+
+## 2026-06-25 19:49 @opencode-developer — Task: PIPE-25-06-2026---19-42
+
+**Thinking**: Completed phase n2 (Document) for pipeline PIPE-25-06-2026---19-42. Created docs/pipelines.md (145 lines) — a cohesive pipeline system reference covering lifecycle, directory structure, DAG phase execution, Flow Builder UI, agent dispatch, known issues, and CLI/API references. This filled the genuine gap identified by phase n1 analysis: no single document explained the pipeline system end-to-end despite 3,500+ lines of existing docs. Used ponytail to skip re-documenting agent inbox protocol (already in examples.md), systemd watcher (self-documenting scripts), and creating a separate known-issues doc (added table to pipeliness.md instead).
+
+**Decisions**:
+- Created docs/pipelines.md as the single gap-filler rather than 3-4 separate docs\n- Reused existing links to api.md, examples.md, architecture.md rather than duplicating content\n- Included Known Issues table from ANALYSIS.md as a canonical reference (was undocumented)\n- Skipped agent inbox protocol doc (already covered in examples.md)\n- Skipped systemd watcher doc (self-documenting shell scripts)\n- Pipeline is now fully complete — both phases done
+
+**Handoff Notes**: Pipeline PIPE-25-06-2026---19-42 is fully completed. Both phases (n1 Analyze by hermes-nous, n2 Document by opencode-developer) are done. Pipeline artifacts at logs/pipelines/PAOS/PIPE-25-06-2026---19-42/. Created docs/pipelines.md as the main output of n2.

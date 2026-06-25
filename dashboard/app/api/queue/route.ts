@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile, stat } from "fs/promises";
 import { join } from "path";
 import { MEMORY_DIR } from "@/lib/global-config";
 
@@ -36,9 +36,44 @@ async function saveQueue(q: QueueData): Promise<void> {
   await writeFile(QUEUE_PATH, JSON.stringify(q, null, 2), "utf-8");
 }
 
-// GET /api/queue — returns full queue state
+// GET /api/queue — returns full queue state, auto-cleans stale pending items
 export async function GET() {
   const q = await loadQueue();
+
+  // Auto-remove pending items whose pipeline directory doesn't exist or is already completed
+  const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
+  async function pipelineExists(item: QueueItem): Promise<boolean> {
+    const project = item.project || "PAOS";
+    const metaPath = join(PIPELINES_DIR, project, item.id, "META.json");
+    try {
+      await stat(metaPath);
+      const metaRaw = await readFile(metaPath, "utf-8").catch(() => "{}");
+      const meta = JSON.parse(metaRaw);
+      if (meta.status === "completed" || meta.status === "failed") return false;
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  const validPending: QueueItem[] = [];
+  for (const item of q.pending) {
+    if (await pipelineExists(item)) validPending.push(item);
+  }
+  q.pending = validPending;
+
+  // Also clean done list — remove pipelines that no longer exist on disk
+  const validDone: QueueItem[] = [];
+  for (const item of q.done) {
+    const project = item.project || "PAOS";
+    const metaPath = join(PIPELINES_DIR, project, item.id, "META.json");
+    try {
+      await stat(metaPath);
+      validDone.push(item);
+    } catch { /* stale done entry, skip */ }
+  }
+  q.done = validDone;
+
   return NextResponse.json(q);
 }
 

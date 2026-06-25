@@ -60,6 +60,16 @@ export async function GET() {
         // Count pipelines for this project
         const paos = (meta.settings as Record<string, unknown>)?.paos as Record<string, unknown> | undefined;
         const projectName = (paos?.project as string) || name;
+
+        // Check if the project source directory still exists
+        const projDir: string = join(PROJECTS_DIR, projectName);
+        try {
+          await stat(projDir);
+        } catch {
+          // Project directory deleted — remove workspace file and skip
+          try { await rm(join(WORKSPACES_DIR, f), { force: true }); } catch {}
+          return null;
+        }
         const projectPipelinesDir = join(PIPELINES_DIR, projectName);
         let pipelineCount = 0;
         try {
@@ -80,8 +90,9 @@ export async function GET() {
       })
     );
 
-    workspaces.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
-    return NextResponse.json({ workspaces });
+    const filtered = workspaces.filter((w): w is NonNullable<typeof w> => w !== null);
+    filtered.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+    return NextResponse.json({ workspaces: filtered });
   } catch (e) {
     return NextResponse.json({ workspaces: [], error: String(e) });
   }

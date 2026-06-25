@@ -33,6 +33,7 @@ interface Phase {
   walkthroughMd?: string;
   outputPreview?: string;
   pid?: number | null;
+  extraFiles?: PhaseArtifact[];
 }
 
 interface PipelineData {
@@ -196,8 +197,8 @@ export default function PipelineVisualizePage() {
       try {
         const res = await fetch(`/api/pipelines/${id}/flow-status`);
         const data = await res.json();
-        if (data.flowStatus) {
-          setFlowStatus(data.flowStatus);
+        if (data.phases) {
+          setFlowStatus(data);
         }
       } catch { /* ignore */ }
     }, 3000);
@@ -347,6 +348,22 @@ export default function PipelineVisualizePage() {
             <GitBranch size={12} /> Open in Builder
           </button>
         )}
+        {!data.builderLayout && (
+          <button
+            type="button"
+            onClick={async () => {
+              try {
+                const res = await fetch(`/api/pipelines/${encodeURIComponent(id)}/phases-to-layout`, { method: "POST" });
+                const d = await res.json();
+                if (d.ok) router.push(`/pipelines/builder?load=${encodeURIComponent(id)}`);
+              } catch {}
+            }}
+            className="text-xs px-3 py-1.5 rounded-lg border transition-all hover:opacity-80 flex items-center gap-1.5"
+            style={{ borderColor: "var(--primary)", color: "var(--primary)" }}
+          >
+            <GitBranch size={12} /> Convert to Flow Builder
+          </button>
+        )}
       </div>
 
       {/* Builder DAG — React Flow */}
@@ -387,7 +404,13 @@ export default function PipelineVisualizePage() {
             <div key={idx}>
               <div className="relative z-10 flex justify-center" style={{ marginBottom: isLast ? 0 : -1 }}>
                 <div className="w-full max-w-4xl rounded-xl border-2 p-5"
-                  style={{ background: "var(--card-bg)", borderColor: color }}
+                  style={{
+                    background: "var(--card-bg)",
+                    borderColor: color,
+                    maxWidth: visualSettings.phaseCardWidth < 100 ? `${visualSettings.phaseCardWidth}%` : undefined,
+                    maxHeight: visualSettings.phaseCardHeight > 0 ? visualSettings.phaseCardHeight : undefined,
+                    overflowY: visualSettings.phaseCardHeight > 0 ? "auto" : undefined,
+                  }}
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center"
@@ -448,42 +471,6 @@ export default function PipelineVisualizePage() {
                   {phase.artifacts.length === 0 && phase.status === "pending" && (
                     <div className="text-xs text-center py-3 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", color: "var(--muted-foreground)" }}>
                       Waiting for agent...
-                    </div>
-                  )}
-
-                  {/* Phase enrichment: prompt, reasoning, tasks, walkthrough */}
-                  {(phase.prompt || phase.reasoning || phase.tasksMd || phase.walkthroughMd || phase.outputPreview) && (
-                    <div className="space-y-2 mb-3">
-                      {phase.prompt && (
-                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
-                          <div className="text-[9px] font-semibold mb-1" style={{ color: "var(--primary)" }}>Prompt</div>
-                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.prompt}</pre>
-                        </div>
-                      )}
-                      {phase.reasoning && (
-                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
-                          <div className="text-[9px] font-semibold mb-1 flex items-center gap-1" style={{ color: "#8b5cf6" }}><Brain size={9} /> Reasoning</div>
-                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.reasoning}</pre>
-                        </div>
-                      )}
-                      {phase.tasksMd && (
-                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
-                          <div className="text-[9px] font-semibold mb-1 flex items-center gap-1" style={{ color: "#3b82f6" }}><ListTodo size={9} /> Tasks</div>
-                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.tasksMd}</pre>
-                        </div>
-                      )}
-                      {phase.walkthroughMd && (
-                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
-                          <div className="text-[9px] font-semibold mb-1 flex items-center gap-1" style={{ color: "#22c55e" }}><FileText size={9} /> Walkthrough</div>
-                          <pre className="text-[10px] whitespace-pre-wrap max-h-24 overflow-y-auto" style={{ color: "var(--foreground)" }}>{phase.walkthroughMd}</pre>
-                        </div>
-                      )}
-                      {phase.outputPreview && (
-                        <div className="rounded-lg border p-3" style={{ borderColor: "var(--border)" }}>
-                          <div className="text-[9px] font-semibold mb-1" style={{ color: "var(--muted-foreground)" }}>Output</div>
-                          <pre className="text-[9px] whitespace-pre-wrap max-h-24 overflow-y-auto font-mono" style={{ color: "var(--muted-foreground)" }}>{phase.outputPreview}</pre>
-                        </div>
-                      )}
                     </div>
                   )}
 

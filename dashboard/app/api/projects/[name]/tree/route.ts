@@ -53,9 +53,14 @@ export async function GET(
 ) {
   const { name } = await params;
 
-  // Determine project root: check memory/projects/<name>/ first, then previous-projects
-  let projectRoot = join(MEMORY_DIR, "projects", name);
+  // Determine project root: check projects/<name>/, then memory/projects/<name>/, then previous-projects
+  let projectRoot = join(REPO_ROOT, "projects", name);
   let s = await stat(projectRoot).catch(() => null);
+
+  if (!s?.isDirectory()) {
+    projectRoot = join(MEMORY_DIR, "projects", name);
+    s = await stat(projectRoot).catch(() => null);
+  }
 
   if (!s?.isDirectory()) {
     projectRoot = join(REPO_ROOT, "knowledge", "previous-projects", name);

@@ -20,13 +20,16 @@ interface ConfigPanelProps {
   onDelete: (nodeId: string) => void;
   availableSkills: SkillOption[];
   availableMcps: McpOption[];
+  pipelineId?: string;
+  projectPath?: string;
+  benchmarkId?: string;
 }
 
-export function ConfigPanel({ node, onUpdate, onDelete, availableSkills, availableMcps }: ConfigPanelProps) {
+export function ConfigPanel({ node, onUpdate, onDelete, availableSkills, availableMcps, pipelineId, projectPath, benchmarkId }: ConfigPanelProps) {
   const [activeTab, setActiveTab] = useState<"prompt" | "skills" | "mcps" | "files">("prompt");
   const [prompt, setPrompt] = useState("");
-  const [showFileTree, setShowFileTree] = useState(false);
-  const [suggestions, setSuggestions] = useState<{ role: string; label: string; prompt: string }[]>([]);
+  const [suggestions, setSuggestions] = useState<{ role: string; label: string; prompt: string; defaultPrompt?: string }[]>([]);
+  const [showFullPrompt, setShowFullPrompt] = useState(false);
 
   // Cast node data safely
   const nodeData: AgentNodeData | null = node
@@ -174,8 +177,13 @@ export function ConfigPanel({ node, onUpdate, onDelete, availableSkills, availab
                 key={s.role}
                 type="button"
                 onClick={() => {
-                  onUpdate(node.id, { label: s.label, prompt: s.prompt });
-                  setPrompt(s.prompt);
+                  onUpdate(node.id, {
+                    label: s.label,
+                    role: s.role,
+                    prompt: s.prompt,
+                    defaultPrompt: s.defaultPrompt || "",
+                  });
+                  setPrompt(s.prompt || "");
                 }}
                 className="text-[9px] px-2 py-1 rounded-md border transition-all hover:opacity-80"
                 style={{
@@ -218,10 +226,29 @@ export function ConfigPanel({ node, onUpdate, onDelete, availableSkills, availab
         {activeTab === "prompt" && (
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <label className="text-[10px] font-medium" style={{ color: "var(--muted-foreground)" }}>
-                Implementation Prompt
+              <label className="text-[10px] font-medium flex items-center gap-1" style={{ color: "var(--muted-foreground)" }}>
+                <FileText size={10} /> Your Custom Prompt
               </label>
+              {nodeData?.defaultPrompt && (
+                <button
+                  onClick={() => setShowFullPrompt(!showFullPrompt)}
+                  className="text-[8px] px-1.5 py-0.5 rounded border"
+                  style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+                >
+                  {showFullPrompt ? "Hide Default" : "Show Full Template"}
+                </button>
+              )}
             </div>
+            {nodeData?.defaultPrompt && (
+              <div className="text-[8px] flex items-center gap-1" style={{ color: "var(--muted-foreground)" }}>
+                <span className="opacity-60">This role has a hidden default prompt.</span>
+                {showFullPrompt && (
+                  <pre className="text-[8px] p-2 rounded mt-1 w-full whitespace-pre-wrap font-mono" style={{ background: "rgba(255,255,255,0.03)" }}>
+                    [Default Prompt]: {nodeData.defaultPrompt}
+                  </pre>
+                )}
+              </div>
+            )}
             <p className="text-[9px] leading-relaxed" style={{ color: "var(--muted-foreground)" }}>
               This prompt tells the agent what to build. It will use its tools, skills, and MCPs to generate its own implementation file.
             </p>
@@ -320,32 +347,20 @@ export function ConfigPanel({ node, onUpdate, onDelete, availableSkills, availab
         )}
 
         {activeTab === "files" && (
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 mb-1">
-              <button
-                type="button"
-                onClick={() => setShowFileTree(!showFileTree)}
-                className="text-[10px] px-2 py-1 rounded-md border transition-colors flex-1 text-center"
-                style={{
-                  borderColor: showFileTree ? "var(--primary)" : "var(--border)",
-                  color: showFileTree ? "var(--primary)" : "var(--muted-foreground)",
-                  background: showFileTree ? "rgba(240,185,11,0.08)" : "transparent",
-                }}
-              >
-                {showFileTree ? "Hide File Tree" : "Browse Files"}
-              </button>
+          <div className="space-y-2 flex flex-col h-full">
+            {/* File tree — always visible */}
+            <div className="flex-1 border rounded-md overflow-hidden" style={{ borderColor: "var(--border)" }}>
+              <FileTreeExplorer
+                projectPath={projectPath || "AI_Workflow"}
+                selectedFiles={nodeData.fileRefs || []}
+                onToggleFile={handleFileToggle}
+                onClose={() => {}}
+                pipelineId={pipelineId}
+                benchmarkId={benchmarkId}
+              />
             </div>
+            {/* Dropzone below tree */}
             <FileUpload onFilesSelected={handleFilesUploaded} />
-            {showFileTree && node && (
-              <div className="border rounded-md border-white/10 overflow-hidden max-h-48">
-                <FileTreeExplorer
-                  projectPath={nodeData.agentId || "PAOS"}
-                  selectedFiles={nodeData.fileRefs || []}
-                  onToggleFile={handleFileToggle}
-                  onClose={() => setShowFileTree(false)}
-                />
-              </div>
-            )}
             {(nodeData.fileRefs || []).length > 0 && (
               <div className="space-y-1">
                 <label className="text-[9px] font-medium" style={{ color: "var(--muted-foreground)" }}>
