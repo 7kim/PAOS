@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn("h-full", inter.variable, jetbrainsMono.variable, "font-sans", geist.variable)}>
+    <html lang="en" className={cn("dark h-full", inter.variable, jetbrainsMono.variable, "font-sans", geist.variable)}>
       <body className="flex h-screen overflow-hidden" style={{ background: "var(--background)" }}>
         <ThemeProvider>
           <TooltipProvider>

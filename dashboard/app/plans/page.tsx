@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useMemo, useState , Suspense} from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { CheckCircle, Clock, Download, FolderKanban, GitBranch, Layers, ListTodo } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -278,14 +279,14 @@ function PlansPage() {
       )}
 
       {/* Kanban columns */}
-      <div className="flex-1 flex gap-4 overflow-x-auto overflow-y-hidden pb-4 min-h-0">
+      <div className="flex-1 flex flex-col md:flex-row gap-4 pb-4 min-h-0">
         {columns.map((col) => {
           const items = grouped[col.id];
           const colAllChecked = items.length > 0 && items.every((p) => checkedIds.has(p.id));
           return (
             <div
               key={col.id}
-              className="flex flex-col rounded-lg border min-w-[420px] flex-1"
+              className="flex flex-col rounded-lg border min-w-0 flex-1"
               style={{ background: "var(--card-bg)", borderColor: "var(--border)" }}
             >
               {/* Column header */}
@@ -308,7 +309,7 @@ function PlansPage() {
               </div>
 
               {/* Cards */}
-              <ScrollArea className="flex-1 p-3 space-y-3">
+              <div className="flex-1 p-3 space-y-3 overflow-y-auto">
                 {items.length === 0 && (
                   <div className="text-xs text-center py-8 text-muted-foreground">No plans</div>
                 )}
@@ -393,7 +394,7 @@ function PlansPage() {
                     </div>
                   );
                 })}
-              </ScrollArea>
+              </div>
             </div>
           );
         })}

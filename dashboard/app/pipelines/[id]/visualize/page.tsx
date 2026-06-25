@@ -1,26 +1,10 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import { useParams } from "next/navigation";
-import {
-  Brain,
-  Zap,
-  CheckCircle2,
-  Clock,
-  AlertCircle,
-  ArrowDown,
-  FileText,
-  ListTodo,
-  Loader2,
-  GitBranch,
-  ChevronDown,
-  ChevronRight,
-  FileCode,
-  ExternalLink,
-  Eye,
-  EyeOff,
-  HandMetal,
-  Play,
-} from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2, Trash2, Plus, Workflow, Brain, Zap, AlertCircle, ArrowDown, FileText, ListTodo, FileCode, ExternalLink, EyeOff, HandMetal } from "lucide-react";
+import MiniDagView from "@/components/pipeline-builder/MiniDagView";
+import { VisualToolbar } from "@/components/pipeline-builder/VisualToolbar";
+import { loadVisualSettings, saveVisualSettings, type VisualSettings } from "@/components/pipeline-builder/VisualSettings";
 import {
   Dialog,
   DialogContent,
@@ -51,6 +35,7 @@ interface PipelineData {
   phases: Phase[];
   versionedArtifacts: Record<string, { filename: string; content: string; lines: number; version: number }[]>;
   taskList: { status: string; label: string; complexity: string; file?: string; details: string[] }[];
+  builderLayout: { nodes: any[]; edges: any[] } | null;
   stats: {
     completedTasks: number;
     totalTasks: number;
@@ -165,6 +150,10 @@ export default function PipelineVisualizePage() {
   const [editingIntervene, setEditingIntervene] = useState(false);
   const [interveneContent, setInterveneContent] = useState("");
   const [interveneSaving, setInterveneSaving] = useState(false);
+  const [flowStatus, setFlowStatus] = useState<Record<string, any> | null>(null);
+  const [expandedNode, setExpandedNode] = useState<string | null>(null);
+  const [showVisual, setShowVisual] = useState(false);
+  const [visualSettings, setVisualSettings] = useState<VisualSettings>(loadVisualSettings);
 
   // Execute modal state
   const [showExecuteModal, setShowExecuteModal] = useState(false);
@@ -190,6 +179,22 @@ export default function PipelineVisualizePage() {
     const id = setInterval(() => void load(), 5000);
     return () => clearInterval(id);
   }, [load]);
+
+  // Poll flow status for builder pipelines
+  useEffect(() => {
+    if (!id) return;
+    // Check if this is a builder pipeline by looking at the initial load
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`/api/pipelines/${id}/flow-status`);
+        const data = await res.json();
+        if (data.flowStatus) {
+          setFlowStatus(data.flowStatus);
+        }
+      } catch { /* ignore */ }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [id]);
 
   function toggleArtifact(key: string) {
     setOpenArtifacts((prev) => {
@@ -275,20 +280,61 @@ export default function PipelineVisualizePage() {
     );
   }
 
+  // Compute project context
+  const projectName = String((data.meta as any).project || String((data.meta as any).pipeline_id || "").split("-")[0] || "PAOS");
+  const filesystemPath = `~/AI_Workflow/memory/pipelines/${projectName}/${encodeURIComponent(id)}/`;
+  const projectPath = `${projectName} / ${id}`;
+
   return (
     <div>
       <div className="flex items-center gap-3 mb-1">
         <GitBranch size={18} style={{ color: "var(--accent)" }} />
-        <h1 className="text-xl font-semibold">{id}</h1>
+        <h1 className="text-xl font-semibold" title={filesystemPath}>
+          {projectPath}
+        </h1>
         <span className="text-[11px] px-2 py-0.5 rounded-full font-medium"
           style={{ background: `${data.stats.progress === 100 ? "#22c55e" : "#3b82f6"}18`, color: data.stats.progress === 100 ? "#22c55e" : "#3b82f6" }}
         >
           {data.stats.progress}%
         </span>
       </div>
+      <div className="flex items-center gap-2 mb-1">
+        <span className="text-[10px] font-mono flex items-center gap-1" style={{ color: "var(--primary)" }}>
+          <FolderKanban size={10} />
+          {projectName}
+        </span>
+        <span className="text-[8px]" style={{ color: "var(--muted-foreground)" }}>/</span>
+        <span className="text-[10px] font-mono" style={{ color: "var(--muted-foreground)" }}>
+          {id}
+        </span>
+      </div>
       <p className="text-sm mb-6" style={{ color: "var(--muted-foreground)" }}>
         {String(data.meta.prompt ?? "")}
       </p>
+
+      {/* Builder DAG — React Flow */}
+      {data.builderLayout && data.builderLayout.nodes && data.builderLayout.nodes.length > 0 && (
+        <div className="mb-8 rounded-xl border overflow-hidden" style={{ borderColor: "var(--border)", background: "var(--card-bg)" }}>
+          <div className="px-4 py-3 border-b flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
+            <GitBranch size={14} style={{ color: "var(--primary)" }} />
+            <span className="text-sm font-medium">Pipeline DAG</span>
+            <span className="ml-auto text-[10px]" style={{ color: "var(--muted-foreground)" }}>
+              {data.builderLayout.nodes.length} nodes · {data.builderLayout.edges?.length ?? 0} connections
+            </span>
+          </div>
+          <div style={{ height: visualSettings.dagHeight || 300 }}>
+            <MiniDagView
+              nodes={data.builderLayout.nodes}
+              edges={data.builderLayout.edges || []}
+              flowStatus={flowStatus}
+              onNodeClick={(nodeId: string) => setExpandedNode(expandedNode === nodeId ? null : nodeId)}
+              expandedNode={expandedNode}
+              id={id}
+              visualSettings={visualSettings}
+            />
+          </div>
+        </div>
+      )}
 
       <div className="relative mb-8">
         <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 z-0"
@@ -600,6 +646,18 @@ export default function PipelineVisualizePage() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Visual settings floating toolbar */}
+      <VisualToolbar
+        open={showVisual}
+        onOpenChange={setShowVisual}
+        settings={visualSettings}
+        onSettingsChange={(next) => {
+          setVisualSettings(next);
+          saveVisualSettings(next);
+        }}
+        showDagHeight={true}
+      />
     </div>
   );
 }

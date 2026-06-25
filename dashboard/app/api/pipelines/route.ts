@@ -135,6 +135,7 @@ export async function POST(req: Request) {
     const prompt = body.prompt || "New pipeline";
     const planMd = body.planMd || "";
     const tasksMd = body.tasksMd || "";
+    const builderLayout = body.builderLayout || null;
 
     // Generate pipeline ID: PIPE-N-DD-MM-YYYY---HH-MM
     const now = new Date();
@@ -186,6 +187,28 @@ export async function POST(req: Request) {
     // pipeline.json
     const pj = { status: "submitted", currentTask: "", progress: "0/...", startedAt: null };
     await writeFile(join(dir, "pipeline.json"), JSON.stringify(pj, null, 2));
+
+    // builder-layout.json (from Flow Builder)
+    if (builderLayout) {
+      // Generate phases from builder nodes
+      const phases = (builderLayout.nodes || []).map((node: Record<string, unknown>) => ({
+        agent: (node.data as Record<string, unknown>)?.agentId || "",
+        role: "agent",
+        label: (node.data as Record<string, unknown>)?.label || "Agent",
+        status: "pending",
+        prompt: (node.data as Record<string, unknown>)?.prompt || "",
+        selectedSkills: (node.data as Record<string, unknown>)?.selectedSkills || [],
+        selectedMcps: (node.data as Record<string, unknown>)?.selectedMcps || [],
+        fileRefs: (node.data as Record<string, unknown>)?.fileRefs || [],
+      }));
+
+      // Update META.json phases with builder data
+      const updatedMeta = { ...meta, phases, builder: true };
+      await writeFile(join(dir, "META.json"), JSON.stringify(updatedMeta, null, 2));
+
+      // Save layout for rendering
+      await writeFile(join(dir, "builder-layout.json"), JSON.stringify(builderLayout, null, 2));
+    }
 
     // Enqueue automatically
     try {

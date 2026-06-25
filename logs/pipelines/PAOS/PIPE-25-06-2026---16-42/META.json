@@ -1,0 +1,47 @@
+{
+  "pipeline_id": "PIPE-25-06-2026---16-42",
+  "prompt": "Pipeline from Flow Builder",
+  "status": "completed",
+  "created_at": "2026-06-25T16:42:56.191Z",
+  "completed_at": "2026-06-25T16:46:00.000Z",
+  "phases": [
+    {
+      "agent": "hermes-nous",
+      "role": "agent",
+      "label": "Agent 1",
+      "status": "completed",
+      "prompt": "I want you to build a task list for Opencode to Smoke Test ALL THE api end points and then generate a health check.html ",
+      "selectedSkills": ["ponytail", "plan"],
+      "selectedMcps": ["context7"],
+      "fileRefs": []
+    },
+    {
+      "agent": "opencode-developer",
+      "role": "agent",
+      "label": "Agent 2",
+      "status": "completed",
+      "prompt": "Once you finish all your tasks. send the files you built to Hermes Agent ",
+      "selectedSkills": [],
+      "selectedMcps": [],
+      "fileRefs": [
+        "test-all-endpoints.sh",
+        "generate-health-check.py",
+        "health-check.html",
+        "TASKS.md",
+        "WALKTHROUGH.md"
+      ],
+      "output": "All 24 API endpoints smoke tested. 24/24 passed. health-check.html generated. Results sent to hermes-nous inbox."
+    },
+    {
+      "agent": "hermes-nous",
+      "role": "agent",
+      "label": "Agent 3",
+      "status": "pending",
+      "prompt": "send the files you recieve from Agent 2 and send them over telegram to me",
+      "selectedSkills": ["ponytail"],
+      "selectedMcps": [],
+      "fileRefs": []
+    }
+  ],
+  "builder": true
+}

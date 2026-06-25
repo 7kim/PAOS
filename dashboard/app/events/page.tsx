@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Activity, FolderKanban, RefreshCw, Eye } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
@@ -70,7 +71,9 @@ function EventsPage() {
       </div>
 
       {loading ? (
-        <div className="text-xs text-center py-12 text-muted-foreground">Loading events...</div>
+        <div className="space-y-3">          <Skeleton className="h-20 w-full rounded-lg" />
+          <Skeleton className="h-20 w-full rounded-lg" />
+        </div>
       ) : projectNames.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center text-sm text-muted-foreground">

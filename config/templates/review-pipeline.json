@@ -1,0 +1,86 @@
+{
+  "id": "review-pipeline",
+  "name": "Review Pipeline",
+  "description": "Quick implement → review → deploy for hotfixes",
+  "category": "hotfix",
+  "tags": [
+    "review",
+    "deploy"
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Implement",
+        "agentId": "opencode-developer",
+        "prompt": "Implement the hotfix quickly and cleanly.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 200
+      },
+      "data": {
+        "label": "Code Review",
+        "agentId": "antigravity",
+        "prompt": "Quick review of the hotfix. Check for regressions.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n3",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 400
+      },
+      "data": {
+        "label": "Deploy",
+        "agentId": "opencode-developer",
+        "prompt": "Deploy the approved changes. Ensure rollback plan.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "n1",
+      "target": "n2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e2-3",
+      "source": "n2",
+      "target": "n3",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "createdAt": "2026-06-25T17:37:29.712Z",
+  "updatedAt": "2026-06-25T17:37:29.712Z"
+}

@@ -1,0 +1,120 @@
+{
+  "id": "design-first",
+  "name": "Design First",
+  "description": "Research, architect, plan, then implement complex features",
+  "category": "feature",
+  "tags": [
+    "design",
+    "architecture"
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Research",
+        "agentId": "hermes-nous",
+        "prompt": "Research the problem space, existing solutions, and best practices.",
+        "selectedSkills": [],
+        "selectedMcps": [
+          "context7",
+          "21st-dev"
+        ],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 180
+      },
+      "data": {
+        "label": "Architect",
+        "agentId": "hermes-nous",
+        "prompt": "Design the technical architecture: components, data flow, APIs.",
+        "selectedSkills": [],
+        "selectedMcps": [
+          "context7"
+        ],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n3",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 360
+      },
+      "data": {
+        "label": "Plan",
+        "agentId": "opencode-plan",
+        "prompt": "Create implementation plan from the architecture.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n4",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 540
+      },
+      "data": {
+        "label": "Implement",
+        "agentId": "opencode-developer",
+        "prompt": "Build everything according to the architecture and plan.",
+        "selectedSkills": [
+          "ponytail"
+        ],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "n1",
+      "target": "n2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e2-3",
+      "source": "n2",
+      "target": "n3",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e3-4",
+      "source": "n3",
+      "target": "n4",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "createdAt": "2026-06-25T17:37:29.712Z",
+  "updatedAt": "2026-06-25T17:37:29.712Z"
+}

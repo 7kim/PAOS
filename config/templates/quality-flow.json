@@ -1,0 +1,120 @@
+{
+  "id": "quality-flow",
+  "name": "Quality Flow",
+  "description": "Implement, review, fix, and test for production-quality code",
+  "category": "bug-fix",
+  "tags": [
+    "quality",
+    "review"
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Implement",
+        "agentId": "opencode-developer",
+        "prompt": "Implement the feature or fix.",
+        "selectedSkills": [
+          "ponytail",
+          "test-driven-development"
+        ],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 200
+      },
+      "data": {
+        "label": "Code Review",
+        "agentId": "antigravity",
+        "prompt": "Review the implementation. Check for bugs, edge cases, and code quality.",
+        "selectedSkills": [
+          "systematic-debugging"
+        ],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n3",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 400
+      },
+      "data": {
+        "label": "Fix",
+        "agentId": "opencode-developer",
+        "prompt": "Address the review feedback and fix any issues found.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n4",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 600
+      },
+      "data": {
+        "label": "Test",
+        "agentId": "opencode-developer",
+        "prompt": "Write and run tests. Ensure adequate coverage.",
+        "selectedSkills": [
+          "test-driven-development"
+        ],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "n1",
+      "target": "n2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e2-3",
+      "source": "n2",
+      "target": "n3",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e3-4",
+      "source": "n3",
+      "target": "n4",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "createdAt": "2026-06-25T17:37:29.712Z",
+  "updatedAt": "2026-06-25T17:37:29.712Z"
+}

@@ -1,7 +1,27 @@
 {
-  "pending": [],
+  "pending": [
+    {
+      "id": "PIPE-25-06-2026---18-06",
+      "project": "PAOS",
+      "enqueuedAt": "2026-06-25T18:06:48.532Z"
+    }
+  ],
   "running": null,
   "done": [
+    {
+      "id": "PIPE-25-06-2026---16-42",
+      "project": "PAOS",
+      "startedAt": "2026-06-25T16:43:15.095Z",
+      "completedAt": "2026-06-25T16:46:36.583Z",
+      "status": "completed"
+    },
+    {
+      "id": "PIPE-25-06-2026---15-51",
+      "project": "PAOS",
+      "startedAt": "2026-06-25T15:52:01.633Z",
+      "completedAt": "2026-06-25T15:52:52.219Z",
+      "status": "completed"
+    },
     {
       "id": "PIPE-24-06-2026---16-00",
       "project": "PAOS",

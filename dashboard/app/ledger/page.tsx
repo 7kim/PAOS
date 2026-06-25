@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { X, ArrowUpDown, FolderKanban, RefreshCw, Eye, Globe } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -200,7 +201,13 @@ function LedgerPage() {
       </div>
 
       {loading ? (
-        <div className="text-xs text-center py-12 text-muted-foreground">Loading...</div>
+        <div className="space-y-3">
+          <Skeleton className="h-8 w-full rounded-lg" />
+          <Skeleton className="h-8 w-full rounded-lg" />
+          <Skeleton className="h-8 w-full rounded-lg" />
+          <Skeleton className="h-8 w-full rounded-lg" />
+          <Skeleton className="h-8 w-full rounded-lg" />
+        </div>
       ) : viewAll && allLedgers ? (
         <div className="grid grid-cols-1 gap-4">
           {/* Global ledger card */}

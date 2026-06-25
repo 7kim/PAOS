@@ -1,0 +1,62 @@
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Analyze",
+        "agentId": "hermes-nous",
+        "prompt": "Analyze the codebase and identify what needs documentation.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      },
+      "measured": {
+        "width": 320,
+        "height": 102
+      }
+    },
+    {
+      "id": "n2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 200
+      },
+      "data": {
+        "label": "Document",
+        "agentId": "opencode-developer",
+        "prompt": "Write comprehensive documentation including README, API docs, and examples.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      },
+      "measured": {
+        "width": 320,
+        "height": 102
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "n1",
+      "target": "n2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "viewport": {
+    "x": 523.9000000000001,
+    "y": 452.78999999999996,
+    "zoom": 1.21
+  }
+}

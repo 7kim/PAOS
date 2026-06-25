@@ -1,0 +1,62 @@
+{
+  "id": "research-spike",
+  "name": "Research Spike",
+  "description": "Explore unknowns and produce a research report",
+  "category": "research",
+  "tags": [
+    "research",
+    "quick"
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Research",
+        "agentId": "hermes-nous",
+        "prompt": "Research the topic thoroughly. Explore multiple angles.",
+        "selectedSkills": [],
+        "selectedMcps": [
+          "context7",
+          "web"
+        ],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 200
+      },
+      "data": {
+        "label": "Report",
+        "agentId": "opencode-developer",
+        "prompt": "Write a comprehensive research report with findings, analysis, and recommendations.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "n1",
+      "target": "n2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "createdAt": "2026-06-25T17:37:29.712Z",
+  "updatedAt": "2026-06-25T17:37:29.712Z"
+}

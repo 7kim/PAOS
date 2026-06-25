@@ -42,14 +42,16 @@ export async function GET(
   }
 
   try {
-    const [metaRaw, pipelineJsonRaw, allFiles] = await Promise.all([
+    const [metaRaw, pipelineJsonRaw, allFiles, builderLayoutRaw] = await Promise.all([
       readFile(join(dir, "META.json"), "utf-8").catch(() => "{}"),
       readFile(join(dir, "pipeline.json"), "utf-8").catch(() => "{}"),
       readdir(dir).catch(() => [] as string[]),
+      readFile(join(dir, "builder-layout.json"), "utf-8").catch(() => ""),
     ]);
 
     const meta = JSON.parse(metaRaw);
     const pipelineJson = JSON.parse(pipelineJsonRaw);
+    const builderLayout = builderLayoutRaw ? JSON.parse(builderLayoutRaw) : null;
 
     // --- Live progress from pipeline.json ---
     let liveProgress = 0;
@@ -204,6 +206,7 @@ export async function GET(
       phases,
       versionedArtifacts,
       taskList,
+      builderLayout,
       stats: {
         completedTasks: taskList.length > 0 ? taskList.filter((t) => t.status === "done").length : (liveTotal > 0 ? liveCompleted : 0),
         totalTasks: taskList.length > 0 ? taskList.length : (liveTotal > 0 ? liveTotal : 0),

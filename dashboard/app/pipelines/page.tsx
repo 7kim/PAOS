@@ -2,7 +2,8 @@
 import { useCallback, useEffect, useState , Suspense} from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2, Trash2, Plus } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2, Trash2, Plus, Workflow } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -107,22 +108,39 @@ function PipelinesPage() {
   const [executePrompt, setExecutePrompt] = useState("");
   const [executeTargetId, setExecuteTargetId] = useState("");
   const [showCreateDialog, setShowCreateDialog] = useState(false);
+  const [createTab, setCreateTab] = useState<"manual" | "template">("manual");
   const [createProject, setCreateProject] = useState("PAOS");
   const [createPrompt, setCreatePrompt] = useState("");
   const [createPlan, setCreatePlan] = useState("");
   const [createTasks, setCreateTasks] = useState("");
   const [creating, setCreating] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [templates, setTemplates] = useState<any[]>([]);
+  const [loadingTemplates, setLoadingTemplates] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<any | null>(null);
 
   const filteredPipelines = projectFilter
     ? pipelines.filter((p) => p.project === projectFilter)
     : pipelines;
 
   const load = useCallback(async () => {
+    setLoading(true);
     const params = projectFilter ? `?project=${encodeURIComponent(projectFilter)}` : "";
     const res = await fetch(`/api/pipelines${params}`);
     const data = await res.json();
     setPipelines(data.pipelines ?? []);
+    setLoading(false);
   }, [projectFilter]);
+
+  const loadTemplates = useCallback(async () => {
+    setLoadingTemplates(true);
+    try {
+      const res = await fetch("/api/templates");
+      const data = await res.json();
+      setTemplates(data.templates || []);
+    } catch { setTemplates([]); }
+    setLoadingTemplates(false);
+  }, []);
 
   const executePipeline = useCallback(async (id: string) => {
     const prompt = `You have been assigned pipeline ${id}. Read ~/AI_Workflow/memory/pipelines/PAOS/${id}/META.json, PLAN.md, and TASKS.md. Execute ALL tasks in order. Update TASKS.md task markers ([ ] → [~] → [x]) as you complete each one. Update ~/AI_Workflow/memory/pipelines/PAOS/${id}/pipeline.json with your progress. When ALL tasks are done, write WALKTHROUGH.md and update META.json status to "completed".`;
@@ -387,6 +405,12 @@ function PipelinesPage() {
           <Plus size={13} />
           New Pipeline
         </Button>
+        <Link href="/pipelines/builder">
+          <Button size="sm" variant="outline" className="gap-1.5">
+            <Workflow size={13} />
+            Flow Builder
+          </Button>
+        </Link>
       </div>
       <p className="text-sm mb-4 text-muted-foreground">
         Visual DAG of all PAOS pipelines — click to expand phases and details
@@ -434,7 +458,19 @@ function PipelinesPage() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-3">
-            {filteredPipelines.length === 0 ? (
+            {loading ? (
+              <div className="space-y-4 p-2">
+                {[1,2,3].map(i => (
+                  <div key={i} className="flex gap-3">
+                    <Skeleton className="w-8 h-8 rounded-full shrink-0" />
+                    <div className="flex-1 space-y-2">
+                      <Skeleton className="h-4 w-3/4" />
+                      <Skeleton className="h-3 w-1/2" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : filteredPipelines.length === 0 ? (
             <div className="text-sm py-12 text-center text-muted-foreground">
               <GitBranch size={24} className="mx-auto mb-3 opacity-30" />
               {projectFilter
@@ -562,80 +598,114 @@ function PipelinesPage() {
       </div>
 
       {/* Create Pipeline dialog */}
-      <Dialog open={showCreateDialog} onOpenChange={(open) => { if (!open) setShowCreateDialog(false); }}>
-        <DialogContent className="max-w-[55vw] w-full">
+      <Dialog open={showCreateDialog} onOpenChange={(open) => { if (!open) { setShowCreateDialog(false); setSelectedTemplate(null); } }}>
+        <DialogContent className="max-w-[90vw] w-full max-h-[90vh] flex flex-col">
           <DialogHeader>
             <DialogTitle className="text-sm flex items-center gap-2">
               <Plus size={13} />
               New Pipeline
             </DialogTitle>
             <DialogDescription className="text-xs">
-              Create a new pipeline. A unique ID will be auto-generated.
+              Create from scratch or from a template
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Project</label>
-              <input
-                value={createProject}
-                onChange={(e) => setCreateProject(e.target.value)}
-                className="w-full text-sm rounded px-2 py-1.5 border"
-                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
-              />
-            </div>
-            <div>
-              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Prompt (what should the pipeline do)</label>
-              <textarea
-                value={createPrompt}
-                onChange={(e) => setCreatePrompt(e.target.value)}
-                className="w-full text-sm rounded px-2 py-1.5 border resize-none"
-                rows={3}
-                style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
-              />
-            </div>
-            <div>
-              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>PLAN.md <span className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>(optional)</span></label>
-              <textarea
-                value={createPlan}
-                onChange={(e) => setCreatePlan(e.target.value)}
-                className="w-full text-xs font-mono rounded px-2 py-1.5 border resize-none"
-                rows={4}
-                style={{ background: "rgba(0,0,0,0.12)", borderColor: "var(--border)", color: "var(--foreground)" }}
-              />
-            </div>
-            <div>
-              <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>TASKS.md <span className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>(optional)</span></label>
-              <textarea
-                value={createTasks}
-                onChange={(e) => setCreateTasks(e.target.value)}
-                className="w-full text-xs font-mono rounded px-2 py-1.5 border resize-none"
-                rows={4}
-                style={{ background: "rgba(0,0,0,0.12)", borderColor: "var(--border)", color: "var(--foreground)" }}
-              />
-            </div>
+
+          {/* Tab switcher */}
+          <div className="flex gap-1 border-b pb-2" style={{ borderColor: "var(--border)" }}>
+            <button type="button" onClick={() => { setCreateTab("manual"); setSelectedTemplate(null); }}
+              className="text-xs px-3 py-1 rounded-md transition-colors"
+              style={{ background: createTab === "manual" ? "var(--primary)" : "transparent", color: createTab === "manual" ? "var(--primary-foreground)" : "var(--muted-foreground)" }}
+            >Manual</button>
+            <button type="button" onClick={() => { setCreateTab("template"); loadTemplates(); }}
+              className="text-xs px-3 py-1 rounded-md transition-colors"
+              style={{ background: createTab === "template" ? "var(--primary)" : "transparent", color: createTab === "template" ? "var(--primary-foreground)" : "var(--muted-foreground)" }}
+            >From Template</button>
           </div>
-          <div className="flex items-center gap-2 justify-end">
-            <Button variant="outline" size="sm" onClick={() => setShowCreateDialog(false)}>Cancel</Button>
-            <Button
-              size="sm"
-              disabled={creating || !createPrompt.trim()}
+
+          {createTab === "manual" ? (
+            <div className="space-y-3 flex-1 overflow-y-auto">
+              <div>
+                <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Project</label>
+                <input value={createProject} onChange={(e) => setCreateProject(e.target.value)}
+                  className="w-full text-sm rounded px-2 py-1.5 border"
+                  style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
+                />
+              </div>
+              <div>
+                <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>Prompt</label>
+                <textarea value={createPrompt} onChange={(e) => setCreatePrompt(e.target.value)}
+                  className="w-full text-sm rounded px-2 py-1.5 border resize-none" rows={3}
+                  style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
+                />
+              </div>
+              <div>
+                <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>PLAN.md <span className="text-[9px]">(optional)</span></label>
+                <textarea value={createPlan} onChange={(e) => setCreatePlan(e.target.value)}
+                  className="w-full text-xs font-mono rounded px-2 py-1.5 border resize-none" rows={4}
+                  style={{ background: "rgba(0,0,0,0.12)", borderColor: "var(--border)", color: "var(--foreground)" }}
+                />
+              </div>
+              <div>
+                <label className="text-xs block mb-1" style={{ color: "var(--muted-foreground)" }}>TASKS.md <span className="text-[9px]">(optional)</span></label>
+                <textarea value={createTasks} onChange={(e) => setCreateTasks(e.target.value)}
+                  className="w-full text-xs font-mono rounded px-2 py-1.5 border resize-none" rows={4}
+                  style={{ background: "rgba(0,0,0,0.12)", borderColor: "var(--border)", color: "var(--foreground)" }}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="flex-1 overflow-y-auto">
+              {loadingTemplates ? (
+                <div className="text-xs text-center py-8 opacity-50">Loading templates...</div>
+              ) : templates.length === 0 ? (
+                <div className="text-xs text-center py-8 opacity-50">No templates available</div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {templates.map((t: any) => (
+                    <div key={t.id}
+                      className="rounded-lg border p-3 cursor-pointer transition-all hover:shadow-md"
+                      style={{ borderColor: selectedTemplate?.id === t.id ? "var(--primary)" : "var(--border)", background: selectedTemplate?.id === t.id ? "rgba(240,185,11,0.05)" : "var(--card-bg)" }}
+                      onClick={() => {
+                        setSelectedTemplate(t);
+                        setCreatePrompt(t.description || `Pipeline from template: ${t.name}`);
+                      }}
+                    >
+                      <div className="text-xs font-semibold truncate" style={{ color: "var(--foreground)" }}>{t.name}</div>
+                      <p className="text-[9px] mt-1 line-clamp-2" style={{ color: "var(--muted-foreground)" }}>{t.description}</p>
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <span className="text-[8px] px-1.5 py-0.5 rounded capitalize" style={{ background: "rgba(240,185,11,0.12)", color: "var(--primary)" }}>{t.category}</span>
+                        <span className="text-[8px] opacity-50" style={{ color: "var(--muted-foreground)" }}>{t.nodes?.length || 0} nodes</span>
+                        {selectedTemplate?.id === t.id && <span className="ml-auto text-[9px]" style={{ color: "var(--primary)" }}>Selected</span>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="flex items-center gap-2 justify-end pt-3 border-t" style={{ borderColor: "var(--border)" }}>
+            <Button variant="outline" size="sm" onClick={() => { setShowCreateDialog(false); setSelectedTemplate(null); }}>Cancel</Button>
+            <Button size="sm" disabled={creating || (createTab === "manual" && !createPrompt.trim()) || (createTab === "template" && !selectedTemplate)}
               onClick={async () => {
                 setCreating(true);
                 try {
+                  const body: any = { project: createProject || "PAOS" };
+                  if (createTab === "template" && selectedTemplate) {
+                    body.templateId = selectedTemplate.id;
+                    body.builderLayout = { nodes: selectedTemplate.nodes, edges: selectedTemplate.edges || [] };
+                    body.prompt = createPrompt || `Pipeline from template: ${selectedTemplate.name}`;
+                  } else {
+                    body.prompt = createPrompt;
+                    body.planMd = createPlan;
+                    body.tasksMd = createTasks;
+                  }
                   await fetch("/api/pipelines", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                      project: createProject || "PAOS",
-                      prompt: createPrompt,
-                      planMd: createPlan,
-                      tasksMd: createTasks,
-                    }),
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(body),
                   });
                   setShowCreateDialog(false);
-                  setCreatePrompt("");
-                  setCreatePlan("");
-                  setCreateTasks("");
+                  setCreatePrompt(""); setCreatePlan(""); setCreateTasks(""); setSelectedTemplate(null);
                   load();
                 } catch {}
                 setCreating(false);

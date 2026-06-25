@@ -1,0 +1,33 @@
+{
+  "pipelineId": "PIPE-25-06-2026---18-06",
+  "status": "executing",
+  "startedAt": "2026-06-25T18:06:49.040Z",
+  "phases": {
+    "n2": {
+      "agentId": "opencode-developer",
+      "label": "Document",
+      "status": "running",
+      "prompt": "Write comprehensive documentation including README, API docs, and examples.",
+      "pid": 75009,
+      "progress": "0/4",
+      "startedAt": "2026-06-25T18:06:49.066Z",
+      "completedAt": null,
+      "order": 1
+    },
+    "n1": {
+      "agentId": "hermes-nous",
+      "label": "Analyze",
+      "status": "pending",
+      "prompt": "Analyze the codebase and identify what needs documentation.",
+      "pid": null,
+      "progress": "0/4",
+      "startedAt": null,
+      "completedAt": null,
+      "order": 2
+    }
+  },
+  "order": [
+    "n2",
+    "n1"
+  ]
+}

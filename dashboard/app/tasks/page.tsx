@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { X } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getViewAll } from "@/lib/viewAll";
 import { getActiveProject } from "@/lib/activeProject";
 

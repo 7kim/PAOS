@@ -1,0 +1,59 @@
+{
+  "id": "quick-dev",
+  "name": "Quick Dev",
+  "description": "Simple Plan → Implement flow for quick one-shot tasks",
+  "category": "feature",
+  "tags": [
+    "quick",
+    "dev"
+  ],
+  "nodes": [
+    {
+      "id": "node-1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 50
+      },
+      "data": {
+        "label": "Plan",
+        "agentId": "opencode-plan",
+        "prompt": "Plan the implementation. Break down the requirements into tasks with dependencies.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "node-2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 250
+      },
+      "data": {
+        "label": "Implement",
+        "agentId": "opencode-developer",
+        "prompt": "Implement the planned tasks. Follow the plan and update progress.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-1-2",
+      "source": "node-1",
+      "target": "node-2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "createdAt": "2026-06-25T17:37:29.711Z",
+  "updatedAt": "2026-06-25T17:37:29.711Z"
+}

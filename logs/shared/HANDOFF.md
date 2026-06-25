@@ -6,42 +6,18 @@
 ---
 
 ## Last Agent
-- **Agent**: hermes-nous
-- **Tool**: Hermes (Nous Research)
-- **Timestamp**: 2026-06-23T01:10:41.362Z
-- **Session**: Session 2026-06-22 — Full PAOS architecture implementation
+- **Agent**: opencode-developer
+- **Tool**: OpenCode Developer
+- **Timestamp**: 2026-06-25T18:30:00.000Z
 
 ## Active Task
-PAOS architecture completion — all core features built and tested
+Pipeline PIPE-25-06-2026---18-06 phase n2 completed — comprehensive documentation written
 
 ## What Was Just Done
-- Complete dark theme overhaul (gold primary, proper contrast, all text-xs fixed)
-- Pipeline data mapping fixed (phase names, task parsing)
-- GitView clickable tree view with scroll-to-diff
-- Kanban board for plans with bulk download mode
-- Project-scoped architecture: projects/, workspaces/, memory/pipelines/
-- Workspace file system (.code-workspace) with PAOS settings extension
-- Vault (daily + chats) per project
-- Events, handoff, ledger, context, inbox per project
-- Scoped git identities per project (stored in workspace file)
-- Delete confirmation with text verification
-- Active project state with View All toggle across all pages
-- Server-side filtering for plans, tasks, pipelines APIs
-- Refresh buttons on events, handoff, ledger pages
-- GitHub import with git clone
-- Project secrets UI with masked values
-- Constitution (workflow.md) updated with Article XI
+- Rewrote dashboard/README.md (218 lines) with full PAOS dashboard guide\n- Created docs/api.md (1,018 lines) — 56-endpoint API reference across 22 resource groups\n- Created docs/examples.md (1,009 lines) — usage examples for CLI, API, MCP, pipelines\n- Updated pipeline.json and META.json to mark phase n2 completed
 
 ## What Is NOT Done Yet
-- Events page only showing 1 entry instead of full content (needs investigation)
-- Intervene: restrict to read/write only intervene.md file
-- Delete pipelines from pipelines page with queue cleanup
-- Pipeline builder UI (n8n-style layers)
-- PID tracking + terminal view per pipeline execution
-- Sort inbox by date/time
-- Clean Setup in Settings
-- Tokens usage page with calendar histogram
-- Additional themes (Claude, Supabase, Clickhouse)
+- Phase "Analyze" (hermes-nous) is still pending in the pipeline\n- Documentation may need architect review for completeness
 
 ## Active Projects
 

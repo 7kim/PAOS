@@ -1,0 +1,145 @@
+{
+  "id": "full-delivery",
+  "name": "Full Delivery",
+  "description": "Complete proposal-to-execution flow with review gates",
+  "category": "feature",
+  "tags": [
+    "full",
+    "production"
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Propose",
+        "agentId": "hermes-nous",
+        "prompt": "Create a detailed proposal with scope, approach, and expected outcomes.",
+        "selectedSkills": [],
+        "selectedMcps": [
+          "context7",
+          "shadcn"
+        ],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 150
+      },
+      "data": {
+        "label": "Enhance",
+        "agentId": "hermes-nous",
+        "prompt": "Review the proposal and strengthen it. Consider edge cases, risks, and alternatives.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n3",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 300
+      },
+      "data": {
+        "label": "Plan",
+        "agentId": "opencode-plan",
+        "prompt": "Break the enhanced proposal into actionable tasks with dependencies.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n4",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 450
+      },
+      "data": {
+        "label": "Review Plan",
+        "agentId": "antigravity",
+        "prompt": "Review the plan for completeness, gaps, and risks.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n5",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 600
+      },
+      "data": {
+        "label": "Implement",
+        "agentId": "opencode-developer",
+        "prompt": "Execute the approved plan. Build everything according to spec.",
+        "selectedSkills": [
+          "ponytail"
+        ],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "n1",
+      "target": "n2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e2-3",
+      "source": "n2",
+      "target": "n3",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e3-4",
+      "source": "n3",
+      "target": "n4",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e4-5",
+      "source": "n4",
+      "target": "n5",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "createdAt": "2026-06-25T17:37:29.712Z",
+  "updatedAt": "2026-06-25T17:37:29.712Z"
+}

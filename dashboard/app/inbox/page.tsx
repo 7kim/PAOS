@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { Send, FolderKanban, ChevronRight } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { formatTime } from "@/lib/settings";
 import { getViewAll } from "@/lib/viewAll";
 import { getActiveProject } from "@/lib/activeProject";

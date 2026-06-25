@@ -1,0 +1,91 @@
+{
+  "id": "bug-fix",
+  "name": "Bug Fix",
+  "description": "Diagnose the issue, implement the fix, and verify with tests",
+  "category": "bug-fix",
+  "tags": [
+    "bug",
+    "fix",
+    "quick"
+  ],
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 0
+      },
+      "data": {
+        "label": "Diagnose",
+        "agentId": "opencode-developer",
+        "prompt": "Diagnose the bug. Identify root cause and reproduction steps.",
+        "selectedSkills": [
+          "systematic-debugging"
+        ],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n2",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 200
+      },
+      "data": {
+        "label": "Fix",
+        "agentId": "opencode-developer",
+        "prompt": "Implement the fix. Ensure no regressions.",
+        "selectedSkills": [],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    },
+    {
+      "id": "n3",
+      "type": "agentNode",
+      "position": {
+        "x": 250,
+        "y": 400
+      },
+      "data": {
+        "label": "Test",
+        "agentId": "opencode-developer",
+        "prompt": "Write regression tests and verify the fix works.",
+        "selectedSkills": [
+          "test-driven-development"
+        ],
+        "selectedMcps": [],
+        "fileRefs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "n1",
+      "target": "n2",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e2-3",
+      "source": "n2",
+      "target": "n3",
+      "type": "smoothstep",
+      "animated": true,
+      "style": {
+        "stroke": "var(--border)",
+        "strokeWidth": 2
+      }
+    }
+  ],
+  "createdAt": "2026-06-25T17:37:29.712Z",
+  "updatedAt": "2026-06-25T17:37:29.712Z"
+}
