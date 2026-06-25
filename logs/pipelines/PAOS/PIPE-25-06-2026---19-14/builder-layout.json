@@ -11,18 +11,13 @@
         "label": "Analyze",
         "agentId": "hermes-nous",
         "prompt": "Analyze the codebase and identify what needs documentation.",
-        "selectedSkills": [
-          "ponytail",
-          "plan"
-        ],
-        "selectedMcps": [
-          "context7"
-        ],
+        "selectedSkills": [],
+        "selectedMcps": [],
         "fileRefs": []
       },
       "measured": {
         "width": 320,
-        "height": 118
+        "height": 102
       },
       "selected": false
     },
@@ -45,7 +40,7 @@
         "width": 320,
         "height": 102
       },
-      "selected": true
+      "selected": false
     }
   ],
   "edges": [
@@ -62,8 +57,8 @@
     }
   ],
   "viewport": {
-    "x": 511.4536025844357,
-    "y": 492.0977326988835,
-    "zoom": 1.3314170059042465
+    "x": 326.4087542183365,
+    "y": 204.18327461197367,
+    "zoom": 1.6121237592832516
   }
 }

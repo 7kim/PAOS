@@ -3,6 +3,7 @@
   "prompt": "Pipeline from Flow Builder",
   "status": "completed",
   "completed_at": "2026-06-25T19:45:00.000Z",
+  "analysis_completed_at": "2026-06-25T20:15:00.000Z",
   "created_at": "2026-06-25T19:09:19.068Z",
   "phases": [
     {
@@ -11,16 +12,21 @@
       "label": "Document",
       "status": "completed",
       "artifacts": [
-        "phases/n2/IMPLEMENTATION.md"
+        "phases/n2/IMPLEMENTATION.md",
+        "phases/n2/WALKTHROUGH.md",
+        "phases/n2/REASONING.md"
       ]
     },
     {
       "agent": "hermes-nous",
       "role": "agent",
       "label": "Analyze",
-      "status": "pending",
+      "status": "completed",
       "artifacts": [
-        "phases/n1/IMPLEMENTATION.md"
+        "phases/n1/IMPLEMENTATION.md",
+        "phases/n1/REASONING.md",
+        "phases/n1/ANALYSIS.md",
+        "phases/n1/WALKTHROUGH.md"
       ]
     }
   ],
