@@ -1,8 +1,8 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import { Handle, Position } from "@xyflow/react";
-import { Bot, GripVertical, Loader2, CheckCircle2, AlertCircle, Clock } from "lucide-react";
+import { Bot, GripVertical, Loader2, CheckCircle2, AlertCircle, Clock, ChevronDown, ChevronRight, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { AgentNodeData } from "./types";
 import { AVAILABLE_AGENTS } from "./types";
@@ -12,6 +12,10 @@ function AgentNodeComponent(props: Record<string, unknown>) {
   const selected = props.selected as boolean;
   const agent = AVAILABLE_AGENTS.find((a) => a.id === data.agentId);
   const color = data.nodeColor || agent?.color || "#64748b";
+  const [showOutput, setShowOutput] = useState(false);
+
+  const isRunning = data.flowStatus === "running";
+  const progressValue = data.flowProgress ? parseInt(data.flowProgress.split("/")[0]) / Math.max(1, parseInt(data.flowProgress.split("/")[1] || "1")) : 0;
 
   return (
     <div
@@ -53,43 +57,70 @@ function AgentNodeComponent(props: Record<string, unknown>) {
         </p>
       </div>
 
-      {/* Flow status badge */}
+      {/* Flow status badge + progress */}
       {data.flowStatus && (
-        <div className="px-3 pb-1.5">
+        <div className="px-3 pb-1.5 space-y-1">
           <div className="flex items-center gap-1.5 text-[9px]">
             {data.flowStatus === "running" && (
               <>
                 <Loader2 size={9} className="animate-spin" style={{ color: "#3b82f6" }} />
                 <span style={{ color: "#3b82f6" }}>
-                  Running{data.flowPid ? ` (PID ${data.flowPid})` : ""}
+                  {data.flowPid ? `Running (PID ${data.flowPid})` : "Running"}
                 </span>
               </>
             )}
             {data.flowStatus === "ready" && (
-              <>
-                <Clock size={9} style={{ color: "var(--orange)" }} />
-                <span style={{ color: "var(--orange)" }}>Ready</span>
-              </>
+              <><Clock size={9} style={{ color: "var(--orange)" }} /><span style={{ color: "var(--orange)" }}>Ready</span></>
             )}
             {data.flowStatus === "pending" && (
-              <>
-                <Clock size={9} className="opacity-50" />
-                <span className="opacity-50">Pending</span>
-              </>
+              <><Clock size={9} className="opacity-50" /><span className="opacity-50">Pending</span></>
             )}
             {data.flowStatus === "completed" && (
-              <>
-                <CheckCircle2 size={9} style={{ color: "#22c55e" }} />
-                <span style={{ color: "#22c55e" }}>Completed</span>
-              </>
+              <><CheckCircle2 size={9} style={{ color: "#22c55e" }} /><span style={{ color: "#22c55e" }}>Completed</span></>
             )}
             {data.flowStatus === "failed" && (
-              <>
-                <AlertCircle size={9} style={{ color: "#ef4444" }} />
-                <span style={{ color: "#ef4444" }}>Failed</span>
-              </>
+              <><AlertCircle size={9} style={{ color: "#ef4444" }} /><span style={{ color: "#ef4444" }}>Failed</span></>
+            )}
+            {data.flowProgress && (
+              <span className="ml-auto text-[8px] opacity-60">{data.flowProgress}</span>
             )}
           </div>
+
+          {/* Progress bar for running tasks */}
+          {isRunning && progressValue > 0 && (
+            <div className="w-full h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+              <div
+                className="h-full rounded-full transition-all duration-500"
+                style={{
+                  width: `${Math.min(100, progressValue * 100)}%`,
+                  background: "linear-gradient(90deg, #3b82f6, #60a5fa)",
+                }}
+              />
+            </div>
+          )}
+
+          {/* Output preview toggle */}
+          {data.flowOutput && (
+            <div>
+              <button
+                type="button"
+                onClick={() => setShowOutput(!showOutput)}
+                className="flex items-center gap-1 text-[8px] opacity-60 hover:opacity-100 transition-opacity"
+                style={{ color: "var(--muted-foreground)" }}
+              >
+                <Terminal size={8} />
+                {showOutput ? <ChevronDown size={8} /> : <ChevronRight size={8} />}
+                Output
+              </button>
+              {showOutput && (
+                <pre className="text-[7px] mt-1 p-1.5 rounded max-h-16 overflow-y-auto font-mono leading-tight"
+                  style={{ background: "rgba(0,0,0,0.2)", color: "var(--muted-foreground)" }}
+                >
+                  {data.flowOutput}
+                </pre>
+              )}
+            </div>
+          )}
         </div>
       )}
 

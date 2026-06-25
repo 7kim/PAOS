@@ -33,6 +33,7 @@ export type AgentNodeData = {
   flowStatus?: string;
   flowPid?: number;
   flowProgress?: string;
+  flowOutput?: string;
 };
 
 export type AgentNodeType = Node;
