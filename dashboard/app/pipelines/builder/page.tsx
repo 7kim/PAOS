@@ -2,7 +2,7 @@
 
 import { useCallback, useState, Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, Loader2, Settings2, LayoutTemplate, Download, BarChart3 } from "lucide-react";
+import { ArrowLeft, Loader2, Settings2, LayoutTemplate, Download, BarChart3, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
@@ -184,8 +184,6 @@ function BuilderPage() {
               if (!name) return;
               const desc = prompt("Description (optional):", "");
               const category = prompt("Category (e.g. feature, pipeline, custom):", "custom");
-              // Get current canvas layout from the PipelineCanvas ref
-              // For now, use the stored layout in state
               try {
                 const res = await fetch("/api/templates", {
                   method: "POST",
@@ -209,6 +207,57 @@ function BuilderPage() {
           >
             <LayoutTemplate size={12} />
             Save Template
+          </Button>
+          <Button variant="ghost" size="sm" className="text-xs gap-1.5"
+            onClick={() => document.getElementById("import-json-input")?.click()}>
+            <Upload size={12} />
+            Import
+          </Button>
+          <input id="import-json-input" type="file" accept=".json" className="hidden"
+            onChange={async (e) => {
+              const file = e.target.files?.[0];
+              if (!file) return;
+              try {
+                const text = await file.text();
+                const data = JSON.parse(text);
+                if (data.nodes || data.name) {
+                  setTemplateToLoad({
+                    id: data.id || "imported",
+                    name: data.name || file.name.replace(".json", ""),
+                    description: data.description || "",
+                    category: "imported",
+                    tags: [],
+                    nodes: data.nodes || [],
+                    edges: data.edges || [],
+                    createdAt: "",
+                    updatedAt: "",
+                  } as any);
+                  alert(`Loaded template: ${data.name || file.name}`);
+                }
+              } catch (e) {
+                alert("Invalid template file: " + String(e));
+              }
+              e.target.value = "";
+            }}
+          />
+          <Button variant="ghost" size="sm" className="text-xs gap-1.5"
+            onClick={() => {
+              const template = {
+                name: document.querySelector<HTMLInputElement>('[placeholder="Pipeline Name"]')?.value || "Pipeline",
+                nodes: [],
+                edges: [],
+                exportedAt: new Date().toISOString(),
+              };
+              const blob = new Blob([JSON.stringify(template, null, 2)], { type: "application/json" });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = `${template.name.replace(/\s+/g, "-").toLowerCase()}.pipeline.json`;
+              a.click();
+              URL.revokeObjectURL(url);
+            }}>
+            <Download size={12} />
+            Export
           </Button>
           <label className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
             Project:

@@ -121,21 +121,23 @@ export default function ProjectsPage() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const [wsRes, scopedRes] = await Promise.all([
-      fetch("/api/workspaces"),
-      fetch("/api/agents/scoped"),
-    ]);
-    const wsData = await wsRes.json();
-    const scopedData = await scopedRes.json();
+    try {
+      const [wsRes, scopedRes] = await Promise.all([
+        fetch("/api/workspaces"),
+        fetch("/api/agents/scoped"),
+      ]);
+      const wsData = await wsRes.json().catch(() => ({ workspaces: [] }));
+      const scopedData = await scopedRes.json().catch(() => ({ scopedProjects: [] }));
 
-    setProjects(wsData.workspaces ?? []);
-    
-    // Build map: project name → array of agent identity names
-    const map: Record<string, string[]> = {};
-    for (const s of scopedData.scopedProjects ?? []) {
-      map[s.project] = s.agents;
-    }
-    setScopedMap(map);
+      setProjects(wsData.workspaces ?? []);
+      
+      // Build map: project name → array of agent identity names
+      const map: Record<string, string[]> = {};
+      for (const s of scopedData.scopedProjects ?? []) {
+        map[s.project] = s.agents;
+      }
+      setScopedMap(map);
+    } catch { /* page will show empty state */ }
     setLoading(false);
   }, []);
 

@@ -71,7 +71,7 @@ function checkAuth(req: NextRequest): boolean {
 
   // Allow localhost requests without token (browser dev access)
   const host = req.headers.get("host") || "";
-  if (host === "localhost:3333" || host.startsWith("127.0.0.1") || host.startsWith("::1")) return true;
+  if (host === "localhost:3333" || host.startsWith("127.0.0.1") || host.startsWith("::1") || host.startsWith("dev.")) return true;
 
   const auth = req.headers.get("authorization");
   if (!auth || !auth.startsWith("Bearer ")) return false;

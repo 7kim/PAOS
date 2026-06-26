@@ -1,0 +1,14 @@
+[PASS] Check 1: builder field is true — builder: true
+[PASS] Check 2: builderLayout exists in META.json — present
+[PASS] Check 3: builderLayout.nodes is an array with >= 1 node — 2 nodes
+[PASS] Check 4: Each node has required fields (id, type, position, data) — all 2 nodes valid
+[PASS] Check 5: Each node.position has valid x, y coordinates — all positions valid
+[PASS] Check 6: Each node.data has label — all nodes have labels
+[PASS] Check 7: builderLayout.edges is an array — 1 edges
+[PASS] Check 8: Each edge connects valid node IDs — all 1 edges valid
+[PASS] Check 9: No duplicate node IDs — all 2 IDs unique
+[PASS] Check 10: Topological sort — no cycles in edge graph — acyclic (valid DAG)
+[PASS] Check 11: builder-layout.json matches builderLayout in META.json — identical
+[PASS] Check 12: Each node has a valid type — all types recognized
+
+12/12 checks passed

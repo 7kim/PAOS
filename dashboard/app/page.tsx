@@ -101,6 +101,8 @@ export default function OverviewPage() {
   const [unhealthyAgents, setUnhealthyAgents] = useState<UnhealthyAgent[]>([]);
   const [dismissedAlerts, setDismissedAlerts] = useState<string[]>([]);
   const [workspaces, setWorkspaces] = useState<{ name: string; pipelineCount: number }[]>([]);
+  const [scheduledCount, setScheduledCount] = useState(0);
+  const [agentStats, setAgentStats] = useState({ totalActions: 0, pipelinesRun: 0 });
   const [loading, setLoading] = useState(true);
 
   const load = useCallback(async () => {
@@ -115,6 +117,20 @@ export default function OverviewPage() {
     setRecent(data.recent ?? []);
     setUnhealthyAgents(data.unhealthyAgents ?? []);
     setWorkspaces(wsData.workspaces ?? []);
+
+    // Fetch agent stats separately (can fail gracefully)
+    try {
+      const statsRes = await fetch("/api/agents/stats");
+      if (statsRes.ok) {
+        const statsData = await statsRes.json();
+        const ags = statsData.agents || {};
+        setAgentStats({
+          totalActions: Object.values(ags).reduce((s: number, a: any) => s + (a.totalActions || 0), 0),
+          pipelinesRun: Object.values(ags).reduce((s: number, a: any) => s + (a.pipelinesRun || 0), 0),
+        });
+      }
+    } catch { /* ignore */ }
+
     setLoading(false);
   }, []);
 
@@ -292,11 +308,19 @@ export default function OverviewPage() {
                 <CheckCircle2 size={15} style={{ color: "var(--success)" }} />
               )}
               <CardTitle className="text-sm font-medium">Needs Attention</CardTitle>
-              <span className="text-xs text-muted-foreground ml-auto">
+              <div className="flex items-center gap-2 ml-auto">
+                <Link href="/system/doctor">
+                  <Button variant="ghost" size="sm" className="text-[10px] gap-1 h-6">
+                    <Activity size={11} />
+                    Health
+                  </Button>
+                </Link>
+                <span className="text-xs text-muted-foreground">
                 {unhealthyAgents.length} issue{unhealthyAgents.length !== 1 ? "s" : ""}
               </span>
             </div>
-          </CardHeader>
+          </div>
+        </CardHeader>
           <CardContent>
             {loading ? (
               <div className="space-y-3"><Skeleton className="h-16 w-full rounded-lg" /><Skeleton className="h-16 w-full rounded-lg" /></div>

@@ -1,3 +1,0 @@
-- [x] Create test pipeline
-- [ ] Verify visualize page
-- [ ] Verify builder page

@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import {
   Loader2, CheckCircle2, XCircle, ExternalLink, RefreshCw,
-  Copy, Terminal, Power, PowerOff, Download, BarChart3,
+  Copy, Terminal, Power, PowerOff, Download, BarChart3, Search,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -120,6 +121,12 @@ export default function AgentsPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Link href="/agents/explorer">
+            <Button variant="ghost" size="sm" className="text-[10px] gap-1">
+              <Search size={12} />
+              Explorer
+            </Button>
+          </Link>
           <Button variant="ghost" size="sm" onClick={() => setShowStats(!showStats)} className="text-[10px] gap-1">
             <BarChart3 size={12} />
             {showStats ? "Hide Stats" : "Stats"}

@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState , Suspense} from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2, Trash2, Plus, Workflow } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronRight, Clock, FolderKanban, GitBranch, Play, XCircle, Eye, Loader2, Trash2, Plus, Workflow, BarChart3 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -114,12 +114,15 @@ function PipelinesPage() {
   const [createPlan, setCreatePlan] = useState("");
   const [createTasks, setCreateTasks] = useState("");
   const [creating, setCreating] = useState(false);
+  const [plannerResult, setPlannerResult] = useState<any>(null);
+  const [planning, setPlanning] = useState(false);
   const [loading, setLoading] = useState(true);
   const [templates, setTemplates] = useState<any[]>([]);
   const [loadingTemplates, setLoadingTemplates] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<any | null>(null);
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState<{ page: number; limit: number; total: number; totalPages: number } | null>(null);
+  const [schedules, setSchedules] = useState<any[]>([]);
   const pageSize = 20;
 
   const filteredPipelines = projectFilter
@@ -136,6 +139,11 @@ function PipelinesPage() {
     const data = await res.json();
     setPipelines(data.pipelines ?? []);
     setPagination(data.pagination ?? null);
+    // Load schedules
+    try {
+      const schedRes = await fetch("/api/pipelines/schedule");
+      if (schedRes.ok) setSchedules((await schedRes.json()).schedules ?? []);
+    } catch { /* ignore */ }
     setLoading(false);
   }, [projectFilter, page]);
 
@@ -418,6 +426,12 @@ function PipelinesPage() {
             Flow Builder
           </Button>
         </Link>
+        <Link href="/pipelines/analytics">
+          <Button size="sm" variant="outline" className="gap-1.5">
+            <BarChart3 size={13} />
+            Analytics
+          </Button>
+        </Link>
       </div>
       <p className="text-sm mb-4 text-muted-foreground">
         Visual DAG of all PAOS pipelines — click to expand phases and details
@@ -625,6 +639,36 @@ function PipelinesPage() {
               )}
             </div>
           </Card>
+
+          {/* Scheduled pipelines */}
+          <Card>
+            <div className="px-3 py-2 border-b flex items-center gap-2" style={{ borderColor: "var(--border)" }}>
+              <Clock size={12} style={{ color: "var(--primary)" }} />
+              <span className="text-xs font-semibold">Scheduled</span>
+              <span className="ml-auto text-[10px] text-muted-foreground">
+                {schedules.length} schedule{schedules.length !== 1 ? "s" : ""}
+              </span>
+            </div>
+            <div className="px-3 py-2 transition-all duration-300">
+              {schedules.length === 0 ? (
+                <div className="text-[10px] py-3 text-center text-muted-foreground">
+                  <div className="text-lg mb-0.5 opacity-20">📅</div>
+                  No scheduled pipelines
+                </div>
+              ) : (
+                schedules.map((s) => (
+                  <div key={s.id} className="flex items-center gap-2 py-1.5 text-xs border-b last:border-0"
+                    style={{ borderColor: "var(--border)" }}>
+                    <Clock size={10} style={{ color: "var(--primary)" }} />
+                    <span className="truncate flex-1">{s.prompt?.slice(0, 50) || s.id}</span>
+                    <code className="text-[9px] font-mono" style={{ color: "var(--muted-foreground)" }}>
+                      {s.schedule || "?"}
+                    </code>
+                  </div>
+                ))
+              )}
+            </div>
+          </Card>
         </div>
       </div>
 
@@ -716,6 +760,32 @@ function PipelinesPage() {
           )}
 
           <div className="flex items-center gap-2 justify-end pt-3 border-t" style={{ borderColor: "var(--border)" }}>
+            {plannerResult && (
+              <div className="mr-auto text-[10px] flex items-center gap-2" style={{ color: "var(--muted-foreground)" }}>
+                <span>⚡ {plannerResult.recommendedParallelism}x parallel</span>
+                <span>· ~{plannerResult.estimatedTokens} tok</span>
+                <span>· ~{plannerResult.estimatedCost} cost</span>
+                <Button variant="ghost" size="sm" className="h-5 text-[9px]" onClick={() => setPlannerResult(null)}>✕</Button>
+              </div>
+            )}
+            <Button variant="ghost" size="sm" disabled={!createPrompt.trim() || planning}
+              onClick={async () => {
+                setPlanning(true);
+                try {
+                  const res = await fetch("/api/planner", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ prompt: createPrompt, phases: [] }),
+                  });
+                  if (res.ok) setPlannerResult(await res.json());
+                } catch { /* ignore */ }
+                setPlanning(false);
+              }}
+              className="text-xs gap-1"
+            >
+              {planning ? <Loader2 size={12} className="animate-spin" /> : <BarChart3 size={12} />}
+              {planning ? "Planning..." : "Plan"}
+            </Button>
             <Button variant="outline" size="sm" onClick={() => { setShowCreateDialog(false); setSelectedTemplate(null); }}>Cancel</Button>
             <Button size="sm" disabled={creating || (createTab === "manual" && !createPrompt.trim()) || (createTab === "template" && !selectedTemplate)}
               onClick={async () => {

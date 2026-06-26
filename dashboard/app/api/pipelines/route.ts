@@ -163,30 +163,68 @@ export async function POST(req: Request) {
     const dir = join(PIPELINES_DIR, project, id);
     await mkdir(dir, { recursive: true });
 
+    // Auto-scale: call resource planner for parallelism recommendation
+    let parallelism = 1;
+    try {
+      const { planResources } = await import("@/lib/resource-planner");
+      const plan = planResources(prompt, []);
+      parallelism = Math.max(1, plan.recommendedParallelism);
+    } catch { /* fall back to sequential */ }
+
+    // Build phases — base Plan + scaled executors
+    const phases: any[] = [];
+    let idx = 0;
+    // Plan phase
+    phases.push({
+      id: `n${idx}`,
+      agent: body.plannerAgent || "",
+      role: "planner",
+      label: "Plan",
+      status: "submitted",
+      artifacts: planMd ? ["PLAN.md"] : [],
+    });
+    idx++;
+    // Executor phases (auto-scaled)
+    for (let i = 0; i < parallelism; i++) {
+      phases.push({
+        id: `n${idx}`,
+        agent: body.executorAgent || "",
+        role: "executor",
+        label: parallelism > 1 ? `Execute #${i + 1}` : "Execute",
+        status: "pending",
+        artifacts: [],
+      });
+      idx++;
+    }
+
+    // Build a minimal builder layout from phases
+    const nodes = phases.map((p: any) => ({
+      id: p.id,
+      type: "agentNode",
+      position: { x: 250, y: 100 + phases.indexOf(p) * 150 },
+      data: { label: p.label, agentId: p.agent, role: p.role },
+    }));
+    const edges = phases.slice(1).map((p: any) => ({
+      id: `e-${phases[0].id}-${p.id}`,
+      source: phases[0].id,
+      target: p.id,
+    }));
+
     // META.json
-    const meta = {
+    const meta: Record<string, any> = {
       pipeline_id: id,
       prompt,
       status: "submitted",
       created_at: now.toISOString(),
-      phases: [
-        {
-          agent: "",
-          role: "planner",
-          label: "Plan",
-          status: "submitted",
-          artifacts: planMd ? ["PLAN.md"] : [],
-        },
-        {
-          agent: "",
-          role: "executor",
-          label: "Execute",
-          status: "pending",
-          artifacts: [],
-        },
-      ],
+      phases,
+      parallelism,
+      builder: true,
+      builderLayout: { nodes, edges },
     };
     await writeFile(join(dir, "META.json"), JSON.stringify(meta, null, 2));
+
+    // Write builder-layout.json so the visualize page renders the DAG
+    await writeFile(join(dir, "builder-layout.json"), JSON.stringify({ nodes, edges }, null, 2));
 
     // PLAN.md
     if (planMd) {

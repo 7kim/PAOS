@@ -73,10 +73,12 @@ export async function GET(
 
     // --- Build phases from META.json ---
     const phases: Phase[] = (meta.phases ?? []).map((p: Record<string, unknown>) => ({
+      id: String(p.id ?? ""),
       agent: String(p.agent ?? ""),
       role: String(p.role ?? ""),
       label: String(p.label ?? ""),
       status: String(p.status ?? "pending"),
+      prompt: String(p.prompt ?? ""),
       artifacts: [],
     }));
 
@@ -123,7 +125,7 @@ export async function GET(
     for (const phase of phases) {
       const metaPhases = (meta.phases as Array<Record<string, unknown>> | undefined) ?? [];
       const phaseMeta = metaPhases.find(
-        (p: Record<string, unknown>) => p.agent === phase.agent && p.role === phase.role
+        (p: Record<string, unknown>) => p.id === phase.id || (p.agent === phase.agent && p.role === phase.role)
       );
       const rawArtifacts = phaseMeta?.artifacts;
       const expectedFiles: string[] = Array.isArray(rawArtifacts) ? rawArtifacts : [];

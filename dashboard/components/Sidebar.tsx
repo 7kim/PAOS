@@ -23,6 +23,9 @@ import {
   Terminal,
   PanelLeftClose,
   PanelLeft,
+  Server,
+  Share2,
+  History,
 } from "lucide-react";
 import {
   Tooltip,
@@ -34,10 +37,12 @@ const nav = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
   { href: "/projects", label: "Projects", icon: FolderKanban },
   { href: "/vault", label: "Vault", icon: BookOpen },
+  { href: "/graph", label: "Graph", icon: Share2 },
   { href: "/events", label: "Events", icon: Activity },
   { href: "/handoff", label: "Handoff", icon: HandMetal },
   { href: "/ledger", label: "Audit Ledger", icon: ScrollText },
   { href: "/agents", label: "Agents", icon: Bot },
+  { href: "/agents/replay", label: "Agent Replay", icon: History },
   { href: "/tasks", label: "Tasks", icon: ListTodo },
   { href: "/pipelines", label: "Pipelines", icon: GitBranch },
   { href: "/benchmarks", label: "Benchmarks", icon: BarChart3 },
@@ -50,6 +55,7 @@ const nav = [
 
 const devNav = [
   { href: "/api-playground", label: "API Playground", icon: TestTube },
+  { href: "/mcp-servers", label: "MCP Servers", icon: Server },
   { href: "/settings", label: "Settings", icon: Code },
 ];
 

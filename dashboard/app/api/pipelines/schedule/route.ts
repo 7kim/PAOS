@@ -1,8 +1,36 @@
 import { NextResponse } from "next/server";
 import { join } from "path";
-import { writeFile, mkdir } from "fs/promises";
+import { readFile, writeFile, mkdir, readdir } from "fs/promises";
 
 const PIPELINES_DIR = join(process.env.HOME || "/home/dev", "AI_Workflow", "memory", "pipelines");
+
+// GET /api/pipelines/schedule — list all scheduled pipelines
+export async function GET() {
+  try {
+    const projects = await readdir(PIPELINES_DIR).catch(() => []);
+    const schedules: any[] = [];
+
+    for (const project of projects) {
+      if (project.startsWith(".")) continue;
+      const projectDir = join(PIPELINES_DIR, project);
+      const entries = await readdir(projectDir).catch(() => []);
+      for (const entry of entries) {
+        if (!entry.endsWith(".schedule")) continue;
+        try {
+          const manifest = JSON.parse(
+            await readFile(join(projectDir, entry, "schedule.json"), "utf-8")
+          );
+          schedules.push({ ...manifest, project });
+        } catch { /* skip unreadable */ }
+      }
+    }
+
+    schedules.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
+    return NextResponse.json({ schedules });
+  } catch (e) {
+    return NextResponse.json({ schedules: [], error: String(e) });
+  }
+}
 
 function toCron(expr: string): string | null {
   const map: Record<string, string> = {

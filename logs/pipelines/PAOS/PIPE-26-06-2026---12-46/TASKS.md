@@ -1,0 +1,13 @@
+- [x] **n0 (Plan — hermes-nous)**: Analyze coding principles, create implementation plan for Benchmark 2
+  - [x] Read existing Benchmark 1 artifacts
+  - [x] Scan current codebase for fixed gaps
+  - [x] Write IMPLEMENTATION.md, REASONING.md, TASKS.md for phase n0
+  - [x] Update pipeline tracking files
+- [x] **n1 (Execute — opencode-developer)**: Run Benchmark 2 (110-question strict audit)
+  - [x] Run automated grep evidence collection
+  - [x] Score all 110 questions with file:line evidence
+  - [x] Calculate normalized score and grade
+  - [x] Generate gap implementation plans for each score < 2
+  - [x] Write full-audit.md, SRS-as-is.md, README.md in `benchmarks/Benchmark_2_26-06-2026---12-49/`
+  - [x] Update pipeline tracking files
+  - [x] Write WALKTHROUGH.md for phase n1

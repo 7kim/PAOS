@@ -1,0 +1,64 @@
+{
+  "pipeline_id": "PIPE-26-06-2026---12-46",
+  "prompt": "Run a benchmark: node 1 analyzes the coding principles, node 2 runs the tests",
+  "status": "completed",
+  "created_at": "2026-06-26T12:46:02.374Z",
+  "completed_at": "2026-06-26T12:49:00.000Z",
+  "phases": [
+    {
+      "id": "n0",
+      "agent": "hermes-nous",
+      "role": "Plan",
+      "label": "Plan",
+      "status": "completed",
+      "artifacts": [
+        "phases/n0/IMPLEMENTATION.md",
+        "phases/n0/REASONING.md",
+        "phases/n0/TASKS.md",
+        "phases/n0/WALKTHROUGH.md"
+      ]
+    },
+    {
+      "id": "n1",
+      "agent": "opencode-developer",
+      "role": "Execute",
+      "label": "Execute",
+      "status": "completed",
+      "artifacts": [
+        "phases/n1/IMPLEMENTATION.md",
+        "phases/n1/REASONING.md",
+        "phases/n1/TASKS.md",
+        "phases/n1/WALKTHROUGH.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/full-audit.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/SRS-as-is.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/README.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/gaps/index.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/gaps/gap-01-selectedSkills-not-set.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/gaps/gap-02-no-dag-validation-on-read.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/gaps/gap-03-no-moving-averages.md",
+        "benchmarks/Benchmark_2_26-06-2026---12-49/gaps/gap-04-any-types.md"
+      ]
+    }
+  ],
+  "parallelism": 1,
+  "builder": true,
+  "builderLayout": {
+    "nodes": [
+      {
+        "id": "n0",
+        "type": "agentNode",
+        "position": { "x": 250, "y": 100 },
+        "data": { "label": "Plan", "agentId": "hermes-nous", "role": "planner" }
+      },
+      {
+        "id": "n1",
+        "type": "agentNode",
+        "position": { "x": 250, "y": 250 },
+        "data": { "label": "Execute", "agentId": "opencode-developer", "role": "executor" }
+      }
+    ],
+    "edges": [
+      { "id": "e-n0-n1", "source": "n0", "target": "n1" }
+    ]
+  }
+}

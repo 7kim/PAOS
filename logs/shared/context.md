@@ -224,3 +224,58 @@ But the user wants a multi-agent conversation: share this idea with Hermes, get 
 - set -euo pipefail throughout with clear emoji-labeled output
 
 **Handoff Notes**: Script is at ~/AI_Workflow/bin/install-paos.sh, executable, and passes bash -n syntax check.
+
+---
+
+## 2026-06-26 12:15 @opencode-developer — Task: PIPE-26-06-2026---10-22
+
+**Thinking**: Completed QA audit pipeline PIPE-26-06-2026---10-22. Verified both visualize and builder pages compile with zero TS errors. Visualize page has 5 cosmetic `any`-type lint warnings. Builder page is clean. All 9 supporting components verified present.
+
+**Decisions**:
+- Verification via static analysis (TS compile + lint) since no test suite exists. This is acceptable for a compile-time audit.
+
+**Handoff Notes**: Pipeline PIPE-26-06-2026---10-22 is fully complete. META.json updated to 'completed'. WALKTHROUGH.md written with full details.
+
+---
+
+## 2026-06-26 12:48 @hermes-nous — Task: PIPE-26-06-2026---12-46-n0
+
+**Thinking**: Completed phase n0 (Plan) of PIPE-26-06-2026---12-46. The pipeline prompt asks to "Run a benchmark: node 1 analyzes the coding principles, node 2 runs the tests." Analyzed existing Benchmark 1 (C grade, 67/100, 17 gaps), scanned current codebase and found 8 of 17 gaps have been fixed since Benchmark 1 (cycle detection, caching, rate limiting, CORS, auth, CSRF, HSTS, pagination). 9 gaps remain open. Created comprehensive IMPLEMENTATION.md for Benchmark 2 execution by phase n1. Handing off to opencode-developer next.
+
+**Decisions**:
+- Run Benchmark 2 as a full fresh audit (not delta) for accurate comparison\n- Use same Coding-Principles-Benchmark v2.0 framework\n- Keep phase read-only (no code changes during audit)\n- Output to benchmarks/Benchmark_2_<ts>/ following same structure as Benchmark 1
+
+**Handoff Notes**: Phase n0 artifacts ready at phases/n0/. Phase n1 (opencode-developer) should execute per IMPLEMENTATION.md: run 110-question strict audit, score all questions, generate gaps, output to benchmarks/Benchmark_2_<ts>/.
+
+---
+
+## 2026-06-26 12:50 @hermes-nous — Task: PIPE-26-06-2026---12-42
+
+**Thinking**: Completed phase n0 (Plan) for pipeline PIPE-26-06-2026---12-42 'Test the new builder layout visualize view'. Explored builder/visualize architecture (~18 files), understood data flow from builderLayout in META.json → MiniDagView → ReadOnlyNode rendering on visualize page. Created planning artifacts: IMPLEMENTATION.md (plan), TASKS.md (4 tasks for n1), REASONING.md (analysis/decisions). Handed off to n1 (opencode-developer) with updated IMPLEMENTATION.md and TASKS.md in phases/n1/. Updated all tracking files.
+
+**Decisions**:
+- CLI-verifiable scope: data integrity, API, static analysis, edge cases (no browser testing)\n- Use this pipeline itself as the test subject (it has builderLayout)\n- 4 tasks for n1 executor: data validation, API check, TS compilation, edge case analysis\n- Updated n1 files directly with test plan for seamless handoff
+
+**Handoff Notes**: Pipeline PIPE-26-06-2026---12-42 phase n0 is complete. Phase n1 (Execute, opencode-developer) is ready. The n1/IMPLEMENTATION.md contains 4 test tasks with full instructions. Pipeline artifacts at logs/pipelines/PAOS/PIPE-26-06-2026---12-42/.
+
+---
+
+## 2026-06-26 12:52 @hermes-nous — Task: PIPE-26-06-2026---12-48-n0
+
+**Thinking**: Completed phase n0 (Plan) of PIPE-26-06-2026---12-48. The pipeline prompt asks to "Run benchmark module: node 1 analyzes the rules, node 2 executes the tests." Analyzed Coding-Principles.md (666 lines, 10 principles) and Coding-Principles-Benchmark.md v2.0 (110-question strict audit). Cross-referenced against existing Benchmark 1 results (C grade, 67/100, 17 gaps). Scanned current codebase and found 10 of 17 gaps have been fixed (2 more than prior analysis — similarity metrics and DAG validation both now present). 7 gaps remain open. Created comprehensive IMPLEMENTATION.md, REASONING.md, TASKS.md, and WALKTHROUGH.md for phase n0. Also prepared proper handoff artifacts in phases/n1/ for opencode-developer.
+
+**Decisions**:
+- Run Benchmark 2 as a full fresh audit (not delta) for accurate comparison\n- Use same Coding-Principles-Benchmark v2.0 framework\n- Keep phase read-only (no code changes during audit)\n- Output to benchmarks/Benchmark_2_<ts>/ following same structure as Benchmark 1\n- Updated gap count: 10 fixed (not 8 as previous analysis found) — Q37 similarity and Q27 DAG validation also fixed
+
+**Handoff Notes**: Phase n0 artifacts ready at phases/n0/. Phase n1 (opencode-developer) should execute per phases/n1/IMPLEMENTATION.md: run 110-question strict audit, score all questions, generate gaps for scores < 2, output to benchmarks/Benchmark_2_<ts>/.
+
+---
+
+## 2026-06-26 12:54 @opencode-developer — Task: PIPE-26-06-2026---12-46-n1
+
+**Thinking**: Completed phase n1 (Execute) of PIPE-26-06-2026---12-46. Ran 110-question strict audit using Coding-Principles-Benchmark v2.0. Score: 192/220 raw, 87/100 normalized, B grade. 8 infra gaps fixed since Benchmark 1 (cycles, caching, rate limit, CORS, auth, CSRF, HSTS, pagination). 4 remaining gaps: Q26 (Set), Q27 (DAG validation on read), Q64 (moving averages), Q102 (47 any types). Full output at benchmarks/Benchmark_2_26-06-2026---12-49/.
+
+**Decisions**:
+- Keep same v2.0 framework for direct comparability\n- All 4 gap plans created but not executed (read-only audit)\n- Partial credit (1/2) for 17 questions where evidence suggests partial implementation\n- Score improvement from C→B is objectively measured with grep evidence
+
+**Handoff Notes**: Pipeline PIPE-26-06-2026---12-46 fully complete. Pipeline artifacts at phases/n1/. User can trigger gap work via 'work on gap {1-4}'.
