@@ -394,11 +394,39 @@ export async function POST(
             if (allDone) {
               const hasFailures = Object.values(flowLatest.phases || {}).some((p: any) => p.status === "failed");
               pjLive.status = hasFailures ? "completed_with_errors" : "completed";
+              pjLive.progress = `${Object.values(flowLatest.phases || {}).length}/${Object.values(flowLatest.phases || {}).length}`;
+              pjLive.completedAt = new Date().toISOString();
+              pjLive.velocity = (() => {
+                const start = new Date(pjLive.startedAt || Date.now()).getTime();
+                const end = Date.now();
+                const secs = (end - start) / 1000;
+                return secs > 0 ? (Object.keys(flowLatest.phases || {}).length / secs).toFixed(3) : "0";
+              })();
+              pjLive.phases = Object.fromEntries(
+                Object.entries(flowLatest.phases || {}).map(([id, ph]: [string, any]) => [id, {
+                  status: ph.status || "unknown",
+                  agentId: ph.agentId || "",
+                  duration: ph.startedAt && ph.completedAt
+                    ? Math.round((new Date(ph.completedAt).getTime() - new Date(ph.startedAt).getTime()) / 1000) + "s"
+                    : null,
+                }])
+              );
               await writeJSONAtomic(join(dir, "pipeline.json"), pjLive);
 
               const metaFinal = JSON.parse(await readFile(join(dir, "META.json"), "utf-8").catch(() => "{}"));
               metaFinal.status = hasFailures ? "completed_with_errors" : "completed";
               metaFinal.completed_at = new Date().toISOString();
+              // Sync per-phase statuses from flowLatest into META.json
+              if (Array.isArray(metaFinal.phases)) {
+                metaFinal.phases = metaFinal.phases.map((p: any) => {
+                  const flowPhase = flowLatest.phases?.[p.id];
+                  if (flowPhase) {
+                    p.status = flowPhase.status;
+                    if (flowPhase.completedAt) p.completedAt = flowPhase.completedAt;
+                  }
+                  return p;
+                });
+              }
               await writeJSONAtomic(join(dir, "META.json"), metaFinal);
 
               // Update queue: remove from pending, add to done

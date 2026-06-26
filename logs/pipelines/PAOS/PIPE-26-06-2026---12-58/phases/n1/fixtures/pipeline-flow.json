@@ -1,0 +1,34 @@
+{
+  "$schema": "../mcp/schemas/pipeline-flow.schema.json",
+  "pipelineId": "TEST-PIPE-0001",
+  "status": "executing",
+  "startedAt": "2026-06-26T12:00:00.000Z",
+  "phases": {
+    "n0": {
+      "agentId": "hermes-nous",
+      "label": "Plan",
+      "status": "completed",
+      "prompt": "",
+      "pid": null,
+      "progress": "0/4",
+      "startedAt": "2026-06-26T13:02:51.661170Z",
+      "completedAt": "2026-06-26T13:02:51.662935Z",
+      "order": 1
+    },
+    "n1": {
+      "agentId": "opencode-developer",
+      "label": "Execute",
+      "status": "running",
+      "prompt": "",
+      "pid": 67890,
+      "progress": "0/4",
+      "startedAt": "2026-06-26T13:02:51.663137Z",
+      "completedAt": null,
+      "order": 2
+    }
+  },
+  "order": [
+    "n0",
+    "n1"
+  ]
+}

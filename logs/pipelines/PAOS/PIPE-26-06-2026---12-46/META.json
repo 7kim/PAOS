@@ -3,7 +3,7 @@
   "prompt": "Run a benchmark: node 1 analyzes the coding principles, node 2 runs the tests",
   "status": "completed",
   "created_at": "2026-06-26T12:46:02.374Z",
-  "completed_at": "2026-06-26T12:49:00.000Z",
+  "completed_at": "2026-06-26T12:55:11.043Z",
   "phases": [
     {
       "id": "n0",
@@ -47,18 +47,36 @@
       {
         "id": "n0",
         "type": "agentNode",
-        "position": { "x": 250, "y": 100 },
-        "data": { "label": "Plan", "agentId": "hermes-nous", "role": "planner" }
+        "position": {
+          "x": 250,
+          "y": 100
+        },
+        "data": {
+          "label": "Plan",
+          "agentId": "hermes-nous",
+          "role": "planner"
+        }
       },
       {
         "id": "n1",
         "type": "agentNode",
-        "position": { "x": 250, "y": 250 },
-        "data": { "label": "Execute", "agentId": "opencode-developer", "role": "executor" }
+        "position": {
+          "x": 250,
+          "y": 250
+        },
+        "data": {
+          "label": "Execute",
+          "agentId": "opencode-developer",
+          "role": "executor"
+        }
       }
     ],
     "edges": [
-      { "id": "e-n0-n1", "source": "n0", "target": "n1" }
+      {
+        "id": "e-n0-n1",
+        "source": "n0",
+        "target": "n1"
+      }
     ]
   }
 }

@@ -1,8 +1,9 @@
 {
-  "pipeline_id": "PIPE-26-06-2026---12-48",
-  "prompt": "Run benchmark module: node 1 analyzes the rules, node 2 executes the tests",
+  "pipeline_id": "PIPE-26-06-2026---12-58",
+  "prompt": "Test that phase status sync and task counting work correctly",
   "status": "completed",
-  "created_at": "2026-06-26T12:48:30.346Z",
+  "created_at": "2026-06-26T12:58:36.369Z",
+  "completed_at": "2026-06-26T13:05:00.000Z",
   "phases": [
     {
       "id": "n0",
@@ -13,10 +14,9 @@
       "artifacts": [
         "phases/n0/IMPLEMENTATION.md",
         "phases/n0/REASONING.md",
-        "phases/n0/TASKS.md"
-      ],
-      "summary": "Analyzed Coding-Principles.md and Coding-Principles-Benchmark.md v2.0. Scanned codebase: 10 of 17 Benchmark 1 gaps fixed, 7 remain. Created execution plan for n1.",
-      "completedAt": "2026-06-26T12:52:19.434Z"
+        "phases/n0/TASKS.md",
+        "phases/n0/WALKTHROUGH.md"
+      ]
     },
     {
       "id": "n1",
@@ -27,10 +27,17 @@
       "artifacts": [
         "phases/n1/IMPLEMENTATION.md",
         "phases/n1/REASONING.md",
-        "phases/n1/TASKS.md"
-      ],
-      "summary": "Execute 110-question strict audit, score all questions, generate gaps, output to benchmarks/Benchmark_2_<ts>/",
-      "completedAt": "2026-06-26T12:53:15.019Z"
+        "phases/n1/TASKS.md",
+        "phases/n1/WALKTHROUGH.md",
+        "phases/n1/fixtures/pipeline-flow.json",
+        "phases/n1/fixtures/pipeline.json",
+        "phases/n1/fixtures/META.json",
+        "phases/n1/fixtures/TASKS.md",
+        "phases/n1/tests/test_01_phase_transitions.py",
+        "phases/n1/tests/test_02_progress_counting.py",
+        "phases/n1/tests/test_03_task_markers.py",
+        "phases/n1/tests/test_04_pipeline_completion.py"
+      ]
     }
   ],
   "parallelism": 1,
@@ -40,10 +47,7 @@
       {
         "id": "n0",
         "type": "agentNode",
-        "position": {
-          "x": 250,
-          "y": 100
-        },
+        "position": { "x": 250, "y": 100 },
         "data": {
           "label": "Plan",
           "agentId": "hermes-nous",
@@ -53,10 +57,7 @@
       {
         "id": "n1",
         "type": "agentNode",
-        "position": {
-          "x": 250,
-          "y": 250
-        },
+        "position": { "x": 250, "y": 250 },
         "data": {
           "label": "Execute",
           "agentId": "opencode-developer",
@@ -65,12 +66,7 @@
       }
     ],
     "edges": [
-      {
-        "id": "e-n0-n1",
-        "source": "n0",
-        "target": "n1"
-      }
+      { "id": "e-n0-n1", "source": "n0", "target": "n1" }
     ]
-  },
-  "completed_at": "2026-06-26T12:53:15.023Z"
+  }
 }

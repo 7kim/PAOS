@@ -1,35 +1,3 @@
-# Execute Walkthrough
-
-## Output Summary
-```
-[0m
-> developer · deepseek-v4-flash-free
-[0m
-[0m⚙ [0mshared-memory_read_context {"tail_lines":50}
-[0m
-[0m✗ [0mInvalid Tool
-The arguments provided to the tool are invalid: Model tried to call unavailable tool 'shared-memory_read_handoff'. Available tools: bash, context7_query-docs, context7_resolve-library-id, edit, glob, grep, invalid, read, scaffold_list_templates, scaffold_scaffold_project, shared-memory_agent_commit, shared-memory_append_ledger, shared-memory_create_task, shared-memory_list_agents, shared-memory_process_notes, shared-memory_process_questions, shared-memory_read_context, shared-memory_read_inbox, shared-memory_read_ledger, shared-memory_read_task, shared-memory_send_message, shared-memory_submit_pipeline, shared-memory_write_context, shared-memory_write_handoff, skill, task, todowrite, webfetch, websearch, write.
-[0m
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46
-[0m→ [0mRead /home/dev/AI_Workflow/memory/shared/HANDOFF.md
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/META.json
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/pipeline.json
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/TASKS.md
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/PLAN.md
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/phases/n0
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/phases/n0/IMPLEMENTATION.md
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/phases/n0/REASONING.md
-[0m→ [0mRead /home/dev/AI_Workflow/logs/pipelines/PAOS/PIPE-26-06-2026---12-46/phases/n0/TASKS.md
-[0m
-[0m# [0mTodos
-[•] Read Coding-Principles-Benchmark.md v2.0 framework
-[ ] Run automated grep evidence collection for all 110 questions
-[ ] Score all 110 questions with file:line evidence
-[ ] Calculate normalized score and grad
-```
-
-## Full Output
-```
 [0m
 > developer · deepseek-v4-flash-free
 [0m
@@ -1310,5 +1278,3 @@ All files at `benchmarks/Benchmark_2_26-06-2026---12-49/`:
 - `gaps/` — index + 4 implementation plans
 
 The pipeline is fully complete in META.json. To work on any remaining gap, say `work on gap 1` through `work on gap 4`.
-
-```

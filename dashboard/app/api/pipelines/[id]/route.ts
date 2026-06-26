@@ -369,8 +369,8 @@ export async function GET(
       taskList,
       builderLayout,
       stats: {
-        completedTasks: taskList.length > 0 ? taskList.filter((t) => t.status === "done").length : (liveTotal > 0 ? liveCompleted : 0),
-        totalTasks: taskList.length > 0 ? taskList.length : (liveTotal > 0 ? liveTotal : 0),
+        completedTasks: liveTotal > 0 ? Math.min(liveCompleted, taskList.length > 0 ? taskList.length : liveTotal) : (taskList.length > 0 ? taskList.filter((t) => t.status === "done").length : 0),
+        totalTasks: liveTotal > 0 ? Math.max(liveTotal, taskList.length > 0 ? taskList.length : 0) : (taskList.length > 0 ? taskList.length : 0),
         completedPhases,
         totalPhases,
         progress,

@@ -1,0 +1,28 @@
+{
+  "pipeline_id": "TEST-PIPE-0001",
+  "prompt": "Test fixture for pipeline completion detection",
+  "status": "completed",
+  "created_at": "2026-06-26T12:00:00.000Z",
+  "phases": [
+    {
+      "id": "n0",
+      "agent": "hermes-nous",
+      "role": "Plan",
+      "status": "completed",
+      "artifacts": [
+        "phases/n0/IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "n1",
+      "agent": "opencode-developer",
+      "role": "Execute",
+      "status": "completed",
+      "artifacts": [
+        "phases/n1/IMPLEMENTATION.md"
+      ]
+    }
+  ],
+  "parallelism": 1,
+  "completed_at": "2026-06-26T13:02:56.124363+00:00"
+}
