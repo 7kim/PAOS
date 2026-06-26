@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" font-family="system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0b90b"/>
+      <stop offset="100%" stop-color="#f0d060"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="40" text-anchor="middle" fill="#f0b90b" font-size="20" font-weight="bold">PAOS Architecture</text>
+  <text x="450" y="58" text-anchor="middle" fill="#888" font-size="11">Personal Agent Operating System</text>
+
+  <!-- Layer: UI (Browser) -->
+  <rect x="50" y="80" width="800" height="90" rx="8" fill="#1e1e3a" stroke="#f0b90b" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="70" y="100" fill="#f0b90b" font-size="11" font-weight="bold">CLIENT LAYER</text>
+  <text x="70" y="115" fill="#666" font-size="9">Next.js Dashboard · @xyflow/react DAG · shadcn/ui · Tailwind v4 · CodeMirror 6</text>
+
+  <rect x="70" y="125" width="160" height="30" rx="6" fill="#2a2a4a" stroke="#f0b90b" stroke-width="0.5"/>
+  <text x="150" y="144" text-anchor="middle" fill="#ddd" font-size="10">🌐 Dashboard (port 3333)</text>
+
+  <rect x="250" y="125" width="160" height="30" rx="6" fill="#2a2a4a" stroke="#f0b90b" stroke-width="0.5"/>
+  <text x="330" y="144" text-anchor="middle" fill="#ddd" font-size="10">📊 Benchmark Reports</text>
+
+  <rect x="430" y="125" width="160" height="30" rx="6" fill="#2a2a4a" stroke="#f0b90b" stroke-width="0.5"/>
+  <text x="510" y="144" text-anchor="middle" fill="#ddd" font-size="10">📈 Token &amp; Cost Charts</text>
+
+  <rect x="610" y="125" width="160" height="30" rx="6" fill="#2a2a4a" stroke="#f0b90b" stroke-width="0.5"/>
+  <text x="690" y="144" text-anchor="middle" fill="#ddd" font-size="10">🖥️ Terminals View</text>
+
+  <!-- Arrow: UI → API -->
+  <line x1="450" y1="170" x2="450" y2="200" stroke="#f0b90b" stroke-width="1.5" stroke-opacity="0.4" marker-end="url(#arrowGold)"/>
+  <defs><marker id="arrowGold" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#f0b90b" fill-opacity="0.4"/></marker></defs>
+
+  <!-- Layer: API -->
+  <rect x="50" y="200" width="800" height="100" rx="8" fill="#1a1a30" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="70" y="220" fill="#8b5cf6" font-size="11" font-weight="bold">API LAYER — 50+ Endpoints</text>
+  <text x="70" y="235" fill="#666" font-size="9">Next.js Route Handlers (app/api/)</text>
+
+  <rect x="70" y="245" width="120" height="25" rx="4" fill="#2a2a50" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="130" y="262" text-anchor="middle" fill="#ccc" font-size="8">Pipelines</text>
+
+  <rect x="200" y="245" width="120" height="25" rx="4" fill="#2a2a50" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="260" y="262" text-anchor="middle" fill="#ccc" font-size="8">Benchmarks</text>
+
+  <rect x="330" y="245" width="120" height="25" rx="4" fill="#2a2a50" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="390" y="262" text-anchor="middle" fill="#ccc" font-size="8">Agents</text>
+
+  <rect x="460" y="245" width="120" height="25" rx="4" fill="#2a2a50" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="520" y="262" text-anchor="middle" fill="#ccc" font-size="8">Tokens</text>
+
+  <rect x="590" y="245" width="120" height="25" rx="4" fill="#2a2a50" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="650" y="262" text-anchor="middle" fill="#ccc" font-size="8">Terminals</text>
+
+  <rect x="720" y="245" width="110" height="25" rx="4" fill="#2a2a50" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="775" y="262" text-anchor="middle" fill="#ccc" font-size="8">Workspaces</text>
+
+  <!-- Arrow: API → Engine -->
+  <line x1="450" y1="300" x2="450" y2="330" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.4" marker-end="url(#arrowPurple)"/>
+  <defs><marker id="arrowPurple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#8b5cf6" fill-opacity="0.4"/></marker></defs>
+
+  <!-- Layer: Engine -->
+  <rect x="50" y="330" width="800" height="110" rx="8" fill="#1a2a1a" stroke="#22c55e" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="70" y="350" fill="#22c55e" font-size="11" font-weight="bold">EXECUTION ENGINE</text>
+
+  <rect x="70" y="360" width="230" height="35" rx="6" fill="#1e3a1e" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="185" y="378" text-anchor="middle" fill="#ddd" font-size="9">Pipeline DAG Engine</text>
+  <text x="185" y="390" text-anchor="middle" fill="#888" font-size="7">Kahn's Topological Sort · Cascade · Retry/Skip</text>
+
+  <rect x="320" y="360" width="230" height="35" rx="6" fill="#1e3a1e" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="435" y="378" text-anchor="middle" fill="#ddd" font-size="9">Queue System</text>
+  <text x="435" y="390" text-anchor="middle" fill="#888" font-size="7">Enqueue · Dequeue · Completion Status</text>
+
+  <rect x="570" y="360" width="260" height="35" rx="6" fill="#1e3a1e" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="700" y="378" text-anchor="middle" fill="#ddd" font-size="9">Benchmark Audit Engine</text>
+  <text x="700" y="390" text-anchor="middle" fill="#888" font-size="7">110 Questions · Evidence Scoring · Gap Analysis</text>
+
+  <rect x="70" y="400" width="230" height="30" rx="4" fill="#1e3a1e" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="185" y="419" text-anchor="middle" fill="#ddd" font-size="9">Agent Spawning (Hermes/OpenCode/Claude/Codex)</text>
+
+  <rect x="320" y="400" width="230" height="30" rx="4" fill="#1e3a1e" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="435" y="419" text-anchor="middle" fill="#ddd" font-size="9">Process Registry + PID Tracking</text>
+
+  <rect x="570" y="400" width="260" height="30" rx="4" fill="#1e3a1e" stroke="#22c55e" stroke-width="0.5"/>
+  <text x="700" y="419" text-anchor="middle" fill="#ddd" font-size="9">Token Usage Logger</text>
+
+  <!-- Arrow: Engine → Data -->
+  <line x1="450" y1="440" x2="450" y2="470" stroke="#22c55e" stroke-width="1.5" stroke-opacity="0.4" marker-end="url(#arrowGreen)"/>
+  <defs><marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#22c55e" fill-opacity="0.4"/></marker></defs>
+
+  <!-- Layer: Data -->
+  <rect x="50" y="470" width="800" height="110" rx="8" fill="#1a1a2a" stroke="#3b82f6" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="70" y="490" fill="#3b82f6" font-size="11" font-weight="bold">DATA LAYER</text>
+  <text x="70" y="505" fill="#666" font-size="9">Filesystem-as-Database — ~/AI_Workflow/</text>
+
+  <rect x="70" y="515" width="140" height="55" rx="4" fill="#1e1e3e" stroke="#3b82f6" stroke-width="0.5"/>
+  <text x="140" y="533" text-anchor="middle" fill="#ccc" font-size="8">📁 projects/{name}/</text>
+  <text x="140" y="548" text-anchor="middle" fill="#777" font-size="7">Fabric directory<br/>vault · config · inbox</text>
+
+  <rect x="220" y="515" width="140" height="55" rx="4" fill="#1e1e3e" stroke="#3b82f6" stroke-width="0.5"/>
+  <text x="290" y="533" text-anchor="middle" fill="#ccc" font-size="8">📁 memory/pipelines/</text>
+  <text x="290" y="548" text-anchor="middle" fill="#777" font-size="7">META.json · phases/<br/>output.log · artifacts</text>
+
+  <rect x="370" y="515" width="140" height="55" rx="4" fill="#1e1e3e" stroke="#3b82f6" stroke-width="0.5"/>
+  <text x="440" y="533" text-anchor="middle" fill="#ccc" font-size="8">📁 benchmarks/</text>
+  <text x="440" y="548" text-anchor="middle" fill="#777" font-size="7">SRS-as-is · SRS-to-be<br/>gaps.md · implementation</text>
+
+  <rect x="520" y="515" width="140" height="55" rx="4" fill="#1e1e3e" stroke="#3b82f6" stroke-width="0.5"/>
+  <text x="590" y="533" text-anchor="middle" fill="#ccc" font-size="8">📁 memory/metrics/</text>
+  <text x="590" y="548" text-anchor="middle" fill="#777" font-size="7">token-usage.json<br/>visual-settings.json</text>
+
+  <rect x="670" y="515" width="160" height="55" rx="4" fill="#1e1e3e" stroke="#3b82f6" stroke-width="0.5"/>
+  <text x="750" y="533" text-anchor="middle" fill="#ccc" font-size="8">📄 workspaces/</text>
+  <text x="750" y="548" text-anchor="middle" fill="#777" font-size="7">{name}.code-workspace<br/>PAOS metadata</text>
+</svg>

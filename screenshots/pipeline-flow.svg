@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)" rx="12"/>
+
+  <text x="400" y="35" text-anchor="middle" fill="#f0b90b" font-size="18" font-weight="bold">Pipeline Execution Flow</text>
+  <text x="400" y="52" text-anchor="middle" fill="#888" font-size="10">DAG → Topological Sort → Cascade → Agent Spawn → Completion</text>
+
+  <!-- Step 1: DAG -->
+  <rect x="50" y="80" width="160" height="55" rx="8" fill="#1e1e3a" stroke="#f0b90b" stroke-width="1"/>
+  <text x="130" y="105" text-anchor="middle" fill="#f0b90b" font-size="11" font-weight="bold">① DAG Created</text>
+  <text x="130" y="120" text-anchor="middle" fill="#888" font-size="8">Flow Builder</text>
+
+  <!-- Arrow -->
+  <line x1="210" y1="107" x2="250" y2="107" stroke="#f0b90b" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#a1)"/>
+  <defs><marker id="a1" viewBox="0 0 10 10" refX="10" refY="5" width="6" height="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#f0b90b" fill-opacity="0.5"/></marker></defs>
+
+  <!-- Step 2: Save -->
+  <rect x="250" y="80" width="160" height="55" rx="8" fill="#1e2a1e" stroke="#22c55e" stroke-width="1"/>
+  <text x="330" y="105" text-anchor="middle" fill="#22c55e" font-size="11" font-weight="bold">② Save Pipeline</text>
+  <text x="330" y="120" text-anchor="middle" fill="#888" font-size="8">META.json + builder-layout.json</text>
+
+  <line x1="410" y1="107" x2="450" y2="107" stroke="#22c55e" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#a2)"/>
+  <defs><marker id="a2" viewBox="0 0 10 10" refX="10" refY="5" width="6" height="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#22c55e" fill-opacity="0.5"/></marker></defs>
+
+  <!-- Step 3: Topo Sort -->
+  <rect x="450" y="80" width="160" height="55" rx="8" fill="#1e1e3a" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="530" y="105" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="bold">③ Topological Sort</text>
+  <text x="530" y="120" text-anchor="middle" fill="#888" font-size="8">Kahn's BFS Algorithm</text>
+
+  <line x1="610" y1="107" x2="650" y2="107" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#a3)"/>
+  <defs><marker id="a3" viewBox="0 0 10 10" refX="10" refY="5" width="6" height="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#8b5cf6" fill-opacity="0.5"/></marker></defs>
+
+  <!-- Step 4: Execute -->
+  <rect x="650" y="80" width="130" height="55" rx="8" fill="#1e2a1e" stroke="#f97316" stroke-width="1"/>
+  <text x="715" y="105" text-anchor="middle" fill="#f97316" font-size="11" font-weight="bold">④ Execute</text>
+  <text x="715" y="120" text-anchor="middle" fill="#888" font-size="8">Cascade</text>
+
+  <!-- Cascade nodes -->
+  <rect x="100" y="190" width="180" height="70" rx="8" fill="#2a1a1a" stroke="#ef4444" stroke-width="1" filter="url(#glow)"/>
+  <circle cx="120" cy="215" r="10" fill="none" stroke="#ef4444" stroke-width="2"/>
+  <text x="120" y="219" text-anchor="middle" fill="#ef4444" font-size="8">1</text>
+  <text x="140" y="215" fill="#ddd" font-size="10" font-weight="bold">Analyze</text>
+  <text x="140" y="230" fill="#888" font-size="8">hermes-nous</text>
+  <text x="140" y="245" fill="#ef4444" font-size="7">▶ Running (PID 12345)</text>
+
+  <line x1="280" y1="225" x2="330" y2="225" stroke="#f0b90b" stroke-width="1.5" stroke-opacity="0.6" marker-end="url(#a4)"/>
+  <defs><marker id="a4" viewBox="0 0 10 10" refX="10" refY="5" width="6" height="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#f0b90b" fill-opacity="0.6"/></marker></defs>
+
+  <rect x="330" y="190" width="180" height="70" rx="8" fill="#1a2a1a" stroke="#22c55e" stroke-width="1"/>
+  <circle cx="350" cy="215" r="10" fill="none" stroke="#22c55e" stroke-width="2"/>
+  <text x="350" y="219" text-anchor="middle" fill="#22c55e" font-size="8">2</text>
+  <text x="370" y="215" fill="#ddd" font-size="10" font-weight="bold">Document</text>
+  <text x="370" y="230" fill="#888" font-size="8">opencode-developer</text>
+  <text x="370" y="245" fill="#22c55e" font-size="7">✅ Completed</text>
+
+  <line x1="510" y1="225" x2="560" y2="225" stroke="#f0b90b" stroke-width="1.5" stroke-opacity="0.6" marker-end="url(#a5)"/>
+  <defs><marker id="a5" viewBox="0 0 10 10" refX="10" refY="5" width="6" height="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#f0b90b" fill-opacity="0.6"/></marker></defs>
+
+  <rect x="560" y="190" width="180" height="70" rx="8" fill="#1a1a2a" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,3"/>
+  <circle cx="580" cy="215" r="10" fill="none" stroke="#3b82f6" stroke-width="2"/>
+  <text x="580" y="219" text-anchor="middle" fill="#3b82f6" font-size="8">3</text>
+  <text x="600" y="215" fill="#ddd" font-size="10" font-weight="bold">Review</text>
+  <text x="600" y="230" fill="#888" font-size="8">antigravity</text>
+  <text x="600" y="245" fill="#3b82f6" font-size="7">⏳ Pending (in queue)</text>
+
+  <!-- Features list -->
+  <rect x="50" y="300" width="700" height="85" rx="8" fill="#1a1a2a" stroke="#f0b90b" stroke-width="0.5" stroke-opacity="0.3"/>
+  <text x="70" y="320" fill="#f0b90b" font-size="11" font-weight="bold">Key Features</text>
+  <circle cx="80" cy="338" r="3" fill="#22c55e"/>
+  <text x="90" y="342" fill="#aaa" font-size="9">Branching &amp; Joins — parallel execution paths with sync points</text>
+  <circle cx="80" cy="353" r="3" fill="#22c55e"/>
+  <text x="90" y="357" fill="#aaa" font-size="9">Retry / Skip / Cancel — per-node error recovery</text>
+  <circle cx="80" cy="368" r="3" fill="#22c55e"/>
+  <text x="90" y="372" fill="#aaa" font-size="9">Smart Edge Animation — animate only between completed source and pending target</text>
+
+  <!-- Phase artifacts -->
+  <rect x="50" y="400" width="700" height="85" rx="8" fill="#1a1a2a" stroke="#8b5cf6" stroke-width="0.5" stroke-opacity="0.3"/>
+  <text x="70" y="420" fill="#8b5cf6" font-size="11" font-weight="bold">Per-Node Artifacts (phases/{nodeId}/)</text>
+  <rect x="70" y="430" width="120" height="22" rx="4" fill="#2a1a3a" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="130" y="445" text-anchor="middle" fill="#ccc" font-size="8">IMPLEMENTATION.md</text>
+  <rect x="200" y="430" width="100" height="22" rx="4" fill="#2a1a3a" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="250" y="445" text-anchor="middle" fill="#ccc" font-size="8">REASONING.md</text>
+  <rect x="310" y="430" width="80" height="22" rx="4" fill="#2a1a3a" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="350" y="445" text-anchor="middle" fill="#ccc" font-size="8">TASKS.md</text>
+  <rect x="400" y="430" width="110" height="22" rx="4" fill="#2a1a3a" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="455" y="445" text-anchor="middle" fill="#ccc" font-size="8">WALKTHROUGH.md</text>
+  <rect x="520" y="430" width="80" height="22" rx="4" fill="#2a1a3a" stroke="#8b5cf6" stroke-width="0.5"/>
+  <text x="560" y="445" text-anchor="middle" fill="#ccc" font-size="8">output.log</text>
+</svg>
