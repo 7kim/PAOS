@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { readFile, writeFile, unlink } from "fs/promises";
 import { join } from "path";
 
-const TEMPLATES_DIR = "/home/dev/AI_Workflow/config/templates";
+import { TEMPLATES_DIR } from "@/lib/global-config";
 
 export async function GET(
   _req: Request,

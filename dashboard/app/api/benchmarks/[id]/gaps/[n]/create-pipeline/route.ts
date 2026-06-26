@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { readFile, readdir, writeFile } from "fs/promises";
 import { join } from "path";
 
-const BENCHMARKS_DIR = process.env.BENCHMARKS_DIR || "/home/dev/AI_Workflow/benchmarks";
+import { BENCHMARKS_DIR, REPO_ROOT } from "@/lib/global-config";
 
 export async function POST(
   req: Request,
@@ -47,8 +47,10 @@ export async function POST(
     });
   }
 
+
+
   // Generate a pipeline layout for medium/large gaps
-  const rootDir = process.env.PAOS_ROOT || "/home/dev/AI_Workflow";
+  const rootDir = REPO_ROOT;
 
   const nodes = [
     {

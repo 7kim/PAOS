@@ -118,6 +118,9 @@ function PipelinesPage() {
   const [templates, setTemplates] = useState<any[]>([]);
   const [loadingTemplates, setLoadingTemplates] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<any | null>(null);
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState<{ page: number; limit: number; total: number; totalPages: number } | null>(null);
+  const pageSize = 20;
 
   const filteredPipelines = projectFilter
     ? pipelines.filter((p) => p.project === projectFilter)
@@ -125,12 +128,16 @@ function PipelinesPage() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const params = projectFilter ? `?project=${encodeURIComponent(projectFilter)}` : "";
-    const res = await fetch(`/api/pipelines${params}`);
+    const params = new URLSearchParams();
+    if (projectFilter) params.set("project", projectFilter);
+    params.set("page", String(page));
+    params.set("limit", String(pageSize));
+    const res = await fetch(`/api/pipelines?${params}`);
     const data = await res.json();
     setPipelines(data.pipelines ?? []);
+    setPagination(data.pagination ?? null);
     setLoading(false);
-  }, [projectFilter]);
+  }, [projectFilter, page]);
 
   const loadTemplates = useCallback(async () => {
     setLoadingTemplates(true);
@@ -483,6 +490,30 @@ function PipelinesPage() {
               filteredPipelines.map((p, i) => (
                 <PipelineNode key={p.id} p={p} index={i} />
               ))
+            )}
+            {/* Pagination */}
+            {pagination && pagination.totalPages > 1 && (
+              <div className="flex items-center justify-between pt-3 px-1 text-[10px]">
+                <span style={{ color: "var(--muted-foreground)" }}>
+                  Page {pagination.page} of {pagination.totalPages} ({pagination.total} total)
+                </span>
+                <div className="flex items-center gap-1">
+                  <Button
+                    variant="ghost" size="sm" className="h-6 text-[10px]"
+                    disabled={page <= 1}
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  >
+                    ← Prev
+                  </Button>
+                  <Button
+                    variant="ghost" size="sm" className="h-6 text-[10px]"
+                    disabled={page >= (pagination.totalPages || 1)}
+                    onClick={() => setPage((p) => p + 1)}
+                  >
+                    Next →
+                  </Button>
+                </div>
+              </div>
             )}
           </CardContent>
         </Card>

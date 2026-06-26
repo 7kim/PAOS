@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import { readFile } from "fs/promises";
+import { readFile, readdir, stat } from "fs/promises";
 import { join } from "path";
-
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+import { MEMORY_DIR } from "@/lib/global-config";
 
 export async function GET(
   _req: Request,

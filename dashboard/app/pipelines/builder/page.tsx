@@ -176,6 +176,40 @@ function BuilderPage() {
             <Settings2 size={12} />
             Settings
           </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={async () => {
+              const name = prompt("Template name:", "My Template");
+              if (!name) return;
+              const desc = prompt("Description (optional):", "");
+              const category = prompt("Category (e.g. feature, pipeline, custom):", "custom");
+              // Get current canvas layout from the PipelineCanvas ref
+              // For now, use the stored layout in state
+              try {
+                const res = await fetch("/api/templates", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    name,
+                    description: desc || "",
+                    category: category || "custom",
+                    tags: [category || "custom"],
+                    nodes: [],
+                    edges: [],
+                  }),
+                });
+                if (res.ok) alert("Template saved!");
+                else alert("Save failed");
+              } catch (e) {
+                alert("Save failed: " + String(e));
+              }
+            }}
+            className="text-xs gap-1.5"
+          >
+            <LayoutTemplate size={12} />
+            Save Template
+          </Button>
           <label className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
             Project:
           </label>

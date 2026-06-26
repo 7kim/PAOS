@@ -50,6 +50,7 @@ interface PipelineData {
     completedPhases: number;
     totalPhases: number;
     progress: number;
+    velocity: number | null;
     hasWalkthrough: boolean;
     hasPipelineJson: boolean;
   };
@@ -626,7 +627,12 @@ export default function PipelineVisualizePage() {
             <ListTodo size={14} style={{ color: "#3b82f6" }} />
             <span className="text-sm font-medium">Task Summary</span>
             <span className="ml-auto text-xs" style={{ color: "var(--muted-foreground)" }}>
-              {data.stats.completedTasks}/{data.stats.totalTasks}
+              {data.stats.completedTasks}/{data.stats.totalTasks} tasks
+              {data.stats.velocity != null && (
+                <span className="ml-2 font-normal" style={{ color: "var(--muted-foreground)" }}>
+                  · {data.stats.velocity} tasks/sec
+                </span>
+              )}
             </span>
           </div>
           <div className="p-3 space-y-1">

@@ -3,7 +3,7 @@ import { readdir, stat } from "fs/promises";
 import { join } from "path";
 
 import { MEMORY_DIR } from "@/lib/global-config";
-const REPO_ROOT = process.env.PAOS_ROOT || "/home/dev/AI_Workflow";
+import { REPO_ROOT } from "@/lib/global-config";
 
 const SKIP_DIRS = new Set(["node_modules", ".git", ".next", "__pycache__", ".hermes", "cache", ".cache"]);
 const MAX_DEPTH = 3;

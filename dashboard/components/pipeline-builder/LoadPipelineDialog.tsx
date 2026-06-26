@@ -4,15 +4,27 @@ import { useState, useEffect, useCallback } from "react";
 import { Download, Search, FileText, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import type { BuilderLayout } from "./types";
+
+interface PipelineInfo {
+  id: string;
+  project?: string;
+  status: string;
+  builder?: boolean;
+  prompt?: string;
+  created_at?: string;
+  phases?: { status?: string; prompt?: string }[];
+  planner?: string;
+}
 
 interface LoadPipelineProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onLoad: (layout: any) => void;
+  onLoad: (layout: BuilderLayout) => void;
 }
 
 export function LoadPipelineDialog({ open, onOpenChange, onLoad }: LoadPipelineProps) {
-  const [pipelines, setPipelines] = useState<any[]>([]);
+  const [pipelines, setPipelines] = useState<PipelineInfo[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -23,7 +35,7 @@ export function LoadPipelineDialog({ open, onOpenChange, onLoad }: LoadPipelineP
       const data = await res.json();
       // Filter to pipelines with builderLayout that are still pending/submitted
       const builderPipelines = (data.pipelines || []).filter(
-        (p: any) => p.builder === true && (p.status === "submitted" || p.status === "pending")
+        (p: PipelineInfo) => p.builder === true && (p.status === "submitted" || p.status === "pending")
       );
       setPipelines(builderPipelines);
     } catch { setPipelines([]); }

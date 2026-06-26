@@ -1,10 +1,18 @@
 import { NextResponse } from "next/server";
-import { readFile, writeFile, mkdir, readdir } from "fs/promises";
+import { readFile, writeFile, mkdir, readdir, rename } from "fs/promises";
 import { join } from "path";
 import { spawn } from "child_process";
-
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+import { MEMORY_DIR } from "@/lib/global-config";
 const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
+
+// ── Atomic file write (prevents partial/corrupt writes from concurrent requests) ──
+
+/** Write JSON to a file atomically: write to .tmp sibling, then rename. */
+async function writeJSONAtomic(filePath: string, data: unknown): Promise<void> {
+  const tmpPath = filePath + ".tmp." + Date.now();
+  await writeFile(tmpPath, JSON.stringify(data, null, 2), "utf-8");
+  await rename(tmpPath, filePath);
+}
 
 // Walk DAG in topological order using Kahn's algorithm (BFS)
 function topoSort(nodes: any[], edges: any[]): string[] {
@@ -234,6 +242,7 @@ export async function POST(
 
     // Write pipeline-flow.json
     const flowStatus: Record<string, any> = {
+      $schema: "../mcp/schemas/pipeline-flow.schema.json",
       pipelineId: id,
       status: "executing",
       startedAt: new Date().toISOString(),
@@ -258,11 +267,11 @@ export async function POST(
         artifacts: [`phases/${nodeId}/IMPLEMENTATION.md`],
       };
     });
-    await writeFile(join(dir, "META.json"), JSON.stringify(meta, null, 2));
+    await writeJSONAtomic(join(dir, "META.json"), meta);
 
     // Also update pipeline.json
     const pj = { status: "executing", currentTask: order[0] || "", progress: `0/${order.length}`, startedAt: new Date().toISOString() };
-    await writeFile(join(dir, "pipeline.json"), JSON.stringify(pj, null, 2));
+    await writeJSONAtomic(join(dir, "pipeline.json"), pj);
 
     // Enqueue
     try {
@@ -307,7 +316,7 @@ export async function POST(
       pjLatest.currentTask = nodeId;
       const runningCount = Object.values(flowNow.phases || {}).filter((p: any) => p.status === "running" || p.status === "completed").length;
       pjLatest.progress = `${runningCount}/${currentOrder.length}`;
-      await writeFile(join(dir, "pipeline.json"), JSON.stringify(pjLatest, null, 2));
+      await writeJSONAtomic(join(dir, "pipeline.json"), pjLatest);
 
       // Capture output
       let output = "";
@@ -385,12 +394,12 @@ export async function POST(
             if (allDone) {
               const hasFailures = Object.values(flowLatest.phases || {}).some((p: any) => p.status === "failed");
               pjLive.status = hasFailures ? "completed_with_errors" : "completed";
-              await writeFile(join(dir, "pipeline.json"), JSON.stringify(pjLive, null, 2));
+              await writeJSONAtomic(join(dir, "pipeline.json"), pjLive);
 
               const metaFinal = JSON.parse(await readFile(join(dir, "META.json"), "utf-8").catch(() => "{}"));
               metaFinal.status = hasFailures ? "completed_with_errors" : "completed";
               metaFinal.completed_at = new Date().toISOString();
-              await writeFile(join(dir, "META.json"), JSON.stringify(metaFinal, null, 2));
+              await writeJSONAtomic(join(dir, "META.json"), metaFinal);
 
               // Update queue: remove from pending, add to done
               try {
@@ -409,7 +418,7 @@ export async function POST(
         } else {
           // Node failed — update pipeline status but don't cascade (user can retry/skip)
           pjLive.status = "failed";
-          await writeFile(join(dir, "pipeline.json"), JSON.stringify(pjLive, null, 2));
+          await writeJSONAtomic(join(dir, "pipeline.json"), pjLive);
         }
       });
     }

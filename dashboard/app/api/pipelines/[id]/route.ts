@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import { readFile, readdir } from "fs/promises";
 import { join, extname } from "path";
-
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+import { fileCache } from "@/lib/cache";
+import { MEMORY_DIR } from "@/lib/global-config";
 const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
-
 interface PhaseArtifact {
   filename: string;
   content: string;
@@ -342,6 +341,23 @@ export async function GET(
     const phaseProgress = totalPhases > 0 ? Math.round((completedPhases / totalPhases) * 100) : 0;
     const progress = liveTotal > 0 ? liveProgress : phaseProgress;
 
+    // ── Velocity: compute tasks/sec from phase timestamps ──
+    let velocity: number | null = null;
+    if (flowData.phases) {
+      const completed = Object.values(flowData.phases as Record<string, { startedAt?: string; completedAt?: string }>)
+        .filter((p) => p.startedAt && p.completedAt);
+      if (completed.length > 1) {
+        const starts = completed.map((p) => new Date(p.startedAt!).getTime());
+        const ends = completed.map((p) => new Date(p.completedAt!).getTime());
+        const minStart = Math.min(...starts);
+        const maxEnd = Math.max(...ends);
+        const elapsed = (maxEnd - minStart) / 1000; // seconds
+        if (elapsed > 0) {
+          velocity = Math.round((completed.length / elapsed) * 100) / 100;
+        }
+      }
+    }
+
     return NextResponse.json({
       id,
       meta,
@@ -356,6 +372,7 @@ export async function GET(
         completedPhases,
         totalPhases,
         progress,
+        velocity,
         hasWalkthrough: allFiles.some((f) => f.toLowerCase().includes("walkthrough")),
         hasPipelineJson: Object.keys(pipelineJson).length > 1,
       },

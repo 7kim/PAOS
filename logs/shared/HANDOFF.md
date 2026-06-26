@@ -6,19 +6,19 @@
 ---
 
 ## Last Agent
-- **Agent**: opencode-developer
-- **Tool**: OpenCode Developer
-- **Timestamp**: 2026-06-25T19:49:05.867Z
-- **Session**: PIPE-25-06-2026---19-42 fully completed (both phases)
+- **Agent**: hermes
+- **Tool**: hermes
+- **Timestamp**: 2026-06-26T09:06:53.177Z
+- **Session**: Session kickoff — project enhancement discussion
 
 ## Active Task
-PIPE-25-06-2026---19-42 fully completed — both phases done
+Checking project status — what to work on next
 
 ## What Was Just Done
-- Completed phase n2 (Document) for PIPE-25-06-2026---19-42\n- Created docs/pipelines.md (145 lines) — pipeline system reference: lifecycle, directory structure, DAG execution, Flow Builder UI, agent dispatch, known issues, CLI/API\n- Updated docs/README.md hub with link to new pipeline doc\n- Updated all pipeline tracking files: pipeline.json, META.json, pipeline-flow.json, TASKS.md, phase files\n- Filled in REASONING.md for phase n2 with full decision log\n- Wrote WALKTHROUGH.md for phase n2
+- Started new session to review project status
 
 ## What Is NOT Done Yet
-- No pending work — pipeline is fully completed\n- Identified issues from ANALYSIS.md (empty memory/, broken symlink, etc.) were documented but not fixed — optional future work
+- Assess current backlog, notes, and gaps
 
 ## Active Projects
 

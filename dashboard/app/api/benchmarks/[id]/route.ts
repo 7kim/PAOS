@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { readFile, readdir, writeFile } from "fs/promises";
 import { join } from "path";
 
-const BENCHMARKS_DIR = process.env.BENCHMARKS_DIR || "/home/dev/AI_Workflow/benchmarks";
+import { BENCHMARKS_DIR } from "@/lib/global-config";
 
 export async function GET(
   _req: Request,

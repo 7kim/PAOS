@@ -49,11 +49,24 @@ const AGENT_SUGGESTIONS: Record<string, { role: string; label: string; prompt: s
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const agentId = searchParams.get("agentId");
+  const prompt = searchParams.get("prompt") || "";
 
-  if (!agentId) {
-    return NextResponse.json({ suggestions: [] });
+  const suggestions = agentId ? (AGENT_SUGGESTIONS[agentId] || []) : [];
+
+  // If a prompt is provided, rank suggestions by similarity
+  if (prompt && suggestions.length > 0) {
+    const { rankBySimilarity } = await import("@/lib/similarity");
+    const ranked = rankBySimilarity(
+      prompt,
+      suggestions,
+      (s) => `${s.role} ${s.label} ${s.prompt || s.defaultPrompt || ""}`,
+      suggestions.length,
+    );
+    return NextResponse.json({
+      agentId: agentId || null,
+      suggestions: ranked.map((r) => ({ ...r.item, similarity: Math.round(r.score * 100) })),
+    });
   }
 
-  const suggestions = AGENT_SUGGESTIONS[agentId] || [];
-  return NextResponse.json({ agentId, suggestions });
+  return NextResponse.json({ agentId: agentId || null, suggestions });
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { ChevronRight, ChevronDown, File, Folder, FolderOpen, Search, Loader2, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { FileRef } from "./types";
@@ -21,7 +21,7 @@ interface FileTreeExplorerProps {
   benchmarkId?: string;
 }
 
-export function FileTreeExplorer({
+export const FileTreeExplorer = memo(function FileTreeExplorer({
   projectPath,
   selectedFiles,
   onToggleFile,
@@ -282,4 +282,4 @@ export function FileTreeExplorer({
       </div>
     </div>
   );
-}
+});

@@ -3,6 +3,7 @@ import { readdir, readFile, stat, mkdir, writeFile } from "fs/promises";
 import { join } from "path";
 
 import { MEMORY_DIR, PIPELINES_DIR } from "@/lib/global-config";
+import { fileCache } from "@/lib/cache";
 
 async function scanPipelines(baseDir: string, projectName: string) {
   const dirs = await readdir(baseDir).catch(() => [] as string[]);
@@ -29,7 +30,8 @@ async function scanPipelines(baseDir: string, projectName: string) {
 
       let meta: Record<string, unknown> = {};
       try {
-        meta = JSON.parse(await readFile(metaPath, "utf-8")) as Record<string, unknown>;
+        const metaRaw = await fileCache.readFile(metaPath);
+        meta = JSON.parse(metaRaw) as Record<string, unknown>;
       } catch { /* no meta */ }
 
       let tasks = "";
@@ -49,7 +51,7 @@ async function scanPipelines(baseDir: string, projectName: string) {
       // Override with pipeline.json live progress if available
       const pipelineJsonPath = join(pipelineDir, "pipeline.json");
       try {
-        const pjRaw = await readFile(pipelineJsonPath, "utf-8");
+        const pjRaw = await fileCache.readFile(pipelineJsonPath);
         const pj = JSON.parse(pjRaw) as Record<string, unknown>;
         const progress = pj.progress as string | undefined;
         if (progress && progress !== "0/...") {
@@ -96,6 +98,8 @@ async function scanPipelines(baseDir: string, projectName: string) {
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const filterProject = searchParams.get("project") || "";
+  const page = Math.max(1, parseInt(searchParams.get("page") || "1", 10) || 1);
+  const limit = Math.min(200, Math.max(1, parseInt(searchParams.get("limit") || "50", 10) || 50));
 
   try {
     const projects = await readdir(PIPELINES_DIR).catch(() => []);
@@ -130,7 +134,11 @@ export async function GET(req: Request) {
       return db - da;
     });
 
-    return NextResponse.json({ pipelines: allPipelines });
+    const total = allPipelines.length;
+    const start = (page - 1) * limit;
+    const paged = allPipelines.slice(start, start + limit);
+
+    return NextResponse.json({ pipelines: paged, pagination: { page, limit, total, totalPages: Math.ceil(total / limit) } });
   } catch (e) {
     return NextResponse.json({ pipelines: [], error: String(e) });
   }
@@ -201,6 +209,24 @@ export async function POST(req: Request) {
       // Topological sort for phases
       const nodes = builderLayout.nodes || [];
       const edges = builderLayout.edges || [];
+      const nodeIds = new Set(nodes.map((n: any) => n.id));
+
+      // DAG validation — every edge source/target must reference an existing node
+      for (const e of edges) {
+        if (!nodeIds.has(e.source)) {
+          return NextResponse.json(
+            { error: `Edge source "${e.source}" references non-existent node` },
+            { status: 400 }
+          );
+        }
+        if (!nodeIds.has(e.target)) {
+          return NextResponse.json(
+            { error: `Edge target "${e.target}" references non-existent node` },
+            { status: 400 }
+          );
+        }
+      }
+
       const nodeMap = new Map<string, { id: string; data: any }>();
       const inDegree = new Map<string, number>();
       const adj = new Map<string, string[]>();
@@ -228,6 +254,16 @@ export async function POST(req: Request) {
           inDegree.set(next, newDeg);
           if (newDeg === 0) queue.push(next);
         }
+      }
+
+      // Cycle detection — if topo sort didn't process all nodes, a cycle exists
+      if (topoOrder.length < nodes.length) {
+        const sortedSet = new Set(topoOrder);
+        const cycledNodes = nodes.filter((n: any) => !sortedSet.has(n.id)).map((n: any) => n.id);
+        return NextResponse.json(
+          { error: `DAG contains cycle(s): nodes [${cycledNodes.join(", ")}]` },
+          { status: 400 }
+        );
       }
 
       const phases = topoOrder.map((nodeId) => {

@@ -183,3 +183,44 @@ But the user wants a multi-agent conversation: share this idea with Hermes, get 
 - Created docs/pipelines.md as the single gap-filler rather than 3-4 separate docs\n- Reused existing links to api.md, examples.md, architecture.md rather than duplicating content\n- Included Known Issues table from ANALYSIS.md as a canonical reference (was undocumented)\n- Skipped agent inbox protocol doc (already covered in examples.md)\n- Skipped systemd watcher doc (self-documenting shell scripts)\n- Pipeline is now fully complete — both phases done
 
 **Handoff Notes**: Pipeline PIPE-25-06-2026---19-42 is fully completed. Both phases (n1 Analyze by hermes-nous, n2 Document by opencode-developer) are done. Pipeline artifacts at logs/pipelines/PAOS/PIPE-25-06-2026---19-42/. Created docs/pipelines.md as the main output of n2.
+
+---
+
+## 2026-06-26 09:45 @hermes-nous — Task: storage-comparison-research
+
+**Thinking**: Researched and wrote a comprehensive storage approach comparison for PAOS agent memory at ~/AI_Workflow/research/storage-comparison.md. Evaluated 4 approaches: RAG on filesystem, SQLite+sqlite-vec, PostgreSQL+pgvector, and Obsidian vault integration. Weighed setup effort, query performance, scalability (100/10K/1M docs), integration complexity with existing PAOS file structure, and pros/cons for agent memory retrieval.
+
+**Decisions**:
+- Short-term (now-3mo): Hybrid — keep filesystem, deepen Obsidian integration with [[wikilinks]] and #tags, add TF-IDF RAG as lightweight MCP tool\n- Medium-term (3-12mo): Migrate structured memory to SQLite+sqlite-vec once past 1K docs. Single-file, no server, trivial backups.\n- Long-term (12+mo): PostgreSQL+pgvector if scale reaches 100K+ docs or 50+ concurrent agents.\n- DO NOT migrate to DB yet — current ~50 doc scale doesn't justify infrastructure overhead.\n- DO NOT replace files entirely — human readability, git diff, and Obsidian integration are critical.
+
+**Handoff Notes**: Next agent can read research/storage-comparison.md for full details, including phased implementation roadmap with concrete scripts/tooling suggestions.
+
+---
+
+## 2026-06-26 09:45 @hermes-nous — Task: LANGCHAIN-FEASIBILITY
+
+**Thinking**: Researched LangChain/LangGraph and PAOS's current architecture for the feasibility study. Key findings: PAOS already has a superior pipeline DAG for multi-agent orchestration (systemd + file inboxes + React Flow). LangGraph's StateGraph is in-process Python only — architecturally mismatched with PAOS's multi-process agent dispatch model. LangChain @tool decorators add nothing over existing /h-* bash scripts and MCP config. Recommendation: adopt only the typed-state-schema concept from StateGraph, skip everything else.
+
+**Decisions**:
+- Created research/langchain-integration.md with full feasibility study
+- Four research questions answered: StateGraph comparison, tool-calling, integration effort, MCP support
+- Concrete recommendation: Adopt typed state schema (2-3d), Adapt lightweight checkpoints, Skip LangGraph + LangChain
+- Decision matrix included for all major components
+
+**Handoff Notes**: Research complete. File at research/langchain-integration.md. If someone wants to implement the state schema recommendation, they should start with updating pipeline-flow.json schema and execute-flow/route.ts checkpoint writes.
+
+---
+
+## 2026-06-26 10:44 @opencode-developer — Task: TASK-install-paos
+
+**Thinking**: Created ~/AI_Workflow/bin/install-paos.sh — a comprehensive, idempotent PAOS bootstrap installer for Ubuntu 24.04+ VPS. The script covers: OS detection, Node.js 22+ install (nvm first, nodesource fallback), Python 3.14+ check, cloning/setting up ~/AI_Workflow/ structure, npm deps for dashboard + 3 MCP servers, API token generation for dashboard/.env.local, config/secrets/.env creation from template, script chmod, systemd user services (paos-pipeline.path + paos-pipeline.service), Tailscale serve setup, dashboard dev server launch on port 3333, vault symlinks, global ledger logging, and a detailed summary with URLs and API token.
+
+**Decisions**:
+- Used nvm-first for Node.js (user-local, no sudo), with nodesource fallback
+- Used `openssl rand -hex 32` for API token generation
+- systemd units use `PathModified` on memory/pipelines/ to trigger handler
+- UI components sourced from existing init-paos.sh patterns for consistency
+- supports --yes, --no-systemd, --no-tailscale, --no-deps, --repo= flags
+- set -euo pipefail throughout with clear emoji-labeled output
+
+**Handoff Notes**: Script is at ~/AI_Workflow/bin/install-paos.sh, executable, and passes bash -n syntax check.

@@ -4,7 +4,7 @@ import { join } from "path";
 import { existsSync, mkdirSync } from "fs";
 import type { PipelineTemplate } from "@/components/pipeline-builder/types";
 
-const TEMPLATES_DIR = "/home/dev/AI_Workflow/config/templates";
+import { TEMPLATES_DIR } from "@/lib/global-config";
 
 // Ensure templates directory exists
 if (!existsSync(TEMPLATES_DIR)) {

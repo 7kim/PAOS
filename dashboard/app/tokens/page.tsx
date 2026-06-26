@@ -35,6 +35,7 @@ function formatCost(n: number): string {
 export default function TokensPage() {
   const [data, setData] = useState<TokenSummary | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [compareModel, setCompareModel] = useState("claude-sonnet-4");
   const [view, setView] = useState<"overview" | "daily" | "agents">("overview");
 
@@ -43,8 +44,16 @@ export default function TokensPage() {
     try {
       const res = await fetch(`/api/tokens?compareModel=${encodeURIComponent(compareModel)}`);
       const d = await res.json();
-      setData(d);
-    } catch { /* ignore */ }
+      if (d.error) {
+        setError(d.error);
+        setData(null);
+      } else {
+        setData(d);
+        setError("");
+      }
+    } catch {
+      setError("Failed to load token data");
+    }
     setLoading(false);
   }, [compareModel]);
 
@@ -77,7 +86,7 @@ export default function TokensPage() {
             className="text-[10px] rounded px-2 py-1 border"
             style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
           >
-            {data?.availableModels.map((m) => (
+            {data?.availableModels?.map((m) => (
               <option key={m} value={m}>{m}</option>
             ))}
           </select>

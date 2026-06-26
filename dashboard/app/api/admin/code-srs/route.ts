@@ -3,7 +3,8 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import { load, dump } from "js-yaml";
 
-const CONFIG_PATH = "/home/dev/AI_Workflow/config/code-srs";
+import { CONFIG_DIR } from "@/lib/global-config";
+const CONFIG_PATH = CONFIG_DIR + "/code-srs";
 const FEATURES_PATH = join(CONFIG_PATH, "features.yaml");
 const MODELS_PATH = join(CONFIG_PATH, "models.yaml");
 

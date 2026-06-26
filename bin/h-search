@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+# h-search — Semantic search over PAOS knowledge documents
+# Usage: h-search "your query" [--topk N]
+
+set -euo pipefail
+
+PAOS_ROOT="${PAOS_ROOT:-$HOME/AI_Workflow}"
+DASHBOARD_URL="${DASHBOARD_URL:-http://localhost:3333}"
+TOP_K=5
+
+# Parse args
+QUERY=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --topk|--top-k)
+      TOP_K="$2"
+      shift 2
+      ;;
+    --help|-h)
+      echo "Usage: h-search <query> [--topk N]"
+      echo ""
+      echo "Semantic search across PAOS knowledge documents."
+      echo ""
+      echo "Examples:"
+      echo "  h-search \"pipeline execution flow\""
+      echo "  h-search \"agent configuration\" --topk 10"
+      exit 0
+      ;;
+    *)
+      if [[ -z "$QUERY" ]]; then
+        QUERY="$1"
+      else
+        QUERY="$QUERY $1"
+      fi
+      shift
+      ;;
+  esac
+done
+
+if [[ -z "$QUERY" ]]; then
+  echo "Error: Provide a search query." >&2
+  echo "Usage: h-search <query> [--topk N]" >&2
+  exit 1
+fi
+
+# Check if dashboard is running
+if ! curl -sf -o /dev/null "$DASHBOARD_URL/api/overview"; then
+  echo "Error: PAOS dashboard is not running at $DASHBOARD_URL" >&2
+  echo "Start it with: cd $PAOS_ROOT/dashboard && npm run dev" >&2
+  exit 1
+fi
+
+# Try to use the API (no auth for localhost if .env.local has no token)
+API_TOKEN="${API_TOKEN:-}"
+
+if [[ -n "$API_TOKEN" ]]; then
+  AUTH_HEADER="Authorization: Bearer ***
+else
+  AUTH_HEADER=""
+fi
+
+RESPONSE=$(curl -sf \
+  ${AUTH_HEADER:+-H "$AUTH_HEADER"} \
+  "$DASHBOARD_URL/api/search?q=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$QUERY'))")&topK=$TOP_K" 2>/dev/null || true)
+
+if [[ -z "$RESPONSE" ]]; then
+  # Fallback: try direct MCP server test
+  echo "Dashboard API unreachable. Trying MCP server directly..."
+  echo '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"search_knowledge","arguments":{"query":"'"$QUERY"'","topK":'"$TOP_K"'}}}' | \
+    timeout 5 node "$PAOS_ROOT/mcp/search-server/index.js" 2>/dev/null | \
+    python3 -c "
+import sys, json
+try:
+    data = json.load(sys.stdin)
+    content = data.get('result', {}).get('content', [])
+    for c in content:
+        print(c.get('text', ''))
+except: pass
+" 2>/dev/null
+  exit 0
+fi
+
+# Format results
+python3 -c "
+import sys, json
+try:
+    data = json.loads('''$RESPONSE''')
+    results = data.get('results', [])
+    if not results:
+        print('No results found for \"$QUERY\". Try different keywords.')
+        sys.exit(0)
+    print(f'Found {len(results)} result(s) for \"$QUERY\":')
+    print()
+    for i, r in enumerate(results, 1):
+        print(f'  [{i}] {r.get(\"title\", \"?\")} ({r.get(\"score\", 0)}% match)')
+        print(f'      File: {r.get(\"path\", \"?\")}')
+        if r.get('matchLine'):
+            print(f'      Line: {r[\"matchLine\"]}')
+        snippet = r.get('snippet', '')
+        if snippet:
+            print(f'      {snippet[:150]}...' if len(snippet) > 150 else f'      {snippet}')
+        print()
+except Exception as e:
+    print(f'Error: {e}')
+" 2>/dev/null

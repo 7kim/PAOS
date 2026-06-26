@@ -53,8 +53,8 @@ export type PipelineTemplate = {
   description: string;
   category: string;
   tags: string[];
-  nodes: any[];
-  edges: any[];
+  nodes: AgentNodeType[];
+  edges: Edge[];
   createdAt: string;
   updatedAt: string;
 };

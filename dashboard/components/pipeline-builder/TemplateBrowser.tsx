@@ -8,14 +8,15 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type { PipelineTemplate } from "./types";
+import type { PipelineTemplate, AgentNodeType } from "./types";
+import type { Edge } from "@xyflow/react";
 
 interface TemplateBrowserProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onLoadTemplate: (template: PipelineTemplate) => void;
-  currentNodes: any[];
-  currentEdges: any[];
+  currentNodes: AgentNodeType[];
+  currentEdges: Edge[];
 }
 
 export function TemplateBrowser({ open, onOpenChange, onLoadTemplate, currentNodes, currentEdges }: TemplateBrowserProps) {

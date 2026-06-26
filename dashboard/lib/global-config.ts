@@ -57,3 +57,6 @@ export const AGENTS_DIR = join(HOME, "AI_Workflow", "agents");
 export const CONFIG_DIR = join(HOME, "AI_Workflow", "config");
 export const VAULT_DIR = join(HOME, "AI_Workflow", "vault");
 export const HOME_DIR = HOME;
+export const REPO_ROOT = HOME + "/AI_Workflow";
+export const BENCHMARKS_DIR = join(REPO_ROOT, "benchmarks");
+export const CONFIG_TEMPLATES_DIR = join(CONFIG_DIR, "templates");

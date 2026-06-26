@@ -1,6 +1,20 @@
+---
+title: "Completed Project Notes"
+description: "Archive of completed notes and action items from PAOS projects — moved here after execution per session-protocol"
+tags:
+  - paos
+  - knowledge
+  - reference
+related:
+  - "[[notes]]"
+  - "[[session-protocol]]"
+  - "[[_agent-conventions]]"
+status: active
+---
+
 # notes-done.md — Completed Items
 
-Items moved here after execution. Archived with completion date.
+Items moved here after execution per the [[session-protocol]]. Archived with completion date.
 
 ---
 

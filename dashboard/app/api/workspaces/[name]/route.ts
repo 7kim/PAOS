@@ -2,8 +2,9 @@ import { NextResponse } from "next/server";
 import { readFile, writeFile, stat, readdir } from "fs/promises";
 import { join } from "path";
 
-const WORKSPACES_DIR = process.env.WORKSPACES_DIR || "/home/dev/AI_Workflow/workspaces";
-const PROJ_DIR = process.env.PAOS_ROOT || "/home/dev/AI_Workflow/projects";
+import { WORKSPACES_DIR } from "@/lib/global-config";
+import { PROJECTS_DIR } from "@/lib/global-config";
+const PROJ_DIR = PROJECTS_DIR;
 
 const ROLE_PRESETS = [
   { role: "architect", label: "Architect", defaultPrompt: "Analyze the project structure and requirements. Identify key components, dependencies, and architectural patterns. Document your findings and recommendations for the next phase." },

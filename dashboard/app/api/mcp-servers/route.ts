@@ -1,10 +1,12 @@
 import { NextResponse } from "next/server";
 import { readFile } from "fs/promises";
+import { join } from "path";
+import { MEMORY_DIR } from "@/lib/global-config";
 
 export async function GET() {
   try {
     const mcpConfig = await readFile(
-      "/home/dev/AI_Workflow/mcp/mcp-config.json",
+      join(MEMORY_DIR, "..", "mcp", "mcp-config.json"),
       "utf-8"
     );
     const config = JSON.parse(mcpConfig);

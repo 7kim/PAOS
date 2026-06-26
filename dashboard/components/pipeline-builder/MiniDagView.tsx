@@ -17,6 +17,12 @@ import "@xyflow/react/dist/style.css";
 import { ReadOnlyNode } from "./ReadOnlyNode";
 import type { VisualSettings } from "./VisualSettings";
 
+interface FlowStatus {
+  phases?: Record<string, { status?: string; pid?: number; reasoning?: unknown; output?: string }>;
+  phaseNames?: Record<string, string>;
+  etc?: Record<string, unknown>;
+}
+
 const nodeTypes = { readOnlyNode: ReadOnlyNode };
 
 // Convert hex color to rgba string
@@ -42,9 +48,9 @@ function MiniDagCanvas({
   expandedNode,
   visualSettings,
 }: {
-  nodes: any[];
-  edges: any[];
-  flowStatus: Record<string, any> | null;
+  nodes: Node[];
+  edges: Edge[];
+  flowStatus: FlowStatus | null;
   onNodeClick: (nodeId: string) => void;
   expandedNode: string | null;
   visualSettings?: VisualSettings;
@@ -53,7 +59,7 @@ function MiniDagCanvas({
 
   // Override edge styles with visual settings and smart animation
   const overriddenEdges: Edge[] = useMemo(() => {
-    return (inputEdges || []).map((e: any) => {
+    return (inputEdges || []).map((e: Edge) => {
       const srcPhase = flowStatus?.phases?.[e.source];
       const tgtPhase = flowStatus?.phases?.[e.target];
       // Animate only if source is complete and target is not yet complete (active flow)
@@ -76,7 +82,7 @@ function MiniDagCanvas({
 
   // Enrich nodes with flow status
   const enrichedNodes: Node[] = useMemo(() => {
-    return inputNodes.map((n: any) => {
+    return inputNodes.map((n: Node) => {
       const phase = flowStatus?.phases?.[n.id];
       return {
         id: n.id,
@@ -147,9 +153,9 @@ function MiniDagCanvas({
 }
 
 export default function MiniDagView(props: {
-  nodes: any[];
-  edges: any[];
-  flowStatus: Record<string, any> | null;
+  nodes: Node[];
+  edges: Edge[];
+  flowStatus: FlowStatus | null;
   onNodeClick: (nodeId: string) => void;
   expandedNode: string | null;
   id: string;

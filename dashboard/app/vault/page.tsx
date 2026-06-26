@@ -40,11 +40,14 @@ function VaultPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const projectFilter = searchParams?.get("project") || "";
-  const [tab, setTab] = useState<"daily" | "chats">("daily");
+  const [tab, setTab] = useState<"daily" | "chats" | "search">("daily");
   const [notes, setNotes] = useState<DailyNote[]>([]);
   const [chats, setChats] = useState<ChatEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedContent, setSelectedContent] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<{ path: string; title: string; snippet: string; score: number; matchLine?: number }[]>([]);
+  const [searching, setSearching] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -111,7 +114,7 @@ function VaultPage() {
             }}
           >
             <Calendar size={11} />
-            Daily Notes
+            Daily
           </button>
           <button
             onClick={() => setTab("chats")}
@@ -124,6 +127,18 @@ function VaultPage() {
           >
             <MessageSquare size={11} />
             Chats
+          </button>
+          <button
+            onClick={() => setTab("search")}
+            className="flex-1 px-3 py-1.5 text-xs rounded-md transition-all flex items-center justify-center gap-1"
+            style={{
+              background: tab === "search" ? "var(--primary)" : "transparent",
+              color: tab === "search" ? "var(--primary-foreground)" : undefined,
+              fontWeight: tab === "search" ? 600 : 400,
+            }}
+          >
+            <Eye size={11} />
+            Search
           </button>
         </div>
 
@@ -150,6 +165,83 @@ function VaultPage() {
                   </button>
                 ))
               )
+            ) : tab === "search" ? (
+              <div className="space-y-2 p-1">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={async (e) => {
+                      if (e.key === "Enter" && searchQuery.trim()) {
+                        setSearching(true);
+                        try {
+                          const res = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}&topK=10`);
+                          const data = await res.json();
+                          setSearchResults(data.results ?? []);
+                        } catch { setSearchResults([]); }
+                        setSearching(false);
+                      }
+                    }}
+                    placeholder="Search knowledge docs..."
+                    className="w-full text-xs rounded-lg border px-3 py-2"
+                    style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--foreground)" }}
+                  />
+                  <button
+                    onClick={async () => {
+                      if (!searchQuery.trim()) return;
+                      setSearching(true);
+                      try {
+                        const res = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}&topK=10`);
+                        const data = await res.json();
+                        setSearchResults(data.results ?? []);
+                      } catch { setSearchResults([]); }
+                      setSearching(false);
+                    }}
+                    disabled={searching}
+                    className="text-xs px-2 py-2 rounded-lg border"
+                    style={{ background: "var(--primary)", borderColor: "var(--primary)", color: "var(--primary-foreground)" }}
+                  >
+                    {searching ? "..." : "Search"}
+                  </button>
+                </div>
+                {searchResults.length > 0 ? (
+                  <div className="space-y-1 pt-2">
+                    <div className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
+                      {searchResults.length} result{searchResults.length !== 1 ? "s" : ""} for "{searchQuery}"
+                    </div>
+                    {searchResults.map((r, i) => (
+                      <div
+                        key={i}
+                        className="p-2 rounded-lg border cursor-pointer hover:bg-muted/50 transition-colors"
+                        style={{ borderColor: "var(--border)" }}
+                        onClick={() => setSelectedContent(`# ${r.title}\n\n${r.snippet}\n\n---\n*Path: ${r.path}*`)}
+                      >
+                        <div className="text-xs font-medium truncate flex items-center gap-2">
+                          {r.title}
+                          <span className="text-[9px] font-normal" style={{ color: "var(--primary)" }}>
+                            {(r.score)}%
+                          </span>
+                        </div>
+                        <div className="text-[10px] mt-0.5 line-clamp-2" style={{ color: "var(--muted-foreground)" }}>
+                          {r.snippet}
+                        </div>
+                        <div className="text-[9px] mt-0.5 font-mono" style={{ color: "var(--muted-foreground)" }}>
+                          {r.path}{r.matchLine ? `:${r.matchLine}` : ""}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : searchQuery && !searching ? (
+                  <div className="text-[10px] text-center pt-4" style={{ color: "var(--muted-foreground)" }}>
+                    No results — try different keywords
+                  </div>
+                ) : (
+                  <div className="text-[10px] text-center pt-8" style={{ color: "var(--muted-foreground)" }}>
+                    Type a query and press Enter to search PAOS knowledge docs
+                  </div>
+                )}
+              </div>
             ) : (
               chats.length === 0 ? (
                 <div className="text-xs text-center py-8 text-muted-foreground">No chats</div>

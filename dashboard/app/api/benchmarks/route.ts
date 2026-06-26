@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { readdir, readFile, writeFile, stat } from "fs/promises";
 import { join } from "path";
 
-const BENCHMARKS_DIR = process.env.BENCHMARKS_DIR || "/home/dev/AI_Workflow/benchmarks";
+import { BENCHMARKS_DIR } from "@/lib/global-config";
 
 // GET /api/benchmarks — list all + trends
 export async function GET() {
@@ -129,14 +129,17 @@ export async function POST() {
       mkdir -p "$BASE/$ID/gaps"
       
       # Run the benchmark audit via hermes
-      cd /home/dev/AI_Workflow
+      cd "$BASE/.."
       echo "Running benchmark audit..."
       
       # Generate audit report from the benchmark rules
       python3 -c "
 import sys, os, json, re
+base = os.environ.get('BASE', '$BASE')
+root = os.path.dirname(base)
+benchmark_file = os.path.join(root, 'Coding-Principles-Benchmark.md')
 # Read the benchmark questions and score them
-with open('/home/dev/AI_Workflow/Coding-Principles-Benchmark.md', 'r') as f:
+with open(benchmark_file, 'r') as f:
     content = f.read()
 
 # Extract all questions with their check commands
@@ -172,7 +175,7 @@ print(f'Benchmark {nextNum} structure created')
     const child = spawn("bash", ["-c", script], {
       stdio: "inherit",
       detached: true,
-      cwd: "/home/dev/AI_Workflow",
+      cwd: join(BENCHMARKS_DIR, ".."),
     });
     child.unref();
 

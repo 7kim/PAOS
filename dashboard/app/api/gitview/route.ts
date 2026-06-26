@@ -3,7 +3,7 @@ import { execSync } from "child_process";
 import { readFile } from "fs/promises";
 import { join } from "path";
 
-const REPO_ROOT = process.env.REPO_ROOT || "/home/dev/AI_Workflow";
+import { REPO_ROOT } from "@/lib/global-config";
 
 function getAgentIdentities(): Record<string, { name: string; email: string }> {
   try {

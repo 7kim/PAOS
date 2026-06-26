@@ -1,3 +1,17 @@
+---
+title: "Tradingview — Scalping Bot v2"
+description: "Enterprise trading operations dashboard for a self-hosted Binance Futures scalping bot — FastAPI UDF server, React frontend"
+tags:
+  - paos
+  - architecture
+  - reference
+related:
+  - "[[repos]]"
+  - "[[_agent-conventions]]"
+  - "[[session-protocol]]"
+status: active
+---
+
 # Tradingview — Scalping Bot v2
 
 **Path**: `~/Documents/Dev/Tradingview/`
@@ -7,7 +21,7 @@
 ## Purpose
 
 Enterprise trading operations dashboard for a self-hosted Binance Futures scalping bot.
-Zero external data reporting — all OHLCV served locally via FastAPI UDF server.
+Zero external data reporting — all OHLCV served locally via FastAPI UDF server. See [[repos]] for related project entries.
 
 ## Stack
 

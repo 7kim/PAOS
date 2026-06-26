@@ -2,196 +2,306 @@
 
 import { useState, useEffect, useCallback } from "react";
 import {
-  Loader2, CheckCircle2, XCircle, ExternalLink,
-  Terminal, RefreshCw, ChevronDown, ChevronRight, Copy,
+  Loader2, CheckCircle2, XCircle, ExternalLink, RefreshCw,
+  Copy, Terminal, Power, PowerOff, Download, BarChart3,
 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 interface AgentInfo {
   id: string;
   label: string;
-  package: string;
-  checkCmd: string;
-  installCmd: string;
-  url: string;
   available: boolean;
   version: string;
   error: string;
 }
 
+interface RegistryAgent {
+  id: string;
+  label: string;
+  role: string;
+  enabled: boolean;
+  riskLevel: string;
+  binary: string;
+}
+
+interface InstallableAgent {
+  id: string;
+  label: string;
+  role: string;
+  installType: string;
+  binary: string;
+}
+
+interface AgentStats {
+  totalActions: number;
+  pipelinesRun: number;
+  successRate: string;
+  lastActive: string | null;
+  actionsByType: Record<string, number>;
+}
+
 export default function AgentsPage() {
   const [agents, setAgents] = useState<AgentInfo[]>([]);
+  const [registry, setRegistry] = useState<RegistryAgent[]>([]);
+  const [installable, setInstallable] = useState<InstallableAgent[]>([]);
+  const [stats, setStats] = useState<Record<string, AgentStats>>({});
   const [loading, setLoading] = useState(true);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [installError, setInstallError] = useState("");
+  const [installing, setInstalling] = useState<string | null>(null);
+  const [showStats, setShowStats] = useState(false);
 
-  const load = useCallback(async () => {
+  const loadAll = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/agents");
-      const data = await res.json();
-      setAgents(data.agents || []);
+      const [agentsRes, registryRes, installableRes, statsRes] = await Promise.all([
+        fetch("/api/agents"),
+        fetch("/api/agents/scoped"),
+        fetch("/api/agents/installable"),
+        fetch("/api/agents/stats"),
+      ]);
+      const agentsData = await agentsRes.json();
+      const registryData = await registryRes.json();
+      const installableData = await installableRes.json();
+      const statsData = await statsRes.json();
+
+      setAgents(agentsData.agents || []);
+      setRegistry(registryData.scopedProjects?.flatMap((p: any) => p.agents?.map((a: string) => ({ id: a, label: a, enabled: true, role: "", riskLevel: "medium", binary: a })) || []) || []);
+      setInstallable(installableData.agents || []);
+      setStats(statsData.agents || {});
     } catch { /* ignore */ }
     setLoading(false);
   }, []);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { loadAll(); }, [loadAll]);
 
-  const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
+  const toggleAgent = async (id: string) => {
+    try {
+      const res = await fetch(`/api/agents/${id}/toggle`, { method: "PATCH" });
+      if (res.ok) {
+        setRegistry((prev) => prev.map((a) => a.id === id ? { ...a, enabled: !a.enabled } : a));
+      }
+    } catch { /* ignore */ }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 size={20} className="animate-spin opacity-50" />
-      </div>
-    );
-  }
+  const installAgent = async (id: string) => {
+    setInstalling(id);
+    setInstallError("");
+    try {
+      const res = await fetch(`/api/agents/${id}/install`, { method: "POST" });
+      const data = await res.json();
+      if (data.ok) {
+        setInstallable((prev) => prev.filter((a) => a.id !== id));
+        setRegistry((prev) => [...prev, { id, label: id, enabled: true, role: "", riskLevel: "medium", binary: id }]);
+      } else {
+        setInstallError(data.error || "Install failed");
+      }
+    } catch (e) {
+      setInstallError(String(e));
+    }
+    setInstalling(null);
+  };
+
+  // Merge registry with live health check info
+  const mergedAgents = registry.map((r) => {
+    const live = agents.find((a) => a.id === r.id || a.id === r.id.replace(/-/g, "-"));
+    return { ...r, available: live?.available ?? false, version: live?.version || "" };
+  });
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-6 max-w-5xl mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-lg font-bold flex items-center gap-2" style={{ color: "var(--foreground)" }}>
-            <Terminal size={16} /> Agents
-          </h1>
-          <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
-            Detected agents on this system · {agents.filter(a => a.available).length} available
+          <h1 className="text-lg font-semibold" style={{ color: "var(--foreground)" }}>Agents</h1>
+          <p className="text-xs mt-1" style={{ color: "var(--muted-foreground)" }}>
+            Manage PAOS agent lifecycle — {mergedAgents.filter((a) => a.enabled).length} active · {installable.length} available to install
           </p>
         </div>
-        <button
-          onClick={load}
-          className="text-xs px-2 py-1 rounded border flex items-center gap-1"
-          style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
-        >
-          <RefreshCw size={10} /> Refresh
-        </button>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="sm" onClick={() => setShowStats(!showStats)} className="text-[10px] gap-1">
+            <BarChart3 size={12} />
+            {showStats ? "Hide Stats" : "Stats"}
+          </Button>
+          <Button variant="ghost" size="sm" onClick={loadAll} disabled={loading}>
+            <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
+          </Button>
+        </div>
       </div>
 
-      <div className="grid gap-3">
-        {agents.map((agent) => (
-          <div
-            key={agent.id}
-            className="rounded-xl border overflow-hidden"
-            style={{ borderColor: "var(--border)" }}
-          >
-            {/* Header */}
-            <div className="flex items-center gap-3 p-3">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
-                style={{
-                  background: agent.available ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.1)",
-                }}
-              >
-                {agent.available ? (
-                  <CheckCircle2 size={14} style={{ color: "#22c55e" }} />
-                ) : (
-                  <XCircle size={14} style={{ color: "#ef4444" }} />
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium" style={{ color: "var(--foreground)" }}>
-                  {agent.label}
-                </div>
-                <div className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                  <span className="font-mono">{agent.package}</span>
-                  {agent.available && agent.version && (
-                    <span className="ml-2 opacity-60">v{agent.version}</span>
-                  )}
-                </div>
-              </div>
-              <button
-                onClick={() => setExpandedId(expandedId === agent.id ? null : agent.id)}
-                className="text-xs px-2 py-1 rounded border flex items-center gap-1"
-                style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
-              >
-                {expandedId === agent.id ? "Hide" : "Details"}
-              </button>
-            </div>
-
-            {/* Expanded details */}
-            {expandedId === agent.id && (
-              <div className="border-t p-3 space-y-2" style={{ borderColor: "var(--border)" }}>
-                {/* Status indicator */}
-                <div className="flex items-center gap-2 text-[10px]">
-                  <span style={{ color: "var(--muted-foreground)" }}>Status:</span>
-                  {agent.available ? (
-                    <span className="flex items-center gap-1" style={{ color: "#22c55e" }}>
-                      <CheckCircle2 size={10} /> Installed
-                    </span>
-                  ) : (
-                    <span className="flex items-center gap-1" style={{ color: "#ef4444" }}>
-                      <XCircle size={10} /> Not Installed
-                    </span>
-                  )}
-                </div>
-
-                {/* Version info */}
-                {agent.available && agent.version && (
-                  <div className="text-[10px]" style={{ color: "var(--muted-foreground)" }}>
-                    Version: <span className="font-mono">{agent.version}</span>
-                  </div>
-                )}
-
-                {/* Error if unavailable */}
-                {!agent.available && agent.error && (
-                  <div className="text-[10px] p-2 rounded" style={{ background: "rgba(239,68,68,0.05)", color: "#ef4444" }}>
-                    {agent.error}
-                  </div>
-                )}
-
-                {/* Install snippet (21st.dev style) */}
-                <div className="rounded-lg border overflow-hidden" style={{ borderColor: "var(--border)" }}>
+      {loading ? (
+        <div className="flex items-center justify-center py-16">
+          <Loader2 size={20} className="animate-spin opacity-50" />
+        </div>
+      ) : (
+        <>
+          {/* ── Active Agents ── */}
+          <Card>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-sm font-medium flex items-center gap-2">
+                <Terminal size={14} />
+                Active Agents ({mergedAgents.filter((a) => a.enabled).length})
+              </CardTitle>
+              <CardDescription className="text-[10px]">
+                Agents registered in PAOS. Toggle to enable/disable.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {mergedAgents.length === 0 ? (
+                <div className="text-[10px] text-center py-4 opacity-50">No agents registered</div>
+              ) : (
+                mergedAgents.map((agent) => (
                   <div
-                    className="flex items-center justify-between px-3 py-2 text-[10px] font-medium"
-                    style={{ background: "rgba(255,255,255,0.03)", color: "var(--muted-foreground)" }}
+                    key={agent.id}
+                    className="flex items-center justify-between p-3 rounded-lg border transition-all"
+                    style={{
+                      borderColor: "var(--border)",
+                      background: agent.enabled ? "var(--card-bg)" : "transparent",
+                      opacity: agent.enabled ? 1 : 0.5,
+                    }}
                   >
-                    <span className="flex items-center gap-1">
-                      <Terminal size={10} /> Install
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => copyToClipboard(agent.installCmd, agent.id)}
-                        className="flex items-center gap-1 px-2 py-0.5 rounded hover:bg-white/5"
-                      >
-                        {copiedId === agent.id ? (
-                          <span style={{ color: "#22c55e" }}>Copied!</span>
-                        ) : (
-                          <><Copy size={9} /> Copy</>
+                    <div className="flex items-center gap-3 min-w-0">
+                      {agent.enabled ? (
+                        <CheckCircle2 size={14} style={{ color: agent.available ? "var(--success, #22c55e)" : "var(--muted-foreground)" }} />
+                      ) : (
+                        <XCircle size={14} style={{ color: "var(--muted-foreground)" }} />
+                      )}
+                      <div className="min-w-0">
+                        <div className="text-xs font-medium truncate flex items-center gap-2">
+                          {agent.label || agent.id}
+                          <Badge variant="secondary" className="text-[9px] px-1 py-0">
+                            {agent.riskLevel || "—"}
+                          </Badge>
+                          {agent.available && (
+                            <Badge variant="outline" className="text-[9px] px-1 py-0" style={{ color: "var(--success, #22c55e)" }}>
+                              {agent.version?.slice(0, 30) || "Online"}
+                            </Badge>
+                          )}
+                        </div>
+                        <div className="text-[10px] mt-0.5" style={{ color: "var(--muted-foreground)" }}>
+                          {agent.id}{agent.available ? "" : " · Binary not found on PATH"}
+                        </div>
+                        {/* Stats for this agent */}
+                        {showStats && stats[agent.id] && (
+                          <div className="flex flex-wrap gap-2 mt-1.5 text-[9px]" style={{ color: "var(--muted-foreground)" }}>
+                            <span>{stats[agent.id].totalActions} actions</span>
+                            <span>{stats[agent.id].pipelinesRun} pipelines</span>
+                            <span>Success: {stats[agent.id].successRate}</span>
+                            {stats[agent.id].lastActive && (
+                              <span>Last: {stats[agent.id].lastActive?.slice(0, 10)}</span>
+                            )}
+                          </div>
                         )}
-                      </button>
-                      <a
-                        href={agent.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 px-2 py-0.5 rounded hover:bg-white/5"
-                      >
-                        <ExternalLink size={9} /> Docs
-                      </a>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                      {agent.available && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-7 w-7 p-0"
+                          onClick={() => toggleAgent(agent.id)}
+                          title={agent.enabled ? "Disable" : "Enable"}
+                        >
+                          {agent.enabled ? <PowerOff size={12} /> : <Power size={12} />}
+                        </Button>
+                      )}
+                      <Badge className="text-[9px]" style={{
+                        background: agent.enabled ? "rgba(34,197,94,0.15)" : "rgba(100,116,139,0.15)",
+                        color: agent.enabled ? "#22c55e" : "var(--muted-foreground)",
+                      }}>
+                        {agent.enabled ? "ON" : "OFF"}
+                      </Badge>
                     </div>
                   </div>
-                  <pre
-                    className="px-3 py-2 text-[10px] font-mono whitespace-pre-wrap select-all"
-                    style={{ color: "var(--foreground)" }}
-                  >
-                    {agent.installCmd}
-                  </pre>
-                </div>
+                ))
+              )}
+            </CardContent>
+          </Card>
 
-                {/* Check command */}
-                {!agent.available && (
-                  <div className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>
-                    After installing, run <code className="font-mono" style={{ color: "var(--foreground)" }}>{agent.checkCmd}</code> to verify.
+          {/* ── Installable Agents ── */}
+          {installable.length > 0 && (
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
+                  <Download size={14} />
+                  Available to Install ({installable.length})
+                </CardTitle>
+                <CardDescription className="text-[10px]">
+                  Self-contained installation inside ~/AI_Workflow/agents/ with auto-configuration.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                {installError && (
+                  <div className="text-[10px] p-2 rounded" style={{ color: "var(--destructive)", background: "rgba(255,0,0,0.05)" }}>
+                    {installError}
                   </div>
                 )}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+                {installable.map((agent) => (
+                  <div
+                    key={agent.id}
+                    className="flex items-center justify-between p-3 rounded-lg border"
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <Download size={14} style={{ color: "var(--primary)" }} />
+                      <div className="min-w-0">
+                        <div className="text-xs font-medium">{agent.label}</div>
+                        <div className="text-[10px] mt-0.5" style={{ color: "var(--muted-foreground)" }}>
+                          {agent.role} · install via {agent.installType}
+                        </div>
+                      </div>
+                    </div>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="text-[10px] gap-1 h-7"
+                      disabled={installing === agent.id}
+                      onClick={() => installAgent(agent.id)}
+                    >
+                      {installing === agent.id ? (
+                        <Loader2 size={10} className="animate-spin" />
+                      ) : (
+                        <Download size={10} />
+                      )}
+                      {installing === agent.id ? "Installing..." : "Install"}
+                    </Button>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* ── Global Stats Summary ── */}
+          {showStats && Object.keys(stats).length > 0 && (
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium flex items-center gap-2">
+                  <BarChart3 size={14} />
+                  Activity Summary
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {Object.entries(stats).slice(0, 8).map(([agentId, s]) => (
+                    <div key={agentId} className="p-2 rounded-lg border text-center" style={{ borderColor: "var(--border)" }}>
+                      <div className="text-[9px] font-medium truncate" style={{ color: "var(--muted-foreground)" }}>
+                        {agentId}
+                      </div>
+                      <div className="text-sm font-semibold mt-1">{s.totalActions}</div>
+                      <div className="text-[9px]" style={{ color: "var(--muted-foreground)" }}>actions</div>
+                      <div className="text-[9px] font-medium" style={{ color: s.successRate === "100%" ? "#22c55e" : "var(--primary)" }}>
+                        {s.successRate} success
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </>
+      )}
     </div>
   );
 }

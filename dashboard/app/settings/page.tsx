@@ -603,6 +603,49 @@ export default function SettingsPage() {
             <strong>Current UTC:</strong> {new Date().toISOString()}
           </> : ""}
         </div>
+
+        {/* Danger Zone — Reset */}
+        <Card style={{ borderColor: "var(--destructive)" }}>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium flex items-center gap-2" style={{ color: "var(--destructive)" }}>
+              <RefreshCw size={14} />
+              Danger Zone
+            </CardTitle>
+            <CardDescription className="text-xs">
+              Destructive actions that reset PAOS state.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs font-medium">Reset Pipeline Data</div>
+                <div className="text-[10px] mt-0.5" style={{ color: "var(--muted-foreground)" }}>
+                  Clears all pipeline artifacts, queue, and task history. Settings and docs preserved.
+                </div>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-[10px] gap-1"
+                style={{ borderColor: "var(--destructive)", color: "var(--destructive)" }}
+                onClick={async () => {
+                  if (!confirm("Reset all pipeline data? This cannot be undone.")) return;
+                  try {
+                    const res = await fetch("/api/settings/reset", { method: "POST" });
+                    if (res.ok) alert("Pipeline data reset. Refresh the page.");
+                    else alert("Reset failed: " + (await res.text()));
+                  } catch (e) {
+                    alert("Reset failed: " + String(e));
+                  }
+                }}
+              >
+                <RefreshCw size={11} />
+                Reset Pipelines
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
       </div>
     </div>
   );

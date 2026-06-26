@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://paos.nodealgo.com/schemas/pipeline-flow.json",
+  "title": "PAOS Pipeline Flow",
+  "description": "Schema for pipeline-flow.json — the execution state of a PAOS pipeline DAG",
+  "type": "object",
+  "required": ["pipelineId", "status", "startedAt", "phases", "order"],
+  "properties": {
+    "pipelineId": {
+      "type": "string",
+      "description": "Unique pipeline identifier (e.g. PIPE-25-06-2026---18-06)",
+      "pattern": "^PIPE-"
+    },
+    "status": {
+      "type": "string",
+      "description": "Overall pipeline execution status",
+      "enum": ["executing", "completed", "failed", "completed_with_errors"]
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when execution began"
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when execution finished"
+    },
+    "phases": {
+      "type": "object",
+      "description": "Map of node ID → phase execution state",
+      "additionalProperties": {
+        "$ref": "#/definitions/PhaseState"
+      }
+    },
+    "order": {
+      "type": "array",
+      "description": "Topological sort order of node IDs for sequential execution",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  },
+  "definitions": {
+    "PhaseState": {
+      "type": "object",
+      "required": ["agentId", "label", "status", "order"],
+      "properties": {
+        "agentId": {
+          "type": "string",
+          "description": "Agent assigned to this phase (e.g. opencode-developer)"
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable phase label"
+        },
+        "status": {
+          "type": "string",
+          "description": "Phase execution status",
+          "enum": ["pending", "ready", "running", "completed", "failed", "skipped"]
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Custom prompt for this phase"
+        },
+        "pid": {
+          "type": "number",
+          "description": "Process ID of the running phase (null if not started)"
+        },
+        "progress": {
+          "type": "string",
+          "description": "Progress indicator (e.g. '2/4')",
+          "pattern": "^\\d+/\\d+$"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this phase started execution"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this phase finished execution"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Execution order within the topology"
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Agent's reasoning output for this phase"
+        },
+        "tasksMd": {
+          "type": "string",
+          "description": "Task list markdown for this phase"
+        },
+        "walkthroughMd": {
+          "type": "string",
+          "description": "Walkthrough markdown for completed phase"
+        },
+        "outputPreview": {
+          "type": "string",
+          "description": "Preview of phase output (truncated to 1000 chars)"
+        }
+      }
+    }
+  }
+}

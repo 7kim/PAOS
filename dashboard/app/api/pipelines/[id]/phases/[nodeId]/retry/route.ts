@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { readFile, writeFile, readdir } from "fs/promises";
 import { join } from "path";
 import { spawn } from "child_process";
-
-const MEMORY_DIR = process.env.MEMORY_DIR || "/home/dev/AI_Workflow/memory";
+import { MEMORY_DIR } from "@/lib/global-config";
 const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
 
 export async function POST(

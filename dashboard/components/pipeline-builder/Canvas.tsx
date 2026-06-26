@@ -276,8 +276,8 @@ function FlowCanvas({ initialLayout, onSave, settings, liveZoom, templateToLoad,
           );
 
           // Check if all done
-          const allDone = Object.values(phases).every((p: any) =>
-            p.status === "completed" || p.status === "failed" || p.status === "skipped"
+          const allDone = (Object.values(phases) as { status?: string }[]).every(
+            (p) => p.status === "completed" || p.status === "failed" || p.status === "skipped"
           );
           if (allDone) {
             clearInterval(interval);

@@ -69,6 +69,16 @@
         "core"
       ],
       "enabled": true
+    },
+    "paos-search": {
+      "command": "node",
+      "args": [
+        "/home/dev/AI_Workflow/mcp/search-server/index.js"
+      ],
+      "env": {
+        "REPO_ROOT": "/home/dev/AI_Workflow"
+      },
+      "enabled": true
     }
   }
 }

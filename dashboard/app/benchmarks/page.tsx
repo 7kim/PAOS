@@ -41,6 +41,7 @@ export default function BenchmarksPage() {
   const [expandedDoc, setExpandedDoc] = useState<string | null>(null);
   const [expandedGap, setExpandedGap] = useState<number | null>(null);
   const [kanbanColumn, setKanbanColumn] = useState<string | null>(null);
+  const [running, setRunning] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -119,13 +120,31 @@ export default function BenchmarksPage() {
             )}
           </p>
         </div>
-        <button
-          onClick={() => load()}
-          className="text-xs px-3 py-1.5 rounded-lg border transition-all hover:opacity-80 flex items-center gap-1"
-          style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
-        >
-          <RefreshCw size={12} /> Refresh
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={async () => {
+              setRunning(true);
+              try {
+                await fetch("/api/benchmarks", { method: "POST" });
+                setTimeout(() => load(), 2000);
+              } catch { /* ignore */ }
+              setTimeout(() => setRunning(false), 10000);
+            }}
+            disabled={running}
+            className="text-xs px-3 py-1.5 rounded-lg border transition-all hover:opacity-80 flex items-center gap-1"
+            style={{ borderColor: "var(--primary)", color: "var(--primary)" }}
+          >
+            {running ? <Loader2 size={12} className="animate-spin" /> : <BarChart3 size={12} />}
+            {running ? "Running..." : "Run Benchmark"}
+          </button>
+          <button
+            onClick={() => load()}
+            className="text-xs px-3 py-1.5 rounded-lg border transition-all hover:opacity-80 flex items-center gap-1"
+            style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+          >
+            <RefreshCw size={12} /> Refresh
+          </button>
+        </div>
       </div>
 
       {benchmarks.length === 0 && (

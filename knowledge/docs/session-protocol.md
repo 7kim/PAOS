@@ -1,13 +1,21 @@
 ---
-name: paos-session-protocol
-description: PAOS canonical session start/end protocol for all agents — v3.0.0
+title: "PAOS Session Protocol v3.0.0"
+description: "Canonical session start/end protocol for all PAOS agents — Article IX compliance, HANDOFF, logging, and commit rules"
+tags:
+  - paos
+  - protocol
+related:
+  - "[[_agent-conventions]]"
+  - "[[notes]]"
+  - "[[user-questions]]"
+status: active
 version: 3.0.0
 ---
 
 # PAOS Session Protocol v3.0.0
 
 > Single source of truth for Article IX compliance across all agents.
-> Agent-specific identity and capabilities live in each agent's `soul.md`.
+> Agent-specific identity and capabilities live in each agent's `soul.md` (see [[_agent-conventions]] for vault standards).
 
 ---
 
@@ -37,9 +45,9 @@ Synthesize HANDOFF + ledger. If anything is in-progress or blocked, surface it t
 
 After session start, if working inside a project directory:
 
-1. Read `<project>/notes.md` → execute each item → call `shared-memory: process_notes`
-2. Read `<project>/user-questions.md` → answer each question → call `shared-memory: process_questions`
-   - For AI_Workflow hub: use `knowledge/docs/notes.md` and `knowledge/docs/user-questions.md`
+1. Read `<project>/[[notes|notes.md]]` → execute each item → call `shared-memory: process_notes`
+2. Read `<project>/[[user-questions|user-questions.md]]` → answer each question → call `shared-memory: process_questions`
+   - For AI_Workflow hub: use `knowledge/docs/[[notes]]` and `knowledge/docs/[[user-questions]]`
    - Unanswerable: leave with `<!-- TODO: needs investigation -->`
 
 ---
