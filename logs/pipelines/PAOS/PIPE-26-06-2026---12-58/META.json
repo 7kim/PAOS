@@ -3,7 +3,7 @@
   "prompt": "Test that phase status sync and task counting work correctly",
   "status": "completed",
   "created_at": "2026-06-26T12:58:36.369Z",
-  "completed_at": "2026-06-26T13:05:00.000Z",
+  "completed_at": "2026-06-26T13:04:10.205Z",
   "phases": [
     {
       "id": "n0",
@@ -16,7 +16,8 @@
         "phases/n0/REASONING.md",
         "phases/n0/TASKS.md",
         "phases/n0/WALKTHROUGH.md"
-      ]
+      ],
+      "completedAt": "2026-06-26T13:01:48.646Z"
     },
     {
       "id": "n1",
@@ -37,7 +38,8 @@
         "phases/n1/tests/test_02_progress_counting.py",
         "phases/n1/tests/test_03_task_markers.py",
         "phases/n1/tests/test_04_pipeline_completion.py"
-      ]
+      ],
+      "completedAt": "2026-06-26T13:04:10.200Z"
     }
   ],
   "parallelism": 1,
@@ -47,7 +49,10 @@
       {
         "id": "n0",
         "type": "agentNode",
-        "position": { "x": 250, "y": 100 },
+        "position": {
+          "x": 250,
+          "y": 100
+        },
         "data": {
           "label": "Plan",
           "agentId": "hermes-nous",
@@ -57,7 +62,10 @@
       {
         "id": "n1",
         "type": "agentNode",
-        "position": { "x": 250, "y": 250 },
+        "position": {
+          "x": 250,
+          "y": 250
+        },
         "data": {
           "label": "Execute",
           "agentId": "opencode-developer",
@@ -66,7 +74,11 @@
       }
     ],
     "edges": [
-      { "id": "e-n0-n1", "source": "n0", "target": "n1" }
+      {
+        "id": "e-n0-n1",
+        "source": "n0",
+        "target": "n1"
+      }
     ]
   }
 }

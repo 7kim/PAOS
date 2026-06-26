@@ -39,15 +39,16 @@
       "id": "PIPE-26-06-2026---10-22",
       "project": "PAOS",
       "enqueuedAt": "2026-06-26T12:12:32.495Z"
-    },
-    {
-      "id": "PIPE-26-06-2026---12-58",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-26T12:58:37.547Z"
     }
   ],
   "running": null,
   "done": [
+    {
+      "id": "PIPE-26-06-2026---12-58",
+      "project": "PAOS",
+      "completedAt": "2026-06-26T13:04:10.206Z",
+      "status": "completed"
+    },
     {
       "id": "PIPE-26-06-2026---12-46",
       "project": "PAOS",

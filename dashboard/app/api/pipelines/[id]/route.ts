@@ -221,15 +221,20 @@ export async function GET(
       if (current) taskList.push(current);
 
       // Enrich task status from pipeline.json — only if TASKS.md isn't already fully marked
-      const allDone = taskList.every((t) => t.status === "done");
-      if (!allDone && liveTotal > 0) {
-        const maxCompleted = Math.min(liveCompleted, taskList.length);
-        taskList.forEach((t, i) => {
-          if (i < maxCompleted) t.status = "done";
-          else if (i === maxCompleted && t.status !== "done") t.status = "doing";
-        });
-        if (maxCompleted < taskList.length && !taskList.some((t) => t.status === "doing")) {
-          taskList[maxCompleted].status = "doing";
+      const pipelineDone = meta?.status === "completed" || meta?.status === "completed_with_errors";
+      if (pipelineDone) {
+        taskList.forEach((t) => { t.status = "done"; });
+      } else {
+        const allDone = taskList.every((t) => t.status === "done");
+        if (!allDone && liveTotal > 0) {
+          const maxCompleted = Math.min(liveCompleted, taskList.length);
+          taskList.forEach((t, i) => {
+            if (i < maxCompleted) t.status = "done";
+            else if (i === maxCompleted && t.status !== "done") t.status = "doing";
+          });
+          if (maxCompleted < taskList.length && !taskList.some((t) => t.status === "doing")) {
+            taskList[maxCompleted].status = "doing";
+          }
         }
       }
     }
@@ -369,8 +374,9 @@ export async function GET(
       taskList,
       builderLayout,
       stats: {
-        completedTasks: liveTotal > 0 ? Math.min(liveCompleted, taskList.length > 0 ? taskList.length : liveTotal) : (taskList.length > 0 ? taskList.filter((t) => t.status === "done").length : 0),
-        totalTasks: liveTotal > 0 ? Math.max(liveTotal, taskList.length > 0 ? taskList.length : 0) : (taskList.length > 0 ? taskList.length : 0),
+        completedTasks: meta?.status === "completed" || meta?.status === "completed_with_errors"
+          ? taskList.length : completedPhases,
+        totalTasks: taskList.length > 0 ? taskList.length : totalPhases,
         completedPhases,
         totalPhases,
         progress,
