@@ -18,6 +18,15 @@ interface TerminalSession {
   output: string[];
   status: string;
   cmd: string;
+  app?: string;
+  cpu?: string;
+  mem?: string;
+  memMB?: number | null;
+  ioReadMB?: number | null;
+  ioWriteMB?: number | null;
+  gpuMB?: number | null;
+  cwd?: string;
+  category?: string;
 }
 
 export default function TerminalsPageWrapper() {
@@ -131,11 +140,11 @@ function TerminalsContent() {
                 borderColor: expandedPid === t.pid ? "var(--primary)" : "var(--border)",
               }}
             >
-              {/* Session header */}
-              <div className="flex items-center gap-2 p-2">
+              {/* Session header — enriched: PID · app · cpu/mem/io/gpu · category */}
+              <div className="flex items-center gap-2 p-2 flex-wrap">
                 <button
                   onClick={() => expandedPid === t.pid ? setExpandedPid(null) : loadOutput(t.pid)}
-                  className="flex items-center gap-2 flex-1 text-left"
+                  className="flex items-center gap-2 flex-1 text-left min-w-0"
                 >
                   {expandedPid === t.pid ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
                   <div
@@ -147,8 +156,11 @@ function TerminalsContent() {
                   <span className="text-xs font-mono" style={{ color: "var(--foreground)" }}>
                     PID {t.pid}
                   </span>
-                  <span className="text-xs" style={{ color: "var(--muted-foreground)" }}>
-                    {t.agent !== "unknown" ? t.agent : t.cmd?.slice(0, 40)}
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(240,185,11,0.12)", color: "var(--primary)" }}>
+                    {(t as any).app || t.agent || "unknown"}
+                  </span>
+                  <span className="text-[10px] font-mono hidden sm:inline" style={{ color: "var(--muted-foreground)" }}>
+                    {t.cmd?.slice(0, 50)}
                   </span>
                   {t.pipelineId && (
                     <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ background: "rgba(240,185,11,0.1)", color: "var(--primary)" }}>
@@ -156,6 +168,27 @@ function TerminalsContent() {
                     </span>
                   )}
                 </button>
+                {/* Resource badges */}
+                <div className="flex items-center gap-1 flex-wrap">
+                  {(t as any).cpu !== undefined && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(59,130,246,0.12)", color: "#3b82f6" }} title="CPU %">CPU {(t as any).cpu}%</span>
+                  )}
+                  {(t as any).memMB !== undefined && (t as any).memMB !== null && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(168,85,247,0.12)", color: "#a855f7" }} title="Resident memory">MEM {(t as any).memMB}MB</span>
+                  )}
+                  {(t as any).mem !== undefined && (
+                    <span className="text-[9px] px-1 py-0.5 rounded font-mono" style={{ background: "rgba(100,116,139,0.12)", color: "var(--muted-foreground)" }}>{(t as any).mem}%</span>
+                  )}
+                  {((t as any).ioReadMB !== null || (t as any).ioWriteMB !== null) && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e" }} title="Read / Write bytes">IO R:{(t as any).ioReadMB ?? 0} W:{(t as any).ioWriteMB ?? 0} MB</span>
+                  )}
+                  {(t as any).gpuMB !== null && (t as any).gpuMB !== undefined && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e" }}>GPU {(t as any).gpuMB}MB</span>
+                  )}
+                  {(t as any).category && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded font-semibold uppercase" style={{ background: (t as any).category === "cpu" ? "rgba(59,130,246,0.15)" : (t as any).category === "memory" ? "rgba(168,85,247,0.15)" : (t as any).category === "io" ? "rgba(34,197,94,0.15)" : "rgba(100,116,139,0.12)", color: (t as any).category === "cpu" ? "#3b82f6" : (t as any).category === "memory" ? "#a855f7" : (t as any).category === "io" ? "#22c55e" : "var(--muted-foreground)" }} title="Heuristic: cpu>50% = cpu, mem>500MB = memory, io>100MB = io">{(t as any).category}</span>
+                  )}
+                </div>
                 <div className="flex items-center gap-1">
                   {expandedPid === t.pid && (
                     <button
@@ -180,9 +213,15 @@ function TerminalsContent() {
                 </div>
               </div>
 
-              {/* Output */}
+              {/* Details + Output */}
               {expandedPid === t.pid && (
                 <div className="border-t" style={{ borderColor: "var(--border)" }}>
+                  {/* Enriched details */}
+                  <div className="p-3 space-y-1 text-[10px] font-mono border-b" style={{ background: "rgba(0,0,0,0.15)", borderColor: "var(--border)", color: "var(--muted-foreground)" }}>
+                    <div><span className="font-semibold" style={{ color: "var(--foreground)" }}>App:</span> {(t as any).app || t.agent} · <span className="font-semibold" style={{ color: "var(--foreground)" }}>PID:</span> {t.pid} · <span className="font-semibold" style={{ color: "var(--foreground)" }}>CWD:</span> {(t as any).cwd || "—"} </div>
+                    <div className="break-all"><span className="font-semibold" style={{ color: "var(--foreground)" }}>Cmd:</span> {t.cmd || "—"}</div>
+                    <div><span className="font-semibold" style={{ color: "var(--foreground)" }}>Resources:</span> CPU {(t as any).cpu ?? "—"}% · MEM {(t as any).memMB ?? "—"}MB ({(t as any).mem ?? "—"}%) · IO R:{(t as any).ioReadMB ?? "—"} W:{(t as any).ioWriteMB ?? "—"} MB · GPU {(t as any).gpuMB ?? "—"}MB · Category {(t as any).category || "idle"} { (t as any).category === "network" ? "" : "(network: n/a — needs eBPF)"}</div>
+                  </div>
                   {outputLoading ? (
                     <div className="flex items-center justify-center py-4">
                       <Loader2 size={12} className="animate-spin opacity-50" />

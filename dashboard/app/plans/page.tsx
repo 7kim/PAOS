@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState , Suspense} from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { CheckCircle, Clock, Download, FolderKanban, GitBranch, Layers, ListTodo } from "lucide-react";
+import { CheckCircle, Clock, Download, FolderKanban, GitBranch, Layers, ListTodo, Trash2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -98,6 +98,15 @@ function PlansPage() {
     const total = (tasks.match(/\[[ x]\]/gi) || []).length;
     const done = (tasks.match(/\[x\]/gi) || []).length;
     return { done, total };
+  }
+
+  async function deletePlan(p: Plan) {
+    if (!confirm(`Delete plan "${p.title}" (${p.id})? Only this plan/pipeline will be deleted.`)) return;
+    const params = new URLSearchParams({ id: p.id });
+    if (p.project) params.set("project", p.project);
+    await fetch(`/api/plans?${params}`, { method: "DELETE" });
+    setSelected(null);
+    void load();
   }
 
   function buildPlanMd(p: Plan): string {
@@ -339,6 +348,15 @@ function PlansPage() {
                             />
                           </div>
                         )}
+                        <button
+                          type="button"
+                          onClick={(e) => { e.stopPropagation(); deletePlan(p); }}
+                          className="p-1 rounded hover:bg-red-500/10 shrink-0 self-start mt-1"
+                          style={{ color: "#ef4444" }}
+                          title="Delete only this plan"
+                        >
+                          <Trash2 size={12} />
+                        </button>
                         {/* Card body */}
                         <button
                           type="button"
@@ -410,16 +428,28 @@ function PlansPage() {
                 <DialogDescription className="text-xs font-mono truncate">{selected?.path || selected?.id}</DialogDescription>
               </div>
               {selected && (
-                <button
-                  type="button"
-                  onClick={() => downloadPlan(selected)}
-                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md border transition-colors hover:border-primary/50 shrink-0"
-                  style={{ borderColor: "var(--border)", color: "var(--primary)" }}
-                  title="Download PLAN + TASKS + WALKTHROUGH as a single markdown file"
-                >
-                  <Download size={12} />
-                  Download
-                </button>
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => deletePlan(selected)}
+                    className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md border transition-colors hover:border-red-400/50 shrink-0"
+                    style={{ borderColor: "var(--border)", color: "#ef4444" }}
+                    title="Delete only this plan — other plans untouched"
+                  >
+                    <Trash2 size={12} />
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => downloadPlan(selected)}
+                    className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-md border transition-colors hover:border-primary/50 shrink-0"
+                    style={{ borderColor: "var(--border)", color: "var(--primary)" }}
+                    title="Download PLAN + TASKS + WALKTHROUGH as a single markdown file"
+                  >
+                    <Download size={12} />
+                    Download
+                  </button>
+                </div>
               )}
             </div>
           </DialogHeader>

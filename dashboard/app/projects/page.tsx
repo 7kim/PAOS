@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FolderKanban, Plus, ExternalLink, Trash2, Eye, EyeOff, Loader2, Import, Bot, Lock, Save, Users, X, Power, PowerOff, FileJson } from "lucide-react";
+import { FolderKanban, Plus, ExternalLink, Trash2, Eye, EyeOff, Loader2, Import, Bot, Lock, Save, Users, X, Power, PowerOff, FileJson, Download } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -117,6 +117,19 @@ export default function ProjectsPage() {
     });
     setSecretsDirty(false);
     setSecretsProject(null); // close dialog
+  }
+
+  function exportProjectSecrets() {
+    if (!secretsProject) return;
+    const lines = [`# Project Secrets — ${secretsProject}`, `# Exported: ${new Date().toISOString()}`, ""];
+    for (const [k, v] of Object.entries(secretsData)) {
+      if (!k.trim() || !v.value.trim()) continue;
+      if (v.note.trim()) lines.push(`# ${k.trim()}: ${v.note.trim()}`);
+      lines.push(`${k.trim()}=${v.value.trim()}`);
+    }
+    const blob = new Blob([lines.join("\n") + "\n"], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href = url; a.download = `${secretsProject}.env`; a.click(); URL.revokeObjectURL(url);
   }
 
   const load = useCallback(async () => {
@@ -726,6 +739,9 @@ export default function ProjectsPage() {
                 >
                   <FileJson size={11} />
                   Templates
+                </Button>
+                <Button size="sm" variant="outline" className="text-xs gap-1" onClick={exportProjectSecrets} disabled={Object.keys(secretsData).length === 0}>
+                  <Download size={11} /> Export .env
                 </Button>
                 <div className="ml-auto flex items-center gap-2">
                   <Button variant="outline" size="sm" onClick={() => setSecretsProject(null)}>Close</Button>

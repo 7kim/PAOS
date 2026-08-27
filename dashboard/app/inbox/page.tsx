@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Send, FolderKanban, ChevronRight } from "lucide-react";
+import { Send, FolderKanban, ChevronRight, Trash2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatTime } from "@/lib/settings";
 import { getViewAll } from "@/lib/viewAll";
@@ -94,6 +94,16 @@ export default function InboxPage() {
     setSending(false);
     setShowCompose(false);
     setComposeTo(""); setComposeSubject(""); setComposeBody("");
+    void load();
+  }
+
+  async function deleteMessage(msg: Message) {
+    if (!confirm(`Delete message "${msg.title}" from ${msg.inbox}/${msg.id}?`)) return;
+    const params = new URLSearchParams({ id: msg.id, inbox: msg.inbox });
+    if (msg.source && msg.source.startsWith("project:")) params.set("project", msg.source.replace("project:",""));
+    else if (projectFilter) params.set("project", projectFilter);
+    await fetch(`/api/inbox?${params}`, { method: "DELETE" });
+    setSelected(null);
     void load();
   }
 
@@ -243,7 +253,7 @@ export default function InboxPage() {
                     )}
                     <span className="ml-auto font-mono">{formatTime(msg.timestamp)}</span>
                   </div>
-                  <h2 className="text-sm font-medium mb-2">{msg.title}</h2>
+                  <h2 className="text-sm font-medium mb-2 flex items-center gap-2">{msg.title} <button type="button" onClick={() => deleteMessage(msg)} className="ml-auto text-[10px] px-2 py-1 rounded border flex items-center gap-1 hover:bg-red-500/10" style={{ borderColor: "var(--border)", color: "#ef4444" }} title="Delete this message only"><Trash2 size={10} /> Delete</button></h2>
                   <pre className="text-sm whitespace-pre-wrap leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.85 }}>
                     {msg.body}
                   </pre>

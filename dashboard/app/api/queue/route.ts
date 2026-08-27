@@ -36,7 +36,7 @@ async function saveQueue(q: QueueData): Promise<void> {
   await writeFile(QUEUE_PATH, JSON.stringify(q, null, 2), "utf-8");
 }
 
-// GET /api/queue — returns full queue state, auto-cleans stale pending items
+// GET /api/queue — returns full queue state, auto-cleans stale pending/running items
 export async function GET() {
   const q = await loadQueue();
 
@@ -44,16 +44,37 @@ export async function GET() {
   const PIPELINES_DIR = join(MEMORY_DIR, "pipelines");
   async function pipelineExists(item: QueueItem): Promise<boolean> {
     const project = item.project || "PAOS";
-    const metaPath = join(PIPELINES_DIR, project, item.id, "META.json");
-    try {
-      await stat(metaPath);
-      const metaRaw = await readFile(metaPath, "utf-8").catch(() => "{}");
-      const meta = JSON.parse(metaRaw);
-      if (meta.status === "completed" || meta.status === "failed") return false;
-      return true;
-    } catch {
-      return false;
+    // Check project subdir first, then flat root, then scan sibling projects for id
+    const candidates = [
+      join(PIPELINES_DIR, project, item.id, "META.json"),
+      join(PIPELINES_DIR, item.id, "META.json"),
+    ];
+    for (const metaPath of candidates) {
+      try {
+        await stat(metaPath);
+        const metaRaw = await readFile(metaPath, "utf-8").catch(() => "{}");
+        const meta = JSON.parse(metaRaw);
+        if (meta.status === "completed" || meta.status === "failed") return false;
+        return true;
+      } catch { /* try next */ }
     }
+    // Fallback: search all project dirs for this id
+    try {
+      const { readdir } = await import("fs/promises");
+      const projects = await readdir(PIPELINES_DIR).catch(() => [] as string[]);
+      for (const proj of projects) {
+        if (proj.startsWith(".")) continue;
+        try {
+          const mp = join(PIPELINES_DIR, proj, item.id, "META.json");
+          await stat(mp);
+          const metaRaw = await readFile(mp, "utf-8").catch(() => "{}");
+          const meta = JSON.parse(metaRaw);
+          if (meta.status === "completed" || meta.status === "failed") return false;
+          return true;
+        } catch { /* not this project */ }
+      }
+    } catch { /* ignore */ }
+    return false;
   }
 
   const validPending: QueueItem[] = [];
@@ -62,17 +83,43 @@ export async function GET() {
   }
   q.pending = validPending;
 
+  // Clean running if stale (no dir or already completed)
+  if (q.running && !(await pipelineExists(q.running))) {
+    q.running = null;
+  }
+
   // Also clean done list — remove pipelines that no longer exist on disk
   const validDone: QueueItem[] = [];
   for (const item of q.done) {
     const project = item.project || "PAOS";
-    const metaPath = join(PIPELINES_DIR, project, item.id, "META.json");
-    try {
-      await stat(metaPath);
+    const candidates = [
+      join(PIPELINES_DIR, project, item.id, "META.json"),
+      join(PIPELINES_DIR, item.id, "META.json"),
+    ];
+    let exists = false;
+    for (const mp of candidates) {
+      try { await stat(mp); exists = true; break; } catch { /* miss */ }
+    }
+    if (exists) {
       validDone.push(item);
-    } catch { /* stale done entry, skip */ }
+    } else {
+      // Fallback scan
+      try {
+        const { readdir } = await import("fs/promises");
+        const projects = await readdir(PIPELINES_DIR).catch(() => [] as string[]);
+        for (const proj of projects) {
+          try { await stat(join(PIPELINES_DIR, proj, item.id, "META.json")); exists = true; break; } catch { /* continue */ }
+        }
+        if (exists) validDone.push(item);
+      } catch { /* stale */ }
+    }
   }
   q.done = validDone;
+
+  // Persist cleaned queue if changed
+  try {
+    await saveQueue(q);
+  } catch { /* save non-critical */ }
 
   return NextResponse.json(q);
 }

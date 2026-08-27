@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Clock, RefreshCw, Monitor, Save, Palette, Globe, Eye, Users, Loader2, Lock, EyeOff, X, FileJson } from "lucide-react";
+import { Clock, RefreshCw, Monitor, Save, Palette, Globe, Eye, Users, Loader2, Lock, EyeOff, X, FileJson, Download } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -138,6 +138,19 @@ export default function SettingsPage() {
       body: JSON.stringify({ secrets: cleaned }),
     });
     setGlobalSecretsDirty(false);
+  }
+
+  function exportGlobalSecrets() {
+    const lines = ["# Global Secrets — PAOS Configuration", `# Exported: ${new Date().toISOString()}`, ""];
+    for (const [k, v] of Object.entries(globalSecrets)) {
+      if (!k.trim() || !v.value.trim()) continue;
+      if (v.note.trim()) lines.push(`# ${k.trim()}: ${v.note.trim()}`);
+      lines.push(`${k.trim()}=${v.value.trim()}`);
+    }
+    const blob = new Blob([lines.join("\n") + "\n"], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "config.env"; a.click(); URL.revokeObjectURL(url);
   }
 
   useEffect(() => { loadGlobalSecrets(); }, []);
@@ -501,6 +514,10 @@ export default function SettingsPage() {
                   <Button size="sm" variant="outline" className="text-xs gap-1"
                     onClick={() => setGlobalShowTemplates(true)}>
                     <FileJson size={11} /> Templates
+                  </Button>
+                  <Button size="sm" variant="outline" className="text-xs gap-1"
+                    onClick={exportGlobalSecrets} disabled={Object.keys(globalSecrets).length === 0}>
+                    <Download size={11} /> Export .env
                   </Button>
                   <div className="ml-auto">
                     <Button size="sm" onClick={saveGlobalSecrets} disabled={!globalSecretsDirty} className="gap-1.5">

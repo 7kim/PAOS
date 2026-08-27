@@ -58,7 +58,24 @@ export async function GET(
 
     const meta = JSON.parse(metaRaw);
     const pipelineJson = JSON.parse(pipelineJsonRaw);
-    const builderLayout = builderLayoutRaw ? JSON.parse(builderLayoutRaw) : null;
+    let builderLayout: any = builderLayoutRaw ? JSON.parse(builderLayoutRaw) : null;
+    // Fallback: synthesize linear builder-layout from META.json phases if missing — so flower graph never blank (PIPELINES.md §1)
+    if (!builderLayout && Array.isArray(meta.phases) && meta.phases.length > 0) {
+      builderLayout = {
+        nodes: meta.phases.map((p: any, i: number) => ({
+          id: String(p.id || p.label || `n${i}`),
+          type: "phase",
+          position: { x: i * 250, y: 0 },
+          data: { label: String(p.label || p.role || `Phase ${i}`), agent: String(p.agent || ""), status: String(p.status || "pending") },
+        })),
+        edges: meta.phases.slice(1).map((p: any, i: number) => ({
+          id: `e-${String(meta.phases[i].id || meta.phases[i].label || `n${i}`)}-${String(p.id || p.label || `n${i+1}`)}`,
+          source: String(meta.phases[i].id || meta.phases[i].label || `n${i}`),
+          target: String(p.id || p.label || `n${i+1}`),
+          animated: false,
+        })),
+      };
+    }
 
     // --- Live progress from pipeline.json ---
     let liveProgress = 0;
@@ -397,24 +414,51 @@ export async function DELETE(
   const { id } = await params;
 
   // Search across all project directories
-  const { readdir, rm } = await import("fs/promises");
+  const { readdir, rm, readFile: rf, writeFile: wf } = await import("fs/promises");
   const projects = await readdir(PIPELINES_DIR).catch(() => [] as string[]);
   let dir = "";
-  for (const project of projects) {
-    if (project.startsWith(".")) continue;
-    const candidate = join(PIPELINES_DIR, project, id);
-    try {
-      await readFile(join(candidate, "META.json"), "utf-8");
-      dir = candidate;
-      break;
-    } catch { /* not this project */ }
+  // Also check flat root-level pipelines (PIPELINES_DIR/<id>)
+  try {
+    await readFile(join(PIPELINES_DIR, id, "META.json"), "utf-8");
+    dir = join(PIPELINES_DIR, id);
+  } catch { /* not flat */ }
+  if (!dir) {
+    for (const project of projects) {
+      if (project.startsWith(".")) continue;
+      const candidate = join(PIPELINES_DIR, project, id);
+      try {
+        await readFile(join(candidate, "META.json"), "utf-8");
+        dir = candidate;
+        break;
+      } catch { /* not this project */ }
+    }
   }
   if (!dir) {
     return NextResponse.json({ error: `Pipeline ${id} not found` }, { status: 404 });
   }
 
   try {
+    // Delete only this exact pipeline directory — never a parent or wildcard
     await rm(dir, { recursive: true, force: true });
+
+    // Also purge from queue.json (pending/running/done) if queued — guarantees queued delete works
+    try {
+      const qPath = join(MEMORY_DIR, "queue", "queue.json");
+      const qRaw = await rf(qPath, "utf-8").catch(() => "");
+      if (qRaw) {
+        const q = JSON.parse(qRaw);
+        let changed = false;
+        const beforePending = (q.pending || []).length;
+        const beforeRunning = q.running ? 1 : 0;
+        const beforeDone = (q.done || []).length;
+        q.pending = (q.pending || []).filter((i: { id: string }) => i.id !== id);
+        q.done = (q.done || []).filter((i: { id: string }) => i.id !== id);
+        if (q.running?.id === id) q.running = null;
+        if ((q.pending || []).length !== beforePending || (q.done || []).length !== beforeDone || beforeRunning !== (q.running ? 1 : 0)) changed = true;
+        if (changed) await wf(qPath, JSON.stringify(q, null, 2), "utf-8");
+      }
+    } catch { /* queue cleanup non-critical */ }
+
     return NextResponse.json({ ok: true, message: `Pipeline ${id} deleted` });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });

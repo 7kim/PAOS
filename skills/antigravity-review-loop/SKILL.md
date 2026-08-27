@@ -17,6 +17,7 @@ A skill that reproduces Google Antigravity's artifact-driven review workflow ins
 
 ### Phase 1 — Planning (No code changes yet)
 
+0. Read `PIPELINES.md` — single contract for pipeline file layout (`META.json` phases `id`, `pipeline-flow.json`, `builder-layout.json`, `phases/<id>/REASONING.md`). Never manual `mkdir` a pipeline; use `bin/h-pipeline submit`.
 1. Read the user's request.
 2. Produce `TASKS.md` at the project root with:
    - Numbered tasks, each with a clear deliverable

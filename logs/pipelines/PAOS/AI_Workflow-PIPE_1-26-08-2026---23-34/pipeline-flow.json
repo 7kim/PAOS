@@ -1,0 +1,40 @@
+{
+  "pipelineId": "AI_Workflow-PIPE_1-26-08-2026---23-34",
+  "status": "completed",
+  "order": ["planner", "executor", "verifier"],
+  "phases": {
+    "planner": {
+      "status": "completed",
+      "agent": "opencode-developer",
+      "role": "planner",
+      "label": "Plan",
+      "prompt": "PAOS 6-note batch + pipeline-delete fixes",
+      "startedAt": "2026-08-26T23:34:00.000Z",
+      "completedAt": "2026-08-26T23:36:00.000Z",
+      "pid": null,
+      "order": 0
+    },
+    "executor": {
+      "status": "completed",
+      "agent": "opencode-developer",
+      "role": "executor",
+      "label": "Execute",
+      "prompt": "Execute Tasks 1-6 + live fixes",
+      "startedAt": "2026-08-26T23:36:00.000Z",
+      "completedAt": "2026-08-26T23:47:00.000Z",
+      "pid": null,
+      "order": 1
+    },
+    "verifier": {
+      "status": "completed",
+      "agent": "opencode-developer",
+      "role": "verifier",
+      "label": "Verify",
+      "prompt": "2nd node verify vs plan + build",
+      "startedAt": "2026-08-26T23:47:00.000Z",
+      "completedAt": "2026-08-26T23:50:00.000Z",
+      "pid": null,
+      "order": 2
+    }
+  }
+}

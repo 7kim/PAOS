@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { X } from "lucide-react";
+import { X, Trash2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getViewAll } from "@/lib/viewAll";
 import { getActiveProject } from "@/lib/activeProject";
@@ -66,6 +66,16 @@ function TasksPage() {
     return () => clearInterval(id);
   }, [load]);
 
+  async function deleteTask(task: Task) {
+    if (!confirm(`Delete task "${task.title}" (${task.id})? Only this task will be deleted.`)) return;
+    const params = new URLSearchParams({ id: task.id });
+    if (task.project) params.set("project", task.project);
+    else if (projectFilter && projectFilter !== "__none__") params.set("project", projectFilter);
+    await fetch(`/api/tasks?${params}`, { method: "DELETE" });
+    setSelected(null);
+    void load();
+  }
+
   return (
     <div className="flex gap-4 h-full">
       <div className={`flex-1 min-w-0 flex flex-col`}>
@@ -89,10 +99,8 @@ function TasksPage() {
               const s = statusStyle(task.status);
               const isSelected = selected?.id === task.id;
               return (
-                <button
+                <div
                   key={task.id}
-                  type="button"
-                  onClick={() => setSelected(isSelected ? null : task)}
                   className="w-full text-left rounded-lg border p-4 flex items-center gap-4 transition-colors"
                   style={{
                     background: isSelected ? "rgba(252,213,53,0.06)" : "var(--card-bg)",
@@ -100,21 +108,24 @@ function TasksPage() {
                     borderLeft: isSelected ? "2px solid var(--accent)" : undefined,
                   }}
                 >
-                  <span
-                    className="text-xs px-2 py-0.5 rounded-full font-medium shrink-0"
-                    style={{ background: s.bg, color: s.color }}
-                  >
-                    {s.label}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-medium text-sm truncate">{task.title}</div>
-                    <div className="text-xs mt-0.5" style={{ color: "var(--muted-foreground)" }}>
-                      {task.id}
-                      {task.project && ` · ${task.project}`}
-                      {task.agent && ` · ${task.agent}`}
+                  <button type="button" onClick={() => setSelected(isSelected ? null : task)} className="flex-1 min-w-0 flex items-center gap-4 text-left">
+                    <span
+                      className="text-xs px-2 py-0.5 rounded-full font-medium shrink-0"
+                      style={{ background: s.bg, color: s.color }}
+                    >
+                      {s.label}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-sm truncate">{task.title}</div>
+                      <div className="text-xs mt-0.5" style={{ color: "var(--muted-foreground)" }}>
+                        {task.id}
+                        {task.project && ` · ${task.project}`}
+                        {task.agent && ` · ${task.agent}`}
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                  <button type="button" onClick={(e) => { e.stopPropagation(); deleteTask(task); }} className="p-1.5 rounded hover:bg-red-500/10 shrink-0" style={{ color: "#ef4444" }} title="Delete only this task"><Trash2 size={14} /></button>
+                </div>
               );
             })}
           </div>

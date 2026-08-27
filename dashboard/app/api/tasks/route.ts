@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile, stat } from "fs/promises";
+import { readdir, readFile, stat, unlink, appendFile } from "fs/promises";
 import { join } from "path";
 
 import { PROJECTS_DIR, MEMORY_DIR } from "@/lib/global-config";
@@ -74,5 +74,46 @@ async function readFromDir(dir: string, project: string): Promise<Task[]> {
     );
   } catch {
     return [];
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    let id = searchParams.get("id") || "";
+    let project = searchParams.get("project") || "";
+    if (!id) {
+      const body = await req.json().catch(() => ({}));
+      id = body.id || "";
+      project = body.project || project;
+    }
+    if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });
+    if (id.includes("..") || id.includes("/")) id = id.split("/").pop() || id;
+    if (!id.endsWith(".md")) id += ".md";
+    const candidates = [
+      join(MEMORY_DIR, "tasks", id),
+      join(PROJECTS_DIR, project || "__none__", "tasks", id),
+    ];
+    // if project not given, also scan all projects
+    let target = "";
+    for (const c of candidates) {
+      try { await stat(c); target = c; break; } catch { /* miss */ }
+    }
+    if (!target && !project) {
+      const projects = await readdir(PROJECTS_DIR).catch(() => [] as string[]);
+      for (const proj of projects) {
+        const p = join(PROJECTS_DIR, proj, "tasks", id);
+        try { await stat(p); target = p; break; } catch { /* continue */ }
+      }
+    }
+    if (!target) return NextResponse.json({ error: `task ${id} not found` }, { status: 404 });
+    await unlink(target);
+    try {
+      const ts = new Date().toISOString();
+      await appendFile(join(MEMORY_DIR, "global_ledger.md"), `\n| ${ts} | dashboard | DELETE | ${target.replace(process.env.HOME || "/home/dev", "~")} | Task deleted via dashboard | - | - |\n`, "utf-8");
+    } catch { /* ignore */ }
+    return NextResponse.json({ ok: true, id: id.replace(".md", "") });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 });
   }
 }

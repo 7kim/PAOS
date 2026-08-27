@@ -1,5 +1,4 @@
 # Global Audit Ledger — Aggregated
-
 | Timestamp (UTC) | Agent | Action | File | Description | Task | Commit |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 2026-06-22T14:39:00Z | paos-init | INIT | - | PAOS initialized fresh via bin/init-paos.sh | - | - |
@@ -72,3 +71,25 @@
 | 2026-06-26T13:05:30.000Z | opencode-developer | CREATE | phases/n1/tests/test_01_phase_transitions.py, phases/n1/tests/test_02_progress_counting.py, phases/n1/tests/test_03_task_markers.py, phases/n1/tests/test_04_pipeline_completion.py | Created 4 test scripts for pipeline tracking infrastructure tests | PIPE-26-06-2026---12-58-n1 | - |
 | 2026-06-26T13:06:00.000Z | opencode-developer | UPDATE | phases/n1/REASONING.md, phases/n1/TASKS.md, phases/n1/WALKTHROUGH.md, pipeline.json, META.json, pipeline-flow.json, TASKS.md | All 4 tests passed (23/23 sub-checks). Updated all tracking files for pipeline completion. Wrote WALKTHROUGH.md. | PIPE-26-06-2026---12-58-n1 | - |
 | 2026-06-26T13:06:30.000Z | opencode-developer | COMMIT | phases/n1/*, pipeline.json, META.json, pipeline-flow.json, TASKS.md | Committed PIPE-26-06-2026---12-58 n1 completion: 4 tests + fixtures created, 23/23 sub-checks PASS, all tracking files updated for pipeline completion | PIPE-26-06-2026---12-58-n1 | d387eaa |
+| 2026-08-27T00:00:52.597Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/hermes-nous/1782150313006-opencode-developer.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:00:56.123Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/hermes-nous/1782152293611-opencode-developer.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:00:58.836Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/hermes-nous/1782156052261-opencode-developer.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:01.730Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/opencode-developer/1782155129524-hermes-nous.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:04.542Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/opencode-developer/1782156177478-hermes-nous.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:07.426Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/opencode-developer/1782156994140-hermes-nous.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:10.306Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/opencode-developer/1782157183838-hermes-nous.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:12.953Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/hermes-nous/1782157412429892920-opencode-developer-pipe-complete.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:16.134Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/opencode-developer/1782157682119901846-paos-auto-executor.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:19.764Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/hermes-nous/1782316946367-dashboard.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:23.556Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/hermes-nous/1782405909924-opencode-developer.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:01:26.539Z | dashboard | DELETE | ~/AI_Workflow/memory/inbox/hermes-nous/1782405945114-opencode-developer.md | Inbox message deleted via dashboard | - | - |
+| 2026-08-27T00:02:35.424Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/PIPE-26-06-2026---12-42 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:02:41.314Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/PIPE-26-06-2026---12-48 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:02:46.624Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/AI_Workflow-PIPE_1-26-08-2026---23-34 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:02:50.243Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/AI_Workflow-PIPE_2-22-06-2026---17-45 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:02:54.780Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/AI_Workflow-PIPE_3-22-06-2026---18-57 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:02:57.669Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/PIPE-25-06-2026---19-42 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:03:00.726Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/PIPE-26-06-2026---12-46 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:03:04.542Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/PIPE-26-06-2026---12-58 | Plan/pipeline deleted via dashboard | - | - |
+| 2026-08-27T00:06:00.561Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/PIPE-20260622-170843-pgz8kg.md | Task deleted via dashboard | - | - |
+| 2026-08-27T00:06:02.978Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/PIPE-20260622-174508-pia2ix.md | Task deleted via dashboard | - | - |

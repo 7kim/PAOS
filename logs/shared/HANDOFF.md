@@ -6,32 +6,25 @@
 ---
 
 ## Last Agent
-- **Agent**: hermes
-- **Tool**: hermes
-- **Timestamp**: 2026-06-26T13:07:50.117Z
-- **Session**: Final session — comprehensive PAOS enhancement
+- **Agent**: opencode-developer
+- **Tool**: opencode
+- **Timestamp**: 2026-08-27T00:10:00.000Z
+- **Session**: 6-note batch + pipeline-delete fixes + PIPELINES.md contract
 
 ## Active Task
-PAOS development cycle complete — all roadmap items built and tested
+PAOS pipeline AI_Workflow-PIPE_1-26-08-2026---23-34 completed (7/7 verified) — 6 notes + live fixes
 
 ## What Was Just Done
-- All 16 benchmark gaps closed (auth, rate limiting, cache, cycle detection, DAG validation, concurrent writes, pagination, hardcoded paths, any types, React.memo, similarity metrics, velocity tracking, resource planner, CORS, CSRF, HSTS)
-- 25 dashboard pages built: overview, projects, vault, graph, events, handoff, ledger, agents, agent explorer, agent stats, agent replay, tasks, pipelines, pipeline analytics, pipeline builder, pipeline visualize, benchmarks, tokens, terminals, gitview, plans, inbox, mcp-servers, api-playground, settings, settings/code-srs, system/doctor
-- Agent lifecycle: enable/disable toggle, self-contained installer at agents/<name>/, registry management, health checks
-- Pipeline system: create, schedule (cron), execute, visualize (MiniDagView), analytics, cost tracking, auto-scaling via resource planner, blueprint sharing (export/import JSON)
-- Knowledge: RAG search via TF-IDF + Ollama embeddings, knowledge graph page, health check scanner, Obsidian wikilink conventions across 5 docs
-- Cross-platform: paos-pipeline-commands skill for Telegram/CLI/Discord, inline keyboard Telegram bot (paos-telegram-bot.py) with 6 commands + systemd service
-- Infrastructure: bin/install-paos.sh (706 lines, idempotent Ubuntu bootstrap), systemd services for pipeline watcher + Telegram bot
-- Multi-machine architecture: research/multi-machine-paos.md (1069 lines, 4 options)
-- Bug fixes: phase status sync on completion, task count accuracy, pipeline.json enrichment (completedAt, velocity, per-phase status/duration), auth bypass for Tailscale hostname
-- Navigation: sidebar links added for graph, agent replay, mcp-servers. Navigation buttons for analytics, explorer, stats, system health
-- QA audit: all 20 pages tested, 1 crash fixed (tokens page)
-- MCP servers: search-server (Ollama + TF-IDF), shared-memory, scaffold, browser
-- CLI: bin/h-search, bin/paos-telegram-bot.py
+- 6-note batch: env export Blob (settings+projects), MCP CRUD (POST/DELETE+toggle/edit/repoint), Skills CRUD (scan+CRUD+repoint), Terminals enriched (PID·app·CWD·CPU/MEM/IO/GPU·category), Delete inbox/plans/tasks (DELETE+ledger), Agents files (view/edit/delete per-file + full delete with binary mapping)
+- Pipeline-delete fixes: DELETE now purges queue pending/running/done + typed ${id}_Delete dialog + single-only isolation; queue GET auto-cleans stale running (fallback flat+project scan)
+- PIPELINES.md contract at root + docs/PIPELINES.md symlink + workflow.md §6.6 + skill Phase1-0 now Read PIPELINES.md; dashboard visualize fallback synthesizes builder-layout linear DAG
+- Pipeline AI_Workflow-PIPE_1: backfilled phases/planner|executor|verifier/REASONING.md + pipeline-flow.json + builder-layout.json + META id; queue ghosts 7→0, running cleared, build PASS (--webpack)
+- Verification: 14 grep PASS + build PASS + WALKTHROUGH.md + VERIFICATION.md, pipeline 7/7 completed, queue done
 
 ## What Is NOT Done Yet
-- Test bin/install-paos.sh on a fresh VPS
-- Any gaps discovered through real-world use
+- Test bin/install-paos.sh on fresh VPS (carry-over)
+- Optional: patch bin/h-pipeline to auto-create placeholder REASONING.md per phase
+- Any gaps from real-world use of new CRUD pages (skills view needs SKILL.md fetch path fix)
 
 ## Active Projects
 
@@ -44,8 +37,9 @@ PAOS development cycle complete — all roadmap items built and tested
 - **Hermes home**: `~/AI_Workflow/hermes/` (symlinked from `~/.hermes`)
 - MCP config: `mcp/mcp-config.json` — unified, all 7 agents symlinked
 - Article X: "install MCP server" / "install skill" = shared PAOS infrastructure
-- Dashboard: host `npm run dev` mode, Tailscale serve for tailnet access
+- Dashboard: host `npm run dev -- --webpack --port 3333`, Tailscale serve for tailnet
 - Systemd service `paos-hub` manages dashboard + Tailscale serve on boot
+- PIPELINES.md is single contract for pipeline files (required: pipeline-flow.json, builder-layout.json, phases/*/REASONING.md)
 
 ## How to Pick Up
 1. Read this file (done)

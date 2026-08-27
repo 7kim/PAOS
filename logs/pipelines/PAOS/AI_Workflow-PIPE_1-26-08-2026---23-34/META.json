@@ -1,0 +1,44 @@
+{
+  "pipeline_id": "AI_Workflow-PIPE_1-26-08-2026---23-34",
+  "prompt": "PAOS 6-note batch: (1) env export/download .env, (2) MCP servers disable/add/delete/edit/repoint, (3) Skills same CRUD, (4) Terminals enriched PID+app+cmd+CWD+CPU/MEM/IO/GPU+category, (5) delete inboxes/plans/tasks, (6) agents file viewer/editor + full delete + app\u2192file mapping. Pipeline is opencode-developer \u2192 opencode-developer (self) with verify node.",
+  "status": "completed",
+  "created_at": "2026-08-26T23:34:00.000Z",
+  "completed_at": "2026-08-26T23:47:00.000Z",
+  "project_path": null,
+  "review_mode": "auto",
+  "planner": "opencode-developer",
+  "executor": "opencode-developer",
+  "phases": [
+    {
+      "agent": "opencode-developer",
+      "role": "planner",
+      "label": "Plan",
+      "status": "completed",
+      "artifacts": [
+        "IMPLEMENTATION_PLAN.md",
+        "TASKS.md"
+      ],
+      "id": "planner"
+    },
+    {
+      "agent": "opencode-developer",
+      "role": "executor",
+      "label": "Execute",
+      "status": "completed",
+      "artifacts": [
+        "WALKTHROUGH.md"
+      ],
+      "id": "executor"
+    },
+    {
+      "agent": "opencode-developer",
+      "role": "verifier",
+      "label": "Verify",
+      "status": "completed",
+      "artifacts": [
+        "VERIFICATION.md"
+      ],
+      "id": "verifier"
+    }
+  ]
+}

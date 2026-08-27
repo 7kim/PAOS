@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile, stat } from "fs/promises";
+import { readdir, readFile, stat, unlink, rm, appendFile } from "fs/promises";
 import { join } from "path";
 
 import { MEMORY_DIR, PROJECTS_DIR } from "@/lib/global-config";
@@ -133,4 +133,37 @@ export async function GET(request: Request) {
     inboxes: globalInbox.dirs,
     project: "global",
   });
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    let id = searchParams.get("id") || "";
+    let inbox = searchParams.get("inbox") || searchParams.get("agent") || "";
+    let project = searchParams.get("project") || "";
+    if (!id) {
+      const body = await req.json().catch(() => ({}));
+      id = body.id || body.filename || "";
+      inbox = body.inbox || body.agent || inbox;
+      project = body.project || project;
+    }
+    if (!id || !inbox) return NextResponse.json({ error: "id and inbox required (?id=<file>&inbox=<agent>)" }, { status: 400 });
+    // guard path traversal
+    if (id.includes("..") || inbox.includes("..") || id.includes("/")) id = id.split("/").pop() || id;
+    let baseDir = join(MEMORY_DIR, "inbox", inbox);
+    if (project) {
+      let pBase = join(PROJECTS_DIR, project, "inbox", inbox);
+      try { await stat(pBase); baseDir = pBase; } catch { baseDir = join(MEMORY_DIR, "pipelines", project, "inbox", inbox); }
+    }
+    const target = join(baseDir, id);
+    await unlink(target);
+    // audit ledger (dual-log minimal)
+    try {
+      const ts = new Date().toISOString();
+      await appendFile(join(MEMORY_DIR, "global_ledger.md"), `\n| ${ts} | dashboard | DELETE | ${target.replace(process.env.HOME || "/home/dev", "~")} | Inbox message deleted via dashboard | - | - |\n`, "utf-8");
+    } catch { /* ignore */ }
+    return NextResponse.json({ ok: true, id, inbox });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 });
+  }
 }

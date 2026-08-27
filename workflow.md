@@ -219,14 +219,15 @@ The `/h-pipeline` command enables any planner agent to submit a structured plan 
 
 **Flow**:
 1. User types `/h-pipeline <prompt>` in any planner agent
-2. Planner produces `IMPLEMENTATION_PLAN.md` + `TASKS.md`
-3. Planner calls `shared-memory: submit_pipeline` MCP tool (or `bin/h-pipeline submit` CLI)
-4. The system creates:
-   - `memory/pipelines/PIPE-<id>/` with PLAN.md + TASKS.md + META.json
+2. **Planner MUST `Read PIPELINES.md` first** — it is the single contract for required files (`pipeline-flow.json`, `builder-layout.json`, `phases/*/REASONING.md`, META `id`, etc.) that makes Visualize show flower graph + Reasoning. Never manual `mkdir` a pipeline.
+3. Planner produces `IMPLEMENTATION_PLAN.md` + `TASKS.md`
+4. Planner calls `shared-memory: submit_pipeline` MCP tool (or `bin/h-pipeline submit` CLI)
+5. The system creates:
+   - `memory/pipelines/PIPE-<id>/` with PLAN.md + TASKS.md + META.json + `pipeline-flow.json` + `builder-layout.json` + `phases/<id>/{IMPLEMENTATION.md,REASONING.md,TASKS.md}`
    - Task card at `memory/tasks/PIPE-<id>.md`
    - Message in executor's inbox at `memory/inbox/<executor>/`
    - Entry in `memory/global_ledger.md`
-5. Executor picks up the task from its inbox and executes
+6. Executor picks up the task from its inbox and executes
 
 **Planner Agents** (can invoke `/h-pipeline`):
 - Claude Code, Gemini, Antigravity IDE, Antigravity 2.0 CLI, Codex, OpenClaw
@@ -482,7 +483,7 @@ Each project has its own isolated sandbox under `memory/pipelines/{project}/`:
 
 | Resource | Path | Purpose |
 |----------|------|---------|
-| Pipelines | `memory/pipelines/{project}/PIPE-*/` | Pipeline artifacts (META, PLAN, TASKS, WALKTHROUGH) |
+| Pipelines | `memory/pipelines/{project}/PIPE-*/` | Pipeline artifacts (META, PLAN, TASKS, WALKTHROUGH) — see `PIPELINES.md` for full contract (required files: `pipeline-flow.json`, `builder-layout.json`, `phases/*/REASONING.md`) |
 | Ledger | `memory/pipelines/{project}/ledger.md` | Per-project audit trail |
 | Events | `memory/pipelines/{project}/events.md` | Per-project event log |
 | Handoff | `memory/pipelines/{project}/handoff.md` | Per-project session handoff |

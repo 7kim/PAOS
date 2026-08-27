@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile, stat } from "fs/promises";
+import { readdir, readFile, stat, rm, unlink, appendFile } from "fs/promises";
 import { join } from "path";
 
 import { MEMORY_DIR, PROJECTS_DIR, PIPELINES_DIR, LOGS_DIR, PM_LOGS_DIR } from "@/lib/global-config";
@@ -143,4 +143,55 @@ export async function GET(req: Request) {
   });
 
   return NextResponse.json({ plans });
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    let id = searchParams.get("id") || "";
+    let project = searchParams.get("project") || "";
+    if (!id) {
+      const body = await req.json().catch(() => ({}));
+      id = body.id || "";
+      project = body.project || project;
+    }
+    if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });
+    if (id.includes("..") || id.includes("/")) id = id.split("/").pop() || id;
+    // Try pipeline dirs first (project-scoped)
+    let deleted = false;
+    const tryDelete = async (base: string) => {
+      const dir = join(base, id);
+      try { await stat(dir); await rm(dir, { recursive: true, force: true }); deleted = true; try { const ts=new Date().toISOString(); await appendFile(join(MEMORY_DIR,"global_ledger.md"), `\n| ${ts} | dashboard | DELETE | ${dir.replace(process.env.HOME||"/home/dev","~")} | Plan/pipeline deleted via dashboard | - | - |\n`,"utf-8"); }catch{} return true; } catch { return false; }
+    };
+    if (project) {
+      let base = join(PROJECTS_DIR, project, "pipelines");
+      if (await tryDelete(base)) return NextResponse.json({ ok: true, id });
+      base = join(PIPELINES_DIR, project);
+      if (await tryDelete(base)) return NextResponse.json({ ok: true, id });
+    } else {
+      // scan all projects
+      const projects = await readdir(PIPELINES_DIR).catch(() => [] as string[]);
+      for (const proj of projects) {
+        if (proj.startsWith(".")) continue;
+        const base1 = join(PIPELINES_DIR, proj);
+        const base2 = join(PROJECTS_DIR, proj, "pipelines");
+        if (await tryDelete(base1) || await tryDelete(base2)) return NextResponse.json({ ok: true, id });
+      }
+      // also try flat PIPELINES_DIR/id
+      if (await tryDelete(PIPELINES_DIR)) return NextResponse.json({ ok: true, id });
+    }
+    // legacy pm-logs
+    try {
+      const pmFile = join(PM_LOGS_DIR, `${id}-IMPLEMENTATION_PLAN.md`);
+      await stat(pmFile);
+      await unlink(pmFile).catch(() => {});
+      await unlink(join(PM_LOGS_DIR, `${id}-TASKS.md`)).catch(() => {});
+      await unlink(join(PM_LOGS_DIR, `${id}-WALKTHROUGH.md`)).catch(() => {});
+      return NextResponse.json({ ok: true, id });
+    } catch { /* not legacy */ }
+    if (!deleted) return NextResponse.json({ error: `plan ${id} not found` }, { status: 404 });
+    return NextResponse.json({ ok: true, id });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 });
+  }
 }

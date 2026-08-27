@@ -123,6 +123,9 @@ function PipelinesPage() {
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState<{ page: number; limit: number; total: number; totalPages: number } | null>(null);
   const [schedules, setSchedules] = useState<any[]>([]);
+  const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
+  const [deleting, setDeleting] = useState<string | null>(null);
   const pageSize = 20;
 
   const filteredPipelines = projectFilter
@@ -293,14 +296,13 @@ function PipelinesPage() {
                   variant="ghost"
                   size="sm"
                   className="text-[10px] text-red-400 hover:text-red-300"
-                  onClick={async (e) => {
+                  disabled={deleting === p.id}
+                  onClick={(e) => {
                     e.stopPropagation();
-                    if (!confirm(`Delete pipeline "${p.id}"? This cannot be undone.`)) return;
-                    try {
-                      await fetch(`/api/pipelines/${encodeURIComponent(p.id)}`, { method: "DELETE" });
-                      load();
-                    } catch { /* ignore */ }
+                    setDeleteTarget(p.id);
+                    setDeleteConfirmText("");
                   }}
+                  title="Delete this pipeline only — requires typed confirmation"
                 >
                   <Trash2 size={11} />
                 </Button>
@@ -844,6 +846,68 @@ function PipelinesPage() {
               <Play size={12} />
               Execute
             </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete confirmation — typed confirmation prevents accidental mass delete */}
+      <Dialog open={!!deleteTarget} onOpenChange={(open) => { if (!open) { setDeleteTarget(null); setDeleteConfirmText(""); } }}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-sm flex items-center gap-2 text-red-400">
+              <Trash2 size={13} />
+              Delete Pipeline — {deleteTarget}
+            </DialogTitle>
+            <DialogDescription className="text-xs">
+              This will delete <span className="font-mono">memory/pipelines/PAOS/{deleteTarget}</span> and remove it from the queue (pending/running/done). This deletes <b>only</b> this pipeline — no other pipelines are touched. Cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-3">
+            <p className="text-[11px]" style={{ color: "var(--muted-foreground)" }}>
+              Type <span className="font-mono px-1 py-0.5 rounded" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444" }}>{deleteTarget}_Delete</span> to confirm:
+            </p>
+            <input
+              value={deleteConfirmText}
+              onChange={(e) => setDeleteConfirmText(e.target.value)}
+              placeholder={`${deleteTarget}_Delete`}
+              className="w-full text-xs font-mono rounded border px-2 py-1.5"
+              style={{ background: "var(--background)", borderColor: "var(--border)", color: "var(--foreground)" }}
+              autoFocus
+            />
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" size="sm" onClick={() => { setDeleteTarget(null); setDeleteConfirmText(""); }}>Cancel</Button>
+              <Button
+                size="sm"
+                disabled={deleteConfirmText !== `${deleteTarget}_Delete` || deleting === deleteTarget}
+                onClick={async () => {
+                  if (!deleteTarget) return;
+                  const expected = `${deleteTarget}_Delete`;
+                  if (deleteConfirmText !== expected) return;
+                  setDeleting(deleteTarget);
+                  try {
+                    const res = await fetch(`/api/pipelines/${encodeURIComponent(deleteTarget)}`, { method: "DELETE" });
+                    const data = await res.json().catch(() => ({}));
+                    if (res.ok) {
+                      // Also ensure queue entry is gone (DELETE handler already does it, but do client-side remove as belt-and-braces)
+                      try { await fetch("/api/queue", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "remove", id: deleteTarget }) }); } catch { /* ignore */ }
+                      setDeleteTarget(null);
+                      setDeleteConfirmText("");
+                      await load();
+                    } else {
+                      alert(data.error || "Failed to delete pipeline");
+                    }
+                  } catch { alert("Failed to delete pipeline"); }
+                  finally { setDeleting(null); }
+                }}
+                className="gap-1.5 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 border border-red-500/20"
+              >
+                {deleting === deleteTarget ? <Loader2 size={12} className="animate-spin" /> : <Trash2 size={12} />}
+                Delete only this pipeline
+              </Button>
+            </div>
+            <p className="text-[10px] text-center" style={{ color: "var(--muted-foreground)" }}>
+              Single-pipeline delete — other pipelines stay untouched.
+            </p>
           </div>
         </DialogContent>
       </Dialog>
