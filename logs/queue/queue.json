@@ -1,48 +1,14 @@
 {
-  "pending": [
-    {
-      "id": "PIPE-25-06-2026---18-56",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-25T18:56:08.643Z"
-    },
-    {
-      "id": "PIPE-25-06-2026---19-09",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-25T19:09:19.340Z"
-    },
-    {
-      "id": "PIPE-25-06-2026---19-14",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-25T19:14:44.591Z"
-    },
-    {
-      "id": "PIPE-25-06-2026---19-30",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-25T19:30:34.590Z"
-    },
-    {
-      "id": "PIPE-25-06-2026---19-31",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-25T19:31:19.915Z"
-    },
-    {
-      "id": "PIPE-25-06-2026---19-35",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-25T19:35:52.089Z"
-    },
-    {
-      "id": "PIPE-25-06-2026---19-42",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-25T19:42:00.804Z"
-    },
-    {
-      "id": "PIPE-26-06-2026---10-22",
-      "project": "PAOS",
-      "enqueuedAt": "2026-06-26T12:12:32.495Z"
-    }
-  ],
+  "pending": [],
   "running": null,
   "done": [
+    {
+      "id": "AI_Workflow-PIPE_1-26-08-2026---23-34",
+      "project": "PAOS",
+      "startedAt": "2026-08-26T23:44:10.398Z",
+      "completedAt": "2026-08-26T23:50:40.429Z",
+      "status": "completed"
+    },
     {
       "id": "PIPE-26-06-2026---12-58",
       "project": "PAOS",
@@ -68,41 +34,6 @@
       "status": "completed"
     },
     {
-      "id": "PIPE-25-06-2026---18-06",
-      "project": "PAOS",
-      "startedAt": "2026-06-26T12:12:32.508Z",
-      "completedAt": "2026-06-26T12:15:52.529Z",
-      "status": "completed"
-    },
-    {
-      "id": "PIPE-25-06-2026---16-42",
-      "project": "PAOS",
-      "startedAt": "2026-06-25T16:43:15.095Z",
-      "completedAt": "2026-06-25T16:46:36.583Z",
-      "status": "completed"
-    },
-    {
-      "id": "PIPE-25-06-2026---15-51",
-      "project": "PAOS",
-      "startedAt": "2026-06-25T15:52:01.633Z",
-      "completedAt": "2026-06-25T15:52:52.219Z",
-      "status": "completed"
-    },
-    {
-      "id": "PIPE-24-06-2026---16-00",
-      "project": "PAOS",
-      "startedAt": "2026-06-24T16:00:32.154Z",
-      "completedAt": "2026-06-24T16:02:59.258Z",
-      "status": "completed"
-    },
-    {
-      "id": "TEST-PIPE-1",
-      "project": "PAOS",
-      "startedAt": "2026-06-24T15:57:48.394Z",
-      "completedAt": "2026-06-24T15:57:48.415Z",
-      "status": "completed"
-    },
-    {
       "id": "AI_Workflow-PIPE_3-22-06-2026---18-57",
       "project": "PAOS",
       "completedAt": "2026-06-22T19:43:55.990002+00:00",
@@ -112,12 +43,6 @@
       "id": "AI_Workflow-PIPE_2-22-06-2026---17-45",
       "project": "PAOS",
       "completedAt": "2026-06-22T18:46:01.989889+00:00",
-      "status": "completed"
-    },
-    {
-      "id": "AI_Workflow-PIPE_1-22-06-2026---17-08",
-      "project": "PAOS",
-      "completedAt": "2026-06-22T17:58:13.070036+00:00",
       "status": "completed"
     }
   ],

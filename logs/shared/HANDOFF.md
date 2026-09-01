@@ -7,24 +7,23 @@
 
 ## Last Agent
 - **Agent**: opencode-developer
-- **Tool**: opencode
-- **Timestamp**: 2026-08-27T00:10:00.000Z
-- **Session**: 6-note batch + pipeline-delete fixes + PIPELINES.md contract
+- **Tool**: OpenCode Developer
+- **Timestamp**: 2026-08-30T17:14:55.101Z
+- **Session**: hermes-agent venv 3.11 restore
 
 ## Active Task
-PAOS pipeline AI_Workflow-PIPE_1-26-08-2026---23-34 completed (7/7 verified) — 6 notes + live fixes
+Hermes venv recovery — awaiting user 'restore' on next Hermes chat
 
 ## What Was Just Done
-- 6-note batch: env export Blob (settings+projects), MCP CRUD (POST/DELETE+toggle/edit/repoint), Skills CRUD (scan+CRUD+repoint), Terminals enriched (PID·app·CWD·CPU/MEM/IO/GPU·category), Delete inbox/plans/tasks (DELETE+ledger), Agents files (view/edit/delete per-file + full delete with binary mapping)
-- Pipeline-delete fixes: DELETE now purges queue pending/running/done + typed ${id}_Delete dialog + single-only isolation; queue GET auto-cleans stale running (fallback flat+project scan)
-- PIPELINES.md contract at root + docs/PIPELINES.md symlink + workflow.md §6.6 + skill Phase1-0 now Read PIPELINES.md; dashboard visualize fallback synthesizes builder-layout linear DAG
-- Pipeline AI_Workflow-PIPE_1: backfilled phases/planner|executor|verifier/REASONING.md + pipeline-flow.json + builder-layout.json + META id; queue ghosts 7→0, running cleared, build PASS (--webpack)
-- Verification: 14 grep PASS + build PASS + WALKTHROUGH.md + VERIFICATION.md, pipeline 7/7 completed, queue done
+- Diagnosed deleted Python/venv: repo requires >=3.11,<3.14 (.python-version=3.11), broken venv pointed to 3.15.0rc1
+- Verified snapshots: state-snapshots/20260826-230251-pre-update (135MB, 43 sessions/19191 msgs), skills/.curator_backups/2026-08-26T23-03-27Z (2.4MB)
+- Verified live DB intact: ~/.hermes/state.db 136MB, 44 sessions/19194 msgs, MEMORY.md/USER.md + 25 skill dirs present
+- Recreated venv: rm -rf venv; uv venv --python 3.11 -> .venv (3.11.16); ln -s .venv venv; uv sync --python 3.11; verified hermes --version and sessions list
 
 ## What Is NOT Done Yet
-- Test bin/install-paos.sh on fresh VPS (carry-over)
-- Optional: patch bin/h-pipeline to auto-create placeholder REASONING.md per phase
-- Any gaps from real-world use of new CRUD pages (skills view needs SKILL.md fetch path fix)
+- User will exit and next talk to Hermes directly, saying 'do restore' — next agent should verify venv still 3.11 and re-run checks if needed
+- If user asks 'restore': re-check .venv/bin/python --version (must be 3.11.x), run hermes sessions list + sqlite counts, confirm snapshots unchanged, offer hermes update (749 behind)
+- No snapshot restore needed — live DB is 3 msgs ahead of snapshot; only restore from snapshot if live DB corrupted
 
 ## Active Projects
 

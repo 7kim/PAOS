@@ -279,3 +279,16 @@ But the user wants a multi-agent conversation: share this idea with Hermes, get 
 - Keep same v2.0 framework for direct comparability\n- All 4 gap plans created but not executed (read-only audit)\n- Partial credit (1/2) for 17 questions where evidence suggests partial implementation\n- Score improvement from C→B is objectively measured with grep evidence
 
 **Handoff Notes**: Pipeline PIPE-26-06-2026---12-46 fully complete. Pipeline artifacts at phases/n1/. User can trigger gap work via 'work on gap {1-4}'.
+
+---
+
+## 2026-08-30 17:14 @opencode-developer — Task: hermes-venv-restore-20260830
+
+**Thinking**: User deleted hermes-agent venv (python version) and feared memory loss. Invested that memory lives in ~/.hermes/state.db (136MB) not venv. Snapshots verified: one state snapshot 20260826 pre-update and one curator backup. Live DB has more messages than snapshot so intact. Restored correct python 3.11 per .python-version and requires-python cap, reinstalled deps. Wrote HANDOFF so next Hermes agent knows restore is already done and what to verify on 'do restore' request.
+
+**Decisions**:
+- 3.11 chosen because repo pins .python-version=3.11 and pyproject.toml requires-python >=3.11,<3.14; 3.15 fails Rust wheel builds
+- Live DB ahead of snapshot so no restore needed; keep snapshot as fallback
+- venv recreation via uv venv + uv sync + symlink .venv->venv to satisfy repo layout
+
+**Handoff Notes**: Next Hermes session: if user says 'do restore', verify .venv/bin/python --version is 3.11.x, run hermes sessions list and python -c sqlite counts on state.db vs snapshot, confirm MEMORY.md and skills present. Only copy snapshot state.db over live if live corrupted. Handoff written 2026-08-30.
