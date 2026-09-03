@@ -1,30 +1,47 @@
 import { NextResponse } from "next/server";
-import { readdir, readFile, stat, unlink, appendFile } from "fs/promises";
+import { readdir, readFile, stat, unlink, appendFile, writeFile } from "fs/promises";
 import { join } from "path";
 
 import { PROJECTS_DIR, MEMORY_DIR } from "@/lib/global-config";
 
-interface Task {
+export interface Task {
   id: string;
   title: string;
   status: string;
   agent: string;
   project: string;
+  author: string;
+  executor: string;
+  priority: string;
+  dueDate: string;
+  progress: string;
   raw: string;
 }
+
+const VALID_STATUSES = ["draft", "approved", "in_progress", "done", "failed", "pending", "in_progress", "ready_for_execution", "planning", "needs_planning"];
 
 function parseTaskCard(raw: string, filename: string, project?: string): Task {
   const lines = raw.split("\n");
   const title = lines.find((l) => l.startsWith("# "))?.replace("# ", "").trim() ?? filename;
   const statusLine = lines.find((l) => l.toLowerCase().startsWith("status:"));
   const agentLine = lines.find((l) => l.toLowerCase().startsWith("agent:"));
+  const authorLine = lines.find((l) => l.toLowerCase().startsWith("author:"));
+  const executorLine = lines.find((l) => l.toLowerCase().startsWith("executor:"));
+  const priorityLine = lines.find((l) => l.toLowerCase().startsWith("priority:"));
+  const dueDateLine = lines.find((l) => l.toLowerCase().startsWith("due:"));
+  const progressLine = lines.find((l) => l.toLowerCase().startsWith("progress:"));
 
   return {
     id: filename.replace(".md", ""),
     title,
-    status: statusLine?.split(":")[1]?.trim() ?? "unknown",
+    status: statusLine?.split(":")[1]?.trim() ?? "draft",
     agent: agentLine?.split(":")[1]?.trim() ?? "",
     project: project || "",
+    author: authorLine?.split(":")[1]?.trim() ?? "hermes-nous",
+    executor: executorLine?.split(":")[1]?.trim() ?? "",
+    priority: priorityLine?.split(":")[1]?.trim() ?? "normal",
+    dueDate: dueDateLine?.split(":")[1]?.trim() ?? "",
+    progress: progressLine?.split(":")[1]?.trim() ?? "",
     raw,
   };
 }
@@ -35,8 +52,8 @@ export async function GET(req: Request) {
 
   try {
     let tasksDir: string;
-
-    if (filterProject) {
+    // __none__ means no project selected — read global + all projects
+    if (filterProject && filterProject !== "__none__") {
       // Read from projects/{name}/tasks/
       tasksDir = join(PROJECTS_DIR, filterProject, "tasks");
       const dirExists = await stat(tasksDir).then(() => true).catch(() => false);
@@ -113,6 +130,97 @@ export async function DELETE(req: Request) {
       await appendFile(join(MEMORY_DIR, "global_ledger.md"), `\n| ${ts} | dashboard | DELETE | ${target.replace(process.env.HOME || "/home/dev", "~")} | Task deleted via dashboard | - | - |\n`, "utf-8");
     } catch { /* ignore */ }
     return NextResponse.json({ ok: true, id: id.replace(".md", "") });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 });
+  }
+}
+
+// PATCH /api/tasks — update task status and progress
+export async function PATCH(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    let id = searchParams.get("id") || "";
+    let project = searchParams.get("project") || "";
+    let newStatus = searchParams.get("status") || "";
+    let newProgress = searchParams.get("progress") || "";
+
+    if (!id) {
+      const body = await req.json().catch(() => ({}));
+      id = body.id || "";
+      project = body.project || "";
+      newStatus = body.status || "";
+      newProgress = body.progress || "";
+    }
+
+    if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });
+    if (!newStatus && !newProgress) return NextResponse.json({ error: "status or progress required" }, { status: 400 });
+    if (id.includes("..") || id.includes("/")) id = id.split("/").pop() || id;
+    if (!id.endsWith(".md")) id += ".md";
+
+    if (newStatus) {
+      const validTransitions = ["draft", "approved", "in_progress", "done", "failed", "pending", "ready_for_execution", "planning", "needs_planning"];
+      if (!validTransitions.includes(newStatus)) {
+        return NextResponse.json({ error: `invalid status: ${newStatus}` }, { status: 400 });
+      }
+    }
+
+    const candidates = [
+      join(MEMORY_DIR, "tasks", id),
+      join(PROJECTS_DIR, project || "__none__", "tasks", id),
+    ];
+
+    let target = "";
+    for (const c of candidates) {
+      try { await stat(c); target = c; break; } catch { /* miss */ }
+    }
+    if (!target && !project) {
+      const projects = await readdir(PROJECTS_DIR).catch(() => [] as string[]);
+      for (const proj of projects) {
+        const p = join(PROJECTS_DIR, proj, "tasks", id);
+        try { await stat(p); target = p; break; } catch { /* continue */ }
+      }
+    }
+    if (!target) return NextResponse.json({ error: `task ${id} not found` }, { status: 404 });
+
+    // Read current content, replace status and progress lines
+    let content = await readFile(target, "utf-8");
+    const lines = content.split("\n");
+
+    if (newStatus) {
+      const statusIdx = lines.findIndex((l) => l.toLowerCase().startsWith("status:"));
+      if (statusIdx >= 0) {
+        lines[statusIdx] = `Status: ${newStatus}`;
+      } else {
+        const titleIdx = lines.findIndex((l) => l.startsWith("# "));
+        lines.splice(titleIdx + 1, 0, `Status: ${newStatus}`);
+      }
+
+      // Add approved timestamp if transitioning to approved
+      if (newStatus === "approved") {
+        const ts = new Date().toISOString();
+        lines.push(`\n<!-- approved: ${ts} -->`);
+      }
+    }
+
+    if (newProgress) {
+      const progressIdx = lines.findIndex((l) => l.toLowerCase().startsWith("progress:"));
+      if (progressIdx >= 0) {
+        lines[progressIdx] = `Progress: ${newProgress}`;
+      } else {
+        lines.push(`Progress: ${newProgress}`);
+      }
+    }
+
+    await writeFile(target, lines.join("\n"), "utf-8");
+
+    try {
+      const ts = new Date().toISOString();
+      const action = newStatus ? `Status → ${newStatus}` : "";
+      const progress = newProgress ? `Progress: ${newProgress}` : "";
+      await appendFile(join(MEMORY_DIR, "global_ledger.md"), `\n| ${ts} | dashboard | STATUS | ${target.replace(process.env.HOME || "/home/dev", "~")} | ${action} ${progress} | - | - |\n`, "utf-8");
+    } catch { /* ignore */ }
+
+    return NextResponse.json({ ok: true, id: id.replace(".md", ""), status: newStatus, progress: newProgress });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }

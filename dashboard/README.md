@@ -1,7 +1,7 @@
 # PAOS Orchestration Dashboard
 
 > **Next.js 16 web UI for the Personal Agent Operating System.**  
-> Live agent activity, audit ledger, pipeline management, task board, agent inbox, git visualization, and more — at `localhost:3333`.
+> Live agent activity, audit ledger, pipeline management, task board, agent inbox, git visualization, Docker containers, Node processes, and more — at `https://dev.anaconda-notothen.ts.net` (Tailscale) or `http://localhost:3333`.
 
 ---
 
@@ -57,10 +57,14 @@ Implementation plan viewer:
 - Tracks which plans have walkthroughs (post-execution audits)
 
 ### Tasks (`/tasks`)
-YAML task board:
+Task board with approval workflow:
 - Lists all task cards from `memory/tasks/` (global) and per-project
-- Shows status (pending/in-progress/completed), assigned agent, project scope
-- Click to view full task card content
+- **Identity fields** — author (who wrote it), executor (who does the work), priority, due date
+- **State machine** — `draft → approved → in_progress → done` (or `failed`)
+- **Approve button** — flip a draft task to approved; the task watcher picks it up
+- **Start/Done buttons** — manual status transitions
+- **Stats row** — Draft / Approved / In Progress / Done counts
+- Click to view full task card content with identity metadata panel
 
 ### Agents (`/agents`)
 PAOS agent roster with live health monitoring:
@@ -91,13 +95,31 @@ Git repository browser:
 - Directory tree visualization from HEAD
 - Agent identity mapping from `agents/registry.json`
 
-### Settings (`/settings`)
-PAOS configuration:
-- Global secrets management (API keys, tokens)
-- Per-project secrets management
-- MCP server list from unified registry
-- Code-SRS configuration (features, models)
-- "View All" toggle to merge per-project data into unified views
+### Terminals (`/terminals`)
+View all running terminal sessions:
+- PID, CPU%, MEM%, IO, GPU per process
+- App name detection via `/proc/pid/comm`
+- Category heuristic (cpu/memory/io/idle)
+- Inline output viewer with expand/collapse
+- Kill button (SIGTERM → SIGKILL after 5s)
+- Fullscreen mode
+- Auto-refresh every 5 seconds
+
+### Docker (`/docker`)
+Docker container management:
+- List all containers with status, CPU, memory, ports
+- Action buttons: Start, Stop, Pause, Resume, Restart, Kill, Remove
+- Expandable logs viewer (click to see `docker logs`)
+- Auto-refresh every 5 seconds
+
+### Node Processes (`/node-processes`)
+Node.js process monitor:
+- All node/npm/next/webpack/vite/tsc/pm2 processes
+- PID, PPID, CPU%, MEM%, RSS, VSZ, type detection, CWD
+- Filter bar (by cmd, type, PID)
+- Stats row: Total, Next.js, Node, NPM, Build process counts
+- SIGTERM and SIGKILL buttons
+- Auto-refresh every 5 seconds
 
 ### Vault (`/vault`)
 Obsidian vault access:
@@ -108,11 +130,50 @@ Obsidian vault access:
 ### API Playground (`/api-playground`)
 Interactive API explorer — test any dashboard endpoint with live responses.
 
+### Settings (`/settings`)
+PAOS configuration:
+- Global secrets management (API keys, tokens)
+- Per-project secrets management
+- MCP server list from unified registry
+- Code-SRS configuration (features, models)
+- "View All" toggle to merge per-project data into unified views
+
+---
+
+## Task Approval System
+
+Every task has identity and a state machine:
+
+| Field | Purpose |
+|-------|---------|
+| `author` | Who wrote the task (e.g., `hermes-nous`, `opencode-developer`) |
+| `executor` | Who should do the work (defaults to author) |
+| `priority` | `critical`, `high`, `normal`, `low` |
+| `due` | Deadline date |
+
+**State machine:**
+```
+draft → approved → in_progress → done
+              ↓
+           failed
+```
+
+**How to use:**
+1. Create a task: "Build me X as a task" → I write `memory/tasks/x.md` (Status: draft)
+2. Review on `/tasks` page
+3. Click **Approve** — status becomes `approved`
+4. The task watcher picks it up within 30 minutes, executes, marks `done`
+
+**Task Watcher** (cron job `paos-task-watcher`):
+- Runs every 30 minutes, repeat once (on-demand)
+- Trigger manually: `/cron run 6ef21d9e95f3` or tell me "run task watcher"
+- Only processes tasks with `Status: approved`
+
 ---
 
 ## API
 
-The dashboard exposes 56 REST API endpoints across 22 resource groups. See [docs/api.md](../docs/api.md) for the full reference.
+The dashboard exposes **63 REST API endpoints** across 24 resource groups. See [docs/api.md](../docs/api.md) for the full reference.
 
 | Group | Base Path | Endpoints |
 |-------|-----------|-----------|
@@ -129,7 +190,7 @@ The dashboard exposes 56 REST API endpoints across 22 resource groups. See [docs
 | Send Message | `/api/send-message` | 1 |
 | Secrets | `/api/secrets` | 2 |
 | Global Secrets | `/api/global-secrets` | 2 |
-| Tasks | `/api/tasks` | 1 |
+| Tasks | `/api/tasks` | 2 (GET + PATCH) |
 | MCP Servers | `/api/mcp-servers` | 1 |
 | Queue | `/api/queue` | 2 |
 | Plans | `/api/plans` | 1 |
@@ -138,6 +199,9 @@ The dashboard exposes 56 REST API endpoints across 22 resource groups. See [docs
 | Git View | `/api/gitview` | 1 |
 | System Doctor | `/api/system/doctor` | 1 |
 | Admin/Code-SRS | `/api/admin/code-srs` | 2 |
+| Docker | `/api/docker` | 2 (GET + POST) |
+| Node Processes | `/api/node-processes` | 2 (GET + POST) |
+| Terminals | `/api/terminals` | 2 |
 
 ---
 
@@ -146,7 +210,7 @@ The dashboard exposes 56 REST API endpoints across 22 resource groups. See [docs
 ```
 dashboard/                      ← Next.js 16 App Router
 ├── app/
-│   ├── api/                    ← 22 resource groups, 56 endpoints
+│   ├── api/                    ← 24 resource groups, 63 endpoints
 │   │   ├── agents/
 │   │   ├── pipelines/
 │   │   ├── ledger/
@@ -165,8 +229,11 @@ dashboard/                      ← Next.js 16 App Router
 │   │   ├── skills/
 │   │   ├── mcp-servers/
 │   │   ├── send-message/
+│   │   ├── docker/
+│   │   ├── node-processes/
+│   │   ├── terminals/
 │   │   └── system/
-│   ├── (page routes)           ← 16 UI pages
+│   ├── (page routes)           ← 18 UI pages
 │   ├── layout.tsx
 │   └── globals.css
 ├── components/                 ← Reusable React components
@@ -187,6 +254,10 @@ All API routes are **file-system based** — they read from and write to markdow
 |------|---------|
 | `lib/global-config.ts` | Path constants: MEMORY_DIR, PROJECTS_DIR, PIPELINES_DIR, WORKSPACES_DIR, LOGS_DIR |
 | `lib/paos.ts` | Shared PAOS operations: `systemDoctor()` (30s cache), `agentHealth()`, `readRegistry()`, `repoPath()` |
+| `lib/process-registry.ts` | In-memory registry tracking running agent processes (PIDs, labels, pipeline associations) |
+| `lib/cost-tracker.ts` | Token cost calculation and aggregation engine |
+| `lib/cache.ts` | File and data caching layer |
+| `lib/themes.ts` | Theme system — Midnight (default), Cinder, Ash presets with CSS variables |
 | `components/ui/` | shadcn/ui components (button, card, dialog, input, select, table, tabs, badge, etc.) |
 | `hooks/` | Custom React hooks for data fetching, polling, state management |
 
@@ -212,6 +283,14 @@ npm run lint
 ```
 
 The dashboard expects the PAOS root at `~/AI_Workflow/`. All API routes resolve paths relative to this directory.
+
+---
+
+## Entity Reference
+
+For a complete map of every entity in the PAOS system — pages, APIs, UI components, libraries, and infrastructure — see:
+
+📄 **[PAOS-Entities.md](../PAOS-Entities.md)** — one-liner descriptions for all 120+ entities, grouped by domain.
 
 ---
 

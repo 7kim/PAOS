@@ -1,9 +1,0 @@
-- [x] n0: Plan phase — Analyze infrastructure, design test plan, create artifacts
-- [x] n1: Execute phase — Create test scripts, fixtures, run all 4 tests
-  - [x] Create test fixtures directory and files
-  - [x] Write and run test_01_phase_transitions.py
-  - [x] Write and run test_02_progress_counting.py
-  - [x] Write and run test_03_task_markers.py
-  - [x] Write and run test_04_pipeline_completion.py
-  - [x] Aggregate results, write WALKTHROUGH.md
-  - [x] Update pipeline tracking for completion

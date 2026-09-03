@@ -6,24 +6,27 @@
 ---
 
 ## Last Agent
-- **Agent**: opencode-developer
-- **Tool**: OpenCode Developer
-- **Timestamp**: 2026-08-30T17:14:55.101Z
-- **Session**: hermes-agent venv 3.11 restore
+- **Agent**: hermes-nous
+- **Tool**: Hermes Agent (Nous Research)
+- **Timestamp**: 2026-09-03T02:15:00.000Z
+- **Session**: Telegram DM with Hakim
 
 ## Active Task
-Hermes venv recovery — awaiting user 'restore' on next Hermes chat
+- `git-last-5-commits` (PAOS project) — awaiting approval, will read last 5 git commits and send to Telegram
 
 ## What Was Just Done
-- Diagnosed deleted Python/venv: repo requires >=3.11,<3.14 (.python-version=3.11), broken venv pointed to 3.15.0rc1
-- Verified snapshots: state-snapshots/20260826-230251-pre-update (135MB, 43 sessions/19191 msgs), skills/.curator_backups/2026-08-26T23-03-27Z (2.4MB)
-- Verified live DB intact: ~/.hermes/state.db 136MB, 44 sessions/19194 msgs, MEMORY.md/USER.md + 25 skill dirs present
-- Recreated venv: rm -rf venv; uv venv --python 3.11 -> .venv (3.11.16); ln -s .venv venv; uv sync --python 3.11; verified hermes --version and sessions list
+- Added **Startup Boot** tab to `/terminals` page — systemd services with Start/Stop/Restart/Enable/Disable
+- Enable/Disable now also trigger immediate Start/Stop
+- Added **real-time task progress tracking** — `progress` field with progress bars in UI
+- Added **project filter bar** to `/tasks` page — filter by project or view all
+- Tasks are now per-project: stored in `projects/{name}/tasks/`, filtered via `?project=` query param
+- Moved existing task to `projects/PAOS/tasks/`
+- Fixed `lib/settings.ts` Invalid Date crash
+- Created test task `git-last-5-commits` for approval workflow testing
 
 ## What Is NOT Done Yet
-- User will exit and next talk to Hermes directly, saying 'do restore' — next agent should verify venv still 3.11 and re-run checks if needed
-- If user asks 'restore': re-check .venv/bin/python --version (must be 3.11.x), run hermes sessions list + sqlite counts, confirm snapshots unchanged, offer hermes update (749 behind)
-- No snapshot restore needed — live DB is 3 msgs ahead of snapshot; only restore from snapshot if live DB corrupted
+- User needs to approve `git-last-5-commits` on dashboard to test the approval → execution flow
+- Future roadmap: Tokens Usage, MCP Servers settings, Pipeline Builder, IDE Mode, built-in terminal, RAG vs DB research
 
 ## Active Projects
 
@@ -34,11 +37,11 @@ Hermes venv recovery — awaiting user 'restore' on next Hermes chat
 ## Key Decisions (permanent)
 - `bin/agent-commit.sh` is the only way to commit
 - **Hermes home**: `~/AI_Workflow/hermes/` (symlinked from `~/.hermes`)
-- MCP config: `mcp/mcp-config.json` — unified, all 7 agents symlinked
-- Article X: "install MCP server" / "install skill" = shared PAOS infrastructure
-- Dashboard: host `npm run dev -- --webpack --port 3333`, Tailscale serve for tailnet
-- Systemd service `paos-hub` manages dashboard + Tailscale serve on boot
-- PIPELINES.md is single contract for pipeline files (required: pipeline-flow.json, builder-layout.json, phases/*/REASONING.md)
+- Dashboard: `npm run dev -- --webpack --port 3333`, Tailscale serve for tailnet
+- Systemd service `paos-dashboard` manages dashboard on boot
+- Tasks are per-project: `projects/{name}/tasks/`, filtered via `?project=` query param
+- Task progress is real-time: PATCH `/api/tasks?id=X&progress=...` updates progress bar live
+- Default executor is Hermes — only dispatch to other agents when explicitly told
 
 ## How to Pick Up
 1. Read this file (done)

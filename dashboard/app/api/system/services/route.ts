@@ -13,7 +13,8 @@ interface ServiceInfo {
   version: string;
 }
 
-const SERVICES = [
+const KNOWN_SERVICES = [
+  { name: "paos-dashboard", description: "PAOS Dashboard — Next.js dev server" },
   { name: "paos-pipeline", description: "PAOS Pipeline Watcher" },
   { name: "paos-pipeline-handler", description: "PAOS Pipeline Handler" },
   { name: "paos-telegram-bot", description: "PAOS Telegram Bot" },
@@ -32,45 +33,63 @@ function parseSystemctl(name: string): ServiceInfo | null {
     const uptimeStr = pid ? execSync(`ps -o etime= -p ${pid} 2>/dev/null`, { timeout: 3000, encoding: "utf-8" }).trim() : "";
     const memStr = pid ? execSync(`ps -o rss= -p ${pid} 2>/dev/null`, { timeout: 3000, encoding: "utf-8" }).trim() : "";
     const mem = memStr ? `${Math.round(parseInt(memStr) / 1024)}M` : "";
-    let version = "";
-    if (name === "paos-telegram-bot") {
-      try {
-        version = execSync("head -1 /home/dev/AI_Workflow/bin/paos-telegram-bot.py 2>/dev/null", { timeout: 3000, encoding: "utf-8" }).trim();
-      } catch { /* ignore */ }
-    }
     return {
       name,
-      description: SERVICES.find((s) => s.name === name)?.description || "",
+      description: KNOWN_SERVICES.find((s) => s.name === name)?.description || get("Description") || name,
       status: activeState || "unknown",
       subStatus: subState || "",
       uptime: uptimeStr || "",
       pid,
       memory: mem,
       enabled,
-      version,
+      version: "",
     };
   } catch {
     return null;
   }
 }
 
+// Discover all systemd user services
+function discoverServices(): string[] {
+  const names = new Set<string>();
+  try {
+    const out = execSync(`systemctl --user list-units --type=service --all --no-legend 2>/dev/null`, { timeout: 5000, encoding: "utf-8" });
+    for (const line of out.split("\n")) {
+      const match = line.match(/^(\S+\.service)/);
+      if (match) names.add(match[1]);
+    }
+  } catch { /* ignore */ }
+  // Add known services even if not currently loaded
+  for (const s of KNOWN_SERVICES) names.add(s.name);
+  return Array.from(names).sort();
+}
+
 export async function GET() {
-  const services = SERVICES.map((s) => parseSystemctl(s.name)).filter(Boolean) as ServiceInfo[];
+  const names = discoverServices();
+  const services = names
+    .map((n) => parseSystemctl(n))
+    .filter(Boolean) as ServiceInfo[];
   return NextResponse.json({ services });
 }
 
 export async function POST(req: Request) {
   try {
     const { name, action } = await req.json();
-    if (!name || !action) {
-      return NextResponse.json({ error: "Provide name and action (start/stop/restart)" }, { status: 400 });
+    if (!name || !action) return NextResponse.json({ error: "name and action required" }, { status: 400 });
+    if (!["start", "stop", "restart", "enable", "disable"].includes(action)) {
+      return NextResponse.json({ error: "action must be start, stop, restart, enable, or disable" }, { status: 400 });
     }
-    if (!["start", "stop", "restart"].includes(action)) {
-      return NextResponse.json({ error: "Action must be start, stop, or restart" }, { status: 400 });
+    let output = "";
+    // Enable/Disable should also start/stop immediately for visible effect
+    if (action === "enable") {
+      output = execSync(`systemctl --user enable "${name}" 2>&1 && systemctl --user start "${name}" 2>&1`, { timeout: 15000, encoding: "utf-8" });
+    } else if (action === "disable") {
+      output = execSync(`systemctl --user stop "${name}" 2>&1 && systemctl --user disable "${name}" 2>&1`, { timeout: 15000, encoding: "utf-8" });
+    } else {
+      output = execSync(`systemctl --user ${action} "${name}" 2>&1`, { timeout: 15000, encoding: "utf-8" });
     }
-    execSync(`systemctl --user ${action} "${name}" 2>&1`, { timeout: 15000, encoding: "utf-8" });
-    return NextResponse.json({ ok: true, name, action });
+    return NextResponse.json({ ok: true, name, action, output: output.trim() });
   } catch (e: any) {
-    return NextResponse.json({ error: String(e.message || e).slice(0, 200) }, { status: 500 });
+    return NextResponse.json({ error: String(e.message || e).slice(0, 500) }, { status: 500 });
   }
 }

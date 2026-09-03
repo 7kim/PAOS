@@ -41,6 +41,8 @@ function pad(n: number): string {
 function formatDateAbs(iso: string | undefined | null, dateFormat: string, timeFormat: "12h" | "24h", tz: string): string {
   if (!iso) return "";
   const d = new Date(iso);
+  if (isNaN(d.getTime())) return String(iso);
+
   try {
     const opts: Intl.DateTimeFormatOptions = {
       timeZone: tz,
@@ -51,7 +53,7 @@ function formatDateAbs(iso: string | undefined | null, dateFormat: string, timeF
       minute: "2-digit",
       hour12: timeFormat === "12h",
     };
-    // Use Intl for timezone-aware parts, then reformat
+
     const parts = new Intl.DateTimeFormat("en-US", opts).formatToParts(d);
     const values: Record<string, string> = {};
     for (const p of parts) values[p.type] = p.value;
@@ -86,7 +88,7 @@ function formatDateAbs(iso: string | undefined | null, dateFormat: string, timeF
         return `${DD}-${MM}-${YYYY}--${timeStr}`;
     }
   } catch {
-    return d.toISOString().substring(0, 16).replace("T", " ");
+    return String(iso);
   }
 }
 
@@ -98,6 +100,8 @@ export function formatTime(iso: string | undefined | null): string {
   if (!iso) return "";
   const s = getSettings();
   const date = new Date(iso);
+  if (isNaN(date.getTime())) return String(iso);
+
   const now = Date.now();
   const diffMs = now - date.getTime();
   const diffMin = Math.floor(diffMs / 60000);

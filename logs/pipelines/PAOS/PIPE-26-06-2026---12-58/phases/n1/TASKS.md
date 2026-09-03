@@ -1,7 +1,0 @@
-- [x] Create test fixtures directory `phases/n1/fixtures/`
-- [x] Write and run `tests/test_01_phase_transitions.py` — pipeline-flow.json state machine
-- [x] Write and run `tests/test_02_progress_counting.py` — pipeline.json N/M progress format
-- [x] Write and run `tests/test_03_task_markers.py` — TASKS.md [ ]/[x]/[~] counting
-- [x] Write and run `tests/test_04_pipeline_completion.py` — META.json completion detection
-- [x] Write WALKTHROUGH.md summarizing n1 results
-- [x] Update pipeline.json and META.json for pipeline completion
