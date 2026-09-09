@@ -98,6 +98,28 @@ function TerminalsContent() {
   const highlightPid = searchParams.get("pid");
   const [activeTab, setActiveTab] = useState<"terminals" | "docker" | "node" | "services">("terminals");
   const [fullScreen, setFullScreen] = useState(false);
+  const [refreshInterval, setRefreshInterval] = useState<number>(5000);
+  const [lastRefresh, setLastRefresh] = useState<string>("");
+
+  // Refresh interval options (ms)
+  const INTERVAL_OPTIONS = [
+    { label: "Off", value: 0 },
+    { label: "5s", value: 5000 },
+    { label: "10s", value: 10000 },
+    { label: "30s", value: 30000 },
+    { label: "1m", value: 60000 },
+    { label: "5m", value: 300000 },
+    { label: "15m", value: 900000 },
+    { label: "30m", value: 1800000 },
+    { label: "1h", value: 3600000 },
+    { label: "6h", value: 21600000 },
+    { label: "12h", value: 43200000 },
+    { label: "24h", value: 86400000 },
+  ];
+
+  const updateLastRefresh = () => {
+    setLastRefresh(new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
+  };
 
   // Terminals state
   const [terminals, setTerminals] = useState<TerminalSession[]>([]);
@@ -144,15 +166,16 @@ function TerminalsContent() {
       }
     } catch { /* ignore */ }
     setTerminalsLoading(false);
+    updateLastRefresh();
   }, [highlightPid]);
 
   useEffect(() => { loadTerminals(); }, [loadTerminals]);
 
   useEffect(() => {
-    if (activeTab !== "terminals") return;
-    const interval = setInterval(loadTerminals, 5000);
+    if (activeTab !== "terminals" || refreshInterval === 0) return;
+    const interval = setInterval(loadTerminals, refreshInterval);
     return () => clearInterval(interval);
-  }, [loadTerminals, activeTab]);
+  }, [loadTerminals, activeTab, refreshInterval]);
 
   const loadOutput = useCallback(async (pid: number) => {
     setExpandedPid(pid);
@@ -188,14 +211,15 @@ function TerminalsContent() {
       setContainers(data.containers || []);
     } catch { /* ignore */ }
     setDockerLoading(false);
+    updateLastRefresh();
   }, []);
 
   useEffect(() => {
-    if (activeTab !== "docker") return;
+    if (activeTab !== "docker" || refreshInterval === 0) return;
     loadDocker();
-    const interval = setInterval(loadDocker, 5000);
+    const interval = setInterval(loadDocker, refreshInterval);
     return () => clearInterval(interval);
-  }, [loadDocker, activeTab]);
+  }, [loadDocker, activeTab, refreshInterval]);
 
   const loadDockerLogs = useCallback(async (id: string) => {
     setDockerExpandedId(id);
@@ -239,14 +263,15 @@ function TerminalsContent() {
       setProcesses(data.processes || []);
     } catch { /* ignore */ }
     setNodeLoading(false);
+    updateLastRefresh();
   }, []);
 
   useEffect(() => {
-    if (activeTab !== "node") return;
+    if (activeTab !== "node" || refreshInterval === 0) return;
     loadNode();
-    const interval = setInterval(loadNode, 5000);
+    const interval = setInterval(loadNode, refreshInterval);
     return () => clearInterval(interval);
-  }, [loadNode, activeTab]);
+  }, [loadNode, activeTab, refreshInterval]);
 
   const killNodeProcess = useCallback(async (pid: number, action: string) => {
     if (!confirm(`${action === "kill" ? "Force kill" : "Terminate"} process ${pid}?`)) return;
@@ -272,14 +297,15 @@ function TerminalsContent() {
       setServices(data.services || []);
     } catch { /* ignore */ }
     setSystemdLoading(false);
+    updateLastRefresh();
   }, []);
 
   useEffect(() => {
-    if (activeTab !== "services") return;
+    if (activeTab !== "services" || refreshInterval === 0) return;
     loadSystemd();
-    const interval = setInterval(loadSystemd, 5000);
+    const interval = setInterval(loadSystemd, refreshInterval);
     return () => clearInterval(interval);
-  }, [loadSystemd, activeTab]);
+  }, [loadSystemd, activeTab, refreshInterval]);
 
   const systemdAction = useCallback(async (name: string, action: string) => {
     if (action === "stop" || action === "restart" || action === "disable") {
@@ -344,17 +370,42 @@ function TerminalsContent() {
             {activeTab === "docker" && `${containers.length} containers`}
             {activeTab === "node" && `${processes.length} processes · CPU ${totalNodeCpu}% · MEM ${totalNodeMemMB}MB`}
             {activeTab === "services" && `${services.length} services`}
-            {" · auto-refresh every 5s"}
+            {refreshInterval === 0 ? " · auto-refresh off" : ` · auto-refresh every ${INTERVAL_OPTIONS.find(o => o.value === refreshInterval)?.label || refreshInterval / 1000 + "s"}`}
+            {lastRefresh && ` · last: ${lastRefresh}`}
           </p>
         </div>
         <div className="flex items-center gap-2">
+          {/* Refresh interval selector */}
+          <select
+            value={refreshInterval}
+            onChange={(e) => setRefreshInterval(Number(e.target.value))}
+            className="text-xs px-2 py-1 rounded border"
+            style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+          >
+            {INTERVAL_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+          {/* Manual refresh */}
+          <button
+            onClick={() => {
+              if (activeTab === "terminals") loadTerminals();
+              else if (activeTab === "docker") loadDocker();
+              else if (activeTab === "node") loadNode();
+              else if (activeTab === "services") loadSystemd();
+            }}
+            className="text-xs px-2 py-1 rounded border flex items-center gap-1"
+            style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+          >
+            <RefreshCw size={10} /> Refresh
+          </button>
           <button
             onClick={() => setFullScreen(!fullScreen)}
             className="text-xs px-2 py-1 rounded border flex items-center gap-1"
             style={{ borderColor: "var(--border)", color: "var(--muted-foreground)" }}
           >
             {fullScreen ? <Minimize2 size={10} /> : <Maximize2 size={10} />}
-            {fullScreen ? "Exit Fullscreen" : "Fullscreen"}
+            {fullScreen ? "Exit" : "Fullscreen"}
           </button>
         </div>
       </div>

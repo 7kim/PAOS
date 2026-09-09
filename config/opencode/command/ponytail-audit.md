@@ -1,1 +1,0 @@
-/home/dev/AI_Workflow/skills/ponytail-repo/.opencode/command/ponytail-audit.md

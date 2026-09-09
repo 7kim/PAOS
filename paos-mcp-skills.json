@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "PAOS MCP & Skills Infrastructure",
+    "subtitle": "Shared MCP registry, skills library, per-agent plugins",
+    "output": "paos-mcp-skills.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "registry",
+        "label": "MCP Registry",
+        "focus": [
+          "mcp-config",
+          "shared-memory",
+          "context7",
+          "telegram",
+          "github"
+        ],
+        "note": "Shared MCP servers for all agents."
+      },
+      {
+        "id": "skills",
+        "label": "Skills Library",
+        "focus": [
+          "hermes-skills",
+          "claude-plugins",
+          "gemini-config",
+          "codex-instructions",
+          "openclaw-channels",
+          "antigravity-review"
+        ],
+        "note": "Agent skills and plugins."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "mcp-config",
+      "type": "cloud",
+      "label": "MCP Config",
+      "sublabel": "claude.json + mcp.json",
+      "pos": [
+        120,
+        100
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "shared"
+    },
+    {
+      "id": "shared-memory",
+      "type": "database",
+      "label": "Shared Memory",
+      "sublabel": "memory/",
+      "pos": [
+        120,
+        220
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "core"
+    },
+    {
+      "id": "context7",
+      "type": "cloud",
+      "label": "Context7",
+      "sublabel": "docs MCP",
+      "pos": [
+        120,
+        340
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "MCP"
+    },
+    {
+      "id": "telegram",
+      "type": "external",
+      "label": "Telegram Bot",
+      "sublabel": "notifications",
+      "pos": [
+        120,
+        460
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "messaging"
+    },
+    {
+      "id": "github",
+      "type": "external",
+      "label": "GitHub",
+      "sublabel": "issues & PRs",
+      "pos": [
+        120,
+        580
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "vcs"
+    },
+    {
+      "id": "hermes-skills",
+      "type": "backend",
+      "label": "Hermes Skills",
+      "sublabel": "skills/",
+      "pos": [
+        400,
+        100
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "skills"
+    },
+    {
+      "id": "claude-plugins",
+      "type": "backend",
+      "label": "Claude Plugins",
+      "sublabel": ".claude/",
+      "pos": [
+        400,
+        220
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "gemini-config",
+      "type": "backend",
+      "label": "Gemini Config",
+      "sublabel": "gemini/",
+      "pos": [
+        400,
+        340
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "codex-instructions",
+      "type": "backend",
+      "label": "Codex Instructions",
+      "sublabel": "codex/",
+      "pos": [
+        400,
+        460
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "openclaw-channels",
+      "type": "backend",
+      "label": "OpenClaw Channels",
+      "sublabel": "channels/",
+      "pos": [
+        400,
+        580
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "antigravity-review",
+      "type": "backend",
+      "label": "Antigravity",
+      "sublabel": "review-loop",
+      "pos": [
+        680,
+        100
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "skill"
+    },
+    {
+      "id": "system-analysis",
+      "type": "backend",
+      "label": "System Analysis",
+      "sublabel": "SRS tool",
+      "pos": [
+        680,
+        220
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "ponytail",
+      "type": "backend",
+      "label": "Ponytail",
+      "sublabel": "simplify",
+      "pos": [
+        680,
+        340
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "session-librarian",
+      "type": "backend",
+      "label": "Session Librarian",
+      "sublabel": "archive",
+      "pos": [
+        680,
+        460
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "skills-audit",
+      "type": "backend",
+      "label": "Skills Audit",
+      "sublabel": "audit",
+      "pos": [
+        680,
+        580
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "audit"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "MCP Registry",
+      "wraps": [
+        "mcp-config",
+        "shared-memory",
+        "context7",
+        "telegram",
+        "github"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Agent Skills",
+      "wraps": [
+        "hermes-skills",
+        "claude-plugins",
+        "gemini-config",
+        "codex-instructions",
+        "openclaw-channels",
+        "antigravity-review",
+        "system-analysis",
+        "ponytail",
+        "session-librarian",
+        "skills-audit"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "mcp-config",
+      "to": "shared-memory",
+      "label": "all agents",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c2",
+      "from": "mcp-config",
+      "to": "context7",
+      "label": "context7",
+      "variant": "dashed"
+    },
+    {
+      "id": "c3",
+      "from": "mcp-config",
+      "to": "telegram",
+      "label": "telegram",
+      "variant": "dashed"
+    },
+    {
+      "id": "c4",
+      "from": "mcp-config",
+      "to": "github",
+      "label": "github",
+      "variant": "dashed"
+    },
+    {
+      "id": "c5",
+      "from": "hermes-skills",
+      "to": "mcp-config",
+      "label": "symlinks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c6",
+      "from": "claude-plugins",
+      "to": "mcp-config",
+      "label": "symlinks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c7",
+      "from": "gemini-config",
+      "to": "mcp-config",
+      "label": "symlinks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c8",
+      "from": "codex-instructions",
+      "to": "mcp-config",
+      "label": "symlinks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c9",
+      "from": "openclaw-channels",
+      "to": "mcp-config",
+      "label": "symlinks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c10",
+      "from": "mcp-config",
+      "to": "shared-memory",
+      "label": "registry",
+      "variant": "dashed"
+    },
+    {
+      "id": "c11",
+      "from": "shared-memory",
+      "to": "antigravity-review",
+      "label": "reads skills",
+      "variant": "dashed"
+    },
+    {
+      "id": "c12",
+      "from": "shared-memory",
+      "to": "skills-audit",
+      "label": "audits",
+      "variant": "dashed"
+    },
+    {
+      "id": "c13",
+      "from": "telegram",
+      "to": "shared-memory",
+      "label": "messages",
+      "variant": "dashed"
+    },
+    {
+      "id": "c14",
+      "from": "github",
+      "to": "shared-memory",
+      "label": "syncs",
+      "variant": "dashed"
+    },
+    {
+      "id": "c15",
+      "from": "context7",
+      "to": "shared-memory",
+      "label": "docs",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "MCP Registry",
+      "items": [
+        "claude.json + mcp.json shared across all agents",
+        "MCP servers: shared-memory, context7, telegram, github",
+        "All agents reference the same MCP config"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Skills Library",
+      "items": [
+        "Hermes skills in hermes/skills/ (57 skills)",
+        "Claude plugins via .claude/ plugins.json",
+        "Gemini config, Codex instructions, OpenClaw channels",
+        "Skills symlinked into agent-specific config dirs",
+        "Antigravity review loop as a skill"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Shared Memory",
+      "items": [
+        "memory/inbox/<agent>/ \u2014 per-agent messages",
+        "memory/global_ledger.md \u2014 append-only audit",
+        "memory/shared/context.md \u2014 thinking context",
+        "memory/projects/ \u2014 per-project workspace",
+        "skills-audit runs on shared memory"
+      ]
+    }
+  ]
+}

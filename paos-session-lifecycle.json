@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "PAOS Session Lifecycle",
+    "subtitle": "Session start to end (Article IX)",
+    "output": "paos-session-lifecycle.html",
+    "quality_profile": "standard"
+  },
+  "lanes": [
+    { "id": "main", "label": "Session Flow" },
+    { "id": "terminal", "label": "Outcomes" }
+  ],
+  "states": [
+    { "id": "s1", "type": "start", "label": "Read HANDOFF.md", "sublabel": "always first", "tag": "mandatory", "lane": "main", "col": 0 },
+    { "id": "s2", "type": "active", "label": "Load shared state", "sublabel": "read_ledger + inbox", "tag": "parallel", "lane": "main", "col": 1 },
+    { "id": "s3", "type": "active", "label": "Synthesize + start", "sublabel": "surface in-progress/blocked", "tag": "first", "lane": "main", "col": 2 },
+    { "id": "s4", "type": "neutral", "label": "Read project notes", "sublabel": "execute each item", "tag": "optional", "lane": "main", "col": 0, "yOffset": 120 },
+    { "id": "s5", "type": "neutral", "label": "Answer questions", "sublabel": "read + answer", "tag": "optional", "lane": "main", "col": 1, "yOffset": 120 },
+    { "id": "s6", "type": "active", "label": "Process notes+qs", "sublabel": "mark done / archive", "tag": "shared-mem", "lane": "main", "col": 2, "yOffset": 120 },
+    { "id": "s7", "type": "active", "label": "append_ledger", "sublabel": "significant action", "tag": "mandatory", "lane": "main", "col": 0, "yOffset": 240 },
+    { "id": "s8", "type": "active", "label": "write_context", "sublabel": "key decision", "tag": "shared-mem", "lane": "main", "col": 1, "yOffset": 240 },
+    { "id": "s9", "type": "active", "label": "Write events.md", "sublabel": "Article III S3.1", "tag": "dual-log", "lane": "main", "col": 2, "yOffset": 240 },
+    { "id": "s10", "type": "success", "label": "Rewrite HANDOFF.md", "sublabel": "under 60 lines", "tag": "critical", "lane": "terminal", "col": 0 },
+    { "id": "s11", "type": "success", "label": "append_ledger", "sublabel": "summary row", "tag": "mandatory", "lane": "terminal", "col": 1 },
+    { "id": "s12", "type": "success", "label": "Git commit", "sublabel": "Agent: desc", "lane": "terminal", "col": 2 }
+  ],
+  "transitions": [
+    { "from": "s1", "to": "s2", "route": "straight" },
+    { "from": "s2", "to": "s3", "route": "straight" },
+    { "from": "s3", "to": "s4", "label": "if project", "route": "straight" },
+    { "from": "s3", "to": "s7", "label": "otherwise", "route": "straight" },
+    { "from": "s4", "to": "s5", "route": "straight" },
+    { "from": "s5", "to": "s6", "route": "straight" },
+    { "from": "s6", "to": "s7", "route": "straight" },
+    { "from": "s7", "to": "s8", "label": "on decision", "route": "straight" },
+    { "from": "s7", "to": "s9", "route": "straight" },
+    { "from": "s8", "to": "s9", "label": "also", "route": "straight" },
+    { "from": "s9", "to": "s10", "label": "end", "route": "straight" },
+    { "from": "s10", "to": "s11", "route": "straight" },
+    { "from": "s11", "to": "s12", "route": "straight" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Session Start (3 steps)", "items": ["1. Read HANDOFF.md — always first", "2. Load shared state in parallel: read_ledger (last 20 rows) + read_inbox (agent=...)", "3. Synthesize + start — surface anything in-progress or blocked"] },
+    { "dot": "cyan", "title": "During Work", "items": ["After every significant action: append_ledger (Action, File, Description)", "After any key decision: write_context", "Also append to vault/memory/<agent>/events.md (Article III S3.1)"] },
+    { "dot": "rose", "title": "Session End", "items": ["1. Rewrite HANDOFF.md — Last Agent, Active Task, What Was Done, What Is NOT Done. Under 60 lines.", "2. Log + commit: append_ledger (one summary row) + agent-commit.sh"] }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "PAOS Inbox and Cross-Agent Messaging",
+    "subtitle": "send_message flow from sender to recipient inbox",
+    "output": "paos-inbox-messaging.html",
+    "quality_profile": "standard",
+    "column_fit": "fixed"
+  },
+  "participants": [
+    {
+      "id": "sender",
+      "type": "backend",
+      "label": "Sender",
+      "sublabel": "e.g. coordinator"
+    },
+    {
+      "id": "mcp-send",
+      "type": "backend",
+      "label": "send_message",
+      "sublabel": "MCP tool"
+    },
+    {
+      "id": "inbox-store",
+      "type": "database",
+      "label": "Inbox store",
+      "sublabel": "memory/inbox/<ag>/"
+    },
+    {
+      "id": "recipient",
+      "type": "backend",
+      "label": "Recipient",
+      "sublabel": "e.g. developer"
+    },
+    {
+      "id": "session-start",
+      "type": "backend",
+      "label": "Session start",
+      "sublabel": "reads inbox"
+    },
+    {
+      "id": "openclaw",
+      "type": "external",
+      "label": "OpenClaw",
+      "sublabel": "human to PAOS"
+    }
+  ],
+  "messages": [
+    {
+      "id": "m1",
+      "from": "sender",
+      "to": "mcp-send",
+      "y": 200,
+      "label": "send_message(recipient, content)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m2",
+      "from": "mcp-send",
+      "to": "inbox-store",
+      "y": 280,
+      "label": "writes message file",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m3",
+      "from": "inbox-store",
+      "to": "recipient",
+      "y": 360,
+      "label": "message written",
+      "variant": "dashed"
+    },
+    {
+      "id": "m4",
+      "from": "recipient",
+      "to": "session-start",
+      "y": 440,
+      "label": "reads inbox on start",
+      "variant": "dashed"
+    },
+    {
+      "id": "m5",
+      "from": "session-start",
+      "to": "recipient",
+      "y": 520,
+      "label": "processes message",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m6",
+      "from": "openclaw",
+      "to": "sender",
+      "y": 600,
+      "label": "human message via Telegram",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Message Flow",
+      "items": [
+        "Sender calls shared-memory: send_message(recipient, content)",
+        "MCP tool writes message to memory/inbox/<recipient>/",
+        "Recipient reads inbox on session start",
+        "OpenClaw routes human messages to PAOS pipeline"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Inbox Storage",
+      "items": [
+        "Each agent has inbox at memory/inbox/<agent-id>/",
+        "Messages stored as markdown files",
+        "Recipient can filter by project",
+        "Active project merges global + project inbox"
+      ]
+    }
+  ]
+}

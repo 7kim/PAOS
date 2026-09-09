@@ -56,6 +56,7 @@ const nav = [
 const devNav = [
   { href: "/api-playground", label: "API Playground", icon: TestTube },
   { href: "/mcp-servers", label: "MCP Servers", icon: Server },
+  { href: "/settings/env", label: "Environment Path", icon: Terminal },
   { href: "/settings", label: "Settings", icon: Code },
 ];
 

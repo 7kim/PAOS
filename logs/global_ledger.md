@@ -93,3 +93,41 @@
 | 2026-08-27T00:03:04.542Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/pipelines/PIPE-26-06-2026---12-58 | Plan/pipeline deleted via dashboard | - | - |
 | 2026-08-27T00:06:00.561Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/PIPE-20260622-170843-pgz8kg.md | Task deleted via dashboard | - | - |
 | 2026-08-27T00:06:02.978Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/PIPE-20260622-174508-pia2ix.md | Task deleted via dashboard | - | - |
+
+| 2026-09-03T02:10:00Z | hermes-nous | SESSION | vault/memory/shared/HANDOFF.md, vault/memory/global_ledger.md, dashboard/app/terminals/page.tsx, dashboard/app/api/tasks/route.ts, dashboard/app/api/system/services/route.ts, dashboard/app/tasks/page.tsx, bin/task-progress.sh, projects/PAOS/tasks/systemctl-tab-in-terminals.md, projects/PAOS/tasks/git-last-5-commits.md | Terminals Startup Boot tab, per-project task filtering, real-time progress tracking, systemd enable/disable with immediate start/stop | PAOS-SESSION-20260903 | 91a099b |
+
+| 2026-09-03T00:30:29.942Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md | Status → approved  | - | - |
+
+| 2026-09-03T00:50:13.846Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md |   Due: 2026-09-10T11:30:00.000Z | - | - |
+
+| 2026-09-03T00:50:42.957Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md |   Due: 2026-09-02T23:52:00.000Z | - | - |
+
+| 2026-09-03T00:50:50.558Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md | Status → in_progress   | - | - |
+
+| 2026-09-03T00:52:01.660Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/systemctl-tab-in-terminals.md |   Due: 2026-09-03T19:59:00.000Z | - | - |
+
+| 2026-09-03T05:03:33.169Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md | Status → approved   | - | - |
+
+| 2026-09-03T05:05:01.615Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md | Status → draft   | - | - |
+
+| 2026-09-03T05:23:37.931Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md | Status → approved   | - | - |
+
+| 2026-09-03T05:38:14.219Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md | Status → approved   | - | - |
+
+| 2026-09-03T15:34:51.508Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/test-system-features.md |   Due: 2026-09-03T19:59:00.000Z | - | - |
+
+| 2026-09-03T15:36:30.947Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/test-second-task.md | Task deleted via dashboard | - | - |
+
+| 2026-09-03T15:36:32.610Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/test-system-features.md | Task deleted via dashboard | - | - |
+
+| 2026-09-03T15:45:27.011Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/test-second-task.md | Status → approved   | - | - |
+
+| 2026-09-03T15:59:14.619Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/test-system-features.md | Status → approved   | - | - |
+
+| 2026-09-03T16:01:36.902Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/test-system-features.md | Task deleted via dashboard | - | - |
+
+| 2026-09-03T16:01:42.681Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/git-last-5-commits.md | Task deleted via dashboard | - | - |
+
+| 2026-09-03T16:01:44.217Z | dashboard | DELETE | ~/AI_Workflow/projects/PAOS/tasks/systemctl-tab-in-terminals.md | Task deleted via dashboard | - | - |
+
+| 2026-09-03T16:06:37.247Z | dashboard | STATUS | ~/AI_Workflow/projects/PAOS/tasks/test-second-task.md | Status → approved   | - | - |

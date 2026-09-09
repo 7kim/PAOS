@@ -1,0 +1,342 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "PAOS Tokens & Cost Tracking",
+    "subtitle": "Per-agent tokens, cost calculator, model comparison",
+    "output": "paos-tokens-cost.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "tracking",
+        "label": "Token Tracking",
+        "focus": [
+          "tokens-page",
+          "tokens-api",
+          "agent-tokens",
+          "model-comparison"
+        ],
+        "note": "Tracks usage per agent."
+      },
+      {
+        "id": "cost",
+        "label": "Cost Calculation",
+        "focus": [
+          "cost-calculator",
+          "cost-breakdown",
+          "cost-per-agent",
+          "ledger-entry"
+        ],
+        "note": "Calculates costs."
+      },
+      {
+        "id": "models",
+        "label": "Model Config",
+        "focus": [
+          "model-aliases",
+          "model-comparison",
+          "cost-profiles"
+        ],
+        "note": "Model pricing."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "tokens-page",
+      "type": "frontend",
+      "label": "Tokens Dashboard",
+      "sublabel": "tokens/ page",
+      "pos": [
+        120,
+        100
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "UI"
+    },
+    {
+      "id": "tokens-api",
+      "type": "backend",
+      "label": "tokens API",
+      "sublabel": "api/tokens",
+      "pos": [
+        120,
+        200
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "agent-tokens",
+      "type": "database",
+      "label": "Agent Tokens",
+      "sublabel": "per-agent",
+      "pos": [
+        120,
+        300
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "tracking"
+    },
+    {
+      "id": "model-comparison",
+      "type": "database",
+      "label": "Model Comparison",
+      "sublabel": "pricing table",
+      "pos": [
+        120,
+        400
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "config"
+    },
+    {
+      "id": "cost-calculator",
+      "type": "backend",
+      "label": "Cost Calculator",
+      "sublabel": "$",
+      "pos": [
+        400,
+        200
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "cost-breakdown",
+      "type": "backend",
+      "label": "Cost Breakdown",
+      "sublabel": "per-run",
+      "pos": [
+        400,
+        300
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "cost-per-agent",
+      "type": "database",
+      "label": "Cost per Agent",
+      "sublabel": "billing",
+      "pos": [
+        400,
+        400
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "ledger"
+    },
+    {
+      "id": "ledger-entry",
+      "type": "database",
+      "label": "Ledger Entry",
+      "sublabel": "append-only",
+      "pos": [
+        400,
+        500
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "model-aliases",
+      "type": "backend",
+      "label": "Model Aliases",
+      "sublabel": "aliases.json",
+      "pos": [
+        680,
+        100
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "cost-profiles",
+      "type": "backend",
+      "label": "Cost Profiles",
+      "sublabel": "pricing JSON",
+      "pos": [
+        680,
+        200
+      ],
+      "size": [
+        140,
+        56
+      ],
+      "tag": "config"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Token Tracking",
+      "wraps": [
+        "tokens-page",
+        "tokens-api",
+        "agent-tokens",
+        "model-comparison"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Cost Calculation",
+      "wraps": [
+        "cost-calculator",
+        "cost-breakdown",
+        "cost-per-agent",
+        "ledger-entry"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Model Config",
+      "wraps": [
+        "model-aliases",
+        "cost-profiles",
+        "model-comparison"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "t1",
+      "from": "tokens-page",
+      "to": "tokens-api",
+      "label": "queries",
+      "variant": "emphasis"
+    },
+    {
+      "id": "t2",
+      "from": "tokens-api",
+      "to": "agent-tokens",
+      "label": "aggregates",
+      "variant": "emphasis"
+    },
+    {
+      "id": "t3",
+      "from": "tokens-page",
+      "to": "cost-calculator",
+      "label": "requests",
+      "variant": "dashed"
+    },
+    {
+      "id": "t4",
+      "from": "cost-calculator",
+      "to": "agent-tokens",
+      "label": "reads",
+      "variant": "dashed"
+    },
+    {
+      "id": "t5",
+      "from": "tokens-page",
+      "to": "model-comparison",
+      "label": "compares",
+      "variant": "dashed"
+    },
+    {
+      "id": "t6",
+      "from": "model-comparison",
+      "to": "model-aliases",
+      "label": "reads",
+      "variant": "dashed"
+    },
+    {
+      "id": "t7",
+      "from": "cost-calculator",
+      "to": "model-comparison",
+      "label": "pricing",
+      "variant": "dashed"
+    },
+    {
+      "id": "t8",
+      "from": "cost-calculator",
+      "to": "cost-profiles",
+      "label": "reads",
+      "variant": "dashed"
+    },
+    {
+      "id": "t9",
+      "from": "cost-calculator",
+      "to": "cost-breakdown",
+      "label": "generates",
+      "variant": "emphasis"
+    },
+    {
+      "id": "t10",
+      "from": "cost-breakdown",
+      "to": "ledger-entry",
+      "label": "appends",
+      "variant": "security"
+    },
+    {
+      "id": "t11",
+      "from": "cost-breakdown",
+      "to": "cost-per-agent",
+      "label": "rolls up",
+      "variant": "dashed"
+    },
+    {
+      "id": "t12",
+      "from": "agent-tokens",
+      "to": "ledger-entry",
+      "label": "feeds",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Token Tracking",
+      "items": [
+        "tokens/ page \u2014 dashboard showing usage per agent",
+        "api/tokens \u2014 aggregates token counts from all providers",
+        "Agent Tokens \u2014 per-agent token usage database",
+        "Model Comparison \u2014 tracks pricing across providers"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Cost Calculation",
+      "items": [
+        "Cost Calculator \u2014 computes $ from tokens x pricing",
+        "Cost Breakdown \u2014 per-run cost summary",
+        "Cost per Agent \u2014 billing rollup",
+        "Ledger Entry \u2014 append-only cost log"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Model Config",
+      "items": [
+        "Model Aliases \u2014 alias names (claude, gemini, etc.)",
+        "Cost Profiles \u2014 pricing JSON per provider",
+        "Model Comparison \u2014 side-by-side pricing table"
+      ]
+    }
+  ]
+}

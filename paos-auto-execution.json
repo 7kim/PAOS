@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "PAOS Auto-Execution Chain",
+    "subtitle": "systemd watcher, handler, guards, Tailscale expose",
+    "output": "paos-auto-execution.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "boot",
+        "label": "Boot Persistence",
+        "focus": [
+          "tailscaled",
+          "tailscale-serve",
+          "hermes-gateway",
+          "paos-dashboard",
+          "tailscale-expose"
+        ],
+        "note": "Services persist across reboot via systemd."
+      },
+      {
+        "id": "watcher",
+        "label": "Watcher Chain",
+        "focus": [
+          "systemd-path",
+          "systemd-service",
+          "handler-script",
+          "inotify-fallback",
+          "executor"
+        ],
+        "note": "Pipeline submission triggers execution."
+      },
+      {
+        "id": "guards",
+        "label": "Guardrails",
+        "focus": [
+          "whitelist",
+          "auto-off",
+          "lock",
+          "rate-limit",
+          "timeout"
+        ],
+        "note": "Safety checks before execution."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "tailscaled",
+      "type": "cloud",
+      "label": "tailscaled",
+      "sublabel": "daemon",
+      "pos": [
+        120,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "enabled"
+    },
+    {
+      "id": "tailscale-serve",
+      "type": "cloud",
+      "label": "Tailscale Funnel",
+      "sublabel": "serve :3333",
+      "pos": [
+        120,
+        190
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "tailscale-expose",
+      "type": "cloud",
+      "label": "Expose",
+      "sublabel": ":3333",
+      "pos": [
+        120,
+        280
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "hermes-gateway",
+      "type": "backend",
+      "label": "hermes-gateway",
+      "sublabel": "gateway",
+      "pos": [
+        120,
+        370
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "enabled"
+    },
+    {
+      "id": "paos-dashboard",
+      "type": "frontend",
+      "label": "paos-dashboard",
+      "sublabel": "Next.js",
+      "pos": [
+        120,
+        460
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "enabled"
+    },
+    {
+      "id": "systemd-path",
+      "type": "backend",
+      "label": "paos-pipeline.path",
+      "sublabel": "systemd",
+      "pos": [
+        380,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "watch"
+    },
+    {
+      "id": "systemd-service",
+      "type": "backend",
+      "label": "paos-pipeline.service",
+      "sublabel": "systemd",
+      "pos": [
+        380,
+        190
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "handler-script",
+      "type": "backend",
+      "label": "handler.sh",
+      "sublabel": "paos-pipeline-handler",
+      "pos": [
+        380,
+        280
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "inotify-fallback",
+      "type": "backend",
+      "label": "inotifywait",
+      "sublabel": "fallback",
+      "pos": [
+        380,
+        370
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "executor",
+      "type": "backend",
+      "label": "Executor",
+      "sublabel": "Phase C",
+      "pos": [
+        380,
+        460
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "run"
+    },
+    {
+      "id": "new-pipeline",
+      "type": "backend",
+      "label": "New Pipeline",
+      "sublabel": "h-pipeline",
+      "pos": [
+        640,
+        280
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "start"
+    },
+    {
+      "id": "whitelist",
+      "type": "security",
+      "label": "whitelist.txt",
+      "sublabel": "allowed agents",
+      "pos": [
+        640,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "guard"
+    },
+    {
+      "id": "auto-off",
+      "type": "security",
+      "label": "auto-execute.off",
+      "sublabel": "kill switch",
+      "pos": [
+        640,
+        190
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "guard"
+    },
+    {
+      "id": "lock",
+      "type": "security",
+      "label": "Lock",
+      "sublabel": "no concurrent",
+      "pos": [
+        640,
+        370
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "guard"
+    },
+    {
+      "id": "rate-limit",
+      "type": "security",
+      "label": "Rate Limit",
+      "sublabel": "throttle",
+      "pos": [
+        640,
+        460
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "guard"
+    },
+    {
+      "id": "timeout",
+      "type": "security",
+      "label": "Timeout",
+      "sublabel": "kill hung",
+      "pos": [
+        640,
+        550
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "guard"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Boot Persistence",
+      "wraps": [
+        "tailscaled",
+        "tailscale-serve",
+        "tailscale-expose",
+        "hermes-gateway",
+        "paos-dashboard"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Watcher Chain",
+      "wraps": [
+        "systemd-path",
+        "systemd-service",
+        "handler-script",
+        "inotify-fallback",
+        "executor"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Guardrails",
+      "wraps": [
+        "whitelist",
+        "auto-off",
+        "lock",
+        "rate-limit",
+        "timeout"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "tailscaled",
+      "to": "tailscale-serve",
+      "label": "runs",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c2",
+      "from": "hermes-gateway",
+      "to": "tailscaled",
+      "label": "uses",
+      "variant": "dashed"
+    },
+    {
+      "id": "c3",
+      "from": "paos-dashboard",
+      "to": "hermes-gateway",
+      "label": "uses",
+      "variant": "dashed"
+    },
+    {
+      "id": "c4",
+      "from": "tailscale-expose",
+      "to": "paos-dashboard",
+      "label": "exposes",
+      "variant": "dashed"
+    },
+    {
+      "id": "c5",
+      "from": "new-pipeline",
+      "to": "systemd-path",
+      "label": "create",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c6",
+      "from": "systemd-path",
+      "to": "systemd-service",
+      "label": "trigger",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c7",
+      "from": "handler-script",
+      "to": "whitelist",
+      "label": "checks",
+      "variant": "security"
+    },
+    {
+      "id": "c8",
+      "from": "handler-script",
+      "to": "auto-off",
+      "label": "reads",
+      "variant": "security"
+    },
+    {
+      "id": "c9",
+      "from": "handler-script",
+      "to": "lock",
+      "label": "checks",
+      "variant": "security"
+    },
+    {
+      "id": "c10",
+      "from": "handler-script",
+      "to": "rate-limit",
+      "label": "throttles",
+      "variant": "security"
+    },
+    {
+      "id": "c11",
+      "from": "handler-script",
+      "to": "timeout",
+      "label": "kills",
+      "variant": "security"
+    },
+    {
+      "id": "c12",
+      "from": "handler-script",
+      "to": "executor",
+      "label": "dispatch",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c13",
+      "from": "inotify-fallback",
+      "to": "handler-script",
+      "label": "runs",
+      "variant": "dashed"
+    },
+    {
+      "id": "c14",
+      "from": "systemd-service",
+      "to": "handler-script",
+      "label": "invokes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c15",
+      "from": "new-pipeline",
+      "to": "inotify-fallback",
+      "label": "watches",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Boot Persistence",
+      "items": [
+        "tailscaled.service \u2014 Tailscale daemon (systemd system, enabled)",
+        "tailscale serve \u2014 Funnel exposes :3333",
+        "hermes-gateway.service \u2014 messaging gateway (enabled)",
+        "paos-dashboard.service \u2014 Next.js dashboard (enabled)",
+        "Dashboard accessible via Tailscale Funnel"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Watcher Chain",
+      "items": [
+        "paos-pipeline.path \u2014 systemd path unit watches for new pipeline files",
+        "paos-pipeline.service \u2014 systemd service triggered by path unit",
+        "handler.sh \u2014 paos-pipeline-handler.sh processes the pipeline",
+        "inotifywait \u2014 fallback for WSL/containers without systemd",
+        "Handler dispatches to Executor (Phase C)"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Guardrails",
+      "items": [
+        "whitelist.txt \u2014 allowed planner agents",
+        "auto-execute.off \u2014 kill switch file",
+        "Lock \u2014 prevent concurrent runs",
+        "Rate limit \u2014 throttle submissions",
+        "Timeout \u2014 kill hung pipelines (>30 min)"
+      ]
+    }
+  ]
+}

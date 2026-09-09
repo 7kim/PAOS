@@ -1,0 +1,325 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "PAOS Constitution \u2014 H-Factor Governance",
+    "subtitle": "Four invariants, ten articles, safety gate, review loop",
+    "output": "paos-constitution.html",
+    "quality_profile": "standard",
+    "views": [
+      {
+        "id": "invariants",
+        "label": "The Four Invariants (I1-I4)",
+        "focus": [
+          "i1",
+          "i2",
+          "i3",
+          "i4"
+        ],
+        "note": "Core governance invariants."
+      },
+      {
+        "id": "articles",
+        "label": "The Ten Articles",
+        "focus": [
+          "art1",
+          "art2",
+          "art3",
+          "art4",
+          "art5",
+          "art6",
+          "art7",
+          "art8",
+          "art9",
+          "art10",
+          "art11"
+        ],
+        "note": "Constitutional articles."
+      },
+      {
+        "id": "safety",
+        "label": "Safety Gate and Review",
+        "focus": [
+          "safety-gate",
+          "review-pass",
+          "review-fail",
+          "review-conditional",
+          "approve"
+        ],
+        "note": "No bash/edit without token."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "invariants-lane",
+      "label": "Invariants"
+    },
+    {
+      "id": "articles-lane",
+      "label": "Articles"
+    },
+    {
+      "id": "gates-lane",
+      "label": "Gates"
+    },
+    {
+      "id": "review-lane",
+      "label": "Review Loop"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "i1",
+      "lane": "invariants-lane",
+      "col": 1,
+      "type": "security",
+      "label": "I1: Separation",
+      "sublabel": "one agent, one phase"
+    },
+    {
+      "id": "i2",
+      "lane": "invariants-lane",
+      "col": 2,
+      "type": "security",
+      "label": "I2: Audit Immutable",
+      "sublabel": "ledger append-only"
+    },
+    {
+      "id": "i3",
+      "lane": "invariants-lane",
+      "col": 3,
+      "type": "security",
+      "label": "I3: Identity First",
+      "sublabel": "every action attributed"
+    },
+    {
+      "id": "i4",
+      "lane": "invariants-lane",
+      "col": 4,
+      "type": "security",
+      "label": "I4: Skill Boundary",
+      "sublabel": "declared only"
+    },
+    {
+      "id": "art1",
+      "lane": "articles-lane",
+      "col": 1,
+      "type": "backend",
+      "label": "Art I: Governance",
+      "sublabel": "Invariants + Gate"
+    },
+    {
+      "id": "art2",
+      "lane": "articles-lane",
+      "col": 2,
+      "type": "backend",
+      "label": "Art II: 3-Phase",
+      "sublabel": "PM/Arch/Exec"
+    },
+    {
+      "id": "art3",
+      "lane": "articles-lane",
+      "col": 3,
+      "type": "backend",
+      "label": "Art III: Logging",
+      "sublabel": "Dual-logging"
+    },
+    {
+      "id": "art4",
+      "lane": "articles-lane",
+      "col": 4,
+      "type": "backend",
+      "label": "Art IV: Git",
+      "sublabel": "Agent: desc"
+    },
+    {
+      "id": "art5",
+      "lane": "articles-lane",
+      "col": 1,
+      "yOffset": 60,
+      "type": "backend",
+      "label": "Art V: Knowledge",
+      "sublabel": "RAG-lite"
+    },
+    {
+      "id": "art6",
+      "lane": "articles-lane",
+      "col": 2,
+      "yOffset": 60,
+      "type": "backend",
+      "label": "Art VI: Comm",
+      "sublabel": "Coordination"
+    },
+    {
+      "id": "art7",
+      "lane": "articles-lane",
+      "col": 3,
+      "yOffset": 60,
+      "type": "backend",
+      "label": "Art VII: Amend",
+      "sublabel": "Proposal + commit"
+    },
+    {
+      "id": "art8",
+      "lane": "articles-lane",
+      "col": 4,
+      "yOffset": 60,
+      "type": "backend",
+      "label": "Art VIII: Antigrav",
+      "sublabel": "Review loop"
+    },
+    {
+      "id": "art9",
+      "lane": "articles-lane",
+      "col": 1,
+      "yOffset": 120,
+      "type": "backend",
+      "label": "Art IX: Vault",
+      "sublabel": "Session protocol"
+    },
+    {
+      "id": "art10",
+      "lane": "articles-lane",
+      "col": 2,
+      "yOffset": 120,
+      "type": "backend",
+      "label": "Art X: Infra",
+      "sublabel": "MCP + skills"
+    },
+    {
+      "id": "art11",
+      "lane": "articles-lane",
+      "col": 3,
+      "yOffset": 120,
+      "type": "backend",
+      "label": "Art XI: Workspace",
+      "sublabel": "Sandboxes"
+    },
+    {
+      "id": "safety-gate",
+      "lane": "gates-lane",
+      "col": 1,
+      "type": "security",
+      "label": "Safety Gate",
+      "sublabel": "REVIEW token",
+      "tag": "mandatory"
+    },
+    {
+      "id": "review-pass",
+      "lane": "review-lane",
+      "col": 2,
+      "type": "security",
+      "label": "REVIEW PASS",
+      "sublabel": "approved",
+      "tag": "green"
+    },
+    {
+      "id": "review-fail",
+      "lane": "review-lane",
+      "col": 3,
+      "type": "security",
+      "label": "REVIEW FAIL",
+      "sublabel": "blocked",
+      "tag": "red"
+    },
+    {
+      "id": "review-conditional",
+      "lane": "review-lane",
+      "col": 4,
+      "yOffset": 50,
+      "type": "security",
+      "label": "CONDITIONAL",
+      "sublabel": "limited",
+      "tag": "amber"
+    },
+    {
+      "id": "approve",
+      "lane": "review-lane",
+      "col": 5,
+      "type": "security",
+      "label": "APPROVED",
+      "sublabel": "proceed",
+      "tag": "proceed"
+    }
+  ],
+  "edges": [
+    {
+      "from": "art1",
+      "to": "i1",
+      "label": "states",
+      "variant": "dashed"
+    },
+    {
+      "from": "art1",
+      "to": "safety-gate",
+      "label": "enforces"
+    },
+    {
+      "from": "safety-gate",
+      "to": "review-pass",
+      "label": "PASS",
+      "variant": "emphasis"
+    },
+    {
+      "from": "safety-gate",
+      "to": "review-fail",
+      "label": "FAIL",
+      "variant": "security"
+    },
+    {
+      "from": "safety-gate",
+      "to": "review-conditional",
+      "label": "COND",
+      "variant": "security"
+    },
+    {
+      "from": "review-pass",
+      "to": "approve",
+      "label": "flows"
+    },
+    {
+      "from": "review-conditional",
+      "to": "approve",
+      "label": "OK",
+      "variant": "dashed"
+    },
+    {
+      "from": "art4",
+      "to": "i4",
+      "label": "carries",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Invariants (I1-I4)",
+      "items": [
+        "I1: Separation \u2014 one agent, one phase",
+        "I2: Audit Immutable \u2014 ledger append-only",
+        "I3: Identity First \u2014 every action attributed",
+        "I4: Skill Boundary \u2014 act only within declared capabilities"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Safety Gate",
+      "items": [
+        "No bash or edit without a REVIEW token",
+        "Architect appends ## REVIEW [STATUS] block",
+        "Statuses: PASS, FAIL, CONDITIONAL",
+        "User approval via ## APPROVED"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Antigravity Review (Art VIII)",
+      "items": [
+        "Four-phase: Planning -> User Review -> Execution -> Walkthrough",
+        "Three artifacts: TASKS.md, IMPLEMENTATION_PLAN.md, WALKTHROUGH.md",
+        "User feedback as HTML comments or blockquotes"
+      ]
+    }
+  ]
+}

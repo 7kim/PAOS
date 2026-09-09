@@ -1,0 +1,549 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "PAOS Agent Communication",
+    "subtitle": "Coordinator delegation, inbox routing, shared memory",
+    "output": "paos-agent-communication.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1200,
+      680
+    ],
+    "views": [
+      {
+        "id": "coordinator",
+        "label": "Coordination",
+        "focus": [
+          "coordinator",
+          "claude",
+          "gemini",
+          "codex",
+          "antigravity",
+          "hermes",
+          "signal"
+        ],
+        "note": "Coordinator routes tasks to agents."
+      },
+      {
+        "id": "inbox",
+        "label": "Messaging",
+        "focus": [
+          "send-message",
+          "inbox",
+          "recipient",
+          "read-inbox"
+        ],
+        "note": "Inbox delivery."
+      },
+      {
+        "id": "shared-memory",
+        "label": "Shared Memory",
+        "focus": [
+          "global-ledger",
+          "write-context",
+          "append-ledger",
+          "shared-context",
+          "events"
+        ],
+        "note": "Shared state."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "coordinator",
+      "type": "messagebus",
+      "label": "Coordinator",
+      "sublabel": "orchestrator",
+      "pos": [
+        120,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "routes"
+    },
+    {
+      "id": "claude",
+      "type": "backend",
+      "label": "Claude Code",
+      "sublabel": "claude",
+      "pos": [
+        360,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "gemini",
+      "type": "backend",
+      "label": "Gemini",
+      "sublabel": "gemini",
+      "pos": [
+        590,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "codex",
+      "type": "backend",
+      "label": "Codex",
+      "sublabel": "codex",
+      "pos": [
+        820,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "antigravity",
+      "type": "backend",
+      "label": "Antigravity",
+      "sublabel": "review-loop",
+      "pos": [
+        1050,
+        100
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "hermes",
+      "type": "backend",
+      "label": "Hermes",
+      "sublabel": "nous-portal",
+      "pos": [
+        590,
+        230
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "signal",
+      "type": "messagebus",
+      "label": "Signal",
+      "sublabel": "notifications",
+      "pos": [
+        820,
+        230
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "notif"
+    },
+    {
+      "id": "send-message",
+      "type": "messagebus",
+      "label": "send_message",
+      "sublabel": "MCP tool",
+      "pos": [
+        120,
+        360
+      ],
+      "size": [
+        130,
+        48
+      ]
+    },
+    {
+      "id": "inbox",
+      "type": "messagebus",
+      "label": "Inbox",
+      "sublabel": "memory/inbox/<ag>",
+      "pos": [
+        360,
+        360
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "recipient",
+      "type": "backend",
+      "label": "Recipient",
+      "sublabel": "reads inbox",
+      "pos": [
+        590,
+        360
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "read-inbox",
+      "type": "messagebus",
+      "label": "read_inbox",
+      "sublabel": "filter",
+      "pos": [
+        820,
+        360
+      ],
+      "size": [
+        130,
+        48
+      ]
+    },
+    {
+      "id": "read-ledger",
+      "type": "database",
+      "label": "read_ledger",
+      "sublabel": "20 rows",
+      "pos": [
+        1050,
+        360
+      ],
+      "size": [
+        130,
+        48
+      ]
+    },
+    {
+      "id": "global-ledger",
+      "type": "database",
+      "label": "global_ledger.md",
+      "sublabel": "append-only",
+      "pos": [
+        120,
+        490
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "audit"
+    },
+    {
+      "id": "write-context",
+      "type": "backend",
+      "label": "write_context",
+      "sublabel": "ctx.md",
+      "pos": [
+        360,
+        490
+      ],
+      "size": [
+        130,
+        48
+      ]
+    },
+    {
+      "id": "append-ledger",
+      "type": "database",
+      "label": "append_ledger",
+      "sublabel": "summary",
+      "pos": [
+        590,
+        490
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "shared-context",
+      "type": "database",
+      "label": "shared/context.md",
+      "sublabel": "thinking",
+      "pos": [
+        820,
+        490
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "events",
+      "type": "database",
+      "label": "events.md",
+      "sublabel": "per-agent",
+      "pos": [
+        1050,
+        490
+      ],
+      "size": [
+        130,
+        48
+      ]
+    },
+    {
+      "id": "openclaw",
+      "type": "external",
+      "label": "OpenClaw",
+      "sublabel": "human iface",
+      "pos": [
+        360,
+        230
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "interface"
+    },
+    {
+      "id": "developer",
+      "type": "backend",
+      "label": "Developer",
+      "sublabel": "opencode",
+      "pos": [
+        120,
+        230
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "executor"
+    },
+    {
+      "id": "architect",
+      "type": "security",
+      "label": "Architect",
+      "sublabel": "reviewer",
+      "pos": [
+        120,
+        300
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "review"
+    },
+    {
+      "id": "pm",
+      "type": "backend",
+      "label": "PM",
+      "sublabel": "project mgr",
+      "pos": [
+        120,
+        370
+      ],
+      "size": [
+        130,
+        56
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Agent Roster",
+      "wraps": [
+        "coordinator",
+        "claude",
+        "gemini",
+        "codex",
+        "antigravity",
+        "hermes",
+        "signal"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Messaging Hub",
+      "wraps": [
+        "send-message",
+        "inbox",
+        "recipient",
+        "read-inbox",
+        "read-ledger"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Shared Memory",
+      "wraps": [
+        "global-ledger",
+        "write-context",
+        "append-ledger",
+        "shared-context",
+        "events"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "coordinator",
+      "to": "claude",
+      "label": "tasks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c2",
+      "from": "coordinator",
+      "to": "gemini",
+      "label": "tasks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c3",
+      "from": "coordinator",
+      "to": "codex",
+      "label": "tasks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c4",
+      "from": "coordinator",
+      "to": "antigravity",
+      "label": "review",
+      "variant": "dashed"
+    },
+    {
+      "id": "c5",
+      "from": "coordinator",
+      "to": "developer",
+      "label": "delegate",
+      "variant": "dashed"
+    },
+    {
+      "id": "c6",
+      "from": "developer",
+      "to": "claude",
+      "label": "usable",
+      "variant": "dashed"
+    },
+    {
+      "id": "c7",
+      "from": "developer",
+      "to": "signal",
+      "label": "notif",
+      "variant": "dashed"
+    },
+    {
+      "id": "c8",
+      "from": "coordinator",
+      "to": "send-message",
+      "label": "sends",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c9",
+      "from": "send-message",
+      "to": "inbox",
+      "label": "writes",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c10",
+      "from": "inbox",
+      "to": "recipient",
+      "label": "deliv",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c11",
+      "from": "recipient",
+      "to": "read-inbox",
+      "label": "reads",
+      "variant": "dashed"
+    },
+    {
+      "id": "c12",
+      "from": "read-inbox",
+      "to": "read-ledger",
+      "label": "refs",
+      "variant": "dashed"
+    },
+    {
+      "id": "c13",
+      "from": "developer",
+      "to": "read-ledger",
+      "label": "reads",
+      "variant": "dashed"
+    },
+    {
+      "id": "c14",
+      "from": "hermes",
+      "to": "openclaw",
+      "label": "gateway",
+      "variant": "dashed"
+    },
+    {
+      "id": "c15",
+      "from": "write-context",
+      "to": "shared-context",
+      "label": "writes",
+      "variant": "dashed"
+    },
+    {
+      "id": "c16",
+      "from": "append-ledger",
+      "to": "global-ledger",
+      "label": "appends",
+      "variant": "dashed"
+    },
+    {
+      "id": "c17",
+      "from": "events",
+      "to": "read-inbox",
+      "label": "fetched by",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Coordination",
+      "items": [
+        "Coordinator delegates tasks to Claude, Gemini, Codex via '@shorthand' mentions",
+        "Antigravity review loop enforces Plan \u2192 Review \u2192 Execute flow",
+        "Developer (opencode) is auto-executed via systemd/Tailscale",
+        "Hermes routes messages to agents via MCP send_message"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Messaging Hub",
+      "items": [
+        "send_message writes to memory/inbox/<recipient>/",
+        "Inbox is the shared message store",
+        "Recipients read their inbox via read_inbox MCP tool",
+        "Cross-agent messages use @shorthand mentions"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Shared Memory",
+      "items": [
+        "global_ledger.md \u2014 append-only audit log",
+        "shared/context.md \u2014 thinking context",
+        "write_context appends to shared/context.md",
+        "append_ledger writes to global_ledger.md",
+        "events.md \u2014 per-agent event stream"
+      ]
+    }
+  ]
+}

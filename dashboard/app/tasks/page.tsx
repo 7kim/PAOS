@@ -1,7 +1,8 @@
 "use client";
 import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { X, Trash2, CheckCircle, Clock, AlertCircle, User, Cpu, Calendar } from "lucide-react";
+import { X, Trash2, CheckCircle, Clock, AlertCircle, User, Cpu, Calendar, SortDesc, SortAsc, Search } from "lucide-react";
+import TaskQueue from "@/components/TaskQueue";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getViewAll } from "@/lib/viewAll";
 import { getActiveProject } from "@/lib/activeProject";
@@ -15,7 +16,8 @@ interface Task {
   author: string;
   executor: string;
   priority: string;
-  dueDate: string;
+  due: string;
+  created: string;
   progress: string;
   raw: string;
 }
@@ -23,7 +25,7 @@ interface Task {
 const STATUS_STYLES: Record<string, { bg: string; color: string; label: string; icon: any }> = {
   draft: { bg: "rgba(112,122,138,0.12)", color: "#929aa5", label: "Draft", icon: Clock },
   approved: { bg: "rgba(252,213,53,0.12)", color: "#fcd535", label: "Approved", icon: CheckCircle },
-  in_progress: { bg: "rgba(252,213,53,0.08)", color: "#f0b90b", label: "In Progress", icon: Cpu },
+  in_progress: { bg: "rgba(252,213,53,0.08)", color: "#f0b90b", label: "In Progress", icon: AlertCircle },
   done: { bg: "rgba(14,203,129,0.12)", color: "#0ecb81", label: "Done", icon: CheckCircle },
   failed: { bg: "rgba(239,68,68,0.12)", color: "#ef4444", label: "Failed", icon: AlertCircle },
   ready_for_execution: { bg: "rgba(252,213,53,0.12)", color: "#fcd535", label: "Ready", icon: CheckCircle },
@@ -66,6 +68,70 @@ function authorColor(author: string) {
   return "#707a8a";
 }
 
+function formatDue(due: string): string {
+  if (!due) return "";
+  try {
+    const d = new Date(due);
+    if (isNaN(d.getTime())) return due;
+    const now = new Date();
+    const diffMs = d.getTime() - now.getTime();
+    const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "Tomorrow";
+    if (diffDays === -1) return "Yesterday";
+    if (diffDays > 1 && diffDays <= 7) return `In ${diffDays} days`;
+    if (diffDays < -1 && diffDays >= -7) return `${Math.abs(diffDays)} days ago`;
+    if (diffDays > 7) return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  } catch {
+    return due;
+  }
+}
+
+function formatCreated(created: string): string {
+  if (!created) return "";
+  try {
+    const d = new Date(created);
+    if (isNaN(d.getTime())) return created;
+    const now = new Date();
+    const diffMs = now.getTime() - d.getTime();
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return "Today";
+    if (diffDays === 1) return "Yesterday";
+    if (diffDays <= 7) return `${diffDays} days ago`;
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  } catch {
+    return created;
+  }
+}
+
+function toDateTimeLocal(iso: string): string {
+  if (!iso) return "";
+  try {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return "";
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const hours = String(d.getHours()).padStart(2, "0");
+    const minutes = String(d.getMinutes()).padStart(2, "0");
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  } catch {
+    return "";
+  }
+}
+
+function fromDateTimeLocal(local: string): string {
+  if (!local) return "";
+  try {
+    return new Date(local).toISOString();
+  } catch {
+    return local;
+  }
+}
+
 export default function TasksPageWrapperWrapper() {
   return (
     <Suspense fallback={"Loading..."}>
@@ -92,21 +158,76 @@ function TasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [selected, setSelected] = useState<Task | null>(null);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<string>("created");
+  const [scanInterval, setScanInterval] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("paos-task-scan-interval");
+      return saved ? parseInt(saved) : 0;
+    }
+    return 0;
+  });
+  const [scanLoading, setScanLoading] = useState(false);
+  const [scanResult, setScanResult] = useState<string>("");
 
-  // Fetch projects list on mount (exclude non-project entries)
+  const SCAN_INTERVAL_OPTIONS = [
+    { label: "Off", value: 0 },
+    { label: "5s", value: 5000 },
+    { label: "10s", value: 10000 },
+    { label: "30s", value: 30000 },
+    { label: "1m", value: 60000 },
+    { label: "5m", value: 300000 },
+    { label: "15m", value: 900000 },
+    { label: "30m", value: 1800000 },
+    { label: "1h", value: 3600000 },
+  ];
+
+  const saveScanInterval = (val: number) => {
+    setScanInterval(val);
+    try {
+      localStorage.setItem("paos-task-scan-interval", String(val));
+    } catch { /* ignore */ }
+  };
+
+  const load = useCallback(async () => {
+    let params = projectFilter && projectFilter !== "__none__" ? `?project=${encodeURIComponent(projectFilter)}` : "";
+    if (sortBy) params += (params ? "&" : "?") + `sort=${sortBy}`;
+    const res = await fetch(`/api/tasks${params}`);
+    const data = await res.json();
+    setTasks(data.tasks ?? []);
+  }, [projectFilter, sortBy]);
+
+  const runScan = useCallback(async () => {
+    setScanLoading(true);
+    setScanResult("");
+    try {
+      const res = await fetch("/api/tasks/scan", { method: "POST" });
+      const data = await res.json();
+      if (data.ok) {
+        setScanResult(data.message);
+        load();
+        setTimeout(() => setScanResult(""), 3000);
+      } else {
+        setScanResult(data.error || "Scan failed");
+      }
+    } catch (e) {
+      setScanResult("Scan error: " + String(e));
+    }
+    setScanLoading(false);
+  }, [load]);
+
+  // Auto-scan effect
+  useEffect(() => {
+    if (scanInterval === 0) return;
+    const id = setInterval(runScan, scanInterval);
+    return () => clearInterval(id);
+  }, [scanInterval, runScan]);
+
   useEffect(() => {
     fetch("/api/projects")
       .then(r => r.json())
       .then(d => setProjects(d.projects?.map((p: any) => p.name).filter((n: string) => n !== "AI_Workflow") || []))
       .catch(() => setProjects([]));
   }, []);
-
-  const load = useCallback(async () => {
-    const params = projectFilter && projectFilter !== "__none__" ? `?project=${encodeURIComponent(projectFilter)}` : "";
-    const res = await fetch(`/api/tasks${params}`);
-    const data = await res.json();
-    setTasks(data.tasks ?? []);
-  }, [projectFilter]);
 
   useEffect(() => {
     queueMicrotask(() => void load());
@@ -117,7 +238,9 @@ function TasksPage() {
   const updateStatus = useCallback(async (task: Task, newStatus: string) => {
     setActionLoading(task.id + newStatus);
     try {
-      await fetch(`/api/tasks?id=${encodeURIComponent(task.id)}&status=${newStatus}`, { method: "PATCH" });
+      const params = new URLSearchParams({ id: task.id, status: newStatus });
+      if (task.project) params.set("project", task.project);
+      await fetch(`/api/tasks?${params}`, { method: "PATCH" });
       load();
     } catch { /* ignore */ }
     setActionLoading(null);
@@ -125,7 +248,18 @@ function TasksPage() {
 
   const updateProgress = useCallback(async (task: Task, progress: string) => {
     try {
-      await fetch(`/api/tasks?id=${encodeURIComponent(task.id)}&progress=${encodeURIComponent(progress)}`, { method: "PATCH" });
+      const params = new URLSearchParams({ id: task.id, progress });
+      if (task.project) params.set("project", task.project);
+      await fetch(`/api/tasks?${params}`, { method: "PATCH" });
+      load();
+    } catch { /* ignore */ }
+  }, [load]);
+
+  const updateDue = useCallback(async (task: Task, due: string) => {
+    try {
+      const params = new URLSearchParams({ id: task.id, due });
+      if (task.project) params.set("project", task.project);
+      await fetch(`/api/tasks?${params}`, { method: "PATCH" });
       load();
     } catch { /* ignore */ }
   }, [load]);
@@ -164,7 +298,7 @@ function TasksPage() {
               <><span className="font-mono">projects/{projectFilter}/tasks/</span></>
             ) : (
               <><span className="font-mono">memory/tasks/</span> + <span className="font-mono">projects/*/tasks/</span></>
-            )} — click to inspect, approve to dispatch
+            )}
           </p>
         </div>
 
@@ -185,7 +319,7 @@ function TasksPage() {
         </div>
 
         {/* Project filter bar */}
-        <div className="flex items-center gap-2 mb-4 flex-wrap">
+        <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>Project:</span>
           <button
             type="button"
@@ -216,6 +350,84 @@ function TasksPage() {
           ))}
         </div>
 
+        {/* Sort bar + Scan controls */}
+        <div className="flex items-center gap-4 mb-4 flex-wrap">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>Sort by:</span>
+            <button
+              type="button"
+              onClick={() => setSortBy(sortBy === "priority" ? "" : "priority")}
+              className="text-[10px] px-2 py-1 rounded font-mono transition-colors flex items-center gap-1"
+              style={{
+                background: sortBy === "priority" ? "rgba(240,185,11,0.15)" : "rgba(112,122,138,0.1)",
+                color: sortBy === "priority" ? "var(--primary)" : "var(--muted-foreground)",
+                border: sortBy === "priority" ? "1px solid rgba(240,185,11,0.3)" : "1px solid transparent",
+              }}
+            >
+              <SortDesc size={8} /> Priority
+            </button>
+            <button
+              type="button"
+              onClick={() => setSortBy(sortBy === "due" ? "" : "due")}
+              className="text-[10px] px-2 py-1 rounded font-mono transition-colors flex items-center gap-1"
+              style={{
+                background: sortBy === "due" ? "rgba(240,185,11,0.15)" : "rgba(112,122,138,0.1)",
+                color: sortBy === "due" ? "var(--primary)" : "var(--muted-foreground)",
+                border: sortBy === "due" ? "1px solid rgba(240,185,11,0.3)" : "1px solid transparent",
+              }}
+            >
+              <Calendar size={8} /> Due Date
+            </button>
+            <button
+              type="button"
+              onClick={() => setSortBy(sortBy === "created" ? "" : "created")}
+              className="text-[10px] px-2 py-1 rounded font-mono transition-colors flex items-center gap-1"
+              style={{
+                background: sortBy === "created" ? "rgba(240,185,11,0.15)" : "rgba(112,122,138,0.1)",
+                color: sortBy === "created" ? "var(--primary)" : "var(--muted-foreground)",
+                border: sortBy === "created" ? "1px solid rgba(240,185,11,0.3)" : "1px solid transparent",
+              }}
+            >
+              <SortAsc size={8} /> Created
+            </button>
+          </div>
+
+          {/* Scan interval */}
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: "var(--muted-foreground)" }}>Scan:</span>
+            <select
+              value={scanInterval}
+              onChange={(e) => saveScanInterval(Number(e.target.value))}
+              className="text-[10px] px-2 py-1 rounded border font-mono"
+              style={{ background: "var(--card-bg)", borderColor: "var(--border)", color: "var(--muted-foreground)" }}
+            >
+              {SCAN_INTERVAL_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={runScan}
+              disabled={scanLoading}
+              className="text-[10px] px-2 py-1 rounded font-mono transition-colors flex items-center gap-1 disabled:opacity-50"
+              style={{
+                background: scanLoading ? "rgba(240,185,11,0.15)" : "rgba(14,203,129,0.1)",
+                color: scanLoading ? "var(--primary)" : "#0ecb81",
+                border: scanLoading ? "1px solid rgba(240,185,11,0.3)" : "1px solid rgba(14,203,129,0.3)",
+              }}
+            >
+              <Search size={8} />
+              {scanLoading ? "Scanning..." : "Now"}
+            </button>
+            {scanResult && (
+              <span className="text-[10px] px-2 py-1 rounded" style={{ background: "rgba(14,203,129,0.1)", color: "#0ecb81" }}>
+                {scanResult}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Task list */}
         {tasks.length === 0 ? (
           <div
             className="rounded-lg border p-12 text-center text-sm"
@@ -262,7 +474,20 @@ function TasksPage() {
                       <div className="text-xs mt-0.5 flex items-center gap-2 flex-wrap" style={{ color: "var(--muted-foreground)" }}>
                         <span className="font-mono">{task.id}</span>
                         {task.project && <span>· {task.project}</span>}
-                        {task.agent && <span>· {task.agent}</span>}
+                        <span className="font-mono" style={{ background: p.bg, color: p.color }}>
+                          {task.priority}
+                        </span>
+                        {task.due && (
+                          <span className="text-[9px] px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(59,130,246,0.12)", color: "#3b82f6" }}>
+                            <Calendar size={8} className="inline mr-1" />
+                            {formatDue(task.due)}
+                          </span>
+                        )}
+                        {task.created && (
+                          <span className="text-[9px] px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(112,122,138,0.1)", color: "#929aa5" }}>
+                            Created {formatCreated(task.created)}
+                          </span>
+                        )}
                       </div>
                       {/* Identity row */}
                       <div className="flex items-center gap-2 mt-1.5 flex-wrap">
@@ -274,14 +499,6 @@ function TasksPage() {
                             <Cpu size={8} /> {task.executor}
                           </span>
                         )}
-                        <span className="text-[9px] px-1.5 py-0.5 rounded font-mono" style={{ background: p.bg, color: p.color }}>
-                          {task.priority}
-                        </span>
-                        {task.dueDate && (
-                          <span className="text-[9px] px-1.5 py-0.5 rounded flex items-center gap-1" style={{ background: "rgba(59,130,246,0.12)", color: "#3b82f6" }}>
-                            <Calendar size={8} /> {task.dueDate}
-                          </span>
-                        )}
                       </div>
                       {/* Progress indicator */}
                       {task.progress && (
@@ -290,11 +507,12 @@ function TasksPage() {
                             <div
                               className="h-full rounded-full transition-all duration-500"
                               style={{
-                                width: task.progress.includes("100%") || task.progress.toLowerCase().includes("complete") || task.progress.toLowerCase().includes("done") ? "100%" :
-                                       task.progress.includes("75%") ? "75%" :
-                                       task.progress.includes("50%") ? "50%" :
-                                       task.progress.includes("25%") ? "25%" : "10%",
-                                background: task.progress.toLowerCase().includes("complete") || task.progress.toLowerCase().includes("done") ? "#0ecb81" : "var(--primary)",
+                                width: task.status === "done" || task.status === "failed" ? "100%" :
+                                       task.status === "in_progress" ? "50%" :
+                                       task.status === "approved" ? "25%" : "10%",
+                                background: task.status === "done" ? "#0ecb81" :
+                                           task.status === "failed" ? "#ef4444" :
+                                           task.status === "in_progress" ? "#f0b90b" : "var(--primary)",
                               }}
                             />
                           </div>
@@ -303,45 +521,59 @@ function TasksPage() {
                       )}
                     </div>
                   </button>
-                  {/* Actions */}
+                  {/* Action buttons */}
                   <div className="flex items-center gap-1 shrink-0">
                     {task.status === "draft" && (
                       <button
                         type="button"
-                        onClick={(e) => { e.stopPropagation(); updateStatus(task, "approved"); }}
+                        title="Approve"
+                        onClick={(e) => { e.stopPropagation(); void updateStatus(task, "approved"); }}
                         disabled={actionLoading === task.id + "approved"}
-                        className="text-[9px] px-2 py-1 rounded border flex items-center gap-1"
-                        style={{ borderColor: "#fcd535", color: "#fcd535" }}
-                        title="Approve task — watcher will pick it up"
+                        className="p-1.5 rounded transition-colors disabled:opacity-50"
+                        style={{ background: "rgba(14,203,129,0.1)", color: "#0ecb81" }}
                       >
-                        <CheckCircle size={10} /> Approve
+                        <CheckCircle size={12} />
                       </button>
                     )}
                     {task.status === "approved" && (
                       <button
                         type="button"
-                        onClick={(e) => { e.stopPropagation(); updateStatus(task, "in_progress"); }}
-                        disabled={actionLoading === task.id + "in_progress"}
-                        className="text-[9px] px-2 py-1 rounded border flex items-center gap-1"
-                        style={{ borderColor: "#f0b90b", color: "#f0b90b" }}
-                        title="Mark as in progress"
+                        title="Enqueue"
+                        onClick={(e) => { 
+                          e.stopPropagation(); 
+                          fetch("/api/tasks/queue", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ action: "enqueue", task: { id: task.id, title: task.title, project: task.project } }),
+                          });
+                        }}
+                        className="p-1.5 rounded transition-colors"
+                        style={{ background: "rgba(240,185,11,0.1)", color: "#f0b90b" }}
                       >
-                        <Cpu size={10} /> Start
+                        <Clock size={12} />
                       </button>
                     )}
                     {task.status === "in_progress" && (
                       <button
                         type="button"
-                        onClick={(e) => { e.stopPropagation(); updateStatus(task, "done"); }}
+                        title="Done"
+                        onClick={(e) => { e.stopPropagation(); void updateStatus(task, "done"); }}
                         disabled={actionLoading === task.id + "done"}
-                        className="text-[9px] px-2 py-1 rounded border flex items-center gap-1"
-                        style={{ borderColor: "#0ecb81", color: "#0ecb81" }}
-                        title="Mark as done"
+                        className="p-1.5 rounded transition-colors disabled:opacity-50"
+                        style={{ background: "rgba(14,203,129,0.1)", color: "#0ecb81" }}
                       >
-                        <CheckCircle size={10} /> Done
+                        <CheckCircle size={12} />
                       </button>
                     )}
-                    <button type="button" onClick={(e) => { e.stopPropagation(); deleteTask(task); }} className="p-1.5 rounded hover:bg-red-500/10 shrink-0" style={{ color: "#ef4444" }} title="Delete only this task"><Trash2 size={14} /></button>
+                    <button
+                      type="button"
+                      title="Delete"
+                      onClick={(e) => { e.stopPropagation(); void deleteTask(task); }}
+                      className="p-1.5 rounded transition-colors"
+                      style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444" }}
+                    >
+                      <Trash2 size={12} />
+                    </button>
                   </div>
                 </div>
               );
@@ -407,36 +639,56 @@ function TasksPage() {
                   <div
                     className="h-full rounded-full transition-all duration-500"
                     style={{
-                      width: selected.progress.includes("100%") || selected.progress.toLowerCase().includes("complete") || selected.progress.toLowerCase().includes("done") ? "100%" :
-                             selected.progress.includes("75%") ? "75%" :
-                             selected.progress.includes("50%") ? "50%" :
-                             selected.progress.includes("25%") ? "25%" : "10%",
-                      background: selected.progress.toLowerCase().includes("complete") || selected.progress.toLowerCase().includes("done") ? "#0ecb81" : "var(--primary)",
+                      width: selected.status === "done" || selected.status === "failed" ? "100%" :
+                             selected.status === "in_progress" ? "50%" :
+                             selected.status === "approved" ? "25%" : "10%",
+                      background: selected.status === "done" ? "#0ecb81" :
+                                 selected.status === "failed" ? "#ef4444" :
+                                 selected.status === "in_progress" ? "#f0b90b" : "var(--primary)",
                     }}
                   />
                 </div>
                 <span className="text-[10px] font-mono shrink-0" style={{ color: "var(--muted-foreground)" }}>{selected.progress}</span>
               </div>
             )}
-            {selected.dueDate && (
+            {/* Due date editor */}
+            <div className="flex items-center gap-2 text-xs">
+              <span className="font-semibold" style={{ color: "var(--foreground)" }}>Due:</span>
+              <input
+                type="datetime-local"
+                defaultValue={toDateTimeLocal(selected.due)}
+                onBlur={(e) => {
+                  const iso = fromDateTimeLocal(e.target.value);
+                  if (iso) void updateDue(selected, iso);
+                }}
+                className="text-[10px] px-1.5 py-0.5 rounded border font-mono"
+                style={{
+                  background: "rgba(59,130,246,0.05)",
+                  borderColor: "rgba(59,130,246,0.2)",
+                  color: "#3b8b6f",
+                }}
+              />
+            </div>
+            {selected.created && (
               <div className="flex items-center gap-2 text-xs">
-                <span className="font-semibold" style={{ color: "var(--foreground)" }}>Due:</span>
-                <span className="px-1.5 py-0.5 rounded text-[10px]" style={{ background: "rgba(59,130,246,0.12)", color: "#3b82f6" }}>
-                  {selected.dueDate}
+                <span className="font-semibold" style={{ color: "var(--foreground)" }}>Created:</span>
+                <span className="text-[10px] font-mono" style={{ color: "var(--muted-foreground)" }}>
+                  {new Date(selected.created).toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}
                 </span>
               </div>
             )}
           </div>
-          <div className="flex-1 overflow-auto p-4">
-            <pre
-              className="text-xs leading-relaxed whitespace-pre-wrap font-mono"
-              style={{ color: "var(--foreground)", opacity: 0.85 }}
-            >
+          {/* Content */}
+          <div className="flex-1 overflow-y-auto px-4 py-3">
+            <pre className="text-xs whitespace-pre-wrap font-mono" style={{ color: "var(--muted-foreground)" }}>
               {selected.raw}
             </pre>
           </div>
         </div>
       )}
+
+      {/* Task Queue panel */}
+      <TaskQueue />
     </div>
   );
 }

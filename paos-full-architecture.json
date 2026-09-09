@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "PAOS \u2014 Personal Agent Operating System",
+    "subtitle": "Fabric + Workspace + Dashboard + Agents + Infrastructure",
+    "output": "paos-full-architecture.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1200,
+      640
+    ],
+    "views": [
+      {
+        "id": "fabric",
+        "label": "Fabric",
+        "focus": [
+          "paos",
+          "workspace",
+          "hermes",
+          "mcp-config",
+          "shared-memory"
+        ],
+        "note": "PAOS fabric."
+      },
+      {
+        "id": "agents",
+        "label": "Agents",
+        "focus": [
+          "coordinator",
+          "claude",
+          "gemini",
+          "codex",
+          "antigravity"
+        ],
+        "note": "Coordinat+."
+      },
+      {
+        "id": "infra",
+        "label": "Infrastructure",
+        "focus": [
+          "dashboard",
+          "telegram",
+          "github",
+          "tailscale-expose"
+        ],
+        "note": "Ops."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "paos",
+      "type": "cloud",
+      "label": "PAOS",
+      "sublabel": "fabric",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "core"
+    },
+    {
+      "id": "workspace",
+      "type": "database",
+      "label": "Workspace",
+      "sublabel": "projects/",
+      "pos": [
+        220,
+        60
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "~"
+    },
+    {
+      "id": "hermes",
+      "type": "backend",
+      "label": "Hermes",
+      "sublabel": "agent",
+      "pos": [
+        400,
+        60
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "core"
+    },
+    {
+      "id": "mcp-config",
+      "type": "cloud",
+      "label": "MCP Config",
+      "sublabel": "claude.json",
+      "pos": [
+        40,
+        150
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "shared"
+    },
+    {
+      "id": "shared-memory",
+      "type": "database",
+      "label": "Shared Memory",
+      "sublabel": "memory/",
+      "pos": [
+        220,
+        150
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "core"
+    },
+    {
+      "id": "coordinator",
+      "type": "messagebus",
+      "label": "Coordinator",
+      "sublabel": "roster",
+      "pos": [
+        400,
+        150
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "routes"
+    },
+    {
+      "id": "claude",
+      "type": "backend",
+      "label": "Claude",
+      "sublabel": "claude",
+      "pos": [
+        580,
+        150
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "gemini",
+      "type": "backend",
+      "label": "Gemini",
+      "sublabel": "gemini",
+      "pos": [
+        760,
+        150
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "codex",
+      "type": "backend",
+      "label": "Codex",
+      "sublabel": "codex",
+      "pos": [
+        940,
+        150
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "antigravity",
+      "type": "backend",
+      "label": "Antigravity",
+      "sublabel": "review",
+      "pos": [
+        1080,
+        150
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "skill"
+    },
+    {
+      "id": "dashboard",
+      "type": "frontend",
+      "label": "PAOS Dashboard",
+      "sublabel": "Next.js :3333",
+      "pos": [
+        300,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "UI"
+    },
+    {
+      "id": "telegram",
+      "type": "external",
+      "label": "Telegram Bot",
+      "sublabel": "messaging",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "mcp"
+    },
+    {
+      "id": "github",
+      "type": "external",
+      "label": "GitHub",
+      "sublabel": "vcs",
+      "pos": [
+        220,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "tailscale-expose",
+      "type": "cloud",
+      "label": "Tailscale",
+      "sublabel": "exposes :3333",
+      "pos": [
+        400,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "serve"
+    },
+    {
+      "id": "api-pipelines",
+      "type": "backend",
+      "label": "API",
+      "sublabel": "/api",
+      "pos": [
+        580,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ]
+    },
+    {
+      "id": "pipeline-system",
+      "type": "backend",
+      "label": "Pipeline",
+      "sublabel": "executor",
+      "pos": [
+        760,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "run"
+    },
+    {
+      "id": "skills",
+      "type": "backend",
+      "label": "Skills",
+      "sublabel": "57 skills",
+      "pos": [
+        940,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ],
+      "tag": "tools"
+    },
+    {
+      "id": "model-aliases",
+      "type": "backend",
+      "label": "Models",
+      "sublabel": "aliases",
+      "pos": [
+        1080,
+        260
+      ],
+      "size": [
+        130,
+        56
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Fabric Layer",
+      "wraps": [
+        "paos",
+        "workspace",
+        "hermes",
+        "mcp-config",
+        "shared-memory",
+        "coordinator"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Agent Layer",
+      "wraps": [
+        "claude",
+        "gemini",
+        "codex",
+        "antigravity"
+      ],
+      "pad": 16
+    },
+    {
+      "kind": "region",
+      "label": "Infrastructure",
+      "wraps": [
+        "dashboard",
+        "telegram",
+        "github",
+        "tailscale-expose",
+        "api-pipelines",
+        "pipeline-system",
+        "skills",
+        "model-aliases"
+      ],
+      "pad": 16
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "paos",
+      "to": "workspace",
+      "label": "creates",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c2",
+      "from": "workspace",
+      "to": "hermes",
+      "label": "tasks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c3",
+      "from": "hermes",
+      "to": "mcp-config",
+      "label": "uses",
+      "variant": "dashed"
+    },
+    {
+      "id": "c4",
+      "from": "mcp-config",
+      "to": "shared-memory",
+      "label": "shared",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c5",
+      "from": "shared-memory",
+      "to": "coordinator",
+      "label": "reads",
+      "variant": "dashed"
+    },
+    {
+      "id": "c6",
+      "from": "coordinator",
+      "to": "claude",
+      "label": "tasks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c7",
+      "from": "coordinator",
+      "to": "gemini",
+      "label": "tasks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c8",
+      "from": "coordinator",
+      "to": "codex",
+      "label": "tasks",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c9",
+      "from": "coordinator",
+      "to": "antigravity",
+      "label": "review",
+      "variant": "dashed"
+    },
+    {
+      "id": "c10",
+      "from": "coordinator",
+      "to": "api-pipelines",
+      "label": "POST",
+      "variant": "dashed"
+    },
+    {
+      "id": "c11",
+      "from": "api-pipelines",
+      "to": "pipeline-system",
+      "label": "execute",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c12",
+      "from": "pipeline-system",
+      "to": "skills",
+      "label": "invokes",
+      "variant": "dashed"
+    },
+    {
+      "id": "c13",
+      "from": "skills",
+      "to": "model-aliases",
+      "label": "reads",
+      "variant": "dashed"
+    },
+    {
+      "id": "c14",
+      "from": "mcp-config",
+      "to": "telegram",
+      "label": "telegram",
+      "variant": "dashed"
+    },
+    {
+      "id": "c15",
+      "from": "shared-memory",
+      "to": "github",
+      "label": "syncs",
+      "variant": "dashed"
+    },
+    {
+      "id": "c16",
+      "from": "tailscale-expose",
+      "to": "dashboard",
+      "label": "exposes",
+      "variant": "dashed"
+    },
+    {
+      "id": "c17",
+      "from": "dashboard",
+      "to": "api-pipelines",
+      "label": "proxy",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "PAOS Fabric",
+      "items": [
+        "PAOS orchestrates project workspaces",
+        "Workspace contains projects/ with tasks/ and memory/",
+        "Hermes agent processes delegated tasks",
+        "MCP config shared across all agents",
+        "Shared memory (ledger, inbox, context) is append-only"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Agent Layer",
+      "items": [
+        "Coordinator routes tasks to Claude, Gemini, Codex",
+        "Agents use @shorthand mentions for routing",
+        "Antigravity review loop: Plan \u2192 Review \u2192 Execute",
+        "Agents share MCP skills and tools"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Infrastructure",
+      "items": [
+        "PAOS Dashboard \u2014 Next.js at :3333 behind Tailscale Funnel",
+        "Telegram Bot + GitHub MCP for external integration",
+        "Pipeline API \u2014 POST /api/pipelines triggers executor",
+        "Skills library with 57 hermes skills + agent plugins",
+        "Model aliases for cost tracking and token comparison"
+      ]
+    }
+  ]
+}

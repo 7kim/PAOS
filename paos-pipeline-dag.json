@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "PAOS Pipeline DAG Orchestration",
+    "subtitle": "Submit, queue, execute DAG, done",
+    "output": "paos-pipeline-dag.html",
+    "quality_profile": "standard",
+    "views": [
+      { "id": "lifecycle", "label": "Pipeline lifecycle", "focus": ["submit", "queue-pending", "queue-running", "planner-phase", "verifier-phase", "executor-phase", "queue-done"], "note": "From submission through execution." },
+      { "id": "files", "label": "Required files", "focus": ["meta-json", "pipeline-json", "api-pipelines"], "note": "Pipeline files + API." }
+    ]
+  },
+  "lanes": [
+    { "id": "submission", "label": "Submission" },
+    { "id": "lifecycle-lane", "label": "Pipeline Lifecycle" }
+  ],
+  "nodes": [
+    { "id": "submit", "lane": "submission", "col": 1, "type": "frontend", "label": "Submit Pipeline", "sublabel": "h-pipeline or POST", "tag": "start" },
+    { "id": "queue-pending", "lane": "lifecycle-lane", "col": 1, "type": "messagebus", "label": "Queue: Pending", "sublabel": "queue.json", "tag": "FIFO" },
+    { "id": "queue-running", "lane": "lifecycle-lane", "col": 3, "type": "messagebus", "label": "Queue: Running", "sublabel": "active", "tag": "run" },
+    { "id": "queue-done", "lane": "lifecycle-lane", "col": 5, "type": "messagebus", "label": "Queue: Done", "sublabel": "complete", "tag": "ok" },
+    { "id": "planner-phase", "lane": "lifecycle-lane", "col": 1, "yOffset": 60, "type": "backend", "label": "Planner", "sublabel": "Phase A", "tag": "A" },
+    { "id": "verifier-phase", "lane": "lifecycle-lane", "col": 3, "yOffset": 60, "type": "security", "label": "Verifier", "sublabel": "Phase B", "tag": "B" },
+    { "id": "executor-phase", "lane": "lifecycle-lane", "col": 5, "yOffset": 60, "type": "backend", "label": "Executor", "sublabel": "Phase C", "tag": "C" },
+    { "id": "meta-json", "lane": "submission", "col": 1, "yOffset": 60, "type": "backend", "label": "META.json", "sublabel": "phases[]", "tag": "req" },
+    { "id": "pipeline-json", "lane": "submission", "col": 3, "yOffset": 60, "type": "backend", "label": "pipeline.json", "sublabel": "status", "tag": "req" },
+    { "id": "api-pipelines", "lane": "submission", "col": 5, "yOffset": 60, "type": "backend", "label": "API", "sublabel": "/api/pipelines", "tag": "CRUD" }
+  ],
+  "edges": [
+    { "from": "submit", "to": "queue-pending", "label": "creates", "variant": "emphasis" },
+    { "from": "queue-pending", "to": "queue-running", "label": "dequeues", "variant": "emphasis" },
+    { "from": "queue-running", "to": "planner-phase", "label": "dispatch", "variant": "emphasis" },
+    { "from": "planner-phase", "to": "verifier-phase", "label": "plan B", "variant": "dashed" },
+    { "from": "verifier-phase", "to": "executor-phase", "label": "verify C", "variant": "dashed" },
+    { "from": "planner-phase", "to": "executor-phase", "label": "ready", "variant": "emphasis" },
+    { "from": "verifier-phase", "to": "queue-done", "label": "verified", "variant": "emphasis" },
+    { "from": "submit", "to": "meta-json", "label": "writes", "variant": "dashed" },
+    { "from": "submit", "to": "pipeline-json", "label": "writes", "variant": "dashed" },
+    { "from": "submit", "to": "api-pipelines", "label": "POST", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Pipeline Lifecycle", "items": ["Submit via h-pipeline or POST /api/pipelines", "Queue: pending -> running -> done (FIFO)", "DAG: planner -> verifier -> executor", "Each phase writes REASONING.md + updates pipeline.json"] },
+    { "dot": "cyan", "title": "Required Files + API", "items": ["META.json — phases with id + status", "pipeline.json — status + progress", "PLAN.md — copy of plan", "TASKS.md — checklist", "POST /api/pipelines — create pipeline", "POST /api/pipelines/[id]/execute — run phase", "GET /api/pipelines/[id]/flow-status — live DAG"] }
+  ]
+}

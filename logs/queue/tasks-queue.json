@@ -1,0 +1,15 @@
+{
+  "pending": [
+    {
+      "id": "test-second-task",
+      "title": "Test Task 2 — Second Test",
+      "project": "PAOS",
+      "status": "pending",
+      "progress": "",
+      "enqueuedAt": "2026-09-03T16:01:29.761Z"
+    }
+  ],
+  "running": null,
+  "done": [],
+  "maxDone": 20
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "PAOS Dashboard API Request Lifecycle",
+    "subtitle": "From user request through API routes to response",
+    "output": "paos-dashboard-api-sequence.html",
+    "quality_profile": "standard"
+  },
+  "participants": [
+    { "id": "user", "type": "external", "label": "User", "sublabel": "dashboard :3333" },
+    { "id": "api-router", "type": "backend", "label": "API Router", "sublabel": "dashboard/api/" },
+    { "id": "pipelines-api", "type": "backend", "label": "pipelines", "sublabel": "META + DAG" },
+    { "id": "queue-api", "type": "backend", "label": "queue", "sublabel": "auto-clean" },
+    { "id": "filesystem", "type": "database", "label": "Filesystem", "sublabel": "memory/ + p/" }
+  ],
+  "messages": [
+    { "id": "m1", "from": "user", "to": "api-router", "y": 180, "label": "GET /api/pipelines", "variant": "emphasis" },
+    { "id": "m2", "from": "api-router", "to": "pipelines-api", "y": 240, "label": "pipelines req", "variant": "dashed" },
+    { "id": "m3", "from": "pipelines-api", "to": "filesystem", "y": 300, "label": "read META+flow+bld", "variant": "emphasis" },
+    { "id": "m4", "from": "filesystem", "to": "pipelines-api", "y": 360, "label": "files", "variant": "dashed" },
+    { "id": "m5", "from": "pipelines-api", "to": "api-router", "y": 420, "label": "build JSON", "variant": "emphasis" },
+    { "id": "m6", "from": "api-router", "to": "user", "y": 480, "label": "JSON response", "variant": "emphasis" },
+    { "id": "m7", "from": "user", "to": "queue-api", "y": 210, "label": "POST /api/queue", "variant": "dashed" },
+    { "id": "m8", "from": "queue-api", "to": "filesystem", "y": 270, "label": "up queue.json", "variant": "dashed" },
+    { "id": "m9", "from": "filesystem", "to": "queue-api", "y": 330, "label": "done", "variant": "dashed" },
+    { "id": "m10", "from": "queue-api", "to": "api-router", "y": 390, "label": "updated", "variant": "dashed" },
+    { "id": "m11", "from": "api-router", "to": "user", "y": 450, "label": "ack", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Pipeline Request Flow", "items": ["User requests /api/pipelines/[id]", "API reads META.json + pipeline-flow.json + builder-layout.json", "Loads phases/<id>/REASONING.md + TASKS.md + WALKTHROUGH.md", "Returns phases[] + DAG + artifacts in JSON"] },
+    { "dot": "cyan", "title": "Queue Operations", "items": ["POST /api/queue — enqueue/done/remove", "queue.json auto-cleaned on read", "DELETE /api/pipelines/[id] purges queue"] }
+  ]
+}

@@ -13,14 +13,15 @@ export interface Task {
   author: string;
   executor: string;
   priority: string;
-  dueDate: string;
+  due: string;
+  created: string;
   progress: string;
   raw: string;
 }
 
 const VALID_STATUSES = ["draft", "approved", "in_progress", "done", "failed", "pending", "in_progress", "ready_for_execution", "planning", "needs_planning"];
 
-function parseTaskCard(raw: string, filename: string, project?: string): Task {
+function parseTaskCard(raw: string, filename: string, project?: string, birthtime?: string): Task {
   const lines = raw.split("\n");
   const title = lines.find((l) => l.startsWith("# "))?.replace("# ", "").trim() ?? filename;
   const statusLine = lines.find((l) => l.toLowerCase().startsWith("status:"));
@@ -28,7 +29,15 @@ function parseTaskCard(raw: string, filename: string, project?: string): Task {
   const authorLine = lines.find((l) => l.toLowerCase().startsWith("author:"));
   const executorLine = lines.find((l) => l.toLowerCase().startsWith("executor:"));
   const priorityLine = lines.find((l) => l.toLowerCase().startsWith("priority:"));
-  const dueDateLine = lines.find((l) => l.toLowerCase().startsWith("due:"));
+  const dueLine = lines.find((l) => l.toLowerCase().startsWith("due:"));
+  const createdLine = lines.find((l) => l.toLowerCase().startsWith("created:"));
+  
+  // Helper: get full value after "Key: " (handles ISO timestamps with colons)
+  const getVal = (line: string | undefined) => {
+    if (!line) return "";
+    const idx = line.indexOf(":");
+    return line.substring(idx + 1).trim();
+  };
   const progressLine = lines.find((l) => l.toLowerCase().startsWith("progress:"));
 
   return {
@@ -40,7 +49,8 @@ function parseTaskCard(raw: string, filename: string, project?: string): Task {
     author: authorLine?.split(":")[1]?.trim() ?? "hermes-nous",
     executor: executorLine?.split(":")[1]?.trim() ?? "",
     priority: priorityLine?.split(":")[1]?.trim() ?? "normal",
-    dueDate: dueDateLine?.split(":")[1]?.trim() ?? "",
+    due: getVal(dueLine),
+    created: getVal(createdLine) || birthtime || "",
     progress: progressLine?.split(":")[1]?.trim() ?? "",
     raw,
   };
@@ -49,19 +59,15 @@ function parseTaskCard(raw: string, filename: string, project?: string): Task {
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const filterProject = searchParams.get("project") || "";
+  const sortBy = searchParams.get("sort") || "";
 
   try {
     let tasksDir: string;
-    // __none__ means no project selected — read global + all projects
     if (filterProject && filterProject !== "__none__") {
-      // Read from projects/{name}/tasks/
       tasksDir = join(PROJECTS_DIR, filterProject, "tasks");
       const dirExists = await stat(tasksDir).then(() => true).catch(() => false);
-      if (!dirExists) {
-        return NextResponse.json({ tasks: [] });
-      }
+      if (!dirExists) return NextResponse.json({ tasks: [] });
     } else {
-      // Read from global memory/tasks/ + all projects/{name}/tasks/
       const globalTasks = await readFromDir(join(MEMORY_DIR, "tasks"), "");
       const projectTasks: Task[] = [];
       const projects = await readdir(PROJECTS_DIR).catch(() => []);
@@ -70,13 +76,43 @@ export async function GET(req: Request) {
         const projTasks = await readFromDir(join(PROJECTS_DIR, project, "tasks"), project);
         projectTasks.push(...projTasks);
       }
-      return NextResponse.json({ tasks: [...globalTasks, ...projectTasks].reverse() });
+      const allTasks = [...globalTasks, ...projectTasks].reverse();
+      if (sortBy) return NextResponse.json({ tasks: sortTasks(allTasks, sortBy) });
+      return NextResponse.json({ tasks: allTasks });
     }
 
-    return NextResponse.json({ tasks: await readFromDir(tasksDir, filterProject) });
+    const tasks = await readFromDir(tasksDir, filterProject);
+    if (sortBy) return NextResponse.json({ tasks: sortTasks(tasks, sortBy) });
+    return NextResponse.json({ tasks });
   } catch {
     return NextResponse.json({ tasks: [] });
   }
+}
+
+function sortTasks(tasks: Task[], sortBy: string): Task {
+  const priorityOrder: Record<string, number> = { critical: 0, high: 1, normal: 2, low: 3 };
+  
+  const sorted = [...tasks];
+  switch (sortBy) {
+    case "priority":
+      sorted.sort((a, b) => (priorityOrder[a.priority] ?? 2) - (priorityOrder[b.priority] ?? 2));
+      break;
+    case "due":
+      sorted.sort((a, b) => {
+        const aTime = a.due ? new Date(a.due).getTime() : Infinity;
+        const bTime = b.due ? new Date(b.due).getTime() : Infinity;
+        return aTime - bTime;
+      });
+      break;
+    case "created":
+      sorted.sort((a, b) => {
+        const aTime = a.created ? new Date(a.created).getTime() : 0;
+        const bTime = b.created ? new Date(b.created).getTime() : 0;
+        return bTime - aTime;
+      });
+      break;
+  }
+  return sorted;
 }
 
 async function readFromDir(dir: string, project: string): Promise<Task[]> {
@@ -86,7 +122,12 @@ async function readFromDir(dir: string, project: string): Promise<Task[]> {
     return Promise.all(
       mdFiles.map(async (f) => {
         const raw = await readFile(join(dir, f), "utf-8");
-        return parseTaskCard(raw, f, project);
+        let birthtime = "";
+        try {
+          const st = await stat(join(dir, f));
+          birthtime = st.birthtime.toISOString();
+        } catch { /* ignore */ }
+        return parseTaskCard(raw, f, project, birthtime);
       })
     );
   } catch {
@@ -111,7 +152,6 @@ export async function DELETE(req: Request) {
       join(MEMORY_DIR, "tasks", id),
       join(PROJECTS_DIR, project || "__none__", "tasks", id),
     ];
-    // if project not given, also scan all projects
     let target = "";
     for (const c of candidates) {
       try { await stat(c); target = c; break; } catch { /* miss */ }
@@ -135,7 +175,7 @@ export async function DELETE(req: Request) {
   }
 }
 
-// PATCH /api/tasks — update task status and progress
+// PATCH /api/tasks — update task status, progress, due, created
 export async function PATCH(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -143,6 +183,8 @@ export async function PATCH(req: Request) {
     let project = searchParams.get("project") || "";
     let newStatus = searchParams.get("status") || "";
     let newProgress = searchParams.get("progress") || "";
+    let newDue = searchParams.get("due") || "";
+    let newCreated = searchParams.get("created") || "";
 
     if (!id) {
       const body = await req.json().catch(() => ({}));
@@ -150,10 +192,12 @@ export async function PATCH(req: Request) {
       project = body.project || "";
       newStatus = body.status || "";
       newProgress = body.progress || "";
+      newDue = body.due || "";
+      newCreated = body.created || "";
     }
 
     if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });
-    if (!newStatus && !newProgress) return NextResponse.json({ error: "status or progress required" }, { status: 400 });
+    if (!newStatus && !newProgress && !newDue && !newCreated) return NextResponse.json({ error: "at least one field required" }, { status: 400 });
     if (id.includes("..") || id.includes("/")) id = id.split("/").pop() || id;
     if (!id.endsWith(".md")) id += ".md";
 
@@ -182,7 +226,6 @@ export async function PATCH(req: Request) {
     }
     if (!target) return NextResponse.json({ error: `task ${id} not found` }, { status: 404 });
 
-    // Read current content, replace status and progress lines
     let content = await readFile(target, "utf-8");
     const lines = content.split("\n");
 
@@ -194,8 +237,6 @@ export async function PATCH(req: Request) {
         const titleIdx = lines.findIndex((l) => l.startsWith("# "));
         lines.splice(titleIdx + 1, 0, `Status: ${newStatus}`);
       }
-
-      // Add approved timestamp if transitioning to approved
       if (newStatus === "approved") {
         const ts = new Date().toISOString();
         lines.push(`\n<!-- approved: ${ts} -->`);
@@ -211,16 +252,35 @@ export async function PATCH(req: Request) {
       }
     }
 
+    if (newDue) {
+      const dueIdx = lines.findIndex((l) => l.toLowerCase().startsWith("due:"));
+      if (dueIdx >= 0) {
+        lines[dueIdx] = `Due: ${newDue}`;
+      } else {
+        lines.push(`Due: ${newDue}`);
+      }
+    }
+
+    if (newCreated) {
+      const createdIdx = lines.findIndex((l) => l.toLowerCase().startsWith("created:"));
+      if (createdIdx >= 0) {
+        lines[createdIdx] = `Created: ${newCreated}`;
+      } else {
+        lines.push(`Created: ${newCreated}`);
+      }
+    }
+
     await writeFile(target, lines.join("\n"), "utf-8");
 
     try {
       const ts = new Date().toISOString();
       const action = newStatus ? `Status → ${newStatus}` : "";
       const progress = newProgress ? `Progress: ${newProgress}` : "";
-      await appendFile(join(MEMORY_DIR, "global_ledger.md"), `\n| ${ts} | dashboard | STATUS | ${target.replace(process.env.HOME || "/home/dev", "~")} | ${action} ${progress} | - | - |\n`, "utf-8");
+      const due = newDue ? `Due: ${newDue}` : "";
+      await appendFile(join(MEMORY_DIR, "global_ledger.md"), `\n| ${ts} | dashboard | STATUS | ${target.replace(process.env.HOME || "/home/dev", "~")} | ${action} ${progress} ${due} | - | - |\n`, "utf-8");
     } catch { /* ignore */ }
 
-    return NextResponse.json({ ok: true, id: id.replace(".md", ""), status: newStatus, progress: newProgress });
+    return NextResponse.json({ ok: true, id: id.replace(".md", ""), status: newStatus, progress: newProgress, due: newDue, created: newCreated });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }

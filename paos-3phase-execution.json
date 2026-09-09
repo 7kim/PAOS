@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "PAOS 3-Phase Execution",
+    "subtitle": "Planner -> Architect -> Executor with dual-logging",
+    "output": "paos-3phase-execution.html",
+    "quality_profile": "standard",
+    "views": [
+      { "id": "main-flow", "label": "Main execution flow", "focus": ["task", "plan", "tasks-md", "review", "coordinate", "execute", "dual-log", "verify", "handoff", "commit", "inbox"], "note": "From task to committed result." },
+      { "id": "parallel", "label": "Parallel review", "focus": ["review", "coordinate", "blocked"], "note": "Architect + Coordinator in parallel." }
+    ]
+  },
+  "lanes": [
+    { "id": "input", "label": "Input" },
+    { "id": "planning", "label": "Planning (A)" },
+    { "id": "review", "label": "Review (B)" },
+    { "id": "execution", "label": "Execution (C)" },
+    { "id": "coord", "label": "Coordination" },
+    { "id": "output", "label": "Output" }
+  ],
+  "nodes": [
+    { "id": "task", "lane": "input", "col": 1, "type": "frontend", "label": "Task", "sublabel": "user or @shorthand" },
+    { "id": "plan", "lane": "planning", "col": 1, "type": "backend", "label": "PLAN.md", "sublabel": "PM writes", "tag": "A" },
+    { "id": "tasks-md", "lane": "planning", "col": 3, "type": "backend", "label": "TASKS.md", "sublabel": "[]/[~]/[x]", "tag": "A" },
+    { "id": "review", "lane": "review", "col": 1, "type": "security", "label": "REVIEW", "sublabel": "Architect", "tag": "B" },
+    { "id": "coordinate", "lane": "coord", "col": 3, "type": "messagebus", "label": "Coordinator", "sublabel": "routes", "tag": "par" },
+    { "id": "execute", "lane": "execution", "col": 1, "type": "backend", "label": "Execute", "sublabel": "runs plan", "tag": "C" },
+    { "id": "dual-log", "lane": "execution", "col": 3, "type": "database", "label": "Dual-Log", "sublabel": "events+ledger", "tag": "req" },
+    { "id": "verify", "lane": "execution", "col": 5, "type": "security", "label": "Verify", "sublabel": "checks", "tag": "C" },
+    { "id": "handoff", "lane": "output", "col": 1, "type": "backend", "label": "HANDOFF.md", "sublabel": "update", "tag": "crit" },
+    { "id": "commit", "lane": "output", "col": 3, "type": "messagebus", "label": "Git Commit", "sublabel": "Agent: desc", "tag": "audit" },
+    { "id": "inbox", "lane": "output", "col": 5, "type": "messagebus", "label": "Inbox", "sublabel": "notify", "tag": "done" },
+    { "id": "blocked", "lane": "review", "col": 5, "type": "security", "label": "Blocked", "sublabel": "FAIL blocks", "tag": "stop" }
+  ],
+  "edges": [
+    { "from": "task", "to": "plan", "label": "assigned", "variant": "emphasis", "route": "straight" },
+    { "from": "plan", "to": "tasks-md", "label": "wrote", "variant": "dashed", "route": "straight" },
+    { "from": "plan", "to": "review", "label": "to Arch", "variant": "emphasis", "route": "straight" },
+    { "from": "plan", "to": "coordinate", "label": "to Coord", "variant": "dashed", "route": "straight" },
+    { "from": "review", "to": "execute", "label": "PASS", "variant": "emphasis", "route": "straight" },
+    { "from": "review", "to": "blocked", "label": "FAIL", "variant": "security", "route": "straight" },
+    { "from": "coordinate", "to": "execute", "label": "ready", "variant": "dashed", "route": "straight" },
+    { "from": "execute", "to": "dual-log", "label": "logs", "variant": "emphasis", "route": "straight" },
+    { "from": "dual-log", "to": "verify", "label": "verify", "variant": "dashed", "route": "straight" },
+    { "from": "verify", "to": "handoff", "label": "OK", "variant": "emphasis", "route": "straight" },
+    { "from": "handoff", "to": "commit", "label": "commit", "variant": "dashed", "route": "straight" },
+    { "from": "commit", "to": "inbox", "label": "notify", "variant": "dashed", "route": "straight" }
+  ],
+  "cards": [
+    { "dot": "emerald", "title": "Phase A: Planning", "items": ["PM writes IMPLEMENTATION_PLAN.md", "Objective, Scope, Steps, Risks, Knowledge Check", "TASKS.md with [ ]/[~]/[x] markers", "Plan goes to Architect for review"] },
+    { "dot": "rose", "title": "Phase B: Review", "items": ["Architect appends ## REVIEW [STATUS]", "Statuses: PASS, FAIL, CONDITIONAL", "No execution without review token", "Coordinator routes in parallel"] },
+    { "dot": "cyan", "title": "Phase C: Execution", "items": ["Executor runs the plan", "Dual-logging: events.md + global_ledger.md", "Coordinator verifies after execution", "HANDOFF.md updated, then git commit"] }
+  ]
+}
