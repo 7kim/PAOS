@@ -1,16 +1,35 @@
-# PAOS — Personal Agent Operating System
+<p align="center">
+  <img src="assets/logo.svg" width="130" alt="PAOS logo" />
+</p>
 
-![PAOS Dashboard](screenshots/dashboard-overview.png)
+<h1 align="center">🧠 PAOS — Personal Agent Operating System</h1>
 
-![Next.js](https://img.shields.io/badge/Next.js-16.2-black?logo=next.js) ![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwindcss&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-green)
+<p align="center">
+  <b>A multi-agent orchestration framework: a written constitution that separates planning from execution from review, an append-only ledger every agent writes to, and a dashboard to run it all from.</b>
+</p>
 
-Run Claude Code, Codex, Gemini, and Hermes side by side and they don't know about each other — no shared memory, no shared audit trail, nothing stopping one agent from stepping on what another just did. PAOS gives them one workspace and one set of rules to work under: a written constitution that separates planning from execution from review, an append-only ledger every agent writes to, and a dashboard where you build a pipeline, assign each step to whichever agent should own it, and watch it run.
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16.2-black?logo=next.js" />
+  <img src="https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/agents-11-blueviolet" />
+  <img src="https://img.shields.io/badge/API%20endpoints-63-2563EB" />
+  <img src="https://img.shields.io/badge/license-MIT-green" />
+</p>
 
 ---
 
-## The constitution
+## 📖 What PAOS is
 
-Every agent in PAOS operates under `workflow.md` — the **H-Factor Protocol** — before it's allowed to touch a bash command or edit a file. Four invariants, enforced structurally rather than just requested in a prompt:
+Run Claude Code, Codex, Gemini, and Hermes side by side and they don't know about each other — no shared memory, no shared audit trail, nothing stopping one agent from stepping on what another just did. PAOS gives them one workspace and one set of rules to work under: a constitution, a shared ledger, and a dashboard where you build a pipeline, assign each step to whichever agent should own it, and watch it run.
+
+![PAOS Dashboard](screenshots/dashboard-overview.png)
+
+---
+
+## ⚖️ The constitution
+
+Every agent operates under `workflow.md` — the **H-Factor Protocol** — before it's allowed to touch a bash command or edit a file. Four invariants, enforced structurally rather than just requested in a prompt:
 
 | Invariant | Meaning |
 |---|---|
@@ -19,13 +38,13 @@ Every agent in PAOS operates under `workflow.md` — the **H-Factor Protocol** �
 | **Identity First** | Every action is attributed to a declared agent identity (`agents/<name>/soul.md`). |
 | **Skill Boundary** | An agent can only act within what its own `soul.md` says it's allowed to do. |
 
-The safety gate this produces: no agent runs `bash` or `edit` without a Peer Review token — a `## REVIEW [PASS|FAIL|CONDITIONAL]` block the **Architect** agent appends to the plan. A `FAIL` blocks execution outright. In practice that's a 3-phase flow — **Plan → Review → Execute** — with every phase logged to the agent's own event file and the global ledger before a commit happens.
+The safety gate this produces: no agent runs `bash` or `edit` without a Peer Review token — a `## REVIEW [PASS|FAIL|CONDITIONAL]` block the **Architect** agent appends to the plan. A `FAIL` blocks execution outright. In practice that's a 3-phase flow — **Plan → Review → Execute** — logged to the agent's own event file and the global ledger before a commit happens.
 
-Each agent has a distinct "soul": the Architect is written to be skeptical by default and cites `workflow.md` line-by-line in its reviews; the Coordinator delegates but never executes, and reports back in a fixed Objective → Delegated To → Status → Next Step format; the Developer and Codex take approved plans and build them, logging every file touched. It's less "AI agents in a folder" and more a small organization with defined roles.
+Each agent has a distinct "soul": the Architect is skeptical by default and cites `workflow.md` line-by-line in its reviews; the Coordinator delegates but never executes, reporting back as Objective → Delegated To → Status → Next Step; the Developer and Codex take approved plans and build them, logging every file touched. It's less "AI agents in a folder" and more a small organization with defined roles.
 
 ---
 
-## How it's organized
+## 🗂️ How it's organized
 
 ![PAOS Architecture](screenshots/paos-architecture.svg)
 
@@ -37,7 +56,7 @@ None of it touches a database. The dashboard is a Next.js 16 App Router app with
 
 ---
 
-## Inside the dashboard
+## 🖥️ Inside the dashboard
 
 ### Pipelines
 
@@ -64,19 +83,13 @@ A 110-question, evidence-based audit across 9 weighted categories (OOP, data str
 
 Per-agent cost breakdown, a 14/30-day histogram split by input/output tokens, a calendar view of daily spend, and cost comparisons against what the same usage would run on GPT-4, Gemini, DeepSeek, or any other model's pricing.
 
-### Terminals, Docker, Node processes
-
-![Terminals](screenshots/terminals.png)
-
-Every running process sorted by CPU, pipeline PIDs linking straight to their output, plus dedicated Docker container management (start/stop/restart/kill, expandable logs) and a Node/npm/build-process monitor. All three auto-refresh every 5 seconds; kills go SIGTERM before SIGKILL.
-
 ### Tasks, Ledger, Inbox, Handoff, Git View, Vault
 
 Tasks move `draft → approved → in_progress → done`, and a cron-driven watcher executes anything marked approved without further prompting. The Ledger is the immutable log Article I mandates, browsable globally or per project. Inbox is the messaging bus between agents. Handoff is a living document rewritten every session so whoever's next — human or agent — knows what happened and what's open. Git View gives a commit graph and diff viewer with commits mapped back to agent identity. Vault is Obsidian-compatible access to daily notes and chat transcripts.
 
 ---
 
-## By the numbers
+## 🔢 By the numbers
 
 | | |
 |---|---|
@@ -91,7 +104,7 @@ Tasks move `draft → approved → in_progress → done`, and a cron-driven watc
 
 ---
 
-## Getting started
+## 🚀 Getting started
 
 **Ubuntu / Debian**
 ```bash
@@ -133,7 +146,7 @@ Global secrets (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, etc.) go in `config/secre
 
 ---
 
-## Under the hood
+## 🧩 Under the hood
 
 ```
 PAOS/
@@ -150,7 +163,7 @@ PAOS/
 ├── projects/{name}/  memory/pipelines/{project}/   # Per-project fabric + sandbox
 ├── benchmarks/                      # Benchmark run history
 ├── docs/                            # api.md, architecture.md, pipelines.md, examples.md
-└── screenshots/                     # What you're looking at in this README
+└── assets/ screenshots/             # Logo + screenshots used in this README
 ```
 
 A pipeline node's execution, end to end:
@@ -171,7 +184,7 @@ For the full map — every page, API route, component, and library, one line eac
 
 ---
 
-## Worth knowing
+## 🔍 Worth knowing
 
 - Secrets are gitignored everywhere (`config/secrets/.env`, `.env`, `*.key`, `*.pem`) — only `.env.template` placeholders are tracked, and that's the way it should stay.
 - File reads go through path-traversal protection, API inputs are validated, and TypeScript strict mode is on throughout.
@@ -180,7 +193,7 @@ For the full map — every page, API route, component, and library, one line eac
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 1. Read `Coding-Principles.md` before touching architecture, and `workflow.md` before touching the agent protocol itself.
 2. Run `Coding-Principles-Benchmark.md` before opening a PR.
@@ -189,6 +202,6 @@ For the full map — every page, API route, component, and library, one line eac
 
 ---
 
-## License
+## 📄 License
 
 MIT — free to use, modify, and distribute.
