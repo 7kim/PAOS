@@ -2,329 +2,169 @@
 
 ![PAOS Dashboard](screenshots/dashboard-overview.png)
 
-A multi-agent orchestration framework for running Hermes, Claude Code, Codex, Gemini, and other coding agents against a single shared workspace. Build visual DAG pipelines, assign an agent to each node, execute cascading multi-phase workflows, and watch tokens, costs, terminals, benchmarks, and file changes update live from one dashboard.
-
 ![Next.js](https://img.shields.io/badge/Next.js-16.2-black?logo=next.js) ![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white) ![Tailwind](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwindcss&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-green)
+
+Most people running multiple coding agents (Claude Code, Codex, Gemini, Hermes...) end up with N terminal tabs, no shared memory between them, and no record of what any of them actually did. PAOS is one workspace that all of them plug into instead: a shared ledger, a shared knowledge base, and a dashboard where you build a pipeline, hand each step to whichever agent should own it, and watch the whole thing execute.
 
 ---
 
-## Architecture
+## How it's organized
 
 ![PAOS Architecture](screenshots/paos-architecture.svg)
 
-PAOS is organized in two layers:
+Two layers:
 
-- **The Fabric** — global infrastructure shared by every project: an append-only ledger, shared knowledge base, per-agent config, secrets, skills library, MCP server definitions, the agent registry, and a FIFO pipeline queue. This runs once, always on.
-- **Per-Project Workspace** — each project gets an isolated sandbox (`memory/pipelines/{project}/`) with its own pipelines, ledger, kanban board, scoped agent inboxes, vault, and secrets, so audit trails never bleed between projects.
+**The Fabric** — the stuff that's global and always-on: an append-only audit ledger, the shared knowledge base, per-agent config and secrets, the skills library, MCP server definitions, the agent registry, and a FIFO pipeline queue. One instance, shared by every project.
 
-The dashboard itself is a Next.js 16 App Router application with 63 file-system-based API routes — there's no database; everything reads and writes markdown/JSON on disk. Pipelines are executed by a DAG engine using Kahn's topological sort, and agents are spawned as subprocesses with per-node prompts, file references, and PID tracking.
+**Per-project sandboxes** — each project gets `memory/pipelines/{project}/` with its own pipelines, ledger, kanban board, agent inboxes, vault, and secrets. A `MyProject_claude` identity is distinct from the global `claude` identity, so nothing about one project's audit trail leaks into another's.
+
+Nothing here touches a database — the dashboard is a Next.js 16 App Router app with 63 API routes that all read and write markdown/JSON on disk. Pipelines run as DAGs, ordered with Kahn's topological sort, and each node spawns its assigned agent as a subprocess with its own prompt, file references, and PID.
 
 ---
 
-## Features
+## What's in the dashboard
 
-### Pipeline System
+### Pipelines — the core loop
 
 ![Pipeline Flow](screenshots/pipeline-flow.svg)
-
-- **Visual DAG Builder** — drag-and-drop node editor built on `@xyflow/react`
-- **Topological Execution** — Kahn's algorithm for dependency-ordered cascading runs
-- **Branching & Joins** — parallel execution paths with sync points
-- **Retry / Skip / Cancel** — per-node error recovery
-- **Live Status** — per-node spinner, PID, progress bar, output preview
-- **Intervention** — pause a running pipeline, edit `INTERVENE.md`, resume
-
 ![Flow Builder](screenshots/flow-builder.png)
 
-| Feature | Description |
-|---------|-------------|
-| Auto-naming | `{Project}-PIPE_{counter}-{DD-MM-YYYY}---{HH-MM}` |
-| 8 template presets | Quick Dev, Analyze-Implement, PR Review, Bug Fix, etc. |
-| Load pipeline | Reopen a saved pipeline in the builder for re-execution |
-| Phase cards | Clickable `.md` artifacts per node (toggleable) |
-| Smart animation | Edges animate only between a completed source and pending target |
+Drag out a DAG in the visual builder (`@xyflow/react`), assign an agent per node, and hit run. Branches and joins are supported for parallel work with sync points. If a node fails you can retry it, skip it, or cancel the run — and if you want to step in mid-execution, pausing lets you edit `INTERVENE.md` before resuming. Eight starter templates (Quick Dev, Analyze-Implement, PR Review, Bug Fix, etc.) cover the common shapes, and any saved pipeline can be reopened in the builder and re-run.
 
-### Agent System
+### Agents
 
 ![Agents](screenshots/agents.png)
 
-- **Multi-agent support** — Hermes, Claude Code, Codex, Gemini, Antigravity, OpenClaw, and more, all behind a common interface
-- **Agent detection** — auto-detects installed agents via CLI version checks
-- **Role system** — each role carries a hidden default prompt plus a user override
-- **Skills & MCPs** — per-node skill and MCP server configuration
-- **File references** — attach project/benchmark/pipeline files in read or edit mode
-- **Scoped identities** — every project gets its own aliased agent identities (e.g. `MyProject_claude`), so ledgers and inboxes stay isolated per project while a global identity handles cross-project work
+Eleven agent identities ship in the registry — Hermes as orchestrator, Claude Code, Codex, Gemini, Antigravity for review/audit, OpenClaw, Developer, Architect, Coordinator, Ollama, and Signal — each with a `soul.md` defining what it is and what it's allowed to touch. The dashboard auto-detects which ones are actually installed via CLI version checks, and every role carries a default prompt you can override per node.
 
-11 agent identities ship in the registry: Hermes (orchestrator), Claude Code, Codex, Gemini, Antigravity (review/audit), OpenClaw, Developer, Architect, Coordinator, Ollama, and Signal — each backed by a `soul.md` defining its identity and skill boundaries.
-
-### Benchmarks & Code Quality
+### Benchmarks
 
 ![Benchmarks](screenshots/benchmarks.png)
 
-The benchmark system scores code against a 110-question, evidence-based audit spanning 9 categories of the project's coding constitution:
+A 110-question, evidence-based audit across 9 weighted categories — OOP, data structures, and security carry the most weight; graph theory the least. Every run produces a full audit, a combined gaps file, before/after SRS documents (via the `system-analysis-and-design` skill), and an implementation plan. Gaps live on a four-column kanban — Pending, In Progress, Fixed, Won't Fix — and any gap can be turned directly into a new pipeline.
 
-| Category | Questions | Weight |
-|----------|-----------|--------|
-| OOP | 18 | Heavy |
-| Data Structures | 9 | Heavy |
-| Security | 15 | Heavy |
-| Code Quality | 10 | Medium |
-| API Endpoints | 10 | Medium |
-| Database | 8 | Medium |
-| UX/UI | 10 | Moderate |
-| System Analysis | 7 | Heavy |
-| Graph Theory | 6 | Supporting |
-
-Each run generates `full-audit.md`, `gaps.md`, `SRS-as-is.md` / `SRS-to-be.md` (via the `system-analysis-and-design` skill), `implementation.md`, and `implementation-plan.md`. Gaps flow through a 4-column kanban: **Pending → In Progress → Fixed → Won't Fix**, and any gap can be converted straight into a new pipeline.
-
-### Token Tracking
+### Tokens & cost
 
 ![Tokens](screenshots/tokens.png)
 
-- Per-agent cost breakdown
-- 14/30-day histogram with input/output split bars
-- Calendar view of daily token and cost history
-- Cost comparison against Claude, GPT-4, Gemini, DeepSeek, Llama, or any other model's pricing
-- Monthly context-token totals
+Per-agent cost breakdowns, a 14/30-day histogram split by input and output tokens, a calendar view of daily spend, and side-by-side cost comparisons against what the same usage would have cost on GPT-4, Gemini, DeepSeek, or any other model's pricing.
 
-### Terminals, Docker & Node Processes
+### Terminals, Docker, Node processes
 
 ![Terminals](screenshots/terminals.png)
 
-- **Terminals** — every running process sorted by CPU, with pipeline PIDs linking directly to their output, view/edit mode toggle, and kill with SIGTERM → SIGKILL fallback
-- **Docker** — container list with start/stop/pause/restart/kill/remove actions and an expandable log viewer
-- **Node Processes** — dedicated monitor for `node`/`npm`/`next`/`webpack`/`vite`/`tsc`/`pm2` processes with PID, CPU, memory, and CWD
+Every running process, sorted by CPU, with pipeline PIDs linking straight to their output — plus dedicated views for Docker containers (start/stop/restart/kill, expandable logs) and Node/npm/build processes specifically. All three refresh every 5 seconds, and kills go through SIGTERM before falling back to SIGKILL.
 
-All three auto-refresh every 5 seconds.
+### Tasks, Ledger, Inbox, Handoff, Git View, Vault
 
-### Task Approval System
-
-Tasks carry an identity (`author`, `executor`, `priority`, `due`) and move through a state machine: `draft → approved → in_progress → done` (or `failed`). A cron-driven task watcher picks up anything marked `approved` and executes it automatically, so a task can go from "build me X" to a running pipeline without more back-and-forth.
-
-### Ledger, Inbox, Handoff & Git View
-
-- **Ledger** — an immutable, append-only audit trail of every agent action, viewable globally or filtered per project
-- **Inbox** — a cross-agent messaging bus with per-agent tabs and a composer
-- **Handoff** — a live view of `HANDOFF.md`, rewritten every session so the next agent (or the next you) knows what was done and what's pending
-- **Git View** — commit graph, per-commit diffs, and a directory tree browser, with commits mapped back to agent identity
-
-### Vault
-
-Obsidian-compatible vault access for daily notes and chat transcripts, scoped either globally or per project.
+Tasks move through `draft → approved → in_progress → done`, and a cron-driven watcher picks up anything approved and runs it — so "build me X" can go from a task card to a finished pipeline without more prompting. The ledger is an immutable log of every agent action, global or filtered per project. Inbox is a messaging bus between agents. Handoff is a living document each session rewrites so whoever picks things up next knows what happened and what's still open. Git View gives you a commit graph and diff viewer with commits mapped back to agent identity. Vault is Obsidian-compatible access to daily notes and chat transcripts, global or per project.
 
 ---
 
-## Pages
+## By the numbers
 
-The dashboard ships 18 UI pages, all under one Next.js App Router:
-
-| Page | Route | Purpose |
-|------|-------|---------|
-| Overview | `/` | Live stats, recent ledger activity, agent health, auto-refreshed every 10s |
-| Ledger | `/ledger` | Global or per-project audit trail |
-| Pipelines | `/pipelines` | List, create, and drill into pipelines; Flow Builder lives here |
-| Plans | `/plans` | Implementation plans with task breakdown and walkthrough |
-| Tasks | `/tasks` | Task board with the approval state machine |
-| Agents | `/agents` | Agent roster with live health checks |
-| Inbox | `/inbox` | Cross-agent messaging |
-| Handoff | `/handoff` | Session continuity state |
-| Git View | `/gitview` | Repository browser |
-| Terminals | `/terminals` | Running process monitor |
-| Docker | `/docker` | Container management |
-| Node Processes | `/node-processes` | Node/npm/build process monitor |
-| Vault | `/vault` | Daily notes and chat transcripts |
-| API Playground | `/api-playground` | Interactive endpoint explorer |
-| Settings | `/settings` | Secrets, MCP registry, Code-SRS config, View All toggle |
-
-A **View All** toggle in Settings merges every project's pipelines, plans, and git history into one unified view; turning it off shows project-selector chips instead.
+| | |
+|---|---|
+| API endpoints | 63, across 24 resource groups — [docs/api.md](docs/api.md), or try `/api-playground` live |
+| Dashboard pages | 18 |
+| Agent identities | 11 |
+| Benchmark audit | 110 questions, 9 categories |
+| Pipeline templates | 8 |
+| Stack | Next.js 16 · React 19 · TypeScript · Tailwind 4 · `@xyflow/react` for the DAG builder |
 
 ---
 
-## API
+## Getting started
 
-The dashboard exposes **63 REST endpoints across 24 resource groups**, all file-system based — reads and writes go straight to markdown/JSON under `memory/`, `projects/`, `config/`, and `vault/`.
-
-| Group | Base Path | Endpoints |
-|-------|-----------|-----------|
-| Pipelines | `/api/pipelines[/:id]` | 10 |
-| Projects | `/api/projects[/:name]` | 6 |
-| Templates | `/api/templates[/:id]` | 6 |
-| Agents | `/api/agents[/:id]` | 4 |
-| Workspaces | `/api/workspaces[/:name]` | 4 |
-| Events | `/api/events` | 2 |
-| Handoff | `/api/handoff` | 2 |
-| Secrets / Global Secrets | `/api/secrets`, `/api/global-secrets` | 2 + 2 |
-| Tasks | `/api/tasks` | 2 |
-| Queue | `/api/queue` | 2 |
-| Docker | `/api/docker` | 2 |
-| Node Processes | `/api/node-processes` | 2 |
-| Terminals | `/api/terminals` | 2 |
-| Admin / Code-SRS | `/api/admin/code-srs` | 2 |
-| Overview, Ledger, Inbox, Skills, Send Message, MCP Servers, Plans, Vault, Git View, System Doctor | 1 each | 10 |
-
-Full reference: [docs/api.md](docs/api.md) · Try it live at `/api-playground`.
-
----
-
-## Quick Start
-
-### Ubuntu / Debian
-
+**Ubuntu / Debian**
 ```bash
-# Prerequisites
 sudo apt update && sudo apt install -y git curl nodejs npm python3
-
-# Clone
 git clone https://github.com/7kim/PAOS.git
 cd PAOS/dashboard
-
-# Node dependencies
 npm install
-
-# Environment
-cp .env.example .env
-# Edit .env with your API keys
-
-# Run
-npm run dev
-# → http://localhost:3333
+cp .env.example .env   # add your API keys
+npm run dev             # → http://localhost:3333
 ```
+Or just run `bash install-ubuntu.sh` from the repo root.
 
-Or use the installer:
+**macOS**: `bash install-mac.sh`
 
-```bash
-bash install-ubuntu.sh
-```
-
-### macOS
-
-```bash
-bash install-mac.sh
-```
-
-### Windows
-
+**Windows** (as Administrator):
 ```powershell
-# Run as Administrator
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 .\install-windows.ps1
 ```
 
-### Docker
+**Docker**: `docker compose up -d`
+
+### Wiring up agents
 
 ```bash
-docker compose up -d
-```
+# Hermes
+pip install hermes-agent && hermes init
 
----
-
-## Configuration
-
-### Environment Variables
-
-Create `.env` in `dashboard/` (or `config/secrets/.env` for global secrets — see `config/secrets/.env.template`):
-
-```env
-# Required
-MEMORY_DIR=/home/dev/AI_Workflow/memory
-WORKSPACES_DIR=/home/dev/AI_Workflow/workspaces
-
-# API Keys (for agents)
-OPENAI_API_KEY=sk-...
-ANTHROPIC_API_KEY=sk-ant-...
-DEEPSEEK_API_KEY=sk-...
-```
-
-### Agent Setup
-
-**Hermes**
-```bash
-pip install hermes-agent
-hermes init
-hermes --version
-```
-
-**Claude Code**
-```bash
+# Claude Code
 npm install -g @anthropic-ai/claude-code
-claude --version
 ```
+Codex, Gemini, and OpenClaw install and get auto-detected the same way — see `agents/registry.json` for the full roster and `AGENTS.md` for the exact startup/shutdown sequence each agent follows (read the handoff and ledger on the way in, log to its own event file and the global ledger on the way out).
 
-**Codex / Gemini / OpenClaw** — installed and detected the same way; see `agents/registry.json` for the full identity list and `AGENTS.md` for the startup/shutdown sequence each agent runs.
-
-On first setup, each agent is introduced to PAOS with a short role prompt (execute pipeline phases and run benchmarks; implement code changes from pipeline phases; code review and documentation — depending on role) so it knows to check `memory/shared/HANDOFF.md`, the global ledger, and its inbox before starting work, and to log back to both its own event log and the global ledger when done.
+Global secrets (`OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, etc.) go in `config/secrets/.env` — copy `config/secrets/.env.template` to start. `MEMORY_DIR` and `WORKSPACES_DIR` need to point at your PAOS root.
 
 ---
 
-## Project Structure
+## Under the hood
 
 ```
 PAOS/
 ├── Coding-Principles.md             # Architectural constitution
-├── Coding-Principles-Benchmark.md   # 110-question strict audit
-├── workflow.md                      # H-Factor governance: separation of powers, audit immutability
-├── install-ubuntu.sh / install-mac.sh / install-windows.ps1
-├── Dockerfile / docker-compose.yml
-├── screenshots/                     # Feature screenshots + architecture diagrams
-├── benchmarks/                      # Benchmark runs (SRS, audits, gaps, implementation plans)
-├── dashboard/                       # Next.js application
-│   ├── app/                         # 18 pages + 63 API routes
-│   ├── components/                  # React components (incl. shadcn/ui)
-│   └── lib/                         # paos.ts, global-config.ts, cost-tracker.ts, themes.ts
-├── agents/                          # Per-agent soul.md, registry.json
-├── skills/                          # Shared skill library (system-analysis-and-design, etc.)
-├── mcp/                             # MCP server configs (shared-memory, scaffold, search)
-├── knowledge/                       # Shared knowledge base: docs, books, templates, references
-├── config/{agent}/                  # Per-agent settings; config/secrets/.env.template
-├── projects/{name}/                 # Per-project fabric (vault, config, memory)
-├── memory/pipelines/{project}/      # Per-project sandbox: pipelines, ledger, kanban, inbox
+├── Coding-Principles-Benchmark.md   # The 110-question audit
+├── workflow.md                      # H-Factor governance rules
+├── dashboard/                       # Next.js app — 18 pages, 63 API routes
+│   ├── app/  components/  lib/
+├── agents/                          # soul.md per agent + registry.json
+├── skills/                          # Shared skill library
+├── mcp/                             # MCP server configs
+├── knowledge/                       # Shared docs, books, templates
+├── config/{agent}/                  # Per-agent settings + secrets template
+├── projects/{name}/  memory/pipelines/{project}/   # Per-project fabric + sandbox
+├── benchmarks/                      # Benchmark run history
 ├── docs/                            # api.md, architecture.md, examples.md
-└── vault/                           # Global daily notes + chat history
+└── screenshots/                     # What you're looking at in this README
+```
+
+A pipeline node's execution, end to end:
+
+```
+Dashboard ──▶ API route ──▶ Pipeline engine ──spawn──▶ Agent subprocess
+                                  │                          │
+                                  ├─▶ Benchmark engine ─▶ gaps.md
+                                  └─▶ Queue / file-tree      │
+                                                     writes to phases/{nodeId}/
+                                                     ├── output.log
+                                                     ├── IMPLEMENTATION.md
+                                                     ├── REASONING.md
+                                                     └── WALKTHROUGH.md
 ```
 
 ---
 
-## Data Flow
+## Worth knowing
 
-```
-Browser (Dashboard) ──HTTP──▶ API Routes ──▶ Pipeline Engine ──spawn──▶ Agent (Hermes/Claude/Codex/...)
-                                     │                                      │
-                                     ├──▶ Benchmark Engine ──▶ gaps.md      │
-                                     ├──▶ Queue System                       │
-                                     └──▶ File Tree API                      │
-                                                                    writes output
-                                                                         │
-                                                                    phases/{nodeId}/
-                                                                    ├── output.log
-                                                                    ├── IMPLEMENTATION.md
-                                                                    ├── REASONING.md
-                                                                    ├── TASKS.md
-                                                                    └── WALKTHROUGH.md
-```
-
----
-
-## Security
-
-- TypeScript strict mode enforced
-- All API inputs validated; file-path traversal protection on every file read
-- Secrets live only in `.env` files (gitignored) — `config/secrets/.env.template` is the tracked placeholder, never the real file
-- Process/container kill actions require confirmation
-- Benchmark audits check rate limiting, CORS, auth, CSRF, and XSS as part of the Security category
-
-> **Before you push:** the dashboard's default config points at a Tailscale hostname and local paths (`~/AI_Workflow/...`) that are specific to one machine. Worth swapping in placeholders or a `.env.example` before treating this as a public template, so a real device hostname isn't sitting in a public repo.
+- Secrets are gitignored everywhere (`config/secrets/.env`, `.env`, `*.key`, `*.pem`) — only the `.env.template` placeholder is tracked, and that's the way it should stay.
+- File reads go through path-traversal protection, all API inputs are validated, and TypeScript strict mode is on throughout.
+- The dashboard's default config bakes in a real Tailscale hostname and machine-specific local paths. That's fine for a private fork but worth swapping for placeholders before treating this repo as a public template — a live device hostname doesn't need to be sitting in a public README.
 
 ---
 
 ## Contributing
 
-1. Read `Coding-Principles.md` for architectural standards
-2. Run `Coding-Principles-Benchmark.md` before submitting PRs
-3. Ensure every gap is either Fixed or Won't Fix, with documentation
-4. Follow the naming conventions: kebab-case files, plural API resources
+1. Read `Coding-Principles.md` before touching architecture.
+2. Run `Coding-Principles-Benchmark.md` before opening a PR.
+3. Every gap from a benchmark run should end up Fixed or explicitly Won't Fix — no silent drops.
+4. Keep to the naming conventions: kebab-case files, plural API resources.
 
 ---
 
 ## License
 
-MIT — Free to use, modify, and distribute.
+MIT — free to use, modify, and distribute.
